@@ -21,7 +21,7 @@ h1{font-size:1.4rem;color:var(--gd)}.hero h1{color:#fff}h2{color:var(--g);font-s
 .ad-slot{display:none}.ad-on .ad-slot{display:block;min-height:100px;margin:16px 0;text-align:center}
 .foot{text-align:center;font-size:.85rem;padding:16px;color:#555}
 #cookie-banner{position:fixed;left:8px;right:8px;bottom:8px;background:#fff;border-top:4px solid var(--au);border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.25);padding:14px;z-index:99;max-width:720px;margin:0 auto;font-size:.92rem}#cookie-banner .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}#cookie-banner .btn{padding:9px 16px;font-size:.92rem}#cookie-banner .btn.sec{background:#e9e9e9;color:#222}
-.ad-label{display:none}.ad-on .ad-label{display:block;font-size:.7rem;color:#999;text-align:center;margin:16px 0 -12px;text-transform:uppercase;letter-spacing:.05em}.ad-on .ad-slot{max-height:280px;overflow:hidden}
+.ad-label{display:none}.ad-on .ad-label{display:block;font-size:.7rem;color:#999;text-align:center;margin:16px 0 -12px;text-transform:uppercase;letter-spacing:.05em}.ad-on .ad-slot{max-height:280px;overflow:hidden;display:flex;justify-content:center}
 .lesson.locked .lrow{opacity:.55;border-left-color:#bbb;cursor:not-allowed}.btn.dis{background:#bbb;color:#444;cursor:not-allowed}
 .lock-msg{background:#fff4d6;border:2px solid var(--au);border-radius:14px;padding:14px;margin:16px 0;font-weight:600}
 .tabla{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}.tabla table{border-collapse:collapse;min-width:100%;font-size:.88rem}.tabla th,.tabla td{border:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}.tabla th{background:var(--gs);color:var(--g)}.tabla tr:nth-child(even) td{background:#fafaf5}
