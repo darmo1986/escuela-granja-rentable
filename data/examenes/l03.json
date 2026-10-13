@@ -1,0 +1,247 @@
+{
+  "leccion": 3,
+  "titulo": "La incubadora: qué tipo necesitas según tu presupuesto y tu granja",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Cuál es la temperatura de referencia en una incubadora de aire forzado según Mississippi State University Extension?",
+      "opciones": [
+        "35 °C",
+        "37,8 °C (100 °F)",
+        "40 °C",
+        "32 °C"
+      ],
+      "correcta": 1,
+      "explicacion": "En aire forzado la referencia es 100 °F, unos 37,8 °C."
+    },
+    {
+      "id": 2,
+      "pregunta": "En una incubadora de aire quieto, ¿dónde se mide la temperatura y qué valor se recomienda?",
+      "opciones": [
+        "En el suelo de la máquina, a 35 °C",
+        "Arriba del huevo, unos 101–102 °F (≈ 38,3–38,9 °C)",
+        "Fuera de la incubadora, a 25 °C",
+        "No hace falta termómetro"
+      ],
+      "correcta": 1,
+      "explicacion": "En aire quieto hay capas de calor; se mide a la altura de la parte alta del huevo, ~101–102 °F."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Qué humedad relativa se recomienda del día 1 al 18 en gallina?",
+      "opciones": [
+        "20–30 %",
+        "58–60 %",
+        "90–95 %",
+        "10 %"
+      ],
+      "correcta": 1,
+      "explicacion": "Mississippi State: 58–60 % HR (wet bulb ~85–87 °F) hasta tres días antes de nacer."
+    },
+    {
+      "id": 4,
+      "pregunta": "En los tres últimos días de incubación de gallina, ¿qué haces con la humedad?",
+      "opciones": [
+        "La bajas al 30 %",
+        "La dejas igual y abres cada hora",
+        "La subes al menos al 65 % y evitas abrir",
+        "Quitas toda el agua"
+      ],
+      "correcta": 2,
+      "explicacion": "Se sube al menos al 65 % HR y no conviene abrir la máquina esos tres días."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cuántos días dura la incubación de un huevo de gallina y desde qué día se para el volteo?",
+      "opciones": [
+        "28 días; volteo hasta el 25",
+        "21 días; sin voltear desde el 18",
+        "17 días; sin voltear desde el 10",
+        "14 días; sin voltear desde el 7"
+      ],
+      "correcta": 1,
+      "explicacion": "Gallina: 21 días; no voltear desde el día 18 (lockdown)."
+    },
+    {
+      "id": 6,
+      "pregunta": "Según Mississippi State, ¿cuántos días incuban aproximadamente la codorniz japonesa, el pato y el pavo?",
+      "opciones": [
+        "Codorniz 21, pato 21, pavo 21",
+        "Codorniz 17, pato 28, pavo 28",
+        "Codorniz 28, pato 17, pavo 21",
+        "Codorniz 10, pato 14, pavo 16"
+      ],
+      "correcta": 1,
+      "explicacion": "Coturnix 17 días; pato y pavo 28 días (con distintos días de fin de volteo)."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Qué ventaja principal tiene la incubadora de aire forzado frente a la de aire quieto para quien empieza?",
+      "opciones": [
+        "No necesita electricidad",
+        "El calor se reparte mejor y es más estable",
+        "No hay que voltear nunca",
+        "Siempre es más barata"
+      ],
+      "correcta": 1,
+      "explicacion": "El ventilador homogeneiza la temperatura; en aire quieto hay capas de calor."
+    },
+    {
+      "id": 8,
+      "pregunta": "Aviagen recomienda voltear los huevos…",
+      "opciones": [
+        "90 grados de golpe una vez al día",
+        "45 grados a cada lado de la vertical, con movimiento suave",
+        "Solo el día 18",
+        "No hace falta voltear"
+      ],
+      "correcta": 1,
+      "explicacion": "45° a cada lado, suave; un ángulo insuficiente puede bajar el nacimiento."
+    },
+    {
+      "id": 9,
+      "pregunta": "Para un uso doméstico de 6 a 30 huevos, ¿qué rango de precio orientativo da la lección (estimación España 2026)?",
+      "opciones": [
+        "4.000–10.000 €",
+        "40–150 €",
+        "2.500–5.000 €",
+        "Menos de 10 €"
+      ],
+      "correcta": 1,
+      "explicacion": "Estimación Granja Rentable: unos 40–150 € para 6–30 huevos."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Cuándo se recomienda la primera ovoscopia según Mississippi State?",
+      "opciones": [
+        "Solo el día 21",
+        "Entre el día 4 y el 7 (mejor ~7 en cáscara oscura)",
+        "Cada hora desde el día 1",
+        "Nunca; la ovoscopia mata al embrión"
+      ],
+      "correcta": 1,
+      "explicacion": "Primera prueba a los 4–7 días; segunda a los 14–16. Hecha bien no lesiona al embrión vivo."
+    },
+    {
+      "id": 11,
+      "pregunta": "Al ovoscopiar el día 7, un embrión vivo se ve…",
+      "opciones": [
+        "Totalmente negro sin detalles",
+        "Como una araña: punto oscuro con venas que se abren",
+        "Igual que un huevo de nevera sin más",
+        "Solo la cáscara, nunca el interior"
+      ],
+      "correcta": 1,
+      "explicacion": "MSU: aspecto de araña (cuerpo = embrión, patas = vasos)."
+    },
+    {
+      "id": 12,
+      "pregunta": "Un huevo «claro» o infértil al ovoscopiar…",
+      "opciones": [
+        "Tiene una red densa de venas",
+        "Se ve casi transparente, solo con sombra suave de yema, sin venas",
+        "Siempre tiene anillo de sangre",
+        "Hay que dejarlo hasta el día 21 por si acaso"
+      ],
+      "correcta": 1,
+      "explicacion": "Claro = sin desarrollo visible; se descarta."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Qué indica un anillo de sangre?",
+      "opciones": [
+        "Que el pollito está a punto de nacer",
+        "Un embrión que empezó y murió pronto",
+        "Que la humedad es perfecta",
+        "Que el huevo es de codorniz"
+      ],
+      "correcta": 1,
+      "explicacion": "La sangre se separa del embrión muerto y forma el anillo; hay que sacar ese huevo."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Por qué hay que sacar los huevos contaminados o podridos al ovoscopiar?",
+      "opciones": [
+        "Solo por estética",
+        "Pueden acumular gas bacteriano, estallar y contaminar el resto del lote",
+        "Porque nacen antes",
+        "Porque suben la temperatura de la máquina de forma útil"
+      ],
+      "correcta": 1,
+      "explicacion": "MSU y Cobb: los «exploders/bangers» salpican bacterias; más muertos en cáscara y riesgo en pollitos."
+    },
+    {
+      "id": 15,
+      "pregunta": "Si dejas huevos claros (infértiles) dentro de la incubadora…",
+      "opciones": [
+        "Nacen igual de bien",
+        "Ocupan sitio, gastan electricidad y falsean tu porcentaje de nacimiento",
+        "Mejoran la humedad automáticamente",
+        "Evitan que exploten los contaminados"
+      ],
+      "correcta": 1,
+      "explicacion": "No van a nacer; distorsionan el cálculo de eclosión y desperdician capacidad."
+    },
+    {
+      "id": 16,
+      "pregunta": "Según Cobb, los lotes con muchos huevos contaminados se asocian a…",
+      "opciones": [
+        "Mejor conversión alimenticia",
+        "Más mortalidad de pollitos a los 7 días",
+        "Huevos de color más claro",
+        "Menos necesidad de limpieza"
+      ],
+      "correcta": 1,
+      "explicacion": "Cobb relaciona alto porcentaje de contaminados con más mortalidad a 7 días (p. ej. problemas de ombligo/onfalitis)."
+    },
+    {
+      "id": 17,
+      "pregunta": "Si al día 5–6 no ves claro el desarrollo en una cáscara oscura, ¿qué debes hacer?",
+      "opciones": [
+        "Tirar el huevo siempre",
+        "Marcarlo, devolverlo y volver a ovoscopiar más tarde",
+        "Abrir la cáscara con un cuchillo",
+        "Bajar la temperatura a 30 °C"
+      ],
+      "correcta": 1,
+      "explicacion": "MSU: si dudas, devuélvelo y reprueba (p. ej. al día 7 o 14–16)."
+    },
+    {
+      "id": 18,
+      "pregunta": "Mississippi State recomienda, sobre lavar huevos para incubar…",
+      "opciones": [
+        "Lavarlos siempre con agua fría",
+        "No lavarlos; mejor nidos limpios y recogida frecuente",
+        "Remojarlos 24 horas",
+        "Usar solo lejía pura"
+      ],
+      "correcta": 1,
+      "explicacion": "El lavado favorece la entrada de bacterias por los poros; si incubas sucios, mejor aparte."
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Qué es el «lockdown» o cierre en incubación de gallina?",
+      "opciones": [
+        "Apagar la incubadora el día 10",
+        "Parar el volteo hacia el día 18, subir humedad y no abrir hasta nacer",
+        "Meter más huevos el día 18",
+        "Congelar los huevos"
+      ],
+      "correcta": 1,
+      "explicacion": "Últimos tres días: sin volteo, más humedad, mínima apertura."
+    },
+    {
+      "id": 20,
+      "pregunta": "Antes de meter la primera tanda, ¿qué comprobación recomienda la lección?",
+      "opciones": [
+        "Nada; sacar de la caja y llenar",
+        "Prueba en vacío unas 48 horas (temperatura, humedad, volteo)",
+        "Solo mirar el color de la carcasa",
+        "Dejarla al sol para que agarre calor"
+      ],
+      "correcta": 1,
+      "explicacion": "Si falla en vacío, fallará con huevos; verifica con termómetro de contraste."
+    }
+  ]
+}

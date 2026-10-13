@@ -1,0 +1,248 @@
+{
+  "leccion": 5,
+  "codigo": "L04B",
+  "titulo": "Pollos de engorde (2): amoníaco, bioseguridad, depredadores, enfermedades y vacunas",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "Sobre el amoníaco, ¿cuál de estas afirmaciones es correcta?",
+      "opciones": [
+        "Si no lo hueles, no hay amoníaco",
+        "Solo se mide al final del lote",
+        "Ross y Cobb recomiendan < 10 ppm; si te pican los ojos ya está alto, pero hay que medirlo (tiras, tubos o medidor)",
+        "El amoníaco mejora el crecimiento"
+      ],
+      "correcta": 2,
+      "explicacion": "El límite legal (explotaciones a > 33 kg/m²) es 20 ppm; ideal < 10. Quien está siempre dentro se acostumbra (UGA), por eso se mide."
+    },
+    {
+      "id": 2,
+      "pregunta": "En granjas que trabajan por encima de 33 kg/m², ¿qué máximo de amoníaco fija la directiva europea?",
+      "opciones": [
+        "20 ppm, medido a la altura de la cabeza de los pollos",
+        "100 ppm",
+        "No hay ningún límite",
+        "20 ppm, medido a la altura del techo"
+      ],
+      "correcta": 0,
+      "explicacion": "Directiva 2007/43/CE (RD 692/2010): ≤ 20 ppm a la altura de la cabeza de los pollos. Ross y Cobb recomiendan < 10; el panel de la EFSA propone no pasar de 15."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cuándo y dónde se mide el amoníaco?",
+      "opciones": [
+        "Por la mañana temprano, antes de ventilar, en varios puntos y a la altura de los pollos",
+        "A mediodía, con todo ventilado, a la altura de tu cara",
+        "Solo en la puerta de la nave",
+        "No hace falta medir: basta con el olfato"
+      ],
+      "correcta": 0,
+      "explicacion": "Es el peor momento del día. Quien está siempre dentro se acostumbra al olor (Universidad de Georgia), por eso hay que medirlo."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué significa «todo dentro, todo fuera»?",
+      "opciones": [
+        "Que los pollos duermen dentro y comen fuera",
+        "Que se saca el equipo una vez al año",
+        "Que se mezclan lotes de distintas edades para aprovechar sitio",
+        "Que en una misma nave todos los pollos entran a la vez y salen a la vez, sin añadir pollitos a un lote que ya está"
+      ],
+      "correcta": 3,
+      "explicacion": "Así se puede vaciar, limpiar y desinfectar de verdad y se cortan los contagios entre lotes."
+    },
+    {
+      "id": 5,
+      "pregunta": "En la limpieza entre lotes, ¿qué va antes?",
+      "opciones": [
+        "Desinfectar primero, con la cama todavía dentro",
+        "Quitar cama y polvo, lavar con agua y detergente, aclarar y secar; después, desinfectar",
+        "Solo desinfectar: el detergente sobra",
+        "Meter los pollitos y limpiar con ellos dentro"
+      ],
+      "correcta": 1,
+      "explicacion": "El desinfectante no funciona bien sobre materia orgánica: primero se limpia y se lava con detergente, se aclara y se seca, y después se desinfecta con un producto autorizado a la dilución de la etiqueta."
+    },
+    {
+      "id": 6,
+      "pregunta": "Te faltan pollos al contar, solo encuentras unas plumas y pasa sobre todo al amanecer y al anochecer. ¿Quién es el sospechoso más probable?",
+      "opciones": [
+        "Una rata",
+        "El zorro",
+        "Un mustélido que deja los pollos apilados",
+        "El golpe de calor"
+      ],
+      "correcta": 1,
+      "explicacion": "El zorro suele llevarse el pollo entero; los mustélidos matan varios y los dejan; las ratas atacan sobre todo a pollitos y se comen el pienso."
+    },
+    {
+      "id": 7,
+      "pregunta": "Encuentras varios pollos muertos de golpe, con mordiscos en la cabeza y la nuca, apilados y sin comer. ¿Qué depredador es el más probable?",
+      "opciones": [
+        "Un mustélido (garduña, comadreja o turón)",
+        "Un ratón",
+        "Un ratonero de día",
+        "Una serpiente"
+      ],
+      "correcta": 0,
+      "explicacion": "Firma de mustélidos (UMD, Oklahoma State). El zorro se lleva el pollo entero; el perro los destroza sin comer."
+    },
+    {
+      "id": 8,
+      "pregunta": "Para proteger el gallinero de zorros, garduñas y ratas, ¿qué malla se recomienda?",
+      "opciones": [
+        "Cuerda",
+        "Ninguna; basta con un perro",
+        "Tela de gallinero hexagonal",
+        "Malla electrosoldada galvanizada de agujero pequeño (~13 mm; 6 mm abajo), enterrada ~30 cm o con faldón hacia fuera"
+      ],
+      "correcta": 3,
+      "explicacion": "La tela hexagonal no frena depredadores. Malla de ½\" (¼\" contra ratones y serpientes), fijada con tornillos, enterrada o con faldón de 30–60 cm."
+    },
+    {
+      "id": 9,
+      "pregunta": "Si hace falta raticida, ¿cómo se usa?",
+      "opciones": [
+        "Esparcido por la cama para que lo encuentren rápido",
+        "Solo productos autorizados como biocida, dentro de portacebos cerrados y fijados, siguiendo la etiqueta",
+        "Mezclado con el pienso de los pollos",
+        "Cualquier veneno casero vale"
+      ],
+      "correcta": 1,
+      "explicacion": "Primero, sin comida ni refugio; después, biocidas autorizados en portacebos donde no lleguen pollos, perros, gatos ni niños. Revisar los cebos y recoger los roedores muertos."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Cómo se coloca el pastor eléctrico contra zorros y perros?",
+      "opciones": [
+        "Un hilo a dos metros de altura",
+        "Por dentro del gallinero, a la altura de los pollos",
+        "Enterrado bajo la malla",
+        "Uno o dos hilos por fuera de la valla, el más bajo a unos 10 cm del suelo y a unos 30 cm de la malla"
+      ],
+      "correcta": 3,
+      "explicacion": "Así el zorro o el perro toca el hilo antes de llegar a la malla. Hay que revisar que la hierba no lo descargue y poner cartel de aviso."
+    },
+    {
+      "id": 11,
+      "pregunta": "Sospechas de gripe aviar o de enfermedad de Newcastle. ¿Qué tienes que hacer?",
+      "opciones": [
+        "Esperar una semana a ver si se pasa",
+        "Tratar con antibióticos por tu cuenta",
+        "Vender los pollos cuanto antes",
+        "Avisar sin esperar a los servicios veterinarios oficiales: son de declaración obligatoria"
+      ],
+      "correcta": 3,
+      "explicacion": "Ambas son de declaración obligatoria. Además, si las bajas se disparan o mueren varios sin síntomas previos, hay que llamar al veterinario ese mismo día."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Qué órgano ataca la enfermedad de Gumboro y a qué edad suele aparecer?",
+      "opciones": [
+        "El hígado, solo en pollos adultos",
+        "Las patas, el primer día de vida",
+        "La bolsa de Fabricio, el órgano de las defensas del pollo joven, entre las 3 y las 6 semanas",
+        "Los ojos, solo en verano"
+      ],
+      "correcta": 2,
+      "explicacion": "Gumboro (birnavirus muy resistente) baja las defensas y deja al pollo expuesto a otras enfermedades. Prevención: bioseguridad y vacuna según el veterinario."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Cuándo se vacuna habitualmente contra la enfermedad de Marek?",
+      "opciones": [
+        "A las seis semanas, en el agua",
+        "Nunca: no existe vacuna",
+        "Justo antes del sacrificio",
+        "En la incubadora: dentro del huevo o el primer día de vida"
+      ],
+      "correcta": 3,
+      "explicacion": "Marek (herpesvirus) se contagia por el polvo y la caspa de las plumas; la vacuna se pone en la incubadora, dentro del huevo o el primer día."
+    },
+    {
+      "id": 14,
+      "pregunta": "La coccidiosis la causa un parásito, Eimeria. ¿Qué la favorece sobre todo?",
+      "opciones": [
+        "La cama húmeda y templada, donde los ooquistes se vuelven infectivos en pocos días",
+        "La luz natural",
+        "El pienso en migaja",
+        "La malla electrosoldada"
+      ],
+      "correcta": 0,
+      "explicacion": "Señales: pollos erizados que comen menos y diarrea a veces con sangre. Prevención: cama seca, buenos bebederos, densidad correcta y anticoccidianos en el pienso o vacuna."
+    },
+    {
+      "id": 15,
+      "pregunta": "Pollitos de la primera semana débiles, con la tripa hinchada y el ombligo húmedo y rojizo. ¿Qué es lo más probable?",
+      "opciones": [
+        "Onfalitis: infección del ombligo, casi siempre por falta de higiene en la incubadora o huevos sucios",
+        "Ascitis",
+        "Golpe de calor",
+        "Enfermedad de Marek"
+      ],
+      "correcta": 0,
+      "explicacion": "La onfalitis aparece la primera semana; la prevención está en la higiene de la incubadora y de los huevos (lección 3)."
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Qué es la ascitis en el pollo de engorde?",
+      "opciones": [
+        "Una infección del ombligo",
+        "Un parásito del intestino",
+        "Acumulación de líquido en el abdomen porque el corazón y los pulmones no dan abasto con un crecimiento tan rápido",
+        "Una enfermedad de la piel por la cama"
+      ],
+      "correcta": 2,
+      "explicacion": "La empeoran el frío, la mala ventilación y la altitud. Prevención: buena ventilación sin frío, buen aire y no forzar el crecimiento."
+    },
+    {
+      "id": 17,
+      "pregunta": "Aparecen muertos boca arriba pollos sanos y grandes, muchas veces machos, a veces tras un aleteo breve. ¿Qué es?",
+      "opciones": [
+        "Coccidiosis",
+        "Síndrome de muerte súbita",
+        "Ataque de zorro",
+        "Falta de agua"
+      ],
+      "correcta": 1,
+      "explicacion": "Está ligado al crecimiento muy rápido y a fallos del corazón. Prevención: programa de luz con horas de oscuridad, evitar sustos y estrés y no forzar el crecimiento."
+    },
+    {
+      "id": 18,
+      "pregunta": "En España, ¿qué se necesita para tratar un lote con antibióticos?",
+      "opciones": [
+        "Solo hace falta si los pollos son ecológicos",
+        "Basta con lo que sobró del lote anterior",
+        "Receta veterinaria tras examinar a los animales; la prescripción se comunica a PRESVET y hay que respetar el tiempo de espera antes del sacrificio",
+        "Nada, se compran libremente"
+      ],
+      "correcta": 2,
+      "explicacion": "Reglamento (UE) 2019/6 y RD 666/2023: receta, sin uso preventivo rutinario ni para crecer, comunicación a PRESVET, tiempo de espera."
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Qué es el tiempo de espera de un medicamento?",
+      "opciones": [
+        "El tiempo que tarda el veterinario en venir",
+        "Los días que dura la caja de la vacuna",
+        "El tiempo que debe pasar entre la última dosis y el sacrificio para que no queden residuos en la carne",
+        "El tiempo entre dos lotes"
+      ],
+      "correcta": 2,
+      "explicacion": "Lo marcan la receta y el prospecto. Si el pollo se sacrifica antes, esa carne no puede ir al consumo: apunta tratamiento, fecha y tiempo de espera."
+    },
+    {
+      "id": 20,
+      "pregunta": "Vas a vacunar en el agua de bebida. ¿Qué es correcto?",
+      "opciones": [
+        "Añadir más cloro para que la vacuna dure",
+        "Cortar el cloro unas 48 h antes, usar estabilizante, que se la beban en 1,5–2 horas y mantener la cadena de frío",
+        "Dejar la vacuna al sol para que se active",
+        "Vacunar solo a los pollos enfermos"
+      ],
+      "correcta": 1,
+      "explicacion": "Ross y Cobb: el cloro inactiva la vacuna; estabilizante, 90–120 min de consumo, frío según el prospecto. El programa lo decide el veterinario."
+    }
+  ]
+}

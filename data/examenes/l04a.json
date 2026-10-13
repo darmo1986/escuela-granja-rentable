@@ -1,0 +1,248 @@
+{
+  "leccion": 4,
+  "codigo": "L04A",
+  "titulo": "Pollos de engorde (1): preparación, temperatura, pienso y manejo",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "Según Ross, ¿cuánto tiempo antes de la llegada de los pollitos hay que tener estabilizadas la temperatura y la humedad de la nave?",
+      "opciones": [
+        "Una semana antes, con la nave cerrada sin ventilar",
+        "Basta con encender la calefacción al abrir las cajas",
+        "No hace falta precalentar si la cama es nueva",
+        "Al menos 24 horas antes (Cobb: empezar a calentar unas 48 horas antes)"
+      ],
+      "correcta": 3,
+      "explicacion": "Ross: estabilizar ≥ 24 h antes (aire ~30 °C, suelo 28–30 °C, HR 60–70 %); Cobb avisa de que suele hacer falta empezar 48 h antes."
+    },
+    {
+      "id": 2,
+      "pregunta": "Según el RD 637/2021, tras limpiar, desinfectar y desratizar entre lotes, ¿cuánto tiempo mínimo de espera se deja antes del siguiente lote?",
+      "opciones": [
+        "Solo 24 horas",
+        "Ninguno: se meten pollitos ese mismo día",
+        "12 días (7 si hay analíticas que demuestran la eficacia)",
+        "Seis meses"
+      ],
+      "correcta": 2,
+      "explicacion": "El RD 637/2021 exige «todo dentro, todo fuera» y al menos 12 días de espera, reducibles a 7 con analíticas."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cuál es la densidad máxima base para pollos de engorde según la Directiva 2007/43/CE y el RD 692/2010?",
+      "opciones": [
+        "33 kg/m² (39 o 42 solo cumpliendo condiciones adicionales)",
+        "10 kg/m²",
+        "No existe límite",
+        "50 kg/m²"
+      ],
+      "correcta": 0,
+      "explicacion": "Base 33 kg/m²; 39 kg/m² con documentación y condiciones ambientales; 42 kg/m² con además mortalidad baja en 7 lotes."
+    },
+    {
+      "id": 4,
+      "pregunta": "Con pollos que salen a 2,5 kg y una densidad de 30 kg/m², ¿cuántos caben en 20 m²?",
+      "opciones": [
+        "50",
+        "240",
+        "600",
+        "1.000"
+      ],
+      "correcta": 1,
+      "explicacion": "30 ÷ 2,5 = 12 pollos/m²; 12 × 20 m² = 240 pollos."
+    },
+    {
+      "id": 5,
+      "pregunta": "Para vender pollo «campero», ¿cuánto parque exterior mínimo necesita cada pollo?",
+      "opciones": [
+        "10 cm² por pollo",
+        "Al menos 1 m² por pollo (2 m² en campero tradicional)",
+        "Solo un patio de cemento",
+        "Ninguno"
+      ],
+      "correcta": 1,
+      "explicacion": "Campero: ≤ 13 pollos/m² y ≤ 27,5 kg/m² dentro, ≥ 1 m² de parque por pollo y ≥ 56 días; tradicional: 2 m² y ≥ 81 días."
+    },
+    {
+      "id": 6,
+      "pregunta": "En la prueba del buche, ¿qué significa un buche lleno pero duro, en el que se nota la migaja?",
+      "opciones": [
+        "Que ha comido pero le falta agua",
+        "Que hay que retirar el pienso",
+        "Que el pollito está perfecto",
+        "Que tiene demasiado calor"
+      ],
+      "correcta": 0,
+      "explicacion": "Buche lleno, blando y redondo = comida y agua. Duro con migaja = falta agua. Vacío = no ha encontrado la comida."
+    },
+    {
+      "id": 7,
+      "pregunta": "Los pollitos están pegados a las paredes, con las alas abiertas y jadeando. ¿Qué pasa?",
+      "opciones": [
+        "Tienen calor",
+        "Están perfectamente",
+        "Tienen frío",
+        "Les falta luz"
+      ],
+      "correcta": 0,
+      "explicacion": "Amontonados bajo el calor = frío; en los bordes, alas abiertas y jadeo = calor; agrupados en un lado = corriente."
+    },
+    {
+      "id": 8,
+      "pregunta": "Según la tabla de Ross para calefacción de toda la nave, ¿qué temperatura se recomienda el día 0 y hacia el día 27?",
+      "opciones": [
+        "25 °C fijos todo el lote",
+        "40 °C y 35 °C",
+        "30 °C el día 0 y unos 20 °C desde el día 27",
+        "20 °C el día 0 y 30 °C el día 27"
+      ],
+      "correcta": 2,
+      "explicacion": "Ross: 30 °C el día 0 (32 °C en el borde de la campana), bajando hasta unos 20 °C desde el día 27."
+    },
+    {
+      "id": 9,
+      "pregunta": "Según la Universidad de Missouri, ¿para cuántos pollitos sirve una lámpara de infrarrojos de 250 W?",
+      "opciones": [
+        "Para 500 pollitos",
+        "Para unos 5 pollitos",
+        "Para unos 50–75 pollitos, colgada con cadena, nunca del cable",
+        "Para toda la nave, sea del tamaño que sea"
+      ],
+      "correcta": 2,
+      "explicacion": "Missouri: una lámpara de 250 W por cada 50–75 pollitos, con cadena, portalámparas de porcelana y rejilla; las lámparas van bien en lotes de menos de 200."
+    },
+    {
+      "id": 10,
+      "pregunta": "En una granja de 500 pollos o más en la UE, ¿qué exige la Directiva sobre la luz desde el día 7 hasta 3 días antes del sacrificio?",
+      "opciones": [
+        "Luz 24 horas",
+        "Oscuridad total salvo para comer",
+        "Nada; la luz es libre",
+        "Al menos 6 h de oscuridad al día, con un tramo seguido de 4 h, y ≥ 20 lux en las horas de luz"
+      ],
+      "correcta": 3,
+      "explicacion": "Directiva 2007/43/CE, anexo I: ≥ 6 h de oscuridad (≥ 4 h seguidas) y ≥ 20 lux sobre ≥ 80 % de la superficie."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Qué forma de pienso se da del día 0 al 10, según Ross?",
+      "opciones": [
+        "Restos de cocina",
+        "Migaja tamizada (2–3,5 mm)",
+        "Gránulo entero de 4 mm",
+        "Grano entero"
+      ],
+      "correcta": 1,
+      "explicacion": "Arranque en migaja; gránulo desde el día 11. La harina se desperdicia más y hace beber más."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Qué proteína bruta lleva aproximadamente el pienso de arranque del Ross 308 según las especificaciones de Ross (2022)?",
+      "opciones": [
+        "23 %",
+        "10 %",
+        "40 %",
+        "5 %"
+      ],
+      "correcta": 0,
+      "explicacion": "Arranque 23 % (2.975 kcal/kg), crecimiento 21,5 % (3.050 kcal), acabado 19,5 % (3.100 kcal)."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Cuándo se retira el pienso antes del sacrificio?",
+      "opciones": [
+        "No se retira",
+        "Tres días antes",
+        "24 horas antes, y también el agua",
+        "Entre 8 y 12 horas antes (nunca más de 12 h, según la Directiva), con agua hasta la carga"
+      ],
+      "correcta": 3,
+      "explicacion": "Ross: 8–12 h contando carga y transporte; la Directiva prohíbe retirarlo más de 12 h antes. El agua se mantiene."
+    },
+    {
+      "id": 14,
+      "pregunta": "A 21 °C, ¿cuánta agua bebe un pollo por cada kilo de pienso, según Ross?",
+      "opciones": [
+        "No bebe si come gránulo",
+        "1,6–1,8 litros",
+        "0,2 litros",
+        "5 litros"
+      ],
+      "correcta": 1,
+      "explicacion": "Relación agua:pienso 1,6–1,8; sube ~6,5 % por cada grado por encima de 21 °C."
+    },
+    {
+      "id": 15,
+      "pregunta": "¿A qué altura debe ir el borde del comedero de plato o de tolva?",
+      "opciones": [
+        "Da igual la altura",
+        "A un metro del suelo",
+        "A la altura del lomo (parte alta de la pechuga) del pollo, ajustándolo según crece",
+        "En el suelo, enterrado en la cama"
+      ],
+      "correcta": 2,
+      "explicacion": "Ross: borde a la altura de la parte alta de la pechuga; demasiado bajo derrama y demasiado alto impide comer."
+    },
+    {
+      "id": 16,
+      "pregunta": "Según la Universidad de Missouri, ¿hasta dónde se llenan los comederos?",
+      "opciones": [
+        "Hasta arriba, para no tener que rellenar",
+        "Solo de un tercio a la mitad, para que se derrame mucho menos",
+        "Una vez a la semana, hasta rebosar",
+        "Se dejan vacíos medio día para que coman menos"
+      ],
+      "correcta": 1,
+      "explicacion": "Missouri: llenar de 1/3 a 1/2 reduce el desperdicio. El pienso derramado empeora la conversión aunque el pollo no se lo coma."
+    },
+    {
+      "id": 17,
+      "pregunta": "Según Ross, ¿cuánto debe pesar el pollito a los 7 días comparado con su peso a la llegada?",
+      "opciones": [
+        "Lo mismo: la primera semana no crece",
+        "El doble",
+        "Al menos 4,5 veces lo que pesó al llegar (unos 200 g si llegó con 44 g)",
+        "Diez veces más"
+      ],
+      "correcta": 2,
+      "explicacion": "Ross: a los 7 días, ≥ 4,5 × el peso de llegada. Es el mejor indicador de un buen arranque."
+    },
+    {
+      "id": 18,
+      "pregunta": "¿Cómo se calcula el índice de conversión del pienso?",
+      "opciones": [
+        "Kilos de pienso consumido divididos entre kilos de peso producido",
+        "Kilos de pollo divididos entre el número de pollos",
+        "Litros de agua divididos entre kilos de pienso",
+        "Número de bajas dividido entre pollos iniciales"
+      ],
+      "correcta": 0,
+      "explicacion": "IC = pienso consumido / peso producido. Objetivos Ross: ~1,4 a 35 días y ~1,5 a 42 días; en granja pequeña, algo más alto. Cuanto más bajo, mejor."
+    },
+    {
+      "id": 19,
+      "pregunta": "Según Ross, ¿qué humedad relativa se busca en la nave los tres primeros días?",
+      "opciones": [
+        "Menos del 30 %, cuanto más seco mejor",
+        "Más del 90 %",
+        "Da igual, la humedad no influye",
+        "Del 60 al 70 %"
+      ],
+      "correcta": 3,
+      "explicacion": "Ross: 60–70 % los días 0–3 (los pollitos salen de la nacedora con ~80 %). Por debajo del 50 % en la primera semana hay polvo y problemas respiratorios; a partir de la semana, por encima del 70 % la cama se moja."
+    },
+    {
+      "id": 20,
+      "pregunta": "¿Qué indica la prueba del puñado si la cama se queda hecha una bola al abrir la mano?",
+      "opciones": [
+        "Que la cama está perfecta",
+        "Que falta pienso",
+        "Que hace frío",
+        "Que está demasiado húmeda"
+      ],
+      "correcta": 3,
+      "explicacion": "Cama correcta = se suelta (friable). Bola = húmeda: riesgo de pododermatitis, amoníaco y coccidiosis. Objetivo Cobb < 35 %."
+    }
+  ]
+}

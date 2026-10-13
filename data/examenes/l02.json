@@ -1,0 +1,247 @@
+{
+  "leccion": 2,
+  "titulo": "Tipos de explotación y espacio: cómo debe ser tu granja según tu presupuesto",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "En España, ¿cuántas gallinas ponedoras como máximo puede tener una explotación de autoconsumo según el Real Decreto 637/2021?",
+      "opciones": [
+        "10",
+        "30",
+        "100",
+        "300"
+      ],
+      "correcta": 1,
+      "explicacion": "El límite es 0,15 UGM, que equivale a 30 gallinas ponedoras, y sin vender nada."
+    },
+    {
+      "id": 2,
+      "pregunta": "Si tienes 20 gallinas de autoconsumo, ¿qué debes hacer igualmente?",
+      "opciones": [
+        "Nada, el autoconsumo no tiene ninguna obligación",
+        "Pedir licencia de nave industrial",
+        "Venderlo todo como huevo campero",
+        "Inscribirlo en el registro de explotaciones ganaderas (REGA) de tu comunidad autónoma"
+      ],
+      "correcta": 3,
+      "explicacion": "El autoconsumo está exento de muchas obligaciones, pero no del registro."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cuánto espacio exterior mínimo por gallina exige el huevo campero (código 1)?",
+      "opciones": [
+        "4 m²",
+        "1 m²",
+        "2 m²",
+        "10 m²"
+      ],
+      "correcta": 0,
+      "explicacion": "Como mínimo 4 m² por gallina, es decir, 2.500 gallinas por hectárea."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Cuántas gallinas por metro cuadrado se permiten como máximo dentro del gallinero ecológico (código 0)?",
+      "opciones": [
+        "9",
+        "12",
+        "6",
+        "20"
+      ],
+      "correcta": 2,
+      "explicacion": "Ecológico: máximo 6 gallinas por m² dentro y 4 m² fuera."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Qué espacio mínimo por gallina pide la jaula acondicionada (código 3) en la Unión Europea?",
+      "opciones": [
+        "550 cm²",
+        "1 m²",
+        "750 cm², de ellos 600 utilizables",
+        "No hay mínimo"
+      ],
+      "correcta": 2,
+      "explicacion": "750 cm² por gallina, 600 utilizables; las jaulas no acondicionadas están prohibidas desde 2012."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Cuál es la densidad máxima general para pollos de engorde en la Unión Europea?",
+      "opciones": [
+        "33 kg/m²",
+        "11 kg/m²",
+        "21 kg/m²",
+        "50 kg/m²"
+      ],
+      "correcta": 0,
+      "explicacion": "33 kg/m² de forma general; 39 y hasta 42 solo con requisitos extra."
+    },
+    {
+      "id": 7,
+      "pregunta": "En un gallinero de patio, ¿cuánto espacio interior recomienda Virginia Tech por gallina?",
+      "opciones": [
+        "0,05 m²",
+        "2 m²",
+        "9 gallinas por m²",
+        "0,28 a 0,37 m², unas 3 gallinas por m²"
+      ],
+      "correcta": 3,
+      "explicacion": "Entre 0,28 y 0,37 m² por gallina dentro, más casi 1 m² en el patio."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Cuántos nidos aconseja Virginia Tech para un gallinero de patio?",
+      "opciones": [
+        "Uno por cada 20 gallinas",
+        "Uno por cada 4 o 5 gallinas",
+        "Uno por gallinero",
+        "No hacen falta nidos"
+      ],
+      "correcta": 1,
+      "explicacion": "Un nido por cada 4 o 5 gallinas (la norma europea pone el mínimo en uno por cada 7)."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Cuál es la regla de oro para calcular comederos y bebederos?",
+      "opciones": [
+        "Que todas las aves puedan comer y beber a la vez",
+        "Un comedero por gallinero basta",
+        "Que sobren pocas aves",
+        "Poner el comedero solo por la mañana"
+      ],
+      "correcta": 0,
+      "explicacion": "Si todas pueden comer y beber a la vez, las débiles no se quedan atrás."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Cuántas horas de luz necesitan las ponedoras para mantener la puesta?",
+      "opciones": [
+        "Unas 6",
+        "Unas 10",
+        "Unas 14",
+        "24 horas"
+      ],
+      "correcta": 2,
+      "explicacion": "Unas 14 horas; por debajo de 12, la puesta baja y a menudo se para."
+    },
+    {
+      "id": 11,
+      "pregunta": "En el trópico, ¿cómo recomienda la FAO orientar el lado largo de la nave?",
+      "opciones": [
+        "De norte a sur",
+        "De este a oeste",
+        "Da igual",
+        "Hacia el viento más frío"
+      ],
+      "correcta": 1,
+      "explicacion": "Este-oeste, para que el sol castigue menos las paredes."
+    },
+    {
+      "id": 12,
+      "pregunta": "Según el Real Decreto 637/2021, ¿qué debe conseguir el vallado perimetral de una granja que vende?",
+      "opciones": [
+        "Solo que sea bonito",
+        "Que las gallinas salgan a la calle",
+        "Nada, el vallado es opcional",
+        "Impedir la entrada de personas ajenas, reducir la de mamíferos y controlar entradas y salidas"
+      ],
+      "correcta": 3,
+      "explicacion": "Además debe estar siempre en buen estado y los huecos de ventilación llevar malla contra aves."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Qué recomienda Virginia Tech para que los depredadores no entren escarbando bajo la valla?",
+      "opciones": [
+        "Poner la malla a 1 metro del suelo",
+        "Dejar el borde suelto",
+        "Enterrar la malla unos 30 cm y doblarla hacia fuera unos 15 cm",
+        "Usar solo cuerda"
+      ],
+      "correcta": 2,
+      "explicacion": "El depredador escarba junto a la valla y se encuentra con más malla."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Cuánto dura la cuarentena recomendada para aves nuevas compradas?",
+      "opciones": [
+        "30 días",
+        "2 días",
+        "1 semana",
+        "6 meses"
+      ],
+      "correcta": 0,
+      "explicacion": "El Departamento de Agricultura de EE. UU. recomienda 30 días con revisión diaria."
+    },
+    {
+      "id": 15,
+      "pregunta": "¿En qué orden debes atender a las aves cada día?",
+      "opciones": [
+        "Enfermería, cuarentena y luego las sanas",
+        "Da igual el orden",
+        "Primero la cuarentena, luego la enfermería",
+        "Primero las sanas, después la cuarentena y por último la enfermería"
+      ],
+      "correcta": 3,
+      "explicacion": "Así no llevas gérmenes de las aves enfermas o nuevas al lote sano."
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Cuál de estas es una causa típica de picaje y canibalismo?",
+      "opciones": [
+        "Tener espacio de sobra",
+        "Hacinamiento, luz demasiado intensa y pienso pobre en proteína o sal",
+        "Dar agua fresca",
+        "Poner perchas"
+      ],
+      "correcta": 1,
+      "explicacion": "También el aburrimiento, el calor, la falta de comederos y cualquier herida que sangre."
+    },
+    {
+      "id": 17,
+      "pregunta": "Ves una gallina con una herida que sangra. ¿Qué haces primero?",
+      "opciones": [
+        "La dejas en el lote para que se cure sola",
+        "Subes la luz para verla mejor",
+        "La sacas a la enfermería, le cubres la herida y limpias la sangre",
+        "Le das más grano"
+      ],
+      "correcta": 2,
+      "explicacion": "La sangre atrae a todo el lote; hay que aislarla y tapar el rojo."
+    },
+    {
+      "id": 18,
+      "pregunta": "Durante un brote de picaje, ¿qué nivel de luz recomiendan los expertos?",
+      "opciones": [
+        "Luz suave, de unos 5 a 10 lux",
+        "Luz muy intensa todo el día",
+        "Oscuridad total las 24 horas",
+        "Luz blanca de más de 100 W"
+      ],
+      "correcta": 0,
+      "explicacion": "Lo justo para leer un periódico; si hay lámparas de calor, que sean rojas."
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Por qué el hacinamiento favorece la coccidiosis y las lesiones de patas?",
+      "opciones": [
+        "Porque las aves comen menos pienso",
+        "Porque baja la temperatura",
+        "No tiene relación",
+        "Porque moja la cama y sube el amoníaco"
+      ],
+      "correcta": 3,
+      "explicacion": "Más excremento y agua derramada: cama húmeda, amoníaco, coccidios y dermatitis plantar."
+    },
+    {
+      "id": 20,
+      "pregunta": "¿Cuál de estas señales indica que tu gallinero está por encima de su capacidad?",
+      "opciones": [
+        "Todas comen a la vez sin problema",
+        "Olor a amoníaco, plumas rotas en la espalda y huevos en el suelo",
+        "La cama está seca y suelta",
+        "Las bajas han bajado"
+      ],
+      "correcta": 1,
+      "explicacion": "Con dos o más señales de sobrecarga, quita aves o amplía."
+    }
+  ]
+}

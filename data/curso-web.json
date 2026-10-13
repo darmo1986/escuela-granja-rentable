@@ -1,0 +1,124 @@
+{
+ "sitio": "https://darmo1986.github.io/escuela-granja-rentable",
+ "videoBaseUrl": "https://github.com/darmo1986/granja-rentable-curso-videos/releases/download/v1/",
+ "tiendaUrl": "https://granjarentable-incubadora.netlify.app/?pais=ES",
+ "youtubeUrl": "https://www.youtube.com/@GranjaRentable",
+ "aprobado": 10,
+ "examenFinal": {
+  "estado": "disponible",
+  "examen": "final.json",
+  "aprobadoCompleto": 25
+ },
+ "lecciones": [
+  {
+   "id": "l01",
+   "codigo": "L01",
+   "titulo": "Cómo empezar: elige a qué dedicarte (carne, huevos o genética)",
+   "estado": "disponible",
+   "video": "l01.mp4",
+   "texto": "l01.md",
+   "examen": "l01.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l02",
+   "codigo": "L02",
+   "titulo": "Tipos de explotación y espacio: cómo debe ser tu granja según tu presupuesto",
+   "estado": "disponible",
+   "video": "l02.mp4",
+   "texto": "l02.md",
+   "examen": "l02.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l03",
+   "codigo": "L03",
+   "titulo": "La incubadora: qué tipo necesitas según tu presupuesto y tu granja",
+   "estado": "disponible",
+   "video": "l03.mp4",
+   "texto": "l03.md",
+   "examen": "l03.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l04a",
+   "codigo": "L04A",
+   "titulo": "Pollos de engorde (1): preparación, temperatura, pienso y manejo",
+   "estado": "disponible",
+   "video": "l04a.mp4",
+   "texto": "l04a.md",
+   "examen": "l04a.json",
+   "descripcion": "Pollos de engorde, parte 1: cómo preparar la nave, la temperatura de arranque, el pienso por fases y el manejo diario del lote."
+  },
+  {
+   "id": "l04b",
+   "codigo": "L04B",
+   "titulo": "Pollos de engorde (2): amoníaco, bioseguridad, depredadores, enfermedades y vacunas",
+   "estado": "disponible",
+   "video": "l04b.mp4",
+   "texto": "l04b.md",
+   "examen": "l04b.json",
+   "descripcion": "Pollos de engorde, parte 2: controla el amoníaco, aplica bioseguridad, protege el lote de depredadores y conoce enfermedades y vacunas."
+  },
+  {
+   "id": "l05a",
+   "codigo": "L05A",
+   "titulo": "Gallinas ponedoras (1): de la pollita a la puesta",
+   "estado": "proximamente",
+   "video": "",
+   "texto": "l05a.md",
+   "examen": "l05a.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l05b",
+   "codigo": "L05B",
+   "titulo": "Gallinas ponedoras (2): producción, huevo, cama, limpieza y plagas",
+   "estado": "proximamente",
+   "video": "",
+   "texto": "l05b.md",
+   "examen": "l05b.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l05c",
+   "codigo": "L05C",
+   "titulo": "Gallinas ponedoras (3): enfermedades, vacunas, equipo y cuentas",
+   "estado": "proximamente",
+   "video": "",
+   "texto": "l05c.md",
+   "examen": "l05c.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l06a",
+   "codigo": "L06A",
+   "titulo": "Gallos y genética (1): el gallo, el sexado, el manejo y la fertilidad",
+   "estado": "proximamente",
+   "video": "",
+   "texto": "l06a.md",
+   "examen": "l06a.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l06b",
+   "codigo": "L06B",
+   "titulo": "Gallos y genética (2): genética fácil y selección de reproductores",
+   "estado": "proximamente",
+   "video": "",
+   "texto": "l06b.md",
+   "examen": "l06b.json",
+   "descripcion": ""
+  },
+  {
+   "id": "l06c",
+   "codigo": "L06C",
+   "titulo": "Gallos y genética (3): sistemas de cría, consanguinidad, razas autóctonas y venta",
+   "estado": "proximamente",
+   "video": "",
+   "texto": "l06c.md",
+   "examen": "l06c.json",
+   "descripcion": ""
+  }
+ ]
+}

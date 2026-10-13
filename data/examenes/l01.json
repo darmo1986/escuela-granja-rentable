@@ -1,0 +1,247 @@
+{
+  "leccion": 1,
+  "titulo": "Cómo empezar: elige a qué dedicarte",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "Según la lección, ¿cuál es la decisión más importante antes de comprar pollitos o montar un gallinero?",
+      "opciones": [
+        "Elegir el color del gallinero",
+        "Decidir a qué te vas a dedicar: carne, huevos o genética",
+        "Comprar la incubadora más cara",
+        "Mezclar de inmediato engorde y ponedoras"
+      ],
+      "correcta": 1,
+      "explicacion": "Hay que elegir el camino (carne, huevos o genética) antes de invertir."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Qué dice la «regla de oro» para principiantes?",
+      "opciones": [
+        "Combinar los tres caminos desde el primer día",
+        "Empezar solo con genética",
+        "Dedicarse a una sola cosa y hacerla bien",
+        "No llevar ningún registro"
+      ],
+      "correcta": 2,
+      "explicacion": "Se puede combinar después; al empezar, una sola cosa y bien hecha."
+    },
+    {
+      "id": 3,
+      "pregunta": "Según la FAO citada en la lección, ¿qué parte del coste de insumos suele ser el pienso en avicultura comercial intensiva?",
+      "opciones": [
+        "Entre el 10 y el 20 %",
+        "Entre el 30 y el 40 %",
+        "Entre el 60 y el 80 %",
+        "Menos del 5 %"
+      ],
+      "correcta": 2,
+      "explicacion": "La FAO indica que el pienso representa entre el 60 y el 80 % del coste de insumos."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué líneas comerciales de engorde se mencionan como típicas?",
+      "opciones": [
+        "Lohmann e Hy-Line",
+        "Ross 308 y Cobb 500",
+        "Solo criollas",
+        "ISA Brown únicamente"
+      ],
+      "correcta": 1,
+      "explicacion": "El guion cita Ross 308 (Aviagen) y Cobb 500."
+    },
+    {
+      "id": 5,
+      "pregunta": "Según objetivos orientativos de Cobb 500 citados, ¿qué peso y conversión se mencionan hacia el día 35?",
+      "opciones": [
+        "Unos 1,0 kg con conversión 3,5",
+        "Unos 2,2 kg con conversión cercana a 1,5",
+        "Unos 5 kg con conversión 1,0",
+        "No se menciona ninguna cifra"
+      ],
+      "correcta": 1,
+      "explicacion": "Se citan ~2,2 kg hacia el día 35 con FCR cercano a 1,5 (objetivo de catálogo, no garantía)."
+    },
+    {
+      "id": 6,
+      "pregunta": "Al recibir pollitos de engorde, ¿qué rango de temperatura de cama se destaca como orientativo?",
+      "opciones": [
+        "10 a 12 °C",
+        "18 a 20 °C",
+        "28 a 32 °C",
+        "40 a 45 °C en toda la nave"
+      ],
+      "correcta": 2,
+      "explicacion": "Guías Cobb/Ross: cama caliente al recibir, orientativamente 28–32 °C."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cuándo suele llegar el primer ingreso en engorde con líneas comerciales y buen manejo?",
+      "opciones": [
+        "En cinco a ocho semanas",
+        "En un año",
+        "En tres años",
+        "Al día siguiente de comprar los pollitos"
+      ],
+      "correcta": 0,
+      "explicacion": "El engorde es el camino más rápido: a menudo 5–8 semanas."
+    },
+    {
+      "id": 8,
+      "pregunta": "En engorde comercial, ¿cómo se ofrece normalmente la comida?",
+      "opciones": [
+        "Solo una toma al día",
+        "A libre disposición (ad libitum), reponiendo mucho al inicio",
+        "Sin pienso hasta el día 10",
+        "Solo grano por la noche"
+      ],
+      "correcta": 1,
+      "explicacion": "La comida va a libre disposición; los primeros días se repone a menudo en papel o bandejas."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Qué líneas de ponedoras comerciales se mencionan?",
+      "opciones": [
+        "Ross 308 y Cobb 500",
+        "Lohmann Brown, Hy-Line Brown e ISA Brown",
+        "Solo pollos camperos",
+        "Ninguna"
+      ],
+      "correcta": 1,
+      "explicacion": "Se citan Lohmann, Hy-Line e ISA Brown."
+    },
+    {
+      "id": 10,
+      "pregunta": "Según la ficha de ISA Brown citada, ¿cuántos huevos por gallina alojada se orientan entre las semanas 18 y 100?",
+      "opciones": [
+        "Unos 50",
+        "Unos 150",
+        "Unos 476",
+        "Unos 900"
+      ],
+      "correcta": 2,
+      "explicacion": "ISA Brown: ~476 huevos HH en ese periodo (objetivo de ficha)."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Cuántos huevos al año estima la FAO para una gallina de patio tradicional en sistemas muy básicos?",
+      "opciones": [
+        "20 a 30",
+        "200 a 250",
+        "400 a 500",
+        "Más de 600"
+      ],
+      "correcta": 0,
+      "explicacion": "FAO/Bessei: orientativamente 20–30 huevos/año en sistemas muy básicos."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Qué consumo medio de pienso en puesta se cita para ISA Brown?",
+      "opciones": [
+        "Unos 40 g/ave/día",
+        "Unos 112 g/ave/día",
+        "Unos 300 g/ave/día",
+        "Un kilo al día"
+      ],
+      "correcta": 1,
+      "explicacion": "Ficha ISA Brown: ~112 g por ave y día."
+    },
+    {
+      "id": 13,
+      "pregunta": "Según Virginia Tech citado, ¿cuánto espacio interior orientativo necesita una gallina ponedora?",
+      "opciones": [
+        "0,05 m² por ave",
+        "Unos 0,28 a 0,37 m² por ave (3–4 pies cuadrados)",
+        "2 m² por ave dentro del gallinero",
+        "No hace falta espacio interior"
+      ],
+      "correcta": 1,
+      "explicacion": "Virginia Tech: 3–4 ft²/gallina en el interior (~0,28–0,37 m²)."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Cuántos ponederos recomienda la lección (Virginia Tech) por grupo de gallinas?",
+      "opciones": [
+        "Uno por cada 20 gallinas",
+        "Uno por cada 4 o 5 gallinas",
+        "Uno por cada 50 gallinas",
+        "Ninguno: ponen en el suelo"
+      ],
+      "correcta": 1,
+      "explicacion": "Un ponedero por cada 4–5 gallinas."
+    },
+    {
+      "id": 15,
+      "pregunta": "En genética/reproducción, ¿qué proporción de gallos se menciona como orientativa en reproductoras?",
+      "opciones": [
+        "1 gallo por cada 100 gallinas",
+        "Unos 7 a 10 gallos por cada 100 gallinas",
+        "50 gallos por cada 100 gallinas",
+        "Solo gallinas, sin gallos"
+      ],
+      "correcta": 1,
+      "explicacion": "Se citan unos 7–10 gallos/100 gallinas; al inicio a menudo ~8/100."
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Cuántos días dura la incubación del pollo doméstico, según la lección?",
+      "opciones": [
+        "14 días",
+        "18 días",
+        "21 días",
+        "30 días"
+      ],
+      "correcta": 2,
+      "explicacion": "Incubación del pollo doméstico: 21 días."
+    },
+    {
+      "id": 17,
+      "pregunta": "Respecto al tiempo hasta el primer ingreso, ¿qué orden describe mejor la lección?",
+      "opciones": [
+        "Genética más rápido, luego engorde, luego ponedoras",
+        "Engorde el más rápido; genética el más largo",
+        "Los tres igual de rápidos",
+        "Ponedoras siempre más rápidas que el engorde"
+      ],
+      "correcta": 1,
+      "explicacion": "Engorde: semanas; genética: temporadas/años."
+    },
+    {
+      "id": 18,
+      "pregunta": "Si necesitas dinero en pocas semanas, ¿qué camino recomienda la guía de decisión?",
+      "opciones": [
+        "Solo genética",
+        "Engorde",
+        "Esperar tres años sin aves",
+        "Comprar gallos caros sin plan"
+      ],
+      "correcta": 1,
+      "explicacion": "Ingreso rápido → engorde."
+    },
+    {
+      "id": 19,
+      "pregunta": "Si tienes tiempo diario estable y quieres un ritmo más calmado, ¿qué encaja muy bien?",
+      "opciones": [
+        "Solo engorde industrial sin pausa",
+        "Ponedoras",
+        "Genética acelerada en una semana",
+        "No registrar nada"
+      ],
+      "correcta": 1,
+      "explicacion": "Tiempo diario estable → ponedoras."
+    },
+    {
+      "id": 20,
+      "pregunta": "Antes de comprar aves, ¿qué debes tener listo según la lección?",
+      "opciones": [
+        "Solo el anuncio de venta",
+        "Calor, agua limpia y un sitio seco",
+        "Un préstamo obligatorio",
+        "Tres caminos a la vez"
+      ],
+      "correcta": 1,
+      "explicacion": "Si calor, agua limpia y sitio seco no están listos, no compres aves."
+    }
+  ]
+}
