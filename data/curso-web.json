@@ -1,6 +1,6 @@
 {
  "sitio": "https://darmo1986.github.io/escuela-granja-rentable",
- "videoBaseUrl": "https://github.com/darmo1986/granja-rentable-curso-videos/releases/download/v1/",
+ "videoBaseUrl": "videos/",
  "tiendaUrl": "https://granjarentable-incubadora.netlify.app/?pais=ES",
  "youtubeUrl": "https://www.youtube.com/@GranjaRentable",
  "aprobado": 10,
