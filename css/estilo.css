@@ -433,3 +433,35 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 @media (min-width: 840px) { .pdp-buy { position: sticky; top: 84px; } }
 .pdp-copy { background: #fff; border-radius: 18px; padding: 8px 16px 16px; margin-top: 16px; }
 .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+.calc-grid { display: grid; gap: 14px; }
+@media (min-width: 980px) { .calc-grid { grid-template-columns: 1fr 1fr 1fr; align-items: start; } }
+.calc label { display: flex; flex-direction: column; gap: 4px; font-weight: 750; margin: 10px 0; }
+.calc .btn { width: 100%; }
+.calc-out { background: var(--gl); border-radius: 12px; padding: 10px 12px; min-height: 4.6em; margin: 10px 0 0; }
+.faq-item { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 4px 16px 8px; margin: 0 0 12px; }
+.faq-item h2 { font-size: 1.15rem; }
+.raza-grid { display: grid; gap: 14px; }
+@media (min-width: 720px) { .raza-grid { grid-template-columns: 1fr 1fr; } }
+.raza { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+.raza-media { background: #e7f3ea; aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 12px; text-align: center; }
+.raza-media svg { width: min(100%, 220px); height: auto; }
+.raza-media p { margin: 0; color: var(--muted); font-weight: 750; font-size: .92rem; }
+.raza-body { padding: 12px 14px 16px; }
+.raza-body h2 { margin: 0 0 8px; font-size: 1.2rem; }
+.raza-body dl { margin: 0; }
+.raza-body dt { font-weight: 800; color: var(--gd); margin-top: 8px; }
+.raza-body dd { margin: 0; }
+.yt-facade {
+  display: flex; align-items: center; justify-content: center; width: 100%; max-width: 720px;
+  aspect-ratio: 16 / 9; margin: 12px 0; border: 0; border-radius: 16px; padding: 16px;
+  background: #1F5E2E; color: #fff; font: inherit; font-weight: 800; font-size: 1.15rem; cursor: pointer;
+  position: relative;
+}
+.yt-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 16px; }
+.form-msg a { color: var(--gd); font-weight: 800; }
+.guia-list { display: grid; gap: 12px; }
+@media (min-width: 800px) { .guia-list { grid-template-columns: 1fr 1fr 1fr; } }
+.guia-list article { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow); }
+.guia-list h2 { font-size: 1.15rem; margin-top: 0; }
+.prose { max-width: 42rem; }

@@ -6,6 +6,8 @@ El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub P
 
 Curso gratis es el primer enlace del menú. En el inicio, el saludo va a la izquierda con el logo y, debajo, la tienda. Recomendados queda aparte: Mercado Libre en Latinoamérica y eBay en España y Estados Unidos. No hay Amazon.
 
+Calculadoras, líneas de aves, preguntas, lista y guías están fuera del menú fijo, en el pie y en «También en el sitio». Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
+
 ## Qué convierte en este tipo de sitio
 
 - Una promesa clara arriba, con el precio y un solo botón de compra al lado.
@@ -92,7 +94,7 @@ La ficha ya está en `data/curso-web.json` y la fila ya está en `curso.html`. N
 
 ## Formularios (gratis, Google Sheets)
 
-Un solo endpoint para Regístrate, la prueba de la app y Afiliados.
+Un solo endpoint para Regístrate, la prueba de la app, Afiliados y la lista (`lista.html`, `tipo=lead`). Al guardar la lista, el navegador arma un `.txt` y un `.ics`. No hace falta otra implementación ni volver a desplegar el script: la hoja ya acepta ese tipo.
 
 1. Crea una hoja de Google en blanco. El nombre del archivo puede ser «Granja Rentable — formularios».
 2. Extensiones → Apps Script. Borra el código de ejemplo y pega `apps-script/Codigo.gs`. Guarda.
