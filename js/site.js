@@ -392,7 +392,17 @@
         var allowed = stores.indexOf(net) !== -1;
         a.classList.toggle("is-off", !allowed);
         if (!allowed) return;
-        if (net === "mercadolibre") {
+        if (net === "tienda") {
+          var sku = card.getAttribute("data-sku");
+          var item = catalogMap()[sku];
+          var offer = item && item.offers && item.offers[pais];
+          if (!item || item.soon || !offer) {
+            a.classList.add("is-off");
+            return;
+          }
+          a.classList.remove("is-off");
+          a.href = productHref(sku);
+        } else if (net === "mercadolibre") {
           var host = ML_HOST[pais];
           if (!host) {
             a.classList.add("is-off");
