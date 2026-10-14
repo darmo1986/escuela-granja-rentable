@@ -364,7 +364,7 @@
     document.querySelectorAll(".js-red-nota").forEach(function (el) {
       if (pais === "ES") el.textContent = "En España estos enlaces abren eBay. La incubadora se compra en nuestra tienda, no aquí.";
       else if (pais === "US") el.textContent = "En Estados Unidos estos enlaces abren eBay. La incubadora se compra en nuestra tienda, en dólares.";
-      else el.textContent = "En " + p.nombre + " el primer enlace abre Mercado Libre y el segundo, eBay. El precio está en esa tienda. La incubadora se compra en la nuestra.";
+      else el.textContent = "En " + p.nombre + " el primer enlace abre Mercado Libre y el segundo, eBay, queda de apoyo. El precio está en esa tienda. La incubadora se compra en la nuestra.";
     });
 
     buildRecLinks();
