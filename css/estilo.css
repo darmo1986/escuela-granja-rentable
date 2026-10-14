@@ -192,6 +192,8 @@ html[data-tema="claro"] .nav a[aria-current="page"] { outline-color: #1F5E2E; }
   .hero { grid-template-columns: 1.15fr .85fr; align-items: center; padding: 36px 32px; }
 }
 
+.aff-banner { margin: 12px 0 0; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: .95rem; }
+.aff-banner a { font-weight: 800; color: var(--gd); }
 .trust { list-style: none; display: grid; gap: 10px; padding: 0; margin: 16px 0 0; }
 .trust li { background: #fff; border-radius: 14px; padding: 12px 14px; box-shadow: var(--shadow); }
 .trust strong { display: block; color: var(--gd); }
