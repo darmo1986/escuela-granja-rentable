@@ -1,7 +1,7 @@
 {
   "leccion": 4,
   "codigo": "L04A",
-  "titulo": "Pollos de engorde (1): preparación, temperatura, pienso y manejo",
+  "titulo": "Pollos de engorde (1): preparación, temperatura, alimento y manejo",
   "aprobado_minimo": 10,
   "preguntas": [
     {
@@ -69,7 +69,7 @@
       "pregunta": "En la prueba del buche, ¿qué significa un buche lleno pero duro, en el que se nota la migaja?",
       "opciones": [
         "Que ha comido pero le falta agua",
-        "Que hay que retirar el pienso",
+        "Que hay que retirar el alimento",
         "Que el pollito está perfecto",
         "Que tiene demasiado calor"
       ],
@@ -126,7 +126,7 @@
     },
     {
       "id": 11,
-      "pregunta": "¿Qué forma de pienso se da del día 0 al 10, según Ross?",
+      "pregunta": "¿Qué forma de alimento se da del día 0 al 10, según Ross?",
       "opciones": [
         "Restos de cocina",
         "Migaja tamizada (2–3,5 mm)",
@@ -138,7 +138,7 @@
     },
     {
       "id": 12,
-      "pregunta": "¿Qué proteína bruta lleva aproximadamente el pienso de arranque del Ross 308 según las especificaciones de Ross (2022)?",
+      "pregunta": "¿Qué proteína bruta lleva aproximadamente el alimento de arranque del Ross 308 según las especificaciones de Ross (2022)?",
       "opciones": [
         "23 %",
         "10 %",
@@ -150,7 +150,7 @@
     },
     {
       "id": 13,
-      "pregunta": "¿Cuándo se retira el pienso antes del sacrificio?",
+      "pregunta": "¿Cuándo se retira el alimento antes del sacrificio?",
       "opciones": [
         "No se retira",
         "Tres días antes",
@@ -162,7 +162,7 @@
     },
     {
       "id": 14,
-      "pregunta": "A 21 °C, ¿cuánta agua bebe un pollo por cada kilo de pienso, según Ross?",
+      "pregunta": "A 21 °C, ¿cuánta agua bebe un pollo por cada kilo de alimento, según Ross?",
       "opciones": [
         "No bebe si come gránulo",
         "1,6–1,8 litros",
@@ -170,7 +170,7 @@
         "5 litros"
       ],
       "correcta": 1,
-      "explicacion": "Relación agua:pienso 1,6–1,8; sube ~6,5 % por cada grado por encima de 21 °C."
+      "explicacion": "Relación agua:alimento 1,6–1,8; sube ~6,5 % por cada grado por encima de 21 °C."
     },
     {
       "id": 15,
@@ -194,7 +194,7 @@
         "Se dejan vacíos medio día para que coman menos"
       ],
       "correcta": 1,
-      "explicacion": "Missouri: llenar de 1/3 a 1/2 reduce el desperdicio. El pienso derramado empeora la conversión aunque el pollo no se lo coma."
+      "explicacion": "Missouri: llenar de 1/3 a 1/2 reduce el desperdicio. El alimento derramado empeora la conversión aunque el pollo no se lo coma."
     },
     {
       "id": 17,
@@ -210,15 +210,15 @@
     },
     {
       "id": 18,
-      "pregunta": "¿Cómo se calcula el índice de conversión del pienso?",
+      "pregunta": "¿Cómo se calcula el índice de conversión del alimento?",
       "opciones": [
-        "Kilos de pienso consumido divididos entre kilos de peso producido",
+        "Kilos de alimento consumido divididos entre kilos de peso producido",
         "Kilos de pollo divididos entre el número de pollos",
-        "Litros de agua divididos entre kilos de pienso",
+        "Litros de agua divididos entre kilos de alimento",
         "Número de bajas dividido entre pollos iniciales"
       ],
       "correcta": 0,
-      "explicacion": "IC = pienso consumido / peso producido. Objetivos Ross: ~1,4 a 35 días y ~1,5 a 42 días; en granja pequeña, algo más alto. Cuanto más bajo, mejor."
+      "explicacion": "IC = alimento consumido / peso producido. Objetivos Ross: ~1,4 a 35 días y ~1,5 a 42 días; en granja pequeña, algo más alto. Cuanto más bajo, mejor."
     },
     {
       "id": 19,
@@ -237,7 +237,7 @@
       "pregunta": "¿Qué indica la prueba del puñado si la cama se queda hecha una bola al abrir la mano?",
       "opciones": [
         "Que la cama está perfecta",
-        "Que falta pienso",
+        "Que falta alimento",
         "Que hace frío",
         "Que está demasiado húmeda"
       ],

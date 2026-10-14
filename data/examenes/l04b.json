@@ -74,7 +74,7 @@
         "El golpe de calor"
       ],
       "correcta": 1,
-      "explicacion": "El zorro suele llevarse el pollo entero; los mustélidos matan varios y los dejan; las ratas atacan sobre todo a pollitos y se comen el pienso."
+      "explicacion": "El zorro suele llevarse el pollo entero; los mustélidos matan varios y los dejan; las ratas atacan sobre todo a pollitos y se comen el alimento."
     },
     {
       "id": 7,
@@ -106,7 +106,7 @@
       "opciones": [
         "Esparcido por la cama para que lo encuentren rápido",
         "Solo productos autorizados como biocida, dentro de portacebos cerrados y fijados, siguiendo la etiqueta",
-        "Mezclado con el pienso de los pollos",
+        "Mezclado con el alimento de los pollos",
         "Cualquier veneno casero vale"
       ],
       "correcta": 1,
@@ -166,11 +166,11 @@
       "opciones": [
         "La cama húmeda y templada, donde los ooquistes se vuelven infectivos en pocos días",
         "La luz natural",
-        "El pienso en migaja",
+        "El alimento en migaja",
         "La malla electrosoldada"
       ],
       "correcta": 0,
-      "explicacion": "Señales: pollos erizados que comen menos y diarrea a veces con sangre. Prevención: cama seca, buenos bebederos, densidad correcta y anticoccidianos en el pienso o vacuna."
+      "explicacion": "Señales: pollos erizados que comen menos y diarrea a veces con sangre. Prevención: cama seca, buenos bebederos, densidad correcta y anticoccidianos en el alimento o vacuna."
     },
     {
       "id": 15,
