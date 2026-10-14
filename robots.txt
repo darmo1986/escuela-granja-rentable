@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://darmo1986.github.io/escuela-granja-rentable/sitemap.xml
+
+Sitemap: https://granjarentable.net/sitemap.xml

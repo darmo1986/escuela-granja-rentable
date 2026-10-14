@@ -1,0 +1,211 @@
+/* Capa nueva de Granja Rentable. Se carga después de estilo.css. */
+:root{
+  --g:#1F5E2E;--gd:#0F3D1C;--gm:#2E7A40;--gs:#E6F2E9;--au:#C9A227;--al:#E8D48A;
+  --ad:#6d5610;--cr:#F7F3E8;--tx:#1d2a20;--suave:#5c6b60;--linea:#e2eadf;--blanco:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--tx);background:var(--cr);line-height:1.6;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+img{max-width:100%;height:auto}
+a{color:var(--gm)}
+:focus-visible{outline:3px solid var(--gd);outline-offset:2px}
+.skip{
+  position:absolute;left:8px;top:-40px;background:var(--au);color:#2b2205;
+  padding:8px 12px;border-radius:8px;z-index:80;font-weight:700;
+}
+.skip:focus{top:8px}
+
+.site-header{
+  position:sticky;top:0;z-index:30;background:var(--cr);
+  border-bottom:3px solid var(--au);
+}
+.header-bar{
+  max-width:1120px;margin:0 auto;padding:10px 16px;
+  display:flex;align-items:center;gap:12px;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;color:var(--gd);
+  text-decoration:none;font-weight:800;font-size:1.05rem;letter-spacing:-.01em;
+  margin-right:auto;
+}
+.brand img{border-radius:50%;border:2px solid var(--au);background:var(--g);display:block}
+.nav-toggle{
+  display:none;min-height:44px;padding:8px 14px;border-radius:999px;
+  border:2px solid var(--g);background:var(--blanco);color:var(--g);
+  font:inherit;font-weight:700;cursor:pointer;
+}
+.menu{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.menu a{
+  color:var(--tx);text-decoration:none;font-weight:600;font-size:.95rem;
+  padding:8px 10px;border-radius:999px;min-height:44px;
+  display:inline-flex;align-items:center;
+}
+.menu a[aria-current="page"]{background:var(--gs);color:var(--gd)}
+.menu a.menu-cta{background:var(--g);color:#fff}
+.menu a.menu-cta[aria-current="page"]{background:var(--gd)}
+.menu-social{color:var(--gm)}
+@media (hover:hover){
+  .menu a:hover{background:var(--gs)}
+  .menu a.menu-cta:hover{background:var(--gd);color:#fff}
+}
+
+main{max-width:1120px;margin:0 auto;padding:20px 16px 32px}
+body.pagina-curso main,
+body.pagina-leccion main,
+body.pagina-interior main{max-width:800px}
+
+.hero-home{
+  position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(155deg,var(--g),var(--gd));
+  border-radius:24px;padding:32px 24px;display:grid;gap:20px;align-items:center;
+}
+.hero-home h1{color:#fff;margin:0 0 .35em;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.02em}
+.hero-home p{margin:0;font-size:1.05rem;max-width:38rem}
+.hero-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.hero-logo{justify-self:center;position:relative;z-index:1;order:-1}
+.hero-logo img{border-radius:50%;border:3px solid var(--au);background:var(--g);display:block}
+.pluma{
+  position:absolute;right:-10px;bottom:-30px;width:140px;height:240px;
+  color:var(--al);opacity:.18;pointer-events:none;
+}
+.huevo{
+  width:28px;height:28px;display:block;color:var(--au);
+}
+@media (min-width:880px){
+  .hero-home{grid-template-columns:1.4fr .6fr;padding:42px 40px;text-align:left}
+  .hero-logo{justify-self:end;order:2}
+  .pluma{width:180px;height:300px;right:4%}
+}
+
+.secciones{margin:28px 0 8px}
+.secciones h2,.bloque h2,.banda h2{color:var(--gd);letter-spacing:-.02em;margin:0 0 .4em}
+.entradilla{color:var(--suave);margin:0 0 16px;max-width:40rem}
+.tres{display:grid;gap:14px}
+.panel{
+  background:var(--blanco);border-radius:18px;padding:18px 18px 16px;
+  border:1px solid var(--linea);border-top:5px solid var(--g);
+  box-shadow:0 1px 2px rgba(15,61,28,.04);display:flex;flex-direction:column;gap:8px;
+}
+.panel h3{margin:0;font-size:1.2rem;color:var(--gd)}
+.panel p{margin:0;flex:1}
+.panel .ico{width:36px;height:36px;color:var(--g)}
+.panel-tienda{border-top-color:var(--au)}
+.panel-amazon{border-top-color:#8A6E14}
+.kicker{font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ad);margin:0}
+@media (min-width:800px){.tres{grid-template-columns:repeat(3,1fr)}}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:10px 18px;border-radius:999px;border:0;
+  background:var(--g);color:#fff;text-decoration:none;font-weight:700;
+  font-size:1rem;cursor:pointer;line-height:1.2;
+}
+.btn.gold{background:var(--au);color:#2b2205}
+.btn.sec{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.75)}
+.btn.linea{background:var(--blanco);color:var(--gd);box-shadow:inset 0 0 0 2px var(--g)}
+.btn[disabled],.btn.dis{background:#c5d0c6;color:#243028;cursor:not-allowed;box-shadow:none}
+.hero-home .btn.gold{background:var(--au);color:#2b2205}
+@media (hover:hover){
+  .btn:hover{filter:brightness(1.06)}
+  .btn[disabled]:hover{filter:none}
+}
+
+.banda{
+  margin:22px 0;border-radius:22px;padding:22px 20px;
+  background:var(--blanco);border:1px solid var(--linea);
+}
+.banda-app{
+  background:linear-gradient(160deg,#e7f3ea,var(--blanco) 42%);
+  display:grid;gap:8px;
+}
+.prox{
+  display:inline-block;background:var(--gs);color:var(--gd);
+  font-weight:800;font-size:.8rem;border-radius:999px;padding:4px 10px;width:max-content;
+}
+.nota{color:var(--suave);font-size:.92rem;margin:.2em 0}
+.aviso-pendiente{
+  background:#fff8e6;border:1px solid var(--al);border-radius:12px;padding:10px 12px;font-size:.92rem;
+}
+
+.rejilla{display:grid;gap:12px;margin:12px 0 0;padding:0;list-style:none}
+.card{
+  background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:16px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.card h3{margin:0;font-size:1.05rem;color:var(--gd)}
+.card p{margin:0;flex:1}
+@media (min-width:700px){.rejilla{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.rejilla.tres-col{grid-template-columns:1fr 1fr 1fr}}
+
+.formulario{display:grid;gap:4px;max-width:34rem}
+.field{display:grid;gap:6px;font-weight:700;margin:10px 0}
+.field input[type="text"],.field input[type="email"]{
+  font:inherit;font-weight:400;min-height:48px;padding:10px 12px;width:100%;
+  border:1.5px solid #c5d1c8;border-radius:12px;background:#fff;color:var(--tx);
+}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin:10px 0}
+.check input{width:1.25rem;height:1.25rem;margin-top:.2rem;flex:none}
+.rgpd{
+  background:var(--gs);border-left:4px solid var(--g);border-radius:12px;
+  padding:12px 14px;font-size:.95rem;margin:8px 0;
+}
+.rgpd p{margin:.35em 0}
+.form-status{font-weight:700;min-height:1.4em;margin:8px 0}
+.form-status.pendiente{color:var(--ad)}
+.form-status.ok{color:var(--g)}
+.form-status.error{color:#7a1f1f}
+.pista{font-weight:500;color:var(--ad);font-size:.92rem;margin:0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.hero{border-radius:18px}
+.lrow{border:1px solid var(--linea)}
+@media (hover:hover){
+  a.lrow:hover{box-shadow:0 6px 16px rgba(15,61,28,.08)}
+}
+.lock-msg{background:#fff4d6;border:2px solid var(--au);border-radius:14px;padding:14px;margin:16px 0;font-weight:600}
+
+.foot{
+  max-width:1120px;margin:0 auto;padding:8px 16px 108px;color:#3e4d43;
+  font-size:.92rem;text-align:left;
+}
+.foot-nav,.legal-links,.social-links{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0}
+.foot a{color:var(--gd);font-weight:600;text-decoration:none}
+.foot a[aria-current="page"]{text-decoration:underline}
+.foot p{margin:.35em 0}
+.direccion{color:var(--suave)}
+
+.wa-float{
+  position:fixed;right:14px;bottom:14px;z-index:40;
+  width:48px;height:48px;border-radius:50%;background:#128C7E;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.25);text-decoration:none;
+}
+.wa-float svg{display:block}
+@media (max-width:1080px){
+  .nav-toggle{display:inline-flex}
+  .menu{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    background:var(--cr);border-bottom:3px solid var(--au);
+    flex-direction:column;align-items:stretch;padding:8px 12px 14px;gap:2px;
+    box-shadow:0 12px 24px rgba(0,0,0,.08);
+  }
+  .menu.is-open{display:flex}
+  .menu a{border-radius:12px}
+  .header-bar{position:relative}
+}
+@media (max-width:700px){
+  .pluma{display:none}
+  body{padding-bottom:0}
+  main{padding-bottom:88px}
+  .foot{padding-bottom:120px;padding-right:72px}
+  .quiz .corr,.quiz .btn{margin-right:8px}
+}
+@media (min-width:701px){
+  .foot{text-align:left;padding-bottom:96px}
+}
+
+.hero-home :focus-visible,.banda-app :focus-visible{outline-color:#fff}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
