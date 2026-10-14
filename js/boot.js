@@ -1,5 +1,7 @@
-/* País antes del primer pintado: México si no hay señal.
-   Orden: ?pais= → elección guardada → idioma → zona horaria → MX. */
+/* País antes del primer pintado.
+   Orden: ?pais= → elección guardada → zona horaria → idioma (solo si el
+   código de país está en la lista) → México. Un inglés genérico no
+   se convierte en Estados Unidos. */
 (function () {
   var map = {
     "America/Mexico_City": "MX",
@@ -62,17 +64,25 @@
     }
     if (!p) p = localStorage.getItem("gr_pais") || "";
     if (!p) {
-      var langs = navigator.languages || [navigator.language || ""];
-      for (var i = 0; i < langs.length && !p; i++) {
-        var m = String(langs[i]).toUpperCase().match(/-([A-Z]{2})$/);
-        if (m) p = m[1];
-      }
-    }
-    if (!p) {
       var tz = "";
       try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
       p = map[tz] || "";
     }
+    if (!p) {
+      var known = { MX:1, US:1, CO:1, PE:1, ES:1, AR:1, VE:1, EC:1, DO:1, CL:1, PY:1, UY:1, BO:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1 };
+      var langs = navigator.languages || [navigator.language || ""];
+      for (var i = 0; i < langs.length && !p; i++) {
+        var m = String(langs[i]).toUpperCase().match(/-([A-Z]{2})$/);
+        /* en-US en un navegador sin zona horaria no es una señal de país.
+           Estados Unidos entra por la zona horaria, por ?pais= o por una elección guardada. */
+        if (m && known[m[1]] && m[1] !== "US") p = m[1];
+      }
+    }
   } catch (e) {}
   document.documentElement.dataset.pais = p || "MX";
+  try {
+    if (new URLSearchParams(location.search).get("tema") === "claro") {
+      document.documentElement.dataset.tema = "claro";
+    }
+  } catch (e2) {}
 })();

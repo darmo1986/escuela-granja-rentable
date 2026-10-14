@@ -10,12 +10,12 @@ La tienda propia es lo primero (botón del inicio y primer enlace del menú). El
 - Prueba real (el canal de YouTube, el titular y la dirección) en vez de reseñas inventadas. Los huecos de opiniones están vacíos a propósito.
 - El botón dice qué pasa después: «Comprar la incubadora», no «saber más».
 - La garantía, Stripe y el WhatsApp están junto al precio.
-- En el celular el botón es grande, la página no carga fuentes externas y el WhatsApp del encabezado no tapa el texto. En pantallas anchas el botón flotante queda sobre el margen del pie, no sobre los enlaces.
+- En el celular el botón es grande, la página no carga fuentes externas y el nombre de la marca cabe junto a Menú. El botón flotante de WhatsApp (56 px) se ve en todas las pantallas; el pie deja espacio debajo para que no tape el texto.
 - Se repite la compra después del precio y de la garantía. Recomendados no compite con la incubadora.
 
 ## Audiencia
 
-México 23,5 %, Estados Unidos 15,7 % (en español), Colombia 8,9 %, Perú 7,5 %, España 7,3 %, Argentina 5,5 %, y también Venezuela, Ecuador, República Dominicana y Chile. Si no hay señal, el sitio asume México. El país sale del enlace `?pais=`, de una elección guardada, del idioma o de la zona horaria.
+México 23,5 %, Estados Unidos 15,7 % (en español), Colombia 8,9 %, Perú 7,5 %, España 7,3 %, Argentina 5,5 %, y también Venezuela, Ecuador, República Dominicana y Chile. Si no hay señal, el sitio asume México, no Estados Unidos. El país sale del enlace `?pais=`, de una elección guardada, de la zona horaria y, si esa no dice nada, del idioma. El inglés `en-US` solo no cuenta como Estados Unidos: sin zona horaria de EE. UU. el sitio queda en México.
 
 Precios de la incubadora copiados de la tienda el 14 de octubre de 2026, con el dólar de ese día solo como referencia. El cargo real es el de la página de pago.
 
@@ -54,7 +54,8 @@ Si el dueño pega el export de Shopify (`products.json` o la lista de fichas), s
 
 ## Pendiente
 
-- `window.GR.formEndpoint` en `js/config.js` está vacío. Sin esa URL los formularios no envían nada.
+- `window.GR.formEndpoint` en `js/config.js` apunta a la aplicación web de Apps Script. Regístrate, la prueba de la app y Afiliados envían ahí.
+- Los videos de las lecciones siguen en `videos/` (unos 250 MB). No hay identificadores de YouTube en el repo ni en `data/curso-web.json`, así que no se cambiaron a un embed. Cuando existan, se pueden poner como `youtube` en cada lección y cargar el reproductor al hacer clic.
 - Identificadores de Mercado Libre (`redes.mercadolibre.ids`) y de eBay (`redes.ebay.es` y `.com`: `campid` y `mkrid`) vacíos. El enlace abre la búsqueda igual.
 - `window.GR.appUrl` vacío: el botón de Android dice «próximamente».
 - Facebook: confirma `window.GR.facebookUrl` (`https://www.facebook.com/GranjaRentable`).

@@ -10,6 +10,9 @@ window.ADSTERRA = {
    Pega aquí los identificadores cuando los tengas. Vacío = el enlace abre la búsqueda, sin tracking. */
 window.GR = {
   siteUrl: "https://granjarentable.net",
+  /* Única URL de la tienda de pago. Hoy sigue en Netlify.
+     Para pasar a la tienda nueva, cambia solo esta línea a
+     "https://tienda.granjarentable.net/". Los botones Comprar la leen de aquí. */
   tiendaBase: "https://granjarentable-incubadora.netlify.app/",
   youtubeUrl: "https://www.youtube.com/@GranjaRentable",
   /* Confirma la URL exacta de la página de Facebook. */
@@ -17,7 +20,7 @@ window.GR = {
   whatsapp: "https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable",
   /* URL /exec de la aplicación web de Google Apps Script (gratis). Vacío = no se envía nada.
      Un solo valor para registro, prueba de la app y afiliados. Ver apps-script/Codigo.gs */
-  formEndpoint: "",
+  formEndpoint: "https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec",
   /* Enlace de Google Play cuando exista. Vacío = el botón queda en «próximamente». */
   appUrl: "",
   refDays: 30,

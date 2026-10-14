@@ -21,7 +21,7 @@
     CR: "listado.mercadolibre.co.cr",
     PA: "listado.mercadolibre.com.pa"
   };
-  var REF_RE = /^[A-Za-z0-9_-]{2,32}$/;
+  var REF_RE = /^(?:[A-Za-z0-9_-]{2,40}|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,24})$/;
 
   function valid(code) {
     code = String(code || "").toUpperCase();
@@ -117,6 +117,11 @@
       badge.hidden = !badgeText;
       badge.textContent = badgeText || "";
     }
+    var usdEl = card.querySelector(".js-sku-usd");
+    if (usdEl) {
+      var priceLike = /^(Unos |US\$|\$|S\/)/.test(usd || "") || /\d/.test(String(usd || "").slice(0, 8));
+      usdEl.classList.toggle("is-note", !!(usd && !priceLike));
+    }
     var cta = card.querySelector(".js-sku-cta");
     if (cta && ctaOpts) {
       cta.textContent = ctaOpts.text;
@@ -152,6 +157,40 @@
     if (res) res.textContent = item.resumen || "";
   }
 
+  function ensureAsk(card) {
+    var id = card.getAttribute("data-sku");
+    var item = catalogMap()[id];
+    if (!item) return;
+    var nameEl = card.querySelector(".js-sku-name, .js-feat-name");
+    var nombre = (nameEl && nameEl.textContent.trim()) || item.nombre;
+    var cta = card.querySelector(".js-sku-cta");
+    var host = (cta && cta.parentNode) || card;
+    var wa = card.querySelector(".js-sku-wa");
+    if (!wa) {
+      wa = document.createElement("a");
+      wa.className = "btn sec js-sku-wa";
+      if (cta) cta.insertAdjacentElement("afterend", wa);
+      else host.appendChild(wa);
+    }
+    var alreadyWa = cta && /wa\.me/i.test(cta.getAttribute("href") || "");
+    wa.hidden = !!alreadyWa;
+    wa.textContent = "Pregunta por WhatsApp";
+    wa.href = waProduct(nombre);
+    var pay = card.querySelector(".pay-note");
+    var buying = cta && cta.hasAttribute("data-checkout");
+    if (buying) {
+      if (!pay) {
+        pay = document.createElement("p");
+        pay.className = "pay-note";
+        pay.textContent = "Pago seguro con Stripe. No vemos el número de tu tarjeta.";
+        wa.insertAdjacentElement("afterend", pay);
+      }
+      pay.hidden = false;
+    } else if (pay) {
+      pay.hidden = true;
+    }
+  }
+
   function applySkus() {
     var map = catalogMap();
     var p = PAISES[pais];
@@ -160,6 +199,7 @@
     document.querySelectorAll("[data-sku]").forEach(function (card) {
       var item = map[card.getAttribute("data-sku")];
       if (!item) return;
+      try {
       var nameEl = card.querySelector(".js-sku-name");
       if (item.soon) {
         if (nameEl) nameEl.textContent = item.nombre;
@@ -231,6 +271,7 @@
         buy: true,
         store: true
       });
+      } finally { ensureAsk(card); }
     });
     var buy = document.querySelector(".js-comprar");
     if (buy) {
@@ -373,6 +414,13 @@
 
   var navBtn = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
+  if (nav && location.hash === "#menu") {
+    nav.classList.add("is-open");
+    if (navBtn) {
+      navBtn.setAttribute("aria-expanded", "true");
+      navBtn.textContent = "Cerrar";
+    }
+  }
   if (navBtn && nav) {
     navBtn.addEventListener("click", function () {
       var open = nav.classList.toggle("is-open");
@@ -381,7 +429,7 @@
     });
   }
 
-  document.querySelectorAll(".nav-parent").forEach(function (btn) {
+  document.querySelectorAll(".nav-parent, .nav-redes").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var drop = btn.closest(".nav-drop");
       if (!drop) return;
@@ -392,7 +440,7 @@
   if (nav) {
     nav.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
-        if (window.matchMedia("(max-width: 1179px)").matches) {
+        if (window.matchMedia("(max-width: 1039px)").matches) {
           nav.classList.remove("is-open");
           if (navBtn) {
             navBtn.setAttribute("aria-expanded", "false");
@@ -422,9 +470,17 @@
     }
   });
 
+  var FORM_ERR = {
+    sin_consentimiento: "No se guardó: falta marcar la casilla de privacidad.",
+    sin_correo: "No se guardó: falta un correo válido.",
+    gmail: "No se guardó: la prueba de Google Play solo acepta un correo @gmail.com."
+  };
+
   document.querySelectorAll("form[data-gr-form]").forEach(function (form) {
     var metodo = form.querySelector("[name=metodo_pago]");
     var paypal = form.querySelector("[data-paypal]");
+    var endpoint = (GR.formEndpoint || "").trim();
+    if (endpoint) form.action = endpoint;
     if (metodo && paypal) {
       var sync = function () { paypal.hidden = metodo.value !== "paypal"; };
       metodo.addEventListener("change", sync);
@@ -433,30 +489,30 @@
     form.setAttribute("novalidate", "");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
+      if (form.dataset.sending === "1") return;
       var msg = form.querySelector(".form-msg");
-      var say = function (t) { if (msg) msg.textContent = t; };
+      var say = function (t) { if (msg) { msg.textContent = t; } };
       var hp = form.querySelector("[name=_gotcha]");
       if (hp && hp.value) { say("Listo."); return; }
       var nombre = form.querySelector("[name=nombre]");
-      var email = form.querySelector("[name=email]");
+      var emailEl = form.querySelector("[name=email]");
+      var emailVal = emailEl ? emailEl.value.trim() : "";
       if (nombre && !nombre.value.trim()) { say("Escribe tu nombre."); nombre.focus(); return; }
-      if (email && !email.value.trim()) { say("Escribe tu correo."); email.focus(); return; }
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { say("Ese correo no parece válido."); email.focus(); return; }
+      if (emailEl && !emailVal) { say("Escribe tu correo."); emailEl.focus(); return; }
+      if (emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) { say("Ese correo no parece válido."); emailEl.focus(); return; }
       var consent = form.querySelector("[name=consentimiento]");
       if (!consent || !consent.checked) {
         say("Para continuar, marca la casilla de privacidad.");
         if (consent) consent.focus();
         return;
       }
-      if (form.getAttribute("data-gr-form") === "beta") {
-        var email = (form.email && form.email.value || "").trim();
-        if (!/@gmail\.com$/i.test(email)) {
-          say("Para la prueba de Google Play necesitamos un correo @gmail.com.");
-          if (form.email) form.email.focus();
-          return;
-        }
+      var tipo = form.getAttribute("data-gr-form");
+      if (tipo === "beta" && !/@gmail\.com$/i.test(emailVal)) {
+        say("Para la prueba de Google Play el correo tiene que ser de Gmail (@gmail.com).");
+        if (emailEl) emailEl.focus();
+        return;
       }
-      if (form.getAttribute("data-gr-form") === "afiliado" && metodo && metodo.value === "paypal") {
+      if (tipo === "afiliado" && metodo && metodo.value === "paypal") {
         var pay = form.querySelector("[name=paypal]");
         if (!pay || !pay.value.trim()) {
           say("Escribe el correo de PayPal donde quieres el pago.");
@@ -464,7 +520,6 @@
           return;
         }
       }
-      var endpoint = (GR.formEndpoint || "").trim();
       if (!endpoint) {
         say("El formulario está listo, pero todavía no envía datos: falta la URL de Google Apps Script en js/config.js. No salió nada de este navegador. Si te urge, escríbenos por WhatsApp.");
         return;
@@ -473,17 +528,38 @@
       new FormData(form).forEach(function (v, k) { data[k] = v; });
       data.pais = pais;
       data.ref = readRef();
-      data.origen = location.href;
+      data.origen = "test" === new URLSearchParams(location.search).get("origen") ? "test" : location.href;
+      data.consentimiento = "si";
+      if (!data._gotcha) data._gotcha = "";
       say("Enviando…");
       var btn = form.querySelector("[type=submit]");
+      form.dataset.sending = "1";
       if (btn) btn.disabled = true;
       postToSheet(endpoint, data).then(function () {
-        say("Listo. Quedó anotado. Si no lo ves en la hoja en un minuto, escríbenos por WhatsApp.");
+        if (tipo === "afiliado") {
+          var code = emailVal.toLowerCase();
+          var link = (GR.siteUrl || "https://granjarentable.net").replace(/\/$/, "") + "/?ref=" + encodeURIComponent(code);
+          if (msg) {
+            msg.textContent = "";
+            msg.appendChild(document.createTextNode("Listo. Tu enlace personal es "));
+            var a = document.createElement("a");
+            a.href = link;
+            a.textContent = link;
+            msg.appendChild(a);
+            msg.appendChild(document.createTextNode(". Si alguien compra con ese enlace, te corresponde el 10 %."));
+          }
+        } else if (tipo === "beta") {
+          say("Listo. Anotamos tu Gmail para la prueba de Google Play. Si hay plaza, te escribimos.");
+        } else {
+          say("Listo. Guardamos tu registro. Te escribimos a ese correo cuando haya novedad.");
+        }
         form.reset();
         if (metodo && paypal) paypal.hidden = metodo.value !== "paypal";
-      }).catch(function () {
-        say("No se pudo enviar. Revisa tu conexión o escríbenos por WhatsApp.");
-      }).then(function () { if (btn) btn.disabled = false; });
+      }).catch(function (err) {
+        say(FORM_ERR[err && err.code] || "No se pudo enviar. Revisa tu conexión o escríbenos por WhatsApp.");
+        form.dataset.sending = "";
+        if (btn) btn.disabled = false;
+      });
     });
   });
 
@@ -505,44 +581,21 @@
   }
 
   function postToSheet(endpoint, data) {
-    return new Promise(function (resolve, reject) {
-      var iframe = document.createElement("iframe");
-      iframe.name = "grform" + Date.now();
-      iframe.hidden = true;
-      iframe.setAttribute("aria-hidden", "true");
-      iframe.style.display = "none";
-      var form = document.createElement("form");
-      form.method = "POST";
-      form.action = endpoint;
-      form.target = iframe.name;
-      form.acceptCharset = "UTF-8";
-      Object.keys(data).forEach(function (k) {
-        var input = document.createElement("input");
-        input.type = "hidden";
-        input.name = k;
-        input.value = data[k] == null ? "" : String(data[k]);
-        form.appendChild(input);
+    return fetch(endpoint, {
+      method: "POST",
+      redirect: "follow",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        var body = {};
+        try { body = JSON.parse(t); } catch (e) { body = {}; }
+        if (!r.ok || !body || body.ok !== true) {
+          var err = new Error((body && body.error) || "post");
+          err.code = body && body.error;
+          throw err;
+        }
       });
-      var done = false;
-      function finish(ok) {
-        if (done) return;
-        done = true;
-        clearTimeout(timer);
-        form.remove();
-        setTimeout(function () { iframe.remove(); }, 1200);
-        if (ok) resolve(); else reject(new Error("post"));
-      }
-      var armed = false;
-      iframe.addEventListener("load", function () { if (armed) finish(true); });
-      document.body.appendChild(iframe);
-      document.body.appendChild(form);
-      var timer = setTimeout(function () { finish(true); }, 6000);
-      try {
-        armed = true;
-        form.submit();
-      } catch (e) {
-        finish(false);
-      }
     });
   }
 
