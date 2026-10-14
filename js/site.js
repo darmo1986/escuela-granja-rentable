@@ -364,7 +364,7 @@
     document.querySelectorAll(".js-red-nota").forEach(function (el) {
       if (pais === "ES") el.textContent = "En España estos enlaces abren eBay. La incubadora se compra en nuestra tienda, no aquí.";
       else if (pais === "US") el.textContent = "En Estados Unidos estos enlaces abren eBay. La incubadora se compra en nuestra tienda, en dólares.";
-      else el.textContent = "En " + p.nombre + " estos enlaces abren Mercado Libre. La incubadora se compra en nuestra tienda.";
+      else el.textContent = "En " + p.nombre + " el primer enlace abre Mercado Libre y el segundo, eBay. El precio está en esa tienda. La incubadora se compra en la nuestra.";
     });
 
     buildRecLinks();
@@ -393,7 +393,11 @@
         a.classList.toggle("is-off", !allowed);
         if (!allowed) return;
         if (net === "mercadolibre") {
-          var host = ML_HOST[pais] || ML_HOST.MX;
+          var host = ML_HOST[pais];
+          if (!host) {
+            a.classList.add("is-off");
+            return;
+          }
           var u = new URL("https://" + host + "/" + slug(a.getAttribute("data-q")));
           var id = p.ml ? (ids[p.ml] || "") : "";
           if (id) u.searchParams.set(param, id);
@@ -414,6 +418,13 @@
           }
           a.href = u2.toString();
         }
+      });
+      var primary = true;
+      card.querySelectorAll("[data-net]").forEach(function (a) {
+        var on = !a.classList.contains("is-off");
+        a.classList.toggle("gold", on && primary);
+        a.classList.toggle("sec", !on || !primary);
+        if (on && primary) primary = false;
       });
     });
   }

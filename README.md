@@ -80,6 +80,18 @@ La ficha ya está en `data/curso-web.json` y la fila ya está en `curso.html`. N
 
 `leccion.html?id=l05a` lee el JSON y reproduce `videos/` + el nombre del archivo. L01–L04B siguen en `lecciones/`, con su texto y su test.
 
+## Hueco del vídeo final de L01 a L04B
+
+`videos-finales.html` es un borrador. No está en `curso.html`, ni en el menú, ni en el sitemap, y lleva `noindex`. Cada ficha L01–L04B de `data/curso-web.json` tiene `"videoFinal": ""`.
+
+Cuando el Supervisor apruebe el corte:
+
+1. Copia el mp4 a `videos/` con un nombre como `l01-final.mp4` (solo letras minúsculas, números, guion o guion bajo, y `.mp4`).
+2. En esa ficha pon `"videoFinal": "l01-final.mp4"`.
+3. Abre `videos-finales.html`: el hueco reproduce ese archivo. Si el campo sigue vacío, el hueco dice que no hay archivo y no inventa una dirección.
+
+No cambies el `src` de `lecciones/l01.html` (ni L02, L03, L04A, L04B) ni enlaces esta página desde `curso.html` hasta que el Supervisor lo diga. El curso publicado sigue con `videos/l01.mp4` y los demás archivos actuales.
+
 ## Pendiente
 
 - `window.GR.formEndpoint` en `js/config.js` apunta a la aplicación web de Apps Script. Regístrate, la prueba de la app y Afiliados envían ahí.

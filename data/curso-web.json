@@ -16,6 +16,7 @@
    "titulo": "Cómo empezar: elige a qué dedicarte (carne, huevos o genética)",
    "estado": "disponible",
    "video": "l01.mp4",
+   "videoFinal": "",
    "examen": "l01.json",
    "descripcion": "Antes de comprar pollitos, elige un solo camino: carne, huevos o genética. El alimento suele ser el 60–80 % del costo."
   },
@@ -25,6 +26,7 @@
    "titulo": "Tipos de explotación y espacio: cómo debe ser tu granja según tu presupuesto",
    "estado": "disponible",
    "video": "l02.mp4",
+   "videoFinal": "",
    "examen": "l02.json",
    "descripcion": "Antes de comprar aves, decide dónde van a vivir. El espacio, la luz y la cama seca son la base."
   },
@@ -34,6 +36,7 @@
    "titulo": "La incubadora: qué tipo necesitas según tu presupuesto y tu granja",
    "estado": "disponible",
    "video": "l03.mp4",
+   "videoFinal": "",
    "examen": "l03.json",
    "descripcion": "Sin huevos fértiles, la mejor máquina no saca pollitos. Elige la capacidad de la tanda que harás de verdad."
   },
@@ -43,6 +46,7 @@
    "titulo": "Pollos de engorde (1): preparación, temperatura, alimento y manejo",
    "estado": "disponible",
    "video": "l04a.mp4",
+   "videoFinal": "",
    "examen": "l04a.json",
    "descripcion": "Pollos de engorde, parte 1: cómo preparar la nave, la temperatura de arranque, el alimento por fases y el manejo diario del lote."
   },
@@ -52,6 +56,7 @@
    "titulo": "Pollos de engorde (2): amoníaco, bioseguridad, depredadores, enfermedades y vacunas",
    "estado": "disponible",
    "video": "l04b.mp4",
+   "videoFinal": "",
    "examen": "l04b.json",
    "descripcion": "Pollos de engorde, parte 2: controla el amoníaco, aplica bioseguridad, protege el lote de depredadores y conoce enfermedades y vacunas."
   },
