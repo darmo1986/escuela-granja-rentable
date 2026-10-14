@@ -65,7 +65,7 @@ El dueño aprobó publicar en GitHub Pages. El DNS de Porkbun sigue pendiente. L
 - [x] **Apps Script.** `window.GR.formEndpoint` en `js/config.js` ya apunta a `https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec`. Si se vuelve a publicar el script y cambia la URL, hay que pegarla otra vez.
 - [ ] **Identificadores de afiliados.** Siguen vacíos a propósito: Mercado Libre (`redes.mercadolibre.ids`) y eBay (`redes.ebay.es` y `.com`: `campid` y `mkrid`). El enlace abre la búsqueda igual, sin comisión.
 - [x] **URLs canónicas.** Cada página lleva `link rel=canonical` a `https://granjarentable.net/` (inicio) o `https://granjarentable.net/<ruta>`. Hasta que el dominio apunte a GitHub Pages, el sitio también puede servirse en `https://darmo1986.github.io/escuela-granja-rentable/`; las canónicas no cambian.
-- [ ] **Claves de anuncios.** `window.ADSTERRA` y `window.ADSENSE_CLIENT` están vacíos. Los huecos `data-ad-slot` que empiezan por `SLOT_` y la etiqueta «Publicidad» permanecen ocultos.
+- [x] **Claves de Adsterra.** El sitio aprobado es `darmo1986.github.io` (id 6120999). Cada página lleva un banner (728×90 en escritorio, 320×50 en el celular). Las páginas largas añaden un 300×250 dentro del contenido. Una pieza de cada tamaño por página, en línea, con el alto reservado, y el anuncio se pide al acercarse. Sin tema ni palabras clave. Solo si se aceptan las cookies. AdSense sigue vacío.
 - [ ] **Fotos que faltan.** El suplemento (próximamente, sin precio) y las tabletas de 30 g no tienen foto en el archivo. El pedido de las tabletas va por WhatsApp.
 - [ ] **Videos L05A–L06C.** El temario está; los mp4 no. Cómo publicarlos, abajo.
 

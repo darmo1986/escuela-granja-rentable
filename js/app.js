@@ -4,10 +4,9 @@ const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
 const save=p=>localStorage.setItem(PK,JSON.stringify(p));
 /* ── Consentimiento + publicidad (Adsterra o AdSense; nada sin key y sin «Aceptar») ── */
-const SLOT_MAP={SLOT_INICIO:'inicio',SLOT_LECCION_TEST:'lecciones',SLOT_FINAL:'final'};
 function adsterraHasKey(){
   const A=window.ADSTERRA||{};
-  return ['inicio','lecciones','final'].some(k=>{
+  return ['banner','rect'].some(k=>{
     const o=A[k]; return !!(o&&((o.key&&String(o.key).trim())||(o.movil&&o.movil.key&&String(o.movil.key).trim())));
   });
 }
@@ -20,40 +19,53 @@ function pickAdsterra(cfg){
   if(narrow)return mov||desk;
   return desk||mov;
 }
-/* Banner oficial Adsterra (atOptions + invoke.js). Un hueco = un banner aislado. Solo format iframe. */
-function injectAdsterra(el,cfg){
-  const key=cfg.key,w=cfg.w,h=cfg.h;
-  el.style.minHeight=h+'px';
-  const conf=document.createElement('script');
-  conf.type='text/javascript';
-  conf.textContent='atOptions = {\'key\':'+JSON.stringify(key)+',\'format\':\'iframe\',\'height\':'+h+',\'width\':'+w+',\'params\':{}};';
-  const inv=document.createElement('script');
-  inv.type='text/javascript';
-  inv.src='//www.highperformanceformat.com/'+encodeURIComponent(key)+'/invoke.js';
-  el.appendChild(conf);
-  el.appendChild(inv);
-}
-function revealAd(d){
-  d.hidden=false;
-  d.removeAttribute('aria-hidden');
-  const prev=d.previousElementSibling;
-  if(prev&&prev.classList.contains('ad-label')) prev.hidden=false;
+/* Cada pieza va en su propio iframe para que atOptions no se pise.
+   format iframe, params vacío: sin tema ni palabras clave. */
+function mountAdsterra(el,cfg){
+  if(el.dataset.adFilled)return;
+  el.dataset.adFilled='adsterra';
+  const frame=document.createElement('iframe');
+  frame.title='Publicidad';
+  frame.setAttribute('scrolling','no');
+  frame.setAttribute('loading','lazy');
+  frame.style.cssText='width:'+cfg.w+'px;height:'+cfg.h+'px;max-width:100%;border:0;display:block;overflow:hidden';
+  el.appendChild(frame);
+  const doc=frame.contentWindow.document;
+  const key=cfg.key;
+  doc.open();
+  doc.write('<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;overflow:hidden">'+
+    '<script>atOptions={key:'+JSON.stringify(key)+',format:"iframe",height:'+cfg.h+',width:'+cfg.w+',params:{}};<\/script>'+
+    '<script src="https://www.highperformanceformat.com/'+encodeURIComponent(key)+'/invoke.js"><\/script>'+
+    '</body></html>');
+  doc.close();
 }
 function loadAdsterra(){
-  const A=window.ADSTERRA||{};
-  let any=false;
-  document.querySelectorAll('.ad-slot').forEach(d=>{
-    if(d.dataset.adFilled)return;
-    const name=SLOT_MAP[d.dataset.adSlot];
-    const cfg=pickAdsterra(A[name]);
-    if(!cfg)return;
-    d.dataset.adFilled='adsterra';
-    injectAdsterra(d,cfg);
-    revealAd(d);
-    any=true;
+  const seen={};
+  document.querySelectorAll('.ad-slot[data-ad-size]').forEach(el=>{
+    const size=el.dataset.adSize;
+    if(seen[size]){
+      const box=el.closest('.ad-inline');
+      if(box)box.remove();
+      return;
+    }
+    seen[size]=el;
   });
-  if(any)document.documentElement.classList.add('ad-on');
-  return any;
+  const slots=Object.keys(seen).map(k=>seen[k]);
+  if(!slots.length)return false;
+  const arm=el=>{
+    const cfg=pickAdsterra((window.ADSTERRA||{})[el.dataset.adSize]);
+    if(cfg)mountAdsterra(el,cfg);
+  };
+  if(!('IntersectionObserver' in window)){slots.forEach(arm);return true;}
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(!en.isIntersecting)return;
+      io.unobserve(en.target);
+      arm(en.target);
+    });
+  },{rootMargin:'200px 0px'});
+  slots.forEach(el=>io.observe(el));
+  return true;
 }
 function loadAdsense(){
   if(!window.ADSENSE_CLIENT)return false;
@@ -64,11 +76,11 @@ function loadAdsense(){
   document.head.appendChild(s); document.documentElement.classList.add('ad-on');
   slots.forEach(d=>{
     if(d.dataset.adFilled)return;
+    d.hidden=false;
     d.dataset.adFilled='adsense';
     const i=document.createElement('ins');i.className='adsbygoogle';i.style.display='block';
     i.dataset.adClient=window.ADSENSE_CLIENT;i.dataset.adSlot=d.dataset.adSlot;i.dataset.adFormat='auto';i.dataset.fullWidthResponsive='true';d.appendChild(i);
     (window.adsbygoogle=window.adsbygoogle||[]).push({});
-    revealAd(d);
   });
   return true;
 }
@@ -83,11 +95,11 @@ function banner(){
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');
   b.innerHTML='<strong>🍪 Cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. <a href="'+root+'cookies.html">Más información</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
-  b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(c==='si')loadAds();else if(window.__adsLoaded)location.reload();});
+  b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
 const c=localStorage.getItem(CK); if(c==='si')loadAds(); else if(!c)banner();
-document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();localStorage.removeItem(CK);if(!adsConfigured())alert('Ahora mismo este sitio no usa cookies publicitarias.');banner();}));
+document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();localStorage.removeItem(CK);document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded){location.reload();return;}if(!adsConfigured())alert('Ahora mismo este sitio no usa cookies publicitarias.');banner();}));
 /* ── Progreso, lecciones nuevas (L05A–L06C) y tests ── */
 const passed=id=>!!(prog()[id]&&prog()[id].aprobado);
 const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};

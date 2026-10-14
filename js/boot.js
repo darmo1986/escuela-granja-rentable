@@ -3,6 +3,9 @@
    código de país está en la lista) → México. Un inglés genérico no
    se convierte en Estados Unidos. */
 (function () {
+  try {
+    if (localStorage.getItem("gr_consent") === "si") document.documentElement.classList.add("ad-ok");
+  } catch (e0) {}
   var map = {
     "America/Mexico_City": "MX",
     "America/Monterrey": "MX",
