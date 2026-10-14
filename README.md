@@ -19,6 +19,39 @@ México 23,5 %, Estados Unidos 15,7 % (en español), Colombia 8,9 %, Perú 7,5 %
 
 Precios de la incubadora copiados de la tienda el 14 de octubre de 2026, con el dólar de ese día solo como referencia. El cargo real es el de la página de pago.
 
+## Catálogo (todos los productos que se pudieron leer)
+
+La fuente de la tienda de incubación es `config` de https://granjarentable-incubadora.netlify.app/ (14 de octubre de 2026). Las fotos están en `img/productos/`. Cada ficha está en `producto/`. El menú Tienda abre Incubadoras, Complementos y Salud avícola.
+
+| Producto | En esta tienda | Origen |
+| --- | --- | --- |
+| Incubadora automática 24Egg Dual | Sí. México, Perú, España, Argentina y Paraguay. En Estados Unidos el botón lleva a la WONEGG. | `product.id` de la tienda de incubación |
+| Incubadora automática WONEGG 48 huevos | Sí. Solo Estados Unidos, US$ 119. | Bloque de país US |
+| Corralito plegable para pollitos | Sí. Solo Estados Unidos, US$ 77.99. | Complemento `corralito` |
+| Bombilla infrarroja para criadora | Sí. Solo Estados Unidos, US$ 49.99. | Complemento `bombilla` |
+| Termohigrómetro de aguja | Sí. Perú, México, España y Estados Unidos, cada uno con su precio. | Complemento `termohigrometro` |
+| Báscula de precisión 0,01 g | Sí. Perú, México, España y Estados Unidos. | Complemento `bascula` |
+| Medidor de pH del agua | Sí. En Perú, México y España se muestra como «Medidor digital de pH del agua». | Complemento `medidorph` |
+| Alfombrilla antideslizante | Sí. En Perú, México y España se llama «Tapete antideslizante». | Complemento `alfombrilla` |
+| Comedero 3 kg + bebedero 3 L | Sí. España (47,99 €) y Estados Unidos (US$ 34.99). | Complemento `comedero` |
+| Anillas identificadoras (50 uds.) | Sí. Solo Estados Unidos, US$ 14.99. | Complemento `anillas` |
+| Vitaminas y electrolitos en polvo para pollitos | Sí, como próximamente, sin precio ni foto. Así estaba en el origen. | Complemento `suplemento` (`soon`) |
+| Tabletas 30 g para fiebre y resfriado en gallinas | Sí. Precio publicado 18,99 € (antes 24,99 €). Sin foto. El pedido va por WhatsApp. | Ficha pública de granjarentable.com |
+
+Argentina y Paraguay no tenían complementos en esa tienda: aquí se ven, con el aviso de que no entran en el pedido.
+
+### Lo que no se pudo bajar de Shopify
+
+El catálogo completo de granjarentable.com no se pudo listar:
+
+- `www.granjarentable.com` no resuelve (no hay DNS).
+- `https://granjarentable.com` llega a una IP de Shopify y corta el TLS (`sslv3 alert handshake failure` / `ERR_SSL_VERSION_OR_CIPHER_MISMATCH`). `products.json`, el sitemap y las colecciones no abren.
+- `granjarentable.myshopify.com` responde «Store unavailable» y `products.json` da 404.
+- Internet Archive no tiene capturas de `/products/`.
+- El índice público solo devolvió una ficha: las tabletas de 30 g. No apareció otra URL de producto.
+
+Si el dueño pega el export de Shopify (`products.json` o la lista de fichas), se agregan aquí. No inventamos el resto.
+
 ## Pendiente
 
 - `window.GR.formEndpoint` en `js/config.js` está vacío. Sin esa URL los formularios no envían nada.

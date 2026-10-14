@@ -84,6 +84,167 @@
     if (el) el.textContent = text || "";
   }
 
+  function catalogMap() {
+    var map = {};
+    (window.GR_CATALOGO || []).forEach(function (item) { map[item.id] = item; });
+    return map;
+  }
+
+  function productHref(id) {
+    return root + "producto/" + id + ".html";
+  }
+
+  function waProduct(name) {
+    var u = new URL(GR.whatsapp || "https://wa.me/34656267726");
+    u.searchParams.set("text", "Hola, escribo desde el sitio de Granja Rentable. Me interesa: " + name);
+    return u.toString();
+  }
+
+  function usdLabel(moneda, precio, texto) {
+    if (moneda === "USD") return texto || ("US$ " + precio);
+    var rate = GR.fx && GR.fx[moneda];
+    if (!rate) return "";
+    return "Unos US$ " + Math.round(precio / rate);
+  }
+
+  function paintSku(card, usd, local, meta, nota, badgeText, ctaOpts) {
+    fillText(card.querySelector(".js-sku-usd"), usd);
+    fillText(card.querySelector(".js-sku-local"), local);
+    fillText(card.querySelector(".js-sku-meta"), meta);
+    fillText(card.querySelector(".js-sku-nota"), nota);
+    var badge = card.querySelector(".js-sku-badge");
+    if (badge) {
+      badge.hidden = !badgeText;
+      badge.textContent = badgeText || "";
+    }
+    var cta = card.querySelector(".js-sku-cta");
+    if (cta && ctaOpts) {
+      cta.textContent = ctaOpts.text;
+      cta.href = ctaOpts.href;
+      if (ctaOpts.store) cta.setAttribute("data-checkout", "");
+      else cta.removeAttribute("data-checkout");
+      cta.classList.toggle("gold", !!ctaOpts.buy);
+      cta.classList.toggle("sec", !ctaOpts.buy);
+    }
+  }
+
+  function applyFeatured() {
+    var box = document.querySelector("[data-featured]");
+    if (!box) return;
+    var skuBox = box.querySelector("[data-sku]");
+    if (!skuBox) return;
+    var id = (PAISES[pais] && PAISES[pais].envio && pais === "US") ? "incubadora-wonegg-48" : "incubadora-24egg-dual";
+    skuBox.setAttribute("data-sku", id);
+    var item = catalogMap()[id];
+    if (!item) return;
+    var img = box.querySelector(".js-feat-img");
+    var link = box.querySelector(".js-feat-link");
+    var more = box.querySelector(".js-feat-more");
+    var name = box.querySelector(".js-feat-name");
+    var res = box.querySelector(".js-feat-resumen");
+    if (img && item.imagen) {
+      img.src = root + item.imagen;
+      img.alt = item.alt || item.nombre;
+    }
+    if (link) link.href = productHref(id);
+    if (more) more.href = productHref(id);
+    if (name) name.textContent = item.nombre;
+    if (res) res.textContent = item.resumen || "";
+  }
+
+  function applySkus() {
+    var map = catalogMap();
+    var p = PAISES[pais];
+    var fecha = (GR.fx && GR.fx.fecha) || "";
+    if (!p) return;
+    document.querySelectorAll("[data-sku]").forEach(function (card) {
+      var item = map[card.getAttribute("data-sku")];
+      if (!item) return;
+      var nameEl = card.querySelector(".js-sku-name");
+      if (item.soon) {
+        if (nameEl) nameEl.textContent = item.nombre;
+        paintSku(card, "Próximamente", item.resumen || "", "", "Todavía no tiene precio ni foto.", "Próximamente", {
+          text: "Avísame",
+          href: root + "registro.html?interes=" + encodeURIComponent(item.id),
+          buy: false,
+          store: false
+        });
+        return;
+      }
+      if (item.checkout === "store" && !p.envio) {
+        if (nameEl) nameEl.textContent = item.nombre;
+        paintSku(card, "Sin envío a " + p.nombre, "Te avisamos cuando podamos enviar.", "", "", "Sin envío", {
+          text: "Avísame",
+          href: root + "registro.html?interes=envio",
+          buy: false,
+          store: false
+        });
+        return;
+      }
+      var offer = item.offers && item.offers[pais];
+      if (!offer) {
+        var alt = item.altPais && item.altPais[pais];
+        var msg = (item.ausente && item.ausente[pais]) || ("Hoy no enviamos este producto a " + p.nombre + ".");
+        if (nameEl) nameEl.textContent = item.nombre;
+        if (alt && map[alt]) {
+          paintSku(card, msg, "En " + p.nombre + " está a la venta: " + map[alt].nombre + ".", "", "", "Otro modelo", {
+            text: "Ver el modelo de tu país",
+            href: productHref(alt),
+            buy: false,
+            store: false
+          });
+        } else {
+          var ref = item.base ? ("Referencia de catálogo: " + item.base.texto + ". No es el precio de " + p.nombre + ".") : "";
+          paintSku(card, msg, ref, "", "", "No disponible aquí", {
+            text: "Preguntar por WhatsApp",
+            href: waProduct(item.nombre),
+            buy: false,
+            store: false
+          });
+        }
+        return;
+      }
+      var nombre = offer.nombre || item.nombre;
+      if (nameEl) nameEl.textContent = nombre;
+      var usdTxt = usdLabel(offer.moneda, offer.precio, offer.texto);
+      var localTxt = "Pagas " + offer.texto + ".";
+      if (offer.antes) localTxt += " Antes " + offer.antes + ".";
+      if (item.categoria === "incubadoras" && offer.moneda !== "USD") localTxt = "Pagas " + offer.texto + ", envío incluido a " + p.nombre + ".";
+      if (item.categoria === "incubadoras" && offer.moneda === "USD") localTxt = "Precio con envío a " + p.nombre + ".";
+      var meta = [offer.voltaje || "", offer.entrega || "", item.capacidad || ""].filter(Boolean).join(" · ");
+      var nota = offer.nota || "";
+      if (offer.moneda !== "USD" && fecha && item.checkout === "store") {
+        nota += (nota ? " " : "") + "El dólar es una referencia del " + fecha + ". El cargo es en " + offer.moneda + ".";
+      }
+      if (item.checkout === "whatsapp") {
+        paintSku(card, usdTxt, localTxt, meta, nota, item.badge || "Tienda anterior", {
+          text: "Pedir por WhatsApp",
+          href: waProduct(nombre),
+          buy: true,
+          store: false
+        });
+        return;
+      }
+      paintSku(card, usdTxt, localTxt, meta, nota, "", {
+        text: "Comprar",
+        href: storeUrl(),
+        buy: true,
+        store: true
+      });
+    });
+    var buy = document.querySelector(".js-comprar");
+    if (buy) {
+      if (!p.envio) {
+        buy.textContent = "Avísame";
+        buy.href = root + "registro.html?interes=envio";
+        buy.removeAttribute("data-checkout");
+      } else {
+        buy.textContent = "Comprar";
+        buy.setAttribute("data-checkout", "");
+      }
+    }
+  }
+
   function applyPais(code, persist) {
     pais = valid(code);
     document.documentElement.dataset.pais = pais;
@@ -136,6 +297,9 @@
         cta.setAttribute("data-checkout", "");
       }
     });
+
+    applyFeatured();
+    applySkus();
 
     document.querySelectorAll("[data-checkout]").forEach(function (a) {
       a.href = storeUrl();
@@ -214,6 +378,28 @@
       var open = nav.classList.toggle("is-open");
       navBtn.setAttribute("aria-expanded", open ? "true" : "false");
       navBtn.textContent = open ? "Cerrar" : "Menú";
+    });
+  }
+
+  document.querySelectorAll(".nav-parent").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var drop = btn.closest(".nav-drop");
+      if (!drop) return;
+      var open = drop.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+  if (nav) {
+    nav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        if (window.matchMedia("(max-width: 1179px)").matches) {
+          nav.classList.remove("is-open");
+          if (navBtn) {
+            navBtn.setAttribute("aria-expanded", "false");
+            navBtn.textContent = "Menú";
+          }
+        }
+      });
     });
   }
 
@@ -301,9 +487,21 @@
     });
   });
 
-  if (new URLSearchParams(location.search).get("interes") === "envio") {
+  var interes = new URLSearchParams(location.search).get("interes");
+  if (interes) {
     var aviso = document.getElementById("interes-envio");
-    if (aviso) aviso.hidden = false;
+    if (aviso) {
+      aviso.hidden = false;
+      if (interes !== "envio") aviso.textContent = "Anotamos tu interés. Déjanos el correo y te escribimos cuando haya novedad.";
+    }
+    var regForm = document.querySelector("form[data-gr-form]");
+    if (regForm && !regForm.querySelector("[name=interes]")) {
+      var hid = document.createElement("input");
+      hid.type = "hidden";
+      hid.name = "interes";
+      hid.value = interes;
+      regForm.appendChild(hid);
+    }
   }
 
   function postToSheet(endpoint, data) {
