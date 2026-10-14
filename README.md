@@ -52,6 +52,30 @@ El catálogo completo de granjarentable.com no se pudo listar:
 
 Si el dueño pega el export de Shopify (`products.json` o la lista de fichas), se agregan aquí. No inventamos el resto.
 
+## Antes de publicar
+
+No fusionar esta rama ni tocar el DNS hasta que el dueño lo pida. El sitio en local ya usa las URLs canónicas de producción (`https://granjarentable.net/...`, `og:locale` `es_419`).
+
+- [x] **CNAME.** El archivo `CNAME` en la raíz dice `granjarentable.net`.
+- [ ] **DNS en Porkbun.** Todavía no se aplica. Quitar el aparcamiento y cualquier redirección. No usar un comodín (`*`). Registros del dominio raíz (`@`): A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. IPv6 opcional: AAAA `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`. `www`: CNAME `darmo1986.github.io` (el usuario de GitHub, sin el nombre del repositorio). Cuando resuelva, en GitHub Pages activar «Enforce HTTPS».
+- [x] **Apps Script.** `window.GR.formEndpoint` en `js/config.js` ya apunta a `https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec`. Si se vuelve a publicar el script y cambia la URL, hay que pegarla otra vez.
+- [ ] **Identificadores de afiliados.** Siguen vacíos a propósito: Mercado Libre (`redes.mercadolibre.ids`) y eBay (`redes.ebay.es` y `.com`: `campid` y `mkrid`). El enlace abre la búsqueda igual, sin comisión.
+- [x] **URLs canónicas.** Cada página lleva `link rel=canonical` a `https://granjarentable.net/` (inicio) o `https://granjarentable.net/<ruta>`. Hasta que el dominio apunte a GitHub Pages, el sitio también puede servirse en `https://darmo1986.github.io/escuela-granja-rentable/`; las canónicas no cambian.
+- [ ] **Claves de anuncios.** `window.ADSTERRA` y `window.ADSENSE_CLIENT` están vacíos. Los huecos `data-ad-slot` que empiezan por `SLOT_` y la etiqueta «Publicidad» permanecen ocultos.
+- [ ] **Fotos que faltan.** El suplemento (próximamente, sin precio) y las tabletas de 30 g no tienen foto en el archivo. El pedido de las tabletas va por WhatsApp.
+- [ ] **Videos L05A–L06C.** El temario está; los mp4 no. Cómo publicarlos, abajo.
+
+## Cómo publicar un video de L05A a L06C
+
+La ficha ya está en `data/curso-web.json` y la fila ya está en `curso.html`. No hace falta una página HTML nueva.
+
+1. Copia el mp4 a `videos/` con el nombre de la ficha, por ejemplo `videos/l05a.mp4`. Solo letras minúsculas, números, guion o guion bajo, y extensión `.mp4`.
+2. En esa entrada de `data/curso-web.json` pon `"estado": "disponible"` y `"video": "l05a.mp4"`.
+3. Opcional: `"minutos": 18` para la duración de la lista. Si no está, la lista dice «Video».
+4. Opcional, para que cuente en el progreso y bloquee el examen final: crea `data/examenes/l05a.json` (el mismo formato que `l01.json`) y añade `"examen": "l05a.json"`. Sin ese archivo, el video se puede ver y no bloquea las lecciones anteriores.
+
+`leccion.html?id=l05a` lee el JSON y reproduce `videos/` + el nombre del archivo. L01–L04B siguen en `lecciones/`, con su texto y su test.
+
 ## Pendiente
 
 - `window.GR.formEndpoint` en `js/config.js` apunta a la aplicación web de Apps Script. Regístrate, la prueba de la app y Afiliados envían ahí.
@@ -62,7 +86,7 @@ Si el dueño pega el export de Shopify (`products.json` o la lista de fichas), s
 - 14 testers con Gmail: el cupo se cuenta en la hoja, no hay un número en vivo.
 - Opiniones reales, cuando haya permiso por escrito.
 - El código `?ref=` ya se guarda 30 días y se añade al enlace de la tienda. La tienda todavía tiene que copiar ese `ref` al pedido. El pago del 10 % se hace a mano por PayPal desde la hoja (mínimo US$ 20, después de los 14 días). No hay n8n ni una herramienta de pago de afiliados.
-- Fichas del curso: L01–L04B usan el texto de cada lección. Los minutos son la duración del video (13, 24, 18, 27 y 29). L05A–L06C no tienen video: el temario sale del índice ya publicado y la duración dice «Por publicar».
+- Fichas del curso: L01–L04B usan el texto de cada lección. Los minutos son la duración del video (13, 24, 18, 27 y 29). L05A–L06C se publican con una entrada en `data/curso-web.json` y el mp4 en `videos/` (ver arriba). El vocabulario del curso usa español neutro de Latinoamérica (alimento, costo) y `og:locale` es `es_419`.
 
 ## Formularios (gratis, Google Sheets)
 

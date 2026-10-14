@@ -340,9 +340,10 @@ body:has(#cookie-banner) main { padding-bottom: 120px; }
 .cta-card.gold { background: linear-gradient(160deg, #f3e7b8, var(--gold)); color: var(--gold-ink); }
 .cta-card.gold h2 { color: var(--gold-ink); }
 .cta-card.gold .btn { background: var(--gd); color: #fff; }
+/* Huecos SLOT_* vacíos: ni la etiqueta «Publicidad» ni el banner, hasta que haya un anuncio de verdad. */
 .ad-slot, .ad-label { display: none; }
-.ad-on .ad-label { display: block; font-size: .7rem; color: #888; text-align: center; margin: 16px 0 -8px; text-transform: uppercase; letter-spacing: .04em; }
-.ad-on .ad-slot { display: flex; justify-content: center; min-height: 90px; max-height: 280px; overflow: hidden; margin: 12px 0; }
+.ad-slot[data-ad-filled] { display: flex; justify-content: center; min-height: 90px; max-height: 280px; overflow: hidden; margin: 12px 0; }
+.ad-label:has(+ .ad-slot[data-ad-filled]) { display: block; font-size: .7rem; color: #888; text-align: center; margin: 16px 0 -8px; text-transform: uppercase; letter-spacing: .04em; }
 .lock-msg { background: #fff6d8; border: 2px solid var(--gold); border-radius: 14px; padding: 14px; margin: 16px 0; font-weight: 700; }
 .tabla { overflow-x: auto; margin: 12px 0; }
 .tabla table { border-collapse: collapse; min-width: 100%; font-size: .9rem; }

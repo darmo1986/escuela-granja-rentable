@@ -29,7 +29,7 @@
     },
     {
       "id": 3,
-      "pregunta": "Según la FAO citada en la lección, ¿qué parte del coste de insumos suele ser el pienso en avicultura comercial intensiva?",
+      "pregunta": "Según la FAO citada en la lección, ¿qué parte del costo de insumos suele ser el alimento en avicultura comercial intensiva?",
       "opciones": [
         "Entre el 10 y el 20 %",
         "Entre el 30 y el 40 %",
@@ -37,7 +37,7 @@
         "Menos del 5 %"
       ],
       "correcta": 2,
-      "explicacion": "La FAO indica que el pienso representa entre el 60 y el 80 % del coste de insumos."
+      "explicacion": "La FAO indica que el alimento representa entre el 60 y el 80 % del costo de insumos."
     },
     {
       "id": 4,
@@ -93,7 +93,7 @@
       "opciones": [
         "Solo una toma al día",
         "A libre disposición (ad libitum), reponiendo mucho al inicio",
-        "Sin pienso hasta el día 10",
+        "Sin alimento hasta el día 10",
         "Solo grano por la noche"
       ],
       "correcta": 1,
@@ -137,7 +137,7 @@
     },
     {
       "id": 12,
-      "pregunta": "¿Qué consumo medio de pienso en puesta se cita para ISA Brown?",
+      "pregunta": "¿Qué consumo medio de alimento en puesta se cita para ISA Brown?",
       "opciones": [
         "Unos 40 g/ave/día",
         "Unos 112 g/ave/día",

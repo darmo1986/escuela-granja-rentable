@@ -68,11 +68,13 @@
     return Math.round(p.precio / rate);
   }
 
-  function storeUrl() {
+  function storeUrl(hash) {
     var u = new URL(GR.tiendaBase || "https://granjarentable-incubadora.netlify.app/");
+    /* Siempre el país elegido en el sitio. La tienda, si no recibe ?pais=, cae en Perú. */
     u.searchParams.set("pais", pais);
     var ref = readRef();
     if (ref) u.searchParams.set("ref", ref);
+    if (hash) u.hash = String(hash).replace(/^#/, "");
     return u.toString();
   }
 
@@ -126,8 +128,14 @@
     if (cta && ctaOpts) {
       cta.textContent = ctaOpts.text;
       cta.href = ctaOpts.href;
-      if (ctaOpts.store) cta.setAttribute("data-checkout", "");
-      else cta.removeAttribute("data-checkout");
+      if (ctaOpts.store) {
+        cta.setAttribute("data-checkout", "");
+        if (ctaOpts.hash) cta.setAttribute("data-checkout-hash", ctaOpts.hash);
+        else cta.removeAttribute("data-checkout-hash");
+      } else {
+        cta.removeAttribute("data-checkout");
+        cta.removeAttribute("data-checkout-hash");
+      }
       cta.classList.toggle("gold", !!ctaOpts.buy);
       cta.classList.toggle("sec", !ctaOpts.buy);
     }
@@ -265,11 +273,13 @@
         });
         return;
       }
+      var hash = item.categoria === "complementos" ? "complementos" : "";
       paintSku(card, usdTxt, localTxt, meta, nota, "", {
         text: "Comprar",
-        href: storeUrl(),
+        href: storeUrl(hash),
         buy: true,
-        store: true
+        store: true,
+        hash: hash
       });
       } finally { ensureAsk(card); }
     });
@@ -343,7 +353,7 @@
     applySkus();
 
     document.querySelectorAll("[data-checkout]").forEach(function (a) {
-      a.href = storeUrl();
+      a.href = storeUrl(a.getAttribute("data-checkout-hash") || "");
     });
 
     document.querySelectorAll(".js-pais").forEach(function (sel) {
