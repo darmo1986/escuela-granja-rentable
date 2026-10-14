@@ -1,9 +1,18 @@
-/* Publicidad del curso (se mantiene). Sin claves no se carga nada. */
+/* Publicidad. Sitio aprobado en Adsterra: darmo1986.github.io (id 6120999).
+   Una sola pieza de cada tamaño. Sin tema ni palabras clave. */
 window.ADSENSE_CLIENT = "";
 window.ADSTERRA = {
-  inicio:    { key: "", w: 728, h: 90,  movil: { key: "", w: 320, h: 50 } },
-  lecciones: { key: "", w: 728, h: 90,  movil: { key: "", w: 320, h: 50 } },
-  final:     { key: "", w: 300, h: 250, movil: { key: "", w: 300, h: 250 } }
+  banner: {
+    key: "c7e91c7d03eae0ab61a26d112e2d59b5",
+    w: 728,
+    h: 90,
+    movil: { key: "b82a679c2962b10cf24c6c9f4a1d93ab", w: 320, h: 50 }
+  },
+  rect: {
+    key: "53a2e67f012f44fbe334cef3592e2fea",
+    w: 300,
+    h: 250
+  }
 };
 
 /* Sitio unificado. Amazon no se usa.
