@@ -4,7 +4,7 @@ Sitio único para [granjarentable.net](https://granjarentable.net). Se publica d
 
 El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub Pages redirigió `darmo1986.github.io/escuela-granja-rentable` a `http://granjarentable.net`, que todavía no resuelve. Con el curso en el aire, el dominio propio se activa después del DNS: en el repositorio, Settings → Pages → Custom domain, escribe `granjarentable.net` y guarda. Eso vuelve a crear el archivo `CNAME`. Hasta entonces no lo subas a mano.
 
-Curso gratis es el primer enlace del menú. En el inicio, el saludo va a la izquierda con el logo y, debajo, la tienda. Recomendados queda aparte: Mercado Libre en Latinoamérica y eBay en España y Estados Unidos. No hay Amazon.
+La tienda es el primer enlace del menú y el bloque principal del inicio. Después van el curso y Recomendados (Mercado Libre primero, eBay en España y Estados Unidos).
 
 Calculadoras, líneas de aves, preguntas, lista y guías están fuera del menú fijo, en el pie y en «También en el sitio». Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
 
