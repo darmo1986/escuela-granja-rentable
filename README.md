@@ -1,6 +1,8 @@
 # Granja Rentable
 
-Sitio único para [granjarentable.net](https://granjarentable.net). Se publica desde `main` en GitHub Pages: [darmo1986.github.io/escuela-granja-rentable](https://darmo1986.github.io/escuela-granja-rentable/). El archivo `CNAME` dice `granjarentable.net`, así que Pages toma ese dominio al desplegar. El DNS de Porkbun no se cambia desde aquí: hasta que existan los registros de abajo, el dominio propio no abre. Los enlaces del sitio son relativos, así que las mismas páginas sirven en `/escuela-granja-rentable/` y en la raíz del dominio.
+Sitio único para [granjarentable.net](https://granjarentable.net). Se publica desde `main` en GitHub Pages: [darmo1986.github.io/escuela-granja-rentable](https://darmo1986.github.io/escuela-granja-rentable/). Los enlaces son relativos, así que las mismas páginas sirven en `/escuela-granja-rentable/` y, cuando el dominio propio esté activo, en la raíz de granjarentable.net.
+
+El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub Pages redirigió `darmo1986.github.io/escuela-granja-rentable` a `http://granjarentable.net`, que todavía no resuelve. Con el curso en el aire, el dominio propio se activa después del DNS: en el repositorio, Settings → Pages → Custom domain, escribe `granjarentable.net` y guarda. Eso vuelve a crear el archivo `CNAME`. Hasta entonces no lo subas a mano.
 
 Curso gratis es el primer enlace del menú. En el inicio, el saludo va a la izquierda con el logo y, debajo, la tienda. Recomendados queda aparte: Mercado Libre en Latinoamérica y eBay en España y Estados Unidos. No hay Amazon.
 
@@ -56,7 +58,7 @@ Si el dueño pega el export de Shopify (`products.json` o la lista de fichas), s
 
 El dueño aprobó publicar en GitHub Pages. El DNS de Porkbun sigue pendiente. Las URLs canónicas son `https://granjarentable.net/...` y `og:locale` es `es_419`.
 
-- [x] **CNAME.** El archivo `CNAME` en la raíz dice `granjarentable.net`.
+- [ ] **Dominio propio en Pages.** El archivo `CNAME` se quitó de `main` para que el curso siga en GitHub Pages. Cuando el DNS de abajo ya responda, en Settings → Pages → Custom domain guarda `granjarentable.net`. Eso crea el `CNAME`. Después, activa «Enforce HTTPS».
 - [ ] **DNS en Porkbun.** Todavía no se aplica. Quitar el aparcamiento y cualquier redirección. No usar un comodín (`*`). Registros del dominio raíz (`@`): A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. IPv6 opcional: AAAA `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`. `www`: CNAME `darmo1986.github.io` (el usuario de GitHub, sin el nombre del repositorio). Cuando resuelva, en GitHub Pages activar «Enforce HTTPS».
 - [x] **Apps Script.** `window.GR.formEndpoint` en `js/config.js` ya apunta a `https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec`. Si se vuelve a publicar el script y cambia la URL, hay que pegarla otra vez.
 - [ ] **Identificadores de afiliados.** Siguen vacíos a propósito: Mercado Libre (`redes.mercadolibre.ids`) y eBay (`redes.ebay.es` y `.com`: `campid` y `mkrid`). El enlace abre la búsqueda igual, sin comisión.
@@ -120,9 +122,9 @@ Eso se guarda en la cookie `gr_ref` y en el navegador 30 días, y el botón de c
 
 ## DNS en Porkbun
 
-El archivo `CNAME` ya está en el repositorio (`granjarentable.net`). Al publicar `main`, GitHub Pages guarda ese dominio en la configuración del sitio. No hace falta escribirlo otra vez en Settings → Pages, salvo que el campo quede vacío. «Enforce HTTPS» se activa cuando el DNS ya apunta a GitHub y el certificado está listo.
+Estos registros se crean en Porkbun. No uses un comodín (`*`). Quita el aparcamiento y cualquier redirección. El CNAME de `www` apunta al usuario de GitHub, sin el nombre del repositorio.
 
-Quita el aparcamiento y cualquier redirección de Porkbun. No uses un comodín (`*`).
+Cuando `dig granjarentable.net` devuelva las cuatro direcciones A, en GitHub abre Settings → Pages → Custom domain, guarda `granjarentable.net` y, en cuanto el certificado exista, activa «Enforce HTTPS». Ese paso escribe el archivo `CNAME` en `main`. Hacerlo antes deja el sitio de `github.io` redirigiendo a un dominio que no abre.
 
 Registros A del dominio raíz (`@`):
 
