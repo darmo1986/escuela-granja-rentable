@@ -118,7 +118,7 @@
       "opciones": [
         "Usar un único gallo más grande",
         "Comprar más gallinas y seguir con un gallo",
-        "Cambiar de pienso",
+        "Cambiar de alimento",
         "Usar tres gallos con seis gallinas cada uno en vez de un solo gallo"
       ],
       "correcta": 3,
@@ -201,7 +201,7 @@
       "pregunta": "¿Qué hace una asociación de criadores reconocida?",
       "opciones": [
         "Organiza peleas de gallos",
-        "Vende pienso obligatorio",
+        "Vende alimento obligatorio",
         "Lleva el libro genealógico y desarrolla el programa de cría oficial de la raza",
         "Fija el precio de los huevos"
       ],

@@ -9,7 +9,7 @@
       "pregunta": "En las aves, ¿quién determina el sexo del pollito?",
       "opciones": [
         "El gallo",
-        "La gallina, porque es zeta uve doble y el gallo es zeta zeta",
+        "La gallina, porque es ZW y el gallo es ZZ",
         "La temperatura de la incubadora",
         "El tamaño del huevo"
       ],
@@ -20,7 +20,7 @@
       "id": 2,
       "pregunta": "¿Qué es un alelo?",
       "opciones": [
-        "Un tipo de pienso",
+        "Un tipo de alimento",
         "Un cromosoma entero",
         "Una enfermedad hereditaria",
         "Cada una de las versiones de un mismo gen"
@@ -62,7 +62,7 @@
         "Machos lisos y hembras barradas"
       ],
       "correcta": 0,
-      "explicacion": "El barrado va en el cromosoma zeta: las hijas lo reciben solo del padre."
+      "explicacion": "Las hijas reciben su único cromosoma Z del padre, que no es barrado, y por eso salen lisas; los machos reciben el Z barrado de la madre."
     },
     {
       "id": 6,
@@ -110,7 +110,7 @@
         "Es igual por dentro y por fuera de la cáscara"
       ],
       "correcta": 2,
-      "explicacion": "Por eso se palidece con estrés, calor o edad."
+      "explicacion": "Por eso palidece con estrés, calor o edad."
     },
     {
       "id": 10,

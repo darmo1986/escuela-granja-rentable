@@ -126,15 +126,15 @@
     },
     {
       "id": 11,
-      "pregunta": "Al criar futuros gallos reproductores, ¿qué pienso NO deben comer como dieta única?",
+      "pregunta": "Al criar futuros gallos reproductores, ¿qué alimento NO deben comer como dieta única?",
       "opciones": [
-        "Pienso de crecimiento",
-        "Pienso de mantenimiento",
-        "Pienso de puesta, por su exceso de calcio",
-        "Pienso de arranque al nacer"
+        "Alimento de crecimiento",
+        "Alimento de mantenimiento",
+        "Alimento de puesta, por su exceso de calcio",
+        "Alimento de arranque al nacer"
       ],
       "correcta": 2,
-      "explicacion": "El pienso de puesta (3,4–4,2 % de calcio) puede dañar el riñón de los machos (U. Maine)."
+      "explicacion": "El alimento de puesta (alrededor del 3,5–4 % de calcio) puede dañar el riñón de los machos (U. Maine)."
     },
     {
       "id": 12,

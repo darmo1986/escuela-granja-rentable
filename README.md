@@ -77,7 +77,7 @@ Cuando el supervisor apruebe el video de una lección:
 2. En `lecciones/l05a.html`, sustituye **solo** la línea del hueco del video. Ahora dice:
 
 ```html
-<div class="video lockable"><p class="video-ph">Vídeo disponible muy pronto</p></div>
+<div class="video lockable"><p class="video-ph">Video disponible muy pronto</p></div>
 ```
 
    y pasa a ser:

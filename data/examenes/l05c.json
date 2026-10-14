@@ -81,7 +81,7 @@
       "pregunta": "¿Cómo se transmite la viruela aviar?",
       "opciones": [
         "Por los mosquitos y las heridas",
-        "Solo por comer pienso caducado",
+        "Solo por comer alimento caducado",
         "Por el color de la cáscara",
         "No se transmite"
       ],
@@ -105,7 +105,7 @@
       "pregunta": "Una gallina entra y sale del nido, empuja y camina como un pato: parece un huevo atascado. ¿Qué haces?",
       "opciones": [
         "Apretarle el abdomen hasta que salga",
-        "Darle pienso de pollitos",
+        "Darle alimento de pollitos",
         "Ponerla en un sitio tranquilo y templado y llamar al veterinario, sin intentar sacar el huevo a la fuerza",
         "Dejarla al sol en pleno verano"
       ],
@@ -116,8 +116,8 @@
       "id": 10,
       "pregunta": "¿Cómo se previene el hígado graso?",
       "opciones": [
-        "Evitando que las gallinas engorden: pienso adecuado, poco grano y espacio para moverse",
-        "Dando más grano y menos pienso",
+        "Evitando que las gallinas engorden: alimento adecuado, poco grano y espacio para moverse",
+        "Dando más grano y menos alimento",
         "Encerrándolas sin moverse",
         "Con antibióticos cada mes"
       ],
@@ -190,7 +190,7 @@
       "opciones": [
         "Mezclada con agua clorada y caliente",
         "Se deja en el bebedero varios días",
-        "Se disuelve en el pienso de puesta",
+        "Se disuelve en el alimento de puesta",
         "Vacuna entre 2 y 8 °C, agua sin cloro desde 48 h antes, estabilizante y que se la beban en 1–2 horas"
       ],
       "correcta": 3,
@@ -198,7 +198,7 @@
     },
     {
       "id": 17,
-      "pregunta": "Con 50 gallinas que comen 120 g/día y ponen al 75 %, ¿cuántos kilos de pienso gastas por docena, aproximadamente?",
+      "pregunta": "Con 50 gallinas que comen 120 g/día y ponen al 75 %, ¿cuántos kilos de alimento gastas por docena, aproximadamente?",
       "opciones": [
         "Unos 0,5 kg",
         "Unos 1,9 kg",
@@ -210,7 +210,7 @@
     },
     {
       "id": 18,
-      "pregunta": "En el ejemplo de la lección, ¿qué parte del coste total de la docena suele ser el pienso?",
+      "pregunta": "En el ejemplo de la lección, ¿qué parte del coste total de la docena suele ser el alimento?",
       "opciones": [
         "Más o menos dos tercios",
         "Casi nada, un 5 %",
@@ -218,7 +218,7 @@
         "Todo: no hay otros gastos"
       ],
       "correcta": 0,
-      "explicacion": "Con ~1,9 kg de pienso por docena a 0,45–0,65 €/kg, la docena sale por ~1,6 € (estimación), sin contar tu trabajo."
+      "explicacion": "Con ~1,9 kg de alimento por docena a 0,45–0,65 €/kg, la docena sale por ~1,6 € (estimación), sin contar tu trabajo."
     },
     {
       "id": 19,
@@ -230,7 +230,7 @@
         "Cresta pequeña, pálida y seca, cloaca pequeña y seca, huesos de la pelvis a menos de dos dedos y patas que vuelven a amarillear"
       ],
       "correcta": 3,
-      "explicacion": "Una gallina que no pone cuesta lo mismo en pienso que una que pone mucho."
+      "explicacion": "Una gallina que no pone cuesta lo mismo en alimento que una que pone mucho."
     },
     {
       "id": 20,

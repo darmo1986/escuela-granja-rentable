@@ -57,12 +57,12 @@
       "pregunta": "La puesta cae de golpe. ¿En qué orden revisa la lección las causas?",
       "opciones": [
         "Primero dar antibióticos y luego mirar",
-        "Luz, agua, pienso, temperatura, parásitos y, si no encuentras nada, veterinario",
+        "Luz, agua, alimento, temperatura, parásitos y, si no encuentras nada, veterinario",
         "Cambiar de gallinas sin mirar nada",
         "Solo mirar el color de la yema"
       ],
       "correcta": 1,
-      "explicacion": "Casi siempre hay una causa: luz, agua, pienso, calor, estrés, parásitos, enfermedad o edad."
+      "explicacion": "Casi siempre hay una causa: luz, agua, alimento, calor, estrés, parásitos, enfermedad o edad."
     },
     {
       "id": 6,
@@ -74,7 +74,7 @@
         "El cambio de plumas, sobre todo en otoño: la gallina deja de poner unas semanas y después vuelve a poner con mejor cáscara"
       ],
       "correcta": 3,
-      "explicacion": "Durante la muda: buen pienso, tranquilidad y poca manipulación, porque las plumas nuevas duelen."
+      "explicacion": "Durante la muda: buen alimento, tranquilidad y poca manipulación, porque las plumas nuevas duelen."
     },
     {
       "id": 7,
@@ -86,7 +86,7 @@
         "Solo es legal si dura menos de 3 semanas"
       ],
       "correcta": 0,
-      "explicacion": "Directiva 98/58/CE y RD 348/2000; Hy-Line describe solo mudas sin ayuno, con veterinario y nutrólogo."
+      "explicacion": "Directiva 98/58/CE y RD 348/2000; Hy-Line describe solo mudas sin ayuno, con veterinario y técnico de nutrición."
     },
     {
       "id": 8,
@@ -94,7 +94,7 @@
       "opciones": [
         "De la edad del gallo",
         "Del color de la cáscara",
-        "De los pigmentos de lo que come la gallina (maíz, hierba, alfalfa o los del pienso)",
+        "De los pigmentos de lo que come la gallina (maíz, hierba, alfalfa o los del alimento)",
         "De si el huevo está fecundado"
       ],
       "correcta": 2,
@@ -238,7 +238,7 @@
       "opciones": [
         "Luz muy fuerte las 24 horas",
         "Muchas gallinas por metro para que se den calor",
-        "Cama suelta, algo que picotear (paja, cuerdas), luz uniforme, pienso completo en harina y espacio suficiente",
+        "Cama suelta, algo que picotear (paja, cuerdas), luz uniforme, alimento completo en harina y espacio suficiente",
         "Quitar la cama para que no escarben"
       ],
       "correcta": 2,

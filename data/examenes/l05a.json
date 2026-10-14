@@ -23,7 +23,7 @@
         "De la raza o la genética de la gallina; no indica que el huevo sea más nutritivo",
         "De lo que come la gallina ese día",
         "De si el huevo es más fresco",
-        "De la cantidad de calcio del pienso"
+        "De la cantidad de calcio del alimento"
       ],
       "correcta": 0,
       "explicacion": "Un huevo moreno y uno blanco alimentan igual. El color lo marca la raza (las Penedesencas, por ejemplo, ponen huevo casi chocolate)."
@@ -95,10 +95,10 @@
         "Que pese diez veces más",
         "Que haya doblado el peso con el que llegó",
         "Que ya tenga la cresta roja",
-        "Que esté comiendo pienso de puesta"
+        "Que esté comiendo alimento de puesta"
       ],
       "correcta": 1,
-      "explicacion": "Además, prueba del buche: 75 % con pienso a las 6 h, 85 % a las 12 h y todas a las 24 h."
+      "explicacion": "Además, prueba del buche: 75 % con alimento a las 6 h, 85 % a las 12 h y todas a las 24 h."
     },
     {
       "id": 9,
@@ -142,15 +142,15 @@
       "opciones": [
         "Siempre a las 12 semanas, pesen lo que pesen",
         "En cuanto aparece el primer huevo en el suelo",
-        "Cuando el lote alcanza su peso objetivo (≈ 1,35–1,40 kg en la Hy-Line Brown), no por la edad",
+        "Cuando el lote alcanza su peso objetivo (≈ alrededor de 1,4 kg en la Hy-Line Brown), no por la edad",
         "Cuando las más adelantadas tienen la cresta roja, aunque el lote vaya ligero"
       ],
       "correcta": 2,
-      "explicacion": "Hy-Line estimula por peso (1,35–1,40 kg) y pide retrasarlo si el lote va ligero o desigual, empezando por las más jóvenes o ligeras."
+      "explicacion": "Hy-Line estimula por peso (alrededor de 1,4 kg) y pide retrasarlo si el lote va ligero o desigual, empezando por las más jóvenes o ligeras."
     },
     {
       "id": 13,
-      "pregunta": "Según Hy-Line, ¿cómo se usa el pienso de prepuesta?",
+      "pregunta": "Según Hy-Line, ¿cómo se usa el alimento de prepuesta?",
       "opciones": [
         "Desde el primer día de vida hasta las 20 semanas",
         "Durante toda la puesta, porque lleva más proteína",
@@ -158,11 +158,11 @@
         "No antes de las 15 semanas, como mucho 10–14 días, y se retira con el primer huevo"
       ],
       "correcta": 3,
-      "explicacion": "La prepuesta (≈ 2,5 % de calcio) llena las reservas óseas; no basta para una gallina que ya pone, así que se pasa a pienso de puesta."
+      "explicacion": "La prepuesta (≈ 2,5 % de calcio) llena las reservas óseas; no basta para una gallina que ya pone, así que se pasa a alimento de puesta."
     },
     {
       "id": 14,
-      "pregunta": "¿Por qué no se debe dar pienso de puesta a pollitas que aún no ponen?",
+      "pregunta": "¿Por qué no se debe dar alimento de puesta a pollitas que aún no ponen?",
       "opciones": [
         "Porque el exceso de calcio en aves que no ponen daña el riñón",
         "Porque tiene demasiada poca proteína y las engorda",
@@ -174,7 +174,7 @@
     },
     {
       "id": 15,
-      "pregunta": "¿Para qué sirve el carbonato cálcico en partícula gruesa (2–4 mm) del pienso de puesta?",
+      "pregunta": "¿Para qué sirve el carbonato cálcico en partícula gruesa (2–4 mm) del alimento de puesta?",
       "opciones": [
         "Sustituye al agua en verano",
         "Se queda en la molleja y va soltando calcio poco a poco, también de noche, cuando se forma la cáscara",
@@ -182,7 +182,7 @@
         "Evita que la gallina se ponga clueca"
       ],
       "correcta": 1,
-      "explicacion": "Cada cáscara lleva ≈ 2 g de calcio (Merck); Hy-Line sube la proporción de carbonato grueso con la edad (del 50 al 75 %)."
+      "explicacion": "Cada cáscara lleva ≈ 2 g de calcio (Merck); Hy-Line sube la proporción de carbonato grueso con la edad (la mitad en la prepuesta y, en la puesta, del 60 al 75 % con la edad)."
     },
     {
       "id": 16,
@@ -206,7 +206,7 @@
         "Da igual, no hay ninguna norma"
       ],
       "correcta": 2,
-      "explicacion": "Así se evita que gorriones, palomas y aves silvestres coman del pienso, ensucien el agua y traigan la gripe aviar."
+      "explicacion": "Así se evita que gorriones, palomas y aves silvestres coman del alimento, ensucien el agua y traigan la gripe aviar."
     },
     {
       "id": 18,
