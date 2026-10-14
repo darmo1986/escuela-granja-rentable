@@ -1,0 +1,248 @@
+{
+  "leccion": 6,
+  "codigo": "L06A",
+  "titulo": "Gallos y genética (1): el gallo, el sexado, el manejo y la fertilidad",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Necesitan las gallinas un gallo para poner huevos?",
+      "opciones": [
+        "Sí: sin gallo no ponen",
+        "Solo las razas ligeras ponen sin gallo",
+        "No: ponen igual sin gallo; el gallo solo hace falta para huevos fértiles",
+        "Ponen sin gallo, pero solo la mitad"
+      ],
+      "correcta": 2,
+      "explicacion": "La gallina pone sin gallo. El gallo solo es necesario si quieres incubar."
+    },
+    {
+      "id": 2,
+      "pregunta": "Si cambias de gallo, ¿cuánto conviene esperar antes de guardar huevos para incubar y estar seguro del padre?",
+      "opciones": [
+        "Unas tres semanas",
+        "Un día",
+        "Tres días",
+        "Tres meses"
+      ],
+      "correcta": 0,
+      "explicacion": "Las gallinas guardan esperma en el oviducto hasta unas tres semanas (Mississippi State)."
+    },
+    {
+      "id": 3,
+      "pregunta": "Según la Universidad de Illinois, ¿cuántas gallinas de raza ligera puede cubrir un gallo?",
+      "opciones": [
+        "Dos o tres",
+        "De seis a ocho como máximo",
+        "Más de cuarenta",
+        "De diez a quince"
+      ],
+      "correcta": 3,
+      "explicacion": "Ligeras: 10–15 por gallo; doble aptitud: 6–8."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Y en razas de doble aptitud o semipesadas, como la Prat o la Mos?",
+      "opciones": [
+        "Una sola gallina",
+        "De seis a ocho gallinas por gallo",
+        "De diez a quince",
+        "De veinte a treinta"
+      ],
+      "correcta": 1,
+      "explicacion": "Los gallos pesados cubren menos gallinas (U. Illinois)."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Qué señal indica que hay demasiados gallos para las gallinas que tienes?",
+      "opciones": [
+        "Huevos más grandes",
+        "Gallinas peladas en el lomo y la nuca y estresadas",
+        "Gallinas más gordas",
+        "Más cantos al amanecer, sin más"
+      ],
+      "correcta": 1,
+      "explicacion": "La sobremonta pela y estresa a las gallinas; hay que retirar machos."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Qué método de sexado al nacer exige años de formación y no es para aficionados?",
+      "opciones": [
+        "Mirar la forma del huevo",
+        "El péndulo",
+        "El color en un cruce ligado al sexo",
+        "El sexado por la cloaca, de origen japonés"
+      ],
+      "correcta": 3,
+      "explicacion": "El sexado cloacal es muy fiable pero muy técnico (U. Kentucky)."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Qué dice la Universidad de Kentucky sobre adivinar el sexo por la forma del huevo o con un péndulo?",
+      "opciones": [
+        "Que son mitos con un cincuenta por ciento de acierto, como tirar una moneda",
+        "Que aciertan casi siempre",
+        "Que solo funcionan con huevos morenos",
+        "Que funcionan si el huevo está fresco"
+      ],
+      "correcta": 0,
+      "explicacion": "No hay método fiable para saber el sexo en un huevo sin incubar en casa."
+    },
+    {
+      "id": 8,
+      "pregunta": "En el sexado por el emplume, en el cruce adecuado, ¿cómo se reconocen las hembras entre el primer y el tercer día?",
+      "opciones": [
+        "Tienen la cresta más grande",
+        "Pían más fuerte",
+        "Las plumas grandes del ala son más largas que las coberteras",
+        "Tienen las patas más largas"
+      ],
+      "correcta": 2,
+      "explicacion": "Gallo de emplume rápido × gallina de emplume lento: hembras de emplume rápido."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Qué señales indican que un pollo joven es macho?",
+      "opciones": [
+        "Plumas redondeadas en el cuello",
+        "Cresta pequeña y pálida",
+        "Que come menos",
+        "Cresta y barbillas más grandes y rojas y plumas de cuello y de silla largas y en punta"
+      ],
+      "correcta": 3,
+      "explicacion": "Con las semanas aparecen la cresta, las plumas puntiagudas y el canto."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Qué hacer con los gallos jóvenes que no te vas a quedar?",
+      "opciones": [
+        "Soltarlos en el campo",
+        "Planificarlo desde el principio: criarlos para carne o venderlos",
+        "Dejarlos todos con las gallinas",
+        "Ponerlos a pelear"
+      ],
+      "correcta": 1,
+      "explicacion": "Los machos de sobra se planifican: carne, venta o separación."
+    },
+    {
+      "id": 11,
+      "pregunta": "Al criar futuros gallos reproductores, ¿qué pienso NO deben comer como dieta única?",
+      "opciones": [
+        "Pienso de crecimiento",
+        "Pienso de mantenimiento",
+        "Pienso de puesta, por su exceso de calcio",
+        "Pienso de arranque al nacer"
+      ],
+      "correcta": 2,
+      "explicacion": "El pienso de puesta (3,4–4,2 % de calcio) puede dañar el riñón de los machos (U. Maine)."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Cuándo se elige el gallo reproductor definitivo?",
+      "opciones": [
+        "Hacia los seis o siete meses, guardando antes varios candidatos",
+        "El primer día de vida",
+        "A las dos semanas",
+        "Cuando tenga cinco años"
+      ],
+      "correcta": 0,
+      "explicacion": "A esa edad ya se ven su forma y su carácter."
+    },
+    {
+      "id": 13,
+      "pregunta": "Según estudios de la Universidad de Nagoya, ¿qué determina que un gallo cante antes del amanecer?",
+      "opciones": [
+        "Un reloj interno (circadiano), y el gallo de mayor rango canta primero",
+        "Solo la luz de las farolas",
+        "El hambre",
+        "El color de su pluma"
+      ],
+      "correcta": 0,
+      "explicacion": "Shimmura y Yoshimura: el canto sigue un reloj interno y la jerarquía."
+    },
+    {
+      "id": 14,
+      "pregunta": "Ante un gallo que ataca a las personas, ¿qué es lo más sensato?",
+      "opciones": [
+        "Pegarle para que aprenda",
+        "Quitarle la comida",
+        "No usarlo como reproductor, porque el carácter se hereda en parte, y manejarlo con calma y protección",
+        "Dejar que los niños jueguen con él"
+      ],
+      "correcta": 2,
+      "explicacion": "Un gallo agresivo no debe reproducirse."
+    },
+    {
+      "id": 15,
+      "pregunta": "Sobre los capones, ¿qué dice la normativa?",
+      "opciones": [
+        "Cualquiera puede hacerla en casa",
+        "La castración solo puede hacerse bajo supervisión veterinaria y por personal con formación específica",
+        "Está totalmente libre",
+        "Solo la hacen los vecinos con experiencia"
+      ],
+      "correcta": 1,
+      "explicacion": "Directiva 2007/43/CE y RD 692/2010; en este curso solo se mencionan."
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Qué registro necesitas aunque tengas pocas gallinas para casa?",
+      "opciones": [
+        "Ninguno",
+        "Solo una licencia de caza",
+        "Un seguro de coche",
+        "La inscripción en el REGA"
+      ],
+      "correcta": 3,
+      "explicacion": "Toda explotación, incluso de autoconsumo, va al REGA (RD 637/2021)."
+    },
+    {
+      "id": 17,
+      "pregunta": "¿Cuánto tarda en formarse el esperma del gallo, según Mississippi State?",
+      "opciones": [
+        "Una hora",
+        "Unos quince días, por eso los problemas se notan semanas después",
+        "Un año",
+        "Tres meses exactos"
+      ],
+      "correcta": 1,
+      "explicacion": "Un golpe de calor o una enfermedad hoy se nota en la fertilidad semanas después."
+    },
+    {
+      "id": 18,
+      "pregunta": "¿Cuántas horas de luz recomienda Aviagen para reproductores en puesta?",
+      "opciones": [
+        "De trece a catorce horas, sin ventaja por encima",
+        "Veinticuatro horas",
+        "Seis horas",
+        "Ninguna luz"
+      ],
+      "correcta": 0,
+      "explicacion": "Más luz no mejora la fertilidad."
+    },
+    {
+      "id": 19,
+      "pregunta": "En la ovoscopia, ¿qué significa un huevo claro?",
+      "opciones": [
+        "Que seguro que el gallo es estéril",
+        "Que el pollito nacerá antes",
+        "Que es macho",
+        "Que puede ser infértil o tener un embrión muerto muy pronto; hay que abrirlo para saberlo"
+      ],
+      "correcta": 3,
+      "explicacion": "Aviagen recomienda abrir los claros para distinguir los dos casos."
+    },
+    {
+      "id": 20,
+      "pregunta": "Al abrir un huevo fresco sin incubar, ¿cómo se ve un huevo fecundado?",
+      "opciones": [
+        "Un punto blanco pequeño con burbujas",
+        "Una mancha de sangre",
+        "Un anillo redondo de cuatro o cinco milímetros, con el centro claro, como una diana",
+        "La yema de color verde"
+      ],
+      "correcta": 2,
+      "explicacion": "El infértil muestra un punto de 2–3 mm irregular con burbujas (Aviagen)."
+    }
+  ]
+}

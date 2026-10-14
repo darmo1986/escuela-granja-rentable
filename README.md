@@ -65,18 +65,29 @@ El dueño aprobó publicar en GitHub Pages. El DNS de Porkbun sigue pendiente. L
 - [x] **URLs canónicas.** Cada página lleva `link rel=canonical` a `https://granjarentable.net/` (inicio) o `https://granjarentable.net/<ruta>`. Hasta que el dominio apunte a GitHub Pages, el sitio también puede servirse en `https://darmo1986.github.io/escuela-granja-rentable/`; las canónicas no cambian.
 - [x] **Claves de Adsterra.** El sitio aprobado es `darmo1986.github.io` (id 6120999). Cada página lleva un banner (728×90 en escritorio, 320×50 en el celular). Las páginas largas añaden un 300×250 dentro del contenido. Una pieza de cada tamaño por página, en línea, con el alto reservado, y el anuncio se pide al acercarse. Sin tema ni palabras clave. Solo si se aceptan las cookies. AdSense sigue vacío.
 - [ ] **Fotos que faltan.** El suplemento (próximamente, sin precio) y las tabletas de 30 g no tienen foto en el archivo. El pedido de las tabletas va por WhatsApp.
-- [ ] **Videos L05A–L06C.** El temario está; los mp4 no. Cómo publicarlos, abajo.
+- [ ] **Videos L05A–L06C.** La página y el examen ya están. El mp4 no. Cada lección se enlaza desde `curso.html` solo cuando el supervisor de calidad aprueba su video. Cómo publicarlo, abajo.
 
 ## Cómo publicar un video de L05A a L06C
 
-La ficha ya está en `data/curso-web.json` y la fila ya está en `curso.html`. No hace falta una página HTML nueva.
+La página ya está en `lecciones/` (por ejemplo `lecciones/l05a.html`) y el examen en `data/examenes/l05a.json`. `curso.html` sigue mostrando «Próximamente» y no enlaza esas páginas. No cambies `"estado"` en `data/curso-web.json`: si lo pones en `disponible` con un mp4, el curso abriría `leccion.html` en lugar de la página preparada.
 
-1. Copia el mp4 a `videos/` con el nombre de la ficha, por ejemplo `videos/l05a.mp4`. Solo letras minúsculas, números, guion o guion bajo, y extensión `.mp4`.
-2. En esa entrada de `data/curso-web.json` pon `"estado": "disponible"` y `"video": "l05a.mp4"`.
-3. Opcional: `"minutos": 18` para la duración de la lista. Si no está, la lista dice «Video».
-4. Opcional, para que cuente en el progreso y bloquee el examen final: crea `data/examenes/l05a.json` (el mismo formato que `l01.json`) y añade `"examen": "l05a.json"`. Sin ese archivo, el video se puede ver y no bloquea las lecciones anteriores.
+Cuando el supervisor apruebe el video de una lección:
 
-`leccion.html?id=l05a` lee el JSON y reproduce `videos/` + el nombre del archivo. L01–L04B siguen en `lecciones/`, con su texto y su test.
+1. Copia el mp4 a `videos/l05a.mp4` (el nombre de esa lección, en minúsculas).
+2. En `lecciones/l05a.html`, sustituye **solo** la línea del hueco del video. Ahora dice:
+
+```html
+<div class="video lockable"><p class="video-ph">Vídeo disponible muy pronto</p></div>
+```
+
+   y pasa a ser:
+
+```html
+<div class="video lockable"><video controls preload="metadata" playsinline poster="../img/logo.jpg" src="../videos/l05a.mp4"></video></div>
+```
+
+3. En `curso.html`, cambia la fila de esa lección de `lesson soon` (un `div` sin enlace) a `lesson ok` con un enlace `lecciones/l05a.html`, igual que L04B, y pon los minutos del video.
+4. Repite lección por lección. No publiques las seis de golpe si solo hay un video aprobado.
 
 ## Pendiente
 
@@ -88,7 +99,7 @@ La ficha ya está en `data/curso-web.json` y la fila ya está en `curso.html`. N
 - 14 testers con Gmail: el cupo se cuenta en la hoja, no hay un número en vivo.
 - Opiniones reales, cuando haya permiso por escrito.
 - El código `?ref=` ya se guarda 30 días y se añade al enlace de la tienda. La tienda todavía tiene que copiar ese `ref` al pedido. El pago del 10 % se hace a mano por PayPal desde la hoja (mínimo US$ 20, después de los 14 días). No hay n8n ni una herramienta de pago de afiliados.
-- Fichas del curso: L01–L04B usan el texto de cada lección. Los minutos son la duración del video (13, 24, 18, 27 y 29). L05A–L06C se publican con una entrada en `data/curso-web.json` y el mp4 en `videos/` (ver arriba). El vocabulario del curso usa español neutro de Latinoamérica (alimento, costo) y `og:locale` es `es_419`.
+- Fichas del curso: L01–L04B usan el texto de cada lección. Los minutos son la duración del video (13, 24, 18, 27 y 29). L05A–L06C tienen página y examen; el video se cambia con una línea en `lecciones/` y el enlace en `curso.html` solo tras aprobar el mp4 (ver arriba). El vocabulario del curso usa español neutro de Latinoamérica (alimento, costo) y `og:locale` es `es_419`.
 
 ## Formularios (gratis, Google Sheets)
 

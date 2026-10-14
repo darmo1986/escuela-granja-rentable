@@ -1,0 +1,248 @@
+{
+  "leccion": 6,
+  "codigo": "L06C",
+  "titulo": "Gallos y genética (3): sistemas de cría, consanguinidad, razas autóctonas y venta",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Qué es la primera generación de un cruce (efe uno)?",
+      "opciones": [
+        "Los nietos de un cruce",
+        "Una raza pura antigua",
+        "Los hijos de hermanos",
+        "Los hijos de dos razas o líneas distintas"
+      ],
+      "correcta": 3,
+      "explicacion": "La F1 suele mostrar vigor híbrido."
+    },
+    {
+      "id": 2,
+      "pregunta": "El vigor híbrido o heterosis se nota sobre todo en…",
+      "opciones": [
+        "El color del huevo",
+        "Caracteres de baja heredabilidad, como fertilidad, nacimiento, supervivencia y número de huevos",
+        "El tipo de cresta",
+        "El color de la pluma"
+      ],
+      "correcta": 1,
+      "explicacion": "Es justo lo que menos se mejora seleccionando."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Por qué los hijos de gallinas híbridas no salen como sus madres?",
+      "opciones": [
+        "Porque son todos machos",
+        "Porque la incubadora los cambia",
+        "Porque cada hijo recibe una mezcla distinta de genes (segunda generación) y se pierde parte del vigor híbrido",
+        "Porque las híbridas no ponen huevos fértiles nunca"
+      ],
+      "correcta": 2,
+      "explicacion": "La F2 sale muy variada."
+    },
+    {
+      "id": 4,
+      "pregunta": "Si quieres vigor híbrido cada año, debes…",
+      "opciones": [
+        "Mantener puras las dos razas de los padres y repetir el cruce",
+        "Cruzar los hijos entre sí",
+        "Usar siempre el mismo gallo con sus hijas",
+        "Comprar huevos de supermercado"
+      ],
+      "correcta": 0,
+      "explicacion": "El cruce no se mantiene en la F2."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Qué coeficiente de consanguinidad tienen los hijos de padre con hija o de hermanos completos?",
+      "opciones": [
+        "Uno por ciento",
+        "Cincuenta por ciento",
+        "Veinticinco por ciento",
+        "Cien por cien"
+      ],
+      "correcta": 2,
+      "explicacion": "Medio hermanos: 12,5 %; primos hermanos: 6,25 %."
+    },
+    {
+      "id": 6,
+      "pregunta": "Según el estudio de la Universidad Técnica de Múnich, por cada diez puntos de consanguinidad…",
+      "opciones": [
+        "Baja la fertilidad, el nacimiento y la puesta",
+        "Sube la puesta",
+        "No cambia nada",
+        "Mejora la fertilidad"
+      ],
+      "correcta": 0,
+      "explicacion": "Fertilidad −1,7 %, nacimiento de fértiles −2,1 %, puesta −2 % (Wang y Pirchner 1992)."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cuál es una señal típica de consanguinidad en tu lote?",
+      "opciones": [
+        "Huevos más grandes cada año",
+        "Más embriones muertos y pollitos débiles o con patas torcidas",
+        "Aves más grandes que sus abuelos",
+        "Más fertilidad"
+      ],
+      "correcta": 1,
+      "explicacion": "Si llevas años sin sangre nueva, sospecha."
+    },
+    {
+      "id": 8,
+      "pregunta": "Con un gallo y diez gallinas, ¿cuánto sube la consanguinidad por generación según la fórmula de la FAO?",
+      "opciones": [
+        "Un uno por ciento",
+        "Nada",
+        "Un cincuenta por ciento",
+        "Alrededor de un catorce por ciento"
+      ],
+      "correcta": 3,
+      "explicacion": "El tamaño efectivo no llega a cuatro."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Qué recomienda la FAO como máximo aumento de consanguinidad por generación?",
+      "opciones": [
+        "Un uno por ciento, que exige un tamaño efectivo de al menos cincuenta",
+        "Un veinticinco por ciento",
+        "Un diez por ciento",
+        "No hay límite"
+      ],
+      "correcta": 0,
+      "explicacion": "FAO 2013, guía de conservación in vivo."
+    },
+    {
+      "id": 10,
+      "pregunta": "Con dieciocho gallinas, ¿qué mejora más el tamaño efectivo?",
+      "opciones": [
+        "Usar un único gallo más grande",
+        "Comprar más gallinas y seguir con un gallo",
+        "Cambiar de pienso",
+        "Usar tres gallos con seis gallinas cada uno en vez de un solo gallo"
+      ],
+      "correcta": 3,
+      "explicacion": "Pasa de menos de cuatro a unos diez."
+    },
+    {
+      "id": 11,
+      "pregunta": "En el sistema de rotación de familias (clanes)…",
+      "opciones": [
+        "Los gallos se quedan y las gallinas rotan al azar",
+        "Las gallinas se quedan en su familia y los gallos rotan siempre en el mismo sentido",
+        "Todas las aves se mezclan cada año",
+        "Se usa siempre el mismo gallo"
+      ],
+      "correcta": 1,
+      "explicacion": "Así un gallo nunca cubre a su madre, hermanas o hijas."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Dónde conviene meter sangre nueva?",
+      "opciones": [
+        "En todas las familias a la vez",
+        "Directamente en el corral principal sin cuarentena",
+        "En una sola familia, después de la cuarentena",
+        "En ninguna nunca"
+      ],
+      "correcta": 2,
+      "explicacion": "Si algo sale mal, solo afecta a una parte del lote."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Cuánto dura la cuarentena recomendada en el curso para aves nuevas?",
+      "opciones": [
+        "Un día",
+        "Treinta días, apartadas y atendidas al final",
+        "Una semana",
+        "No hace falta"
+      ],
+      "correcta": 1,
+      "explicacion": "Coherente con la lección dos."
+    },
+    {
+      "id": 14,
+      "pregunta": "Comprar huevos para incubar en lugar de aves…",
+      "opciones": [
+        "Elimina todo riesgo de enfermedad",
+        "Siempre trae más enfermedades que un ave",
+        "Reduce el riesgo de enfermedades de contacto, pero algunas, como ciertos micoplasmas, pasan por el huevo",
+        "No tiene ninguna ventaja"
+      ],
+      "correcta": 2,
+      "explicacion": "Importa de qué criador vienen."
+    },
+    {
+      "id": 15,
+      "pregunta": "Según el listado del Ministerio de 2023, ¿qué grado de amenaza tiene la Andaluza Azul?",
+      "opciones": [
+        "No está amenazada",
+        "Bajo",
+        "Extinguida",
+        "Alto"
+      ],
+      "correcta": 3,
+      "explicacion": "Junto a Prat, Penedesenca, Empordanesa, Pita Pinta, entre otras."
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Qué raza autóctona es famosa por su huevo color chocolate y su cresta de clavel?",
+      "opciones": [
+        "Penedesenca",
+        "Castellana Negra",
+        "Galiña de Mos",
+        "Utrerana"
+      ],
+      "correcta": 0,
+      "explicacion": "Raza catalana del Penedès."
+    },
+    {
+      "id": 17,
+      "pregunta": "¿Qué hace una asociación de criadores reconocida?",
+      "opciones": [
+        "Organiza peleas de gallos",
+        "Vende pienso obligatorio",
+        "Lleva el libro genealógico y desarrolla el programa de cría oficial de la raza",
+        "Fija el precio de los huevos"
+      ],
+      "correcta": 2,
+      "explicacion": "Real Decreto 45/2019."
+    },
+    {
+      "id": 18,
+      "pregunta": "¿Puede vender huevos o pollitos una explotación de autoconsumo?",
+      "opciones": [
+        "Sí, sin límite",
+        "No, la de autoconsumo no puede vender nada",
+        "Sí, solo los domingos",
+        "Sí, si son menos de cien huevos al mes"
+      ],
+      "correcta": 1,
+      "explicacion": "Para vender hace falta otra clasificación en el REGA (RD 637/2021)."
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Qué dice la norma europea sobre los huevos que han estado en la incubadora?",
+      "opciones": [
+        "Que nunca pueden ir al consumo humano",
+        "Que pueden venderse como huevos frescos",
+        "Que deben regalarse",
+        "Que se pueden volver a incubar al año"
+      ],
+      "correcta": 0,
+      "explicacion": "Reglamento (CE) 617/2008."
+    },
+    {
+      "id": 20,
+      "pregunta": "Sobre la rentabilidad de vender reproductores, ¿qué conclusión da la lección?",
+      "opciones": [
+        "Es la forma más rápida de hacerse rico",
+        "Siempre da pérdidas",
+        "No tiene gastos",
+        "Puede pagar la granja y dejar un margen modesto, pero no te hará rico"
+      ],
+      "correcta": 3,
+      "explicacion": "Estimaciones de Granja Rentable: de unos cientos a algo más de mil euros al año."
+    }
+  ]
+}

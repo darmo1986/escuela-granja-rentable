@@ -1,0 +1,248 @@
+{
+  "leccion": 5,
+  "codigo": "L05B",
+  "titulo": "Gallinas ponedoras (2): producción, huevo, cama, limpieza y plagas",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "Tienes 50 gallinas y hoy recoges 40 huevos. ¿Cuál es tu porcentaje de puesta?",
+      "opciones": [
+        "40 %",
+        "50 %",
+        "125 %",
+        "80 %"
+      ],
+      "correcta": 3,
+      "explicacion": "% de puesta = huevos del día ÷ gallinas × 100 = 40 ÷ 50 × 100 = 80 %. Apúntalo cada día."
+    },
+    {
+      "id": 2,
+      "pregunta": "Según la guía de Hy-Line, ¿cuál es el pico de puesta de la Hy-Line Brown?",
+      "opciones": [
+        "Del 50 %, a las 10 semanas",
+        "Del 95 al 96 %, más o menos de las 26 a las 35 semanas de vida",
+        "Del 100 % durante toda su vida",
+        "Del 70 %, a los 3 años"
+      ],
+      "correcta": 1,
+      "explicacion": "Después viene la persistencia: ~92 % a las 40 sem, ~85 % a las 60 y ~75 % a las 80. Son cifras de naves controladas; en patio, menos."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cómo cambia el tamaño del huevo con la edad de la gallina?",
+      "opciones": [
+        "Crece con la edad: las jóvenes ponen huevos pequeños y las viejas, grandes pero con la cáscara más fina",
+        "Se hace más pequeño con la edad",
+        "Es siempre igual",
+        "Depende solo del color de la gallina"
+      ],
+      "correcta": 0,
+      "explicacion": "Hy-Line Brown: ~58 g a las 26 semanas, ~61 g a las 32 y ~64 g a las 70."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué peso tiene un huevo de talla M?",
+      "opciones": [
+        "Menos de 53 gramos",
+        "De 63 a menos de 73 gramos",
+        "De 53 a menos de 63 gramos",
+        "73 gramos o más"
+      ],
+      "correcta": 2,
+      "explicacion": "S < 53 g · M 53–63 g · L 63–73 g · XL ≥ 73 g."
+    },
+    {
+      "id": 5,
+      "pregunta": "La puesta cae de golpe. ¿En qué orden revisa la lección las causas?",
+      "opciones": [
+        "Primero dar antibióticos y luego mirar",
+        "Luz, agua, pienso, temperatura, parásitos y, si no encuentras nada, veterinario",
+        "Cambiar de gallinas sin mirar nada",
+        "Solo mirar el color de la yema"
+      ],
+      "correcta": 1,
+      "explicacion": "Casi siempre hay una causa: luz, agua, pienso, calor, estrés, parásitos, enfermedad o edad."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Qué es la muda natural?",
+      "opciones": [
+        "Una enfermedad contagiosa que hay que tratar con antibióticos",
+        "Que la gallina se vuelve gallo",
+        "El momento en que la gallina pone dos huevos al día",
+        "El cambio de plumas, sobre todo en otoño: la gallina deja de poner unas semanas y después vuelve a poner con mejor cáscara"
+      ],
+      "correcta": 3,
+      "explicacion": "Durante la muda: buen pienso, tranquilidad y poca manipulación, porque las plumas nuevas duelen."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Qué dice la lección sobre la muda forzada dejando a las gallinas sin comer?",
+      "opciones": [
+        "No es aceptable en la UE: la normativa obliga a alimentarlas cada día",
+        "Es lo recomendado para granjas pequeñas",
+        "Es obligatoria cada año en otoño",
+        "Solo es legal si dura menos de 3 semanas"
+      ],
+      "correcta": 0,
+      "explicacion": "Directiva 98/58/CE y RD 348/2000; Hy-Line describe solo mudas sin ayuno, con veterinario y nutrólogo."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿De qué depende sobre todo el color de la yema?",
+      "opciones": [
+        "De la edad del gallo",
+        "Del color de la cáscara",
+        "De los pigmentos de lo que come la gallina (maíz, hierba, alfalfa o los del pienso)",
+        "De si el huevo está fecundado"
+      ],
+      "correcta": 2,
+      "explicacion": "Un color más intenso no significa más alimento."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Se pueden lavar los huevos de categoría A antes de venderlos?",
+      "opciones": [
+        "No: se pierde la cutícula que los protege de las bacterias, y en España nunca se ha autorizado",
+        "Sí, con agua fría y lejía",
+        "Sí, siempre que se sequen al sol",
+        "Solo los morenos"
+      ],
+      "correcta": 0,
+      "explicacion": "Además, la categoría A no se refrigera por debajo de 5 °C antes de la venta; consumo preferente ≤ 28 días desde la puesta."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Cuál es el plazo máximo de consumo preferente de un huevo?",
+      "opciones": [
+        "Seis meses",
+        "28 días desde la puesta, y debe llegar al consumidor en un máximo de 21 días",
+        "Una semana desde la compra",
+        "No tiene fecha"
+      ],
+      "correcta": 1,
+      "explicacion": "Reglamento (CE) 853/2004. Lo que más daña al huevo son los cambios bruscos de temperatura."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Qué significa el primer número «1» del código impreso en un huevo?",
+      "opciones": [
+        "Huevo de producción ecológica",
+        "Huevo de gallinas criadas en jaulas acondicionadas",
+        "Huevo de talla XL",
+        "Huevo de gallinas camperas"
+      ],
+      "correcta": 3,
+      "explicacion": "0 ecológico, 1 camperas, 2 sueltas en el gallinero (suelo), 3 jaulas acondicionadas; después ES, provincia, municipio y explotación."
+    },
+    {
+      "id": 12,
+      "pregunta": "Según el RD 1027/2024, si el productor vende sus huevos directamente al consumidor final en su granja…",
+      "opciones": [
+        "Puede clasificarlos como «extra» y talla L sin pasar por un centro de embalaje",
+        "Puede venderlos también a tiendas y restaurantes sin más requisitos",
+        "Puede hacerlo, pero sin clasificarlos por categorías de calidad ni por tallas (y con la granja en el REGA)",
+        "Puede vender sin registro si son menos de 100 docenas al mes"
+      ],
+      "correcta": 2,
+      "explicacion": "Para tiendas y hostelería hace falta un centro de embalaje autorizado; en mercados locales, huevo marcado salvo granjas ≤ 50 gallinas con nombre y dirección visibles."
+    },
+    {
+      "id": 13,
+      "pregunta": "En un mercado público local, ¿cuándo puede venderse el huevo sin marcar con su código?",
+      "opciones": [
+        "Siempre, en cualquier mercado",
+        "Solo en granjas de 50 gallinas o menos que pongan en el puesto el nombre y la dirección del productor",
+        "Cuando el huevo es moreno",
+        "Cuando se vende por docenas"
+      ],
+      "correcta": 1,
+      "explicacion": "RD 1027/2024. Antes de vender, consulta también las normas de tu comunidad autónoma."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Cada cuánto se cambia la cama en un gallinero de gallinas?",
+      "opciones": [
+        "Se retiran las placas mojadas a diario, se remueve cada semana y se cambia entera si se moja o huele, y al final del lote",
+        "Nunca, aunque esté encharcada",
+        "Toda entera cada día",
+        "Solo una vez cada cinco años"
+      ],
+      "correcta": 0,
+      "explicacion": "Prueba del puñado: si queda una bola que no se deshace, está demasiado húmeda. Bajo el aseladero, bandeja o rejilla y limpieza semanal."
+    },
+    {
+      "id": 15,
+      "pregunta": "¿Qué límites de amoníaco dan las guías de ponedoras y cómo se mide?",
+      "opciones": [
+        "< 200 ppm, medido en el techo a mediodía",
+        "No hace falta medirlo si no hay pollitos",
+        "< 25 ppm, medido fuera del gallinero",
+        "Hy-Line < 25 ppm y Lohmann < 20 ppm, a la altura de la cabeza de las gallinas, a primera hora y antes de ventilar"
+      ],
+      "correcta": 3,
+      "explicacion": "Si al entrar ya lo hueles, seguramente pasas de ~20 ppm (ver L04). Solución: menos humedad y más aire sin corrientes."
+    },
+    {
+      "id": 16,
+      "pregunta": "En las granjas comerciales de puesta, ¿cada cuánto se hacen los autocontroles de salmonela durante la puesta?",
+      "opciones": [
+        "Una vez en toda la vida del lote",
+        "Cada día",
+        "Cada 15 semanas, empezando hacia las 24 semanas de vida",
+        "Nunca, solo se hacen en los pollos"
+      ],
+      "correcta": 2,
+      "explicacion": "Programa Nacional de Control de Salmonella (MAPA): también pollitas al llegar y recría 2 semanas antes del traslado."
+    },
+    {
+      "id": 17,
+      "pregunta": "¿Cómo se detecta mejor el ácaro rojo?",
+      "opciones": [
+        "Revisando cada semana grietas de nidos, perchas y uniones, y de noche pasando un papel blanco bajo las perchas",
+        "Mirando a las gallinas a mediodía, porque viven siempre sobre ellas",
+        "Solo cuando aparecen gallinas muertas",
+        "Por el color de la yema"
+      ],
+      "correcta": 0,
+      "explicacion": "Se esconde en las grietas y pica de noche; su ciclo puede completarse en ~7 días con calor (Merck). Control con productos autorizados y el veterinario."
+    },
+    {
+      "id": 18,
+      "pregunta": "¿En qué se diferencian los piojos del ácaro rojo?",
+      "opciones": [
+        "Son exactamente lo mismo",
+        "Los piojos solo atacan a los pollitos",
+        "El ácaro rojo vive en el agua de los bebederos",
+        "Los piojos viven siempre sobre la gallina; el ácaro rojo se esconde en las grietas y pica de noche"
+      ],
+      "correcta": 3,
+      "explicacion": "Los piojos se ven separando las plumas de la cloaca y bajo las alas; el baño de arena ayuda a la gallina a quitárselos."
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Qué malla usa la lección contra zorros y garduñas?",
+      "opciones": [
+        "Tela de gallinero de alambre fino, que basta",
+        "Malla electrosoldada de 13 mm, enterrada unos 30 cm o con faldón hacia fuera",
+        "Una cuerda a media altura",
+        "Ninguna: se ponen venenos alrededor"
+      ],
+      "correcta": 1,
+      "explicacion": "Igual que en la L04. Venenos y lazos están prohibidos y son delito; las rapaces están protegidas."
+    },
+    {
+      "id": 20,
+      "pregunta": "¿Qué ayuda a prevenir el picaje?",
+      "opciones": [
+        "Luz muy fuerte las 24 horas",
+        "Muchas gallinas por metro para que se den calor",
+        "Cama suelta, algo que picotear (paja, cuerdas), luz uniforme, pienso completo en harina y espacio suficiente",
+        "Quitar la cama para que no escarben"
+      ],
+      "correcta": 2,
+      "explicacion": "Si empieza, busca la causa y aparta a la herida hasta que se cure del todo."
+    }
+  ]
+}
