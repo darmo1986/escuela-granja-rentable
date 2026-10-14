@@ -1,0 +1,248 @@
+{
+  "leccion": 6,
+  "codigo": "L06B",
+  "titulo": "Gallos y genética (2): genética fácil y selección de reproductores",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "En las aves, ¿quién determina el sexo del pollito?",
+      "opciones": [
+        "El gallo",
+        "La gallina, porque es ZW y el gallo es ZZ",
+        "La temperatura de la incubadora",
+        "El tamaño del huevo"
+      ],
+      "correcta": 1,
+      "explicacion": "Al revés que en las personas: la hembra decide el sexo."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Qué es un alelo?",
+      "opciones": [
+        "Un tipo de alimento",
+        "Un cromosoma entero",
+        "Una enfermedad hereditaria",
+        "Cada una de las versiones de un mismo gen"
+      ],
+      "correcta": 3,
+      "explicacion": "Ej.: el gen de la cresta tiene la versión guisante y la versión simple."
+    },
+    {
+      "id": 3,
+      "pregunta": "Un carácter recesivo…",
+      "opciones": [
+        "Solo se ve si el ave tiene dos copias, y puede saltarse una generación",
+        "Se ve siempre con una copia",
+        "Nunca se hereda",
+        "Solo lo tienen los gallos"
+      ],
+      "correcta": 0,
+      "explicacion": "Puede estar escondido y aparecer en los nietos."
+    },
+    {
+      "id": 4,
+      "pregunta": "Si cruzas dos aves portadoras de un recesivo, ¿qué proporción de hijos lo muestra de media?",
+      "opciones": [
+        "Todos",
+        "Ninguno",
+        "Uno de cada cuatro",
+        "Tres de cada cuatro"
+      ],
+      "correcta": 2,
+      "explicacion": "Es la proporción de 3:1 de Mendel."
+    },
+    {
+      "id": 5,
+      "pregunta": "Gallo Rhode Island rojo (no barrado) con gallina barrada: ¿cómo salen los pollitos?",
+      "opciones": [
+        "Machos barrados con mancha blanca en la cabeza y hembras de color liso",
+        "Todos barrados",
+        "Todas hembras",
+        "Machos lisos y hembras barradas"
+      ],
+      "correcta": 0,
+      "explicacion": "Las hijas reciben su único cromosoma Z del padre, que no es barrado, y por eso salen lisas; los machos reciben el Z barrado de la madre."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Por qué no sirven los hijos de un cruce ligado al sexo para repetir el truco?",
+      "opciones": [
+        "Porque son estériles",
+        "Porque todos son machos",
+        "Porque ya no tienen la combinación de padres puros que permite sexar por el color",
+        "Porque pierden el color al crecer"
+      ],
+      "correcta": 2,
+      "explicacion": "Hay que mantener puras las dos razas de los padres (U. Kentucky)."
+    },
+    {
+      "id": 7,
+      "pregunta": "Cruzas dos Andaluzas Azules. ¿Qué sale de media?",
+      "opciones": [
+        "Todos azules",
+        "Todos negros",
+        "Mitad blancos y mitad negros",
+        "Uno negro, dos azules y uno blanco sucio de cada cuatro"
+      ],
+      "correcta": 3,
+      "explicacion": "El azul es dominancia incompleta."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Qué cruce da todos los hijos azules en la Andaluza Azul?",
+      "opciones": [
+        "Azul con azul",
+        "Negro con blanco sucio",
+        "Negro con negro",
+        "Blanco sucio con blanco sucio"
+      ],
+      "correcta": 1,
+      "explicacion": "Cada hijo recibe una copia del gen de dilución: azul."
+    },
+    {
+      "id": 9,
+      "pregunta": "El color moreno del huevo…",
+      "opciones": [
+        "Depende de lo que coma",
+        "Lo decide el gallo que la cubre ese día",
+        "Es un pigmento que la gallina deposita en las últimas horas antes de poner, y depende de muchos genes",
+        "Es igual por dentro y por fuera de la cáscara"
+      ],
+      "correcta": 2,
+      "explicacion": "Por eso palidece con estrés, calor o edad."
+    },
+    {
+      "id": 10,
+      "pregunta": "El huevo azul de las araucanas se debe a…",
+      "opciones": [
+        "Un solo gen dominante que tiñe toda la cáscara",
+        "Comer moras",
+        "Muchos genes recesivos",
+        "La edad de la gallina"
+      ],
+      "correcta": 0,
+      "explicacion": "Azul + capa morena = huevo verde."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿El gallo influye en el color del huevo?",
+      "opciones": [
+        "No, nunca",
+        "Sí, transmite genes del color del huevo a sus hijas",
+        "Solo cambia el color de los huevos de la gallina que cubre",
+        "Solo si es de raza pura"
+      ],
+      "correcta": 1,
+      "explicacion": "Las hijas de un cruce ponen huevos de color intermedio."
+    },
+    {
+      "id": 12,
+      "pregunta": "Cruzas rosa pura con guisante pura. ¿Qué cresta tienen los hijos?",
+      "opciones": [
+        "Todos simple",
+        "Mitad rosa y mitad guisante",
+        "Todos en clavel",
+        "Todos en nuez"
+      ],
+      "correcta": 3,
+      "explicacion": "Rosa y guisante juntos dan nuez (Bateson)."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Qué raza española tiene cresta de guisante como seña de identidad?",
+      "opciones": [
+        "Castellana Negra",
+        "Utrerana",
+        "Menorquina",
+        "Galiña de Mos"
+      ],
+      "correcta": 3,
+      "explicacion": "Tres filas de papilas, según el catálogo oficial."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Qué carácter se mejora más rápido seleccionando?",
+      "opciones": [
+        "La fertilidad",
+        "El peso corporal o el peso del huevo",
+        "El porcentaje de nacimiento",
+        "La suerte"
+      ],
+      "correcta": 1,
+      "explicacion": "Tienen heredabilidad alta (0,3–0,6)."
+    },
+    {
+      "id": 15,
+      "pregunta": "La fertilidad y el nacimiento, con heredabilidad baja, se mejoran sobre todo…",
+      "opciones": [
+        "Con manejo, buena alimentación de los reproductores y evitando la consanguinidad",
+        "Eligiendo el gallo más bonito",
+        "Pintando los huevos",
+        "Cambiando de incubadora cada mes"
+      ],
+      "correcta": 0,
+      "explicacion": "Seleccionar por ellos avanza muy despacio."
+    },
+    {
+      "id": 16,
+      "pregunta": "Para saber si un gallo de cresta de guisante lleva escondida la simple, lo cruzas con…",
+      "opciones": [
+        "Gallinas de cresta de guisante pura",
+        "Gallinas de cresta en nuez",
+        "Gallinas de cresta simple",
+        "Otro gallo"
+      ],
+      "correcta": 2,
+      "explicacion": "Es el cruce de prueba: si sale algún hijo de cresta simple, era portador."
+    },
+    {
+      "id": 17,
+      "pregunta": "Para elegir un gallo por la puesta que transmite, lo mejor es…",
+      "opciones": [
+        "Mirar la puesta de sus hijas, de su madre y de sus hermanas",
+        "Ver lo grande que es su cresta",
+        "Contar cuánto canta",
+        "Pesar sus espolones"
+      ],
+      "correcta": 0,
+      "explicacion": "El gallo no pone: se juzga por su familia (prueba de hijas)."
+    },
+    {
+      "id": 18,
+      "pregunta": "Una gallina en plena puesta tiene…",
+      "opciones": [
+        "Cresta pálida y cloaca seca",
+        "Huesos de la pelvis juntos y rígidos",
+        "Abdomen duro de grasa",
+        "Cresta roja y blanda, cloaca húmeda y dos o tres dedos entre los huesos de la pelvis"
+      ],
+      "correcta": 3,
+      "explicacion": "Mississippi State y Wisconsin."
+    },
+    {
+      "id": 19,
+      "pregunta": "En razas de patas amarillas, ¿qué indica unas patas blancas a final de temporada?",
+      "opciones": [
+        "Que está enferma",
+        "Que es un gallo",
+        "Que la gallina ha puesto mucho",
+        "Que come demasiado maíz"
+      ],
+      "correcta": 2,
+      "explicacion": "El pigmento se blanquea con la puesta (Utah State)."
+    },
+    {
+      "id": 20,
+      "pregunta": "¿Cuál de estos es un motivo de descarte de reproductores?",
+      "opciones": [
+        "Plumas brillantes",
+        "Dedos torcidos o quilla torcida",
+        "Buen apetito",
+        "Cresta del tipo de su raza"
+      ],
+      "correcta": 1,
+      "explicacion": "Muchos defectos se heredan en parte y descalifican."
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "leccion": 5,
+  "codigo": "L05C",
+  "titulo": "Gallinas ponedoras (3): enfermedades, vacunas, equipo y cuentas",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Qué indica una cresta morada u oscura en una gallina?",
+      "opciones": [
+        "Un posible problema de circulación o una enfermedad grave: es urgente",
+        "Que está en plena puesta y todo va bien",
+        "Que tiene frío y nada más",
+        "Que va a ponerse clueca"
+      ],
+      "correcta": 0,
+      "explicacion": "Una cresta pálida puede ser que no pone, muda, ácaro rojo o anemia; la morada, urgencia."
+    },
+    {
+      "id": 2,
+      "pregunta": "Una gallina deja de poner, se queda erguida como un pingüino y tiene el abdomen duro e hinchado. ¿Qué puede tener?",
+      "opciones": [
+        "Está gorda por comer grano, sin más",
+        "Está en muda",
+        "Una peritonitis por yema (o un tumor): aislarla y llamar al veterinario",
+        "Es una gallina clueca"
+      ],
+      "correcta": 2,
+      "explicacion": "La yema cae al abdomen y se infecta (colibacilosis). Se previene con buen ambiente, nidos limpios y poco estrés."
+    },
+    {
+      "id": 3,
+      "pregunta": "Mueren varias gallinas de golpe, con síntomas respiratorios o nerviosos. ¿Qué haces?",
+      "opciones": [
+        "Esperar una semana a ver si se pasa",
+        "Avisar enseguida a los servicios veterinarios oficiales: puede ser gripe aviar o Newcastle",
+        "Enterrarlas en el patio y no decir nada",
+        "Dar antibióticos que te sobraron"
+      ],
+      "correcta": 1,
+      "explicacion": "Gripe aviar y Newcastle son de declaración obligatoria."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Cómo se previene la enfermedad de Marek?",
+      "opciones": [
+        "Con antibióticos en el agua",
+        "Dando más calcio",
+        "No se puede prevenir de ninguna forma",
+        "Con la vacuna en la incubadora el primer día y limpieza del polvo; no tiene tratamiento"
+      ],
+      "correcta": 3,
+      "explicacion": "El virus se queda en el polvo de las plumas. Da parálisis (pata delante y pata detrás), ojo gris y tumores."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Qué puede pasar si unas pollitas muy jóvenes pasan la bronquitis infecciosa?",
+      "opciones": [
+        "Que pongan huevos de dos yemas toda la vida",
+        "Que pongan antes y más",
+        "Nada, porque la bronquitis solo afecta a los gallos",
+        "Que se les dañe el oviducto y queden como «falsas ponedoras», que parecen poner pero no ponen"
+      ],
+      "correcta": 3,
+      "explicacion": "Manual Merck. Por eso se vacuna varias veces en la recría; en gallinas en puesta la BI da cáscaras finas, deformes y clara aguada."
+    },
+    {
+      "id": 6,
+      "pregunta": "Las gallinas parecen sanas pero ponen huevos de cáscara pálida, blanda o sin cáscara y no llegan al pico. ¿Qué enfermedad se sospecha?",
+      "opciones": [
+        "La viruela aviar",
+        "El síndrome de la caída de puesta (adenovirus)",
+        "La coccidiosis",
+        "El golpe de calor"
+      ],
+      "correcta": 1,
+      "explicacion": "Manual Merck. Se vacuna en la recría en las zonas donde hay casos."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cómo se transmite la viruela aviar?",
+      "opciones": [
+        "Por los mosquitos y las heridas",
+        "Solo por comer alimento caducado",
+        "Por el color de la cáscara",
+        "No se transmite"
+      ],
+      "correcta": 0,
+      "explicacion": "Forma seca: costras en cresta, barbillas y ojos. Forma húmeda: placas en boca y garganta, más grave."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Por qué conviene comprar pollitas libres de micoplasma?",
+      "opciones": [
+        "Porque así ponen huevos de dos yemas",
+        "Porque el micoplasma solo afecta a los gallos",
+        "Porque el micoplasma se transmite también por el huevo y da una enfermedad respiratoria crónica",
+        "No importa: el micoplasma no existe en gallinas"
+      ],
+      "correcta": 2,
+      "explicacion": "Mycoplasma gallisepticum y synoviae: mocos, ojos con espuma, cara hinchada, menos puesta o cojeras."
+    },
+    {
+      "id": 9,
+      "pregunta": "Una gallina entra y sale del nido, empuja y camina como un pato: parece un huevo atascado. ¿Qué haces?",
+      "opciones": [
+        "Apretarle el abdomen hasta que salga",
+        "Darle alimento de pollitos",
+        "Ponerla en un sitio tranquilo y templado y llamar al veterinario, sin intentar sacar el huevo a la fuerza",
+        "Dejarla al sol en pleno verano"
+      ],
+      "correcta": 2,
+      "explicacion": "Si el huevo se rompe dentro puede causar una infección grave. Suele deberse a falta de calcio, huevo grande, frío o gordura."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Cómo se previene el hígado graso?",
+      "opciones": [
+        "Evitando que las gallinas engorden: alimento adecuado, poco grano y espacio para moverse",
+        "Dando más grano y menos alimento",
+        "Encerrándolas sin moverse",
+        "Con antibióticos cada mes"
+      ],
+      "correcta": 0,
+      "explicacion": "Gallinas gordas, de cresta grande y pálida, pueden morir de repente por una hemorragia del hígado."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Cuándo se pueden usar antibióticos en las gallinas?",
+      "opciones": [
+        "Siempre que baje la puesta, sin receta",
+        "Solo con receta del veterinario tras examinar a las aves; nunca para que pongan más ni de forma preventiva por rutina",
+        "Comprados por internet si son baratos",
+        "Cada mes, por si acaso"
+      ],
+      "correcta": 1,
+      "explicacion": "Reglamento (UE) 2019/6 y RD 666/2023; las recetas de antibióticos se comunican a PRESVET."
+    },
+    {
+      "id": 12,
+      "pregunta": "Si el veterinario usa en cascada un medicamento no autorizado para animales productores de huevos, ¿cuál es el tiempo de espera mínimo de los huevos?",
+      "opciones": [
+        "No hay tiempo de espera para los huevos",
+        "24 horas",
+        "Lo que diga el vendedor de la tienda",
+        "10 días"
+      ],
+      "correcta": 3,
+      "explicacion": "Reglamento (UE) 2019/6, art. 115: el más largo para huevos × 1,5 o, si no está autorizado para animales productores de huevos, mínimo 10 días."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Qué se apunta en el registro de tratamientos?",
+      "opciones": [
+        "Producto, gallinas tratadas, fecha de inicio y de fin, y la fecha en que los huevos vuelven a ser aptos",
+        "Solo el precio del medicamento",
+        "Nada, basta con acordarse",
+        "El color de las gallinas"
+      ],
+      "correcta": 0,
+      "explicacion": "Guarda también las recetas. Es obligatorio en las granjas."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Cuándo se ponen casi todas las vacunas de la gallina ponedora?",
+      "opciones": [
+        "Todas el último día antes del matadero",
+        "Solo cuando aparece la enfermedad",
+        "En la recría, antes de empezar a poner, según el programa del veterinario",
+        "Nunca se vacuna a las gallinas"
+      ],
+      "correcta": 2,
+      "explicacion": "La gallina vive casi dos años y debe estar protegida toda la puesta. Vacunas vivas no en puesta salvo autorización."
+    },
+    {
+      "id": 15,
+      "pregunta": "En las granjas comerciales de puesta en España, ¿qué dice el Programa Nacional de Control de Salmonella sobre la vacuna?",
+      "opciones": [
+        "Está prohibido vacunar contra la salmonela",
+        "Vacunar a las pollitas frente a S. Enteritidis en la recría es obligatorio, salvo excepción de la autoridad",
+        "Se sustituye la vacuna por antibióticos en el agua cada mes",
+        "Solo se vacunan las gallinas viejas antes de ir al matadero"
+      ],
+      "correcta": 1,
+      "explicacion": "Además hay autocontroles: pollitas al llegar, recría 2 semanas antes del traslado y cada 15 semanas en puesta. Los antibióticos no son un método de control de Salmonella."
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Cómo se manejan las vacunas que se dan en el agua?",
+      "opciones": [
+        "Mezclada con agua clorada y caliente",
+        "Se deja en el bebedero varios días",
+        "Se disuelve en el alimento de puesta",
+        "Vacuna entre 2 y 8 °C, agua sin cloro desde 48 h antes, estabilizante y que se la beban en 1–2 horas"
+      ],
+      "correcta": 3,
+      "explicacion": "Igual que en la L04. Las vacunas pinchadas las pone el veterinario o personal formado."
+    },
+    {
+      "id": 17,
+      "pregunta": "Con 50 gallinas que comen 120 g/día y ponen al 75 %, ¿cuántos kilos de alimento gastas por docena, aproximadamente?",
+      "opciones": [
+        "Unos 0,5 kg",
+        "Unos 1,9 kg",
+        "Unos 6 kg",
+        "Unos 12 kg"
+      ],
+      "correcta": 1,
+      "explicacion": "6 kg/día ÷ (37,5 huevos ÷ 12 ≈ 3,1 docenas) ≈ 1,9 kg; en naves controladas Hy-Line da 1,42–1,46 kg (20–60 semanas). Todo, estimaciones."
+    },
+    {
+      "id": 18,
+      "pregunta": "En el ejemplo de la lección, ¿qué parte del coste total de la docena suele ser el alimento?",
+      "opciones": [
+        "Más o menos dos tercios",
+        "Casi nada, un 5 %",
+        "Exactamente la mitad, siempre",
+        "Todo: no hay otros gastos"
+      ],
+      "correcta": 0,
+      "explicacion": "Con ~1,9 kg de alimento por docena a 0,45–0,65 €/kg, la docena sale por ~1,6 € (estimación), sin contar tu trabajo."
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Cómo reconoces a una gallina que no pone?",
+      "opciones": [
+        "Cresta roja y brillante y abdomen blando",
+        "Cloaca grande y húmeda",
+        "Canta más que las demás",
+        "Cresta pequeña, pálida y seca, cloaca pequeña y seca, huesos de la pelvis a menos de dos dedos y patas que vuelven a amarillear"
+      ],
+      "correcta": 3,
+      "explicacion": "Una gallina que no pone cuesta lo mismo en alimento que una que pone mucho."
+    },
+    {
+      "id": 20,
+      "pregunta": "Si quieres vender la carne de tus gallinas viejas, ¿qué tienes que hacer?",
+      "opciones": [
+        "Matarlas en casa y venderlas en el mercado",
+        "Venderlas vivas sin papeles",
+        "Llevarlas a un matadero autorizado; el sacrificio en casa solo vale para el consumo de tu familia",
+        "Congelarlas y venderlas a restaurantes"
+      ],
+      "correcta": 2,
+      "explicacion": "Las que mueren en la granja van a un gestor autorizado de subproductos (SANDACH)."
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "leccion": 5,
+  "codigo": "L05A",
+  "titulo": "Gallinas ponedoras (1): de la pollita a la puesta",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "Para empezar a vender huevo moreno en España, ¿qué tipo de gallina recomienda la lección?",
+      "opciones": [
+        "Una híbrida ligera de huevo blanco, porque es la que mejor va en patio",
+        "Un gallo de pelea",
+        "Una híbrida semipesada (Hy-Line Brown, Lohmann Brown, ISA Brown): huevo moreno, unos 2 kg y carácter tranquilo",
+        "Cualquier gallina de mercadillo, cuanto más barata mejor"
+      ],
+      "correcta": 2,
+      "explicacion": "Las semipesadas se adaptan mejor al suelo, al patio y al campero; las ligeras rinden más en naves controladas y son más nerviosas."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿De qué depende el color de la cáscara del huevo?",
+      "opciones": [
+        "De la raza o la genética de la gallina; no indica que el huevo sea más nutritivo",
+        "De lo que come la gallina ese día",
+        "De si el huevo es más fresco",
+        "De la cantidad de calcio del alimento"
+      ],
+      "correcta": 0,
+      "explicacion": "Un huevo moreno y uno blanco alimentan igual. El color lo marca la raza (las Penedesencas, por ejemplo, ponen huevo casi chocolate)."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Qué ventaja tiene comprar pollitas recriadas de 16–18 semanas frente a pollitas de un día?",
+      "opciones": [
+        "Son más baratas que las de un día",
+        "Nunca necesitan veterinario",
+        "Se pueden mezclar sin cuarentena con gallinas viejas",
+        "Tienes huevos en pocas semanas y las vacunas de la recría ya vienen puestas"
+      ],
+      "correcta": 3,
+      "explicacion": "Cuestan más (estimación 7–12 € frente a 1,5–3 €), pero te ahorras la parte más delicada. Pide siempre el programa de vacunas por escrito."
+    },
+    {
+      "id": 4,
+      "pregunta": "En gallinero sin jaulas (código 2), ¿qué densidad máxima fija la Directiva 1999/74/CE (RD 3/2002)?",
+      "opciones": [
+        "20 gallinas por m²",
+        "9 gallinas por m² de superficie utilizable",
+        "15 gallinas por m², igual que las pollitas",
+        "No hay ningún límite en suelo"
+      ],
+      "correcta": 1,
+      "explicacion": "Es un máximo legal para naves profesionales; la EFSA (2023) recomienda ≤ 4/m² y en la lección se aconsejan 3–4 gallinas/m²."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cuántos ponederos pide como mínimo la normativa europea?",
+      "opciones": [
+        "Un nido individual por cada 7 gallinas, o 1 m² de nido colectivo por cada 120",
+        "Uno por cada 50 gallinas",
+        "Uno por gallina",
+        "No son obligatorios si hay cama"
+      ],
+      "correcta": 0,
+      "explicacion": "La Directiva fija 1/7 o 1 m²/120; Lohmann y Virginia Tech aconsejan más (1 por 4–5 gallinas)."
+    },
+    {
+      "id": 6,
+      "pregunta": "Según Hy-Line, ¿qué temperatura necesitan las pollitas criadas en suelo los días 0 a 3?",
+      "opciones": [
+        "De 20 a 22 °C",
+        "De 40 a 42 °C",
+        "La temperatura no importa si tienen cama",
+        "De 35 a 36 °C a la altura de las pollitas"
+      ],
+      "correcta": 3,
+      "explicacion": "Después se baja: 33–35 °C días 4–7, 31–33 °C la 2.ª semana… hasta unos 21 °C desde la 6.ª semana."
+    },
+    {
+      "id": 7,
+      "pregunta": "Según Hy-Line, ¿cómo influye la humedad en la temperatura de la recría?",
+      "opciones": [
+        "Por cada punto de humedad se sube 1 °C",
+        "La humedad no influye en la sensación térmica",
+        "Por cada 5 puntos de humedad por encima del 60 %, se baja 1 °C",
+        "Hay que mantener la humedad por debajo del 10 %"
+      ],
+      "correcta": 2,
+      "explicacion": "La humedad alta aumenta la sensación de calor. Tras la cría, que la humedad no baje del 40 % (polvo, deshidratación)."
+    },
+    {
+      "id": 8,
+      "pregunta": "Según Hy-Line, ¿qué debe haber pasado a los 7 días de vida de la pollita?",
+      "opciones": [
+        "Que pese diez veces más",
+        "Que haya doblado el peso con el que llegó",
+        "Que ya tenga la cresta roja",
+        "Que esté comiendo alimento de puesta"
+      ],
+      "correcta": 1,
+      "explicacion": "Además, prueba del buche: 75 % con alimento a las 6 h, 85 % a las 12 h y todas a las 24 h."
+    },
+    {
+      "id": 9,
+      "pregunta": "En una nave cerrada, ¿cuántas horas de luz da Hy-Line a las pollitas desde la semana 8 hasta la estimulación?",
+      "opciones": [
+        "24 horas, para que coman más",
+        "10 horas fijas",
+        "16 horas, como en la puesta",
+        "Las horas van subiendo cada semana"
+      ],
+      "correcta": 1,
+      "explicacion": "La luz baja desde 20 h (semana 2) hasta 10 h (semana 8) y se mantiene fija; subirla en la recría adelanta la puesta."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Qué dice la normativa española sobre recortar el pico?",
+      "opciones": [
+        "Es obligatorio en todas las granjas",
+        "Lo puede hacer cualquiera en casa a cualquier edad",
+        "Se recomienda en gallinas adultas que pican",
+        "Está prohibido mutilar; solo se autoriza como excepción, con consejo veterinario, personal cualificado y en pollitas de menos de 10 días"
+      ],
+      "correcta": 3,
+      "explicacion": "RD 637/2021, art. 7.2: solo tras agotar otras medidas contra el picaje y anotado en el registro. La EFSA recomienda ir abandonándolo."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Qué es la uniformidad del lote y qué pide Hy-Line?",
+      "opciones": [
+        "El % de aves dentro de ±10 % del peso medio; más del 85 % en la recría y 90 % al traslado",
+        "El % de aves del mismo color; más del 50 %",
+        "La diferencia entre la más pesada y la más ligera; menos de 1 kg",
+        "El número de aves por comedero; una por cada 10 cm"
+      ],
+      "correcta": 0,
+      "explicacion": "Pesa siempre al azar, el mismo día y a la misma hora; un lote desigual no se estimula hasta corregirlo."
+    },
+    {
+      "id": 12,
+      "pregunta": "Según Hy-Line, ¿cuándo se empieza a subir la luz para estimular la puesta?",
+      "opciones": [
+        "Siempre a las 12 semanas, pesen lo que pesen",
+        "En cuanto aparece el primer huevo en el suelo",
+        "Cuando el lote alcanza su peso objetivo (alrededor de 1,4 kg en la Hy-Line Brown), no por la edad",
+        "Cuando las más adelantadas tienen la cresta roja, aunque el lote vaya ligero"
+      ],
+      "correcta": 2,
+      "explicacion": "Hy-Line estimula por peso (alrededor de 1,4 kg) y pide retrasarlo si el lote va ligero o desigual, empezando por las más jóvenes o ligeras."
+    },
+    {
+      "id": 13,
+      "pregunta": "Según Hy-Line, ¿cómo se usa el alimento de prepuesta?",
+      "opciones": [
+        "Desde el primer día de vida hasta las 20 semanas",
+        "Durante toda la puesta, porque lleva más proteína",
+        "Solo cuando la gallina deja de poner en la muda",
+        "No antes de las 15 semanas, como mucho 10–14 días, y se retira con el primer huevo"
+      ],
+      "correcta": 3,
+      "explicacion": "La prepuesta (≈ 2,5 % de calcio) llena las reservas óseas; no basta para una gallina que ya pone, así que se pasa a alimento de puesta."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Por qué no se debe dar alimento de puesta a pollitas que aún no ponen?",
+      "opciones": [
+        "Porque el exceso de calcio en aves que no ponen daña el riñón",
+        "Porque tiene demasiada poca proteína y las engorda",
+        "Porque el gránulo es demasiado grande para su pico",
+        "No pasa nada: así llegan antes a la puesta"
+      ],
+      "correcta": 0,
+      "explicacion": "El Manual Merck describe la urolitiasis y la gota visceral por exceso de calcio en aves inmaduras."
+    },
+    {
+      "id": 15,
+      "pregunta": "¿Para qué sirve el carbonato cálcico en partícula gruesa (2–4 mm) del alimento de puesta?",
+      "opciones": [
+        "Sustituye al agua en verano",
+        "Se queda en la molleja y va soltando calcio poco a poco, también de noche, cuando se forma la cáscara",
+        "Sirve solo para colorear la yema",
+        "Evita que la gallina se ponga clueca"
+      ],
+      "correcta": 1,
+      "explicacion": "Cada cáscara lleva ≈ 2 g de calcio (Merck); Hy-Line sube la proporción de carbonato grueso con la edad (la mitad en la prepuesta y, en la puesta, del 60 al 75 % con la edad)."
+    },
+    {
+      "id": 16,
+      "pregunta": "Según Hy-Line, ¿cuánta agua bebe una gallina sana y qué indica una bajada?",
+      "opciones": [
+        "La mitad de lo que come; bajar el consumo es buena señal",
+        "Un litro al día siempre, haga frío o calor",
+        "Entre 1,5 y 2 veces lo que come; una bajada del consumo suele ser la primera señal de un problema",
+        "El agua no influye en la puesta"
+      ],
+      "correcta": 2,
+      "explicacion": "160–230 ml/gallina/día a 21–27 °C (hasta el doble con calor). Apunta los litros cada día."
+    },
+    {
+      "id": 17,
+      "pregunta": "En una granja con parque exterior, ¿dónde deben estar los comederos y bebederos según el RD 637/2021?",
+      "opciones": [
+        "En medio del parque, al sol",
+        "Junto a la balsa donde beben los patos silvestres",
+        "Dentro de la nave, o fuera solo bajo refugios a los que no lleguen las aves silvestres",
+        "Da igual, no hay ninguna norma"
+      ],
+      "correcta": 2,
+      "explicacion": "Así se evita que gorriones, palomas y aves silvestres coman del alimento, ensucien el agua y traigan la gripe aviar."
+    },
+    {
+      "id": 18,
+      "pregunta": "¿Cuál es la «regla de oro» de la luz que da Lohmann?",
+      "opciones": [
+        "Nunca aumentar las horas de luz en la recría y nunca reducirlas en la puesta",
+        "Luz las 24 horas en la recría para que crezcan más",
+        "Reducir la luz en la puesta para que coman menos",
+        "Dar la misma luz todo el año, sin temporizador"
+      ],
+      "correcta": 0,
+      "explicacion": "Días que se alargan en la recría adelantan la puesta (huevos pequeños, prolapsos); días que se acortan en la puesta la hunden."
+    },
+    {
+      "id": 19,
+      "pregunta": "Durante la puesta, ¿cómo debe ser el programa de luz?",
+      "opciones": [
+        "24 horas de luz para que pongan más",
+        "Solo la luz natural, aunque en diciembre sean 9 horas",
+        "Luz que se va reduciendo cada semana",
+        "De 14 a 16 horas de luz, con unas 8 horas de oscuridad seguida y penumbra al apagar"
+      ],
+      "correcta": 3,
+      "explicacion": "Hy-Line llega a 16 h (máximo) y Lohmann a 14 h; la Directiva y el RD 3/2002 piden oscuridad ininterrumpida de ≈ 1/3 del día. Añade la luz por la mañana."
+    },
+    {
+      "id": 20,
+      "pregunta": "Si tienes una gallina clueca y no quieres pollitos, ¿qué haces?",
+      "opciones": [
+        "La dejas sin comer hasta que se le pase",
+        "Recoges los huevos, la sacas del nido y la tienes unos días aparte con luz, comida y agua",
+        "La mojas con agua fría",
+        "La dejas en el nido con los huevos de las demás"
+      ],
+      "correcta": 1,
+      "explicacion": "Mejor en una jaula o corral con suelo de rejilla. Nunca dejarla sin comer ni mojarla."
+    }
+  ]
+}

@@ -320,6 +320,8 @@ body:has(#cookie-banner) main { padding-bottom: 120px; }
 .final-link { text-align: center; margin: 18px 0; }
 .video { background: #000; border-radius: 14px; overflow: hidden; aspect-ratio: 16/9; }
 .video video { width: 100%; height: 100%; display: block; }
+.video:has(.video-ph) { display: grid; place-items: center; }
+.video-ph { margin: 0; padding: 16px; color: #fff; font-weight: 750; text-align: center; line-height: 1.35; }
 .texto, .quiz, .legal { background: #fff; border-radius: 14px; padding: 4px 16px 14px; margin: 16px auto; box-shadow: var(--shadow); max-width: 760px; }
 .lesson-page { max-width: 760px; margin-inline: auto; }
 .crumb { font-size: .9rem; }
