@@ -15,7 +15,7 @@ window.ADSTERRA = {
   }
 };
 
-/* Sitio unificado. Amazon no se usa.
+/* Sitio unificado. La tienda propia va primero. Recomendados solo usa Mercado Libre y eBay.
    Pega aquí los identificadores cuando los tengas. Vacío = el enlace abre la búsqueda, sin tracking. */
 window.GR = {
   siteUrl: "https://granjarentable.net",

@@ -87,7 +87,7 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
 .nav-more { width: 64px; min-width: 64px; justify-content: center; padding: 0; }
 .nav-redes { font: inherit; }
 .nav a[aria-current="page"] { outline: 2px solid var(--gold); outline-offset: -2px; }
-.nav-shop { background: var(--gold); color: var(--gold-ink) !important; }
+.nav a.nav-shop { background: var(--gold); color: var(--gold-ink) !important; }
 .nav-cta { border: 2px solid #fff; background: transparent; }
 .nav-drop { display: flex; flex-direction: column; gap: 6px; }
 .nav-sub { display: none; flex-direction: column; gap: 6px; padding: 0 0 4px 18px; }
@@ -146,7 +146,7 @@ html[data-tema="claro"] .nav-redes { color: #0F3D1C; background: #E7F3EA; }
 html[data-tema="claro"] .nav a,
 html[data-tema="claro"] .nav-parent,
 html[data-tema="claro"] .nav-sub a { background: #E7F3EA; }
-html[data-tema="claro"] .nav-shop { background: var(--gold); color: var(--gold-ink) !important; }
+html[data-tema="claro"] .nav a.nav-shop { background: var(--gold); color: var(--gold-ink) !important; }
 html[data-tema="claro"] .nav a.nav-wa { background: #128C7E; color: #fff !important; }
 html[data-tema="claro"] .nav-toggle { border-color: #1F5E2E; color: #1F5E2E; background: #E7F3EA; }
 html[data-tema="claro"] .nav-cta,
@@ -314,9 +314,10 @@ body:has(#cookie-banner) main { padding-bottom: 120px; }
 .card-more { background: #fff; margin: -6px 0 10px; padding: 4px 14px 12px 18px; border-radius: 0 0 14px 14px; border-left: 5px solid var(--gl); }
 .card-more ul { margin: .2em 0 .4em; padding-left: 1.1rem; }
 .card-more li { margin: .15em 0; }
-.lesson.soon .lrow { background: #eee; color: #777; border-left-color: #bbb; box-shadow: none; pointer-events: none; }
-.lesson.soon .card-more { background: #f3f3f3; color: #666; border-left-color: #ddd; }
-.lesson.soon .code { background: #ddd; color: #666; }
+.lesson.soon .lrow { background: #eee; color: #3f3f3f; border-left-color: #bbb; box-shadow: none; pointer-events: none; }
+.lesson.soon .card-more { background: #f3f3f3; color: #3f3f3f; border-left-color: #ddd; }
+.lesson.soon .code { background: #ddd; color: #333; }
+.lesson.soon .dur, .lesson.soon .st { color: #3f3f3f; }
 .final-link { text-align: center; margin: 18px 0; }
 .video { background: #000; border-radius: 14px; overflow: hidden; aspect-ratio: 16/9; }
 .video video { width: 100%; height: 100%; display: block; }
@@ -368,13 +369,13 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
   gap: 10px; margin: 0 0 10px; padding: 2px 0 6px;
 }
 .welcome img { width: 44px; height: 44px; flex: none; border-radius: 50%; }
-.welcome h1 { font-size: clamp(1.15rem, 2.6vw, 1.5rem); margin: 0; line-height: 1.15; }
+.welcome h1, .welcome .welcome-title { font-size: clamp(1.15rem, 2.6vw, 1.5rem); margin: 0; line-height: 1.15; color: var(--gd); font-weight: 800; }
 .welcome p { margin: 2px 0 0; color: var(--muted); font-size: .95rem; }
 .shop-hero-copy .js-feat-name { font-size: clamp(1.45rem, 3vw, 2.05rem); margin: .15em 0 .3em; line-height: 1.2; color: var(--gd); }
 @media (max-width: 699px) {
   .welcome { gap: 8px; margin-bottom: 8px; }
   .welcome img { width: 40px; height: 40px; }
-  .welcome h1 { font-size: 1.12rem; }
+  .welcome h1, .welcome .welcome-title { font-size: 1.12rem; }
   .welcome p { font-size: .88rem; }
   .shop-hero-media { min-height: 0; }
   .shop-hero-media img { max-height: 150px; }
@@ -394,9 +395,8 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
   .shop-hero-copy .btn { width: auto; align-self: flex-start; min-width: 180px; }
 }
 .cats {
-  display: flex; flex-wrap: nowrap; gap: 8px; overflow-x: auto; max-width: 100%;
-  overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
-  padding: 14px 0 8px; margin: 0; scrollbar-width: thin;
+  display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%;
+  padding: 14px 0 8px; margin: 0;
 }
 .cats a {
   flex: none; min-height: 44px; display: inline-flex; align-items: center; padding: 8px 14px;
