@@ -1,8 +1,8 @@
 # Granja Rentable
 
-Borrador del sitio único para [granjarentable.net](https://granjarentable.net). No está publicado: el DNS de Porkbun no se tocó.
+Sitio único para [granjarentable.net](https://granjarentable.net). Se publica desde `main` en GitHub Pages: [darmo1986.github.io/escuela-granja-rentable](https://darmo1986.github.io/escuela-granja-rentable/). El archivo `CNAME` dice `granjarentable.net`, así que Pages toma ese dominio al desplegar. El DNS de Porkbun no se cambia desde aquí: hasta que existan los registros de abajo, el dominio propio no abre. Los enlaces del sitio son relativos, así que las mismas páginas sirven en `/escuela-granja-rentable/` y en la raíz del dominio.
 
-La tienda propia es lo primero (botón del inicio y primer enlace del menú). El curso es gratis. Recomendados queda debajo: Mercado Libre en Latinoamérica y eBay en España y Estados Unidos. No hay Amazon.
+Curso gratis es el primer enlace del menú. En el inicio, el saludo va a la izquierda con el logo y, debajo, la tienda. Recomendados queda aparte: Mercado Libre en Latinoamérica y eBay en España y Estados Unidos. No hay Amazon.
 
 ## Qué convierte en este tipo de sitio
 
@@ -54,7 +54,7 @@ Si el dueño pega el export de Shopify (`products.json` o la lista de fichas), s
 
 ## Antes de publicar
 
-No fusionar esta rama ni tocar el DNS hasta que el dueño lo pida. El sitio en local ya usa las URLs canónicas de producción (`https://granjarentable.net/...`, `og:locale` `es_419`).
+El dueño aprobó publicar en GitHub Pages. El DNS de Porkbun sigue pendiente. Las URLs canónicas son `https://granjarentable.net/...` y `og:locale` es `es_419`.
 
 - [x] **CNAME.** El archivo `CNAME` en la raíz dice `granjarentable.net`.
 - [ ] **DNS en Porkbun.** Todavía no se aplica. Quitar el aparcamiento y cualquier redirección. No usar un comodín (`*`). Registros del dominio raíz (`@`): A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. IPv6 opcional: AAAA `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`. `www`: CNAME `darmo1986.github.io` (el usuario de GitHub, sin el nombre del repositorio). Cuando resuelva, en GitHub Pages activar «Enforce HTTPS».
@@ -118,9 +118,9 @@ El alta cae en la misma hoja. Cuando apruebes a alguien, inventa un código cort
 
 Eso se guarda en la cookie `gr_ref` y en el navegador 30 días, y el botón de compra de la incubadora lleva `?ref=`. Para liquidar el 10 % sin pagar otra herramienta: cuando entre un pedido, anota el `ref` en la hoja y paga por PayPal al pasar US$ 20 y los 14 días de devolución. Mercado Libre y eBay no entran en ese 10 %. Hay una prueba sin comisión en `afiliados.html?ref=DEMO`.
 
-## DNS en Porkbun (no aplicar todavía)
+## DNS en Porkbun
 
-El archivo `CNAME` ya dice `granjarentable.net`. No lo actives en GitHub Pages ni en Porkbun hasta que quieras publicar. Al fusionar esta rama, GitHub Pages puede esperar el dominio: hazlo solo cuando vayas a cambiar el DNS.
+El archivo `CNAME` ya está en el repositorio (`granjarentable.net`). Al publicar `main`, GitHub Pages guarda ese dominio en la configuración del sitio. No hace falta escribirlo otra vez en Settings → Pages, salvo que el campo quede vacío. «Enforce HTTPS» se activa cuando el DNS ya apunta a GitHub y el certificado está listo.
 
 Quita el aparcamiento y cualquier redirección de Porkbun. No uses un comodín (`*`).
 
