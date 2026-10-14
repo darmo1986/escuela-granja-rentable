@@ -2,7 +2,7 @@
 
 Sitio único para [granjarentable.net](https://granjarentable.net). Se publica desde `main` en GitHub Pages: [darmo1986.github.io/escuela-granja-rentable](https://darmo1986.github.io/escuela-granja-rentable/). Los enlaces son relativos, así que las mismas páginas sirven en `/escuela-granja-rentable/` y, cuando el dominio propio esté activo, en la raíz de granjarentable.net.
 
-El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub Pages redirigió `darmo1986.github.io/escuela-granja-rentable` a `http://granjarentable.net`, que todavía no resuelve. Con el curso en el aire, el dominio propio se activa después del DNS: en el repositorio, Settings → Pages → Custom domain, escribe `granjarentable.net` y guarda. Eso vuelve a crear el archivo `CNAME`. Hasta entonces no lo subas a mano.
+El archivo `CNAME` está en esta rama y no en `main`. El primer despliegue lo tenía en `main` y GitHub Pages redirigió `darmo1986.github.io/escuela-granja-rentable` a `http://granjarentable.net`, que todavía no resuelve. El curso sigue en `github.io` mientras esta rama no se fusione. Fusionarla es lo que publica el dominio.
 
 Curso gratis es el primer enlace del menú. En el inicio, el saludo va a la izquierda con el logo y, debajo, la tienda. Recomendados queda aparte: Mercado Libre en Latinoamérica y eBay en España y Estados Unidos. No hay Amazon.
 
@@ -124,7 +124,7 @@ Eso se guarda en la cookie `gr_ref` y en el navegador 30 días, y el botón de c
 
 Estos registros se crean en Porkbun. No uses un comodín (`*`). Quita el aparcamiento y cualquier redirección. El CNAME de `www` apunta al usuario de GitHub, sin el nombre del repositorio.
 
-Cuando `dig granjarentable.net` devuelva las cuatro direcciones A, en GitHub abre Settings → Pages → Custom domain, guarda `granjarentable.net` y, en cuanto el certificado exista, activa «Enforce HTTPS». Ese paso escribe el archivo `CNAME` en `main`. Hacerlo antes deja el sitio de `github.io` redirigiendo a un dominio que no abre.
+Cuando `dig granjarentable.net` devuelva las cuatro direcciones A y `www` apunte a `darmo1986.github.io`, fusiona esta rama en `main`. Ese merge mete el archivo `CNAME` y Pages activa el dominio. En cuanto el certificado exista, en Settings → Pages activa «Enforce HTTPS». Fusionar antes deja el sitio de `github.io` redirigiendo a un dominio que no abre.
 
 Registros A del dominio raíz (`@`):
 
