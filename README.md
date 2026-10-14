@@ -4,7 +4,9 @@ Sitio único para [granjarentable.net](https://granjarentable.net). Se publica d
 
 El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub Pages redirigió `darmo1986.github.io/escuela-granja-rentable` a `http://granjarentable.net`, que todavía no resuelve. Con el curso en el aire, el dominio propio se activa después del DNS: en el repositorio, Settings → Pages → Custom domain, escribe `granjarentable.net` y guarda. Eso vuelve a crear el archivo `CNAME`. Hasta entonces no lo subas a mano.
 
-Curso gratis es el primer enlace del menú. En el inicio, el saludo va a la izquierda con el logo y, debajo, la tienda. Recomendados queda aparte: Mercado Libre en Latinoamérica y eBay en España y Estados Unidos. No hay Amazon.
+La tienda es el primer enlace del menú y el bloque principal del inicio. En Recomendados, nuestra tienda va primero; debajo, Mercado Libre y después eBay. En España y Estados Unidos no sale Mercado Libre. Si el producto también está en nuestra tienda, ese enlace va delante y solo en los países donde lo enviamos.
+
+Calculadoras, líneas de aves, preguntas, lista y guías están fuera del menú fijo, en el pie y en «También en el sitio». Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
 
 ## Qué convierte en este tipo de sitio
 
@@ -78,6 +80,18 @@ La ficha ya está en `data/curso-web.json` y la fila ya está en `curso.html`. N
 
 `leccion.html?id=l05a` lee el JSON y reproduce `videos/` + el nombre del archivo. L01–L04B siguen en `lecciones/`, con su texto y su test.
 
+## Hueco del vídeo final de L01 a L04B
+
+`videos-finales.html` es un borrador. No está en `curso.html`, ni en el menú, ni en el sitemap, y lleva `noindex`. Cada ficha L01–L04B de `data/curso-web.json` tiene `"videoFinal": ""`.
+
+Cuando el Supervisor apruebe el corte:
+
+1. Copia el mp4 a `videos/` con un nombre como `l01-final.mp4` (solo letras minúsculas, números, guion o guion bajo, y `.mp4`).
+2. En esa ficha pon `"videoFinal": "l01-final.mp4"`.
+3. Abre `videos-finales.html`: el hueco reproduce ese archivo. Si el campo sigue vacío, el hueco dice que no hay archivo y no inventa una dirección.
+
+No cambies el `src` de `lecciones/l01.html` (ni L02, L03, L04A, L04B) ni enlaces esta página desde `curso.html` hasta que el Supervisor lo diga. El curso publicado sigue con `videos/l01.mp4` y los demás archivos actuales.
+
 ## Pendiente
 
 - `window.GR.formEndpoint` en `js/config.js` apunta a la aplicación web de Apps Script. Regístrate, la prueba de la app y Afiliados envían ahí.
@@ -92,7 +106,7 @@ La ficha ya está en `data/curso-web.json` y la fila ya está en `curso.html`. N
 
 ## Formularios (gratis, Google Sheets)
 
-Un solo endpoint para Regístrate, la prueba de la app y Afiliados.
+Un solo endpoint para Regístrate, la prueba de la app, Afiliados y la lista (`lista.html`, `tipo=lead`). Al guardar la lista, el navegador arma un `.txt` y un `.ics`. No hace falta otra implementación ni volver a desplegar el script: la hoja ya acepta ese tipo.
 
 1. Crea una hoja de Google en blanco. El nombre del archivo puede ser «Granja Rentable — formularios».
 2. Extensiones → Apps Script. Borra el código de ejemplo y pega `apps-script/Codigo.gs`. Guarda.

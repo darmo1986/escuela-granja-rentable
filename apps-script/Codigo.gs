@@ -1,7 +1,7 @@
 /**
  * Formulario gratis de Granja Rentable.
  * Pegado en Extensiones → Apps Script de una hoja de Google.
- * Escribe registro, prueba de la app y altas de afiliado.
+ * Escribe registro, prueba de la app, altas de afiliado y la lista (tipo lead).
  * No uses servicios de pago ni n8n: esta aplicación web es gratis.
  */
 var HOJA = "Respuestas";

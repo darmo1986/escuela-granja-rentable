@@ -93,8 +93,8 @@ function loadAds(){
 function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
-  const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');
-  b.innerHTML='<strong>🍪 Cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. <a href="'+root+'cookies.html">Más información</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
@@ -237,6 +237,23 @@ async function renderDynamicLesson(){
   const t=document.querySelector('title');
   if(t)t.textContent=(L.codigo?L.codigo+': ':'')+(L.titulo||'Lección')+' | Curso Granja Rentable';
 }
+async function mountFinalVideos(){
+  const box=document.getElementById('videos-finales');
+  if(!box)return;
+  const data=await cursoWeb();
+  const by={};
+  ((data&&data.lecciones)||[]).forEach(function(L){if(L&&L.id)by[L.id]=L;});
+  const base=String((data&&data.videoBaseUrl)||'videos/').replace(/^\/+/,'');
+  box.querySelectorAll('.final-slot').forEach(function(slot){
+    const L=by[slot.getAttribute('data-id')]||{};
+    const name=String(L.videoFinal||'').trim();
+    if(!VIDEO_RE.test(name)){
+      slot.innerHTML='<p>Vídeo final pendiente de aprobación. No hay archivo ni dirección.</p>';
+      return;
+    }
+    slot.innerHTML='<video controls preload="metadata" playsinline poster="'+esc(root+'img/logo.jpg')+'" src="'+esc(root+base+name)+'"></video>';
+  });
+}
 paintProgress();
 paintLocks();
 bindQuizzes();
@@ -244,6 +261,7 @@ bindQuizzes();
   await promoteFromJson();
   paintProgress();
   await renderDynamicLesson();
+  await mountFinalVideos();
   paintLocks();
   bindQuizzes();
 })();

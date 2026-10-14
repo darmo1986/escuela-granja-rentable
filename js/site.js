@@ -364,7 +364,7 @@
     document.querySelectorAll(".js-red-nota").forEach(function (el) {
       if (pais === "ES") el.textContent = "En España estos enlaces abren eBay. La incubadora se compra en nuestra tienda, no aquí.";
       else if (pais === "US") el.textContent = "En Estados Unidos estos enlaces abren eBay. La incubadora se compra en nuestra tienda, en dólares.";
-      else el.textContent = "En " + p.nombre + " estos enlaces abren Mercado Libre. La incubadora se compra en nuestra tienda.";
+      else el.textContent = "En " + p.nombre + " el primer enlace abre Mercado Libre y el segundo, eBay, queda de apoyo. El precio está en esa tienda. La incubadora se compra en la nuestra.";
     });
 
     buildRecLinks();
@@ -392,8 +392,22 @@
         var allowed = stores.indexOf(net) !== -1;
         a.classList.toggle("is-off", !allowed);
         if (!allowed) return;
-        if (net === "mercadolibre") {
-          var host = ML_HOST[pais] || ML_HOST.MX;
+        if (net === "tienda") {
+          var sku = card.getAttribute("data-sku");
+          var item = catalogMap()[sku];
+          var offer = item && item.offers && item.offers[pais];
+          if (!item || item.soon || !offer) {
+            a.classList.add("is-off");
+            return;
+          }
+          a.classList.remove("is-off");
+          a.href = productHref(sku);
+        } else if (net === "mercadolibre") {
+          var host = ML_HOST[pais];
+          if (!host) {
+            a.classList.add("is-off");
+            return;
+          }
           var u = new URL("https://" + host + "/" + slug(a.getAttribute("data-q")));
           var id = p.ml ? (ids[p.ml] || "") : "";
           if (id) u.searchParams.set(param, id);
@@ -414,6 +428,13 @@
           }
           a.href = u2.toString();
         }
+      });
+      var primary = true;
+      card.querySelectorAll("[data-net]").forEach(function (a) {
+        var on = !a.classList.contains("is-off");
+        a.classList.toggle("gold", on && primary);
+        a.classList.toggle("sec", !on || !primary);
+        if (on && primary) primary = false;
       });
     });
   }
@@ -530,6 +551,16 @@
           return;
         }
       }
+      if (tipo === "lead") {
+        var fecha = form.querySelector("[name=fecha_inicio]");
+        if (!fecha || !/^\d{4}-\d{2}-\d{2}$/.test(fecha.value)) {
+          say("Elige el día en que pones los huevos.");
+          if (fecha) fecha.focus();
+          return;
+        }
+        var interesLead = form.querySelector("[name=interes]");
+        if (interesLead) interesLead.value = "checklist " + fecha.value;
+      }
       if (!endpoint) {
         say("El formulario está listo, pero todavía no envía datos: falta la URL de Google Apps Script en js/config.js. No salió nada de este navegador. Si te urge, escríbenos por WhatsApp.");
         return;
@@ -560,6 +591,11 @@
           }
         } else if (tipo === "beta") {
           say("Listo. Anotamos tu Gmail para la prueba de Google Play. Si hay plaza, te escribimos.");
+        } else if (tipo === "lead") {
+          var iso = "";
+          var fechaEl = form.querySelector("[name=fecha_inicio]");
+          if (fechaEl) iso = fechaEl.value;
+          entregarLista(msg, iso);
         } else {
           say("Listo. Guardamos tu registro. Te escribimos a ese correo cuando haya novedad.");
         }
@@ -590,6 +626,29 @@
     }
   }
 
+  function entregarLista(msg, iso) {
+    if (!msg || !window.GR_lista) {
+      if (msg) msg.textContent = "Listo. Guardamos tu correo.";
+      return;
+    }
+    msg.textContent = "";
+    msg.appendChild(document.createTextNode("Listo. Tu lista y tu calendario: "));
+    var txt = document.createElement("a");
+    txt.href = URL.createObjectURL(new Blob([window.GR_lista.texto(iso)], { type: "text/plain;charset=utf-8" }));
+    txt.download = "lista-granja-rentable.txt";
+    txt.textContent = "Descargar lista";
+    msg.appendChild(txt);
+    var cal = window.GR_lista.ics(iso);
+    if (cal) {
+      msg.appendChild(document.createTextNode(" · "));
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([cal], { type: "text/calendar;charset=utf-8" }));
+      a.download = "incubacion-gallina.ics";
+      a.textContent = "Descargar calendario";
+      msg.appendChild(a);
+    }
+  }
+
   function postToSheet(endpoint, data) {
     return fetch(endpoint, {
       method: "POST",
@@ -613,6 +672,75 @@
   if (refBox) {
     refBox.textContent = (GR.siteUrl || "https://granjarentable.net") + "/?ref=TUCODIGO";
   }
+
+  document.querySelectorAll(".foot-brand").forEach(function (p) {
+    if ((p.textContent || "").trim() !== "Sitio") return;
+    var ul = p.parentElement && p.parentElement.querySelector("ul");
+    if (!ul) return;
+    [
+      ["calculadoras.html", "Calculadoras"],
+      ["razas.html", "Líneas de aves"],
+      ["lista.html", "Lista y calendario"],
+      ["faq.html", "Preguntas"],
+      ["guias.html", "Guías"]
+    ].forEach(function (pair) {
+      var href = root + pair[0];
+      if (ul.querySelector('a[href="' + href + '"]')) return;
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = href;
+      a.textContent = pair[1];
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+  });
+
+  document.querySelectorAll("[data-yt-list]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (btn.querySelector("iframe")) return;
+      var list = btn.getAttribute("data-yt-list") || "";
+      if (!/^UU[\w-]{10,}$/.test(list)) return;
+      var frame = document.createElement("iframe");
+      frame.src = "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(list);
+      frame.title = "Canal de YouTube de Granja Rentable";
+      frame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+      frame.allowFullscreen = true;
+      btn.textContent = "";
+      btn.appendChild(frame);
+    });
+  });
+
+  (function productJsonLd() {
+    var box = document.querySelector(".pdp-buy[data-sku]");
+    if (!box) return;
+    var item = catalogMap()[box.getAttribute("data-sku")];
+    if (!item) return;
+    var site = (GR.siteUrl || "https://granjarentable.net").replace(/\/$/, "");
+    var data = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": item.nombre,
+      "description": item.resumen || "",
+      "sku": item.id,
+      "url": site + "/producto/" + item.id + ".html",
+      "seller": { "@type": "Organization", "name": "Granja Rentable", "url": site + "/" }
+    };
+    if (item.imagen) data.image = site + "/" + String(item.imagen).replace(/^\//, "");
+    var offer = item.offers && item.offers[pais];
+    if (offer && offer.precio > 0 && offer.moneda) {
+      data.offers = {
+        "@type": "Offer",
+        "price": String(offer.precio),
+        "priceCurrency": offer.moneda,
+        "url": data.url,
+        "availability": item.checkout === "whatsapp" ? "https://schema.org/LimitedAvailability" : "https://schema.org/InStock"
+      };
+    }
+    var s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.textContent = JSON.stringify(data);
+    document.head.appendChild(s);
+  })();
 
   applyPais(pais, false);
   window.GR_estado = function () {
