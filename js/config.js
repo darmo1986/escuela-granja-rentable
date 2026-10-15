@@ -38,9 +38,10 @@ window.GR = {
   fx: { fecha: "14 de octubre de 2026", MXN: 18.361368, PEN: 3.440436, EUR: 0.893421 },
   redes: {
     ebay: {
-      /* eBay Partner Network. Pega campid y mkrid del generador de enlaces. */
-      es: { campid: "", mkrid: "" },
-      com: { campid: "", mkrid: "" }
+      /* eBay Partner Network. campid vacío = la búsqueda abre y no hay comisión.
+         mkrid y siteid son la rotación pública de cada tienda eBay, no el ID de Pablo. */
+      es: { campid: "", mkrid: "1185-53479-19255-0", siteid: "186", host: "https://www.ebay.es/sch/i.html" },
+      com: { campid: "", mkrid: "711-53200-19255-0", siteid: "0", host: "https://www.ebay.com/sch/i.html" }
     }
   }
 };

@@ -407,8 +407,10 @@
     document.querySelectorAll(".js-pais-nombre").forEach(function (el) { el.textContent = p.nombre; });
 
     document.querySelectorAll(".js-red-nota").forEach(function (el) {
-      el.textContent = "Página secundaria. En " + p.nombre + " el enlace abre eBay y el precio está allí. La incubadora se compra en nuestra tienda.";
+      var sitio = ebayFor(pais);
+      el.textContent = "Página secundaria. En " + p.nombre + " la búsqueda abre " + sitio.label + ". El precio está en eBay. La incubadora se compra en nuestra tienda.";
     });
+    paintEpnGap();
 
     buildRecLinks();
     var ref = readRef();
@@ -423,9 +425,37 @@
     }
   }
 
+  function ebayFor(code) {
+    var all = (GR.redes && GR.redes.ebay) || {};
+    var es = code === "ES";
+    var cfg = es ? (all.es || {}) : (all.com || {});
+    return {
+      label: es ? "ebay.es" : "ebay.com",
+      lang: code === "US" ? "en" : "es",
+      host: cfg.host || (es ? "https://www.ebay.es/sch/i.html" : "https://www.ebay.com/sch/i.html"),
+      siteid: cfg.siteid || (es ? "186" : "0"),
+      mkrid: cfg.mkrid || "",
+      campid: String(cfg.campid || "").trim(),
+      key: es ? "es" : "com"
+    };
+  }
+
+  function paintEpnGap() {
+    var sitio = ebayFor(pais);
+    document.querySelectorAll("[data-epn-gap]").forEach(function (el) {
+      el.hidden = false;
+      if (sitio.campid) {
+        el.textContent = "Enlace de eBay Partner Network activo para " + sitio.label + ".";
+        el.classList.remove("is-missing");
+      } else {
+        el.textContent = "Falta el ID de campaña (campid) de eBay Partner Network para " + sitio.label + ". El hueco está en js/config.js → redes.ebay." + sitio.key + ".campid. Mientras siga vacío, el botón abre la búsqueda y no hay comisión.";
+        el.classList.add("is-missing");
+      }
+    });
+  }
+
   function buildRecLinks() {
-    var p = PAISES[pais];
-    var ebayAll = (GR.redes && GR.redes.ebay) || {};
+    var sitio = ebayFor(pais);
     document.querySelectorAll("[data-product]").forEach(function (card) {
       var stores = (card.getAttribute("data-tiendas") || "").split(/\s+/);
       card.querySelectorAll("[data-net]").forEach(function (a) {
@@ -444,20 +474,29 @@
           a.classList.remove("is-off");
           a.href = productHref(sku);
         } else if (net === "ebay") {
-          var es = pais === "ES";
-          var q = es ? (a.getAttribute("data-q-es") || a.getAttribute("data-q") || "") : (a.getAttribute("data-q-en") || a.getAttribute("data-q") || "");
-          var cfg = es ? (ebayAll.es || {}) : (ebayAll.com || {});
-          var u2 = new URL(es ? "https://www.ebay.es/sch/i.html" : "https://www.ebay.com/sch/i.html");
+          var q = sitio.lang === "en"
+            ? (a.getAttribute("data-q-en") || a.getAttribute("data-q") || "")
+            : (a.getAttribute("data-q-es") || a.getAttribute("data-q") || "");
+          var u2 = new URL(sitio.host);
           u2.searchParams.set("_nkw", q);
-          if (cfg.campid) {
+          if (sitio.campid) {
             u2.searchParams.set("mkcid", "1");
-            if (cfg.mkrid) u2.searchParams.set("mkrid", cfg.mkrid);
-            u2.searchParams.set("siteid", es ? "186" : "0");
-            u2.searchParams.set("campid", cfg.campid);
+            if (sitio.mkrid) u2.searchParams.set("mkrid", sitio.mkrid);
+            u2.searchParams.set("siteid", sitio.siteid);
+            u2.searchParams.set("campid", sitio.campid);
             u2.searchParams.set("toolid", "10001");
             u2.searchParams.set("mkevt", "1");
           }
           a.href = u2.toString();
+          var mark = a.parentNode && a.parentNode.querySelector(".epn-miss");
+          if (!sitio.campid) {
+            if (!mark && a.parentNode) {
+              mark = document.createElement("span");
+              mark.className = "epn-miss";
+              a.insertAdjacentElement("afterend", mark);
+            }
+            if (mark) mark.textContent = "Sin campid";
+          } else if (mark) mark.remove();
         }
       });
       var primary = true;
