@@ -2,25 +2,6 @@
   var GR = window.GR || {};
   var PAISES = window.GR_PAISES || {};
   var root = document.body.getAttribute("data-root") || "";
-  var ML_HOST = {
-    MX: "listado.mercadolibre.com.mx",
-    CO: "listado.mercadolibre.com.co",
-    PE: "listado.mercadolibre.com.pe",
-    AR: "listado.mercadolibre.com.ar",
-    VE: "listado.mercadolibre.com.ve",
-    EC: "listado.mercadolibre.com.ec",
-    DO: "listado.mercadolibre.com.do",
-    CL: "listado.mercadolibre.cl",
-    PY: "listado.mercadolibre.com.py",
-    UY: "listado.mercadolibre.com.uy",
-    BO: "listado.mercadolibre.com.bo",
-    GT: "listado.mercadolibre.com.gt",
-    HN: "listado.mercadolibre.com.hn",
-    SV: "listado.mercadolibre.com.sv",
-    NI: "listado.mercadolibre.com.ni",
-    CR: "listado.mercadolibre.co.cr",
-    PA: "listado.mercadolibre.com.pa"
-  };
   var REF_RE = /^(?:[A-Za-z0-9_-]{2,40}|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,24})$/;
 
   function valid(code) {
@@ -199,7 +180,70 @@
     }
   }
 
+
+  function paisRow(id) {
+    var book = window.GR_PAIS_CATALOGO;
+    if (!book || !book.paises) return null;
+    var bucket = book.paises[pais] || book.paises.RESTO;
+    if (!bucket || !bucket.productos) return null;
+    return bucket.productos[id] || null;
+  }
+
+  function paintProximamente(card, item, detalle) {
+    var nameEl = card.querySelector(".js-sku-name");
+    if (nameEl) nameEl.textContent = item.nombre;
+    var href = root + "registro.html?interes=" + encodeURIComponent(item.id);
+    var text = "Avísame";
+    if (item.checkout === "app") {
+      href = root + "app.html";
+      text = "Quiero ser tester";
+    }
+    paintSku(card, "Precio próximamente", detalle || "Pablo todavía no confirma el precio de este país.", "", "Sin precio publicado y sin stock anunciado.", "Pendiente", {
+      text: text,
+      href: href,
+      buy: false,
+      store: false
+    });
+  }
+
+  function paintGratis(card, item) {
+    var nameEl = card.querySelector(".js-sku-name");
+    if (nameEl) nameEl.textContent = item.nombre;
+    paintSku(card, "Gratis", item.resumen || "El curso de este sitio no tiene costo.", "", "", "", {
+      text: "Entrar al curso",
+      href: root + "curso.html",
+      buy: true,
+      store: false
+    });
+  }
+
+  function renderPendientes() {
+    document.querySelectorAll("#grid-pendientes").forEach(function (grid) {
+      if (grid.dataset.filled === "1") return;
+      grid.dataset.filled = "1";
+      (window.GR_CATALOGO || []).forEach(function (item) {
+        if (!item.fichaNueva) return;
+        var art = document.createElement("article");
+        art.className = "pcard";
+        art.setAttribute("data-sku", item.id);
+        var href = productHref(item.id);
+        var media = item.imagen
+          ? '<a class="pcard-media" href="' + href + '"><img src="' + root + item.imagen + '" alt="' + (item.alt || item.nombre) + '" width="800" height="800" loading="lazy"></a>'
+          : '<a class="pcard-media" href="' + href + '"><div class="ph">Sin foto hasta que Pablo la confirme</div></a>';
+        art.innerHTML = media +
+          '<div class="pcard-body"><p class="pcard-cat">' + (item.categoria || "") + '</p>' +
+          '<p class="badge sku-badge js-sku-badge" hidden></p>' +
+          '<h3><a href="' + href + '"><span class="js-sku-name"></span></a></h3>' +
+          '<p class="pcard-usd js-sku-usd"></p><p class="pcard-local js-sku-local"></p>' +
+          '<p class="pcard-meta js-sku-meta"></p><p class="note js-sku-nota"></p>' +
+          '<a class="btn sec js-sku-cta" href="' + href + '">Ver ficha</a></div>';
+        grid.appendChild(art);
+      });
+    });
+  }
+
   function applySkus() {
+    renderPendientes();
     var map = catalogMap();
     var p = PAISES[pais];
     var fecha = (GR.fx && GR.fx.fecha) || "";
@@ -209,24 +253,31 @@
       if (!item) return;
       try {
       var nameEl = card.querySelector(".js-sku-name");
-      if (item.soon) {
-        if (nameEl) nameEl.textContent = item.nombre;
-        paintSku(card, "Próximamente", item.resumen || "", "", "Todavía no tiene precio ni foto.", "Próximamente", {
-          text: "Avísame",
-          href: root + "registro.html?interes=" + encodeURIComponent(item.id),
-          buy: false,
-          store: false
-        });
+      if (item.gratis || item.checkout === "curso") {
+        paintGratis(card, item);
         return;
       }
-      if (item.checkout === "store" && !p.envio) {
-        if (nameEl) nameEl.textContent = item.nombre;
-        paintSku(card, "Sin envío a " + p.nombre, "Te avisamos cuando podamos enviar.", "", "", "Sin envío", {
-          text: "Avísame",
-          href: root + "registro.html?interes=envio",
-          buy: false,
-          store: false
-        });
+      var row = paisRow(item.id);
+      if (row && row.estado === "confirmado" && row.texto) {
+        item.offers = item.offers || {};
+        var prev = item.offers[pais] || {};
+        item.offers[pais] = {
+          moneda: row.moneda || prev.moneda,
+          precio: row.precio != null ? row.precio : prev.precio,
+          texto: row.texto,
+          nota: row.nota || prev.nota || "",
+          entrega: row.entrega || prev.entrega || "",
+          voltaje: prev.voltaje || "",
+          antes: prev.antes || "",
+          nombre: prev.nombre || ""
+        };
+      }
+      if ((item.soon || item.pendiente || item.checkout === "pendiente" || item.checkout === "app") && !(item.offers && item.offers[pais] && item.offers[pais].texto)) {
+        paintProximamente(card, item, item.resumen);
+        return;
+      }
+      if (item.checkout === "store" && !p.envio && !(item.offers && item.offers[pais])) {
+        paintProximamente(card, item, "Todavía no hay un precio publicado para " + p.nombre + ".");
         return;
       }
       var offer = item.offers && item.offers[pais];
@@ -242,13 +293,7 @@
             store: false
           });
         } else {
-          var ref = item.base ? ("Referencia de catálogo: " + item.base.texto + ". No es el precio de " + p.nombre + ".") : "";
-          paintSku(card, msg, ref, "", "", "No disponible aquí", {
-            text: "Preguntar por WhatsApp",
-            href: waProduct(item.nombre),
-            buy: false,
-            store: false
-          });
+          paintProximamente(card, item, "Todavía no hay un precio publicado para " + p.nombre + ".");
         }
         return;
       }
@@ -314,10 +359,10 @@
       var cta = card.querySelector(".js-cta");
       var extra = card.querySelector(".js-extra");
       if (!p.envio) {
-        fillText(usdEl, "Todavía no enviamos la incubadora a " + p.nombre + ".");
-        fillText(localEl, "Cuando haya envío, el precio se verá en dólares y en moneda local.");
+        fillText(usdEl, "Precio próximamente");
+        fillText(localEl, "Todavía no hay un precio publicado para " + p.nombre + ".");
         fillText(metaEl, "");
-        fillText(notaEl, "Déjanos tu correo y te avisamos. Mientras, el equipo suelto está en Mercado Libre.");
+        fillText(notaEl, "Precio próximamente para " + p.nombre + ". Déjanos tu correo y lo publicamos aquí.");
         if (extra) extra.hidden = true;
         if (cta) {
           cta.textContent = "Avísame cuando llegue";
@@ -362,10 +407,10 @@
     document.querySelectorAll(".js-pais-nombre").forEach(function (el) { el.textContent = p.nombre; });
 
     document.querySelectorAll(".js-red-nota").forEach(function (el) {
-      if (pais === "ES") el.textContent = "En España estos enlaces abren eBay. La incubadora se compra en nuestra tienda, no aquí.";
-      else if (pais === "US") el.textContent = "En Estados Unidos estos enlaces abren eBay. La incubadora se compra en nuestra tienda, en dólares.";
-      else el.textContent = "En " + p.nombre + " estos enlaces abren Mercado Libre. La incubadora se compra en nuestra tienda.";
+      var sitio = ebayFor(pais);
+      el.textContent = "Página secundaria. En " + p.nombre + " la búsqueda abre " + sitio.label + ". El precio está en eBay. La incubadora se compra en nuestra tienda.";
     });
+    paintEpnGap();
 
     buildRecLinks();
     var ref = readRef();
@@ -380,11 +425,37 @@
     }
   }
 
+  function ebayFor(code) {
+    var all = (GR.redes && GR.redes.ebay) || {};
+    var es = code === "ES";
+    var cfg = es ? (all.es || {}) : (all.com || {});
+    return {
+      label: es ? "ebay.es" : "ebay.com",
+      lang: code === "US" ? "en" : "es",
+      host: cfg.host || (es ? "https://www.ebay.es/sch/i.html" : "https://www.ebay.com/sch/i.html"),
+      siteid: cfg.siteid || (es ? "186" : "0"),
+      mkrid: cfg.mkrid || "",
+      campid: String(cfg.campid || "").trim(),
+      key: es ? "es" : "com"
+    };
+  }
+
+  function paintEpnGap() {
+    var sitio = ebayFor(pais);
+    document.querySelectorAll("[data-epn-gap]").forEach(function (el) {
+      el.hidden = false;
+      if (sitio.campid) {
+        el.textContent = "Enlace de eBay Partner Network activo para " + sitio.label + ".";
+        el.classList.remove("is-missing");
+      } else {
+        el.textContent = "Falta el ID de campaña (campid) de eBay Partner Network para " + sitio.label + ". El hueco está en js/config.js → redes.ebay." + sitio.key + ".campid. Mientras siga vacío, el botón abre la búsqueda y no hay comisión.";
+        el.classList.add("is-missing");
+      }
+    });
+  }
+
   function buildRecLinks() {
-    var p = PAISES[pais];
-    var ids = (GR.redes && GR.redes.mercadolibre && GR.redes.mercadolibre.ids) || {};
-    var param = (GR.redes && GR.redes.mercadolibre && GR.redes.mercadolibre.param) || "matt_tool";
-    var ebayAll = (GR.redes && GR.redes.ebay) || {};
+    var sitio = ebayFor(pais);
     document.querySelectorAll("[data-product]").forEach(function (card) {
       var stores = (card.getAttribute("data-tiendas") || "").split(/\s+/);
       card.querySelectorAll("[data-net]").forEach(function (a) {
@@ -392,28 +463,48 @@
         var allowed = stores.indexOf(net) !== -1;
         a.classList.toggle("is-off", !allowed);
         if (!allowed) return;
-        if (net === "mercadolibre") {
-          var host = ML_HOST[pais] || ML_HOST.MX;
-          var u = new URL("https://" + host + "/" + slug(a.getAttribute("data-q")));
-          var id = p.ml ? (ids[p.ml] || "") : "";
-          if (id) u.searchParams.set(param, id);
-          a.href = u.toString();
+        if (net === "tienda") {
+          var sku = card.getAttribute("data-sku");
+          var item = catalogMap()[sku];
+          var offer = item && item.offers && item.offers[pais];
+          if (!item || item.soon || !offer) {
+            a.classList.add("is-off");
+            return;
+          }
+          a.classList.remove("is-off");
+          a.href = productHref(sku);
         } else if (net === "ebay") {
-          var es = pais === "ES";
-          var q = es ? (a.getAttribute("data-q-es") || a.getAttribute("data-q") || "") : (a.getAttribute("data-q-en") || a.getAttribute("data-q") || "");
-          var cfg = es ? (ebayAll.es || {}) : (ebayAll.com || {});
-          var u2 = new URL(es ? "https://www.ebay.es/sch/i.html" : "https://www.ebay.com/sch/i.html");
+          var q = sitio.lang === "en"
+            ? (a.getAttribute("data-q-en") || a.getAttribute("data-q") || "")
+            : (a.getAttribute("data-q-es") || a.getAttribute("data-q") || "");
+          var u2 = new URL(sitio.host);
           u2.searchParams.set("_nkw", q);
-          if (cfg.campid) {
+          if (sitio.campid) {
             u2.searchParams.set("mkcid", "1");
-            if (cfg.mkrid) u2.searchParams.set("mkrid", cfg.mkrid);
-            u2.searchParams.set("siteid", es ? "186" : "0");
-            u2.searchParams.set("campid", cfg.campid);
+            if (sitio.mkrid) u2.searchParams.set("mkrid", sitio.mkrid);
+            u2.searchParams.set("siteid", sitio.siteid);
+            u2.searchParams.set("campid", sitio.campid);
             u2.searchParams.set("toolid", "10001");
             u2.searchParams.set("mkevt", "1");
           }
           a.href = u2.toString();
+          var mark = a.parentNode && a.parentNode.querySelector(".epn-miss");
+          if (!sitio.campid) {
+            if (!mark && a.parentNode) {
+              mark = document.createElement("span");
+              mark.className = "epn-miss";
+              a.insertAdjacentElement("afterend", mark);
+            }
+            if (mark) mark.textContent = "Sin campid";
+          } else if (mark) mark.remove();
         }
+      });
+      var primary = true;
+      card.querySelectorAll("[data-net]").forEach(function (a) {
+        var on = !a.classList.contains("is-off");
+        a.classList.toggle("gold", on && primary);
+        a.classList.toggle("sec", !on || !primary);
+        if (on && primary) primary = false;
       });
     });
   }
@@ -530,6 +621,16 @@
           return;
         }
       }
+      if (tipo === "lead") {
+        var fecha = form.querySelector("[name=fecha_inicio]");
+        if (!fecha || !/^\d{4}-\d{2}-\d{2}$/.test(fecha.value)) {
+          say("Elige el día en que pones los huevos.");
+          if (fecha) fecha.focus();
+          return;
+        }
+        var interesLead = form.querySelector("[name=interes]");
+        if (interesLead) interesLead.value = "checklist " + fecha.value;
+      }
       if (!endpoint) {
         say("El formulario está listo, pero todavía no envía datos: falta la URL de Google Apps Script en js/config.js. No salió nada de este navegador. Si te urge, escríbenos por WhatsApp.");
         return;
@@ -548,7 +649,7 @@
       postToSheet(endpoint, data).then(function () {
         if (tipo === "afiliado") {
           var code = emailVal.toLowerCase();
-          var link = (GR.siteUrl || "https://granjarentable.net").replace(/\/$/, "") + "/?ref=" + encodeURIComponent(code);
+          var link = (GR.siteUrl || "https://granjarentable.com").replace(/\/$/, "") + "/?ref=" + encodeURIComponent(code);
           if (msg) {
             msg.textContent = "";
             msg.appendChild(document.createTextNode("Listo. Tu enlace personal es "));
@@ -560,6 +661,11 @@
           }
         } else if (tipo === "beta") {
           say("Listo. Anotamos tu Gmail para la prueba de Google Play. Si hay plaza, te escribimos.");
+        } else if (tipo === "lead") {
+          var iso = "";
+          var fechaEl = form.querySelector("[name=fecha_inicio]");
+          if (fechaEl) iso = fechaEl.value;
+          entregarLista(msg, iso);
         } else {
           say("Listo. Guardamos tu registro. Te escribimos a ese correo cuando haya novedad.");
         }
@@ -590,6 +696,29 @@
     }
   }
 
+  function entregarLista(msg, iso) {
+    if (!msg || !window.GR_lista) {
+      if (msg) msg.textContent = "Listo. Guardamos tu correo.";
+      return;
+    }
+    msg.textContent = "";
+    msg.appendChild(document.createTextNode("Listo. Tu lista y tu calendario: "));
+    var txt = document.createElement("a");
+    txt.href = URL.createObjectURL(new Blob([window.GR_lista.texto(iso)], { type: "text/plain;charset=utf-8" }));
+    txt.download = "lista-granja-rentable.txt";
+    txt.textContent = "Descargar lista";
+    msg.appendChild(txt);
+    var cal = window.GR_lista.ics(iso);
+    if (cal) {
+      msg.appendChild(document.createTextNode(" · "));
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([cal], { type: "text/calendar;charset=utf-8" }));
+      a.download = "incubacion-gallina.ics";
+      a.textContent = "Descargar calendario";
+      msg.appendChild(a);
+    }
+  }
+
   function postToSheet(endpoint, data) {
     return fetch(endpoint, {
       method: "POST",
@@ -611,10 +740,102 @@
 
   var refBox = document.getElementById("ref-ejemplo");
   if (refBox) {
-    refBox.textContent = (GR.siteUrl || "https://granjarentable.net") + "/?ref=TUCODIGO";
+    refBox.textContent = (GR.siteUrl || "https://granjarentable.com") + "/?ref=TUCODIGO";
   }
 
+  document.querySelectorAll(".foot-brand").forEach(function (p) {
+    if ((p.textContent || "").trim() !== "Sitio") return;
+    var ul = p.parentElement && p.parentElement.querySelector("ul");
+    if (!ul) return;
+    [
+      ["calculadoras.html", "Calculadoras"],
+      ["razas.html", "Líneas de aves"],
+      ["lista.html", "Lista y calendario"],
+      ["faq.html", "Preguntas"],
+      ["guias.html", "Guías"],
+      ["juegos.html", "Juegos"],
+      ["recomendados.html", "Equipo en eBay"]
+    ].forEach(function (pair) {
+      var href = root + pair[0];
+      if (ul.querySelector('a[href="' + href + '"]')) return;
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = href;
+      a.textContent = pair[1];
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+  });
+
+  document.querySelectorAll("[data-yt-list]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (btn.querySelector("iframe")) return;
+      var list = btn.getAttribute("data-yt-list") || "";
+      if (!/^UU[\w-]{10,}$/.test(list)) return;
+      var frame = document.createElement("iframe");
+      frame.src = "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(list);
+      frame.title = "Canal de YouTube de Granja Rentable";
+      frame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+      frame.allowFullscreen = true;
+      btn.textContent = "";
+      btn.appendChild(frame);
+    });
+  });
+
+  (function productJsonLd() {
+    var box = document.querySelector(".pdp-buy[data-sku]");
+    if (!box) return;
+    var item = catalogMap()[box.getAttribute("data-sku")];
+    if (!item) return;
+    var site = (GR.siteUrl || "https://granjarentable.com").replace(/\/$/, "");
+    var data = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": item.nombre,
+      "description": item.resumen || "",
+      "sku": item.id,
+      "url": site + "/producto/" + item.id + ".html",
+      "seller": { "@type": "Organization", "name": "Granja Rentable", "url": site + "/" }
+    };
+    if (item.imagen) data.image = site + "/" + String(item.imagen).replace(/^\//, "");
+    var offer = item.offers && item.offers[pais];
+    if (offer && offer.precio > 0 && offer.moneda) {
+      data.offers = {
+        "@type": "Offer",
+        "price": String(offer.precio),
+        "priceCurrency": offer.moneda,
+        "url": data.url,
+        "availability": item.checkout === "whatsapp" ? "https://schema.org/LimitedAvailability" : "https://schema.org/InStock"
+      };
+    }
+    var s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.textContent = JSON.stringify(data);
+    document.head.appendChild(s);
+  })();
+
   applyPais(pais, false);
+  fetch(root + "data/catalogo-paises.json", { credentials: "omit" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !data.paises) return;
+      window.GR_PAIS_CATALOGO = data;
+      applyPais(pais, false);
+    })
+    .catch(function () {});
+  try {
+    if (!localStorage.getItem("gr_pais")) {
+      fetch("https://get.geojs.io/v1/ip/country.json", { credentials: "omit" })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var code = String((d && (d.country || d.country_code)) || "").toUpperCase();
+          if (!PAISES[code]) return;
+          try { localStorage.setItem("gr_pais_ip", code); } catch (e1) {}
+          if (code !== pais && !localStorage.getItem("gr_pais")) applyPais(code, false);
+        })
+        .catch(function () {});
+    }
+  } catch (eGeo) {}
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), tienda: (PAISES[pais] && PAISES[pais].envio) ? storeUrl() : "" };
   };

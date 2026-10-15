@@ -1,4 +1,4 @@
-/* Catálogo de la tienda. La fuente editable es data/catalogo.json. */
+/* Catálogo embebido. Precios por país, editables: data/catalogo-paises.json. */
 window.GR_CATALOGO = [
   {
     "id": "incubadora-24egg-dual",
@@ -606,5 +606,119 @@ window.GR_CATALOGO = [
         "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
       }
     }
+  },
+  {
+    "id": "bebedero-campana",
+    "nombre": "Bebedero de campana",
+    "alt": "",
+    "categoria": "complementos",
+    "imagen": "",
+    "resumen": "Bebedero colgante para gallinas. En el repositorio no hay precio, foto ni stock.",
+    "parrafos": [
+      "Ficha aparte del juego de comedero 3 kg y bebedero 3 L, que sí tiene precio en España y Estados Unidos.",
+      "No hay un precio publicado para ningún país. Hasta que Pablo lo confirme, verás Precio próximamente."
+    ],
+    "incluye": [],
+    "capacidad": "",
+    "checkout": "pendiente",
+    "pendiente": true,
+    "fichaNueva": true,
+    "origen": "Ficha nueva. Sin precio, foto ni stock en el repositorio. Pendiente de que Pablo lo confirme.",
+    "offers": {}
+  },
+  {
+    "id": "comedero-tolva",
+    "nombre": "Comedero de tolva",
+    "alt": "",
+    "categoria": "complementos",
+    "imagen": "",
+    "resumen": "Comedero de tolva para gallinas. En el repositorio no hay precio, foto ni stock.",
+    "parrafos": [
+      "Ficha aparte del juego de comedero y bebedero que ya se vende en España y Estados Unidos.",
+      "No hay capacidad, marca ni precio confirmados. La ficha no inventa un número."
+    ],
+    "incluye": [],
+    "capacidad": "",
+    "checkout": "pendiente",
+    "pendiente": true,
+    "fichaNueva": true,
+    "origen": "Ficha nueva. Sin precio, foto ni stock en el repositorio. Pendiente de que Pablo lo confirme.",
+    "offers": {}
+  },
+  {
+    "id": "criadora-calor",
+    "nombre": "Criadora de calor para pollitos",
+    "alt": "",
+    "categoria": "calefaccion",
+    "imagen": "",
+    "resumen": "Calor para los primeros días. No es la bombilla suelta que ya tiene precio en Estados Unidos.",
+    "parrafos": [
+      "La bombilla infrarroja sí tiene precio en Estados Unidos (US$ 49.99) y es solo la bombilla.",
+      "Esta ficha es una criadora o lámpara completa. No hay precio, foto ni ficha de proveedor en el repositorio."
+    ],
+    "incluye": [],
+    "capacidad": "",
+    "checkout": "pendiente",
+    "pendiente": true,
+    "fichaNueva": true,
+    "origen": "Ficha nueva. Sin precio, foto ni stock en el repositorio. Pendiente de que Pablo lo confirme.",
+    "offers": {}
+  },
+  {
+    "id": "ebook-guia-avicultura",
+    "nombre": "Guía de avicultura (ebook)",
+    "alt": "",
+    "categoria": "guias",
+    "imagen": "",
+    "resumen": "Guía descargable. El curso en vídeo de este sitio es gratis y no es este ebook.",
+    "parrafos": [
+      "El curso publicado (L01 a L06) es gratis y se ve en la web.",
+      "Este ebook sería un producto distinto. No hay archivo, precio ni número de páginas en el repositorio."
+    ],
+    "incluye": [],
+    "capacidad": "",
+    "checkout": "pendiente",
+    "pendiente": true,
+    "fichaNueva": true,
+    "origen": "Ficha nueva. Sin precio ni archivo en el repositorio. Pendiente de que Pablo lo confirme.",
+    "offers": {}
+  },
+  {
+    "id": "app-pollos-engorde",
+    "nombre": "App de pollos de engorde",
+    "alt": "",
+    "categoria": "app",
+    "imagen": "",
+    "resumen": "App Android para anotar la crianza. No hay precio de venta. Hay una prueba para testers.",
+    "parrafos": [
+      "La app todavía no está en Google Play. La prueba pide un Gmail y se anota en la misma hoja de los formularios.",
+      "No hay un precio publicado. Hasta que Pablo lo ponga, la ficha dice Precio próximamente."
+    ],
+    "incluye": [],
+    "capacidad": "",
+    "checkout": "app",
+    "pendiente": true,
+    "fichaNueva": true,
+    "origen": "La app se menciona en el sitio como prueba cerrada. Sin precio de venta en el repositorio.",
+    "offers": {}
+  },
+  {
+    "id": "curso-avicultura",
+    "nombre": "Curso de avicultura",
+    "alt": "",
+    "categoria": "curso",
+    "imagen": "",
+    "resumen": "El curso de este sitio es gratis. L01 a L04B ya tienen vídeo. L05 y L06 tienen página y el vídeo está por publicar.",
+    "parrafos": [
+      "Carne, huevos, incubación y el manejo que ya está escrito en las lecciones.",
+      "No es un ebook de pago. El precio publicado en el sitio es cero: es gratis."
+    ],
+    "incluye": [],
+    "capacidad": "",
+    "checkout": "curso",
+    "gratis": true,
+    "fichaNueva": true,
+    "origen": "El propio sitio publica el curso como gratis.",
+    "offers": {}
   }
 ];

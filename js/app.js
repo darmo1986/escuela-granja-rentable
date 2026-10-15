@@ -4,20 +4,36 @@ const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
 const save=p=>localStorage.setItem(PK,JSON.stringify(p));
 /* ── Consentimiento + publicidad (Adsterra o AdSense; nada sin key y sin «Aceptar») ── */
+function smallBannerCfg(){
+  const g=(window.GR&&window.GR.redes&&window.GR.redes.adsterra)||{};
+  const key=String(g.bannerKey||'').trim();
+  if(key)return {key:key,w:+g.w||320,h:+g.h||50};
+  const mov=window.ADSTERRA&&window.ADSTERRA.banner&&window.ADSTERRA.banner.movil;
+  const fallback=mov&&String(mov.key||'').trim();
+  if(fallback)return {key:fallback,w:+mov.w||320,h:+mov.h||50};
+  return null;
+}
 function adsterraHasKey(){
+  if(smallBannerCfg())return true;
   const A=window.ADSTERRA||{};
   return ['banner','rect'].some(k=>{
     const o=A[k]; return !!(o&&((o.key&&String(o.key).trim())||(o.movil&&o.movil.key&&String(o.movil.key).trim())));
   });
 }
 function adsConfigured(){return !!(window.ADSENSE_CLIENT||adsterraHasKey());}
-function pickAdsterra(cfg){
+function pickAdsterra(cfg,size){
+  if(size==='banner')return smallBannerCfg();
   if(!cfg)return null;
-  const narrow=window.matchMedia('(max-width:640px)').matches;
-  const desk=cfg.key&&String(cfg.key).trim()?{key:String(cfg.key).trim(),w:+cfg.w||728,h:+cfg.h||90}:null;
-  const mov=cfg.movil&&cfg.movil.key&&String(cfg.movil.key).trim()?{key:String(cfg.movil.key).trim(),w:+cfg.movil.w||320,h:+cfg.movil.h||50}:null;
-  if(narrow)return mov||desk;
-  return desk||mov;
+  const desk=cfg.key&&String(cfg.key).trim()?{key:String(cfg.key).trim(),w:+cfg.w||300,h:+cfg.h||250}:null;
+  return desk;
+}
+function markBannerGap(el){
+  if(el.dataset.adFilled)return;
+  el.dataset.adFilled='gap';
+  const p=document.createElement('p');
+  p.className='ad-gap';
+  p.textContent='Falta la clave: js/config.js → redes.adsterra.bannerKey';
+  el.appendChild(p);
 }
 /* Cada pieza va en su propio iframe para que atOptions no se pise.
    format iframe, params vacío: sin tema ni palabras clave. */
@@ -40,9 +56,15 @@ function mountAdsterra(el,cfg){
   doc.close();
 }
 function loadAdsterra(){
+  const narrow=window.matchMedia('(max-width:1099px)').matches;
   const seen={};
   document.querySelectorAll('.ad-slot[data-ad-size]').forEach(el=>{
     const size=el.dataset.adSize;
+    if(narrow && size==='rect'){
+      const box=el.closest('.ad-inline');
+      if(box)box.remove();
+      return;
+    }
     if(seen[size]){
       const box=el.closest('.ad-inline');
       if(box)box.remove();
@@ -50,11 +72,25 @@ function loadAdsterra(){
     }
     seen[size]=el;
   });
+  if(!narrow){
+    const rail=document.querySelector('.ad-inline[data-ad-size="rect"]');
+    const foot=document.querySelector('.foot');
+    if(rail){
+      rail.classList.add('ad-rail');
+      if(foot && 'IntersectionObserver' in window){
+        new IntersectionObserver(entries=>{
+          rail.classList.toggle('ad-rail-off', entries.some(e=>e.isIntersecting));
+        }).observe(foot);
+      }
+    }
+  }
   const slots=Object.keys(seen).map(k=>seen[k]);
   if(!slots.length)return false;
   const arm=el=>{
-    const cfg=pickAdsterra((window.ADSTERRA||{})[el.dataset.adSize]);
+    const size=el.dataset.adSize;
+    const cfg=pickAdsterra((window.ADSTERRA||{})[size],size);
     if(cfg)mountAdsterra(el,cfg);
+    else if(size==='banner')markBannerGap(el);
   };
   if(!('IntersectionObserver' in window)){slots.forEach(arm);return true;}
   const io=new IntersectionObserver(entries=>{
@@ -93,8 +129,8 @@ function loadAds(){
 function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
-  const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');
-  b.innerHTML='<strong>🍪 Cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. <a href="'+root+'cookies.html">Más información</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
@@ -194,15 +230,82 @@ function promoteLesson(li,L){
   const more=li.querySelector('.card-more p');
   if(more&&L.descripcion)more.textContent=L.descripcion;
 }
+function lessonMedia(enlace){
+  const s=String(enlace||'').trim();
+  if(!s||/[\s<>"']/.test(s))return null;
+  if(/^videos\/[a-z0-9_-]+\.mp4$/i.test(s))return {kind:'file',src:root+s};
+  if(/^[a-z0-9_-]+\.mp4$/i.test(s))return {kind:'file',src:root+'videos/'+s};
+  let u;
+  try{u=new URL(s);}catch(e){return null;}
+  if(u.protocol!=='https:')return null;
+  const host=u.hostname.replace(/^www\./,'');
+  if(host==='youtu.be'){
+    const id=u.pathname.replace(/^\//,'').split('/')[0];
+    return /^[a-zA-Z0-9_-]{6,}$/.test(id)?{kind:'youtube',id}:null;
+  }
+  if(host==='youtube.com'||host==='youtube-nocookie.com'){
+    const fromPath=(u.pathname.match(/\/(?:embed|shorts)\/([a-zA-Z0-9_-]{6,})/)||[])[1]||'';
+    const id=u.searchParams.get('v')||fromPath;
+    return /^[a-zA-Z0-9_-]{6,}$/.test(id)?{kind:'youtube',id}:null;
+  }
+  if(/\.mp4$/i.test(u.pathname))return {kind:'file',src:s};
+  return null;
+}
+function paintLessonSlot(slot,enlace){
+  const media=lessonMedia(enlace);
+  if(!media){
+    slot.textContent='';
+    const p=document.createElement('p');
+    p.className='ph video-soon';
+    p.textContent='Próximamente';
+    slot.appendChild(p);
+    return;
+  }
+  if(media.kind==='youtube'){
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='yt-facade';
+    b.textContent='Ver el vídeo';
+    b.addEventListener('click',function(){
+      const f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(media.id)+'?rel=0';
+      f.title='Vídeo de la lección';
+      f.allow='accelerometer; encrypted-media; picture-in-picture';
+      f.allowFullscreen=true;
+      f.loading='lazy';
+      slot.replaceChildren(f);
+    });
+    slot.replaceChildren(b);
+    return;
+  }
+  const v=document.createElement('video');
+  v.controls=true;
+  v.playsInline=true;
+  v.preload='none';
+  v.poster=root+'img/logo.jpg';
+  v.src=media.src;
+  slot.replaceChildren(v);
+}
 async function promoteFromJson(){
   const list=document.querySelector('ul.lessons');
   if(!list)return;
   const data=await cursoWeb();
   if(!data||!Array.isArray(data.lecciones))return;
   data.lecciones.forEach(L=>{
-    if(L.estado!=='disponible'||!VIDEO_RE.test(L.video||'')||!ID_RE.test(L.id||''))return;
+    if(!lessonMedia(L.enlace)||!ID_RE.test(L.id||''))return;
     const li=list.querySelector('.lesson.soon[data-id="'+L.id+'"]');
     if(li)promoteLesson(li,L);
+  });
+}
+async function mountLessonVideos(){
+  const slots=[...document.querySelectorAll('[data-lesson-video]')];
+  if(!slots.length)return;
+  const data=await cursoWeb();
+  const by={};
+  ((data&&data.lecciones)||[]).forEach(function(L){if(L&&L.id)by[L.id]=L;});
+  slots.forEach(function(slot){
+    const L=by[slot.getAttribute('data-lesson-video')]||null;
+    paintLessonSlot(slot,L&&L.enlace);
   });
 }
 async function renderDynamicLesson(){
@@ -215,20 +318,19 @@ async function renderDynamicLesson(){
   const idx=lessons.findIndex(x=>x.id===id);
   const L=idx>=0?lessons[idx]:null;
   if(!L){host.innerHTML='<p>No encontramos esa lección. <a href="'+root+'curso.html">Volver al curso</a>.</p>';return;}
-  const ready=L.estado==='disponible'&&VIDEO_RE.test(L.video||'');
+  const media=lessonMedia(L.enlace);
   const withExam=!!(L.examen&&EXAM_RE.test(L.examen));
   const prev=withExam?lessons.slice(0,idx).filter(x=>x.estado==='disponible'&&x.examen&&EXAM_RE.test(x.examen)).map(x=>x.id):[];
   if(prev.length)host.dataset.requires=prev.join(' ');
-  const base=String(data.videoBaseUrl||'videos/').replace(/^\/+/,'');
   let html='<p class="crumb"><a href="'+root+'curso.html">Curso</a> › '+esc(L.codigo||'')+'</p>';
   html+='<h1><span class="code">'+esc(L.codigo||'')+'</span> '+esc(L.titulo||'')+'</h1>';
   html+='<div class="lock-msg" hidden>Esta lección se abre cuando apruebes las anteriores. <a href="'+root+'curso.html">Ver tu progreso</a>.</div>';
-  if(!ready){
-    html+='<p>Próximamente. El video todavía no está publicado.</p>';
+  html+='<div class="video lockable" data-lesson-video="'+esc(L.id)+'"><p class="ph video-soon">Próximamente</p></div>';
+  if(!media){
+    if(L.descripcion)html+='<section class="texto"><h2>De qué trata</h2><p>'+esc(L.descripcion)+'</p></section>';
     host.innerHTML=html;
     return;
   }
-  html+='<div class="video lockable"><video controls preload="metadata" playsinline poster="'+root+'img/logo.jpg" src="'+esc(root+base+L.video)+'"></video></div>';
   if(L.descripcion)html+='<section class="texto lockable"><h2>De qué trata</h2><p>'+esc(L.descripcion)+'</p></section>';
   if(withExam){
     html+='<section class="quiz lockable" data-exam="'+esc(root+'data/examenes/'+L.examen)+'" data-pass="10" data-key="'+esc(L.id)+'"><h2>Test de la lección</h2><p>Apruebas con 10 aciertos.</p><div class="qwrap">Cargando test…</div></section>';
@@ -237,6 +339,23 @@ async function renderDynamicLesson(){
   const t=document.querySelector('title');
   if(t)t.textContent=(L.codigo?L.codigo+': ':'')+(L.titulo||'Lección')+' | Curso Granja Rentable';
 }
+async function mountFinalVideos(){
+  const box=document.getElementById('videos-finales');
+  if(!box)return;
+  const data=await cursoWeb();
+  const by={};
+  ((data&&data.lecciones)||[]).forEach(function(L){if(L&&L.id)by[L.id]=L;});
+  const base=String((data&&data.videoBaseUrl)||'videos/').replace(/^\/+/,'');
+  box.querySelectorAll('.final-slot').forEach(function(slot){
+    const L=by[slot.getAttribute('data-id')]||{};
+    const name=String(L.videoFinal||'').trim();
+    if(!VIDEO_RE.test(name)){
+      slot.innerHTML='<p>Vídeo final pendiente de aprobación. No hay archivo ni dirección.</p>';
+      return;
+    }
+    slot.innerHTML='<video controls preload="metadata" playsinline poster="'+esc(root+'img/logo.jpg')+'" src="'+esc(root+base+name)+'"></video>';
+  });
+}
 paintProgress();
 paintLocks();
 bindQuizzes();
@@ -244,6 +363,8 @@ bindQuizzes();
   await promoteFromJson();
   paintProgress();
   await renderDynamicLesson();
+  await mountLessonVideos();
+  await mountFinalVideos();
   paintLocks();
   bindQuizzes();
 })();
