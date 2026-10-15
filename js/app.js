@@ -40,9 +40,15 @@ function mountAdsterra(el,cfg){
   doc.close();
 }
 function loadAdsterra(){
+  const narrow=window.matchMedia('(max-width:1099px)').matches;
   const seen={};
   document.querySelectorAll('.ad-slot[data-ad-size]').forEach(el=>{
     const size=el.dataset.adSize;
+    if(narrow && size==='rect'){
+      const box=el.closest('.ad-inline');
+      if(box)box.remove();
+      return;
+    }
     if(seen[size]){
       const box=el.closest('.ad-inline');
       if(box)box.remove();
@@ -50,6 +56,18 @@ function loadAdsterra(){
     }
     seen[size]=el;
   });
+  if(!narrow){
+    const rail=document.querySelector('.ad-inline[data-ad-size="rect"]');
+    const foot=document.querySelector('.foot');
+    if(rail){
+      rail.classList.add('ad-rail');
+      if(foot && 'IntersectionObserver' in window){
+        new IntersectionObserver(entries=>{
+          rail.classList.toggle('ad-rail-off', entries.some(e=>e.isIntersecting));
+        }).observe(foot);
+      }
+    }
+  }
   const slots=Object.keys(seen).map(k=>seen[k]);
   if(!slots.length)return false;
   const arm=el=>{

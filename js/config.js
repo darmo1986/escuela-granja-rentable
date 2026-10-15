@@ -15,13 +15,14 @@ window.ADSTERRA = {
   }
 };
 
-/* Sitio unificado. La tienda propia va primero. Recomendados solo usa Mercado Libre y eBay.
-   Pega aquí los identificadores cuando los tengas. Vacío = el enlace abre la búsqueda, sin tracking. */
+/* Sitio unificado. La tienda propia y el curso van primero.
+   eBay queda en una página secundaria. No hay otros marketplaces.
+   Pega campid cuando lo tengas. Vacío = la búsqueda abre sin comisión. */
 window.GR = {
-  siteUrl: "https://granjarentable.net",
+  siteUrl: "https://granjarentable.com",
   /* Única URL de la tienda de pago. Hoy sigue en Netlify.
      Para pasar a la tienda nueva, cambia solo esta línea a
-     "https://tienda.granjarentable.net/". Los botones Comprar la leen de aquí. */
+     "https://tienda.granjarentable.com/". Los botones Comprar la leen de aquí. */
   tiendaBase: "https://granjarentable-incubadora.netlify.app/",
   youtubeUrl: "https://www.youtube.com/@GranjaRentable",
   /* Confirma la URL exacta de la página de Facebook. */
@@ -36,14 +37,6 @@ window.GR = {
   /* Tipo de cambio de referencia (14 oct 2026) solo para mostrar dólares. El cargo real es el de la tienda. */
   fx: { fecha: "14 de octubre de 2026", MXN: 18.361368, PEN: 3.440436, EUR: 0.893421 },
   redes: {
-    mercadolibre: {
-      /* Parámetro que añade el programa de afiliados. Cámbialo si tu panel indica otro. */
-      param: "matt_tool",
-      ids: {
-        mx: "", co: "", pe: "", ar: "", ve: "", ec: "", do: "", cl: "",
-        py: "", uy: "", bo: "", gt: "", hn: "", sv: "", ni: "", cr: "", pa: ""
-      }
-    },
     ebay: {
       /* eBay Partner Network. Pega campid y mkrid del generador de enlaces. */
       es: { campid: "", mkrid: "" },

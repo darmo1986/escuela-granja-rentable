@@ -2,25 +2,6 @@
   var GR = window.GR || {};
   var PAISES = window.GR_PAISES || {};
   var root = document.body.getAttribute("data-root") || "";
-  var ML_HOST = {
-    MX: "listado.mercadolibre.com.mx",
-    CO: "listado.mercadolibre.com.co",
-    PE: "listado.mercadolibre.com.pe",
-    AR: "listado.mercadolibre.com.ar",
-    VE: "listado.mercadolibre.com.ve",
-    EC: "listado.mercadolibre.com.ec",
-    DO: "listado.mercadolibre.com.do",
-    CL: "listado.mercadolibre.cl",
-    PY: "listado.mercadolibre.com.py",
-    UY: "listado.mercadolibre.com.uy",
-    BO: "listado.mercadolibre.com.bo",
-    GT: "listado.mercadolibre.com.gt",
-    HN: "listado.mercadolibre.com.hn",
-    SV: "listado.mercadolibre.com.sv",
-    NI: "listado.mercadolibre.com.ni",
-    CR: "listado.mercadolibre.co.cr",
-    PA: "listado.mercadolibre.com.pa"
-  };
   var REF_RE = /^(?:[A-Za-z0-9_-]{2,40}|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,24})$/;
 
   function valid(code) {
@@ -199,7 +180,70 @@
     }
   }
 
+
+  function paisRow(id) {
+    var book = window.GR_PAIS_CATALOGO;
+    if (!book || !book.paises) return null;
+    var bucket = book.paises[pais] || book.paises.RESTO;
+    if (!bucket || !bucket.productos) return null;
+    return bucket.productos[id] || null;
+  }
+
+  function paintProximamente(card, item, detalle) {
+    var nameEl = card.querySelector(".js-sku-name");
+    if (nameEl) nameEl.textContent = item.nombre;
+    var href = root + "registro.html?interes=" + encodeURIComponent(item.id);
+    var text = "Avísame";
+    if (item.checkout === "app") {
+      href = root + "app.html";
+      text = "Quiero ser tester";
+    }
+    paintSku(card, "Precio próximamente", detalle || "Pablo todavía no confirma el precio de este país.", "", "Sin precio publicado y sin stock anunciado.", "Pendiente", {
+      text: text,
+      href: href,
+      buy: false,
+      store: false
+    });
+  }
+
+  function paintGratis(card, item) {
+    var nameEl = card.querySelector(".js-sku-name");
+    if (nameEl) nameEl.textContent = item.nombre;
+    paintSku(card, "Gratis", item.resumen || "El curso de este sitio no tiene costo.", "", "", "", {
+      text: "Entrar al curso",
+      href: root + "curso.html",
+      buy: true,
+      store: false
+    });
+  }
+
+  function renderPendientes() {
+    document.querySelectorAll("#grid-pendientes").forEach(function (grid) {
+      if (grid.dataset.filled === "1") return;
+      grid.dataset.filled = "1";
+      (window.GR_CATALOGO || []).forEach(function (item) {
+        if (!item.fichaNueva) return;
+        var art = document.createElement("article");
+        art.className = "pcard";
+        art.setAttribute("data-sku", item.id);
+        var href = productHref(item.id);
+        var media = item.imagen
+          ? '<a class="pcard-media" href="' + href + '"><img src="' + root + item.imagen + '" alt="' + (item.alt || item.nombre) + '" width="800" height="800" loading="lazy"></a>'
+          : '<a class="pcard-media" href="' + href + '"><div class="ph">Sin foto hasta que Pablo la confirme</div></a>';
+        art.innerHTML = media +
+          '<div class="pcard-body"><p class="pcard-cat">' + (item.categoria || "") + '</p>' +
+          '<p class="badge sku-badge js-sku-badge" hidden></p>' +
+          '<h3><a href="' + href + '"><span class="js-sku-name"></span></a></h3>' +
+          '<p class="pcard-usd js-sku-usd"></p><p class="pcard-local js-sku-local"></p>' +
+          '<p class="pcard-meta js-sku-meta"></p><p class="note js-sku-nota"></p>' +
+          '<a class="btn sec js-sku-cta" href="' + href + '">Ver ficha</a></div>';
+        grid.appendChild(art);
+      });
+    });
+  }
+
   function applySkus() {
+    renderPendientes();
     var map = catalogMap();
     var p = PAISES[pais];
     var fecha = (GR.fx && GR.fx.fecha) || "";
@@ -209,24 +253,31 @@
       if (!item) return;
       try {
       var nameEl = card.querySelector(".js-sku-name");
-      if (item.soon) {
-        if (nameEl) nameEl.textContent = item.nombre;
-        paintSku(card, "Próximamente", item.resumen || "", "", "Todavía no tiene precio ni foto.", "Próximamente", {
-          text: "Avísame",
-          href: root + "registro.html?interes=" + encodeURIComponent(item.id),
-          buy: false,
-          store: false
-        });
+      if (item.gratis || item.checkout === "curso") {
+        paintGratis(card, item);
         return;
       }
-      if (item.checkout === "store" && !p.envio) {
-        if (nameEl) nameEl.textContent = item.nombre;
-        paintSku(card, "Sin envío a " + p.nombre, "Te avisamos cuando podamos enviar.", "", "", "Sin envío", {
-          text: "Avísame",
-          href: root + "registro.html?interes=envio",
-          buy: false,
-          store: false
-        });
+      var row = paisRow(item.id);
+      if (row && row.estado === "confirmado" && row.texto) {
+        item.offers = item.offers || {};
+        var prev = item.offers[pais] || {};
+        item.offers[pais] = {
+          moneda: row.moneda || prev.moneda,
+          precio: row.precio != null ? row.precio : prev.precio,
+          texto: row.texto,
+          nota: row.nota || prev.nota || "",
+          entrega: row.entrega || prev.entrega || "",
+          voltaje: prev.voltaje || "",
+          antes: prev.antes || "",
+          nombre: prev.nombre || ""
+        };
+      }
+      if ((item.soon || item.pendiente || item.checkout === "pendiente" || item.checkout === "app") && !(item.offers && item.offers[pais] && item.offers[pais].texto)) {
+        paintProximamente(card, item, item.resumen);
+        return;
+      }
+      if (item.checkout === "store" && !p.envio && !(item.offers && item.offers[pais])) {
+        paintProximamente(card, item, "Todavía no hay un precio publicado para " + p.nombre + ".");
         return;
       }
       var offer = item.offers && item.offers[pais];
@@ -242,13 +293,7 @@
             store: false
           });
         } else {
-          var ref = item.base ? ("Referencia de catálogo: " + item.base.texto + ". No es el precio de " + p.nombre + ".") : "";
-          paintSku(card, msg, ref, "", "", "No disponible aquí", {
-            text: "Preguntar por WhatsApp",
-            href: waProduct(item.nombre),
-            buy: false,
-            store: false
-          });
+          paintProximamente(card, item, "Todavía no hay un precio publicado para " + p.nombre + ".");
         }
         return;
       }
@@ -314,10 +359,10 @@
       var cta = card.querySelector(".js-cta");
       var extra = card.querySelector(".js-extra");
       if (!p.envio) {
-        fillText(usdEl, "Todavía no enviamos la incubadora a " + p.nombre + ".");
-        fillText(localEl, "Cuando haya envío, el precio se verá en dólares y en moneda local.");
+        fillText(usdEl, "Precio próximamente");
+        fillText(localEl, "Todavía no hay un precio publicado para " + p.nombre + ".");
         fillText(metaEl, "");
-        fillText(notaEl, "Déjanos tu correo y te avisamos. Mientras, el equipo suelto está en Mercado Libre.");
+        fillText(notaEl, "Precio próximamente para " + p.nombre + ". Déjanos tu correo y lo publicamos aquí.");
         if (extra) extra.hidden = true;
         if (cta) {
           cta.textContent = "Avísame cuando llegue";
@@ -362,9 +407,7 @@
     document.querySelectorAll(".js-pais-nombre").forEach(function (el) { el.textContent = p.nombre; });
 
     document.querySelectorAll(".js-red-nota").forEach(function (el) {
-      if (pais === "ES") el.textContent = "En España estos enlaces abren eBay. La incubadora se compra en nuestra tienda, no aquí.";
-      else if (pais === "US") el.textContent = "En Estados Unidos estos enlaces abren eBay. La incubadora se compra en nuestra tienda, en dólares.";
-      else el.textContent = "En " + p.nombre + " el primer enlace abre Mercado Libre y el segundo, eBay, queda de apoyo. El precio está en esa tienda. La incubadora se compra en la nuestra.";
+      el.textContent = "Página secundaria. En " + p.nombre + " el enlace abre eBay y el precio está allí. La incubadora se compra en nuestra tienda.";
     });
 
     buildRecLinks();
@@ -382,8 +425,6 @@
 
   function buildRecLinks() {
     var p = PAISES[pais];
-    var ids = (GR.redes && GR.redes.mercadolibre && GR.redes.mercadolibre.ids) || {};
-    var param = (GR.redes && GR.redes.mercadolibre && GR.redes.mercadolibre.param) || "matt_tool";
     var ebayAll = (GR.redes && GR.redes.ebay) || {};
     document.querySelectorAll("[data-product]").forEach(function (card) {
       var stores = (card.getAttribute("data-tiendas") || "").split(/\s+/);
@@ -402,16 +443,6 @@
           }
           a.classList.remove("is-off");
           a.href = productHref(sku);
-        } else if (net === "mercadolibre") {
-          var host = ML_HOST[pais];
-          if (!host) {
-            a.classList.add("is-off");
-            return;
-          }
-          var u = new URL("https://" + host + "/" + slug(a.getAttribute("data-q")));
-          var id = p.ml ? (ids[p.ml] || "") : "";
-          if (id) u.searchParams.set(param, id);
-          a.href = u.toString();
         } else if (net === "ebay") {
           var es = pais === "ES";
           var q = es ? (a.getAttribute("data-q-es") || a.getAttribute("data-q") || "") : (a.getAttribute("data-q-en") || a.getAttribute("data-q") || "");
@@ -579,7 +610,7 @@
       postToSheet(endpoint, data).then(function () {
         if (tipo === "afiliado") {
           var code = emailVal.toLowerCase();
-          var link = (GR.siteUrl || "https://granjarentable.net").replace(/\/$/, "") + "/?ref=" + encodeURIComponent(code);
+          var link = (GR.siteUrl || "https://granjarentable.com").replace(/\/$/, "") + "/?ref=" + encodeURIComponent(code);
           if (msg) {
             msg.textContent = "";
             msg.appendChild(document.createTextNode("Listo. Tu enlace personal es "));
@@ -670,7 +701,7 @@
 
   var refBox = document.getElementById("ref-ejemplo");
   if (refBox) {
-    refBox.textContent = (GR.siteUrl || "https://granjarentable.net") + "/?ref=TUCODIGO";
+    refBox.textContent = (GR.siteUrl || "https://granjarentable.com") + "/?ref=TUCODIGO";
   }
 
   document.querySelectorAll(".foot-brand").forEach(function (p) {
@@ -682,7 +713,9 @@
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],
       ["faq.html", "Preguntas"],
-      ["guias.html", "Guías"]
+      ["guias.html", "Guías"],
+      ["juegos.html", "Juegos"],
+      ["recomendados.html", "Equipo en eBay"]
     ].forEach(function (pair) {
       var href = root + pair[0];
       if (ul.querySelector('a[href="' + href + '"]')) return;
@@ -715,7 +748,7 @@
     if (!box) return;
     var item = catalogMap()[box.getAttribute("data-sku")];
     if (!item) return;
-    var site = (GR.siteUrl || "https://granjarentable.net").replace(/\/$/, "");
+    var site = (GR.siteUrl || "https://granjarentable.com").replace(/\/$/, "");
     var data = {
       "@context": "https://schema.org",
       "@type": "Product",
@@ -743,6 +776,27 @@
   })();
 
   applyPais(pais, false);
+  fetch(root + "data/catalogo-paises.json", { credentials: "omit" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !data.paises) return;
+      window.GR_PAIS_CATALOGO = data;
+      applyPais(pais, false);
+    })
+    .catch(function () {});
+  try {
+    if (!localStorage.getItem("gr_pais")) {
+      fetch("https://get.geojs.io/v1/ip/country.json", { credentials: "omit" })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var code = String((d && (d.country || d.country_code)) || "").toUpperCase();
+          if (!PAISES[code]) return;
+          try { localStorage.setItem("gr_pais_ip", code); } catch (e1) {}
+          if (code !== pais && !localStorage.getItem("gr_pais")) applyPais(code, false);
+        })
+        .catch(function () {});
+    }
+  } catch (eGeo) {}
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), tienda: (PAISES[pais] && PAISES[pais].envio) ? storeUrl() : "" };
   };

@@ -66,6 +66,7 @@
       localStorage.setItem("gr_pais", p);
     }
     if (!p) p = localStorage.getItem("gr_pais") || "";
+    if (!p) p = localStorage.getItem("gr_pais_ip") || "";
     if (!p) {
       var tz = "";
       try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}

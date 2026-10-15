@@ -1,0 +1,1685 @@
+{
+  "_ayuda": "Edita aquí el precio de cada país. estado confirmado = precio real (texto, precio y moneda). estado pendiente = la web muestra Precio próximamente. No escribas un número si Pablo no lo confirmó. Países: ES, MX, CO, AR, CL, PE, US y el resto de la lista. RESTO sirve si el visitante cae fuera de estos códigos.",
+  "paises": {
+    "ES": {
+      "nombre": "España",
+      "moneda": "EUR",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "confirmado",
+          "texto": "129 €",
+          "moneda": "EUR",
+          "precio": 129,
+          "nota": "Precio final con impuestos incluidos. Enviamos a Península y Baleares. Todavía no enviamos a Canarias, Ceuta ni Melilla."
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "confirmado",
+          "texto": "8,99 €",
+          "moneda": "EUR",
+          "precio": 8.99
+        },
+        "bascula": {
+          "estado": "confirmado",
+          "texto": "16,99 €",
+          "moneda": "EUR",
+          "precio": 16.99
+        },
+        "medidorph": {
+          "estado": "confirmado",
+          "texto": "14,99 €",
+          "moneda": "EUR",
+          "precio": 14.99,
+          "nota": "En España la ficha dice: bolígrafo digital para comprobar el pH del agua de bebida."
+        },
+        "alfombrilla": {
+          "estado": "confirmado",
+          "texto": "13,99 €",
+          "moneda": "EUR",
+          "precio": 13.99
+        },
+        "comedero": {
+          "estado": "confirmado",
+          "texto": "47,99 €",
+          "moneda": "EUR",
+          "precio": 47.99
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en la tienda anterior, con impuestos no detallados en la ficha. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "MX": {
+      "nombre": "México",
+      "moneda": "MXN",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "confirmado",
+          "texto": "$2,799 MXN",
+          "moneda": "MXN",
+          "precio": 2799,
+          "nota": "En México la paquetería llega del extranjero y la aduana puede cobrar una tasa global al recibir (hasta 33,5 % del valor declarado). Ese pago no está en nuestro precio."
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "confirmado",
+          "texto": "$99 MXN",
+          "moneda": "MXN",
+          "precio": 99
+        },
+        "bascula": {
+          "estado": "confirmado",
+          "texto": "$249 MXN",
+          "moneda": "MXN",
+          "precio": 249
+        },
+        "medidorph": {
+          "estado": "confirmado",
+          "texto": "$199 MXN",
+          "moneda": "MXN",
+          "precio": 199,
+          "nota": "En México la ficha dice: bolígrafo digital para comprobar el pH del agua de bebida."
+        },
+        "alfombrilla": {
+          "estado": "confirmado",
+          "texto": "$179 MXN",
+          "moneda": "MXN",
+          "precio": 179
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en la tienda anterior, en euros. Unos US$ 21 con el cambio del 14 de octubre de 2026. Envío gratis anunciado en pedidos de más de 50 € o 59 €, según el texto de esa página. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "CO": {
+      "nombre": "Colombia",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "AR": {
+      "nombre": "Argentina",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "confirmado",
+          "texto": "US$ 169",
+          "moneda": "USD",
+          "precio": 169,
+          "nota": "El cobro es en dólares. Puede corresponder IVA (21 %) y tasas del courier al recibir. Hasta US$ 400 no se pagan derechos de importación. Tu banco puede sumar su propia comisión."
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "CL": {
+      "nombre": "Chile",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "PE": {
+      "nombre": "Perú",
+      "moneda": "PEN",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "confirmado",
+          "texto": "S/ 499",
+          "moneda": "PEN",
+          "precio": 499,
+          "nota": "En Perú, las compras de hasta US$ 200 por envío suelen estar exentas de impuestos de importación (envíos de entrega rápida, SUNAT)."
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "confirmado",
+          "texto": "S/ 19.90",
+          "moneda": "PEN",
+          "precio": 19.9
+        },
+        "bascula": {
+          "estado": "confirmado",
+          "texto": "S/ 49.90",
+          "moneda": "PEN",
+          "precio": 49.9
+        },
+        "medidorph": {
+          "estado": "confirmado",
+          "texto": "S/ 39.90",
+          "moneda": "PEN",
+          "precio": 39.9,
+          "nota": "En Perú la ficha dice: bolígrafo digital para comprobar el pH del agua de bebida."
+        },
+        "alfombrilla": {
+          "estado": "confirmado",
+          "texto": "S/ 34.90",
+          "moneda": "PEN",
+          "precio": 34.9
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "US": {
+      "nombre": "Estados Unidos",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "confirmado",
+          "texto": "US$ 119",
+          "moneda": "USD",
+          "precio": 119,
+          "nota": "Sale de un almacén en Estados Unidos: sin trámite de aduana. El cargo es en dólares."
+        },
+        "corralito": {
+          "estado": "confirmado",
+          "texto": "US$ 77.99",
+          "moneda": "USD",
+          "precio": 77.99
+        },
+        "bombilla": {
+          "estado": "confirmado",
+          "texto": "US$ 49.99",
+          "moneda": "USD",
+          "precio": 49.99
+        },
+        "termohigrometro": {
+          "estado": "confirmado",
+          "texto": "US$ 6.99",
+          "moneda": "USD",
+          "precio": 6.99
+        },
+        "bascula": {
+          "estado": "confirmado",
+          "texto": "US$ 14.99",
+          "moneda": "USD",
+          "precio": 14.99
+        },
+        "medidorph": {
+          "estado": "confirmado",
+          "texto": "US$ 23.99",
+          "moneda": "USD",
+          "precio": 23.99
+        },
+        "alfombrilla": {
+          "estado": "confirmado",
+          "texto": "US$ 9.99",
+          "moneda": "USD",
+          "precio": 9.99
+        },
+        "comedero": {
+          "estado": "confirmado",
+          "texto": "US$ 34.99",
+          "moneda": "USD",
+          "precio": 34.99
+        },
+        "anillas": {
+          "estado": "confirmado",
+          "texto": "US$ 14.99",
+          "moneda": "USD",
+          "precio": 14.99
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. El pago de Shopify no está conectado. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "VE": {
+      "nombre": "Venezuela",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "EC": {
+      "nombre": "Ecuador",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "DO": {
+      "nombre": "República Dominicana",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "PY": {
+      "nombre": "Paraguay",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "confirmado",
+          "texto": "US$ 145",
+          "moneda": "USD",
+          "precio": 145,
+          "nota": "El cobro es en dólares. Puede haber tasas de aduana o del courier al recibir, y las paga quien recibe."
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "UY": {
+      "nombre": "Uruguay",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "BO": {
+      "nombre": "Bolivia",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "GT": {
+      "nombre": "Guatemala",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "HN": {
+      "nombre": "Honduras",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "SV": {
+      "nombre": "El Salvador",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "NI": {
+      "nombre": "Nicaragua",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "CR": {
+      "nombre": "Costa Rica",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "PA": {
+      "nombre": "Panamá",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "confirmado",
+          "texto": "18,99 €",
+          "moneda": "EUR",
+          "precio": 18.99,
+          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    },
+    "RESTO": {
+      "nombre": "Resto de países",
+      "moneda": "USD",
+      "productos": {
+        "incubadora-24egg-dual": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "incubadora-wonegg-48": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "corralito": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bombilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "termohigrometro": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bascula": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "medidorph": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "alfombrilla": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "anillas": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "suplemento": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "tabletas-30g-fiebre-resfriado": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "bebedero-campana": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "comedero-tolva": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "criadora-calor": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "ebook-guia-avicultura": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "app-pollos-engorde": {
+          "estado": "pendiente",
+          "texto": "Precio próximamente"
+        },
+        "curso-avicultura": {
+          "estado": "gratis",
+          "texto": "Gratis"
+        }
+      }
+    }
+  }
+}

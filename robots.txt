@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://granjarentable.net/sitemap.xml
+Sitemap: https://granjarentable.com/sitemap.xml
