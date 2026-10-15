@@ -1,5 +1,5 @@
 /* Publicidad. Sitio aprobado en Adsterra: darmo1986.github.io (id 6120999).
-   Una sola pieza de cada tamaño. Sin tema ni palabras clave. */
+   El cartelito usa redes.adsterra.bannerKey (320×50). Sin popups ni sonido. */
 window.ADSENSE_CLIENT = "";
 window.ADSTERRA = {
   banner: {
@@ -37,6 +37,13 @@ window.GR = {
   /* Tipo de cambio de referencia (14 oct 2026) solo para mostrar dólares. El cargo real es el de la tienda. */
   fx: { fecha: "14 de octubre de 2026", MXN: 18.361368, PEN: 3.440436, EUR: 0.893421 },
   redes: {
+    adsterra: {
+      /* PEGAR AQUÍ la clave del banner pequeño (320×50). Esta ya estaba en el repo.
+         Vacío = la página muestra el hueco «Falta bannerKey» y no llama a Adsterra. */
+      bannerKey: "b82a679c2962b10cf24c6c9f4a1d93ab",
+      w: 320,
+      h: 50
+    },
     ebay: {
       /* eBay Partner Network. campid vacío = la búsqueda abre y no hay comisión.
          mkrid y siteid son la rotación pública de cada tienda eBay, no el ID de Pablo. */

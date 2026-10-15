@@ -4,20 +4,36 @@ const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
 const save=p=>localStorage.setItem(PK,JSON.stringify(p));
 /* ── Consentimiento + publicidad (Adsterra o AdSense; nada sin key y sin «Aceptar») ── */
+function smallBannerCfg(){
+  const g=(window.GR&&window.GR.redes&&window.GR.redes.adsterra)||{};
+  const key=String(g.bannerKey||'').trim();
+  if(key)return {key:key,w:+g.w||320,h:+g.h||50};
+  const mov=window.ADSTERRA&&window.ADSTERRA.banner&&window.ADSTERRA.banner.movil;
+  const fallback=mov&&String(mov.key||'').trim();
+  if(fallback)return {key:fallback,w:+mov.w||320,h:+mov.h||50};
+  return null;
+}
 function adsterraHasKey(){
+  if(smallBannerCfg())return true;
   const A=window.ADSTERRA||{};
   return ['banner','rect'].some(k=>{
     const o=A[k]; return !!(o&&((o.key&&String(o.key).trim())||(o.movil&&o.movil.key&&String(o.movil.key).trim())));
   });
 }
 function adsConfigured(){return !!(window.ADSENSE_CLIENT||adsterraHasKey());}
-function pickAdsterra(cfg){
+function pickAdsterra(cfg,size){
+  if(size==='banner')return smallBannerCfg();
   if(!cfg)return null;
-  const narrow=window.matchMedia('(max-width:640px)').matches;
-  const desk=cfg.key&&String(cfg.key).trim()?{key:String(cfg.key).trim(),w:+cfg.w||728,h:+cfg.h||90}:null;
-  const mov=cfg.movil&&cfg.movil.key&&String(cfg.movil.key).trim()?{key:String(cfg.movil.key).trim(),w:+cfg.movil.w||320,h:+cfg.movil.h||50}:null;
-  if(narrow)return mov||desk;
-  return desk||mov;
+  const desk=cfg.key&&String(cfg.key).trim()?{key:String(cfg.key).trim(),w:+cfg.w||300,h:+cfg.h||250}:null;
+  return desk;
+}
+function markBannerGap(el){
+  if(el.dataset.adFilled)return;
+  el.dataset.adFilled='gap';
+  const p=document.createElement('p');
+  p.className='ad-gap';
+  p.textContent='Falta la clave: js/config.js → redes.adsterra.bannerKey';
+  el.appendChild(p);
 }
 /* Cada pieza va en su propio iframe para que atOptions no se pise.
    format iframe, params vacío: sin tema ni palabras clave. */
@@ -71,8 +87,10 @@ function loadAdsterra(){
   const slots=Object.keys(seen).map(k=>seen[k]);
   if(!slots.length)return false;
   const arm=el=>{
-    const cfg=pickAdsterra((window.ADSTERRA||{})[el.dataset.adSize]);
+    const size=el.dataset.adSize;
+    const cfg=pickAdsterra((window.ADSTERRA||{})[size],size);
     if(cfg)mountAdsterra(el,cfg);
+    else if(size==='banner')markBannerGap(el);
   };
   if(!('IntersectionObserver' in window)){slots.forEach(arm);return true;}
   const io=new IntersectionObserver(entries=>{
