@@ -316,7 +316,8 @@ body:has(#cookie-banner) main { padding-bottom: 120px; }
 .lesson.soon .dur, .lesson.soon .st { color: #3f3f3f; }
 .final-link { text-align: center; margin: 18px 0; }
 .video { background: #000; border-radius: 14px; overflow: hidden; aspect-ratio: 16/9; }
-.video video { width: 100%; height: 100%; display: block; }
+.video video, .video iframe { width: 100%; height: 100%; display: block; border: 0; }
+.video .video-soon { color: #fff; background: transparent; min-height: 0; height: 100%; margin: 0; }
 .texto, .quiz, .legal { background: #fff; border-radius: 14px; padding: 4px 16px 14px; margin: 16px auto; box-shadow: var(--shadow); max-width: 760px; }
 .lesson-page { max-width: 760px; margin-inline: auto; }
 .crumb { font-size: .9rem; }
@@ -482,7 +483,7 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 .epn-miss { display: inline-block; margin-left: 8px; font-size: .78rem; font-weight: 800; color: #6d5a16; }
 .tester-strip { background: var(--gl); border-radius: 14px; padding: 10px 14px; }
 .geo-note { color: var(--muted); font-size: .95rem; }
-.mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 560px; }
+.mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 560px; min-height: 164px; }
 .mem-card { min-height: 74px; border-radius: 12px; border: 2px solid var(--gm); background: var(--g); color: #fff; font-weight: 800; font-size: .95rem; cursor: pointer; }
 .mem-card.is-open, .mem-card.is-done { background: #fff; color: var(--gd); }
 .q .opt { width: 100%; text-align: left; margin-top: 6px; }

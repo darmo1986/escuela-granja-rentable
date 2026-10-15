@@ -1,87 +1,32 @@
 (function () {
-  var quiz = [
-    {
-      q: "¿Cuántos días tarda en nacer un huevo de gallina, según la lección?",
-      opts: ["17 días", "21 días", "28 días"],
-      ok: 1,
-      exp: "L03 cita 21 días para la gallina. 17 es la codorniz y 28 el pato o el pavo. Es una orientación, no una garantía.",
-      href: "lecciones/l03.html",
-      label: "Abrir L03"
-    },
-    {
-      q: "¿Qué parte del costo de insumos suele ser el alimento?",
-      opts: ["Casi nada", "Alrededor del 60–80 %", "Siempre la mitad exacta"],
-      ok: 1,
-      exp: "L01 cita a la FAO: el alimento suele ser el 60–80 % del costo de insumos. No es la cuenta de tu granja.",
-      href: "lecciones/l01.html",
-      label: "Abrir L01"
-    },
-    {
-      q: "Para empezar, ¿qué recomienda L01?",
-      opts: ["Mezclar carne, huevos y genética el primer día", "Elegir un solo camino y sostenerlo", "Comprar aves antes de tener espacio"],
-      ok: 1,
-      exp: "L01 pide elegir carne, huevos o genética y hacerlo bien antes de combinar.",
-      href: "lecciones/l01.html",
-      label: "Abrir L01"
-    },
-    {
-      q: "¿Ross 308 y Cobb 500 para qué se nombran?",
-      opts: ["Para huevos de mesa", "Para carne (engorde)", "Para poner en el nido"],
-      ok: 1,
-      exp: "En L01 son líneas de carne. ISA Brown, Lohmann Brown y Hy-Line Brown se nombran para huevos.",
-      href: "razas.html",
-      label: "Ver las líneas"
-    },
-    {
-      q: "¿El curso de esta web tiene costo?",
-      opts: ["Sí, se paga por lección", "No: el curso es gratis", "Solo L01 es gratis"],
-      ok: 1,
-      exp: "El curso publicado es gratis. La tienda es otra cosa: ahí el precio depende del país.",
-      href: "curso.html",
-      label: "Ir al curso"
-    }
-  ];
-  var box = document.getElementById("quiz-box");
-  if (box) {
-    quiz.forEach(function (item, i) {
-      var block = document.createElement("div");
-      block.className = "q";
-      var p = document.createElement("p");
-      p.textContent = (i + 1) + ". " + item.q;
-      block.appendChild(p);
-      item.opts.forEach(function (opt, j) {
-        var b = document.createElement("button");
-        b.type = "button";
-        b.className = "btn sec opt";
-        b.textContent = opt;
-        b.addEventListener("click", function () {
-          if (block.dataset.done) return;
-          block.dataset.done = "1";
-          b.classList.add(j === item.ok ? "gold" : "sec");
-          var exp = document.createElement("p");
-          exp.className = "exp";
-          exp.textContent = (j === item.ok ? "Correcto. " : "Casi. ") + item.exp;
-          if (item.href) {
-            var go = document.createElement("a");
-            go.href = item.href;
-            go.textContent = item.label;
-            exp.appendChild(document.createTextNode(" "));
-            exp.appendChild(go);
-          }
-          block.appendChild(exp);
-          if (j !== item.ok) {
-            var right = block.querySelectorAll("button")[item.ok];
-            if (right) right.classList.add("gold");
-          }
-        });
-        block.appendChild(b);
+  document.querySelectorAll("#quiz-box .q").forEach(function (block) {
+    var ok = Number(block.getAttribute("data-ok"));
+    var expText = block.getAttribute("data-exp") || "";
+    var href = block.getAttribute("data-href") || "";
+    var label = block.getAttribute("data-label") || "";
+    block.querySelectorAll("button").forEach(function (b, j) {
+      b.addEventListener("click", function () {
+        if (block.dataset.done) return;
+        block.dataset.done = "1";
+        b.classList.add(j === ok ? "gold" : "sec");
+        var exp = document.createElement("p");
+        exp.className = "exp";
+        exp.textContent = (j === ok ? "Correcto. " : "Casi. ") + expText;
+        if (href) {
+          var go = document.createElement("a");
+          go.href = href;
+          go.textContent = label;
+          exp.appendChild(document.createTextNode(" "));
+          exp.appendChild(go);
+        }
+        block.appendChild(exp);
+        if (j !== ok) {
+          var right = block.querySelectorAll("button")[ok];
+          if (right) right.classList.add("gold");
+        }
       });
-      box.appendChild(block);
     });
-    var more = document.createElement("p");
-    more.innerHTML = '¿Quieres el tema completo? <a href="curso.html">Entra al curso</a> o mira la <a href="producto/incubadora-24egg-dual.html">incubadora</a>.';
-    box.appendChild(more);
-  }
+  });
 
   var faces = [
     { id: "gallina", label: "Gallina" },

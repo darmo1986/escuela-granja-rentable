@@ -18,7 +18,8 @@
    "video": "l01.mp4",
    "videoFinal": "",
    "examen": "l01.json",
-   "descripcion": "Antes de comprar pollitos, elige un solo camino: carne, huevos o genética. El alimento suele ser el 60–80 % del costo."
+   "descripcion": "Antes de comprar pollitos, elige un solo camino: carne, huevos o genética. El alimento suele ser el 60–80 % del costo.",
+   "enlace": "videos/l01.mp4"
   },
   {
    "id": "l02",
@@ -28,7 +29,8 @@
    "video": "l02.mp4",
    "videoFinal": "",
    "examen": "l02.json",
-   "descripcion": "Antes de comprar aves, decide dónde van a vivir. El espacio, la luz y la cama seca son la base."
+   "descripcion": "Antes de comprar aves, decide dónde van a vivir. El espacio, la luz y la cama seca son la base.",
+   "enlace": "videos/l02.mp4"
   },
   {
    "id": "l03",
@@ -38,7 +40,8 @@
    "video": "l03.mp4",
    "videoFinal": "",
    "examen": "l03.json",
-   "descripcion": "Sin huevos fértiles, la mejor máquina no saca pollitos. Elige la capacidad de la tanda que harás de verdad."
+   "descripcion": "Sin huevos fértiles, la mejor máquina no saca pollitos. Elige la capacidad de la tanda que harás de verdad.",
+   "enlace": "videos/l03.mp4"
   },
   {
    "id": "l04a",
@@ -48,7 +51,8 @@
    "video": "l04a.mp4",
    "videoFinal": "",
    "examen": "l04a.json",
-   "descripcion": "Pollos de engorde, parte 1: cómo preparar la nave, la temperatura de arranque, el alimento por fases y el manejo diario del lote."
+   "descripcion": "Pollos de engorde, parte 1: cómo preparar la nave, la temperatura de arranque, el alimento por fases y el manejo diario del lote.",
+   "enlace": "videos/l04a.mp4"
   },
   {
    "id": "l04b",
@@ -58,7 +62,8 @@
    "video": "l04b.mp4",
    "videoFinal": "",
    "examen": "l04b.json",
-   "descripcion": "Pollos de engorde, parte 2: controla el amoníaco, aplica bioseguridad, protege el lote de depredadores y conoce enfermedades y vacunas."
+   "descripcion": "Pollos de engorde, parte 2: controla el amoníaco, aplica bioseguridad, protege el lote de depredadores y conoce enfermedades y vacunas.",
+   "enlace": "videos/l04b.mp4"
   },
   {
    "id": "l05a",
@@ -66,7 +71,8 @@
    "titulo": "Gallinas ponedoras (1): de la pollita a la puesta",
    "estado": "proximamente",
    "video": "",
-   "descripcion": "De la pollita hasta que empieza a poner: crianza, luz y el paso a la puesta."
+   "descripcion": "De la pollita hasta que empieza a poner: crianza, luz y el paso a la puesta.",
+   "enlace": ""
   },
   {
    "id": "l05b",
@@ -74,7 +80,8 @@
    "titulo": "Gallinas ponedoras (2): producción, huevo, cama, limpieza y plagas",
    "estado": "proximamente",
    "video": "",
-   "descripcion": "Producción, calidad del huevo, cama, limpieza y control de plagas."
+   "descripcion": "Producción, calidad del huevo, cama, limpieza y control de plagas.",
+   "enlace": ""
   },
   {
    "id": "l05c",
@@ -82,7 +89,8 @@
    "titulo": "Gallinas ponedoras (3): enfermedades, vacunas, equipo y cuentas",
    "estado": "proximamente",
    "video": "",
-   "descripcion": "Enfermedades, vacunas, equipo y cómo llevar las cuentas de la puesta."
+   "descripcion": "Enfermedades, vacunas, equipo y cómo llevar las cuentas de la puesta.",
+   "enlace": ""
   },
   {
    "id": "l06a",
@@ -90,7 +98,8 @@
    "titulo": "Gallos y genética (1): el gallo, el sexado, el manejo y la fertilidad",
    "estado": "proximamente",
    "video": "",
-   "descripcion": "El gallo, el sexado, el manejo del lote y la fertilidad."
+   "descripcion": "El gallo, el sexado, el manejo del lote y la fertilidad.",
+   "enlace": ""
   },
   {
    "id": "l06b",
@@ -98,7 +107,8 @@
    "titulo": "Gallos y genética (2): genética fácil y selección de reproductores",
    "estado": "proximamente",
    "video": "",
-   "descripcion": "Genética fácil y cómo elegir a los reproductores."
+   "descripcion": "Genética fácil y cómo elegir a los reproductores.",
+   "enlace": ""
   },
   {
    "id": "l06c",
@@ -106,7 +116,9 @@
    "titulo": "Gallos y genética (3): sistemas de cría, consanguinidad, razas autóctonas y venta",
    "estado": "proximamente",
    "video": "",
-   "descripcion": "Sistemas de cría, consanguinidad, razas autóctonas y venta."
+   "descripcion": "Sistemas de cría, consanguinidad, razas autóctonas y venta.",
+   "enlace": ""
   }
- ]
+ ],
+ "enlaceNota": "Cada lección usa solo el campo enlace. Vacío = Próximamente. Vale videos/archivo.mp4 si el archivo ya está en el repositorio, un https que termine en .mp4, o un enlace de YouTube. No pongas una dirección inventada."
 }

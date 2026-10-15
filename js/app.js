@@ -212,15 +212,82 @@ function promoteLesson(li,L){
   const more=li.querySelector('.card-more p');
   if(more&&L.descripcion)more.textContent=L.descripcion;
 }
+function lessonMedia(enlace){
+  const s=String(enlace||'').trim();
+  if(!s||/[\s<>"']/.test(s))return null;
+  if(/^videos\/[a-z0-9_-]+\.mp4$/i.test(s))return {kind:'file',src:root+s};
+  if(/^[a-z0-9_-]+\.mp4$/i.test(s))return {kind:'file',src:root+'videos/'+s};
+  let u;
+  try{u=new URL(s);}catch(e){return null;}
+  if(u.protocol!=='https:')return null;
+  const host=u.hostname.replace(/^www\./,'');
+  if(host==='youtu.be'){
+    const id=u.pathname.replace(/^\//,'').split('/')[0];
+    return /^[a-zA-Z0-9_-]{6,}$/.test(id)?{kind:'youtube',id}:null;
+  }
+  if(host==='youtube.com'||host==='youtube-nocookie.com'){
+    const fromPath=(u.pathname.match(/\/(?:embed|shorts)\/([a-zA-Z0-9_-]{6,})/)||[])[1]||'';
+    const id=u.searchParams.get('v')||fromPath;
+    return /^[a-zA-Z0-9_-]{6,}$/.test(id)?{kind:'youtube',id}:null;
+  }
+  if(/\.mp4$/i.test(u.pathname))return {kind:'file',src:s};
+  return null;
+}
+function paintLessonSlot(slot,enlace){
+  const media=lessonMedia(enlace);
+  if(!media){
+    slot.textContent='';
+    const p=document.createElement('p');
+    p.className='ph video-soon';
+    p.textContent='Próximamente';
+    slot.appendChild(p);
+    return;
+  }
+  if(media.kind==='youtube'){
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='yt-facade';
+    b.textContent='Ver el vídeo';
+    b.addEventListener('click',function(){
+      const f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(media.id)+'?rel=0';
+      f.title='Vídeo de la lección';
+      f.allow='accelerometer; encrypted-media; picture-in-picture';
+      f.allowFullscreen=true;
+      f.loading='lazy';
+      slot.replaceChildren(f);
+    });
+    slot.replaceChildren(b);
+    return;
+  }
+  const v=document.createElement('video');
+  v.controls=true;
+  v.playsInline=true;
+  v.preload='none';
+  v.poster=root+'img/logo.jpg';
+  v.src=media.src;
+  slot.replaceChildren(v);
+}
 async function promoteFromJson(){
   const list=document.querySelector('ul.lessons');
   if(!list)return;
   const data=await cursoWeb();
   if(!data||!Array.isArray(data.lecciones))return;
   data.lecciones.forEach(L=>{
-    if(L.estado!=='disponible'||!VIDEO_RE.test(L.video||'')||!ID_RE.test(L.id||''))return;
+    if(!lessonMedia(L.enlace)||!ID_RE.test(L.id||''))return;
     const li=list.querySelector('.lesson.soon[data-id="'+L.id+'"]');
     if(li)promoteLesson(li,L);
+  });
+}
+async function mountLessonVideos(){
+  const slots=[...document.querySelectorAll('[data-lesson-video]')];
+  if(!slots.length)return;
+  const data=await cursoWeb();
+  const by={};
+  ((data&&data.lecciones)||[]).forEach(function(L){if(L&&L.id)by[L.id]=L;});
+  slots.forEach(function(slot){
+    const L=by[slot.getAttribute('data-lesson-video')]||null;
+    paintLessonSlot(slot,L&&L.enlace);
   });
 }
 async function renderDynamicLesson(){
@@ -233,20 +300,19 @@ async function renderDynamicLesson(){
   const idx=lessons.findIndex(x=>x.id===id);
   const L=idx>=0?lessons[idx]:null;
   if(!L){host.innerHTML='<p>No encontramos esa lección. <a href="'+root+'curso.html">Volver al curso</a>.</p>';return;}
-  const ready=L.estado==='disponible'&&VIDEO_RE.test(L.video||'');
+  const media=lessonMedia(L.enlace);
   const withExam=!!(L.examen&&EXAM_RE.test(L.examen));
   const prev=withExam?lessons.slice(0,idx).filter(x=>x.estado==='disponible'&&x.examen&&EXAM_RE.test(x.examen)).map(x=>x.id):[];
   if(prev.length)host.dataset.requires=prev.join(' ');
-  const base=String(data.videoBaseUrl||'videos/').replace(/^\/+/,'');
   let html='<p class="crumb"><a href="'+root+'curso.html">Curso</a> › '+esc(L.codigo||'')+'</p>';
   html+='<h1><span class="code">'+esc(L.codigo||'')+'</span> '+esc(L.titulo||'')+'</h1>';
   html+='<div class="lock-msg" hidden>Esta lección se abre cuando apruebes las anteriores. <a href="'+root+'curso.html">Ver tu progreso</a>.</div>';
-  if(!ready){
-    html+='<p>Próximamente. El video todavía no está publicado.</p>';
+  html+='<div class="video lockable" data-lesson-video="'+esc(L.id)+'"><p class="ph video-soon">Próximamente</p></div>';
+  if(!media){
+    if(L.descripcion)html+='<section class="texto"><h2>De qué trata</h2><p>'+esc(L.descripcion)+'</p></section>';
     host.innerHTML=html;
     return;
   }
-  html+='<div class="video lockable"><video controls preload="metadata" playsinline poster="'+root+'img/logo.jpg" src="'+esc(root+base+L.video)+'"></video></div>';
   if(L.descripcion)html+='<section class="texto lockable"><h2>De qué trata</h2><p>'+esc(L.descripcion)+'</p></section>';
   if(withExam){
     html+='<section class="quiz lockable" data-exam="'+esc(root+'data/examenes/'+L.examen)+'" data-pass="10" data-key="'+esc(L.id)+'"><h2>Test de la lección</h2><p>Apruebas con 10 aciertos.</p><div class="qwrap">Cargando test…</div></section>';
@@ -279,6 +345,7 @@ bindQuizzes();
   await promoteFromJson();
   paintProgress();
   await renderDynamicLesson();
+  await mountLessonVideos();
   await mountFinalVideos();
   paintLocks();
   bindQuizzes();
