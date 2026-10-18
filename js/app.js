@@ -85,26 +85,52 @@ function loadAdsterra(){
     }
     seen[size]=el;
   });
-  if(!narrow){
-    const rail=document.querySelector('.ad-inline[data-ad-size="rect"]');
-    const foot=document.querySelector('.foot');
-    if(rail){
-      rail.classList.add('ad-rail');
-      if(foot && 'IntersectionObserver' in window){
-        new IntersectionObserver(entries=>{
-          rail.classList.toggle('ad-rail-off', entries.some(e=>e.isIntersecting));
-        }).observe(foot);
-      }
-    }
-  }
-  const slots=Object.keys(seen).map(k=>seen[k]);
-  if(!slots.length)return false;
   const arm=el=>{
     const size=el.dataset.adSize;
     const cfg=pickAdsterra((window.ADSTERRA||{})[size],size);
     if(cfg)mountAdsterra(el,cfg);
     else if(size==='banner')markBannerGap(el);
   };
+  /* El 300×250 es un lateral fijo. En una página corta el pie lo tapa
+     (ad-rail-off) y no debe contarse una impresión. */
+  if(!narrow && seen.rect){
+    const rail=seen.rect.closest('.ad-inline');
+    const foot=document.querySelector('.foot');
+    if(rail){
+      rail.classList.add('ad-rail');
+      const showRect=hidden=>{
+        rail.classList.toggle('ad-rail-off', !!hidden);
+        if(hidden||seen.rect.dataset.adFilled)return;
+        const cs=getComputedStyle(rail);
+        if(cs.display==='none'||cs.visibility==='hidden')return;
+        const r=rail.getBoundingClientRect();
+        const vh=window.innerHeight||document.documentElement.clientHeight;
+        const vw=window.innerWidth||document.documentElement.clientWidth;
+        if(r.width<2||r.height<2||r.bottom<=0||r.right<=0||r.top>=vh||r.left>=vw)return;
+        arm(seen.rect);
+      };
+      if(foot && 'IntersectionObserver' in window){
+        new IntersectionObserver(entries=>{
+          showRect(entries.some(e=>e.isIntersecting));
+        }).observe(foot);
+      }else{
+        const covered=()=>{
+          if(!foot)return false;
+          const fr=foot.getBoundingClientRect();
+          const vh=window.innerHeight||document.documentElement.clientHeight;
+          return fr.top<vh && fr.bottom>0;
+        };
+        const sync=()=>showRect(covered());
+        sync();
+        if(foot){
+          window.addEventListener('scroll', sync, {passive:true});
+          window.addEventListener('resize', sync);
+        }
+      }
+    }
+  }
+  const slots=seen.banner?[seen.banner]:[];
+  if(!slots.length)return !!seen.rect;
   if(!('IntersectionObserver' in window)){slots.forEach(arm);return true;}
   const io=new IntersectionObserver(entries=>{
     entries.forEach(en=>{

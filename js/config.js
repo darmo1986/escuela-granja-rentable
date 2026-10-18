@@ -57,8 +57,8 @@ window.GR = {
   },
   redes: {
     adsterra: {
-      /* PEGAR AQUÍ la clave del banner pequeño (320×50). Esta ya estaba en el repo.
-         Vacío = la página muestra el hueco «Falta bannerKey» y no llama a Adsterra. */
+      /* Clave del banner pequeño (320×50).
+         Vacío = la página muestra «Publicidad no disponible.» y no llama a Adsterra. */
       bannerKey: "96014a59041982a1a0b8be24828db835",
       w: 320,
       h: 50

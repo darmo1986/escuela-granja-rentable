@@ -884,8 +884,12 @@
       applyPais(pais, false);
     })
     .catch(function () {});
-  try {
-    if (!localStorage.getItem("gr_pais")) {
+  function askGeo() {
+    try {
+      if (localStorage.getItem("gr_pais")) return;
+      if (localStorage.getItem("gr_consent") !== "si") return;
+      if (window.__grGeoAsked) return;
+      window.__grGeoAsked = 1;
       fetch("https://get.geojs.io/v1/ip/country.json", { credentials: "omit" })
         .then(function (r) { return r.json(); })
         .then(function (d) {
@@ -895,8 +899,13 @@
           if (code !== pais && !localStorage.getItem("gr_pais")) applyPais(code, false);
         })
         .catch(function () {});
-    }
-  } catch (eGeo) {}
+    } catch (eGeo) {}
+  }
+  askGeo();
+  document.addEventListener("click", function (ev) {
+    var t = ev.target && ev.target.closest ? ev.target.closest("[data-c]") : null;
+    if (t && t.getAttribute("data-c") === "si") askGeo();
+  });
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), tienda: (PAISES[pais] && PAISES[pais].envio) ? storeUrl() : "" };
   };
