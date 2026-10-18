@@ -609,18 +609,11 @@ begin
   where x.puesto <= 20;
 
   select coalesce(jsonb_agg(jsonb_build_object(
-    'periodo', g.periodo,
-    'apodo', g.apodo
-  ) order by g.periodo desc), '[]'::jsonb)
+    'periodo', h.periodo,
+    'apodo', h.apodo
+  ) order by h.periodo desc), '[]'::jsonb)
   into ganadores
-  from (
-    select q.periodo, q.apodo
-    from public.quiz_premios q
-    where q.origen = 'concurso'
-      and q.estado in ('pendiente', 'reclamado', 'aprobado', 'pagado')
-      and q.periodo < mes
-      and nullif(btrim(coalesce(q.apodo, '')), '') is not null
-  ) g;
+  from public.concurso_historial() h;
 
   mi := null;
   if auth.uid() is not null then
@@ -661,14 +654,10 @@ security definer
 set search_path = public
 as $$
   select coalesce(jsonb_agg(jsonb_build_object(
-    'periodo', q.periodo,
-    'apodo', q.apodo
-  ) order by q.periodo desc), '[]'::jsonb)
-  from public.quiz_premios q
-  where q.origen = 'concurso'
-    and q.estado in ('pendiente', 'reclamado', 'aprobado', 'pagado')
-    and q.periodo < public.periodo_madrid(now())
-    and nullif(btrim(coalesce(q.apodo, '')), '') is not null;
+    'periodo', h.periodo,
+    'apodo', h.apodo
+  ) order by h.periodo desc), '[]'::jsonb)
+  from public.concurso_historial() h;
 $$;
 
 create or replace function public.concurso_historial()
@@ -698,6 +687,7 @@ as $$
     select 1
     from public.quiz_premios q
     where q.periodo = p_periodo
+      and p_usuario = auth.uid()
       and q.ganador = p_usuario
       and q.origen = 'concurso'
       and q.estado = 'pendiente'
@@ -1020,7 +1010,7 @@ end;
 $$;
 
 comment on function public.premio_euros() is
-  'Única cifra del premio. Es del concurso: 10 preguntas, más aciertos y, si empatan, un sorteo del servidor que queda guardado. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
+  'Única cifra del premio. Es del concurso: 10 preguntas, más aciertos y, si empatan en aciertos, un sorteo en el servidor entre los empatados, que queda guardado. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
 
 revoke all on function public.concurso_barajar() from public, anon, authenticated;
 revoke all on function public.concurso_texto(jsonb, int) from public, anon, authenticated;
