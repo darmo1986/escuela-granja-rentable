@@ -105,15 +105,20 @@ class Generador(unittest.TestCase):
         self.assertIn("Todavía no hay artículos", indice)
         self.assertNotIn("Imagen pendiente", indice)
         sitemap = (self.tmp / "sitemap.xml").read_text(encoding="utf-8")
-        self.assertIn("https://granjarentable.com/blog/", sitemap)
+        self.assertNotIn("https://granjarentable.com/blog/", sitemap)
         self.assertNotIn("ovoscopia", sitemap)
         self.assertNotIn("incubacion.html", sitemap)
+        self.assertIn('content="noindex,follow"', indice)
         cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
         self.assertIn('content="noindex,follow"', cat)
         menu = (self.tmp / "index.html").read_text(encoding="utf-8")
-        self.assertIn(">Artículos<", menu)
-        self.assertIn('href="blog/"', menu)
+        self.assertNotIn(">Artículos<", menu)
+        self.assertNotIn('href="blog/"', menu)
         self.assertIn(">Calculadoras<", menu)
+        self.assertIn("css/estilo.css?v=20261018", indice)
+        self.assertIn("js/boot.js?v=20261018", indice)
+        self.assertIn("css/blog.css?v=20261018", indice)
+        self.assertIn("js/blog.js?v=20261018", indice)
         self.assertIn("<!-- menu:inicio -->", menu)
         self.assertIn('id="nav-herramientas"', menu)
         self.assertIn(">Herramientas<", menu)
@@ -168,6 +173,8 @@ class Generador(unittest.TestCase):
         self.assertIn("<lastmod>2026-11-02</lastmod>", (self.tmp / "sitemap.xml").read_text(encoding="utf-8"))
         self.assertIn('content="1200"', html)
         self.assertIn('content="630"', html)
+        self.assertIn(">Artículos<", (self.tmp / "index.html").read_text(encoding="utf-8"))
+        self.assertIn("https://granjarentable.com/blog/", (self.tmp / "sitemap.xml").read_text(encoding="utf-8"))
 
     def test_tres_posts_indexan_la_categoria(self):
         for i, dia in enumerate(("2026-11-01", "2026-11-02", "2026-11-03"), start=1):
@@ -290,6 +297,57 @@ class Generador(unittest.TestCase):
         self.assertIn('data-ad-size="banner"', html)
         self.assertIn('data-ad-size="rect"', html)
         self.assertNotIn("highperformanceformat", html)
+
+    def test_titulo_final_no_pasa_de_60(self):
+        largo = "Ovoscopia: cómo revisar los huevos en la incubadora"
+        self.assertGreater(len(largo) + len(generar.SUFIJO_TITULO), 60)
+        self.assertLessEqual(len(largo), 60)
+        post(self.tmp, "2026-11-02-largo-title.md", borrador="false", titulo=largo, titulo_seo=largo)
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "largo-title.html").read_text(encoding="utf-8")
+        titulo = html.split("<title>", 1)[1].split("</title>", 1)[0]
+        self.assertEqual(titulo, largo)
+        self.assertNotIn("Granja Rentable</title>", html.split("<title>", 1)[1][:80])
+        self.assertLessEqual(len(titulo), 60)
+        corto = "Huevos al trasluz"
+        post(self.tmp, "2026-11-02-corto-title.md", borrador="false", titulo=corto, titulo_seo=corto,
+             imagen="img/blog/corto.webp", imagen_og="img/blog/corto-og.webp")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "corto-title.html").read_text(encoding="utf-8")
+        titulo = html.split("<title>", 1)[1].split("</title>", 1)[0]
+        self.assertEqual(titulo, corto + " | Granja Rentable")
+        self.assertLessEqual(len(titulo), 60)
+
+    def test_premium_no_recupera_whatsapp(self):
+        (self.tmp / "premium.html").write_text(
+            '<link rel="stylesheet" href="css/estilo.css">\n'
+            '<script src="js/boot.js"></script>\n'
+            '<nav id="site-nav" class="nav" aria-label="Principal">\n'
+            '<a data-social="messenger" href="https://m.me/PENDIENTE"><span class="nav-label">Messenger</span></a>\n'
+            '</nav>\n'
+            '<p class="foot-brand">Sitio</p>\n<ul><li><a href="tienda.html">Tienda</a></li></ul>\n'
+            '<li><a data-social="whatsapp" href="https://wa.me/34656267726">WhatsApp</a></li>\n'
+            '<a class="wa-float" href="https://wa.me/34656267726">WhatsApp</a>\n',
+            encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "premium.html").read_text(encoding="utf-8")
+        self.assertIn("Messenger", html)
+        self.assertIn("m.me/PENDIENTE", html)
+        self.assertNotIn("WhatsApp", html)
+        self.assertNotIn("wa.me", html)
+        self.assertNotIn("wa-float", html)
+        self.assertIn("css/estilo.css?v=20261018", html)
+        self.assertIn("js/boot.js?v=20261018", html)
+
+    def test_herramientas_marca_la_pagina_activa(self):
+        (self.tmp / "calculadora.html").write_text(
+            '<nav id="site-nav" class="nav" aria-label="Principal"><a href="curso.html">Curso</a></nav>\n'
+            '<p class="foot-brand">Sitio</p>\n<ul><li><a href="tienda.html">Tienda</a></li></ul>\n',
+            encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "calculadora.html").read_text(encoding="utf-8")
+        self.assertIn('data-nav="herramientas" aria-current="page"', html)
+        self.assertIn('data-nav="calculadora" aria-current="page"', html)
 
 
 if __name__ == "__main__":

@@ -4,6 +4,8 @@ Se hace desde la web de GitHub. No hace falta tocar código ni abrir el generado
 
 El artículo **no sale** mientras ponga `borrador: true`. Así queda al crearlo. Para publicarlo, cambia esa línea a `borrador: false` y guarda. Si el archivo está mal, la acción de GitHub falla y **deja la web como estaba** (no publica ese artículo ni el resto).
 
+Mientras no haya ningún artículo publicado, `/blog/` lleva `noindex`, no entra en el sitemap y **Artículos** no sale en el menú. Vuelve en cuanto se publica el primero.
+
 El título (`titulo` y `titulo_seo`) puede tener como mucho **60 caracteres**. La descripción, **150**. Si te pasas, la acción falla y dice cuántos hay.
 
 ## 1. La foto

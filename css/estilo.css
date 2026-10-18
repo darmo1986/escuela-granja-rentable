@@ -88,7 +88,8 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
 .nav-row > a { flex: 1; }
 .nav-more { width: 64px; min-width: 64px; justify-content: center; padding: 0; }
 .nav-redes { font: inherit; }
-.nav a[aria-current="page"] { outline: 2px solid var(--gold); outline-offset: -2px; }
+.nav a[aria-current="page"],
+.nav button[aria-current="page"] { outline: 2px solid var(--gold); outline-offset: -2px; }
 .nav a.nav-shop { background: var(--gold); color: var(--gold-ink) !important; }
 .nav-cta { border: 2px solid #fff; background: transparent; }
 .nav-drop { display: flex; flex-direction: column; gap: 6px; }
@@ -142,13 +143,13 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
   }
 @media (min-width: 1280px) {
   .nav { gap: 6px; }
-  .nav-label { font-size: .9rem; }
+  .nav-label { font-size: .78rem; }
   .nav-ico, .nav-ico svg { width: 22px; height: 22px; }
   .nav-row > a, .nav > a, .nav-redes { gap: 6px; padding: 6px 4px; min-height: 52px; border-radius: 14px; }
 }
 @media (min-width: 1440px) {
   .nav { gap: 8px; }
-  .nav-label { font-size: .92rem; }
+  .nav-label { font-size: .78rem; }
   .nav-row > a, .nav > a, .nav-redes { padding: 8px 6px; min-height: 56px; }
 }
 html[data-tema="claro"] .top {
@@ -237,7 +238,8 @@ html[data-tema="claro"] .auth-yo { border-color: #1F5E2E; color: #1F5E2E; backgr
 .auth-aviso .btn.sec { background: #eee; color: #222; }
 .auth-fav { margin: 8px 0 12px; }
 .auth-yo-linea { display: flex; gap: 12px; align-items: center; }
-html[data-tema="claro"] .nav a[aria-current="page"] { outline-color: #1F5E2E; }
+html[data-tema="claro"] .nav a[aria-current="page"],
+html[data-tema="claro"] .nav button[aria-current="page"] { outline-color: #1F5E2E; }
 @media (min-width: 1040px) {
   html[data-tema="claro"] .nav-sub,
   html[data-tema="claro"] .nav-sub a { background: #fff; }
@@ -655,7 +657,7 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 }
 @media (min-width: 1040px) and (max-width: 1199px) {
   .nav { gap: 6px; }
-  .nav-label { font-size: .92rem; }
+  .nav-label { font-size: .78rem; }
   .nav a, .nav-parent, .nav-redes { padding: 8px 8px; gap: 6px; }
   .nav-ico, .nav-ico svg { width: 22px; height: 22px; }
 }

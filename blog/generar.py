@@ -77,6 +77,11 @@ RESERVADOS = SLUGS_CAT | {"index", "pagina"}
 CARPETA_POSTS = "_articulos"
 MAX_TITULO = 60
 MAX_DESCRIPCION = 150
+SUFIJO_TITULO = " | Granja Rentable"
+VERSION_ACTIVOS = "20261018"
+# Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
+SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
+CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}
 
 
 class Fallo(Exception):
@@ -302,7 +307,7 @@ def celdas_de(linea):
 
 def markdown_a_html(texto, origen, errores):
     if marca_reservada(texto):
-        errores.append(f"{origen}: el texto lleva una marca reservada. Quitale las arrobas dobles.")
+        errores.append(f"{origen}: el texto lleva una marca reservada. Quítale las arrobas dobles.")
     if VOCABULARIO.search(texto):
         errores.append(f"{origen}: escribe «pollos de engorde», no «pollo de carne» ni «broiler».")
     if texto_prohibido(texto):
@@ -441,7 +446,7 @@ def exigir_limpio(texto, origen, nombre):
     if not str(texto).strip():
         return
     if marca_reservada(texto):
-        raise Fallo(f"{origen}: {nombre} lleva una marca reservada. Quitale las arrobas dobles.")
+        raise Fallo(f"{origen}: {nombre} lleva una marca reservada. Quítale las arrobas dobles.")
     if texto_prohibido(texto):
         raise Fallo(f"{origen}: {nombre} nombra Amazon, eBay, Mercado Libre o campid. No se publica.")
     if VOCABULARIO.search(str(texto)):
@@ -555,22 +560,38 @@ def json_seguro(obj):
     return texto.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
 
 
+def titulo_visible(base):
+    """El <title> no pasa de 60. El sufijo solo entra si cabe entero."""
+    base = str(base).rstrip()
+    if len(base) + len(SUFIJO_TITULO) <= MAX_TITULO:
+        return base + SUFIJO_TITULO
+    return base
+
+
 def poner_actual(menu, clave):
     menu = menu.replace(' aria-current="page"', "")
     if not clave:
         return menu
-    return menu.replace(f'data-nav="{clave}"', f'data-nav="{clave}" aria-current="page"', 1)
+    menu = menu.replace(f'data-nav="{clave}"', f'data-nav="{clave}" aria-current="page"', 1)
+    if clave in CLAVES_HERRAMIENTAS:
+        menu = menu.replace('data-nav="herramientas"', 'data-nav="herramientas" aria-current="page"', 1)
+    return menu
 
 
 def menu_listo(plantilla, raiz, clave):
     return poner_actual(plantilla.replace("@@RAIZ@@", raiz), clave)
 
 
-def asegurar_portada(html):
+def asegurar_portada(html, hay_posts):
     coincidencia = re.search(r'(<div class="shop-links">)(.*?)(</div>)', html, re.S)
-    if not coincidencia or 'href="blog/"' in coincidencia.group(2):
+    if not coincidencia:
         return html
     bloque = coincidencia.group(2)
+    if not hay_posts:
+        bloque = re.sub(r'\n?<a class="btn sec" href="blog/">Artículos</a>', "", bloque, count=1)
+        return html[:coincidencia.start(2)] + bloque + html[coincidencia.end(2):]
+    if 'href="blog/"' in bloque:
+        return html
     extra = '\n<a class="btn sec" href="blog/">Artículos</a>'
     if 'href="curso.html">Curso gratis</a>' in bloque:
         bloque = bloque.replace('href="curso.html">Curso gratis</a>', 'href="curso.html">Curso gratis</a>' + extra, 1)
@@ -579,11 +600,65 @@ def asegurar_portada(html):
     return html[:coincidencia.start(2)] + bloque + html[coincidencia.end(2):]
 
 
-def aplicar_menu(html, rel, menu_html, pie_html):
+def menu_segun_posts(menu, hay_posts):
+    if hay_posts:
+        return menu
+    return re.sub(r'\n?<a data-nav="articulos"[\s\S]*?</a>', "", menu, count=1)
+
+
+def pie_segun_posts(pie, hay_posts):
+    if hay_posts:
+        return pie
+    return re.sub(r'\n?<li><a href="@@RAIZ@@blog/">Artículos</a></li>', "", pie, count=1)
+
+
+def pagina_sin_whatsapp(rel):
+    return rel.replace("\\", "/") in SIN_WHATSAPP
+
+
+def quitar_whatsapp_nav(menu):
+    return re.sub(r'\n?<a class="nav-wa"[\s\S]*?</a>', "", menu, count=1)
+
+
+def conservar_messenger(menu, original):
+    encontrado = re.search(
+        r'<a\b[^>]*(?:data-social="messenger"|m\.me/)[^>]*>[\s\S]*?</a>',
+        original)
+    if not encontrado:
+        return menu
+    enlace = encontrado.group(0)
+    if "m.me/" in menu or 'data-social="messenger"' in menu:
+        return menu
+    if "<!-- menu:fin -->" in menu:
+        return menu.replace("<!-- menu:fin -->", enlace + "\n<!-- menu:fin -->", 1)
+    return menu + "\n" + enlace
+
+
+def limpiar_whatsapp(html):
+    html = quitar_whatsapp_nav(html)
+    html = re.sub(r'\n?<a class="wa-float"[\s\S]*?</a>', "", html, count=1)
+    html = re.sub(
+        r'\n?<li>\s*<a[^>]*data-social="whatsapp"[^>]*>[\s\S]*?</a>\s*</li>',
+        "", html, count=1)
+    return html
+
+
+def poner_version(html):
+    for nombre in ("css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js"):
+        html = re.sub(
+            rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=\d+)?"',
+            rf'\1?v={VERSION_ACTIVOS}"',
+            html)
+    return html
+
+
+def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
     if 'id="site-nav"' not in html:
-        return html, False
+        return poner_version(html), False
     raiz = raiz_de(rel)
     menu = menu_listo(menu_html, raiz, clave_nav(rel))
+    if pagina_sin_whatsapp(rel):
+        menu = conservar_messenger(quitar_whatsapp_nav(menu), html)
     pie = pie_html.replace("@@RAIZ@@", raiz)
     if "<!-- menu:inicio -->" in html and "<!-- menu:fin -->" in html:
         html = re.sub(r"<!-- menu:inicio -->.*?<!-- menu:fin -->", lambda _: menu, html, count=1, flags=re.S)
@@ -604,8 +679,10 @@ def aplicar_menu(html, rel, menu_html, pie_html):
         if n != 1:
             raise Fallo(f"{rel}: tiene menú y no encontré la lista Sitio del pie.")
     if rel == "index.html":
-        html = asegurar_portada(html)
-    return html, True
+        html = asegurar_portada(html, hay_posts)
+    if pagina_sin_whatsapp(rel):
+        html = limpiar_whatsapp(html)
+    return poner_version(html), True
 
 
 def anuncios_activos(raiz):
@@ -777,7 +854,7 @@ def envolver(shell, rel, titulo, descripcion, canonical, robots, og_type, og_ima
     pagina = pagina.replace("{{", "&#123;&#123;").replace("{%", "&#123;%")
     if "Imagen pendiente" in pagina or 'class="ph"' in pagina:
         raise Fallo("La página salió con un hueco de imagen. No se publica.")
-    return pagina
+    return poner_version(pagina)
 
 
 def ld_blog():
@@ -885,10 +962,13 @@ def planificar(raiz, incluir_borradores=False):
         return [f"No pude leer las plantillas del blog: {exc}"], {}, []
     if "@@RAIZ@@blog/" not in menu_html or "Artículos" not in menu_html:
         return ["La plantilla del menú no incluye Artículos."], {}, []
+    hay_posts = bool(publicados)
+    menu_html = menu_segun_posts(menu_html, hay_posts)
+    pie_html = pie_segun_posts(pie_html, hay_posts)
     archivos = {}
     try:
         for rel, ruta in paginas_html(raiz):
-            nuevo, _ = aplicar_menu(ruta.read_text(encoding="utf-8"), rel, menu_html, pie_html)
+            nuevo, _ = aplicar_menu(ruta.read_text(encoding="utf-8"), rel, menu_html, pie_html, hay_posts)
             archivos[rel] = nuevo
     except Fallo as exc:
         return [str(exc)], {}, []
@@ -914,7 +994,8 @@ def planificar(raiz, incluir_borradores=False):
             anuncio("rect", activo),
         ] if parte)
         archivos[rel] = envolver(
-            shell, rel, titulo_blog, descripcion_blog, canonical, "index,follow", "website",
+            shell, rel, titulo_blog, descripcion_blog, canonical,
+            "index,follow" if hay_posts else "noindex,follow", "website",
             og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in publicados if p["categoria"] == clave]
@@ -942,7 +1023,7 @@ def planificar(raiz, incluir_borradores=False):
     for post in publicados:
         rel = f"blog/{post['slug']}.html"
         canonical = SITIO + "/blog/" + post["slug"] + ".html"
-        titulo = post["titulo_seo"].rstrip() + " | Granja Rentable"
+        titulo = titulo_visible(post["titulo_seo"])
         extra = (ld_articulo(post, canonical) + "\n"
                  '<meta property="og:image:width" content="1200">\n'
                  '<meta property="og:image:height" content="630">')
@@ -953,8 +1034,6 @@ def planificar(raiz, incluir_borradores=False):
     entradas = []
     if publicados:
         entradas.append((SITIO + "/blog/", max(p["actualizado"] for p in publicados).isoformat()))
-    else:
-        entradas.append((SITIO + "/blog/", None))
     for numero in range(2, paginas_indice + 1):
         entradas.append((SITIO + f"/blog/pagina-{numero}.html", None))
     for clave in (c[0] for c in CATEGORIAS):

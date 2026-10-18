@@ -16,6 +16,7 @@ exclude:
   - "**/LEEME.md"
   - LEEME.md
   - js/apodo-pruebas.js
+  - apps-script/Codigo.gs
   - _articulos
   - blog/plantillas
   - blog/pruebas

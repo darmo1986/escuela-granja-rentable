@@ -553,6 +553,16 @@
     nav.addEventListener("focusin", soltarDesplegable);
     document.addEventListener("keydown", function (ev) {
       if (ev.key !== "Escape") return;
+      if (nav.classList.contains("is-open")) {
+        nav.classList.remove("is-open");
+        cerrarDesplegables(false);
+        if (navBtn) {
+          navBtn.setAttribute("aria-expanded", "false");
+          navBtn.textContent = "Menú";
+          navBtn.focus();
+        }
+        return;
+      }
       var activo = document.activeElement;
       var drop = activo && activo.closest && activo.closest(".nav-drop");
       if (!drop || !nav.contains(drop)) drop = nav.querySelector(".nav-drop.is-open");
