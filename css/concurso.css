@@ -105,6 +105,15 @@
   padding: 8px 10px;
 }
 .concurso-pos { font-weight: 800; color: var(--gd); width: 1.4rem; text-align: center; }
+.concurso-periodo {
+  font-weight: 800;
+  color: var(--gd);
+  min-width: 5.6rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.concurso-check { display: flex; gap: 8px; align-items: flex-start; font-weight: 650; }
+.concurso-check input { margin-top: 0.3rem; }
 .concurso-rank p { margin: 0; }
 .concurso-yo { outline: 2px solid var(--gold); }
 #concurso-reclamo[hidden],

@@ -41,9 +41,9 @@ El ranking del reto es de cada mes: `periodo` es `AAAA-MM` y `ranking_mes` solo 
 
 ## Premio del concurso
 
-El premio es del concurso, no del reto. Son 10 preguntas, 4 respuestas y 30 s. El desempate lo dicen las bases del concurso: es por sorteo. El mes se cuenta en hora de Madrid (`Europe/Madrid`): al empezar el mes siguiente el ranking público vuelve a cero y la marca del mes cerrado queda para el premio.
+El premio es del concurso, no del reto. Son 10 preguntas, 4 respuestas y 30 s. Gana quien más acierta. Si empatan en aciertos, el desempate es un sorteo en el servidor entre los empatados, y queda guardado. El mes se cuenta en hora de Madrid (`Europe/Madrid`): al empezar el mes siguiente el ranking público vuelve a cero y la marca del mes cerrado queda para el premio.
 
-La cifra está solo en `public.premio_euros()`. El navegador la lee de esa función. No hay una copia en `js/config.js`. El concurso tiene que llamarla y no repetir la cantidad. El pago sigue siendo manual. `/preguntas` no lo anuncia. Falta cerrar el ámbito por país, los menores y la fiscalidad antes de publicarlo en la página.
+La cifra está solo en `public.premio_euros()`. El navegador la lee de esa función. No hay una copia en `js/config.js`. El concurso tiene que llamarla y no repetir la cantidad. El pago sigue siendo manual. `/preguntas` no lo anuncia. Las bases están en la página del concurso.
 
 `quiz_premios.origen` es obligatorio y no tiene valor por defecto. `anon` y `authenticated` no tienen ningún permiso de escritura sobre `quiz_premios` ni `reto_premios`: ni insertar, ni actualizar, ni borrar, ni `TRUNCATE`, ni `TRIGGER`. Solo `authenticated` puede leer. El trigger `quiz_premios_guardar` no es `security definer` y solo deja escribir a `postgres`, `service_role` o `supabase_admin`. El historial público es `concurso_historial()`. El formulario solo debe reclamar si `concurso_premio_pendiente(periodo)` devuelve true: usa `auth.uid()` y `anon` no puede ejecutarla. Una fila del reto no entra en `quiz_premios`: si el administrador la manda con `origen = 'reto'`, el trigger la guarda en `reto_premios`. Las filas que ya estuvieran, incluidas las pagadas, se copian a `reto_premios` sin cambiar el importe. `supabase/pruebas.sql` comprueba los permisos y los apodos en una base local.
 
