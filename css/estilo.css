@@ -576,7 +576,15 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 .qa-aviso.malo { background: #fdecea; color: var(--danger); }
 .qa-sesion { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 12px; }
 .qa-sesion p { margin: 0; font-weight: 800; }
-.qa-sesion[hidden], #qa-entrar[hidden], #qa-preguntar[hidden], #qa-admin-fila[hidden], #qa-admin-nota[hidden], #qa-reset[hidden], #qa-demo[hidden], #qa-entrar-demo[hidden], #qa-entrar-correo[hidden], #qa-entrar-google[hidden], #qa-premio-banda[hidden], #qa-cola[hidden] { display: none !important; }
+.qa-sesion[hidden], #qa-entrar[hidden], #qa-sugerir[hidden], #qa-crear[hidden], #qa-admin-fila[hidden], #qa-euros-fila[hidden], #qa-admin-nota[hidden], #qa-reset[hidden], #qa-demo[hidden], #qa-entrar-demo[hidden], #qa-entrar-correo[hidden], #qa-entrar-google[hidden], #qa-premio-banda[hidden], #qa-cola[hidden] { display: none !important; }
+.qa-opciones { display: grid; gap: 8px; margin: 10px 0; }
+.qa-opcion { width: 100%; text-align: left; min-height: 48px; white-space: normal; }
+.qa-reloj { font-weight: 800; margin: 8px 0; }
+.qa-explica { background: var(--gl); border-radius: 12px; padding: 10px 12px; }
+.pago-grid { display: grid; gap: 10px; }
+.pago-card { background: #fff; border-radius: 12px; padding: 10px 12px; }
+.pago-card h3 { margin-top: 0; font-size: 1.05rem; }
+@media (min-width: 800px) { .pago-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .qa-premio-caja { background: #fff6d8; border-radius: 12px; padding: 10px 12px; margin: 0 0 12px; }
 .qa-premio-caja h2 { font-size: 1.15rem; margin-top: 0; }
 .qa-ideas { margin: 0 0 8px; padding-left: 1.1rem; }

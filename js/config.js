@@ -49,8 +49,10 @@ window.GR = {
   comunidad: {
     supabaseUrl: "https://TU-PROYECTO.supabase.co",
     supabaseAnonKey: "TU_CLAVE_ANON_PUBLICA",
-    /* Hueco. Cámbialo cuando elijas el premio real del mes. */
-    premioNombre: "Premio del mes (lo decides tú)"
+    /* Premio del ranking mensual, en euros. Entre 20 y 30. El pago es manual. */
+    premioEuros: 25,
+    diasReclamo: 15,
+    segundos: 45
   }
 };
 

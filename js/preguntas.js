@@ -1,5 +1,6 @@
-/* Foro de preguntas. Con la URL de ejemplo de js/config.js no llama a Supabase:
-   todo queda en localStorage. Con una URL y una clave anónima reales usa la API. */
+/* Reto del mes. Con la URL de ejemplo de js/config.js no llama a Supabase.
+   La clave de cada pregunta vive en este script solo para la demo: el HTML no la marca.
+   Con Supabase, responder() del SQL es quien dice si acertaste, después de contestar. */
 (function (root, factory) {
   var api = factory(root);
   if (typeof module === "object" && module.exports) module.exports = api;
@@ -9,15 +10,14 @@
 })(typeof window !== "undefined" ? window : null, function (root) {
   var FILTRO = ["viagra", "casino", "porno", "criptomoneda", "puta", "mierda", "cabron", "maricon"];
   var REGLAS = {
-    pregunta: [{ ventana: 60000, tope: 1 }, { ventana: 3600000, tope: 5 }],
-    respuesta: [{ ventana: 20000, tope: 1 }, { ventana: 600000, tope: 8 }],
-    reporte: [{ ventana: 3600000, tope: 5 }],
-    voto: [{ ventana: 60000, tope: 30 }]
+    intento: [{ ventana: 3000, tope: 1 }, { ventana: 3600000, tope: 40 }],
+    sugerencia: [{ ventana: 86400000, tope: 3 }]
   };
+  var PUNTOS = { acierto: 10, primero: 5, rapidoMax: 5 };
   var CLAVE = "gr_preguntas_v1";
   var CLAVE_ADMIN = "gr_preguntas_admin";
-  var CLAVE_TOKEN = "gr_preguntas_token";
   var CLAVE_NOMBRE = "gr_preguntas_nombre";
+  var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 
   function normaliza(s) {
     return String(s || "").toLowerCase().replace(/[áàä]/g, "a").replace(/[éèë]/g, "e").replace(/[íìï]/g, "i").replace(/[óòö]/g, "o").replace(/[úùü]/g, "u").replace(/ñ/g, "n");
@@ -32,13 +32,6 @@
     }
     var links = String(t || "").match(/https?:\/\//gi);
     return !!(links && links.length > 2);
-  }
-
-  function insignia(respuestas, utiles) {
-    if (respuestas >= 10 && utiles >= 25) return { clave: "referente", nombre: "Referente" };
-    if (utiles >= 10) return { clave: "buena", nombre: "Buena mano" };
-    if (respuestas >= 3) return { clave: "vecino", nombre: "Vecino" };
-    return { clave: "semilla", nombre: "Semilla" };
   }
 
   function cupo(marcas, ahora, reglas) {
@@ -64,96 +57,89 @@
     return { ok: true, espera: 0, marcas: lista };
   }
 
-  function ordenarPreguntas(preguntas, respuestas, modo) {
-    function votos(p) { return (p.votos || []).length; }
-    function nResp(p) {
-      var n = 0;
-      var i;
-      for (i = 0; i < respuestas.length; i++) {
-        if (respuestas[i].pregunta === p.id && !respuestas[i].oculto) n++;
-      }
-      return n;
-    }
-    var list = (preguntas || []).slice();
-    list.sort(function (a, b) {
-      if (modo === "votadas" && votos(b) !== votos(a)) return votos(b) - votos(a);
-      if (modo === "sin") {
-        var sa = nResp(a) === 0 ? 0 : 1;
-        var sb = nResp(b) === 0 ? 0 : 1;
-        if (sa !== sb) return sa - sb;
-      }
-      return b.creado - a.creado;
-    });
-    return list;
+  function periodoDe(ms) {
+    var s = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid", year: "numeric", month: "2-digit" }).format(new Date(ms));
+    return s.slice(0, 7);
   }
 
-  function ranking(usuarios, respuestas) {
-    return (usuarios || []).map(function (u) {
-      var n = 0;
-      var utiles = 0;
-      var i;
-      for (i = 0; i < respuestas.length; i++) {
-        if (respuestas[i].autor !== u.id || respuestas[i].oculto) continue;
-        n++;
-        utiles += (respuestas[i].utiles || []).length;
-      }
-      return {
-        id: u.id,
-        nombre: u.nombre,
-        respuestas: n,
-        utiles: utiles,
-        puntos: n + utiles,
-        insignia: insignia(n, utiles)
-      };
-    }).filter(function (r) { return r.respuestas > 0; }).sort(function (a, b) {
+  function nombrePeriodo(p) {
+    var m = Number(String(p || "").slice(5, 7));
+    var y = String(p || "").slice(0, 4);
+    if (!MESES[m - 1]) return String(p || "");
+    return MESES[m - 1] + " de " + y;
+  }
+
+  function eurosValidos(n) {
+    n = Math.round(Number(n));
+    if (n < 20 || n > 30) return null;
+    return n;
+  }
+
+  function puntosIntento(acierto, ms, limiteMs, esPrimero) {
+    if (!acierto) return { puntos: 0, base: 0, rapido: 0, primero: 0 };
+    var rapido = 0;
+    if (limiteMs > 0 && ms >= 0 && ms <= limiteMs) {
+      rapido = Math.round(PUNTOS.rapidoMax * (1 - ms / limiteMs));
+    }
+    var primero = esPrimero ? PUNTOS.primero : 0;
+    return { puntos: PUNTOS.acierto + rapido + primero, base: PUNTOS.acierto, rapido: rapido, primero: primero };
+  }
+
+  function semillaNum(s) {
+    var h = 2166136261;
+    var i;
+    s = String(s || "");
+    for (i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+
+  function barajar(lista, semilla) {
+    var a = (lista || []).slice();
+    var s = semilla >>> 0;
+    var i;
+    var j;
+    var t;
+    for (i = a.length - 1; i > 0; i--) {
+      s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+      j = s % (i + 1);
+      t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+
+  function rankingMes(usuarios, intentos, preguntas, periodo) {
+    var dePregunta = {};
+    var i;
+    for (i = 0; i < (preguntas || []).length; i++) dePregunta[preguntas[i].id] = preguntas[i];
+    var por = {};
+    for (i = 0; i < (intentos || []).length; i++) {
+      var it = intentos[i];
+      if (it.anulado) continue;
+      var preg = dePregunta[it.pregunta];
+      if (!preg || preg.periodo !== periodo) continue;
+      if (!por[it.usuario]) por[it.usuario] = { id: it.usuario, puntos: 0, aciertos: 0, llegado: 0 };
+      var fila = por[it.usuario];
+      fila.puntos += it.puntos || 0;
+      if (it.acierto && it.puntos > 0) fila.aciertos++;
+      if ((it.puntos || 0) > 0 && it.creado > fila.llegado) fila.llegado = it.creado;
+    }
+    var nombres = {};
+    for (i = 0; i < (usuarios || []).length; i++) nombres[usuarios[i].id] = usuarios[i].nombre;
+    return Object.keys(por).map(function (id) {
+      var f = por[id];
+      f.nombre = nombres[id] || "Alguien";
+      return f;
+    }).filter(function (f) { return f.puntos > 0; }).sort(function (a, b) {
       if (b.puntos !== a.puntos) return b.puntos - a.puntos;
-      if (b.respuestas !== a.respuestas) return b.respuestas - a.respuestas;
+      if (a.llegado !== b.llegado) return a.llegado - b.llegado;
+      if (b.aciertos !== a.aciertos) return b.aciertos - a.aciertos;
       return String(a.nombre).localeCompare(String(b.nombre), "es");
     });
-  }
-
-  var PREMIO = { minLetras: 80, topeMes: 2, esperaMs: 7 * 86400000 };
-
-  function textoPremio() {
-    var c = (typeof window !== "undefined" && window.GR && window.GR.comunidad) || {};
-    var nombre = String(c.premioNombre || "").trim();
-    if (!nombre || /lo decides|placeholder|tu_premio/i.test(nombre)) return "Premio del mes (lo decides tú)";
-    return nombre;
-  }
-
-  function puedeOptar(respuesta, pregunta) {
-    if (!respuesta || !pregunta) return { ok: false, motivo: "falta" };
-    if (respuesta.oculto) return { ok: false, motivo: "oculta" };
-    if (respuesta.autor === pregunta.autor) return { ok: false, motivo: "propia" };
-    if (String(respuesta.cuerpo || "").trim().length < PREMIO.minLetras) return { ok: false, motivo: "corta" };
-    return { ok: true, motivo: "" };
-  }
-
-  function cupoPremio(premios, usuarioId, ahora) {
-    var vivos = (premios || []).filter(function (p) {
-      return p.ganador === usuarioId && p.estado !== "anulado" && p.estado !== "sin_premio";
-    });
-    var d = new Date(ahora);
-    var inicio = new Date(d.getFullYear(), d.getMonth(), 1).getTime();
-    var enMes = 0;
-    var ultimo = 0;
-    var i;
-    for (i = 0; i < vivos.length; i++) {
-      if (vivos[i].creado >= inicio) enMes++;
-      if (vivos[i].creado > ultimo) ultimo = vivos[i].creado;
-    }
-    if (enMes >= PREMIO.topeMes) return { ok: false, motivo: "mes" };
-    if (ultimo && ahora - ultimo < PREMIO.esperaMs) return { ok: false, motivo: "espera", espera: PREMIO.esperaMs - (ahora - ultimo) };
-    return { ok: true, motivo: "" };
-  }
-
-  function premioActivo(premios, preguntaId) {
-    var i;
-    var lista = premios || [];
-    for (i = lista.length - 1; i >= 0; i--) {
-      if (lista[i].pregunta === preguntaId && lista[i].estado !== "anulado") return lista[i];
-    }
-    return null;
   }
 
   function senalCompartida(usuarios, dispositivo, ganadorId) {
@@ -161,70 +147,6 @@
     return (usuarios || []).filter(function (u) {
       return u.id !== ganadorId && u.dispositivo && u.dispositivo === dispositivo;
     });
-  }
-
-  function ids(pref, n) {
-    var a = [];
-    var i;
-    for (i = 1; i <= n; i++) a.push(pref + i);
-    return a;
-  }
-
-  function semilla() {
-    var H = 3600000;
-    var ahora = Date.now();
-    function hace(horas) { return ahora - horas * H; }
-    return {
-      v: 2,
-      usuarios: [
-        { id: "u-marta", nombre: "Marta López", correo: "marta@ejemplo.test", dispositivo: "dev-marta" },
-        { id: "u-luis", nombre: "Luis Herrera", correo: "luis@ejemplo.test", dispositivo: "dev-compartido" },
-        { id: "u-ana", nombre: "Ana Ruiz", correo: "ana@ejemplo.test", dispositivo: "dev-ana" },
-        { id: "u-pedro", nombre: "Pedro Díaz", correo: "pedro@ejemplo.test", dispositivo: "dev-pedro" },
-        { id: "u-carmen", nombre: "Carmen Soto", correo: "carmen@ejemplo.test", dispositivo: "dev-carmen" },
-        { id: "u-anuncio", nombre: "Anuncio raro", correo: "anuncio@ejemplo.test", dispositivo: "dev-anuncio" },
-        { id: "u-sombra", nombre: "Cuenta repetida", correo: "sombra@ejemplo.test", dispositivo: "dev-compartido" }
-      ],
-      sesion: null,
-      preguntas: [
-        { id: "q-calcio", autor: "u-ana", titulo: "¿Cuánto calcio dejo a libre disposición en postura?", cuerpo: "Tengo 30 gallinas ponedoras y no sé si mezclar la concha con el pienso o dejarla aparte.", creado: hace(90), oculto: false, votos: ["u-marta", "u-luis", "u-pedro", "u-carmen", "v-cal"], valida: "a1" },
-        { id: "q-temp", autor: "u-carmen", titulo: "¿A qué temperatura dejo los pollitos la primera semana?", cuerpo: "Acaban de nacer en la incubadora y los pasé a la criadora. No quiero ni asarlos ni dejarlos tiritar.", creado: hace(6), oculto: false, votos: ["u-marta"], valida: "a7" },
-        { id: "q-isa", autor: "u-pedro", titulo: "Mi Isa Brown dejó de poner a los 8 meses", cuerpo: "Comen y beben normal. El día ya es más corto. ¿Puede ser la luz o se vienen a la muda?", creado: hace(30), oculto: false, votos: ["u-carmen"] },
-        { id: "q-cobb", autor: "u-luis", titulo: "Cobb 500 a las 7 semanas, ¿sigo o los preparo para carne?", cuerpo: "Están grandes y comen mucho. No busco huevos con esta línea.", creado: hace(50), oculto: false, votos: [] },
-        { id: "q-amon", autor: "u-marta", titulo: "Huele a amoníaco al entrar al gallinero", cuerpo: "La cama lleva tres semanas. ¿La cambio toda o solo la parte húmeda?", creado: hace(12), oculto: false, votos: ["u-luis", "u-ana"] }
-      ],
-      respuestas: [
-        { id: "a1", pregunta: "q-calcio", autor: "u-marta", cuerpo: "En postura, el calcio va aparte, a libre disposición: unos 3–5 g por gallina y día. Por el día, calcio fino. Por la tarde-noche, concha de ostra o grano grueso. Es orientativo.", creado: hace(88), oculto: false, utiles: ids("cal", 18) },
-        { id: "a2", pregunta: "q-calcio", autor: "u-luis", cuerpo: "Yo dejo un recipiente aparte de concha. Cuando se vacía muy rápido, pongo otro.", creado: hace(70), oculto: false, utiles: ids("lu1", 8) },
-        { id: "a3", pregunta: "q-calcio", autor: "u-ana", cuerpo: "Gracias. Los dejé aparte y el recipiente baja solo, sin mezclarlo con el pienso.", creado: hace(40), oculto: false, utiles: ids("an1", 1) },
-        { id: "a4", pregunta: "q-calcio", autor: "u-marta", cuerpo: "No lo mezcles con el pienso: si pueden elegir, lo pican cuando lo necesitan.", creado: hace(60), oculto: false, utiles: [] },
-        { id: "a5", pregunta: "q-calcio", autor: "u-marta", cuerpo: "Si el huevo sale blando, revisa también el agua y que no estén enfermas. El calcio no lo arregla todo.", creado: hace(55), oculto: false, utiles: [] },
-        { id: "a6", pregunta: "q-temp", autor: "u-marta", cuerpo: "La primera semana muchos dejan la criadora cerca de 32–35 °C y van bajando. Si se amontonan, tienen frío. Si se apartan de la lámpara, tienen calor. Orientativo.", creado: hace(5), oculto: false, utiles: ids("te", 4) },
-        { id: "a7", pregunta: "q-temp", autor: "u-luis", cuerpo: "En mi criadora miro el corro: juntos es frío, en los bordes es calor. Así ajusto la lámpara sin un número fijo.", creado: hace(4), oculto: false, utiles: ids("lu2", 2) },
-        { id: "a8", pregunta: "q-temp", autor: "u-pedro", cuerpo: "¿La lámpara va todo el día la primera semana o solo de noche?", creado: hace(3), oculto: false, utiles: [] },
-        { id: "a9", pregunta: "q-temp", autor: "u-marta", cuerpo: "Un termómetro a la altura de los pollitos vale más que adivinar. No es una receta única.", creado: hace(2.5), oculto: false, utiles: [] },
-        { id: "a10", pregunta: "q-temp", autor: "u-marta", cuerpo: "Deja también una zona más fresca para que ellos elijan dónde ponerse.", creado: hace(2), oculto: false, utiles: [] },
-        { id: "a11", pregunta: "q-amon", autor: "u-marta", cuerpo: "Si pica al respirar, saca la cama húmeda y ventila sin una corriente directa sobre las aves.", creado: hace(11), oculto: false, utiles: ids("am", 4) },
-        { id: "a12", pregunta: "q-amon", autor: "u-luis", cuerpo: "A mí me funcionó cambiar la cama húmeda cada semana en época de lluvias.", creado: hace(9), oculto: false, utiles: ids("lu3", 2) },
-        { id: "a13", pregunta: "q-amon", autor: "u-ana", cuerpo: "Probé a ventilar la puerta una hora y el olor bajó, pero la cama seguía mojada.", creado: hace(8), oculto: false, utiles: ids("an2", 1) },
-        { id: "a14", pregunta: "q-amon", autor: "u-marta", cuerpo: "Remover solo la costra a veces no alcanza. La parte mojada es la que suelta el amoníaco.", creado: hace(7), oculto: false, utiles: [] },
-        { id: "a15", pregunta: "q-amon", autor: "u-ana", cuerpo: "Al final saqué la parte húmeda y mejoró al día siguiente.", creado: hace(6.5), oculto: false, utiles: [] },
-        { id: "a16", pregunta: "q-cobb", autor: "u-marta", cuerpo: "Cobb y Ross se crían para carne, no para huevo. Hacia las 6–8 semanas ya suelen estar en peso de faena, según el manejo.", creado: hace(48), oculto: false, utiles: [] },
-        { id: "a17", pregunta: "q-cobb", autor: "u-luis", cuerpo: "Los míos a las 7 semanas ya no crecían igual y comían de más. Los destinamos a carne.", creado: hace(46), oculto: false, utiles: [] },
-        { id: "a18", pregunta: "q-cobb", autor: "u-marta", cuerpo: "Si sigues más semanas, el pienso se come el margen. Míralo en la calculadora antes de decidir.", creado: hace(44), oculto: false, utiles: [] },
-        { id: "a19", pregunta: "q-cobb", autor: "u-pedro", cuerpo: "Yo los faené.", creado: hace(40), oculto: false, utiles: [] },
-        { id: "a-oculto", pregunta: "q-isa", autor: "u-anuncio", cuerpo: "Escríbeme para venderte un lote milagroso que pone el doble.", creado: hace(20), oculto: true, utiles: [] }
-      ],
-      reportes: [
-        { id: "r1", tipo: "pregunta", objetivo: "q-isa", usuario: "u-luis", motivo: "Creo que está repetida", creado: hace(10) },
-        { id: "r2", tipo: "respuesta", objetivo: "a-oculto", usuario: "u-ana", motivo: "Spam o publicidad", creado: hace(18) }
-      ],
-      premios: [
-        { id: "prem-calcio", pregunta: "q-calcio", respuesta: "a1", ganador: "u-marta", marcadoPor: "u-ana", estado: "pendiente", motivo: "", reclamo: null, dispositivo: "dev-marta", creado: hace(80) },
-        { id: "prem-temp", pregunta: "q-temp", respuesta: "a7", ganador: "u-luis", marcadoPor: "u-carmen", estado: "reclamado", motivo: "", reclamo: { nombre: "Luis Herrera", pais: "México" }, dispositivo: "dev-compartido", creado: hace(3) }
-      ],
-      ritmo: { pregunta: [], respuesta: [], reporte: [], voto: [] }
-    };
   }
 
   function configNube(gr) {
@@ -237,295 +159,246 @@
     return { url: url, key: key };
   }
 
+  function eurosIniciales() {
+    var c = (typeof window !== "undefined" && window.GR && window.GR.comunidad) || {};
+    return eurosValidos(c.premioEuros) || 25;
+  }
+
+  function segundosIniciales() {
+    var c = (typeof window !== "undefined" && window.GR && window.GR.comunidad) || {};
+    var n = Math.round(Number(c.segundos));
+    if (n < 15 || n > 120) return 45;
+    return n;
+  }
+
+  function diasReclamo() {
+    var c = (typeof window !== "undefined" && window.GR && window.GR.comunidad) || {};
+    var n = Math.round(Number(c.diasReclamo));
+    if (n < 7 || n > 30) return 15;
+    return n;
+  }
+
+  function semilla() {
+    var H = 3600000;
+    var ahora = Date.now();
+    function hace(horas) { return ahora - horas * H; }
+    var periodo = periodoDe(ahora);
+    var limite = 45000;
+    var intentos = [];
+    function anotar(pregunta, usuario, opcion, acierto, ms, creado, dispositivo) {
+      var primero = !!(acierto && !intentos.some(function (i) {
+        return i.pregunta === pregunta && i.acierto && !i.anulado && i.puntos > 0;
+      }));
+      var p = puntosIntento(acierto, ms, limite, primero);
+      intentos.push({
+        id: "i-" + pregunta + "-" + usuario,
+        pregunta: pregunta,
+        usuario: usuario,
+        opcion: opcion,
+        acierto: !!acierto,
+        puntos: p.puntos,
+        base: p.base,
+        rapido: p.rapido,
+        primero: p.primero,
+        ms: ms,
+        creado: creado,
+        anulado: false,
+        motivo: "",
+        dispositivo: dispositivo
+      });
+    }
+    anotar("q-calcio", "u-marta", "c2", true, 8000, hace(80), "dev-marta");
+    anotar("q-calcio", "u-luis", "c2", true, 30000, hace(70), "dev-compartido");
+    anotar("q-temp", "u-marta", "t2", true, 12000, hace(60), "dev-marta");
+    anotar("q-temp", "u-ana", "t2", true, 20000, hace(50), "dev-ana");
+    anotar("q-cobb", "u-luis", "k2", true, 10000, hace(40), "dev-compartido");
+    anotar("q-cobb", "u-marta", "k1", false, 15000, hace(30), "dev-marta");
+    anotar("q-amon", "u-ana", "m2", true, 5000, hace(20), "dev-ana");
+    anotar("q-amon", "u-pedro", "m1", false, 20000, hace(18), "dev-pedro");
+    return {
+      v: 3,
+      premioEuros: eurosIniciales(),
+      usuarios: [
+        { id: "u-marta", nombre: "Marta López", correo: "marta@ejemplo.test", dispositivo: "dev-marta" },
+        { id: "u-luis", nombre: "Luis Herrera", correo: "luis@ejemplo.test", dispositivo: "dev-compartido" },
+        { id: "u-ana", nombre: "Ana Ruiz", correo: "ana@ejemplo.test", dispositivo: "dev-ana" },
+        { id: "u-pedro", nombre: "Pedro Díaz", correo: "pedro@ejemplo.test", dispositivo: "dev-pedro" },
+        { id: "u-sombra", nombre: "Cuenta repetida", correo: "sombra@ejemplo.test", dispositivo: "dev-compartido" }
+      ],
+      sesion: null,
+      preguntas: [
+        { id: "q-puesta", periodo: periodo, origen: "", segundos: 45, texto: "¿Cuándo empiezan a poner, de forma orientativa, las ponedoras comerciales?", explica: "Suelen empezar hacia las 18–22 semanas. Si partes de pollitos, no cuentes huevos antes de unos 5 meses. Es orientativo.", correcta: "p2", opciones: [
+          { id: "p1", texto: "A la semana de nacer" },
+          { id: "p2", texto: "Hacia las 18–22 semanas" },
+          { id: "p3", texto: "Al cumplir el año justo" },
+          { id: "p4", texto: "Solo en primavera el primer año" }
+        ] },
+        { id: "q-calcio", periodo: periodo, origen: "", segundos: 45, texto: "En postura, ¿dónde dejo el calcio?", explica: "El calcio va aparte, a libre disposición: unos 3–5 g por gallina y día. De día, calcio fino. De tarde-noche, concha o grano grueso. Es orientativo.", correcta: "c2", opciones: [
+          { id: "c1", texto: "Mezclado en el pienso, para que no elijan" },
+          { id: "c2", texto: "Aparte, a libre disposición" },
+          { id: "c3", texto: "Solo disuelto en el agua" },
+          { id: "c4", texto: "No hace falta calcio extra en postura" }
+        ] },
+        { id: "q-temp", periodo: periodo, origen: "", segundos: 45, texto: "La primera semana, ¿qué temperatura orientativa se usa en la criadora?", explica: "Muchos dejan la criadora cerca de 32–35 °C la primera semana y van bajando. Si se amontonan, tienen frío. Si se apartan de la lámpara, tienen calor. Es orientativo.", correcta: "t2", opciones: [
+          { id: "t1", texto: "18–20 °C" },
+          { id: "t2", texto: "32–35 °C" },
+          { id: "t3", texto: "40–42 °C" },
+          { id: "t4", texto: "La del ambiente, sin lámpara" }
+        ] },
+        { id: "q-cobb", periodo: periodo, origen: "", segundos: 45, texto: "Cobb 500 y Ross 308, ¿para qué se crían?", explica: "Son líneas de engorde. No se crían para huevo. Hacia las 6–8 semanas suelen estar en peso de faena, según el manejo. Es orientativo.", correcta: "k2", opciones: [
+          { id: "k1", texto: "Huevo de mesa" },
+          { id: "k2", texto: "Carne, no para huevo" },
+          { id: "k3", texto: "Incubar huevos de raza pura" },
+          { id: "k4", texto: "Solo de adorno" }
+        ] },
+        { id: "q-amon", periodo: periodo, origen: "", segundos: 45, texto: "Si el gallinero huele a amoníaco, ¿qué miro primero?", explica: "La cama mojada suelta amoníaco. Se saca esa parte y se ventila sin una corriente directa sobre las aves. Es orientativo.", correcta: "m2", opciones: [
+          { id: "m1", texto: "Echo más pienso" },
+          { id: "m2", texto: "La cama húmeda y la ventilación" },
+          { id: "m3", texto: "Cierro todo para que no entre frío" },
+          { id: "m4", texto: "Tiro agua al suelo" }
+        ] }
+      ],
+      sugerencias: [
+        { id: "s-agua", autor: "u-pedro", texto: "¿Cada cuánto cambio el agua de las gallinas?", explica: "El agua se cambia a diario y el bebedero se mantiene limpio. Es orientativo.", correcta: "sa2", estado: "pendiente", creado: hace(5), opciones: [
+          { id: "sa1", texto: "No hace falta cambiarla" },
+          { id: "sa2", texto: "A diario, y el bebedero se limpia" },
+          { id: "sa3", texto: "Una vez al mes basta" },
+          { id: "sa4", texto: "Con que beban de un charco vale" }
+        ] }
+      ],
+      intentos: intentos,
+      abiertas: [],
+      premios: [
+        { id: "prem-2026-09", periodo: "2026-09", ganador: "u-luis", euros: 25, estado: "pendiente", reclamo: null, dispositivo: "dev-compartido", motivo: "", creado: Date.parse("2026-10-01T08:00:00Z") }
+      ],
+      ritmo: { intento: [], sugerencia: [] }
+    };
+  }
+
   var cfgNube = null;
   var estado = null;
-  var orden = "nuevas";
-  var abiertas = {};
+  var reloj = null;
   var ocupado = false;
 
   function modoDemo() { return !cfgNube; }
 
-  function ritmoVacio() {
-    return { pregunta: [], respuesta: [], reporte: [], voto: [] };
+  function buscar(lista, id) {
+    var i;
+    for (i = 0; i < (lista || []).length; i++) if (lista[i].id === id) return lista[i];
+    return null;
   }
 
-  function textoEspera(ms) {
-    var s = Math.max(1, Math.ceil(ms / 1000));
-    if (s < 60) return "Espera " + s + " segundos para volver a publicar.";
-    return "Espera " + Math.ceil(s / 60) + " minutos para volver a publicar.";
+  function nombreDe(id) {
+    var u = buscar(estado.usuarios, id);
+    return u ? u.nombre : "Alguien";
   }
 
-  function validar(titulo, cuerpo, conTitulo) {
-    titulo = String(titulo || "").trim();
-    cuerpo = String(cuerpo || "").trim();
-    if (conTitulo && (titulo.length < 8 || titulo.length > 140)) return "El título necesita entre 8 y 140 letras.";
-    if (cuerpo.length < 8 || cuerpo.length > 4000) return "El texto necesita entre 8 y 4.000 letras.";
-    if (textoProhibido(conTitulo ? titulo + " " + cuerpo : cuerpo)) return "Ese texto no se puede publicar. Quita insultos, publicidad o los enlaces de más.";
-    return "";
+  function intentoDe(usuarioId, preguntaId) {
+    var i;
+    for (i = 0; i < estado.intentos.length; i++) {
+      var it = estado.intentos[i];
+      if (it.usuario === usuarioId && it.pregunta === preguntaId) return it;
+    }
+    return null;
   }
 
-  function correoValido(s) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || "").trim());
+  function abiertaDe(usuarioId, preguntaId) {
+    var i;
+    for (i = 0; i < estado.abiertas.length; i++) {
+      var a = estado.abiertas[i];
+      if (a.usuario === usuarioId && a.pregunta === preguntaId) return a;
+    }
+    return null;
   }
 
-  function nombreValido(s) {
-    var n = String(s || "").trim();
-    return n.length >= 2 && n.length <= 40;
+  function esAdmin() {
+    var box = document.getElementById("qa-admin");
+    return !!(box && box.checked);
   }
 
-  function haceTexto(ms) {
-    var s = Math.max(0, Date.now() - ms) / 1000;
-    if (s < 90) return "ahora";
-    if (s < 3600) return "hace " + Math.floor(s / 60) + " min";
-    if (s < 86400) return "hace " + Math.floor(s / 3600) + " h";
-    var d = Math.floor(s / 86400);
-    return d === 1 ? "hace 1 día" : "hace " + d + " días";
+  function dispositivo() {
+    var clave = "gr_preguntas_dispositivo";
+    try {
+      var id = localStorage.getItem(clave);
+      if (!id) {
+        id = "disp-" + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem(clave, id);
+      }
+      return id;
+    } catch (e) { return ""; }
   }
 
   function aviso(texto, malo) {
     var n = document.getElementById("qa-aviso");
     if (!n) return;
     n.textContent = texto || "";
-    n.classList.toggle("malo", !!malo && !!texto);
+    n.classList.toggle("malo", !!malo);
   }
 
-  function errorHumano(e) {
-    var m = String((e && e.message) || e || "");
-    if (/row-level security/i.test(m)) return "No tienes permiso para hacer eso.";
-    if (/Demasiados envíos/i.test(m)) return m;
-    if (/no se puede publicar/i.test(m)) return m;
-    if (/No puedes votar/i.test(m)) return m;
-    if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return "No hay conexión con Supabase.";
-    return m || "No se pudo completar.";
+  function textoEspera(ms) {
+    var s = Math.max(1, Math.ceil(ms / 1000));
+    if (s < 60) return "Espera " + s + " segundos para volver a intentarlo.";
+    return "Espera " + Math.ceil(s / 60) + " minutos para volver a intentarlo.";
   }
 
-  function el(tag, cls, text) {
+  function guardar() {
+    try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch (e) {}
+  }
+
+  function normalizar(o) {
+    o.usuarios = o.usuarios || [];
+    o.preguntas = o.preguntas || [];
+    o.sugerencias = o.sugerencias || [];
+    o.intentos = o.intentos || [];
+    o.abiertas = o.abiertas || [];
+    o.premios = o.premios || [];
+    o.ritmo = o.ritmo || { intento: [], sugerencia: [] };
+    if (!o.ritmo.intento) o.ritmo.intento = [];
+    if (!o.ritmo.sugerencia) o.ritmo.sugerencia = [];
+    if (!eurosValidos(o.premioEuros)) o.premioEuros = eurosIniciales();
+    return o;
+  }
+
+  function cargar() {
+    try {
+      var raw = localStorage.getItem(CLAVE);
+      if (raw) {
+        var o = JSON.parse(raw);
+        if (o && o.v === 3 && Array.isArray(o.preguntas) && Array.isArray(o.intentos)) return normalizar(o);
+      }
+    } catch (e) {}
+    return semilla();
+  }
+
+  function el(tag, cls, texto) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
-    if (text != null) n.textContent = text;
+    if (texto != null) n.textContent = texto;
     return n;
   }
 
-  function esAdmin() {
-    if (cfgNube) return !!(estado && estado.esAdmin);
-    var box = document.getElementById("qa-admin");
-    return !!(box && box.checked);
+  function boton(cls, acc, id, texto, extra) {
+    var b = el("button", "btn " + cls, texto);
+    b.type = "button";
+    b.setAttribute("data-acc", acc);
+    b.setAttribute("data-id", id);
+    if (extra) Object.keys(extra).forEach(function (k) { b.setAttribute(k, extra[k]); });
+    return b;
   }
 
-  function nombreDe(id) {
-    var i;
-    for (i = 0; i < estado.usuarios.length; i++) {
-      if (estado.usuarios[i].id === id) return estado.usuarios[i].nombre;
-    }
-    return "Alguien";
+  function nombreValido(s) {
+    s = String(s || "").trim();
+    return s.length >= 2 && s.length <= 40;
   }
 
-  function statsDe(id) {
-    var n = 0;
-    var u = 0;
-    var i;
-    for (i = 0; i < estado.respuestas.length; i++) {
-      if (estado.respuestas[i].autor !== id || estado.respuestas[i].oculto) continue;
-      n++;
-      u += (estado.respuestas[i].utiles || []).length;
-    }
-    return insignia(n, u);
+  function correoValido(s) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || "").trim());
   }
 
-  function reportesDe(tipo, id) {
-    var n = 0;
-    var i;
-    for (i = 0; i < estado.reportes.length; i++) {
-      if (estado.reportes[i].tipo === tipo && estado.reportes[i].objetivo === id) n++;
-    }
-    return n;
-  }
-
-  function yaReporto(tipo, id) {
-    if (!estado.sesion) return false;
-    var i;
-    for (i = 0; i < estado.reportes.length; i++) {
-      var r = estado.reportes[i];
-      if (r.tipo === tipo && r.objetivo === id && r.usuario === estado.sesion.id) return true;
-    }
+  function exigirSesion() {
+    if (estado.sesion) return true;
+    aviso("Entra con tu nombre para hacer eso.", true);
     return false;
-  }
-
-  function nVisibles(preguntaId) {
-    var n = 0;
-    var i;
-    for (i = 0; i < estado.respuestas.length; i++) {
-      if (estado.respuestas[i].pregunta === preguntaId && !estado.respuestas[i].oculto) n++;
-    }
-    return n;
-  }
-
-  function guardarDemo() {
-    try { localStorage.setItem(CLAVE, JSON.stringify(estado)); }
-    catch (e) { aviso("No pude guardar en este navegador.", true); }
-  }
-
-  function aplicarCupo(tipo) {
-    if (!estado.ritmo) estado.ritmo = ritmoVacio();
-    var res = cupo(estado.ritmo[tipo] || [], Date.now(), REGLAS[tipo]);
-    estado.ritmo[tipo] = res.marcas;
-    if (!res.ok) return res;
-    estado.ritmo[tipo].push(Date.now());
-    return { ok: true, espera: 0 };
-  }
-
-  function nid(pref) {
-    if (root && root.crypto && root.crypto.randomUUID) return pref + root.crypto.randomUUID();
-    return pref + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-  }
-
-  function sb(path, opts) {
-    opts = opts || {};
-    var token = (estado && estado.token && estado.token.access_token) || cfgNube.key;
-    var headers = {
-      apikey: cfgNube.key,
-      Authorization: "Bearer " + token,
-      "Content-Type": "application/json"
-    };
-    if (!opts.auth) headers.Prefer = "return=representation";
-    return fetch(cfgNube.url + path, {
-      method: opts.method || "GET",
-      headers: headers,
-      body: opts.body ? JSON.stringify(opts.body) : undefined
-    }).then(function (r) {
-      if (r.status === 204) return null;
-      return r.text().then(function (t) {
-        var data = null;
-        try { data = t ? JSON.parse(t) : null; } catch (e) { data = { message: t }; }
-        if (!r.ok) {
-          var msg = (data && (data.message || data.msg || data.error_description || data.error)) || ("Error " + r.status);
-          throw new Error(typeof msg === "string" ? msg : "Error " + r.status);
-        }
-        return data;
-      });
-    });
-  }
-
-  function leerToken() {
-    try {
-      var raw = localStorage.getItem(CLAVE_TOKEN);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) { return null; }
-  }
-
-  function guardarToken(token) {
-    try {
-      if (token) localStorage.setItem(CLAVE_TOKEN, JSON.stringify(token));
-      else localStorage.removeItem(CLAVE_TOKEN);
-    } catch (e) {}
-  }
-
-  function leerHash() {
-    if (!root.location || !root.location.hash || root.location.hash.indexOf("access_token=") === -1) return null;
-    var p = new URLSearchParams(root.location.hash.replace(/^#/, ""));
-    var access = p.get("access_token");
-    if (!access) return null;
-    var exp = Number(p.get("expires_in") || 3600);
-    try { root.history.replaceState(null, "", root.location.pathname + root.location.search); } catch (e) {}
-    return {
-      access_token: access,
-      refresh_token: p.get("refresh_token") || "",
-      expires_at: Date.now() + exp * 1000
-    };
-  }
-
-  function asegurarToken() {
-    if (!estado.token) return Promise.resolve();
-    if (estado.token.expires_at && estado.token.expires_at - Date.now() > 60000) return Promise.resolve();
-    if (!estado.token.refresh_token) return Promise.resolve();
-    return sb("/auth/v1/token?grant_type=refresh_token", {
-      method: "POST",
-      auth: true,
-      body: { refresh_token: estado.token.refresh_token }
-    }).then(function (data) {
-      estado.token = {
-        access_token: data.access_token,
-        refresh_token: data.refresh_token || estado.token.refresh_token,
-        expires_at: Date.now() + Number(data.expires_in || 3600) * 1000
-      };
-      guardarToken(estado.token);
-    });
-  }
-
-  function volcarVotos(filas, votos) {
-    var map = {};
-    var i;
-    for (i = 0; i < filas.length; i++) {
-      filas[i].creado = Date.parse(filas[i].creado) || 0;
-      filas[i].oculto = !!filas[i].oculto;
-      if (!filas[i].votos) filas[i].votos = [];
-      if (!filas[i].utiles) filas[i].utiles = [];
-      map[filas[i].id] = filas[i];
-    }
-    for (i = 0; i < votos.length; i++) {
-      var v = votos[i];
-      var fila = map[v.objetivo];
-      if (!fila) continue;
-      if (v.tipo === "pregunta") fila.votos.push(v.usuario);
-      if (v.tipo === "respuesta") fila.utiles.push(v.usuario);
-    }
-    return filas;
-  }
-
-  function refrescarNube() {
-    return asegurarToken().then(function () {
-      if (!estado.token) return null;
-      return sb("/auth/v1/user", { auth: true });
-    }).then(function (user) {
-      if (!user) return;
-      estado.sesion = { id: user.id, nombre: "", correo: user.email || "" };
-      return sb("/rest/v1/perfiles?id=eq." + encodeURIComponent(user.id) + "&select=id,nombre,es_admin");
-    }).then(function (perfiles) {
-      if (!estado.sesion) return;
-      var p = perfiles && perfiles[0];
-      if (!p) throw new Error("No hay ficha de perfil. Revisa el trigger alta_perfil en el SQL.");
-      var pendiente = "";
-      try { pendiente = localStorage.getItem(CLAVE_NOMBRE) || ""; } catch (e) {}
-      if (nombreValido(pendiente) && pendiente.trim() !== p.nombre) {
-        return sb("/rest/v1/perfiles?id=eq." + encodeURIComponent(estado.sesion.id), {
-          method: "PATCH",
-          body: { nombre: pendiente.trim() }
-        }).then(function () {
-          try { localStorage.removeItem(CLAVE_NOMBRE); } catch (e2) {}
-          estado.sesion.nombre = pendiente.trim();
-          estado.esAdmin = !!p.es_admin;
-        });
-      }
-      estado.sesion.nombre = p.nombre;
-      estado.esAdmin = !!p.es_admin;
-    }).then(function () {
-      var tareas = [
-        sb("/rest/v1/perfiles?select=id,nombre&order=nombre.asc&limit=200"),
-        sb("/rest/v1/preguntas?select=id,titulo,cuerpo,creado,oculto,autor&order=creado.desc&limit=100"),
-        sb("/rest/v1/respuestas?select=id,pregunta,cuerpo,creado,oculto,autor&order=creado.asc&limit=500"),
-        sb("/rest/v1/votos?select=usuario,tipo,objetivo&limit=2000")
-      ];
-      if (estado.sesion) tareas.push(sb("/rest/v1/reportes?select=id,usuario,tipo,objetivo,motivo,creado&order=creado.desc&limit=200"));
-      return Promise.all(tareas);
-    }).then(function (rows) {
-      if (!rows) return;
-      estado.usuarios = rows[0] || [];
-      var votos = rows[3] || [];
-      estado.preguntas = volcarVotos(rows[1] || [], votos.filter(function (v) { return v.tipo === "pregunta"; }));
-      estado.respuestas = volcarVotos(rows[2] || [], votos.filter(function (v) { return v.tipo === "respuesta"; }));
-      estado.respuestas.forEach(function (r) { r.utiles = r.utiles || r.votos || []; });
-      estado.reportes = (rows[4] || []).map(function (r) {
-        r.creado = Date.parse(r.creado) || 0;
-        return r;
-      });
-    }).catch(function (e) {
-      if (/401|JWT|invalid claim|session/i.test(String(e.message || ""))) {
-        estado.token = null;
-        estado.sesion = null;
-        guardarToken(null);
-      }
-      throw e;
-    });
   }
 
   function lanzar(trabajo) {
@@ -536,256 +409,254 @@
       if (cambio !== false) pintar();
     }).catch(function (e) {
       ocupado = false;
-      aviso(errorHumano(e), true);
+      aviso(e && e.message ? e.message : "No se pudo completar.", true);
     });
   }
 
-  function exigirSesion() {
-    if (estado.sesion) return true;
-    aviso("Entra con tu nombre para hacer eso.", true);
-    var f = document.getElementById("qa-entrar");
-    if (f && !f.hidden) {
-      var campo = f.querySelector("input[name=nombre]");
-      if (campo) campo.focus();
-    }
-    return false;
+  function tomarCupo(clave) {
+    var ahora = Date.now();
+    var r = cupo(estado.ritmo[clave], ahora, REGLAS[clave]);
+    if (!r.ok) return r;
+    r.marcas.push(ahora);
+    estado.ritmo[clave] = r.marcas;
+    return r;
   }
 
-  function publicarPregunta(titulo, cuerpo) {
-    var msg = validar(titulo, cuerpo, true);
-    if (msg) { aviso(msg, true); return false; }
-    if (modoDemo()) {
-      var cup = aplicarCupo("pregunta");
-      guardarDemo();
-      if (!cup.ok) { aviso(textoEspera(cup.espera), true); return false; }
-      estado.preguntas.push({
-        id: nid("q-"),
-        autor: estado.sesion.id,
-        titulo: titulo.trim(),
-        cuerpo: cuerpo.trim(),
-        creado: Date.now(),
-        oculto: false,
-        votos: []
-      });
-      guardarDemo();
-      document.getElementById("qa-titulo").value = "";
-      document.getElementById("qa-cuerpo").value = "";
-      orden = "nuevas";
-      aviso("Pregunta publicada en este navegador.", false);
-      return true;
-    }
-    return sb("/rest/v1/preguntas", {
-      method: "POST",
-      body: { autor: estado.sesion.id, titulo: titulo.trim(), cuerpo: cuerpo.trim() }
-    }).then(function () {
-      document.getElementById("qa-titulo").value = "";
-      document.getElementById("qa-cuerpo").value = "";
-      orden = "nuevas";
-      aviso("Pregunta publicada.", false);
-      return refrescarNube();
-    });
-  }
-
-  function publicarRespuesta(preguntaId, cuerpo) {
-    var msg = validar("", cuerpo, false);
-    if (msg) { aviso(msg, true); return false; }
-    if (modoDemo()) {
-      var cup = aplicarCupo("respuesta");
-      guardarDemo();
-      if (!cup.ok) { aviso(textoEspera(cup.espera), true); return false; }
-      estado.respuestas.push({
-        id: nid("a-"),
-        pregunta: preguntaId,
-        autor: estado.sesion.id,
-        cuerpo: cuerpo.trim(),
-        creado: Date.now(),
-        oculto: false,
-        utiles: []
-      });
-      abiertas[preguntaId] = true;
-      guardarDemo();
-      aviso("Respuesta publicada en este navegador.", false);
-      return true;
-    }
-    return sb("/rest/v1/respuestas", {
-      method: "POST",
-      body: { pregunta: preguntaId, autor: estado.sesion.id, cuerpo: cuerpo.trim() }
-    }).then(function () {
-      abiertas[preguntaId] = true;
-      aviso("Respuesta publicada.", false);
-      return refrescarNube();
-    });
-  }
-
-  function alternarVoto(tipo, id, lista) {
-    if (!exigirSesion()) return false;
-    var fila = null;
+  function esPrimero(preguntaId) {
     var i;
-    var arr = tipo === "pregunta" ? estado.preguntas : estado.respuestas;
-    for (i = 0; i < arr.length; i++) if (arr[i].id === id) fila = arr[i];
-    if (!fila || fila.oculto) return false;
-    if (fila.autor === estado.sesion.id) { aviso("No puedes votar lo que escribiste.", true); return false; }
-    var campo = tipo === "pregunta" ? "votos" : "utiles";
-    var ya = (fila[campo] || []).indexOf(estado.sesion.id) !== -1;
-    if (modoDemo()) {
-      if (!ya) {
-        var cup = aplicarCupo("voto");
-        guardarDemo();
-        if (!cup.ok) { aviso(textoEspera(cup.espera), true); return false; }
-        fila[campo].push(estado.sesion.id);
-      } else {
-        fila[campo] = fila[campo].filter(function (x) { return x !== estado.sesion.id; });
-      }
-      guardarDemo();
-      return true;
+    for (i = 0; i < estado.intentos.length; i++) {
+      var it = estado.intentos[i];
+      if (it.pregunta === preguntaId && it.acierto && !it.anulado && it.puntos > 0) return false;
     }
-    var quitar = ya
-      ? sb("/rest/v1/votos?usuario=eq." + encodeURIComponent(estado.sesion.id) + "&tipo=eq." + tipo + "&objetivo=eq." + encodeURIComponent(id), { method: "DELETE" })
-      : sb("/rest/v1/votos", { method: "POST", body: { usuario: estado.sesion.id, tipo: tipo, objetivo: id } });
-    return quitar.then(function () { return refrescarNube(); });
-  }
-
-  function enviarReporte(tipo, id, motivo) {
-    if (!exigirSesion()) return false;
-    motivo = String(motivo || "").trim();
-    if (motivo.length < 3) { aviso("Cuenta en pocas palabras por qué lo reportas.", true); return false; }
-    if (yaReporto(tipo, id)) { aviso("Ya habías reportado esto.", false); return false; }
-    if (textoProhibido(motivo)) { aviso("Ese texto no se puede publicar. Quita insultos, publicidad o los enlaces de más.", true); return false; }
-    if (modoDemo()) {
-      var cup = aplicarCupo("reporte");
-      guardarDemo();
-      if (!cup.ok) { aviso(textoEspera(cup.espera), true); return false; }
-      estado.reportes.push({ id: nid("r-"), tipo: tipo, objetivo: id, usuario: estado.sesion.id, motivo: motivo, creado: Date.now() });
-      guardarDemo();
-      aviso("Reporte guardado en este navegador. Un admin de prueba puede ocultarlo.", false);
-      return true;
-    }
-    return sb("/rest/v1/reportes", {
-      method: "POST",
-      body: { usuario: estado.sesion.id, tipo: tipo, objetivo: id, motivo: motivo }
-    }).then(function () {
-      aviso("Reporte enviado.", false);
-      return refrescarNube();
-    });
-  }
-
-  function ponerOculto(tipo, id, oculto) {
-    if (!esAdmin()) return false;
-    var tabla = tipo === "pregunta" ? estado.preguntas : estado.respuestas;
-    var i;
-    if (modoDemo()) {
-      for (i = 0; i < tabla.length; i++) if (tabla[i].id === id) tabla[i].oculto = oculto;
-      guardarDemo();
-      aviso(oculto ? "Quedó oculto en este navegador." : "Volvió a verse en este navegador.", false);
-      return true;
-    }
-    var path = (tipo === "pregunta" ? "/rest/v1/preguntas?id=eq." : "/rest/v1/respuestas?id=eq.") + encodeURIComponent(id);
-    return sb(path, { method: "PATCH", body: { oculto: oculto } }).then(function () {
-      aviso(oculto ? "Quedó oculto." : "Volvió a verse.", false);
-      return refrescarNube();
-    });
-  }
-
-  function dispositivo() {
-    var clave = "gr_preguntas_dispositivo";
-    try {
-      var id = localStorage.getItem(clave);
-      if (!id) {
-        id = nid("disp-");
-        localStorage.setItem(clave, id);
-      }
-      return id;
-    } catch (e) { return ""; }
-  }
-
-  function buscar(lista, id) {
-    var i;
-    for (i = 0; i < (lista || []).length; i++) if (lista[i].id === id) return lista[i];
-    return null;
-  }
-
-  function usuarioDe(id) {
-    return buscar(estado.usuarios, id);
-  }
-
-  function marcarValida(respuestaId) {
-    if (!exigirSesion()) return false;
-    if (!modoDemo()) { aviso("El premio en el servidor se enciende con el SQL. Esta vista es la demo.", true); return false; }
-    var respuesta = buscar(estado.respuestas, respuestaId);
-    var pregunta = respuesta && buscar(estado.preguntas, respuesta.pregunta);
-    if (!respuesta || !pregunta) return false;
-    var puede = esAdmin() || estado.sesion.id === pregunta.autor;
-    if (!puede) { aviso("Solo quien preguntó, o un admin, marca la respuesta válida.", true); return false; }
-    if (premioActivo(estado.premios, pregunta.id)) { aviso("Esta pregunta ya tiene una respuesta válida.", true); return false; }
-    var opta = puedeOptar(respuesta, pregunta);
-    if (!opta.ok && opta.motivo === "propia") { aviso("Responder la propia pregunta no opta al premio.", true); return false; }
-    if (!opta.ok && opta.motivo === "corta") { aviso("Para el premio hacen falta al menos 80 letras. Un «ok» no gana.", true); return false; }
-    if (!opta.ok) { aviso("Esa respuesta no puede llevarse el premio.", true); return false; }
-    var ganador = usuarioDe(respuesta.autor);
-    var cup = cupoPremio(estado.premios, respuesta.autor, Date.now());
-    var estadoPremio = cup.ok ? "pendiente" : "sin_premio";
-    var motivo = "";
-    if (!cup.ok && cup.motivo === "espera") motivo = "Aún no pasan 7 días desde su premio anterior.";
-    if (!cup.ok && cup.motivo === "mes") motivo = "Ya tiene 2 premios este mes.";
-    pregunta.valida = respuesta.id;
-    estado.premios.push({
-      id: nid("prem-"),
-      pregunta: pregunta.id,
-      respuesta: respuesta.id,
-      ganador: respuesta.autor,
-      marcadoPor: estado.sesion.id,
-      estado: estadoPremio,
-      motivo: motivo,
-      reclamo: null,
-      dispositivo: (ganador && ganador.dispositivo) || "",
-      creado: Date.now()
-    });
-    guardarDemo();
-    aviso(cup.ok
-      ? "Quedó como primera respuesta válida. Puede reclamar el premio."
-      : "Quedó como respuesta válida. Sin premio: " + motivo, false);
     return true;
   }
 
-  function reclamar(premioId, nombre, pais, acepta) {
-    if (!modoDemo()) { aviso("El premio en el servidor se enciende con el SQL. Esta vista es la demo.", true); return false; }
+  function cerrarIntento(pregunta, opcionId, ms, porTiempo) {
+    var propia = pregunta.origen && pregunta.origen === estado.sesion.id;
+    var acierto = !porTiempo && opcionId === pregunta.correcta;
+    var primero = acierto && !propia && esPrimero(pregunta.id);
+    var limite = pregunta.segundos * 1000;
+    var p = puntosIntento(acierto && !propia, ms, limite, primero);
+    if (propia) p = { puntos: 0, base: 0, rapido: 0, primero: 0 };
+    estado.intentos.push({
+      id: "i-" + Math.random().toString(36).slice(2, 10),
+      pregunta: pregunta.id,
+      usuario: estado.sesion.id,
+      opcion: opcionId || "",
+      acierto: !!acierto,
+      puntos: p.puntos,
+      base: p.base,
+      rapido: p.rapido,
+      primero: p.primero,
+      ms: ms,
+      creado: Date.now(),
+      anulado: false,
+      motivo: "",
+      dispositivo: dispositivo(),
+      propia: !!propia
+    });
+    estado.abiertas = estado.abiertas.filter(function (a) {
+      return !(a.usuario === estado.sesion.id && a.pregunta === pregunta.id);
+    });
+    var user = buscar(estado.usuarios, estado.sesion.id);
+    if (user) user.dispositivo = dispositivo();
+    guardar();
+    if (porTiempo) aviso("Se acabó el tiempo. Cuenta como intento y no suma puntos.", false);
+    else if (propia) aviso("Acertaste, pero propusiste esta pregunta: no suma puntos.", false);
+    else if (acierto) aviso("Correcta. " + p.puntos + " puntos" + (p.primero ? " (incluye el extra de ser el primero)." : "."), false);
+    else aviso("Esta no era. No suma puntos. Abajo va la explicación.", false);
+    return true;
+  }
+
+  function empezar(preguntaId) {
+    if (!modoDemo()) { aviso("En el servidor, empezar y responder los hace el SQL. Esta vista es la demo.", true); return false; }
+    if (!exigirSesion()) return false;
+    var pregunta = buscar(estado.preguntas, preguntaId);
+    if (!pregunta || pregunta.periodo !== periodoDe(Date.now())) { aviso("Esa pregunta no está en el mes.", true); return false; }
+    if (intentoDe(estado.sesion.id, preguntaId)) { aviso("Ya respondiste esta. Un intento por cuenta.", true); return false; }
+    if (abiertaDe(estado.sesion.id, preguntaId)) return true;
+    var cup = tomarCupo("intento");
+    if (!cup.ok) { aviso(textoEspera(cup.espera), true); return false; }
+    estado.abiertas.push({ usuario: estado.sesion.id, pregunta: preguntaId, inicio: Date.now() });
+    guardar();
+    return true;
+  }
+
+  function responder(preguntaId, opcionId) {
+    if (!modoDemo()) { aviso("En el servidor, la función responder comprueba el acierto. Esta vista es la demo.", true); return false; }
+    if (!exigirSesion()) return false;
+    var pregunta = buscar(estado.preguntas, preguntaId);
+    var abierta = abiertaDe(estado.sesion.id, preguntaId);
+    if (!pregunta || !abierta) { aviso("Pulsa Empezar. El tiempo corre desde ahí.", true); return false; }
+    if (intentoDe(estado.sesion.id, preguntaId)) { aviso("Ya respondiste esta. Un intento por cuenta.", true); return false; }
+    var ms = Date.now() - abierta.inicio;
+    var limite = pregunta.segundos * 1000;
+    if (ms >= limite) return cerrarIntento(pregunta, "", limite, true);
+    var valida = (pregunta.opciones || []).some(function (o) { return o.id === opcionId; });
+    if (!valida) { aviso("Esa opción no es de esta pregunta.", true); return false; }
+    return cerrarIntento(pregunta, opcionId, ms, false);
+  }
+
+  function leerOpciones(form) {
+    var opciones = [];
+    var i;
+    for (i = 1; i <= 4; i++) {
+      var texto = String(form["o" + i].value || "").trim();
+      if (texto.length < 2 || texto.length > 140) return null;
+      opciones.push({ id: "o-" + Math.random().toString(36).slice(2, 8), texto: texto });
+    }
+    var n = Number(form.correcta.value);
+    if (n < 1 || n > 4) return null;
+    return { opciones: opciones, correcta: opciones[n - 1].id };
+  }
+
+  function crearPregunta(form) {
+    if (!esAdmin()) return false;
+    if (!modoDemo()) { aviso("En el servidor las crea el admin con el SQL. Esta vista es la demo.", true); return false; }
+    var texto = String(form.texto.value || "").trim();
+    var explica = String(form.explica.value || "").trim();
+    if (texto.length < 8 || explica.length < 8) { aviso("La pregunta y la explicación necesitan al menos 8 letras.", true); return false; }
+    var pack = leerOpciones(form);
+    if (!pack) { aviso("Haz cuatro opciones y marca la correcta.", true); return false; }
+    if (textoProhibido(texto + " " + explica + " " + pack.opciones.map(function (o) { return o.texto; }).join(" "))) { aviso("Ese texto no se puede publicar.", true); return false; }
+    estado.preguntas.unshift({
+      id: "q-" + Math.random().toString(36).slice(2, 8),
+      periodo: periodoDe(Date.now()),
+      origen: "",
+      segundos: segundosIniciales(),
+      texto: texto,
+      explica: explica,
+      correcta: pack.correcta,
+      opciones: pack.opciones
+    });
+    form.reset();
+    guardar();
+    aviso("Pregunta publicada en este mes. La clave no se muestra hasta que alguien contesta.", false);
+    return true;
+  }
+
+  function sugerir(form) {
+    if (!modoDemo()) { aviso("En el servidor la sugerencia espera al admin. Esta vista es la demo.", true); return false; }
+    if (!exigirSesion()) return false;
+    var texto = String(form.texto.value || "").trim();
+    var explica = String(form.explica.value || "").trim();
+    if (texto.length < 8 || explica.length < 8) { aviso("La pregunta y la explicación necesitan al menos 8 letras.", true); return false; }
+    var pack = leerOpciones(form);
+    if (!pack) { aviso("Haz cuatro opciones y marca la que crees correcta.", true); return false; }
+    if (textoProhibido(texto + " " + explica + " " + pack.opciones.map(function (o) { return o.texto; }).join(" "))) { aviso("Ese texto no se puede publicar.", true); return false; }
+    var cup = tomarCupo("sugerencia");
+    if (!cup.ok) { aviso(textoEspera(cup.espera), true); return false; }
+    estado.sugerencias.push({
+      id: "s-" + Math.random().toString(36).slice(2, 8),
+      autor: estado.sesion.id,
+      texto: texto,
+      explica: explica,
+      correcta: pack.correcta,
+      opciones: pack.opciones,
+      estado: "pendiente",
+      creado: Date.now()
+    });
+    form.reset();
+    guardar();
+    aviso("Propuesta enviada. Un admin la aprueba antes de que se pueda jugar.", false);
+    return true;
+  }
+
+  function resolverSugerencia(id, accion) {
+    if (!esAdmin() || !modoDemo()) return false;
+    var s = buscar(estado.sugerencias, id);
+    if (!s || s.estado !== "pendiente") return false;
+    if (accion === "aprobar") {
+      s.estado = "aprobada";
+      estado.preguntas.unshift({
+        id: "q-" + Math.random().toString(36).slice(2, 8),
+        periodo: periodoDe(Date.now()),
+        origen: s.autor,
+        segundos: segundosIniciales(),
+        texto: s.texto,
+        explica: s.explica,
+        correcta: s.correcta,
+        opciones: s.opciones
+      });
+      guardar();
+      aviso("Quedó publicada. Quien la propuso puede jugarla, pero no suma puntos.", false);
+      return true;
+    }
+    s.estado = "rechazada";
+    guardar();
+    aviso("Propuesta rechazada.", false);
+    return true;
+  }
+
+  function anularIntento(id, motivo) {
+    if (!esAdmin() || !modoDemo()) return false;
+    var it = buscar(estado.intentos, id);
+    if (!it || it.anulado) return false;
+    it.anulado = true;
+    it.motivo = String(motivo || "Anulado por el admin").trim();
+    guardar();
+    aviso("Intento anulado. Esos puntos salen del ranking y no se puede repetir la pregunta.", false);
+    return true;
+  }
+
+  function fijarEuros(n) {
+    if (!esAdmin()) return false;
+    var v = eurosValidos(n);
+    if (v == null) { aviso("El premio del mes va de 20 a 30 €.", true); return false; }
+    estado.premioEuros = v;
+    guardar();
+    aviso("Premio del mes: " + v + " €. El pago sigue siendo manual.", false);
+    return true;
+  }
+
+  function reclamar(premioId, datos) {
+    if (!modoDemo()) { aviso("En el servidor el admin aprueba antes de pagar. Esta vista es la demo.", true); return false; }
     var premio = buscar(estado.premios, premioId);
-    if (!premio || !estado.sesion || premio.ganador !== estado.sesion.id) { aviso("Solo quien ganó puede reclamar.", true); return false; }
+    if (!premio || !estado.sesion || premio.ganador !== estado.sesion.id) { aviso("Solo quien ganó el mes puede reclamar.", true); return false; }
     if (premio.estado !== "pendiente") { aviso("Esta reclamación ya está enviada.", false); return false; }
-    if (!acepta) { aviso("Hay que aceptar las bases para reclamar.", true); return false; }
-    nombre = String(nombre || "").trim();
-    pais = String(pais || "").trim();
+    if (!datos.mayor) { aviso("Hay que tener 18 años o más.", true); return false; }
+    if (!datos.bases) { aviso("Hay que aceptar las bases para reclamar.", true); return false; }
+    var nombre = String(datos.nombre || "").trim();
+    var pais = String(datos.pais || "").trim();
     if (!nombreValido(nombre)) { aviso("El nombre necesita entre 2 y 40 letras.", true); return false; }
-    if (pais.length < 2) { aviso("Elige el país. Solo hace falta para saber cómo entregar.", true); return false; }
+    if (pais.length < 2) { aviso("Elige el país.", true); return false; }
+    var metodo = datos.metodo;
+    if (metodo !== "paypal" && metodo !== "ebay" && metodo !== "curso") { aviso("Elige cómo quieres recibirlo.", true); return false; }
+    var paypal = String(datos.paypal || "").trim();
+    if (metodo === "paypal" && !correoValido(paypal)) { aviso("Para PayPal hace falta el correo de esa cuenta.", true); return false; }
     premio.estado = "reclamado";
-    premio.reclamo = { nombre: nombre, pais: pais };
+    premio.reclamo = { nombre: nombre, pais: pais, metodo: metodo, paypal: metodo === "paypal" ? paypal : "" };
     premio.dispositivo = dispositivo();
-    var usuario = usuarioDe(estado.sesion.id);
-    if (usuario) usuario.dispositivo = premio.dispositivo;
-    guardarDemo();
-    aviso("Reclamación enviada. Un admin la aprueba antes de entregar nada. En la demo no se envía.", false);
+    var user = buscar(estado.usuarios, estado.sesion.id);
+    if (user) user.dispositivo = premio.dispositivo;
+    guardar();
+    aviso("Reclamación enviada. El admin comprueba la identidad y paga a mano. La demo no envía dinero.", false);
     return true;
   }
 
   function resolverPremio(premioId, accion, motivo) {
-    if (!esAdmin()) return false;
-    if (!modoDemo()) { aviso("El premio en el servidor se enciende con el SQL. Esta vista es la demo.", true); return false; }
+    if (!esAdmin() || !modoDemo()) return false;
     var premio = buscar(estado.premios, premioId);
-    if (!premio || premio.estado === "anulado") return false;
+    if (!premio || premio.estado === "anulado" || premio.estado === "pagado") return false;
     if (accion === "aprobar") {
       if (premio.estado !== "reclamado") { aviso("Primero tiene que reclamarlo.", true); return false; }
       premio.estado = "aprobado";
-      guardarDemo();
-      aviso("Aprobado en la demo. No se entrega nada: el premio concreto lo decides tú.", false);
+      guardar();
+      aviso("Aprobado. Aún no está pagado: lo envías tú, a mano.", false);
+      return true;
+    }
+    if (accion === "pagar") {
+      if (premio.estado !== "aprobado") { aviso("Apruébalo antes de anotarlo como pagado.", true); return false; }
+      premio.estado = "pagado";
+      guardar();
+      aviso("Anotado como pagado a mano. La demo no ha movido dinero.", false);
       return true;
     }
     if (accion === "anular") {
       premio.estado = "anulado";
       premio.motivo = String(motivo || "Anulado por el admin").trim();
-      var pregunta = buscar(estado.preguntas, premio.pregunta);
-      if (pregunta && pregunta.valida === premio.respuesta) pregunta.valida = "";
-      guardarDemo();
-      aviso("Premio anulado. La pregunta puede volver a tener una respuesta válida.", false);
+      guardar();
+      aviso("Premio anulado.", false);
       return true;
     }
     return false;
@@ -802,151 +673,93 @@
       if (String(estado.usuarios[i].correo || "").toLowerCase() === correo) user = estado.usuarios[i];
     }
     if (!user) {
-      user = { id: nid("u-"), nombre: nombre, correo: correo };
+      user = { id: "u-" + Math.random().toString(36).slice(2, 8), nombre: nombre, correo: correo };
       estado.usuarios.push(user);
     }
     user.dispositivo = dispositivo();
     estado.sesion = { id: user.id, nombre: user.nombre, correo: user.correo };
-    guardarDemo();
-    aviso("Entraste en la demo. Nada salió de este navegador.", false);
+    guardar();
+    aviso("Entraste en la demo. El correo no se comprueba aquí. Encendido de verdad: enlace o Google.", false);
     return true;
   }
 
-  function entrarCorreo(nombre, correo) {
-    correo = String(correo || "").trim();
-    if (!correoValido(correo)) { aviso("Escribe un correo válido.", true); return false; }
-    if (nombreValido(nombre)) {
-      try { localStorage.setItem(CLAVE_NOMBRE, String(nombre).trim()); } catch (e) {}
-    }
-    var vuelta = root.location.origin + root.location.pathname;
-    return sb("/auth/v1/otp", {
-      method: "POST",
-      auth: true,
-      body: { email: correo, create_user: true, options: { email_redirect_to: vuelta } }
-    }).then(function () {
-      aviso("Revisa el correo. El enlace abre esta misma página.", false);
-    });
-  }
-
-  function entrarGoogle(nombre) {
-    if (nombreValido(nombre)) {
-      try { localStorage.setItem(CLAVE_NOMBRE, String(nombre).trim()); } catch (e) {}
-    }
-    var vuelta = root.location.origin + root.location.pathname;
-    root.location.href = cfgNube.url + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(vuelta);
-  }
-
   function salir() {
-    if (modoDemo()) {
-      estado.sesion = null;
-      guardarDemo();
-      aviso("Saliste de la demo. Las preguntas siguen en este navegador.", false);
-      return true;
-    }
-    var token = estado.token;
-    estado.token = null;
     estado.sesion = null;
-    estado.esAdmin = false;
-    guardarToken(null);
-    var hecho = token
-      ? sb("/auth/v1/logout", { method: "POST", auth: true, body: {} }).catch(function () {})
-      : Promise.resolve();
-    return hecho.then(function () {
-      aviso("Saliste.", false);
-      return refrescarNube().catch(function () {});
+    guardar();
+    aviso("Saliste de la demo.", false);
+    return true;
+  }
+
+  function textoPuntos(it) {
+    if (it.propia) return "No suma: propusiste esta pregunta.";
+    if (!it.acierto) return "0 puntos.";
+    var partes = [it.base + " por acertar"];
+    if (it.rapido) partes.push(it.rapido + " por rapidez");
+    if (it.primero) partes.push(it.primero + " por ser el primero");
+    return it.puntos + " puntos (" + partes.join(", ") + ").";
+  }
+
+  function pintaPregunta(p) {
+    var art = el("article", "qa-card");
+    art.id = "p-" + p.id;
+    var sesion = estado.sesion && estado.sesion.id;
+    var it = sesion && intentoDe(sesion, p.id);
+    var abierta = sesion && abiertaDe(sesion, p.id);
+    art.appendChild(el("h3", "", p.texto));
+    var meta = el("p", "qa-meta");
+    meta.textContent = nombrePeriodo(p.periodo) + " · " + p.segundos + " s · un intento";
+    if (p.origen) meta.appendChild(document.createTextNode(" · propuesta de " + nombreDe(p.origen)));
+    art.appendChild(meta);
+    if (!sesion) {
+      art.appendChild(el("p", "fine", "Entra para responder. Las opciones se mezclan y la explicación sale después."));
+      return art;
+    }
+    if (it) {
+      var buena = buscar(p.opciones, p.correcta);
+      var elegida = buscar(p.opciones, it.opcion);
+      art.appendChild(el("p", "", it.acierto ? "Correcta." : (it.opcion ? "No era esa." : "Se acabó el tiempo.")));
+      if (elegida) art.appendChild(el("p", "fine", "Elegiste: " + elegida.texto));
+      if (buena) art.appendChild(el("p", "", "Respuesta: " + buena.texto));
+      art.appendChild(el("p", "qa-explica", p.explica));
+      art.appendChild(el("p", "fine", textoPuntos(it)));
+      if (esAdmin() && !it.anulado) {
+        art.appendChild(boton("sec", "anular-intento", it.id, "Anular este intento"));
+      }
+      if (it.anulado) art.appendChild(el("p", "fine", "Anulado: " + (it.motivo || "sin puntos.")));
+      return art;
+    }
+    if (!abierta) {
+      art.appendChild(el("p", "fine", "Al pulsar Empezar corre el tiempo. Un intento por cuenta."));
+      art.appendChild(boton("gold", "empezar", p.id, "Empezar"));
+      return art;
+    }
+    var queda = Math.max(0, Math.ceil((p.segundos * 1000 - (Date.now() - abierta.inicio)) / 1000));
+    var relojN = el("p", "qa-reloj", "Quedan " + queda + " s");
+    relojN.setAttribute("data-reloj", p.id);
+    art.appendChild(relojN);
+    var caja = el("div", "qa-opciones");
+    var orden = barajar(p.opciones, semillaNum(sesion + ":" + p.id));
+    orden.forEach(function (o) {
+      caja.appendChild(boton("sec qa-opcion", "opcion", p.id, o.texto, { "data-op": o.id }));
     });
-  }
-
-  function boton(cls, acc, id, texto, extra) {
-    var b = el("button", "btn " + cls, texto);
-    b.type = "button";
-    b.setAttribute("data-acc", acc);
-    b.setAttribute("data-id", id);
-    if (extra) {
-      Object.keys(extra).forEach(function (k) { b.setAttribute(k, extra[k]); });
-    }
-    return b;
-  }
-
-  function bloqueReporte(tipo, id) {
-    var box = el("div", "qa-reporte");
-    if (!estado.sesion) {
-      box.appendChild(el("p", "fine", "Entra para reportar."));
-      return box;
-    }
-    if (yaReporto(tipo, id)) {
-      box.appendChild(el("p", "fine", "Ya lo reportaste."));
-      return box;
-    }
-    var form = el("form", "qa-reporte-form");
-    form.setAttribute("data-tipo", tipo);
-    form.setAttribute("data-id", id);
-    var label = el("label", "", "Motivo");
-    var sel = el("select");
-    sel.name = "motivo";
-    ["Spam o publicidad", "Insultos", "No es de aves", "Otro"].forEach(function (op) {
-      var o = el("option", "", op);
-      o.value = op;
-      sel.appendChild(o);
-    });
-    label.appendChild(sel);
-    form.appendChild(label);
-    var go = el("button", "btn sec", "Enviar reporte");
-    go.type = "submit";
-    form.appendChild(go);
-    box.appendChild(form);
-    return box;
-  }
-
-  function pintaRespuesta(r, pregunta, admin) {
-    var premio = premioActivo(estado.premios, pregunta && pregunta.id);
-    var esValida = premio && premio.respuesta === r.id;
-    var art = el("div", "qa-respuesta" + (r.oculto ? " qa-oculto" : "") + (esValida ? " qa-valida" : ""));
-    var cabeza = el("p", "qa-meta");
-    cabeza.appendChild(el("strong", "", nombreDe(r.autor)));
-    var badge = statsDe(r.autor);
-    cabeza.appendChild(document.createTextNode(" "));
-    cabeza.appendChild(el("span", "badge " + badge.clave, badge.nombre));
-    cabeza.appendChild(document.createTextNode(" · " + haceTexto(r.creado)));
-    if (r.oculto) cabeza.appendChild(document.createTextNode(" · oculto"));
-    if (esValida) {
-      cabeza.appendChild(document.createTextNode(" "));
-      cabeza.appendChild(el("span", "badge valida", "Respuesta válida"));
-    }
-    art.appendChild(cabeza);
-    art.appendChild(el("p", "", r.cuerpo));
-    var actions = el("div", "qa-actions");
-    if (!r.oculto) {
-      var marcado = estado.sesion && (r.utiles || []).indexOf(estado.sesion.id) !== -1;
-      actions.appendChild(boton(marcado ? "gold" : "sec", "voto", r.id, (marcado ? "Útil · " : "Me sirve · ") + (r.utiles || []).length, { "data-tipo": "respuesta" }));
-    }
-    var rep = reportesDe("respuesta", r.id);
-    if (admin && rep) actions.appendChild(el("span", "badge", rep + (rep === 1 ? " reporte" : " reportes")));
-    if (admin) actions.appendChild(boton("sec", "ocultar", r.id, r.oculto ? "Volver a mostrar" : "Ocultar", { "data-tipo": "respuesta", "data-oculto": r.oculto ? "0" : "1" }));
-    var det = el("details");
-    det.appendChild(el("summary", "", "Reportar"));
-    det.appendChild(bloqueReporte("respuesta", r.id));
-    actions.appendChild(det);
-    var puedeMarcar = estado.sesion && pregunta && (admin || estado.sesion.id === pregunta.autor) && !premio;
-    if (puedeMarcar && !r.oculto) {
-      var opta = puedeOptar(r, pregunta);
-      if (!opta.ok && opta.motivo === "propia") actions.appendChild(el("span", "fine", "Tu respuesta no opta al premio."));
-      else if (!opta.ok && opta.motivo === "corta") actions.appendChild(el("span", "fine", "Menos de 80 letras: no opta al premio."));
-      else if (opta.ok) actions.appendChild(boton("gold", "valida", r.id, "Es la respuesta válida"));
-    }
-    art.appendChild(actions);
-    if (esValida && premio.estado === "sin_premio") art.appendChild(el("p", "fine", "Respuesta válida. Sin premio: " + (premio.motivo || "tope del mes.")));
-    if (esValida && estado.sesion && estado.sesion.id === premio.ganador && premio.estado === "pendiente") art.appendChild(formularioReclamo(premio));
-    if (esValida && estado.sesion && estado.sesion.id === premio.ganador && premio.estado === "reclamado") art.appendChild(el("p", "fine", "Reclamación enviada. Un admin la aprueba antes de entregar nada."));
-    if (esValida && estado.sesion && estado.sesion.id === premio.ganador && premio.estado === "aprobado") art.appendChild(el("p", "fine", "Aprobado. El premio concreto lo anuncia quien organiza. En la demo no se envía."));
+    art.appendChild(caja);
     return art;
+  }
+
+  function estadoPremio(clave) {
+    if (clave === "pendiente") return "Sin reclamar";
+    if (clave === "reclamado") return "Reclamado, por aprobar";
+    if (clave === "aprobado") return "Aprobado, falta pagarlo a mano";
+    if (clave === "pagado") return "Anotado como pagado";
+    if (clave === "anulado") return "Anulado";
+    return clave;
   }
 
   function formularioReclamo(premio) {
     var form = el("form", "qa-reclamo qa");
     form.setAttribute("data-id", premio.id);
-    form.appendChild(el("p", "", "Reclamar: " + textoPremio()));
-    form.appendChild(el("p", "fine", "Solo el nombre, el correo de tu cuenta y el país. El correo no se cambia aquí."));
+    form.appendChild(el("p", "", "Reclamar " + premio.euros + " € de " + nombrePeriodo(premio.periodo)));
+    form.appendChild(el("p", "fine", "Nombre, correo de la cuenta, país, mayoría de edad y cómo prefieres cobrar. El admin lo comprueba y paga a mano."));
     var nom = el("label", "", "Nombre");
     var nomIn = el("input");
     nomIn.name = "nombre";
@@ -958,7 +771,6 @@
     var cor = el("label", "", "Correo de la cuenta");
     var corIn = el("input");
     corIn.name = "correo";
-    corIn.type = "email";
     corIn.readOnly = true;
     corIn.value = estado.sesion.correo || "";
     cor.appendChild(corIn);
@@ -967,163 +779,47 @@
     var sel = el("select");
     sel.name = "pais";
     sel.required = true;
-    ["", "México", "España", "Colombia", "Perú", "Argentina", "Estados Unidos", "Otro"].forEach(function (op) {
+    ["", "España", "México", "Colombia", "Perú", "Argentina", "Otro"].forEach(function (op) {
       var o = el("option", "", op || "Elige");
       o.value = op;
       sel.appendChild(o);
     });
     pais.appendChild(sel);
     form.appendChild(pais);
-    var ok = el("label", "check");
-    var box = el("input");
-    box.type = "checkbox";
-    box.name = "bases";
-    box.required = true;
-    ok.appendChild(box);
-    ok.appendChild(document.createTextNode(" Acepto las bases, que aún son un borrador."));
-    form.appendChild(ok);
+    var met = el("label", "", "Cómo prefieres cobrar");
+    var metSel = el("select");
+    metSel.name = "metodo";
+    metSel.required = true;
+    [["", "Elige"], ["paypal", "PayPal"], ["ebay", "Tarjeta regalo de eBay"], ["curso", "Crédito del curso"]].forEach(function (par) {
+      var o = el("option", "", par[1]);
+      o.value = par[0];
+      metSel.appendChild(o);
+    });
+    met.appendChild(metSel);
+    form.appendChild(met);
+    var pay = el("label", "", "Correo de PayPal, si eliges PayPal");
+    var payIn = el("input");
+    payIn.name = "paypal";
+    payIn.type = "email";
+    payIn.value = estado.sesion.correo || "";
+    pay.appendChild(payIn);
+    form.appendChild(pay);
+    function caja(name, texto) {
+      var lab = el("label", "check");
+      var box = el("input");
+      box.type = "checkbox";
+      box.name = name;
+      box.required = true;
+      lab.appendChild(box);
+      lab.appendChild(document.createTextNode(" " + texto));
+      form.appendChild(lab);
+    }
+    caja("mayor", "Tengo 18 años o más.");
+    caja("bases", "Acepto las bases, que aún son un borrador.");
     var go = el("button", "btn gold", "Enviar reclamación");
     go.type = "submit";
     form.appendChild(go);
     return form;
-  }
-
-  function pintaPregunta(p, admin) {
-    var visibles = [];
-    var ocultas = [];
-    var i;
-    for (i = 0; i < estado.respuestas.length; i++) {
-      var r = estado.respuestas[i];
-      if (r.pregunta !== p.id) continue;
-      if (r.oculto) ocultas.push(r);
-      else visibles.push(r);
-    }
-    visibles.sort(function (a, b) { return a.creado - b.creado; });
-    var art = el("article", "qa-card" + (p.oculto ? " qa-oculto" : ""));
-    art.id = "p-" + p.id;
-    art.appendChild(el("h3", "", p.titulo));
-    var meta = el("p", "qa-meta");
-    meta.appendChild(el("strong", "", nombreDe(p.autor)));
-    meta.appendChild(document.createTextNode(" · " + haceTexto(p.creado) + " · " + (p.votos || []).length + " votos"));
-    var nv = visibles.length;
-    meta.appendChild(document.createTextNode(nv === 0 ? " · sin respuestas" : " · " + nv + (nv === 1 ? " respuesta" : " respuestas")));
-    if (p.oculto) meta.appendChild(document.createTextNode(" · oculto"));
-    if (p.valida && premioActivo(estado.premios, p.id)) meta.appendChild(document.createTextNode(" · con respuesta válida"));
-    art.appendChild(meta);
-    art.appendChild(el("p", "", p.cuerpo));
-    var actions = el("div", "qa-actions");
-    if (!p.oculto) {
-      var marcado = estado.sesion && (p.votos || []).indexOf(estado.sesion.id) !== -1;
-      actions.appendChild(boton(marcado ? "gold" : "sec", "voto", p.id, (marcado ? "Votada · " : "Votar · ") + (p.votos || []).length, { "data-tipo": "pregunta" }));
-    }
-    var rep = reportesDe("pregunta", p.id);
-    if (admin && rep) actions.appendChild(el("span", "badge", rep + (rep === 1 ? " reporte" : " reportes")));
-    if (admin) actions.appendChild(boton("sec", "ocultar", p.id, p.oculto ? "Volver a mostrar" : "Ocultar", { "data-tipo": "pregunta", "data-oculto": p.oculto ? "0" : "1" }));
-    var det = el("details");
-    det.appendChild(el("summary", "", "Reportar"));
-    det.appendChild(bloqueReporte("pregunta", p.id));
-    actions.appendChild(det);
-    art.appendChild(actions);
-
-    var mostrar = abiertas[p.id] ? visibles : visibles.slice(0, 2);
-    mostrar.forEach(function (r) { art.appendChild(pintaRespuesta(r, p, admin)); });
-    if (!abiertas[p.id] && visibles.length > 2) {
-      art.appendChild(boton("sec qa-mas", "mas", p.id, "Ver las otras " + (visibles.length - 2) + " respuestas"));
-    }
-    if (admin) ocultas.forEach(function (r) { art.appendChild(pintaRespuesta(r, p, admin)); });
-
-    if (estado.sesion && !p.oculto) {
-      var form = el("form", "qa-responder");
-      form.setAttribute("data-id", p.id);
-      var lab = el("label", "", "Tu respuesta");
-      var ta = el("textarea");
-      ta.name = "cuerpo";
-      ta.required = true;
-      ta.minLength = 8;
-      ta.maxLength = 4000;
-      ta.rows = 3;
-      lab.appendChild(ta);
-      form.appendChild(lab);
-      form.appendChild(el("p", "fine", "Para el premio hacen falta al menos 80 letras. Responder tu propia pregunta no cuenta."));
-      var go = el("button", "btn", "Publicar respuesta");
-      go.type = "submit";
-      form.appendChild(go);
-      art.appendChild(form);
-    } else if (!estado.sesion && !p.oculto) {
-      art.appendChild(el("p", "fine", "Entra para responder."));
-    }
-    return art;
-  }
-
-  function pintar() {
-    var admin = esAdmin();
-    var demo = document.getElementById("qa-demo");
-    if (demo) demo.hidden = !modoDemo();
-    var entrar = document.getElementById("qa-entrar");
-    var preguntar = document.getElementById("qa-preguntar");
-    var ses = document.getElementById("qa-sesion");
-    var hola = document.getElementById("qa-hola");
-    if (estado.sesion) {
-      entrar.hidden = true;
-      preguntar.hidden = false;
-      ses.hidden = false;
-      hola.textContent = "Hola, " + estado.sesion.nombre + ".";
-    } else {
-      entrar.hidden = false;
-      preguntar.hidden = true;
-      ses.hidden = true;
-    }
-    document.getElementById("qa-entrar-demo").hidden = !modoDemo();
-    document.getElementById("qa-entrar-correo").hidden = modoDemo();
-    document.getElementById("qa-entrar-google").hidden = modoDemo();
-    document.getElementById("qa-admin-fila").hidden = !modoDemo();
-    document.getElementById("qa-admin-nota").hidden = !modoDemo();
-    document.getElementById("qa-reset").hidden = !modoDemo();
-    document.getElementById("qa-entrar-nota").textContent = modoDemo()
-      ? "Demo: el nombre y el correo se quedan en este navegador. No se envían. Si escribes marta@ejemplo.test entras como Marta López."
-      : "El correo sirve para entrar con Google o con un enlace. No se muestra junto a las preguntas.";
-
-    document.querySelectorAll("[data-orden]").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-orden") === orden ? "true" : "false");
-    });
-
-    var lista = document.getElementById("qa-lista");
-    lista.textContent = "";
-    var preguntas = estado.preguntas.filter(function (p) { return admin || !p.oculto; });
-    ordenarPreguntas(preguntas, estado.respuestas, orden).forEach(function (p) {
-      lista.appendChild(pintaPregunta(p, admin));
-    });
-    if (!lista.childNodes.length) lista.appendChild(el("p", "", "Todavía no hay preguntas."));
-
-    var ol = document.getElementById("qa-ranking");
-    ol.textContent = "";
-    var nombrePremio = document.getElementById("qa-premio-nombre");
-    if (nombrePremio) nombrePremio.textContent = textoPremio();
-    pintarBanda();
-    pintarCola(admin);
-
-    ranking(estado.usuarios, estado.respuestas).forEach(function (r, i) {
-      var li = el("li");
-      li.appendChild(el("span", "qa-pos", String(i + 1)));
-      var body = el("div");
-      var nom = el("p", "qa-rank-nom");
-      nom.appendChild(el("strong", "", r.nombre));
-      nom.appendChild(document.createTextNode(" "));
-      nom.appendChild(el("span", "badge " + r.insignia.clave, r.insignia.nombre));
-      body.appendChild(nom);
-      body.appendChild(el("p", "fine", r.respuestas + (r.respuestas === 1 ? " respuesta" : " respuestas") + " · " + r.utiles + " votos útiles"));
-      li.appendChild(body);
-      ol.appendChild(li);
-    });
-  }
-
-  function estadoPremio(clave) {
-    if (clave === "pendiente") return "Sin reclamar";
-    if (clave === "reclamado") return "Reclamado, por aprobar";
-    if (clave === "aprobado") return "Aprobado, sin entregar";
-    if (clave === "sin_premio") return "Válida, sin premio";
-    if (clave === "anulado") return "Anulado";
-    return clave;
   }
 
   function pintarBanda() {
@@ -1131,21 +827,21 @@
     if (!box) return;
     box.textContent = "";
     if (!estado.sesion) { box.hidden = true; return; }
-    var mios = (estado.premios || []).filter(function (p) {
-      return p.ganador === estado.sesion.id && p.estado !== "anulado" && p.estado !== "sin_premio";
+    var mios = estado.premios.filter(function (p) {
+      return p.ganador === estado.sesion.id && p.estado !== "anulado";
     });
     if (!mios.length) { box.hidden = true; return; }
     box.hidden = false;
     mios.forEach(function (p) {
-      var pregunta = buscar(estado.preguntas, p.pregunta);
-      var titulo = pregunta ? pregunta.titulo : "una pregunta";
       if (p.estado === "pendiente") {
-        box.appendChild(el("p", "", "Tu respuesta en «" + titulo + "» es la primera válida. Puedes reclamar el premio."));
-        box.appendChild(boton("gold", "ir", p.pregunta, "Ir a reclamar"));
+        box.appendChild(el("p", "", "Ganaste " + nombrePeriodo(p.periodo) + " (" + p.euros + " €). Tienes " + diasReclamo() + " días desde el aviso para reclamar."));
+        box.appendChild(formularioReclamo(p));
       } else if (p.estado === "reclamado") {
-        box.appendChild(el("p", "", "Reclamaste el premio de «" + titulo + "». Falta que un admin lo apruebe."));
+        box.appendChild(el("p", "", "Reclamaste " + nombrePeriodo(p.periodo) + ". Falta que un admin lo apruebe y lo pague a mano."));
       } else if (p.estado === "aprobado") {
-        box.appendChild(el("p", "", "El premio de «" + titulo + "» está aprobado. En la demo no se envía."));
+        box.appendChild(el("p", "", nombrePeriodo(p.periodo) + " está aprobado. El pago aún lo haces tú, a mano."));
+      } else if (p.estado === "pagado") {
+        box.appendChild(el("p", "", nombrePeriodo(p.periodo) + " figura como pagado. En la demo no se envió dinero."));
       }
     });
   }
@@ -1157,161 +853,230 @@
     box.hidden = !admin;
     lista.textContent = "";
     if (!admin) return;
-    var filas = estado.premios || [];
-    if (!filas.length) {
-      lista.appendChild(el("p", "", "No hay premios en la cola."));
-      return;
-    }
-    filas.forEach(function (p) {
-      var pregunta = buscar(estado.preguntas, p.pregunta);
+    var hubo = false;
+    estado.sugerencias.forEach(function (s) {
+      if (s.estado !== "pendiente") return;
+      hubo = true;
       var item = el("article", "qa-cola-item");
-      item.appendChild(el("h3", "", (pregunta && pregunta.titulo) || "Pregunta"));
-      var meta = el("p", "qa-meta");
-      meta.appendChild(document.createTextNode(nombreDe(p.ganador) + " · " + estadoPremio(p.estado)));
+      item.appendChild(el("h3", "", "Propuesta: " + s.texto));
+      item.appendChild(el("p", "qa-meta", nombreDe(s.autor)));
+      var actions = el("div", "qa-actions");
+      actions.appendChild(boton("gold", "aprobar-sug", s.id, "Aprobar y publicar"));
+      actions.appendChild(boton("sec", "rechazar-sug", s.id, "Rechazar"));
+      item.appendChild(actions);
+      lista.appendChild(item);
+    });
+    estado.premios.forEach(function (p) {
+      hubo = true;
+      var item = el("article", "qa-cola-item");
+      item.appendChild(el("h3", "", nombrePeriodo(p.periodo) + " · " + p.euros + " €"));
+      var meta = el("p", "qa-meta", nombreDe(p.ganador) + " · " + estadoPremio(p.estado));
       if (p.reclamo && p.reclamo.pais) meta.appendChild(document.createTextNode(" · " + p.reclamo.pais));
+      if (p.reclamo && p.reclamo.metodo) meta.appendChild(document.createTextNode(" · " + p.reclamo.metodo));
       item.appendChild(meta);
       if (p.motivo) item.appendChild(el("p", "fine", p.motivo));
       var otras = senalCompartida(estado.usuarios, p.dispositivo, p.ganador);
       if (otras.length) {
-        item.appendChild(el("p", "qa-senal", "Señal suave: el mismo aparato que " + otras.map(function (u) { return u.nombre; }).join(", ") + ". No basta para anular; míralo antes de aprobar."));
+        item.appendChild(el("p", "qa-senal", "Señal suave: el mismo aparato que " + otras.map(function (u) { return u.nombre; }).join(", ") + ". No basta para anular."));
       }
       item.appendChild(el("p", "fine", "La IP no se lee en la demo. Con Supabase se guarda la de la petición, solo para esta cola."));
-      if (p.estado !== "anulado") {
+      if (p.estado !== "anulado" && p.estado !== "pagado") {
         var actions = el("div", "qa-actions");
-        if (p.estado === "reclamado") actions.appendChild(boton("gold", "aprobar", p.id, "Aprobar"));
+        if (p.estado === "reclamado") actions.appendChild(boton("gold", "aprobar-premio", p.id, "Aprobar"));
+        if (p.estado === "aprobado") actions.appendChild(boton("gold", "pagar-premio", p.id, "Anotar como pagado a mano"));
         var sel = el("select");
         sel.className = "qa-anular-motivo";
-        ["Abuso o spam", "Cuenta repetida", "La respuesta no servía", "Otro"].forEach(function (op) {
+        ["Abuso o multicuenta", "No superó la identidad", "Fuera de plazo", "Otro"].forEach(function (op) {
           var o = el("option", "", op);
           o.value = op;
           sel.appendChild(o);
         });
         actions.appendChild(sel);
-        actions.appendChild(boton("sec", "anular", p.id, "Anular premio"));
+        actions.appendChild(boton("sec", "anular-premio", p.id, "Anular premio"));
         item.appendChild(actions);
       }
       lista.appendChild(item);
     });
+    if (!hubo) lista.appendChild(el("p", "", "No hay propuestas ni premios en la cola."));
   }
 
-  function normalizar(o) {
-    o.usuarios = o.usuarios || [];
-    o.preguntas = o.preguntas || [];
-    o.respuestas = o.respuestas || [];
-    o.reportes = o.reportes || [];
-    o.premios = o.premios || [];
-    o.ritmo = o.ritmo || ritmoVacio();
-    ["pregunta", "respuesta", "reporte", "voto"].forEach(function (k) {
-      if (!o.ritmo[k]) o.ritmo[k] = [];
+  function pintar() {
+    var admin = esAdmin();
+    var demo = document.getElementById("qa-demo");
+    if (demo) demo.hidden = !modoDemo();
+    var entrar = document.getElementById("qa-entrar");
+    var ses = document.getElementById("qa-sesion");
+    var hola = document.getElementById("qa-hola");
+    var sugerirF = document.getElementById("qa-sugerir");
+    var crearF = document.getElementById("qa-crear");
+    if (estado.sesion) {
+      entrar.hidden = true;
+      ses.hidden = false;
+      hola.textContent = "Hola, " + estado.sesion.nombre + ".";
+      if (sugerirF) sugerirF.hidden = false;
+    } else {
+      entrar.hidden = false;
+      ses.hidden = true;
+      if (sugerirF) sugerirF.hidden = true;
+    }
+    if (crearF) crearF.hidden = !admin;
+    document.getElementById("qa-entrar-demo").hidden = !modoDemo();
+    document.getElementById("qa-entrar-correo").hidden = modoDemo();
+    document.getElementById("qa-entrar-google").hidden = modoDemo();
+    document.getElementById("qa-admin-fila").hidden = !modoDemo();
+    document.getElementById("qa-admin-nota").hidden = !modoDemo();
+    document.getElementById("qa-reset").hidden = !modoDemo();
+    var eurosFila = document.getElementById("qa-euros-fila");
+    if (eurosFila) eurosFila.hidden = !admin;
+    var euros = document.getElementById("qa-euros");
+    if (euros && document.activeElement !== euros) euros.value = String(estado.premioEuros);
+    document.getElementById("qa-entrar-nota").textContent = modoDemo()
+      ? "Demo: el nombre y el correo se quedan en este navegador. No se comprueban. marta@ejemplo.test entra como Marta López."
+      : "Entra con Google o con un enlace. El correo no se publica.";
+
+    var periodo = periodoDe(Date.now());
+    var filas = rankingMes(estado.usuarios, estado.intentos, estado.preguntas, periodo);
+    var nombrePremio = document.getElementById("qa-premio-nombre");
+    if (nombrePremio) nombrePremio.textContent = estado.premioEuros + " €";
+    var periodoN = document.getElementById("qa-periodo");
+    if (periodoN) periodoN.textContent = nombrePeriodo(periodo);
+    var liderN = document.getElementById("qa-lider");
+    if (liderN) {
+      liderN.textContent = filas.length
+        ? "Si el mes cerrara ahora, iría primero " + filas[0].nombre + " (" + filas[0].puntos + " puntos)."
+        : "Todavía no hay puntos este mes.";
+    }
+    pintarBanda();
+    pintarCola(admin);
+
+    var lista = document.getElementById("qa-lista");
+    lista.textContent = "";
+    var preguntas = estado.preguntas.filter(function (p) { return p.periodo === periodo; });
+    preguntas.sort(function (a, b) {
+      var ia = estado.sesion && intentoDe(estado.sesion.id, a.id) ? 1 : 0;
+      var ib = estado.sesion && intentoDe(estado.sesion.id, b.id) ? 1 : 0;
+      return ia - ib;
     });
-    return o;
-  }
+    preguntas.forEach(function (p) { lista.appendChild(pintaPregunta(p)); });
+    if (!lista.childNodes.length) lista.appendChild(el("p", "", "Este mes todavía no hay preguntas."));
 
-  function cargarDemo() {
-    try {
-      var raw = localStorage.getItem(CLAVE);
-      if (raw) {
-        var o = JSON.parse(raw);
-        if (o && o.v === 2 && Array.isArray(o.preguntas) && Array.isArray(o.premios)) return normalizar(o);
+    var ol = document.getElementById("qa-ranking");
+    ol.textContent = "";
+    if (!filas.length) ol.appendChild(el("li", "", "Todavía no hay puntos."));
+    filas.forEach(function (r, i) {
+      var li = el("li");
+      li.appendChild(el("span", "qa-pos", String(i + 1)));
+      var body = el("div");
+      var nom = el("p", "qa-rank-nom");
+      nom.appendChild(el("strong", "", r.nombre));
+      if (i === 0) {
+        nom.appendChild(document.createTextNode(" "));
+        nom.appendChild(el("span", "badge valida", "Va primero"));
       }
-    } catch (e) {}
-    return semilla();
+      body.appendChild(nom);
+      body.appendChild(el("p", "fine", r.puntos + " puntos · " + r.aciertos + (r.aciertos === 1 ? " acierto" : " aciertos")));
+      li.appendChild(body);
+      ol.appendChild(li);
+    });
   }
 
-  function prepararClicks() {
-    document.querySelectorAll("[data-orden]").forEach(function (b) {
-      b.addEventListener("click", function () {
-        orden = b.getAttribute("data-orden");
-        pintar();
-      });
+  function tick() {
+    if (!estado || !estado.sesion) return;
+    var cerrar = null;
+    document.querySelectorAll("[data-reloj]").forEach(function (n) {
+      var id = n.getAttribute("data-reloj");
+      var pregunta = buscar(estado.preguntas, id);
+      var abierta = abiertaDe(estado.sesion.id, id);
+      if (!pregunta || !abierta) return;
+      var queda = Math.ceil((pregunta.segundos * 1000 - (Date.now() - abierta.inicio)) / 1000);
+      if (queda <= 0) cerrar = id;
+      else n.textContent = "Quedan " + queda + " s";
     });
+    if (cerrar) lanzar(function () { return responder(cerrar, ""); });
+  }
+
+  function preparar() {
     document.getElementById("qa-lista").addEventListener("click", function (ev) {
       var b = ev.target.closest("[data-acc]");
       if (!b) return;
       var acc = b.getAttribute("data-acc");
       var id = b.getAttribute("data-id");
-      if (acc === "mas") { abiertas[id] = true; pintar(); return; }
-      if (acc === "voto") { lanzar(function () { return alternarVoto(b.getAttribute("data-tipo"), id); }); return; }
-      if (acc === "ocultar") {
-        lanzar(function () { return ponerOculto(b.getAttribute("data-tipo"), id, b.getAttribute("data-oculto") === "1"); });
-        return;
-      }
-      if (acc === "valida") { lanzar(function () { return marcarValida(id); }); return; }
-      if (acc === "ir") {
-        abiertas[id] = true;
-        pintar();
-        var destino = document.getElementById("p-" + id);
-        if (destino) destino.scrollIntoView({ block: "start" });
-      }
-    });
-    var banda = document.getElementById("qa-premio-banda");
-    if (banda) banda.addEventListener("click", function (ev) {
-      var b = ev.target.closest("[data-acc=ir]");
-      if (!b) return;
-      var id = b.getAttribute("data-id");
-      abiertas[id] = true;
-      pintar();
-      var destino = document.getElementById("p-" + id);
-      if (destino) destino.scrollIntoView({ block: "start" });
+      if (acc === "empezar") lanzar(function () { return empezar(id); });
+      if (acc === "opcion") lanzar(function () { return responder(id, b.getAttribute("data-op")); });
+      if (acc === "anular-intento") lanzar(function () { return anularIntento(id, "Anulado por el admin"); });
     });
     var cola = document.getElementById("qa-cola");
     if (cola) cola.addEventListener("click", function (ev) {
       var b = ev.target.closest("[data-acc]");
       if (!b) return;
       var id = b.getAttribute("data-id");
-      if (b.getAttribute("data-acc") === "aprobar") lanzar(function () { return resolverPremio(id, "aprobar"); });
-      if (b.getAttribute("data-acc") === "anular") {
-        var item = b.closest(".qa-cola-item");
-        var sel = item && item.querySelector("select");
-        lanzar(function () { return resolverPremio(id, "anular", sel ? sel.value : ""); });
-      }
-    });
-    document.getElementById("qa-lista").addEventListener("submit", function (ev) {
-      var form = ev.target;
-      if (form.classList.contains("qa-responder")) {
-        ev.preventDefault();
-        if (!exigirSesion()) return;
-        var texto = form.querySelector("textarea").value;
-        var id = form.getAttribute("data-id");
-        lanzar(function () { return publicarRespuesta(id, texto); });
-      }
-      if (form.classList.contains("qa-reporte-form")) {
-        ev.preventDefault();
-        var sel = form.querySelector("select");
-        lanzar(function () { return enviarReporte(form.getAttribute("data-tipo"), form.getAttribute("data-id"), sel.value); });
-      }
-      if (form.classList.contains("qa-reclamo")) {
-        ev.preventDefault();
-        var datos = new FormData(form);
-        var acepta = !!form.querySelector("[name=bases]").checked;
-        lanzar(function () { return reclamar(form.getAttribute("data-id"), datos.get("nombre"), datos.get("pais"), acepta); });
-      }
+      var acc = b.getAttribute("data-acc");
+      var item = b.closest(".qa-cola-item");
+      var sel = item && item.querySelector("select");
+      if (acc === "aprobar-sug") lanzar(function () { return resolverSugerencia(id, "aprobar"); });
+      if (acc === "rechazar-sug") lanzar(function () { return resolverSugerencia(id, "rechazar"); });
+      if (acc === "aprobar-premio") lanzar(function () { return resolverPremio(id, "aprobar"); });
+      if (acc === "pagar-premio") lanzar(function () { return resolverPremio(id, "pagar"); });
+      if (acc === "anular-premio") lanzar(function () { return resolverPremio(id, "anular", sel ? sel.value : ""); });
     });
     document.getElementById("qa-entrar").addEventListener("submit", function (ev) {
       ev.preventDefault();
       var fd = new FormData(ev.target);
-      if (modoDemo()) lanzar(function () { entrarDemo(fd.get("nombre"), fd.get("correo")); });
-      else lanzar(function () { return entrarCorreo(fd.get("nombre"), fd.get("correo")); });
-    });
-    document.getElementById("qa-entrar-correo").addEventListener("click", function () {
-      var f = document.getElementById("qa-entrar");
-      lanzar(function () { return entrarCorreo(f.nombre.value, f.correo.value); });
-    });
-    document.getElementById("qa-entrar-google").addEventListener("click", function () {
-      entrarGoogle(document.getElementById("qa-entrar").nombre.value);
-    });
-    document.getElementById("qa-preguntar").addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      if (!exigirSesion()) return;
-      lanzar(function () { return publicarPregunta(document.getElementById("qa-titulo").value, document.getElementById("qa-cuerpo").value); });
+      if (modoDemo()) lanzar(function () { return entrarDemo(fd.get("nombre"), fd.get("correo")); });
+      else aviso("Entra con el enlace o con Google cuando el SQL esté pegado.", true);
     });
     document.getElementById("qa-salir").addEventListener("click", function () {
       lanzar(function () { return salir(); });
+    });
+    document.getElementById("qa-sugerir").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      lanzar(function () { return sugerir(ev.target); });
+    });
+    document.getElementById("qa-crear").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      lanzar(function () { return crearPregunta(ev.target); });
+    });
+    document.getElementById("qa-lista").addEventListener("submit", function (ev) {
+      var form = ev.target;
+      if (!form.classList.contains("qa-reclamo")) return;
+      ev.preventDefault();
+      var datos = new FormData(form);
+      lanzar(function () {
+        return reclamar(form.getAttribute("data-id"), {
+          nombre: datos.get("nombre"),
+          pais: datos.get("pais"),
+          metodo: datos.get("metodo"),
+          paypal: datos.get("paypal"),
+          mayor: !!form.querySelector("[name=mayor]").checked,
+          bases: !!form.querySelector("[name=bases]").checked
+        });
+      });
+    });
+    var banda = document.getElementById("qa-premio-banda");
+    if (banda) banda.addEventListener("submit", function (ev) {
+      var form = ev.target;
+      if (!form.classList.contains("qa-reclamo")) return;
+      ev.preventDefault();
+      var datos = new FormData(form);
+      lanzar(function () {
+        return reclamar(form.getAttribute("data-id"), {
+          nombre: datos.get("nombre"),
+          pais: datos.get("pais"),
+          metodo: datos.get("metodo"),
+          paypal: datos.get("paypal"),
+          mayor: !!form.querySelector("[name=mayor]").checked,
+          bases: !!form.querySelector("[name=bases]").checked
+        });
+      });
     });
     var admin = document.getElementById("qa-admin");
     admin.addEventListener("change", function () {
       try { localStorage.setItem(CLAVE_ADMIN, admin.checked ? "1" : "0"); } catch (e) {}
       pintar();
+    });
+    var euros = document.getElementById("qa-euros");
+    if (euros) euros.addEventListener("change", function () {
+      lanzar(function () { return fijarEuros(euros.value); });
     });
     document.getElementById("qa-reset").addEventListener("click", function () {
       if (!modoDemo()) return;
@@ -1321,56 +1086,46 @@
       } catch (e) {}
       admin.checked = false;
       estado = semilla();
-      abiertas = {};
-      orden = "nuevas";
       aviso("Volviste a los datos de ejemplo.", false);
       pintar();
+    });
+    document.getElementById("qa-entrar-correo").addEventListener("click", function () {
+      aviso("El enlace al correo se enciende con Supabase. Esta vista es la demo.", true);
+    });
+    document.getElementById("qa-entrar-google").addEventListener("click", function () {
+      aviso("Google se enciende con Supabase. Esta vista es la demo.", true);
     });
   }
 
   function iniciar() {
-    prepararClicks();
+    preparar();
     cfgNube = configNube();
     if (!cfgNube) {
-      estado = cargarDemo();
+      estado = cargar();
       try { document.getElementById("qa-admin").checked = localStorage.getItem(CLAVE_ADMIN) === "1"; } catch (e) {}
       pintar();
+      if (reloj) clearInterval(reloj);
+      reloj = setInterval(tick, 250);
       return;
     }
-    estado = {
-      v: 1,
-      usuarios: [],
-      sesion: null,
-      esAdmin: false,
-      preguntas: [],
-      respuestas: [],
-      reportes: [],
-      ritmo: ritmoVacio(),
-      token: leerHash() || leerToken()
-    };
-    if (estado.token) guardarToken(estado.token);
-    aviso(estado.token ? "Entrando…" : "", false);
-    refrescarNube().then(function () {
-      aviso("", false);
-      pintar();
-    }).catch(function (e) {
-      aviso(errorHumano(e), true);
-      pintar();
-    });
+    estado = normalizar({ v: 3, premioEuros: eurosIniciales(), usuarios: [], sesion: null, preguntas: [], sugerencias: [], intentos: [], abiertas: [], premios: [], ritmo: { intento: [], sugerencia: [] } });
+    aviso("Con una clave real, el acierto lo dice la función del SQL, no esta página. Hasta pegarlo, aquí no hay preguntas.", true);
+    pintar();
   }
 
   return {
     FILTRO: FILTRO,
     REGLAS: REGLAS,
+    PUNTOS: PUNTOS,
     textoProhibido: textoProhibido,
-    insignia: insignia,
     cupo: cupo,
-    ordenarPreguntas: ordenarPreguntas,
-    ranking: ranking,
-    PREMIO: PREMIO,
-    puedeOptar: puedeOptar,
-    cupoPremio: cupoPremio,
-    premioActivo: premioActivo,
+    periodoDe: periodoDe,
+    nombrePeriodo: nombrePeriodo,
+    eurosValidos: eurosValidos,
+    puntosIntento: puntosIntento,
+    semillaNum: semillaNum,
+    barajar: barajar,
+    rankingMes: rankingMes,
     senalCompartida: senalCompartida,
     semilla: semilla,
     configNube: configNube,

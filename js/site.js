@@ -728,7 +728,7 @@
     );
     var foro = put(
       "preguntas.html",
-      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 6.5h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H13l-5.5 4.2V22.5H6a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z"/></svg></span><span class="nav-label">Foro</span>',
+      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 6.5h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H13l-5.5 4.2V22.5H6a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z"/></svg></span><span class="nav-label">Reto</span>',
       /\/preguntas(?:\.html)?\/?$/
     );
     var appLink = nav.querySelector('a[href$="app.html"]');
@@ -747,7 +747,7 @@
       ["calculadoras.html", "Calculadoras"],
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],
-      ["preguntas.html", "Preguntas de la comunidad"],
+      ["preguntas.html", "Reto del mes"],
       ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],
       ["juegos.html", "Juegos"]
