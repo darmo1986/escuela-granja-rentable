@@ -794,6 +794,22 @@
     else barra.appendChild(drop);
   })();
 
+  (function concursoNav() {
+    var sub = document.getElementById("nav-herramientas");
+    if (!sub) return;
+    var href = root + "concurso.html";
+    var a = sub.querySelector('a[href="' + href + '"]');
+    if (!a) {
+      a = document.createElement("a");
+      a.href = href;
+      a.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="6.2" fill="none" stroke="currentColor" stroke-width="2.4"/><path fill="currentColor" d="m12.2 17.2-2 9.2 5.8-2.8 5.8 2.8-2-9.2z"/></svg></span><span class="nav-label">Concurso</span>';
+      var juegos = sub.querySelector('a[href$="juegos.html"]');
+      if (juegos) juegos.insertAdjacentElement("afterend", a);
+      else sub.appendChild(a);
+    }
+    if (/\/concurso(?:\.html)?\/?$/.test(location.pathname || "")) a.setAttribute("aria-current", "page");
+  })();
+
   document.querySelectorAll(".foot-brand").forEach(function (p) {
     if ((p.textContent || "").trim() !== "Sitio") return;
     var ul = p.parentElement && p.parentElement.querySelector("ul");
@@ -807,7 +823,8 @@
       ["enfermedades.html", "Enfermedades"],
       ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],
-      ["juegos.html", "Juegos"]
+      ["juegos.html", "Juegos"],
+      ["concurso.html", "Concurso"]
     ].forEach(function (pair) {
       var href = root + pair[0];
       if (ul.querySelector('a[href="' + href + '"]')) return;
