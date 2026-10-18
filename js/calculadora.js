@@ -861,6 +861,24 @@
       pintarComedero();
     });
     $("btn-ejemplo").addEventListener("click", ejemplo);
+    var guardarCuenta = $("btn-guardar-cuenta");
+    if (guardarCuenta) guardarCuenta.addEventListener("click", function () {
+      var nota = $("calc-cuenta-nota");
+      if (!window.GRAuth || !GRAuth.usuario()) {
+        if (window.GRAuth) GRAuth.abrir("entrar");
+        if (nota) nota.textContent = "Entra para guardarla en la cuenta. En este navegador sigue igual.";
+        return;
+      }
+      var data = { v: 1 };
+      document.querySelectorAll("[data-save]").forEach(function (el) {
+        if (el.type === "radio") { if (el.checked) data[el.name] = el.value; }
+        else data[el.id] = el.value;
+      });
+      var raza = $("c-raza");
+      var nombre = (raza && raza.selectedOptions && raza.selectedOptions[0] ? raza.selectedOptions[0].textContent : "Cálculo");
+      var ok = GRAuth.guardarCalculo(nombre, data);
+      if (ok && nota) nota.textContent = "Guardado en la cuenta de " + GRAuth.usuario().nombre + ". También sigue en este navegador.";
+    });
     $("btn-reset").addEventListener("click", function () {
       try { localStorage.removeItem(STORE); } catch (e) {}
       mesesTouched = false;

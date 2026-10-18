@@ -4,6 +4,33 @@ Propuesta para `/preguntas`. Sigue en borrador: no está publicada ni conectada 
 
 Mientras `comunidad.supabaseUrl` en `js/config.js` diga `https://TU-PROYECTO.supabase.co`, la página no llama a internet. Los ejemplos y lo que contestes se quedan en `localStorage` (`gr_preguntas_v1`, versión 3). En esa demo la clave está en `js/preguntas.js` para poder jugar sin servidor. El HTML no marca cuál es la correcta ni enseña la explicación hasta después. Con Supabase, el navegador no puede leer esas columnas: las devuelve `responder` al guardar el intento.
 
+## Cuenta del sitio
+
+La misma clave sirve para el curso, la calculadora, las fichas y el reto. Mientras la URL siga siendo `https://TU-PROYECTO.supabase.co`, el botón Entrar abre una demo y se puede probar como Ana Ruiz. No se crea ningún proyecto desde el repositorio.
+
+El curso de este sitio es gratis. No hay Stripe ni un precio de 2,99 €. Entrar no lo cierra: solo copia el avance a la cuenta.
+
+### Proyecto de Supabase
+
+1. Entra en [supabase.com](https://supabase.com) y crea un proyecto en el plan gratis. Anota la URL (`https://xxxx.supabase.co`) y la clave **anon public**. No subas la `service_role`.
+2. Authentication → URL configuration. Site URL: `https://granjarentable.com`. En Redirect URLs añade:
+   - `https://granjarentable.com/cuenta.html`
+   - `http://127.0.0.1:8765/cuenta.html` (para probar en el ordenador)
+3. Authentication → Providers → Email: deja el correo activo, con «Confirm email» encendido. Así el alta pide verificación y existe «olvidé la contraseña». El enlace mágico usa el mismo correo.
+4. Authentication → Emails. El correo incluido en el plan gratis es para probar y va muy limitado (unas pocas piezas por hora). Para el sitio de verdad, abre SMTP y pon un servidor propio (host, puerto, usuario, contraseña y el correo que verá la gente, por ejemplo `no-reply@granjarentable.com`). Revisa las plantillas de confirmar cuenta, enlace mágico y nueva contraseña, y que el enlace vuelva a `https://granjarentable.com/cuenta.html`.
+5. Pega `supabase/esquema.sql` en el editor SQL. Crea el perfil al registrarse y las tablas de avance, cálculos y fichas guardadas, cada una con seguridad por fila: solo el dueño.
+6. En `js/config.js`, en `comunidad`, sustituye `supabaseUrl` y `supabaseAnonKey`.
+
+### Google
+
+1. En [Google Cloud Console](https://console.cloud.google.com) crea un proyecto (el plan de una pantalla de consentimiento de prueba no se cobra).
+2. APIs y servicios → Pantalla de consentimiento de OAuth. Tipo externo. Nombre: Granja Rentable. Correo de asistencia: el tuyo. Dominio autorizado: `granjarentable.com`. Guarda los alcances por defecto (email, perfil, openid).
+3. Credenciales → Crear credencial → ID de cliente de OAuth → Aplicación web.
+   - Orígenes de JavaScript autorizados: `https://granjarentable.com`
+   - URI de redirección autorizada: `https://TU-PROYECTO.supabase.co/auth/v1/callback`
+4. Copia el ID y el secreto a Supabase → Authentication → Providers → Google, y actívalo.
+5. Cuando quieras que entre cualquiera, publica la pantalla de consentimiento. Hasta entonces solo entran las cuentas de prueba que añadas en Google Cloud.
+
 ## Qué hay que hacer para encenderlo
 
 1. Crear un proyecto gratis en [supabase.com](https://supabase.com). No subas la clave al repositorio.

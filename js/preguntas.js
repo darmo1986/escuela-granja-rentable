@@ -399,9 +399,38 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || "").trim());
   }
 
+  function aplicarCuenta() {
+    if (!estado) return;
+    var u = window.GRAuth && GRAuth.usuario();
+    if (!u) {
+      if (estado.sesion) {
+        estado.sesion = null;
+        guardar();
+      }
+      return;
+    }
+    var user = null;
+    var i;
+    for (i = 0; i < estado.usuarios.length; i++) {
+      if (String(estado.usuarios[i].correo || "").toLowerCase() === String(u.correo || "").toLowerCase() || estado.usuarios[i].id === u.id) {
+        user = estado.usuarios[i];
+      }
+    }
+    if (!user) {
+      user = { id: u.id, nombre: u.nombre, correo: u.correo, dispositivo: dispositivo() };
+      estado.usuarios.push(user);
+    }
+    user.nombre = u.nombre || user.nombre;
+    user.correo = u.correo || user.correo;
+    user.dispositivo = user.dispositivo || dispositivo();
+    estado.sesion = { id: user.id, nombre: user.nombre, correo: user.correo, cuenta: true };
+    guardar();
+  }
+
   function exigirSesion() {
     if (estado.sesion) return true;
-    aviso("Entra con tu nombre para hacer eso.", true);
+    if (window.GRAuth) GRAuth.abrir("entrar");
+    aviso("Entra con tu cuenta para responder y salir en el ranking.", true);
     return false;
   }
 
@@ -732,6 +761,11 @@
   }
 
   function salir() {
+    if (window.GRAuth) {
+      GRAuth.salir();
+      aviso("Saliste de la cuenta.", false);
+      return true;
+    }
     estado.sesion = null;
     guardar();
     aviso("Saliste de la demo.", false);
@@ -976,9 +1010,6 @@
       if (sugerirF) sugerirF.hidden = true;
     }
     if (crearF) crearF.hidden = !admin;
-    document.getElementById("qa-entrar-demo").hidden = !modoDemo();
-    document.getElementById("qa-entrar-correo").hidden = modoDemo();
-    document.getElementById("qa-entrar-google").hidden = modoDemo();
     document.getElementById("qa-admin-fila").hidden = !modoDemo();
     document.getElementById("qa-admin-nota").hidden = !modoDemo();
     document.getElementById("qa-reset").hidden = !modoDemo();
@@ -987,8 +1018,8 @@
     var euros = document.getElementById("qa-euros");
     if (euros && document.activeElement !== euros) euros.value = String(estado.premioEuros);
     document.getElementById("qa-entrar-nota").textContent = modoDemo()
-      ? "Demo: el nombre y el correo se quedan en este navegador. No se comprueban. marta@ejemplo.test entra como Marta López."
-      : "Entra con Google o con un enlace. El correo no se publica.";
+      ? "Hace falta la cuenta del sitio. En la demo puedes probar como Ana Ruiz: ya tiene puntos de ejemplo. El correo no se publica."
+      : "Entra con Google, con correo y contraseña o con un enlace. El correo no se publica.";
 
     var periodo = periodoDe(Date.now());
     var filas = rankingMes(estado.usuarios, estado.intentos, estado.preguntas, periodo);
@@ -1100,11 +1131,9 @@
       if (acc === "pagar-premio") lanzar(function () { return resolverPremio(id, "pagar"); });
       if (acc === "anular-premio") lanzar(function () { return resolverPremio(id, "anular", sel ? sel.value : ""); });
     });
-    document.getElementById("qa-entrar").addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      var fd = new FormData(ev.target);
-      if (modoDemo()) lanzar(function () { return entrarDemo(fd.get("nombre"), fd.get("correo")); });
-      else aviso("Entra con el enlace o con Google cuando el SQL esté pegado.", true);
+    document.getElementById("qa-abrir-cuenta").addEventListener("click", function () {
+      if (window.GRAuth) GRAuth.abrir("entrar");
+      else aviso("La cuenta todavía se está cargando. Prueba otra vez.", true);
     });
     document.getElementById("qa-salir").addEventListener("click", function () {
       lanzar(function () { return salir(); });
@@ -1167,14 +1196,14 @@
       } catch (e) {}
       admin.checked = false;
       estado = semilla();
+      aplicarCuenta();
       aviso("Volviste a los datos de ejemplo.", false);
       pintar();
     });
-    document.getElementById("qa-entrar-correo").addEventListener("click", function () {
-      aviso("El enlace al correo se enciende con Supabase. Esta vista es la demo.", true);
-    });
-    document.getElementById("qa-entrar-google").addEventListener("click", function () {
-      aviso("Google se enciende con Supabase. Esta vista es la demo.", true);
+    window.addEventListener("gr-auth", function () {
+      if (!estado) return;
+      aplicarCuenta();
+      pintar();
     });
   }
 
@@ -1186,6 +1215,7 @@
       var cerradas = fallarAbiertas("recarga");
       try { document.getElementById("qa-admin").checked = localStorage.getItem(CLAVE_ADMIN) === "1"; } catch (e) {}
       if (cerradas) aviso("Se cerró o se recargó una pregunta a medio hacer. Cuenta como fallo: 0 puntos y el intento usado.", false);
+      aplicarCuenta();
       pintar();
       if (reloj) clearInterval(reloj);
       reloj = setInterval(tick, 250);

@@ -754,6 +754,7 @@
       ["calculadoras.html", "Calculadoras"],
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],
+      ["cuenta.html", "Mi cuenta"],
       ["preguntas.html", "Reto del mes"],
       ["enfermedades.html", "Enfermedades"],
       ["faq.html", "Preguntas frecuentes"],
@@ -785,6 +786,13 @@
       btn.appendChild(frame);
     });
   });
+
+  (function cargarCuenta() {
+    if (window.GRAuth) return;
+    var s = document.createElement("script");
+    s.src = root + "js/auth.js";
+    document.body.appendChild(s);
+  })();
 
   function writeProductJsonLd() {
     var prev = document.getElementById("product-jsonld");
