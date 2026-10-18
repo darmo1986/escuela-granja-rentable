@@ -28,17 +28,38 @@ Luego, en `js/config.js`, `comunidad.concursoPublicado` pasa a `true` y se publi
 
 No acepta un apodo escrito en la página. Devuelve solo la primera pregunta, sin la correcta y sin la explicación. `concurso_abrir` entrega la siguiente y no reinicia el reloj. `concurso_responder` califica con el reloj del servidor. Si se acaba el tiempo, no manda la opción correcta ni la explicación.
 
-El ranking del mes ordena por aciertos. El día 1, con la hora de Madrid, la lista pública vuelve a cero. El sorteo del mes cerrado queda en `quiz_premios` con estado `pendiente_verificar`. El administrador lo pasa a `pendiente` en el editor SQL:
+El ranking del mes ordena por aciertos y no nombra un ganador. El día 1, con la hora de Madrid, la lista pública vuelve a cero. Cerrar el mes no concede el premio: `concurso_cerrar_meses` deja la marca elegida en `quiz_premios` con estado `pendiente_verificar`. No pasa sola a `pendiente`.
+
+El administrador lo revisa en el editor SQL de Supabase, con un rol que pueda escribir (`postgres` o `service_role`). `authenticated` solo puede leer `quiz_premios`. Puede aprobar o anular.
+
+Aprobar, después de revisar si hubo trampas. Eso publica el apodo en el historial y abre 14 días para reclamar:
 
 ```sql
 update public.quiz_premios
-set estado = 'pendiente'
-where periodo = 'AAAA-MM' and estado = 'pendiente_verificar';
+set estado = 'pendiente',
+    origen = 'concurso'
+where periodo = 'AAAA-MM'
+  and origen = 'concurso'
+  and estado = 'pendiente_verificar';
 ```
 
-Ese cambio abre 14 días para reclamar. Si nadie reclama, el mantenimiento anula el premio y pasa a la siguiente marca válida. Un premio ya pagado no se mueve.
+Anular. El premio pasa a la siguiente marca válida y esa queda otra vez en `pendiente_verificar`, sin publicarse y sin cobro:
 
-El historial público se lee con `concurso_historial()`. El apodo sale de `perfiles.nombre`. Si se borra la cuenta, `ganador` queda vacío (`on delete set null`) y se conserva el apodo que ya estaba guardado. No se publica mientras sigue pendiente de verificar o anulado. El formulario solo reclama si `concurso_premio_pendiente(periodo)` devuelve true: usa `auth.uid()` y no recibe el usuario como parámetro.
+```sql
+update public.quiz_premios
+set estado = 'anulado',
+    origen = 'concurso',
+    motivo = 'revisión del administrador'
+where periodo = 'AAAA-MM'
+  and origen = 'concurso'
+  and estado = 'pendiente_verificar';
+
+select public.concurso_cerrar_meses();
+```
+
+Si nadie reclama en los 14 días, el mantenimiento anula el premio y pasa a la siguiente marca válida, también en revisión. Un premio ya pagado no se mueve.
+
+El historial público se lee con `concurso_historial()`. El apodo sale de `perfiles.nombre`. No incluye un mes en `pendiente_verificar` ni anulado, así que no se anuncia un ganador antes de la aprobación. El formulario solo reclama si `concurso_premio_pendiente(periodo)` devuelve true, y eso solo ocurre con el estado `pendiente`. La función usa `auth.uid()` y no recibe el usuario como parámetro. Si se borra la cuenta, `ganador` queda vacío (`on delete set null`) y se conserva el apodo que ya estaba guardado.
 
 Para descalificar una marca: `oculto = true` en `concurso_marcas`. Si el premio todavía no se pagó, pasa a la siguiente marca válida y esa persona no vuelve a salir en ese mes.
 

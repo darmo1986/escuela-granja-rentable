@@ -257,7 +257,7 @@
     var rows = filas || [];
     if (!rows.length) {
       var vacio = document.createElement("p");
-      vacio.textContent = "Cuando cierre un mes, aquí queda el apodo del ganador.";
+      vacio.textContent = "Cuando el administrador apruebe un mes, aquí queda el apodo. Hasta entonces no hay ganador.";
       ganadoresBox.appendChild(vacio);
       return;
     }
@@ -298,16 +298,18 @@
     if (!reclamo) return;
     var txt = document.getElementById("reclamo-txt");
     var formPago = document.getElementById("reclamo-form");
+    var titulo = document.getElementById("reclamo-titulo");
     if (!mi || !mi.periodo || (mi.estado !== "pendiente_verificar" && mi.estado !== "pendiente" && mi.estado !== "reclamado")) {
       reclamo.hidden = true;
       return;
     }
     reclamo.hidden = false;
+    if (titulo) titulo.textContent = mi.estado === "pendiente_verificar" ? "En revisión" : "Tu premio";
     pintarMetodos(mi.pais || "");
     var hasta = fechaMadrid(mi.reclamable_hasta);
     if (txt) {
       if (mi.estado === "pendiente_verificar") {
-        txt.textContent = "Tu premio de " + mi.periodo + " está pendiente de verificar. Cuando el administrador lo confirme, podrás enviar el cobro. El apodo del ganador se publica.";
+        txt.textContent = "Tu marca de " + mi.periodo + " está en revisión. Todavía no es un premio: no puedes reclamar y tu apodo no se publica hasta que el administrador la apruebe.";
       } else if (mi.estado === "reclamado") {
         txt.textContent = "Ya recibimos tus datos de " + mi.periodo + ". Te escribimos para confirmar el pago de " + euros() + " €. La comisión la paga el organizador.";
       } else {
@@ -329,7 +331,7 @@
   function textoModo() {
     if (!publicada) return "El concurso todavía no está abierto.";
     if (!abierta) return "El concurso no está disponible. Inténtalo más tarde.";
-    return "Ranking de este mes. Gana quien más acierta. Si empatan, un sorteo del servidor que queda guardado.";
+    return "Ranking de este mes, por aciertos. El premio no se concede al cerrar el mes: queda pendiente de verificar hasta que el administrador lo apruebe.";
   }
 
   function aplicarEstado(data) {
@@ -675,7 +677,7 @@
     if (titulo) titulo.textContent = "Tu marca";
     if (puntos) puntos.textContent = aciertos + " de 10";
     if (detalle) {
-      detalle.textContent = "El premio del mes lo gana quien más acierta. Si empatan, el servidor hace un sorteo y lo guarda.";
+      detalle.textContent = "El premio no se concede con esta marca. Al cerrar el mes queda pendiente de verificar hasta que el administrador lo apruebe. Si empatan en aciertos, el servidor sortea y guarda el resultado.";
     }
     if (wa) {
       var texto = "Jugué el concurso de Granja Rentable: " + aciertos + " de 10.";
