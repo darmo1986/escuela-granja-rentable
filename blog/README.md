@@ -8,9 +8,9 @@ Mientras no haya ningún artículo publicado, `/blog/` lleva `noindex`, no entra
 
 El título (`titulo` y `titulo_seo`) puede tener como mucho **60 caracteres**. La descripción, **150**. Si te pasas, la acción falla y dice cuántos hay.
 
-## 1. La foto
+## 1. La foto (opcional)
 
-Hacen falta dos archivos propios, en formato webp:
+El artículo se publica **sin foto**. No hace falta generar una imagen ni dejar un recuadro de «pendiente». Si más adelante hay una foto propia, van dos archivos webp:
 
 | Uso | Medida | Dónde |
 | --- | --- | --- |
@@ -35,6 +35,7 @@ descripcion: "Cuándo mirar los huevos al trasluz, qué ver el día 7 y qué hue
 categoria: incubacion
 fecha: 2026-11-02
 borrador: true
+ia: false
 leccion: l03
 producto: incubadora-24egg-dual
 imagen: img/blog/ovoscopia-ejemplo.webp
@@ -54,13 +55,33 @@ El texto va aquí, en párrafos.
 - Una idea por línea.
 ```
 
-`categoria` es una de estas: `ponedoras`, `engorde`, `incubacion`, `salud`, `alimentacion`. En la web se leen **Gallinas ponedoras**, **Pollos de engorde**, **Incubación**, **Salud** y **Alimentación**. Son cinco, por separado.
+`categoria` es el bloque. En el índice salen como filtro (cada chip abre la página de ese bloque):
+
+| Clave | En la web |
+| --- | --- |
+| `enfermedades` | Enfermedades aviares |
+| `razas` | Razas |
+| `alimentacion` | Alimentación y pienso |
+| `proteina` | Fuentes de proteína |
+| `engorde` | Crianza de pollos de engorde |
+| `ponedoras` | Crianza de gallinas |
+| `limpieza` | Limpieza de gallineros |
+| `construccion` | Construcción de gallineros |
+| `otros` | Otros temas |
+| `incubacion` | Incubación |
+| `salud` | Salud |
+
+`imagen` e `imagen_og` pueden ir vacías (`""`). Si rellenas una, hacen falta las dos, con la medida de la tabla, y un `imagen_alt` que describa la foto. Sin foto, el artículo no lleva `<img>` ni un hueco roto.
+
+`ia: true` pone al final del texto la frase `🤖 Generado con IA.`. Si el texto no se escribió con IA, déjalo en `false` o no pongas la clave.
+
+El generador añade en cada artículo el botón del curso gratis y el de la app. La frase de la app, si aparece, va tal cual: «Esta app te enseña a criar pollos como un profesional.»
 
 Di siempre **pollos de engorde**. No uses «pollo de carne» ni «broiler».
 
 `leccion` (l01, l03, l04a…) pone el botón de la lección. `producto` tiene que ser una ficha de `producto/`. El artículo no lleva precios. `guia` puede ser `empezar`, `espacio` o `incubadora`. `video` es solo el id de YouTube. `red` es el enlace https del post de Facebook o YouTube del que sale, si lo hay.
 
-`imagen_alt` describe la foto. Sin imagen, o con una medida distinta, **no se publica**.
+`imagen_alt` describe la foto, solo si hay foto. Una medida distinta **no se publica**. Sin foto, sí se publica.
 
 ## 3. Guardar
 

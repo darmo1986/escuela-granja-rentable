@@ -34,14 +34,23 @@ MARCA_PAGINA = "<!-- pagina-generada: blog -->"
 CLAVES = {
     "titulo", "titulo_seo", "descripcion", "categoria", "fecha", "leccion",
     "producto", "imagen", "imagen_alt", "imagen_og", "video", "red",
-    "fuentes", "borrador", "guia", "actualizado",
+    "fuentes", "borrador", "guia", "actualizado", "ia",
 }
+# Los cinco primeros bloques del generador original siguen con el mismo slug.
+# Los demás son los bloques temáticos de la sección. Incubación y Salud se quedan
+# para los artículos que ya usaban esa clave.
 CATEGORIAS = (
-    ("ponedoras", "Gallinas ponedoras", "gallinas-ponedoras", "empezar"),
-    ("engorde", "Pollos de engorde", "pollos-de-engorde", "espacio"),
+    ("enfermedades", "Enfermedades aviares", "enfermedades-aviares", "espacio"),
+    ("razas", "Razas", "razas", "empezar"),
+    ("alimentacion", "Alimentación y pienso", "alimentacion", "empezar"),
+    ("proteina", "Fuentes de proteína", "fuentes-de-proteina", "empezar"),
+    ("engorde", "Crianza de pollos de engorde", "pollos-de-engorde", "espacio"),
+    ("ponedoras", "Crianza de gallinas", "gallinas-ponedoras", "empezar"),
+    ("limpieza", "Limpieza de gallineros", "limpieza-de-gallineros", "espacio"),
+    ("construccion", "Construcción de gallineros", "construccion-de-gallineros", "espacio"),
+    ("otros", "Otros temas", "otros-temas", "empezar"),
     ("incubacion", "Incubación", "incubacion", "incubadora"),
     ("salud", "Salud", "salud", "espacio"),
-    ("alimentacion", "Alimentación", "alimentacion", "empezar"),
 )
 CATS = {c[0]: {"nombre": c[1], "slug": c[2], "guia": c[3]} for c in CATEGORIAS}
 SLUGS_CAT = {c[2] for c in CATEGORIAS}
@@ -78,7 +87,7 @@ CARPETA_POSTS = "_articulos"
 MAX_TITULO = 60
 MAX_DESCRIPCION = 150
 SUFIJO_TITULO = " | Granja Rentable"
-VERSION_ACTIVOS = "202610184"
+VERSION_ACTIVOS = "202610185"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
 CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}
@@ -474,7 +483,8 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
     exigir_limpio(descripcion, origen, "la descripcion")
     cat = campo(datos, "categoria")
     if cat not in CATS:
-        raise Fallo(f"{origen}: categoria tiene que ser ponedoras, engorde, incubacion, salud o alimentacion.")
+        nombres = ", ".join(c[0] for c in CATEGORIAS)
+        raise Fallo(f"{origen}: categoria tiene que ser una de estas: {nombres}.")
     if "fecha" not in datos or not str(datos.get("fecha", "")).strip():
         raise Fallo(f"{origen}: falta la fecha.")
     fecha = a_fecha(datos["fecha"], origen, "fecha")
@@ -507,22 +517,30 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         fuentes = []
     if not isinstance(fuentes, list) or not all(isinstance(x, str) and x.strip() for x in fuentes):
         raise Fallo(f"{origen}: fuentes es una lista de textos.")
+    errores_fuentes = []
     for fuente in fuentes:
         exigir_limpio(fuente, origen, "fuentes")
+    fuentes_html = [en_linea(fuente, origen, errores_fuentes) for fuente in fuentes]
+    if errores_fuentes:
+        raise Fallo(" ".join(errores_fuentes))
     imagen = campo(datos, "imagen")
     imagen_og = campo(datos, "imagen_og")
     imagen_alt = campo(datos, "imagen_alt")
     exigir_limpio(imagen_alt, origen, "imagen_alt")
-    se_publica = (not borrador) or incluir_borradores
-    if imagen or se_publica:
+    # La foto es un hueco opcional. Si se pone una, tiene que medir lo acordado.
+    # Sin foto, el artículo se publica igual y no se inventa una imagen.
+    if imagen or imagen_og:
         if not imagen:
-            raise Fallo(f"{origen}: sin imagen no se publica. Sube un webp de {ANCHO_FOTO}×{ALTO_FOTO} a img/blog/.")
-        revisar_imagen(raiz, imagen, ANCHO_FOTO, ALTO_FOTO, origen, "imagen")
+            raise Fallo(f"{origen}: si pones imagen_og, también hace falta imagen ({ANCHO_FOTO}×{ALTO_FOTO}).")
         if not imagen_og:
             raise Fallo(f"{origen}: falta imagen_og, el webp de {ANCHO_OG}×{ALTO_OG} para redes.")
+        revisar_imagen(raiz, imagen, ANCHO_FOTO, ALTO_FOTO, origen, "imagen")
         revisar_imagen(raiz, imagen_og, ANCHO_OG, ALTO_OG, origen, "imagen_og")
         if len(imagen_alt) < 20 or "pendiente" in imagen_alt.lower():
             raise Fallo(f"{origen}: imagen_alt tiene que describir la foto (más de unas palabras, nunca «pendiente»).")
+    ia = False
+    if "ia" in datos and str(datos.get("ia", "")).strip() != "":
+        ia = a_bool(datos["ia"], origen, "ia")
     errores_md = []
     html = markdown_a_html(cuerpo, origen, errores_md)
     if errores_md:
@@ -546,6 +564,8 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         "video": video,
         "red": red,
         "fuentes": [x.strip() for x in fuentes],
+        "fuentes_html": fuentes_html,
+        "ia": ia,
         "html": html,
         "publicar": not borrador,
     }
@@ -711,12 +731,15 @@ def anuncio(tamano, activo):
 
 
 def tarjeta(post, raiz):
-    return f'''<article class="pcard">
-<a class="pcard-media post-media" href="{esc(post["slug"])}.html"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" width="1200" height="675"></a>
-<div class="pcard-body">
+    media = ""
+    if post["imagen"]:
+        media = (f'<a class="pcard-media post-media" href="{esc(post["slug"])}.html">'
+                 f'<img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" width="1200" height="675"></a>\n')
+    return f'''<article class="pcard" data-bloque="{esc(post["categoria"])}">
+{media}<div class="pcard-body">
 <p class="pcard-cat">{esc(CATS[post["categoria"]]["nombre"])}</p>
 <h3><a href="{esc(post["slug"])}.html">{esc(post["titulo"])}</a></h3>
-<p class="post-meta">{("Basado en la lección " + esc(post["leccion"].upper()) + " · ") if post["leccion"] else ""}Lectura corta</p>
+<p class="post-meta">{esc(fecha_larga(post["fecha"]))}{(" · Lección " + esc(post["leccion"].upper())) if post["leccion"] else ""}</p>
 <p>{esc(post["descripcion"])}</p>
 <a class="post-more" href="{esc(post["slug"])}.html">Leer artículo →</a>
 </div>
@@ -728,7 +751,7 @@ def categorias_nav(actual):
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         marca = ' aria-current="page"' if actual == clave else ""
         enlaces.append(f'<a href="{esc(meta["slug"])}.html"{marca}>{esc(meta["nombre"])}</a>')
-    return '<nav class="cats" aria-label="Categorías del blog">\n' + "\n".join(enlaces) + "\n</nav>"
+    return '<nav class="cats" id="filtro" aria-label="Filtro por bloque">\n' + "\n".join(enlaces) + "\n</nav>"
 
 
 def bloque_guias(raiz):
@@ -742,10 +765,11 @@ def bloque_guias(raiz):
 
 
 def bloque_curso(raiz):
-    return ("<section class=\"panel panel-shop\">\n<h2>¿Quieres aprenderlo con video?</h2>\n"
-            "<p>El curso es gratis y va paso a paso. Las herramientas que usamos están en nuestra tienda.</p>\n"
+    return ("<section class=\"panel panel-shop\">\n<h2>Curso gratis y app</h2>\n"
+            "<p>El curso va paso a paso y es gratis.</p>\n"
+            "<p>Esta app te enseña a criar pollos como un profesional.</p>\n"
             f"<p class=\"split\"><a class=\"btn gold\" href=\"{esc(raiz)}curso.html\">Empezar el curso gratis</a> "
-            f"<a class=\"btn sec\" href=\"{esc(raiz)}tienda.html\">Ver la tienda</a></p>\n</section>")
+            f"<a class=\"btn sec\" href=\"{esc(raiz)}app.html\">Abrir la app</a></p>\n</section>")
 
 
 def relacionados(post, publicados):
@@ -765,13 +789,17 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     cabeza = (f'<header class="page-hero post-head">\n{migas}\n'
               f'<p class="kicker">{esc(CATS[post["categoria"]]["nombre"])}</p>\n'
               f'<h1>{esc(post["titulo"])}</h1>\n<p class="post-meta">{meta}</p>\n</header>')
-    foto = (f'<figure class="post-foto"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" '
-            f'width="1200" height="675"></figure>')
+    foto = ""
+    if post["imagen"]:
+        foto = (f'<figure class="post-foto"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" '
+                f'width="1200" height="675"></figure>')
     guia_href, guia_titulo, _ = GUIAS[post["guia"]]
     guia = (f'<p>La guía fija de este tema es <a href="{raiz}{esc(guia_href)}">{esc(guia_titulo)}</a>.</p>')
     fuentes = ""
-    if post["fuentes"]:
-        fuentes = '<p class="fuentes"><strong>Fuentes:</strong> ' + " ".join(esc(f) for f in post["fuentes"]) + "</p>"
+    if post["fuentes_html"]:
+        items = "".join(f"<li>{item}</li>" for item in post["fuentes_html"])
+        fuentes = '<div class="fuentes"><p><strong>Fuentes</strong></p><ul>' + items + "</ul></div>"
+    ia = '<p class="ia-nota">🤖 Generado con IA.</p>' if post.get("ia") else ""
     red = ""
     if post["red"]:
         red = ('<p class="post-meta">Este texto sale de <a href="' + esc(post["red"])
@@ -796,16 +824,19 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
                      f'<div class="media-mini"><img src="{esc(raiz + ficha["imagen"])}" alt="{esc(ficha.get("alt") or ficha["nombre"])}" width="84" height="84">'
                      f'<p>{esc(ficha["nombre"])}. {esc(ficha.get("resumen") or "")}{esc(nota)}</p></div>\n'
                      f'<a class="btn sec" href="{raiz}producto/{esc(post["producto"])}.html">Ver la ficha</a>\n</section>')
-    cta = ""
-    if cajas:
-        cta = '<div class="post-cta">\n' + "\n".join(cajas) + "\n</div>"
+    cajas.append('<section class="panel panel-shop">\n<h2>Curso gratis y app</h2>\n'
+                 '<p>El curso va paso a paso y es gratis.</p>\n'
+                 '<p>Esta app te enseña a criar pollos como un profesional.</p>\n'
+                 f'<p class="split"><a class="btn gold" href="{raiz}curso.html">Empezar el curso gratis</a> '
+                 f'<a class="btn sec" href="{raiz}app.html">Abrir la app</a></p>\n</section>')
+    cta = '<div class="post-cta">\n' + "\n".join(cajas) + "\n</div>"
     cerca = relacionados(post, publicados)
     bloque_cerca = ""
     if cerca:
         bloque_cerca = ('<section>\n<p class="kicker">Sigue leyendo</p>\n<h2>Artículos relacionados</h2>\n<div class="pgrid">\n'
                         + "\n".join(tarjeta(p, raiz) for p in cerca) + "\n</div>\n</section>")
     return (cabeza + "\n" + anuncio("banner", activo) + "\n" + foto + "\n"
-            + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + guia + "\n" + red + "\n" + fuentes
+            + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + guia + "\n" + red + "\n" + ia + "\n" + fuentes
             + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
 
 
@@ -863,7 +894,7 @@ def ld_blog():
     return '<script type="application/ld+json">' + json_seguro({
         "@context": "https://schema.org",
         "@type": "Blog",
-        "name": "Artículos de avicultura | Granja Rentable",
+        "name": "Blog de avicultura | Granja Rentable",
         "url": SITIO + "/blog/",
         "inLanguage": "es-419",
         "author": {"@type": "Person", "name": AUTOR},
@@ -877,7 +908,7 @@ def ld_articulo(post, canonical):
         "@type": "Article",
         "headline": post["titulo"],
         "description": post["descripcion"],
-        "image": SITIO + "/" + post["imagen_og"],
+        "image": (SITIO + "/" + post["imagen_og"]) if post["imagen_og"] else LOGO,
         "datePublished": post["fecha"].isoformat(),
         "dateModified": post["actualizado"].isoformat(),
         "inLanguage": "es-419",
@@ -975,16 +1006,15 @@ def planificar(raiz, incluir_borradores=False):
     except Fallo as exc:
         return [str(exc)], {}, []
     catalogo = cargar_catalogo(raiz)
-    titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
-    descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
-                        "sacados de las lecciones del curso gratis.")
+    titulo_blog = "Blog de avicultura | Granja Rentable"
+    descripcion_blog = ("Artículos prácticos por bloque: enfermedades, razas, alimento, pollos de engorde, gallineros y agua.")
     og_portada = LOGO
     paginas_indice = max(1, (len(publicados) + POR_PAGINA - 1) // POR_PAGINA) if publicados else 1
     for numero in range(1, paginas_indice + 1):
         rel = "blog/index.html" if numero == 1 else f"blog/pagina-{numero}.html"
         canonical = SITIO + "/blog/" if numero == 1 else SITIO + f"/blog/pagina-{numero}.html"
-        hero = ('<section class="page-hero">\n<p class="kicker">Artículos</p>\n<h1>Artículos de avicultura</h1>\n'
-                "<p>Textos cortos y prácticos para tu granja. Cada uno sale de una lección del curso gratis y dice de dónde vienen sus datos.</p>\n"
+        hero = ('<section class="page-hero">\n<p class="kicker">Blog</p>\n<h1>Blog de avicultura</h1>\n'
+                "<p>Textos prácticos para la granja, ordenados por bloque. Cada artículo dice de dónde salen sus datos.</p>\n"
                 "</section>")
         contenido = "\n".join(parte for parte in [
             hero,
@@ -1026,12 +1056,15 @@ def planificar(raiz, incluir_borradores=False):
         rel = f"blog/{post['slug']}.html"
         canonical = SITIO + "/blog/" + post["slug"] + ".html"
         titulo = titulo_visible(post["titulo_seo"])
-        extra = (ld_articulo(post, canonical) + "\n"
-                 '<meta property="og:image:width" content="1200">\n'
-                 '<meta property="og:image:height" content="630">')
+        extra = ld_articulo(post, canonical)
+        if post["imagen_og"]:
+            extra += ('\n<meta property="og:image:width" content="1200">\n'
+                      '<meta property="og:image:height" content="630">')
+        og_imagen = (SITIO + "/" + post["imagen_og"]) if post["imagen_og"] else LOGO
+        og_alt = post["imagen_alt"] or "Logo de Granja Rentable"
         archivos[rel] = envolver(
             shell, rel, titulo, post["descripcion"], canonical, "index,follow", "article",
-            SITIO + "/" + post["imagen_og"], post["imagen_alt"], extra,
+            og_imagen, og_alt, extra,
             html_post(post, publicados, catalogo, raiz, activo), menu_html, pie_html)
     entradas = []
     if publicados:

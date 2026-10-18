@@ -16,6 +16,10 @@
 .post-cta .media-mini { display: flex; gap: 12px; align-items: center; }
 .post-cta .media-mini img { width: 84px; height: 84px; object-fit: contain; background: #f4f1e8; border-radius: 12px; flex: none; }
 .fuentes { font-size: .92rem; color: var(--muted); }
+.fuentes ul { margin: .4rem 0 0; padding-left: 1.15rem; }
+.fuentes li { margin: .35rem 0; }
+.ia-nota { font-size: .92rem; color: var(--muted); margin: 1rem 0 0; }
+.cats { scroll-margin-top: 12px; }
 .post-foto { margin: 0 0 14px; }
 .post-foto img { width: 100%; max-width: 42rem; height: auto; border-radius: 16px; aspect-ratio: 16 / 9; object-fit: cover; background: #f4f1e8; }
 .blog-vacio { background: #fff; border-radius: 16px; padding: 16px 18px; border: 1px solid var(--line); }
