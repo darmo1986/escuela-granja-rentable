@@ -208,6 +208,7 @@ function banner(){
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
+/* Fuera de la UE el aviso va en el flujo de la página: no tapa el contenido. */
 function notaLibre(){
   if(!adsOn() || esPremiumLocal() || !adsConfigured() || document.getElementById('cookie-note'))return;
   const n=document.createElement('aside');
@@ -232,12 +233,12 @@ function abrirAviso(){
 }
 function decidirAnuncios(){
   if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
-  if(pedirDeNuevo()){ banner(); return; }
   window.__adsLoaded = 0;
   document.documentElement.classList.remove('ad-off');
   var c = null;
   try { c = localStorage.getItem(CK); } catch (e) {}
-  if(consentimientoEstricto()){
+  if(pedirDeNuevo()){ banner(); }
+  else if(consentimientoEstricto()){
     if(c==='si'){ document.documentElement.classList.add('ad-ok'); loadAds(); }
     else if(!c) banner();
   } else if(c==='si'){

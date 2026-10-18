@@ -78,7 +78,7 @@ CARPETA_POSTS = "_articulos"
 MAX_TITULO = 60
 MAX_DESCRIPCION = 150
 SUFIJO_TITULO = " | Granja Rentable"
-VERSION_ACTIVOS = "202610182"
+VERSION_ACTIVOS = "202610183"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
 CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}

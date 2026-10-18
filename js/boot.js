@@ -27,10 +27,7 @@
     if (!/^(Africa|America|Asia|Atlantic|Australia|Indian|Pacific)\//.test(tz)) return true;
     return false;
   }
-  /* Premium caduca. Sin fecha futura, gr_premium = "1" no vale.
-     Este archivo corre antes que config.js, así que window.ads todavía no existe
-     y aquí no se lee. app.js marca ad-ok después, solo si activo === true,
-     no hay Premium y el consentimiento lo permite. */
+  /* Premium caduca. Sin fecha futura, gr_premium = "1" no vale. */
   function premiumVigente() {
     try {
       var marca = localStorage.getItem("gr_premium");
@@ -50,7 +47,12 @@
   var estricto = zonaEstricta(tz);
   try { if (navigator.globalPrivacyControl === true) estricto = true; } catch (eG) {}
   document.documentElement.dataset.ads = estricto ? "ue" : "libre";
+  var pedir = false;
+  try { pedir = sessionStorage.getItem("gr_pedir_cookies") === "1"; } catch (ePedir) {}
   try {
+    var consent = localStorage.getItem("gr_consent");
+    var adsActivos = !!(window.ads && window.ads.activo === true);
+    if (adsActivos && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
     if (premiumVigente()) document.documentElement.classList.add("ad-off");
   } catch (e0) {}
   var map = {
