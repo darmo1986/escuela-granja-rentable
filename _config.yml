@@ -26,3 +26,10 @@ exclude:
   - vendor/cache
   - vendor/gems
   - vendor/ruby
+
+# descargas/ no está en exclude: ahí va el APK de Registro de pollos.
+# Jekyll lo trata como archivo estático (no empieza por ---) y lo copia en binario.
+# GitHub Pages sirve .apk con Content-Type application/vnd.android.package-archive
+# (mime-db, el listado que usa Pages para los tipos de archivo).
+include:
+  - descargas
