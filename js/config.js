@@ -1,7 +1,19 @@
 /* Publicidad. Sitio aprobado en Adsterra: granjarentable.com (id 6132524).
    El cartelito usa redes.adsterra.bannerKey (320×50). Solo banners en iframe. */
 window.ADSENSE_CLIENT = "ca-pub-5311145772953700";
+/* Ids de bloque de AdSense (solo dígitos). Vacío = ese hueco no se pinta y no ocupa sitio.
+   Nunca pongas un texto como "banner": data-ad-slot tiene que ser el número del panel. */
+window.ADSENSE_SLOTS = { cabecera: "", leccion: "", lateral: "", pie: "" };
+/* El día de encender AdSense, este valor va en true junto con window.ads.activo,
+   y el panel de Google ya tiene publicado el CMP certificado (TCF) para el EEE,
+   el Reino Unido y Suiza. Hoy sigue en false: los anuncios están apagados.
+   En true, ese CMP sustituye al aviso propio solo en esas zonas. Brasil, la
+   señal de privacidad global y una zona desconocida siguen con el aviso propio
+   y sin anuncios hasta que haya Aceptar. Un Rechazar guardado no se ignora. */
+window.ADSENSE_CMP = false;
 window.ADSTERRA = {
+  /* Parada. Aunque window.ads.activo sea true, Adsterra no gana ni carga. */
+  activo: false,
   /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así.
      www.highperformanceformat.com también sirve el mismo script: se usa este
      host aquí y como respaldo en app.js para que los dos no diverjan. */

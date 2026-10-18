@@ -14,6 +14,8 @@ function smallBannerCfg(){
   return null;
 }
 function adsterraHasKey(){
+  /* Interruptor propio: solo true enciende Adsterra. false, ausente o cualquier otro valor, no. */
+  if(!(window.ADSTERRA&&window.ADSTERRA.activo===true))return false;
   if(smallBannerCfg())return true;
   const A=window.ADSTERRA||{};
   return ['banner','rect'].some(k=>{
@@ -51,6 +53,7 @@ function adsterraScriptHost(){
 }
 function mountAdsterra(el,cfg){
   if(!adsOn())return;
+  document.documentElement.classList.add('ad-red');
   if(el.dataset.adFilled)return;
   el.dataset.adFilled='adsterra';
   const frame=document.createElement('iframe');
@@ -70,6 +73,7 @@ function mountAdsterra(el,cfg){
   el.appendChild(frame);
 }
 function loadAdsterra(){
+  document.documentElement.classList.add('ad-red');
   const narrow=window.matchMedia('(max-width:1099px)').matches;
   const seen={};
   document.querySelectorAll('.ad-slot[data-ad-size]').forEach(el=>{
@@ -143,23 +147,178 @@ function loadAdsterra(){
   slots.forEach(el=>io.observe(el));
   return true;
 }
+function paginaSinAnuncios(){
+  const path=String(location.pathname||'').toLowerCase();
+  const file=(path.split('/').pop()||'').replace(/\.html$/,'');
+  if(file==='404'||file==='cuenta'||file==='tienda'||file==='premium'||file==='condiciones-premium')return true;
+  if(file==='aviso-legal'||file==='privacidad'||file==='cookies'||file==='afiliados-condiciones')return true;
+  if(/\/(producto|tienda|premium)(\/|$)/.test(path))return true;
+  if(document.documentElement.dataset.sinAnuncios==='1')return true;
+  if(document.body&&document.body.dataset.sinAnuncios==='1')return true;
+  return false;
+}
+function clienteAdsense(){
+  const id=String(window.ADSENSE_CLIENT||'').trim();
+  return /^ca-pub-\d+$/.test(id)?id:'';
+}
+/* Solo el id numérico del panel. "banner", vacío o cualquier texto no se usa. */
+function adsenseSlot(nombre){
+  const slots=window.ADSENSE_SLOTS||{};
+  const id=String(slots[nombre]==null?'':slots[nombre]).trim();
+  return /^[0-9]+$/.test(id)?id:'';
+}
+function crearHueco(nombre,slot){
+  if(!/^[0-9]+$/.test(slot))return null;
+  const client=clienteAdsense();
+  if(!client)return null;
+  const box=document.createElement('aside');
+  box.className='adsense-slot adsense-'+nombre;
+  box.dataset.adsense=nombre;
+  const ins=document.createElement('ins');
+  ins.className='adsbygoogle';
+  ins.setAttribute('data-ad-client',client);
+  ins.setAttribute('data-ad-slot',slot);
+  ins.setAttribute('data-ad-format','auto');
+  ins.setAttribute('data-full-width-responsive','true');
+  box.appendChild(ins);
+  return box;
+}
+/* antes = nodo delante del cual va el anuncio. null = al final del texto,
+   detrás del primer bloque, nunca entre un título y su único párrafo. */
+function destinoLeccion(texto){
+  const hijos=[...texto.children];
+  const h2=hijos.filter(n=>n.tagName==='H2');
+  if(h2.length>=2)return {antes:h2[1]};
+  const titulo=hijos.find(n=>n.tagName==='H2'||n.tagName==='H3');
+  if(!titulo)return null;
+  let bloque=titulo.nextElementSibling;
+  while(bloque&&!/^(P|UL|OL|DIV|TABLE|BLOCKQUOTE)$/.test(bloque.tagName))bloque=bloque.nextElementSibling;
+  if(!bloque)return null;
+  return {antes:bloque.nextElementSibling};
+}
+function montarCabecera(slot){
+  if(document.querySelector('.adsense-cabecera'))return false;
+  const header=document.querySelector('header.top');
+  const box=crearHueco('cabecera',slot);
+  if(!header||!box)return false;
+  header.insertAdjacentElement('afterend',box);
+  return true;
+}
+function montarLeccion(slot){
+  let n=0;
+  document.querySelectorAll('article.lesson-page').forEach(art=>{
+    if(art.querySelector('.adsense-leccion'))return;
+    const texto=art.querySelector('section.texto');
+    const dest=texto&&destinoLeccion(texto);
+    if(!dest)return;
+    if(dest.antes&&(dest.antes.closest('.quiz')||dest.antes.closest('.video')))return;
+    const box=crearHueco('leccion',slot);
+    if(!box)return;
+    if(dest.antes)dest.antes.parentNode.insertBefore(box,dest.antes);
+    else texto.appendChild(box);
+    n++;
+  });
+  return n>0;
+}
+function montarPie(slot){
+  if(document.querySelector('.adsense-pie'))return false;
+  const foot=document.querySelector('footer.foot');
+  const box=crearHueco('pie',slot);
+  if(!foot||!box)return false;
+  foot.insertAdjacentElement('beforebegin',box);
+  return true;
+}
+function montarLateral(slot){
+  if(document.querySelector('.adsense-lateral'))return false;
+  const mq=window.matchMedia('(min-width:1100px)');
+  const poner=()=>{
+    if(!adsOn()||!mq.matches||document.querySelector('.adsense-lateral'))return;
+    const box=crearHueco('lateral',slot);
+    if(!box)return;
+    document.body.appendChild(box);
+    document.documentElement.classList.add('ad-on');
+    pedirAdsbygoogle();
+    empujarNuevos();
+  };
+  poner();
+  if(mq.addEventListener)mq.addEventListener('change',poner);
+  return true;
+}
+function vigilarHueco(ins){
+  const ocultar=()=>{
+    if(ins.getAttribute('data-ad-status')!=='unfilled')return;
+    const box=ins.closest('.adsense-slot');
+    if(!box)return;
+    box.classList.add('adsense-vacio');
+    box.hidden=true;
+  };
+  ocultar();
+  if('MutationObserver' in window){
+    new MutationObserver(ocultar).observe(ins,{attributes:true,attributeFilter:['data-ad-status']});
+  }
+}
+function empujarNuevos(){
+  document.querySelectorAll('ins.adsbygoogle').forEach(ins=>{
+    if(ins.dataset.adsPushed||!/^[0-9]+$/.test(ins.getAttribute('data-ad-slot')||''))return;
+    ins.dataset.adsPushed='1';
+    (window.adsbygoogle=window.adsbygoogle||[]).push({});
+    vigilarHueco(ins);
+  });
+}
+function pedirAdsbygoogle(){
+  if(!adsOn())return;
+  if(document.querySelector('script[data-adsense="1"]'))return;
+  const client=clienteAdsense();
+  if(!client)return;
+  const listo=document.querySelector('.adsense-slot ins.adsbygoogle[data-ad-slot]');
+  if(!listo||!/^[0-9]+$/.test(listo.getAttribute('data-ad-slot')||''))return;
+  const s=document.createElement('script');
+  s.async=true;
+  s.crossOrigin='anonymous';
+  s.setAttribute('data-adsense','1');
+  s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(client);
+  document.head.appendChild(s);
+}
+function colocarAnuncioLeccion(){
+  if(!adsOn()||esPremiumLocal()||paginaSinAnuncios()||adsterraHasKey()||!window.__adsLoaded)return;
+  const id=adsenseSlot('leccion');
+  if(!id)return;
+  if(!montarLeccion(id))return;
+  document.documentElement.classList.add('ad-on');
+  pedirAdsbygoogle();
+  empujarNuevos();
+}
+window.GR_montarAnuncioLeccion=colocarAnuncioLeccion;
 function loadAdsense(){
   if(!adsOn())return false;
-  if(!window.ADSENSE_CLIENT)return false;
-  const slots=[...document.querySelectorAll('.ad-slot')].filter(d=>d.dataset.adSlot&&d.dataset.adSlot.indexOf('SLOT_')!==0);
-  if(!slots.length)return false;
-  const s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';
-  s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(window.ADSENSE_CLIENT);
-  document.head.appendChild(s); document.documentElement.classList.add('ad-on');
-  slots.forEach(d=>{
-    if(d.dataset.adFilled)return;
-    d.hidden=false;
-    d.dataset.adFilled='adsense';
-    const i=document.createElement('ins');i.className='adsbygoogle';i.style.display='block';
-    i.dataset.adClient=window.ADSENSE_CLIENT;i.dataset.adSlot=d.dataset.adSlot;i.dataset.adFormat='auto';i.dataset.fullWidthResponsive='true';d.appendChild(i);
-    (window.adsbygoogle=window.adsbygoogle||[]).push({});
-  });
+  if(esPremiumLocal()||paginaSinAnuncios())return false;
+  if(!clienteAdsense())return false;
+  /* AdSense va en la página, nunca en un iframe sandbox. El sandbox se queda en Adsterra.
+     Sin un bloque con id numérico ya pintado, no se pide adsbygoogle.js. */
+  const cab=adsenseSlot('cabecera');
+  const lec=adsenseSlot('leccion');
+  const lat=adsenseSlot('lateral');
+  const pie=adsenseSlot('pie');
+  if(cab)montarCabecera(cab);
+  if(lec)montarLeccion(lec);
+  if(lat)montarLateral(lat);
+  if(pie)montarPie(pie);
+  if(!document.querySelector('.adsense-slot ins.adsbygoogle[data-ad-slot]'))return false;
+  document.documentElement.classList.add('ad-on');
+  pedirAdsbygoogle();
+  empujarNuevos();
   return true;
+}
+function usarCmpGoogle(){
+  /* Solo el EEE, el Reino Unido y Suiza, y solo si no hay señal de privacidad global.
+     boot.js marca esa zona como data-ads="cmp". */
+  return window.ADSENSE_CMP===true && adsOn() && !adsterraHasKey() && !!clienteAdsense() && document.documentElement.dataset.ads==='cmp';
+}
+function ocultarAvisoPropio(){
+  const b=document.getElementById('cookie-banner');
+  if(b)b.remove();
+  const n=document.getElementById('cookie-note');
+  if(n)n.remove();
 }
 /* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
    gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
@@ -192,7 +351,7 @@ function cerrarPregunta(){
 }
 function loadAds(){
   if(!adsOn()){ocultarHuecos();return;}
-  if(esPremiumLocal()){ quitarAnuncios(); return; }
+  if(esPremiumLocal()||paginaSinAnuncios()){ quitarAnuncios(); return; }
   if(window.__adsLoaded)return; window.__adsLoaded=1;
   /* Si hay Adsterra con key, gana frente a AdSense. */
   if(adsterraHasKey()){loadAdsterra();return;}
@@ -200,21 +359,27 @@ function loadAds(){
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
-  if(!adsOn() || esPremiumLocal())return;
+  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios() || usarCmpGoogle())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  const quien=adsterraHasKey()
+    ?'Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis.'
+    :'Usamos cookies de publicidad de Google AdSense para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Adsterra está apagada y no se carga.';
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">'+quien+' Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
 /* Fuera de la UE el aviso va en el flujo de la página: no tapa el contenido. */
 function notaLibre(){
-  if(!adsOn() || esPremiumLocal() || !adsConfigured() || document.getElementById('cookie-note'))return;
+  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios() || usarCmpGoogle() || !adsConfigured() || document.getElementById('cookie-note'))return;
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
-  n.innerHTML='<span>Mostramos anuncios de Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
+  const avisoLibre=adsterraHasKey()
+    ?'Mostramos anuncios de Adsterra para mantener el curso gratis.'
+    :'Mostramos anuncios de Google AdSense para mantener el curso gratis.';
+  n.innerHTML='<span>'+avisoLibre+'</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
   n.addEventListener('click',e=>{
     if(e.target.dataset.c!=='no')return;
     localStorage.setItem(CK,'no');
@@ -227,16 +392,28 @@ function notaLibre(){
   if(main)main.prepend(n); else document.body.prepend(n);
 }
 function abrirAviso(){
-  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios()){ quitarAnuncios(); return; }
+  if(usarCmpGoogle()){ ocultarAvisoPropio(); loadAds(); return; }
   if(consentimientoEstricto())banner();
   else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
 }
 function decidirAnuncios(){
-  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios()){ quitarAnuncios(); return; }
   window.__adsLoaded = 0;
   document.documentElement.classList.remove('ad-off');
   var c = null;
   try { c = localStorage.getItem(CK); } catch (e) {}
+  /* Un Rechazar guardado manda en todas las zonas, también con el CMP de Google. */
+  if(c==='no' && !pedirDeNuevo()){
+    document.documentElement.classList.remove('ad-ok');
+    ocultarAvisoPropio();
+    return;
+  }
+  if(usarCmpGoogle()){
+    ocultarAvisoPropio();
+    loadAds();
+    return;
+  }
   if(pedirDeNuevo()){ banner(); }
   else if(consentimientoEstricto()){
     if(c==='si'){ document.documentElement.classList.add('ad-ok'); loadAds(); }
@@ -260,7 +437,7 @@ function esperaPago(){
   } catch (e) { return false; }
 }
 function arrancarAnuncios(){
-  if(!adsOn() || esPremiumLocal() || esperaPago()){ quitarAnuncios(); return; }
+  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios() || esperaPago()){ quitarAnuncios(); return; }
   var sesion = sesionAbierta();
   if (sesion && !premiumConocido()) quitarAnuncios();
   if (!sesion) { decidirAnuncios(); return; }
@@ -291,6 +468,13 @@ document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener(
   e.preventDefault();
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
   if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
+  if(usarCmpGoogle()){
+    localStorage.removeItem(CK);
+    document.documentElement.classList.remove('ad-ok');
+    try { sessionStorage.removeItem('gr_pedir_cookies'); } catch(err){}
+    location.reload();
+    return;
+  }
   localStorage.removeItem(CK);
   document.documentElement.classList.remove('ad-ok');
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
@@ -479,11 +663,11 @@ async function renderDynamicLesson(){
   if(!host)return;
   const id=new URLSearchParams(location.search).get('id')||'';
   const data=await cursoWeb();
-  if(!data||!ID_RE.test(id)){host.innerHTML='<p>No encontramos esa lección. <a href="'+root+'curso.html">Volver al curso</a>.</p>';return;}
+  if(!data||!ID_RE.test(id)){host.innerHTML='<p>No encontramos esa lección. <a href="'+root+'curso.html">Volver al curso</a>.</p>';colocarAnuncioLeccion();return;}
   const lessons=data.lecciones||[];
   const idx=lessons.findIndex(x=>x.id===id);
   const L=idx>=0?lessons[idx]:null;
-  if(!L){host.innerHTML='<p>No encontramos esa lección. <a href="'+root+'curso.html">Volver al curso</a>.</p>';return;}
+  if(!L){host.innerHTML='<p>No encontramos esa lección. <a href="'+root+'curso.html">Volver al curso</a>.</p>';colocarAnuncioLeccion();return;}
   const media=lessonMedia(L.enlace);
   const withExam=!!(L.examen&&EXAM_RE.test(L.examen));
   const prev=withExam?lessons.slice(0,idx).filter(x=>x.estado==='disponible'&&x.examen&&EXAM_RE.test(x.examen)).map(x=>x.id):[];
@@ -495,6 +679,7 @@ async function renderDynamicLesson(){
   if(!media){
     if(L.descripcion)html+='<section class="texto"><h2>De qué trata</h2><p>'+esc(L.descripcion)+'</p></section>';
     host.innerHTML=html;
+    colocarAnuncioLeccion();
     return;
   }
   if(L.descripcion)html+='<section class="texto lockable"><h2>De qué trata</h2><p>'+esc(L.descripcion)+'</p></section>';
@@ -502,6 +687,7 @@ async function renderDynamicLesson(){
     html+='<section class="quiz lockable" data-exam="'+esc(root+'data/examenes/'+L.examen)+'" data-pass="10" data-key="'+esc(L.id)+'"><h2>Test de la lección</h2><p>Apruebas con 10 aciertos.</p><div class="qwrap">Cargando test…</div></section>';
   }
   host.innerHTML=html;
+  colocarAnuncioLeccion();
   const t=document.querySelector('title');
   if(t)t.textContent=(L.codigo?L.codigo+': ':'')+(L.titulo||'Lección')+' | Curso Granja Rentable';
 }

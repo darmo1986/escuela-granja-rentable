@@ -3,7 +3,10 @@
    código de país está en la lista) → México. Un inglés genérico no
    se convierte en Estados Unidos.
    El aviso de anuncios mira la zona horaria, sin llamar a nadie:
-   UE, EEE, Reino Unido, Suiza, Brasil, zona desconocida o GPC piden Aceptar. */
+   UE, EEE, Reino Unido, Suiza, Brasil, zona desconocida o GPC piden Aceptar.
+   data-ads="cmp" solo en el EEE, el Reino Unido y Suiza, y nunca si hay GPC:
+   ahí puede hablar el CMP de Google. En Brasil, con GPC o si no se sabe
+   la zona, data-ads="ue": hace falta el aviso propio. */
 (function () {
   function zonaEstricta(tz) {
     if (!tz || tz === "UTC" || tz.indexOf("Etc/") === 0) return true;
@@ -27,6 +30,34 @@
     if (!/^(Africa|America|Asia|Atlantic|Australia|Indian|Pacific)\//.test(tz)) return true;
     return false;
   }
+  /* EEE, Reino Unido y Suiza. No incluye Brasil ni el resto de Europa. */
+  function zonaCmp(tz) {
+    var europe = {
+      "Europe/Amsterdam": 1, "Europe/Athens": 1, "Europe/Berlin": 1,
+      "Europe/Bratislava": 1, "Europe/Brussels": 1, "Europe/Bucharest": 1,
+      "Europe/Budapest": 1, "Europe/Busingen": 1, "Europe/Copenhagen": 1,
+      "Europe/Dublin": 1, "Europe/Gibraltar": 1, "Europe/Guernsey": 1,
+      "Europe/Helsinki": 1, "Europe/Isle_of_Man": 1, "Europe/Jersey": 1,
+      "Europe/Lisbon": 1, "Europe/Ljubljana": 1, "Europe/London": 1,
+      "Europe/Luxembourg": 1, "Europe/Madrid": 1, "Europe/Malta": 1,
+      "Europe/Mariehamn": 1, "Europe/Oslo": 1, "Europe/Paris": 1,
+      "Europe/Prague": 1, "Europe/Riga": 1, "Europe/Rome": 1,
+      "Europe/Sofia": 1, "Europe/Stockholm": 1, "Europe/Tallinn": 1,
+      "Europe/Vaduz": 1, "Europe/Vienna": 1, "Europe/Vilnius": 1,
+      "Europe/Warsaw": 1, "Europe/Zagreb": 1, "Europe/Zurich": 1
+    };
+    if (europe[tz]) return true;
+    var extra = {
+      "Atlantic/Azores": 1, "Atlantic/Madeira": 1, "Atlantic/Canary": 1,
+      "Atlantic/Reykjavik": 1, "Atlantic/Faroe": 1, "Atlantic/Faeroe": 1,
+      "Atlantic/Jan_Mayen": 1, "Arctic/Longyearbyen": 1,
+      "Africa/Ceuta": 1, "Asia/Nicosia": 1, "Asia/Famagusta": 1,
+      "Indian/Reunion": 1, "Indian/Mayotte": 1,
+      "America/Cayenne": 1, "America/Guadeloupe": 1, "America/Martinique": 1,
+      "America/Marigot": 1, "America/St_Barthelemy": 1
+    };
+    return !!extra[tz];
+  }
   /* Premium caduca. Sin fecha futura, gr_premium = "1" no vale. */
   function premiumVigente() {
     try {
@@ -44,9 +75,13 @@
   window.GR_esPremium = premiumVigente;
   var tz = "";
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (eTz) {}
-  var estricto = zonaEstricta(tz);
-  try { if (navigator.globalPrivacyControl === true) estricto = true; } catch (eG) {}
-  document.documentElement.dataset.ads = estricto ? "ue" : "libre";
+  var gpc = false;
+  try { if (navigator.globalPrivacyControl === true) gpc = true; } catch (eG) {}
+  var estricto = zonaEstricta(tz) || gpc;
+  /* El CMP certificado de Google solo cubre EEE, Reino Unido y Suiza.
+     GPC, Brasil y una zona desconocida siguen pidiendo el aviso propio. */
+  var cmp = zonaCmp(tz) && !gpc;
+  document.documentElement.dataset.ads = cmp ? "cmp" : (estricto ? "ue" : "libre");
   var pedir = false;
   try { pedir = sessionStorage.getItem("gr_pedir_cookies") === "1"; } catch (ePedir) {}
   try {

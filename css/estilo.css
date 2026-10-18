@@ -435,14 +435,14 @@ body:has(#cookie-banner) main { padding-bottom: 120px; }
 /* Huecos SLOT_* vacíos: ni la etiqueta «Publicidad» ni el banner, hasta que haya un anuncio de verdad. */
 .ad-inline, .ad-slot, .ad-label { display: none; }
 html.ad-off .ad-inline, html.ad-off .ad-slot, html.ad-off .ad-label { display: none !important; }
-html.ad-ok .ad-inline { display: block; position: static; margin: 14px 0; clear: both; }
-html.ad-ok .ad-label { display: block; font-size: .7rem; color: #888; margin: 0 0 4px; letter-spacing: .04em; text-transform: uppercase; }
-html.ad-ok .ad-slot { display: block; overflow: hidden; background: transparent; }
-html.ad-ok .ad-inline[data-ad-size="banner"] { width: min(320px, 100%); margin-left: auto; margin-right: auto; }
+html.ad-red .ad-inline { display: block; position: static; margin: 14px 0; clear: both; }
+html.ad-red .ad-label { display: block; font-size: .7rem; color: #888; margin: 0 0 4px; letter-spacing: .04em; text-transform: uppercase; }
+html.ad-red .ad-slot { display: block; overflow: hidden; background: transparent; }
+html.ad-red .ad-inline[data-ad-size="banner"] { width: min(320px, 100%); margin-left: auto; margin-right: auto; }
 /* Alto fijo desde el primer pintado: el anuncio ocupa su hueco y no empuja el texto. */
-html.ad-ok .ad-inline[data-ad-size="banner"] .ad-slot { width: min(320px, 100%); height: 50px; min-height: 50px; background: #f4f1e8; border: 1px solid #e5e0d4; }
-html.ad-ok .ad-inline[data-ad-size="rect"] .ad-slot { width: min(300px, 100%); height: 250px; min-height: 250px; }
-html.ad-ok .ad-gap { margin: 0; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4px 8px; font-size: .75rem; font-weight: 800; color: #6d5a16; background: #fff6d8; border: 2px dashed var(--gold); }
+html.ad-red .ad-inline[data-ad-size="banner"] .ad-slot { width: min(320px, 100%); height: 50px; min-height: 50px; background: #f4f1e8; border: 1px solid #e5e0d4; }
+html.ad-red .ad-inline[data-ad-size="rect"] .ad-slot { width: min(300px, 100%); height: 250px; min-height: 250px; }
+html.ad-red .ad-gap { margin: 0; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4px 8px; font-size: .75rem; font-weight: 800; color: #6d5a16; background: #fff6d8; border: 2px dashed var(--gold); }
 .lock-msg { background: #fff6d8; border: 2px solid var(--gold); border-radius: 14px; padding: 14px; margin: 16px 0; font-weight: 700; }
 .tabla { overflow-x: auto; margin: 12px 0; }
 .tabla table { border-collapse: collapse; min-width: 100%; font-size: .9rem; }
@@ -587,18 +587,64 @@ code { overflow-wrap: anywhere; }
 .mem-card.is-open, .mem-card.is-done { background: #fff; color: var(--gd); }
 .q .opt { width: 100%; text-align: left; margin-top: 6px; }
 @media (max-width: 1099px) {
-  html.ad-ok .ad-inline[data-ad-size="rect"] { display: none !important; }
+  html.ad-red .ad-inline[data-ad-size="rect"] { display: none !important; }
 }
 @media (min-width: 1100px) {
-  html.ad-ok:has(.ad-inline[data-ad-size="rect"]) main {
+  html.ad-red:has(.ad-inline[data-ad-size="rect"]) main {
     margin-right: 324px;
     width: auto;
     max-width: calc(100% - 356px);
   }
-  html.ad-ok .ad-rail {
+  html.ad-red .ad-rail {
     position: fixed; top: 168px; right: 16px; width: 300px; margin: 0; z-index: 25;
   }
-  html.ad-ok .ad-rail.ad-rail-off { visibility: hidden; }
+  html.ad-red .ad-rail.ad-rail-off { visibility: hidden; }
+}
+
+/* AdSense. El hueco solo existe si JS lo inserta (slot numérico y anuncio que va a cargar).
+   Altura mínima solo en ese caso, para que el texto no salte. unfilled lo esconde. */
+.adsense-slot { display: none; }
+html.ad-off .adsense-slot { display: none !important; min-height: 0 !important; margin: 0 !important; }
+html.ad-on .adsense-slot {
+  display: block;
+  margin: 14px auto;
+  max-width: 760px;
+  overflow: hidden;
+  background: transparent;
+}
+html.ad-on .adsense-cabecera,
+html.ad-on .adsense-pie { min-height: 100px; }
+html.ad-on .adsense-leccion { min-height: 280px; }
+html.ad-on .adsense-slot ins.adsbygoogle { display: block; width: 100%; min-height: inherit; }
+html.ad-on .adsense-slot.adsense-vacio,
+html.ad-on .adsense-slot:has(ins[data-ad-status="unfilled"]) {
+  display: none !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+@media (max-width: 1099px) {
+  .adsense-lateral { display: none !important; min-height: 0 !important; height: 0 !important; margin: 0 !important; }
+}
+@media (min-width: 1100px) {
+  html.ad-on .adsense-lateral {
+    display: block;
+    position: fixed;
+    top: 168px;
+    right: 16px;
+    width: 300px;
+    max-width: 300px;
+    min-height: 250px;
+    margin: 0;
+    z-index: 25;
+  }
+  html.ad-on:has(.adsense-lateral:not(.adsense-vacio)) main {
+    margin-right: 324px;
+    width: auto;
+    max-width: calc(100% - 356px);
+  }
 }
 
 .calc-teaser {
@@ -826,7 +872,7 @@ code { overflow-wrap: anywhere; }
 }
 @media (min-width: 800px) { .enf-grid { grid-template-columns: 1fr 1fr; } }
 @media print {
-  .top, .foot, .wa-float, .ad-inline, #cookie-banner, .no-print { display: none !important; }
+  .top, .foot, .wa-float, .ad-inline, .adsense-slot, #cookie-banner, .no-print { display: none !important; }
   body { background: #fff; }
   main { width: auto; max-width: none !important; margin: 0 !important; }
   .rent-out { position: static !important; }

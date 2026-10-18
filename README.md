@@ -64,7 +64,8 @@ El dueño aprobó publicar en GitHub Pages. El DNS de Namecheap sigue pendiente.
 - [ ] **DNS en Namecheap.** Todavía no se aplica. Quitar el aparcamiento y cualquier redirección. No usar un comodín (`*`). Registros del dominio raíz (`@`): A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. IPv6 opcional: AAAA `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`. `www`: CNAME `darmo1986.github.io` (el usuario de GitHub, sin el nombre del repositorio). Cuando resuelva, en GitHub Pages activar «Enforce HTTPS».
 - [x] **Apps Script.** `window.GR.formEndpoint` en `js/config.js` ya apunta a `https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec`. Si se vuelve a publicar el script y cambia la URL, hay que pegarla otra vez.
 - [x] **URLs canónicas.** Cada página lleva `link rel=canonical` a `https://granjarentable.com/` (inicio) o `https://granjarentable.com/<ruta>`. Hasta que el dominio apunte a GitHub Pages, el sitio también puede servirse en `https://darmo1986.github.io/escuela-granja-rentable/`; las canónicas no cambian.
-- [x] **Claves de Adsterra.** El sitio aprobado es `granjarentable.com` (sitio 6132524). Cada página lleva un banner de 320×50 en todos los anchos. El 300×250 solo va en el lateral de escritorio a partir de 1100 px, y solo se pide si ese lateral se ve. La clave de 728×90 queda guardada, pero no se usa. Sin tema ni palabras clave. En la UE, el EEE, Reino Unido, Suiza, Brasil o si la zona horaria no dice el país, solo si se aceptan las cookies. En el resto se cargan al entrar y se pueden rechazar. AdSense sigue vacío.
+- [x] **Adsterra parada.** Las claves siguen en `js/config.js` (`window.ADSTERRA`, sitio `granjarentable.com` 6132524), pero `window.ADSTERRA.activo` es `false`. Aunque `window.ads.activo` sea `true`, Adsterra no gana ni carga. El iframe con sandbox se queda solo para Adsterra.
+- [ ] **AdSense preparado, sin encender.** El cliente `ca-pub-5311145772953700` ya está en `window.ADSENSE_CLIENT`, en la meta `google-adsense-account` y en `ads.txt`. `window.ads.activo` sigue en `false`: así no hay peticiones a `googlesyndication`. Los huecos (cabecera bajo el menú, entre bloques de la lección, lateral desde 1100 px y pie) se pintan solo si `window.ADSENSE_SLOTS` trae un id numérico. AdSense no va dentro de un iframe sandbox.
 - [ ] **Fotos que faltan.** El suplemento y otras fichas sin precio no tienen foto. Esas fichas no muestran un recuadro de «sin foto» y no están en el sitemap.
 - [ ] **Videos L05A–L06C.** El temario está; los mp4 no. Cómo publicarlos, abajo.
 
@@ -82,6 +83,19 @@ La ficha ya está en `data/curso-web.json`, la fila ya está en `curso.html` y l
 ## Hueco del video final de L01 a L04B
 
 `videos-finales.html` se quitó del sitio publicado. Cada ficha L01–L04B de `data/curso-web.json` sigue con `"videoFinal": ""`. El curso publicado usa los mp4 actuales de `videos/`. No cambies el `src` de `lecciones/l01.html` (ni L02, L03, L04A, L04B) hasta que el corte final esté aprobado.
+
+## Cuando Google apruebe AdSense
+
+Hoy no se enciende. `window.ads.activo` es `false` y `window.ADSENSE_SLOTS` está vacío, así que no se pide `adsbygoogle.js` y no queda hueco vacío. AdSense se inserta en la página (etiqueta `ins`), nunca en el iframe con sandbox: ese sandbox es solo de Adsterra y, si se usara con AdSense, el anuncio no cargaría y va contra sus políticas.
+
+Tras la aprobación queda esto, en este orden:
+
+1. **Crear los bloques y pegar sus slot ids.** En AdSense: Anuncios → Por bloque de anuncios → Display (adaptativo). Crea cuatro bloques: cabecera, lección, lateral y pie. Copia solo el número de `data-ad-slot` a `window.ADSENSE_SLOTS` en `js/config.js` (`cabecera`, `leccion`, `lateral`, `pie`). Si un id se deja en `''`, ese hueco no se pinta. No uses textos como `banner`.
+2. **Encender, el modo correcto.** En el mismo cambio: `window.ads.activo` en `true`, `window.ADSENSE_CMP` en `true` y `window.ADSTERRA.activo` en `false`. Antes, en el panel de AdSense, publica el CMP certificado de Google (TCF) para el Espacio Económico Europeo, el Reino Unido y Suiza: Privacidad y mensajes → Normativa europea → mensaje del GDPR (va incluido, sin coste). Sin ese mensaje publicado no pongas `ADSENSE_CMP` en `true`. El script `adsbygoogle.js` solo se pide si además hay al menos un bloque pintado con id numérico.
+3. **Quién ve qué aviso.** Con el CMP encendido, en el EEE, el Reino Unido y Suiza se oculta el aviso de esta web y queda el de Google. En Brasil (LGPD), si el navegador envía la señal de control global de privacidad, o si no se sabe la zona, no se cargan anuncios sin consentimiento: se muestra el aviso propio. Un Rechazar ya guardado se respeta en todas las zonas y no se pide el script. Fuera de esas zonas los anuncios pueden cargar al entrar y el aviso pequeño deja rechazarlos.
+4. **Bloqueos de categorías.** En el panel: Bloqueo → Controles de bloqueo. En categorías generales, bloquea apuestas y juegos de azar, contenido sexual, sensacionalismo y el resto de categorías sensibles. En el centro de revisión de anuncios, bloquea creatividades y anunciantes que redirigen fuera del sitio. Revisa también las redes publicitarias.
+
+La protección contra redirecciones peligrosas no es meter AdSense en un sandbox. Es el paso 4, más Adsterra apagada.
 
 ## Pendiente
 
