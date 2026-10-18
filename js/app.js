@@ -21,11 +21,16 @@ function adsterraHasKey(){
   });
 }
 function adsOn(){return !!(window.ads&&window.ads.activo===true);}
+function paginaSinAnuncios(){
+  if(document.body && document.body.hasAttribute('data-sin-anuncios')) return true;
+  const file=((location.pathname||'').split('/').pop()||'').replace(/\.html$/i,'');
+  return file==='cuenta'||file==='premium'||file==='condiciones-premium'||file==='afiliados-condiciones'||file==='afiliados';
+}
 function ocultarHuecos(){
   document.documentElement.classList.remove('ad-ok');
   document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
 }
-if(!adsOn())ocultarHuecos();
+if(!adsOn()||paginaSinAnuncios())ocultarHuecos();
 function adsConfigured(){return adsOn()&&!!(window.ADSENSE_CLIENT||adsterraHasKey());}
 function pickAdsterra(cfg,size){
   if(size==='banner')return smallBannerCfg();
@@ -49,8 +54,17 @@ function adsterraScriptHost(){
   const raw=String((window.ADSTERRA&&window.ADSTERRA.host)||'').trim().replace(/\/+$/,'');
   return /^https:\/\/[a-z0-9.-]+$/i.test(raw)?raw:fallback;
 }
+function quitarHuecoVacio(frame){
+  function onMsg(e){
+    if(!e.data||e.data.gr_ad!=='vacio'||e.source!==frame.contentWindow)return;
+    window.removeEventListener('message', onMsg);
+    const box=frame.closest('.ad-inline');
+    if(box) box.remove();
+  }
+  window.addEventListener('message', onMsg);
+}
 function mountAdsterra(el,cfg){
-  if(!adsOn())return;
+  if(!adsOn()||paginaSinAnuncios()||esPremiumLocal())return;
   if(el.dataset.adFilled)return;
   el.dataset.adFilled='adsterra';
   const frame=document.createElement('iframe');
@@ -65,8 +79,10 @@ function mountAdsterra(el,cfg){
   const key=cfg.key;
   frame.srcdoc='<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;overflow:hidden">'+
     '<script>atOptions={key:'+JSON.stringify(key)+',format:"iframe",height:'+cfg.h+',width:'+cfg.w+',params:{}};<\/script>'+
+    '<script>setTimeout(function(){var ok=false,n=document.querySelectorAll("iframe,img,canvas,object,video"),i,r;for(i=0;i<n.length;i++){r=n[i].getBoundingClientRect();if(r.width>0&&r.height>0){ok=true;break;}}if(!ok)parent.postMessage({gr_ad:"vacio"},"*");},6000);<\/script>'+
     '<script src="'+adsterraScriptHost()+'/'+encodeURIComponent(key)+'/invoke.js"><\/script>'+
     '</body></html>';
+  quitarHuecoVacio(frame);
   el.appendChild(frame);
 }
 function loadAdsterra(){
@@ -144,20 +160,33 @@ function loadAdsterra(){
   return true;
 }
 function loadAdsense(){
-  if(!adsOn())return false;
-  if(!window.ADSENSE_CLIENT)return false;
-  const slots=[...document.querySelectorAll('.ad-slot')].filter(d=>d.dataset.adSlot&&d.dataset.adSlot.indexOf('SLOT_')!==0);
+  if(!adsOn()||paginaSinAnuncios()||esPremiumLocal())return false;
+  const client=String(window.ADSENSE_CLIENT||'').trim();
+  /* Vacío: no se pide nada. Con ca-pub, el script va solo dentro del sandbox. */
+  if(!client||!/^ca-pub-[0-9]+$/.test(client))return false;
+  const slots=[...document.querySelectorAll('.ad-slot')].filter(d=>{
+    const slot=String(d.dataset.adSlot||'').trim();
+    return slot && slot.indexOf('SLOT_')!==0 && /^[A-Za-z0-9_-]+$/.test(slot);
+  });
   if(!slots.length)return false;
-  const s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';
-  s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(window.ADSENSE_CLIENT);
-  document.head.appendChild(s); document.documentElement.classList.add('ad-on');
   slots.forEach(d=>{
     if(d.dataset.adFilled)return;
     d.hidden=false;
     d.dataset.adFilled='adsense';
-    const i=document.createElement('ins');i.className='adsbygoogle';i.style.display='block';
-    i.dataset.adClient=window.ADSENSE_CLIENT;i.dataset.adSlot=d.dataset.adSlot;i.dataset.adFormat='auto';i.dataset.fullWidthResponsive='true';d.appendChild(i);
-    (window.adsbygoogle=window.adsbygoogle||[]).push({});
+    const alto=d.dataset.adSize==='rect'?250:50;
+    const frame=document.createElement('iframe');
+    frame.title='Publicidad';
+    frame.setAttribute('scrolling','no');
+    frame.setAttribute('sandbox','allow-scripts allow-popups allow-popups-to-escape-sandbox');
+    frame.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+    frame.style.cssText='width:100%;height:'+alto+'px;border:0;display:block;overflow:hidden';
+    const slot=d.dataset.adSlot;
+    frame.srcdoc='<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">'+
+      '<ins class="adsbygoogle" style="display:block;height:'+alto+'px" data-ad-client="'+client+'" data-ad-slot="'+slot+'" data-ad-format="auto" data-full-width-responsive="true"></ins>'+
+      '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(client)+'"><\/script>'+
+      '<script>(adsbygoogle=window.adsbygoogle||[]).push({});<\/script>'+
+      '</body></html>';
+    d.appendChild(frame);
   });
   return true;
 }
@@ -191,7 +220,7 @@ function cerrarPregunta(){
   try { sessionStorage.removeItem('gr_pedir_cookies'); } catch(e){}
 }
 function loadAds(){
-  if(!adsOn()){ocultarHuecos();return;}
+  if(!adsOn()||paginaSinAnuncios()){ocultarHuecos();return;}
   if(esPremiumLocal()){ quitarAnuncios(); return; }
   if(window.__adsLoaded)return; window.__adsLoaded=1;
   /* Si hay Adsterra con key, gana frente a AdSense. */
@@ -200,7 +229,7 @@ function loadAds(){
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
-  if(!adsOn() || esPremiumLocal())return;
+  if(!adsOn()||paginaSinAnuncios()||esPremiumLocal())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
@@ -210,7 +239,7 @@ function banner(){
 }
 /* Fuera de la UE el aviso va en el flujo de la página: no tapa el contenido. */
 function notaLibre(){
-  if(!adsOn() || esPremiumLocal() || !adsConfigured() || document.getElementById('cookie-note'))return;
+  if(!adsOn()||paginaSinAnuncios()||esPremiumLocal()||!adsConfigured()||document.getElementById('cookie-note'))return;
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
@@ -227,12 +256,12 @@ function notaLibre(){
   if(main)main.prepend(n); else document.body.prepend(n);
 }
 function abrirAviso(){
-  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  if(!adsOn()||paginaSinAnuncios()||esPremiumLocal()){ quitarAnuncios(); return; }
   if(consentimientoEstricto())banner();
   else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
 }
 function decidirAnuncios(){
-  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  if(!adsOn()||paginaSinAnuncios()||esPremiumLocal()){ quitarAnuncios(); return; }
   window.__adsLoaded = 0;
   document.documentElement.classList.remove('ad-off');
   var c = null;
@@ -260,21 +289,21 @@ function esperaPago(){
   } catch (e) { return false; }
 }
 function arrancarAnuncios(){
-  if(!adsOn() || esPremiumLocal() || esperaPago()){ quitarAnuncios(); return; }
+  if(!adsOn()||paginaSinAnuncios()||esPremiumLocal()||esperaPago()){ quitarAnuncios(); return; }
   var sesion = sesionAbierta();
   if (sesion && !premiumConocido()) quitarAnuncios();
   if (!sesion) { decidirAnuncios(); return; }
   if (premiumConocido()) { decidirAnuncios(); return; }
   var listo = false;
   function seguir(){
-    if (!adsOn() || esPremiumLocal() || esperaPago()) { quitarAnuncios(); listo = true; return; }
+    if (!adsOn()||paginaSinAnuncios()||esPremiumLocal()||esperaPago()) { quitarAnuncios(); listo = true; return; }
     if (!premiumConocido() || listo) return;
     listo = true;
     decidirAnuncios();
   }
   window.addEventListener('gr-premium', seguir);
   setTimeout(function () {
-    if (listo || esPremiumLocal() || esperaPago() || !adsOn()) return;
+    if (listo || paginaSinAnuncios() || esPremiumLocal() || esperaPago() || !adsOn()) return;
     listo = true;
     decidirAnuncios();
   }, 1500);
@@ -282,13 +311,14 @@ function arrancarAnuncios(){
     if (listo) return;
     listo = true;
     window.removeEventListener('gr-premium', seguir);
-    if (!adsOn() || esPremiumLocal()) quitarAnuncios();
+    if (!adsOn()||paginaSinAnuncios()||esPremiumLocal()) quitarAnuncios();
     else decidirAnuncios();
   }, 12000);
 }
 arrancarAnuncios();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
+  if(paginaSinAnuncios())return;
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
   if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
   localStorage.removeItem(CK);
