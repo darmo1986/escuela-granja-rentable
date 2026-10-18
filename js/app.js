@@ -50,7 +50,7 @@ function adsterraScriptHost(){
   return /^https:\/\/[a-z0-9.-]+$/i.test(raw)?raw:fallback;
 }
 function mountAdsterra(el,cfg){
-  if(!adsOn())return;
+  if(!adsOn() || paginaSinAnuncios())return;
   if(el.dataset.adFilled)return;
   el.dataset.adFilled='adsterra';
   const frame=document.createElement('iframe');
@@ -144,7 +144,7 @@ function loadAdsterra(){
   return true;
 }
 function loadAdsense(){
-  if(!adsOn())return false;
+  if(!adsOn() || paginaSinAnuncios())return false;
   if(!window.ADSENSE_CLIENT)return false;
   const slots=[...document.querySelectorAll('.ad-slot')].filter(d=>d.dataset.adSlot&&d.dataset.adSlot.indexOf('SLOT_')!==0);
   if(!slots.length)return false;
@@ -161,9 +161,9 @@ function loadAdsense(){
   });
   return true;
 }
-/* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
-   gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
-   html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
+/* Premium y el consentimiento se comprueban antes de cargar nada.
+   Con los anuncios apagados se ocultan los huecos y no se marca la página
+   como ya cargada: «Configurar cookies» avisa y no recarga. */
 function esPremiumLocal(){
   if (typeof window.GR_esPremium === 'function' && window.GR_esPremium()) return true;
   var u = window.GRAuth && window.GRAuth.usuarioActual;
@@ -174,6 +174,7 @@ function esPremiumLocal(){
   return false;
 }
 window.esPremiumLocal = esPremiumLocal;
+function paginaSinAnuncios(){ return document.documentElement.hasAttribute('data-sin-anuncios'); }
 function quitarAnuncios(){
   document.documentElement.classList.add('ad-off');
   document.documentElement.classList.remove('ad-ok');
@@ -184,6 +185,20 @@ function quitarAnuncios(){
   window.__adsLoaded = 1;
 }
 window.GR_quitarAnuncios = quitarAnuncios;
+window.GR_cargarAnuncios = function () {
+  if (!adsOn()) { ocultarHuecos(); return; }
+  if (esPremiumLocal() || paginaSinAnuncios()) { quitarAnuncios(); return; }
+  var estaba = document.documentElement.classList.contains('ad-off');
+  document.documentElement.classList.remove('ad-off');
+  if (!estaba && window.__adsLoaded) return;
+  window.__adsLoaded = 0;
+  try {
+    if (localStorage.getItem(CK) === 'si') {
+      document.documentElement.classList.add('ad-ok');
+      loadAds();
+    }
+  } catch (e) {}
+};
 function pedirDeNuevo(){
   try { return sessionStorage.getItem('gr_pedir_cookies')==='1'; } catch(e){ return false; }
 }
@@ -192,7 +207,7 @@ function cerrarPregunta(){
 }
 function loadAds(){
   if(!adsOn()){ocultarHuecos();return;}
-  if(esPremiumLocal()){ quitarAnuncios(); return; }
+  if(paginaSinAnuncios() || esPremiumLocal()){ quitarAnuncios(); return; }
   if(window.__adsLoaded)return; window.__adsLoaded=1;
   /* Si hay Adsterra con key, gana frente a AdSense. */
   if(adsterraHasKey()){loadAdsterra();return;}
@@ -200,7 +215,7 @@ function loadAds(){
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
-  if(!adsOn() || esPremiumLocal())return;
+  if(!adsOn() || paginaSinAnuncios() || esPremiumLocal())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
@@ -210,7 +225,7 @@ function banner(){
 }
 /* Fuera de la UE el aviso va en el flujo de la página: no tapa el contenido. */
 function notaLibre(){
-  if(!adsOn() || esPremiumLocal() || !adsConfigured() || document.getElementById('cookie-note'))return;
+  if(!adsOn() || paginaSinAnuncios() || esPremiumLocal() || !adsConfigured() || document.getElementById('cookie-note'))return;
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
@@ -227,24 +242,10 @@ function notaLibre(){
   if(main)main.prepend(n); else document.body.prepend(n);
 }
 function abrirAviso(){
-  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  if(!adsOn()){ocultarHuecos();return;}
+  if(paginaSinAnuncios() || esPremiumLocal()){quitarAnuncios();return;}
   if(consentimientoEstricto())banner();
   else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
-}
-function decidirAnuncios(){
-  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
-  window.__adsLoaded = 0;
-  document.documentElement.classList.remove('ad-off');
-  var c = null;
-  try { c = localStorage.getItem(CK); } catch (e) {}
-  if(pedirDeNuevo()){ banner(); }
-  else if(consentimientoEstricto()){
-    if(c==='si'){ document.documentElement.classList.add('ad-ok'); loadAds(); }
-    else if(!c) banner();
-  } else if(c==='si'){
-    document.documentElement.classList.add('ad-ok');
-    loadAds();
-  } else if(c!=='no') abrirAviso();
 }
 function sesionAbierta(){
   try { return !!localStorage.getItem('gr-auth'); } catch (e) { return false; }
@@ -259,22 +260,42 @@ function esperaPago(){
     return t > 0 && Date.now() - t < 120000;
   } catch (e) { return false; }
 }
+function decidirAnuncios(){
+  if (paginaSinAnuncios() || esPremiumLocal() || esperaPago()) { quitarAnuncios(); return; }
+  if (!adsOn()) { ocultarHuecos(); return; }
+  window.__adsLoaded = 0;
+  document.documentElement.classList.remove('ad-off');
+  var c = null;
+  try { c = localStorage.getItem(CK); } catch (e) {}
+  if (pedirDeNuevo()) { banner(); return; }
+  if (consentimientoEstricto()) {
+    if (c === 'si') { document.documentElement.classList.add('ad-ok'); loadAds(); }
+    else if (!c) banner();
+    return;
+  }
+  if (c === 'si') { document.documentElement.classList.add('ad-ok'); loadAds(); }
+  else if (c !== 'no') abrirAviso();
+}
 function arrancarAnuncios(){
-  if(!adsOn() || esPremiumLocal() || esperaPago()){ quitarAnuncios(); return; }
+  if (!adsOn()) { ocultarHuecos(); return; }
+  if (paginaSinAnuncios() || esPremiumLocal()) { quitarAnuncios(); return; }
+  var pago = esperaPago();
   var sesion = sesionAbierta();
-  if (sesion && !premiumConocido()) quitarAnuncios();
-  if (!sesion) { decidirAnuncios(); return; }
-  if (premiumConocido()) { decidirAnuncios(); return; }
+  if (pago || (sesion && !premiumConocido())) quitarAnuncios();
+  if (!pago && !sesion) { decidirAnuncios(); return; }
+  if (!pago && premiumConocido()) { decidirAnuncios(); return; }
   var listo = false;
   function seguir(){
-    if (!adsOn() || esPremiumLocal() || esperaPago()) { quitarAnuncios(); listo = true; return; }
+    if (esPremiumLocal() || esperaPago() || paginaSinAnuncios()) { quitarAnuncios(); if (premiumConocido() || esPremiumLocal()) listo = true; return; }
+    if (!adsOn()) { ocultarHuecos(); listo = true; return; }
     if (!premiumConocido() || listo) return;
     listo = true;
     decidirAnuncios();
   }
   window.addEventListener('gr-premium', seguir);
   setTimeout(function () {
-    if (listo || esPremiumLocal() || esperaPago() || !adsOn()) return;
+    if (listo || esPremiumLocal() || esperaPago() || paginaSinAnuncios()) return;
+    if (!adsOn()) { ocultarHuecos(); listo = true; return; }
     listo = true;
     decidirAnuncios();
   }, 1500);
@@ -282,7 +303,8 @@ function arrancarAnuncios(){
     if (listo) return;
     listo = true;
     window.removeEventListener('gr-premium', seguir);
-    if (!adsOn() || esPremiumLocal()) quitarAnuncios();
+    if (!adsOn()) ocultarHuecos();
+    else if (esPremiumLocal() || paginaSinAnuncios()) quitarAnuncios();
     else decidirAnuncios();
   }, 12000);
 }
@@ -290,11 +312,19 @@ arrancarAnuncios();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
-  if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
   localStorage.removeItem(CK);
   document.documentElement.classList.remove('ad-ok');
+  if(!adsOn()){
+    ocultarHuecos();
+    alert('Ahora mismo este sitio no usa cookies publicitarias.');
+    return;
+  }
+  if(paginaSinAnuncios()){
+    try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
+    return;
+  }
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
-  if(window.__adsLoaded){location.reload();return;}
+  if(window.__adsLoaded){ location.reload(); return; }
   if(!adsConfigured()){ alert('Ahora mismo este sitio no usa cookies publicitarias.'); return; }
   const prev=document.getElementById('cookie-banner');
   if(prev) prev.remove();

@@ -1,0 +1,11 @@
+# Solo apaga el JWT del webhook. Stripe no manda un pase de Supabase:
+# la prueba de que el aviso es suyo es la firma (Stripe-Signature).
+# El portal sí exige el JWT de la persona que ha entrado.
+
+project_id = "apdcgizpgguhmbgzsymx"
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.stripe-portal]
+verify_jwt = true

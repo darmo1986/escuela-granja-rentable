@@ -794,7 +794,8 @@
       /\/enfermedades(?:\.html|\/)/.test(ruta)
     );
     /* Juegos queda el último de este desplegable.
-       El concurso, cuando exista su página, se inserta justo después de este enlace. */
+       El concurso (PR #15), cuando se fusione, se inserta justo después de este enlace,
+       dentro de #nav-herramientas. Premium no va aquí: es un hermano del desplegable. */
     var juegos = enlace("juegos.html", "", /\/juegos(?:\.html)?\/?$/.test(ruta));
     if (!juegos.querySelector(".nav-label")) {
       juegos.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span>';
@@ -802,6 +803,31 @@
     var appLink = barra.querySelector('a[href$="app.html"]');
     if (appLink) barra.insertBefore(drop, appLink);
     else barra.appendChild(drop);
+  })();
+
+  /* Premium es un enlace suelto, antes de Redes. No se mete en #nav-herramientas:
+     ese desplegable sigue siendo Calculadora, Enfermedades y Juegos
+     (y, al fusionar el PR #15, el Concurso justo después de Juegos). */
+  (function premiumNav() {
+    var barra = document.getElementById("site-nav");
+    if (!barra) return;
+    var a = barra.querySelector("a.nav-premium");
+    if (!a) {
+      a = document.createElement("a");
+      a.className = "nav-premium";
+      a.href = root + "premium.html";
+      a.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6.2 23.2 8.4 12.4l5 4.1L16 8.2l2.6 8.3 5-4.1 2.2 10.8H6.2zm1.4 2h16.8V27H7.6v-1.8z"/></svg></span><span class="nav-label">Premium</span>';
+      var redes = barra.querySelector("#nav-redes");
+      var ancla = (redes && redes.closest(".nav-drop")) || barra.querySelector("a.nav-wa");
+      if (ancla) barra.insertBefore(a, ancla);
+      else barra.appendChild(a);
+    }
+    if (a.closest("#nav-herramientas")) {
+      var redesFuera = barra.querySelector("#nav-redes");
+      var anclaFuera = (redesFuera && redesFuera.closest(".nav-drop")) || barra.querySelector("a.nav-wa");
+      if (anclaFuera) barra.insertBefore(a, anclaFuera);
+    }
+    if (/\/premium(?:\.html)?\/?$/.test(location.pathname || "")) a.setAttribute("aria-current", "page");
   })();
 
   document.querySelectorAll(".foot-brand").forEach(function (p) {
@@ -814,6 +840,7 @@
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],
       ["cuenta.html", "Mi cuenta"],
+      ["premium.html", "Premium"],
       ["enfermedades.html", "Enfermedades"],
       ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],
@@ -828,6 +855,22 @@
       li.appendChild(a);
       ul.appendChild(li);
     });
+  });
+
+  document.querySelectorAll(".foot-brand").forEach(function (p) {
+    if ((p.textContent || "").trim() !== "Ayuda y legal") return;
+    var ul = p.parentElement && p.parentElement.querySelector("ul");
+    if (!ul) return;
+    var href = root + "condiciones-premium.html";
+    if (ul.querySelector('a[href="' + href + '"]')) return;
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = href;
+    a.textContent = "Condiciones de Premium";
+    var ancla = ul.querySelector('a[href="' + root + 'afiliados-condiciones.html"]');
+    if (ancla && ancla.parentElement) ul.insertBefore(li, ancla.parentElement);
+    else ul.appendChild(li);
+    li.appendChild(a);
   });
 
   document.querySelectorAll("[data-yt-list]").forEach(function (btn) {

@@ -198,8 +198,33 @@
     quizasPedirApodo();
   }
 
+  function premiumVigente(fila) {
+    if (!fila || !fila.premium) return false;
+    if (!fila.premium_hasta) return true;
+    var t = new Date(fila.premium_hasta).getTime();
+    return !isNaN(t) && t > Date.now();
+  }
+
+  function insignia(es) {
+    return es ? '<span class="insignia-premium">Premium</span>' : "";
+  }
+
+  function fechaCorta(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return "";
+    try {
+      return d.toLocaleDateString("es", { day: "numeric", month: "long", year: "numeric" });
+    } catch (e) { return ""; }
+  }
+
   function poner(usuario) {
+    var habia = !!usuarioActual;
     usuarioActual = usuario;
+    if (!usuario && habia) {
+      try { localStorage.removeItem("gr_premium"); } catch (ePrem) {}
+      if (window.GR_cargarAnuncios) window.GR_cargarAnuncios();
+    }
     try {
       if (usuario && usuario.demo) localStorage.setItem(SESION, JSON.stringify(usuario));
       else localStorage.removeItem(SESION);
@@ -293,7 +318,9 @@
     Promise.all([
       cliente.from("curso_progreso").select("datos").eq("usuario", id).maybeSingle(),
       cliente.from("calculos").select("id,nombre,datos,creado").eq("usuario", id).order("creado", { ascending: false }),
-      cliente.from("favoritos").select("ficha,titulo,creado").eq("usuario", id)
+      cliente.from("favoritos").select("ficha,titulo,creado").eq("usuario", id),
+      cliente.from("perfiles").select("premium, premium_hasta").eq("id", id).maybeSingle(),
+      cliente.from("suscripciones").select("estado, plan, moneda, vence").eq("user_id", id).maybeSingle()
     ]).then(function (res) {
       var bloque = datosDe(id);
       var curso = res[0].data && res[0].data.datos;
@@ -310,8 +337,18 @@
       try { localStorage.setItem("gr_progreso", JSON.stringify(junto)); } catch (e) {}
       bloque.curso = junto;
       guardarDatos(id, bloque);
-      pintarCuenta();
-      pintarFicha();
+      if (usuarioActual && usuarioActual.id === id) {
+        var marca = res[3] && !res[3].error ? res[3].data : null;
+        usuarioActual.premium = premiumVigente(marca);
+        usuarioActual.suscripcion = res[4] && !res[4].error ? res[4].data : null;
+        try {
+          if (usuarioActual.premium) localStorage.setItem("gr_premium", "1");
+          else localStorage.removeItem("gr_premium");
+        } catch (ePrem) {}
+        if (usuarioActual.premium && window.GR_quitarAnuncios) window.GR_quitarAnuncios();
+        else if (window.GR_cargarAnuncios) window.GR_cargarAnuncios();
+      }
+      avisar();
     }).catch(function () {});
   }
 
@@ -691,12 +728,12 @@
       var avatar = usuarioActual.avatar
         ? '<img class="auth-avatar" src="' + esc(usuarioActual.avatar) + '" alt="">'
         : '<span class="auth-avatar" aria-hidden="true">' + esc(iniciales(usuarioActual.nombre)) + "</span>";
-      yo.innerHTML = avatar + '<span class="auth-nombre">' + esc(usuarioActual.nombre.split(" ")[0]) + "</span>";
+      yo.innerHTML = avatar + '<span class="auth-nombre">' + esc(usuarioActual.nombre.split(" ")[0]) + "</span>" + insignia(usuarioActual.premium);
       var panel = document.createElement("div");
       panel.id = "auth-panel";
       panel.className = "auth-panel";
       panel.hidden = true;
-      panel.innerHTML = '<p class="auth-panel-nom">' + esc(usuarioActual.nombre) + "</p>" +
+      panel.innerHTML = '<p class="auth-panel-nom">' + esc(usuarioActual.nombre) + insignia(usuarioActual.premium) + "</p>" +
         '<p class="fine">' + esc(usuarioActual.correo) + "</p>" +
         '<a href="' + esc(urlDe("cuenta.html")) + '">Mi cuenta</a>' +
         '<button type="button" data-auth="salir">Salir</button>';
@@ -745,6 +782,52 @@
     return Object.keys(curso || {}).filter(function (k) { return curso[k] && curso[k].aprobado; }).length;
   }
 
+  function textoSuscripcion() {
+    var s = usuarioActual && usuarioActual.suscripcion;
+    if (!s) return "";
+    var plan = s.plan === "anual" ? "Anual" : (s.plan === "mensual" ? "Mensual" : "Suscripción");
+    var cuando = fechaCorta(s.vence);
+    var estado = s.estado === "trialing" ? "en prueba" : (s.estado === "active" ? "activa" : (s.estado || ""));
+    return plan + (estado ? " · " + estado : "") + (cuando ? " · hasta el " + cuando : "");
+  }
+
+  function abrirPortal(aviso) {
+    var nota = typeof aviso === "function" ? aviso : function (t) {
+      ultimoError = t || "";
+      pintarCuenta();
+    };
+    if (!cliente || !usuarioActual) {
+      nota("Entra en tu cuenta para gestionar la suscripción.");
+      return;
+    }
+    nota("");
+    cliente.functions.invoke("stripe-portal", { body: { vuelta: urlDe("cuenta.html") } }).then(function (res) {
+      var url = res.data && res.data.url;
+      if (url) {
+        location.href = url;
+        return;
+      }
+      var detalle = (res.data && res.data.error) || "";
+      var bruto = (res.error && res.error.message) || "";
+      if (detalle && !/no está conectado|no devolvió|clave restringida/i.test(detalle)) {
+        nota(detalle);
+        return;
+      }
+      var reserva = window.GR && GR.premium && GR.premium.portal;
+      if (typeof reserva === "string" && /^https:\/\/(billing\.stripe\.com|checkout\.stripe\.com)\//.test(reserva)) {
+        location.href = reserva;
+        return;
+      }
+      if (/no está conectado|clave restringida|Failed to send|not found|404|FunctionsFetch|Failed to fetch/i.test(detalle + " " + bruto) || res.error) {
+        nota("Próximamente. Cuando el pago esté activo, cancelas en la página de Stripe, en dos clics.");
+        return;
+      }
+      nota(detalle || "No se pudo abrir el portal.");
+    }).catch(function () {
+      nota("Próximamente. Cuando el pago esté activo, cancelas en la página de Stripe, en dos clics.");
+    });
+  }
+
   function pintarCuenta() {
     var caja = document.getElementById("cuenta-cuerpo");
     if (!caja) return;
@@ -768,11 +851,19 @@
       "<span><strong>" + esc(usuarioActual.nombre) + "</strong><br><span class=\"fine\">" + esc(usuarioActual.correo) + "</span></span></p>" +
       (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "") +
       '<form id="cuenta-apodo"><label>Apodo del ranking<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
+      '<p class="fine">En el ranking solo se ve este apodo. Si eres Premium, al lado va la insignia. No hay otro nombre.</p>' +
+      '<h2>Premium ' + insignia(usuarioActual.premium) + '</h2>' +
+      (usuarioActual.premium
+        ? '<p>Tu suscripción está en vigor' + (textoSuscripcion() ? " (" + esc(textoSuscripcion()) + ")" : "") + '. Para cambiar la tarjeta o cancelar, abre el portal de Stripe. Son dos clics y sigues con acceso hasta el día que ya pagaste.</p>'
+        : '<p>No tienes Premium. El curso, las guías y la calculadora básica siguen gratis. <a href="' + esc(root + "premium.html") + '">Ver Premium</a>.</p>' +
+          (textoSuscripcion() ? "<p>" + esc(textoSuscripcion()) + "</p>" : "")) +
+      '<p><button type="button" class="btn sec" id="cuenta-portal">Gestionar suscripción</button></p>' +
       '<p><button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
       "<h2>Curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas.</p>" +
       "<h2>Cálculos</h2>" + (calcs ? "<ul>" + calcs + "</ul>" : "<p>Todavía no guardaste ninguno. En la calculadora, el botón «Guardar en mi cuenta».</p>") +
       "<h2>Fichas guardadas</h2>" + (favs ? "<ul>" + favs + "</ul>" : "<p>En una ficha de enfermedades, «Guardar ficha».</p>");
     document.getElementById("cuenta-salir").addEventListener("click", salir);
+    document.getElementById("cuenta-portal").addEventListener("click", function () { abrirPortal(); });
     document.getElementById("cuenta-apodo").addEventListener("submit", function (ev) {
       ev.preventDefault();
       var apodo = apodoValido(ev.target.apodo.value);
@@ -869,7 +960,45 @@
     guardarCurso: guardarCurso,
     guardarCalculo: guardarCalculo,
     favoritos: function () { return usuarioActual ? (datosDe(usuarioActual.id).favoritos || []) : []; },
-    calculos: function () { return usuarioActual ? (datosDe(usuarioActual.id).calculos || []) : []; }
+    calculos: function () { return usuarioActual ? (datosDe(usuarioActual.id).calculos || []) : []; },
+    esPremium: function () { return !!(usuarioActual && usuarioActual.premium); },
+    abrirPortal: abrirPortal,
+    leerPremium: function () {
+      if (!cliente || !usuarioActual) return Promise.resolve(null);
+      return Promise.all([
+        cliente.from("contenido_premium").select("slug, titulo, html, orden, archivo, ejemplo").order("orden"),
+        cliente.from("lotes").select("id, nombre, aves, costo_ave, precio_venta, creado").order("creado", { ascending: false })
+      ]).then(function (res) {
+        return { contenido: res[0], lotes: res[1] };
+      });
+    },
+    guardarLote: function (fila) {
+      if (!cliente || !usuarioActual) return Promise.reject(new Error("Entra en tu cuenta."));
+      return cliente.from("lotes").insert({
+        usuario: usuarioActual.id,
+        nombre: String(fila.nombre || "").trim().slice(0, 80),
+        aves: fila.aves,
+        costo_ave: fila.costo,
+        precio_venta: fila.venta,
+        notas: ""
+      }).then(function (res) {
+        if (res.error) throw res.error;
+        return res.data;
+      });
+    },
+    borrarLote: function (idLote) {
+      if (!cliente || !usuarioActual) return Promise.reject(new Error("Entra en tu cuenta."));
+      return cliente.from("lotes").delete().eq("id", idLote).eq("usuario", usuarioActual.id).then(function (res) {
+        if (res.error) throw res.error;
+      });
+    },
+    enlaceArchivo: function (ruta) {
+      if (!cliente || !usuarioActual) return Promise.reject(new Error("Entra en tu cuenta."));
+      if (!/^[a-zA-Z0-9._/-]{1,160}$/.test(ruta) || ruta.indexOf("..") !== -1) {
+        return Promise.reject(new Error("Ruta no válida."));
+      }
+      return cliente.storage.from("premium").createSignedUrl(ruta, 120);
+    }
   };
   avisar();
 })();

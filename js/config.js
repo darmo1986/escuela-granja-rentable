@@ -57,6 +57,17 @@ window.GR = {
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
     concursoPublicado: false
   },
+  /* Cobro de Premium, en modo prueba. Solo enlaces públicos de Stripe.
+     Vacío = el botón dice «Próximamente» y no abre ningún pago.
+     Nunca pongas aquí sk_, rk_ ni whsec_. Esos van en Supabase. Ver README_PREMIUM.md.
+     El concurso (PR #15) no usa este bloque: el suyo es comunidad.concursoPublicado. */
+  premium: {
+    mensualUsd: "",
+    anualUsd: "",
+    mensualEur: "",
+    anualEur: "",
+    portal: ""
+  },
   redes: {
     adsterra: {
       /* Clave del banner pequeño (320×50).
