@@ -27,7 +27,7 @@ No pongas `STRIPE_PERMITIR_REAL` todavía. Mientras no exista, un aviso de modo 
 
 ## Impuesto: léelo antes de cobrar de verdad
 
-Estás en Santa Cruz de Tenerife y presentas el modelo 037: estás dado de alta en Hacienda. Fase 1, todavía en modo prueba: solo se vende a Canarias (códigos postales 35 y 38, IGIC del 7 % incluido) y fuera de la UE (dólares, sin impuestos españoles). La península, Baleares, Ceuta, Melilla y el resto de la UE reciben «Próximamente en tu región». Stripe Tax no calcula el IGIC. No actives el impuesto automático hasta el alta del régimen exterior (modelo 035).
+Estás en Santa Cruz de Tenerife y presentas el modelo 037: estás dado de alta en Hacienda. Fase 1, todavía en modo prueba: solo se vende a Canarias (códigos postales 35 y 38, IGIC del 7 % incluido) y fuera de la UE (dólares, sin impuestos españoles). La península, Baleares, Ceuta, Melilla y el resto de la UE reciben «Próximamente en tu región». Stripe Tax no calcula el IGIC. No actives el impuesto automático hasta el alta del régimen exterior (modelo 035). Mientras el botón diga «Próximamente», `premium.html` y `condiciones-premium.html` llevan `noindex,follow` y no están en el sitemap.
 
 ## 1. Producto, dos precios y el impuesto, en modo prueba
 
@@ -222,7 +222,7 @@ Al juntar las dos ramas van a chocar estos archivos. Se queda así:
 | `js/config.js` | Un solo objeto `comunidad` (el de las cuentas, con `concursoPublicado`). Y el objeto `premium` de esta rama (`messenger: "PENDIENTE"`, `activo: false`). `activo` pasa a `true` el día de los secretos. No crees `window.ads`: lo apaga el PR de anuncios con `window.ads.activo === false`, y esta web ya lo respeta. No crees un segundo `comunidad`: el de abajo pisa al de arriba. |
 | `js/site.js` | El concurso se mete **dentro** de `#nav-herramientas`, después de Juegos. Premium se queda **fuera**, antes de Redes. En el pie, las dos líneas: Concurso y Premium. |
 | `privacidad.html` y `cookies.html` | El párrafo del concurso y el de Premium. No borres uno para dejar el otro. |
-| `sitemap.xml` | Las tres direcciones: concurso, premium y condiciones. |
+| `sitemap.xml` | El concurso, cuando se fusione. Mientras Premium siga en modo prueba, `premium.html` y `condiciones-premium.html` llevan `noindex,follow` y no entran en el sitemap. Al cobrar de verdad se quita el noindex y se añaden las dos direcciones. |
 | `juegos.html` | La versión del concurso. Esta rama no la cambia. |
 
 La insignia del concurso, cuando toque pintarla: en `js/concurso.js`, función `pintarRanking`, el texto del nombre sigue siendo `f.apodo` y ese apodo tiene que ser `perfiles.nombre`. Al lado, si esa persona es Premium, un `<span class="insignia-premium">Premium</span>`. No inventes otro apodo.
