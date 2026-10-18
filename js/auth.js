@@ -37,12 +37,72 @@
     mensaje("Google todavía no está activado. Entra con correo y contraseña.", true);
   }
 
+  /* Misma regla que debe usar el concurso: NFKC, lista blanca, sin invisibles
+     ni cirílico, e insulto solo si es la palabra entera (no un trozo de un nombre). */
+  var APODO_MALAS = {
+    cono: 1, conos: 1, polla: 1, pollas: 1, zorra: 1, zorras: 1,
+    pinche: 1, pinches: 1, idiota: 1, idiotas: 1,
+    fuck: 1, fucking: 1, fucker: 1, pvta: 1,
+    puta: 1, putas: 1, puto: 1, putos: 1,
+    mierda: 1, mierdas: 1, pendejo: 1, pendeja: 1, pendejos: 1, pendejas: 1,
+    cabron: 1, cabrones: 1, cabrona: 1, cabronas: 1,
+    marica: 1, maricas: 1, maricon: 1, maricones: 1, maricona: 1, mariconas: 1,
+    nazi: 1, nazis: 1, nigger: 1, niggers: 1, nigga: 1, niggas: 1, hitler: 1,
+    faggot: 1, faggots: 1, asshole: 1, assholes: 1, gilipollas: 1,
+    verga: 1, vergas: 1, culero: 1, culera: 1, culeros: 1, culeras: 1,
+    chingar: 1, chingada: 1, chingado: 1, chingados: 1, chingadas: 1,
+    hdp: 1, malparido: 1, malparida: 1, malparidos: 1, malparidas: 1,
+    gonorrea: 1, concha: 1, conchas: 1,
+    boludo: 1, boluda: 1, boludos: 1, boludas: 1,
+    pelotudo: 1, pelotuda: 1, pelotudos: 1, pelotudas: 1,
+    huevon: 1, huevona: 1, huevones: 1, huevonas: 1,
+    cojudo: 1, cojuda: 1, cojudos: 1, cojudas: 1,
+    viagra: 1, casino: 1, porno: 1, cripto: 1
+  };
+
+  function apodoTexto(s) {
+    try { s = String(s || "").normalize("NFKC"); }
+    catch (e) { s = String(s || ""); }
+    return s.replace(/\s+/g, " ").trim();
+  }
+
+  function apodoInvisible(s) {
+    return /[\u0000-\u001F\u007F-\u009F\u00AD\u034F\u061C\u180E\u200B-\u200F\u2028\u2029\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]/.test(s);
+  }
+
+  function apodoLetras(s) {
+    return String(s || "").toLowerCase()
+      .replace(/[áàäâã]/g, "a").replace(/[éèëê]/g, "e").replace(/[íìïî]/g, "i")
+      .replace(/[óòöôõ]/g, "o").replace(/[úùüû]/g, "u").replace(/ñ/g, "n").replace(/ç/g, "c")
+      .replace(/0/g, "o").replace(/1/g, "i").replace(/3/g, "e").replace(/4/g, "a")
+      .replace(/5/g, "s").replace(/7/g, "t");
+  }
+
+  function apodoPalabras(s) {
+    return apodoLetras(s).split(/[^a-z]+/).filter(function (w) { return w; });
+  }
+
+  function apodoInsulto(s) {
+    var palabras = apodoPalabras(s);
+    var i;
+    for (i = 0; i < palabras.length; i++) if (APODO_MALAS[palabras[i]]) return true;
+    var junto = palabras.join("");
+    return !!APODO_MALAS[junto];
+  }
+
   function apodoValido(s) {
-    s = String(s || "").trim();
+    s = apodoTexto(s);
     if (s.length < 2 || s.length > 40) return "";
-    if (s.indexOf("@") !== -1) return "";
-    if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(s)) return "";
+    if (apodoInvisible(s)) return "";
+    if (/\p{Script=Cyrillic}/u.test(s)) return "";
+    if (!/^[\p{Script=Latin}0-9 '\-]+$/u.test(s)) return "";
+    if (/\d{8,}/.test(s)) return "";
+    if (apodoInsulto(s)) return "";
     return s;
+  }
+
+  function textoApodo() {
+    return "El apodo necesita de 2 a 40 letras. Sin correo, sin @, sin caracteres invisibles ni cirílicos, y sin insultos.";
   }
 
   function apodoPublico(meta, id) {
@@ -324,7 +384,7 @@
     if (!usuarioActual || !usuarioActual.pideApodo || apodoOfrecido) return;
     apodoOfrecido = true;
     abrir("apodo");
-    mensaje("Elige un apodo para el ranking. No uses el nombre de Google ni un correo.", false);
+    mensaje("Elige un apodo para el ranking. No uses el nombre de Google, un correo ni un insulto.", false);
   }
 
   function enviar(ev) {
@@ -335,7 +395,7 @@
       var elegido = apodoValido(form.nombre.value);
       var botonApodo = form.querySelector("[type=submit]");
       if (!elegido) {
-        mensaje("El apodo necesita de 2 a 40 letras, sin @ y sin correo.", true);
+        mensaje(textoApodo(), true);
         return;
       }
       botonApodo.disabled = true;
@@ -363,7 +423,7 @@
       if (modo === "registro") {
         if (!correoValido(correo)) throw new Error("Escribe un correo válido.");
         var apodo = apodoValido(nombre);
-        if (!apodo) throw new Error("Escribe un apodo de 2 a 40 letras, sin @ y sin correo. Ese nombre es el que sale en el ranking.");
+        if (!apodo) throw new Error(textoApodo());
         if (String(clave).length < 8) throw new Error("La contraseña necesita 8 caracteres o más.");
         return cliente.auth.signUp({
           email: String(correo).trim(),
@@ -678,7 +738,7 @@
       ev.preventDefault();
       var apodo = apodoValido(ev.target.apodo.value);
       if (!apodo) {
-        ultimoError = "El apodo necesita de 2 a 40 letras, sin @ y sin correo.";
+        ultimoError = textoApodo();
         pintarCuenta();
         return;
       }
@@ -761,6 +821,7 @@
   window.GRAuth = {
     demo: modoDemo,
     usuario: function () { return usuarioActual; },
+    apodo: apodoValido,
     abrir: abrir,
     cerrar: cerrar,
     exigir: exigir,

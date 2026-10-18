@@ -22,10 +22,20 @@ create table if not exists public.perfiles (
 
 alter table public.perfiles add column if not exists dispositivo text not null default '';
 
-alter table public.perfiles drop constraint if exists perfiles_nombre_sin_arroba;
-alter table public.perfiles
-  add constraint perfiles_nombre_sin_arroba
-  check (position('@' in nombre) = 0);
+-- NOT VALID y solo si aún no existe: volver a ejecutar este archivo no debe fallar
+-- cuando ya hay un nombre con @. La limpieza está en las migraciones siguientes.
+do $$
+begin
+  if not exists (
+    select 1 from pg_constraint
+    where conname = 'perfiles_nombre_sin_arroba'
+      and conrelid = 'public.perfiles'::regclass
+  ) then
+    alter table public.perfiles
+      add constraint perfiles_nombre_sin_arroba
+      check (position('@' in nombre) = 0) not valid;
+  end if;
+end $$;
 
 create table if not exists public.quiz_preguntas (
   id uuid primary key default gen_random_uuid(),
@@ -90,7 +100,7 @@ create table if not exists public.quiz_sugerencias (
 create table if not exists public.quiz_premios (
   periodo text primary key check (periodo ~ '^[0-9]{4}-[0-9]{2}$'),
   ganador uuid not null references public.perfiles (id),
-  euros int not null check (euros between 20 and 30),
+  euros int not null default 20 check (euros = 20),
   estado text not null check (estado in ('pendiente', 'reclamado', 'aprobado', 'pagado', 'anulado')),
   reclamo_nombre text,
   reclamo_pais text,

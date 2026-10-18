@@ -1,6 +1,16 @@
-# GitHub Pages publica la rama con Jekyll.
-# Sin este archivo, y con .nojekyll, se serviría _fuentes/enfermedades/articulos.json
-# (notas internas de redacción). Jekyll no copia las carpetas que empiezan por _.
-# El HTML, el CSS, el JS y las imágenes se copian tal cual: no llevan marcas de Jekyll.
+# GitHub Pages compila con Jekyll a propósito.
+# Con .nojekyll serviría _fuentes/enfermedades/articulos.json, y ahí están
+# las notas internas de redacción. Jekyll no copia las carpetas que empiezan
+# por _ y, además, esta lista deja fuera el resto que no es una página del sitio.
+# El HTML, el CSS, el JS y las imágenes se copian tal cual.
 exclude:
   - _fuentes
+  - supabase
+  - README.md
+  - "**/README.md"
+  - "**/LEEME.md"
+  - LEEME.md
+  - vendor/bundle
+  - vendor/cache
+  - vendor/gems
+  - vendor/ruby

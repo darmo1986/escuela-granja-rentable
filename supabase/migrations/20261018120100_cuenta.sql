@@ -58,15 +58,31 @@ create policy favoritos_propios on public.favoritos
 -- Quien se registró antes del trigger alta_perfil no tiene fila.
 -- El apodo sale solo de metadata.nombre. Si no hay, o lleva @ o un correo, «Vecino» y cuatro caracteres del id.
 -- No se usa full_name ni name: Google rellena esos campos con el nombre real.
-insert into public.perfiles (id, nombre)
-select u.id,
-  left(
-    case
-      when char_length(btrim(coalesce(u.raw_user_meta_data->>'nombre', ''))) >= 2
-        and position('@' in coalesce(u.raw_user_meta_data->>'nombre', '')) = 0
-        then btrim(u.raw_user_meta_data->>'nombre')
-      else 'Vecino ' || right(replace(u.id::text, '-', ''), 4)
-    end
-  , 40)
-from auth.users u
-on conflict (id) do nothing;
+-- Solo se inserta si falta la fila: un CHECK se evalúa antes del ON CONFLICT,
+-- y al repetir este archivo un apodo ya corregido no debe volver a proponerse.
+do $$
+declare
+  r record;
+  candidato text;
+  vale boolean;
+begin
+  for r in
+    select u.id, u.raw_user_meta_data
+    from auth.users u
+    where not exists (select 1 from public.perfiles p where p.id = u.id)
+  loop
+    candidato := nullif(btrim(coalesce(r.raw_user_meta_data->>'nombre', '')), '');
+    if candidato is null or char_length(candidato) < 2 or position('@' in candidato) > 0 then
+      candidato := 'Vecino ' || right(replace(r.id::text, '-', ''), 4);
+    end if;
+    if to_regprocedure('public.apodo_ok(text)') is not null then
+      execute 'select public.apodo_ok($1)' into vale using left(candidato, 40);
+      if not vale then
+        candidato := 'Vecino ' || right(replace(r.id::text, '-', ''), 4);
+      end if;
+    end if;
+    insert into public.perfiles (id, nombre)
+    values (r.id, left(candidato, 40))
+    on conflict (id) do nothing;
+  end loop;
+end $$;

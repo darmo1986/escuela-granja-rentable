@@ -39,8 +39,10 @@ window.GR = {
      supabaseAnonKey es la clave publicable y va en el navegador. Nunca pongas la service_role.
      concursoPublicado sigue en false hasta correr supabase/migrations/20261018140200_concurso.sql.
      El PR del concurso lo pasa a true en este mismo objeto.
-     El apodo público es uno: perfiles.nombre, de 2 a 40 letras, sin @ ni correo.
-     El reto y el concurso reutilizan ese nombre. */
+     El apodo de la cuenta es perfiles.nombre. El concurso guarda el suyo en concurso_partidas
+     y, si hay sesión, rellena el campo con ese nombre. La cuenta valida con NFKC, lista blanca,
+     sin invisibles ni cirílico y palabrotas por palabra completa (GRAuth.apodo y apodo_ok).
+     El concurso tiene que usar esa misma regla, no una lista de raíces. */
   comunidad: {
     supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",

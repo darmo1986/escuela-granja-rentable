@@ -509,6 +509,7 @@
       if (btn && nav.contains(btn)) {
         var drop = btn.closest(".nav-drop");
         if (drop) {
+          drop.classList.remove("is-dismissed");
           var open = drop.classList.toggle("is-open");
           drop.querySelectorAll(".nav-parent, .nav-redes").forEach(function (b) {
             b.setAttribute("aria-expanded", open ? "true" : "false");
@@ -523,6 +524,33 @@
           navBtn.textContent = "Menú";
         }
       }
+    });
+    function cerrarDesplegables(dismiss) {
+      nav.querySelectorAll(".nav-drop").forEach(function (drop) {
+        drop.classList.remove("is-open");
+        if (dismiss) drop.classList.add("is-dismissed");
+        else drop.classList.remove("is-dismissed");
+        drop.querySelectorAll(".nav-parent, .nav-redes").forEach(function (b) {
+          b.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+    function soltarDesplegable(ev) {
+      var drop = ev.target.closest && ev.target.closest(".nav-drop");
+      if (drop && nav.contains(drop)) drop.classList.remove("is-dismissed");
+    }
+    nav.addEventListener("mouseover", soltarDesplegable);
+    nav.addEventListener("focusin", soltarDesplegable);
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Escape") return;
+      var activo = document.activeElement;
+      var dentro = activo && nav.contains(activo);
+      cerrarDesplegables(true);
+      if (dentro && activo.blur) activo.blur();
+    });
+    document.addEventListener("click", function (ev) {
+      if (nav.contains(ev.target)) return;
+      cerrarDesplegables(false);
     });
   }
 
