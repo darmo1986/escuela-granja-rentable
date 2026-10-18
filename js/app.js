@@ -20,7 +20,12 @@ function adsterraHasKey(){
     const o=A[k]; return !!(o&&((o.key&&String(o.key).trim())||(o.movil&&o.movil.key&&String(o.movil.key).trim())));
   });
 }
-function adsOn(){return !(window.GR&&window.GR.anunciosActivos===false);}
+function adsOn(){return !(window.ads&&window.ads.activo===false);}
+function ocultarHuecos(){
+  document.documentElement.classList.remove('ad-ok');
+  document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
+}
+if(!adsOn())ocultarHuecos();
 function adsConfigured(){return adsOn()&&!!(window.ADSENSE_CLIENT||adsterraHasKey());}
 function pickAdsterra(cfg,size){
   if(size==='banner')return smallBannerCfg();
@@ -39,6 +44,7 @@ function markBannerGap(el){
 /* Cada pieza va en su propio iframe para que atOptions no se pise.
    format iframe, params vacío: sin tema ni palabras clave. */
 function mountAdsterra(el,cfg){
+  if(!adsOn())return;
   if(el.dataset.adFilled)return;
   el.dataset.adFilled='adsterra';
   const frame=document.createElement('iframe');
@@ -105,6 +111,7 @@ function loadAdsterra(){
   return true;
 }
 function loadAdsense(){
+  if(!adsOn())return false;
   if(!window.ADSENSE_CLIENT)return false;
   const slots=[...document.querySelectorAll('.ad-slot')].filter(d=>d.dataset.adSlot&&d.dataset.adSlot.indexOf('SLOT_')!==0);
   if(!slots.length)return false;
@@ -122,7 +129,7 @@ function loadAdsense(){
   return true;
 }
 function loadAds(){
-  if(!adsOn()){document.documentElement.classList.remove('ad-ok');return;}
+  if(!adsOn()){ocultarHuecos();return;}
   if(window.__adsLoaded)return; window.__adsLoaded=1;
   /* Si hay Adsterra con key, gana frente a AdSense. */
   if(adsterraHasKey()){loadAdsterra();return;}
@@ -133,7 +140,7 @@ function banner(){
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
   b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
-  b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
+  b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
 const c=localStorage.getItem(CK); if(c==='si')loadAds(); else if(!c)banner();
