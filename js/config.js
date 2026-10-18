@@ -1,7 +1,12 @@
 /* Publicidad. Sitio aprobado en Adsterra: granjarentable.com (id 6132524).
    El cartelito usa redes.adsterra.bannerKey (320×50). Solo banners en iframe. */
 window.ADSENSE_CLIENT = "ca-pub-5311145772953700";
+/* Ids de bloque de AdSense (solo dígitos). Vacío = ese hueco no se pinta y no ocupa sitio.
+   Nunca pongas un texto como "banner": data-ad-slot tiene que ser el número del panel. */
+window.ADSENSE_SLOTS = { cabecera: "", leccion: "", lateral: "", pie: "" };
 window.ADSTERRA = {
+  /* Parada. Aunque window.ads.activo sea true, Adsterra no gana ni carga. */
+  activo: false,
   /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así.
      www.highperformanceformat.com también sirve el mismo script: se usa este
      host aquí y como respaldo en app.js para que los dos no diverjan. */
