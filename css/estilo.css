@@ -449,6 +449,7 @@ html.ad-ok .ad-gap { margin: 0; height: 50px; display: flex; align-items: center
 .tabla th, .tabla td { border: 1px solid #e5e0d4; padding: 6px 8px; text-align: left; vertical-align: top; }
 .tabla th { background: var(--gl); color: var(--g); }
 code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92rem; }
+code { overflow-wrap: anywhere; }
 .codebox { display: block; background: var(--gd); color: #fff; border-radius: 12px; padding: 12px; overflow-x: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
