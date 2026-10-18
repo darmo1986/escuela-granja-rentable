@@ -98,15 +98,16 @@
 <section class="page-hero" id="concurso-hero">
 <p class="kicker">Concurso</p>
 <h1>10 preguntas de avicultura</h1>
-<p>Cuatro opciones y 30 segundos por pregunta. Cada ronda elige 10 al azar entre más de 40, de engorde, ponedoras, incubación, salud y manejo. Un acierto vale 10 puntos y hasta 5 más si respondes pronto. Diez preguntas: máximo 150.</p>
-<p>Escribes un apodo. El país es opcional. No pedimos correo.</p>
+<p>Cuatro opciones y 30 segundos por pregunta. Cada ronda elige 10 al azar entre más de 40, de engorde, ponedoras, incubación, salud y manejo. Un acierto vale 10 puntos y hasta 5 más si respondes pronto. Tiene que pasar al menos 1 segundo: si no, no suma. Diez preguntas: máximo 150.</p>
+<p>Escribes un apodo. Si ya entraste, el concurso usa el apodo de tu cuenta. El país es opcional. No pedimos correo.</p>
 </section>
 <p class="concurso-nota" id="concurso-modo">Por ahora el ranking general no está publicado. Ves las mejores marcas de este navegador.</p>
 <section id="paso-inicio" class="concurso-card">
 <h2>Antes de empezar</h2>
 <form id="concurso-form" class="concurso-form">
 <label for="concurso-apodo">Apodo</label>
-<input id="concurso-apodo" name="apodo" required minlength="2" maxlength="20" autocomplete="nickname" autocapitalize="words" spellcheck="false" placeholder="Tu apodo">
+<input id="concurso-apodo" name="apodo" required minlength="2" maxlength="40" autocomplete="nickname" autocapitalize="words" spellcheck="false" placeholder="Tu apodo">
+<p id="concurso-apodo-nota" class="fine" hidden>Este es el apodo de tu cuenta. El ranking usa ese mismo nombre.</p>
 <label for="concurso-pais">País (opcional)</label>
 <select id="concurso-pais" name="pais"></select>
 <p id="concurso-error" class="concurso-error" role="alert"></p>

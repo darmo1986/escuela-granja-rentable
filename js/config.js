@@ -42,9 +42,11 @@ window.GR = {
      El apodo de la cuenta es perfiles.nombre. Si hay sesión, el concurso rellena el campo
      con ese nombre. La regla compartida es public.apodo_ok y GRAuth.apodo.
      La cifra del premio no va aquí: el navegador la lee de public.premio_euros().
-     El premio es del concurso (10 preguntas, 4 respuestas y 30 s). El desempate lo dicen
-     las bases del concurso. El mes se cuenta en hora de Madrid y el ranking vuelve a cero.
-     El reto de /preguntas no tiene premio. */
+     El premio es del concurso (10 preguntas, 4 respuestas y 30 s). Si empatan en aciertos,
+     el desempate es un sorteo en el servidor entre los empatados, y queda guardado.
+     El mes se cuenta en hora de Madrid y el ranking vuelve a cero.
+     El reto de /preguntas no tiene premio. turnstileSiteKey vacío no comprueba nada. */
+  turnstileSiteKey: "",
   comunidad: {
     supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
