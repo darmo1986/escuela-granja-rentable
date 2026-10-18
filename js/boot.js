@@ -29,7 +29,7 @@
   }
   /* Premium caduca. Sin fecha futura, gr_premium = "1" no vale.
      No se marca ad-ok aquí: app.js lo hace después de esta comprobación,
-     del interruptor GR.anunciosActivos y del consentimiento. */
+     del interruptor window.ads.activo y del consentimiento. */
   function premiumVigente() {
     try {
       var marca = localStorage.getItem("gr_premium");

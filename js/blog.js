@@ -1,6 +1,7 @@
 /* Artículos: el video carga al pulsar.
-   Premium es la comprobación de boot.js / app.js (GR_esPremium, esPremiumLocal).
-   No enciende anuncios y no quita el hueco: si no tocan, el alto reservado evita el salto. */
+   Los anuncios los decide app.js, después de window.ads.activo y de Premium
+   (GR_esPremium / esPremiumLocal). Con activo en false no se pide ningún anuncio.
+   Si el hueco existe, no se borra aquí: el alto reservado evita el salto. */
 (function () {
   function premium() {
     if (typeof window.esPremiumLocal === "function") return window.esPremiumLocal();
@@ -8,7 +9,7 @@
     return false;
   }
   function anunciosApagados() {
-    return premium() || !!(window.GR && window.GR.anunciosActivos === false);
+    return premium() || !!(window.ads && window.ads.activo === false);
   }
   if (anunciosApagados()) {
     if (typeof window.GR_quitarAnuncios === "function") window.GR_quitarAnuncios();

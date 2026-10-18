@@ -77,3 +77,9 @@ Si la acción sale en rojo, abre el detalle: el mensaje dice qué falló, sin pe
 - Un precio. Sale en la ficha, según el país.
 
 Una categoría con menos de 3 artículos publicados lleva `noindex` y no entra en el sitemap. Con 3 o más, sí.
+
+## De dónde sale la web
+
+La web no se copia de la rama. Al fusionar, en GitHub: **Settings → Pages → Build and deployment → Source = GitHub Actions**. La acción corre el generador, Jekyll escribe `_site/` y Pages publica solo esa carpeta. El Markdown de `_articulos/` y las plantillas no se pueden descargar.
+
+Los anuncios del blog siguen `window.ads.activo` en `js/config.js`. Con `false` las páginas no llevan hueco ni piden ningún anuncio.

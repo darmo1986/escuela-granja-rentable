@@ -106,6 +106,10 @@ def clave_nav(rel):
         return "tienda"
     if carpeta == "lecciones" or base in ("curso.html", "examen-final.html", "leccion.html"):
         return "curso"
+    if base == "calculadora.html":
+        return "calculadora"
+    if base == "enfermedades.html" or carpeta == "enfermedades":
+        return "enfermedades"
     if base == "juegos.html":
         return "juegos"
     if base == "app.html":
@@ -604,7 +608,25 @@ def aplicar_menu(html, rel, menu_html, pie_html):
     return html, True
 
 
-def anuncio(tamano):
+def anuncios_activos(raiz):
+    """True solo si js/config.js deja window.ads.activo en true.
+
+    Con false, o si falta el archivo, el blog no pinta huecos ni carga anuncios.
+    """
+    ruta = Path(raiz) / "js" / "config.js"
+    try:
+        texto = ruta.read_text(encoding="utf-8")
+    except OSError:
+        return False
+    coincidencia = re.search(r"window\.ads\s*=\s*\{([^}]*)\}", texto)
+    if not coincidencia:
+        return False
+    return re.search(r"\bactivo\s*:\s*true\b", coincidencia.group(1)) is not None
+
+
+def anuncio(tamano, activo):
+    if not activo:
+        return ""
     return (f'<aside class="ad-inline" data-ad-size="{tamano}"><p class="ad-label">Publicidad</p>'
             f'<div class="ad-slot" data-ad-slot="{tamano}" data-ad-size="{tamano}"></div></aside>')
 
@@ -653,7 +675,7 @@ def relacionados(post, publicados):
     return (misma + otros)[:3]
 
 
-def html_post(post, publicados, catalogo, raiz_sitio):
+def html_post(post, publicados, catalogo, raiz_sitio, activo):
     raiz = "../"
     migas = (f'<p class="crumbs"><a href="{raiz}index.html">Inicio</a> › '
              f'<a href="index.html">Artículos</a> › '
@@ -703,9 +725,9 @@ def html_post(post, publicados, catalogo, raiz_sitio):
     if cerca:
         bloque_cerca = ('<section>\n<p class="kicker">Sigue leyendo</p>\n<h2>Artículos relacionados</h2>\n<div class="pgrid">\n'
                         + "\n".join(tarjeta(p, raiz) for p in cerca) + "\n</div>\n</section>")
-    return (cabeza + "\n" + anuncio("banner") + "\n" + foto + "\n"
+    return (cabeza + "\n" + anuncio("banner", activo) + "\n" + foto + "\n"
             + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + guia + "\n" + red + "\n" + fuentes
-            + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect"))
+            + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
 
 
 def listado(posts, pagina, total_paginas):
@@ -854,6 +876,7 @@ def planificar(raiz, incluir_borradores=False):
         return errores, {}, []
     publicados = [p for p in posts if p["publicar"] or incluir_borradores]
     publicados.sort(key=lambda p: (p["fecha"], p["slug"]), reverse=True)
+    activo = anuncios_activos(raiz)
     try:
         menu_html = (raiz / "blog" / "plantillas" / "menu.html").read_text(encoding="utf-8")
         pie_html = (raiz / "blog" / "plantillas" / "pie-sitio.html").read_text(encoding="utf-8")
@@ -881,15 +904,15 @@ def planificar(raiz, incluir_borradores=False):
         hero = ('<section class="page-hero">\n<p class="kicker">Artículos</p>\n<h1>Artículos de avicultura</h1>\n'
                 "<p>Textos cortos y prácticos para tu granja. Cada uno sale de una lección del curso gratis y dice de dónde vienen sus datos.</p>\n"
                 "</section>")
-        contenido = "\n".join([
+        contenido = "\n".join(parte for parte in [
             hero,
-            anuncio("banner"),
+            anuncio("banner", activo),
             categorias_nav(""),
             listado(publicados, numero, paginas_indice),
             bloque_guias("../"),
             bloque_curso("../"),
-            anuncio("rect"),
-        ])
+            anuncio("rect", activo),
+        ] if parte)
         archivos[rel] = envolver(
             shell, rel, titulo_blog, descripcion_blog, canonical, "index,follow", "website",
             og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
@@ -907,10 +930,10 @@ def planificar(raiz, incluir_borradores=False):
             rejilla = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../") for p in grupo) + "\n</div>"
         else:
             rejilla = '<p class="blog-vacio">Todavía no hay artículos publicados en esta categoría.</p>'
-        contenido = "\n".join([
-            hero, anuncio("banner"), categorias_nav(clave), rejilla,
-            bloque_guias("../"), bloque_curso("../"), anuncio("rect"),
-        ])
+        contenido = "\n".join(parte for parte in [
+            hero, anuncio("banner", activo), categorias_nav(clave), rejilla,
+            bloque_guias("../"), bloque_curso("../"), anuncio("rect", activo),
+        ] if parte)
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
@@ -926,7 +949,7 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo, post["descripcion"], canonical, "index,follow", "article",
             SITIO + "/" + post["imagen_og"], post["imagen_alt"], extra,
-            html_post(post, publicados, catalogo, raiz), menu_html, pie_html)
+            html_post(post, publicados, catalogo, raiz, activo), menu_html, pie_html)
     entradas = []
     if publicados:
         entradas.append((SITIO + "/blog/", max(p["actualizado"] for p in publicados).isoformat()))

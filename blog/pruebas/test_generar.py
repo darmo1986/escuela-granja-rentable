@@ -115,6 +115,13 @@ class Generador(unittest.TestCase):
         self.assertIn('href="blog/"', menu)
         self.assertIn(">Calculadoras<", menu)
         self.assertIn("<!-- menu:inicio -->", menu)
+        self.assertIn('id="nav-herramientas"', menu)
+        self.assertIn(">Herramientas<", menu)
+        self.assertIn(">Calculadora de rentabilidad<", menu)
+        self.assertIn(">Mi cuenta<", menu)
+        self.assertNotIn("ad-inline", indice)
+        self.assertNotIn("highperformanceformat", indice)
+        self.assertNotIn("adsbygoogle", indice)
 
     def test_sin_borrador_cuenta_como_borrador(self):
         post(self.tmp, "2026-11-02-sin-clave.md")
@@ -264,6 +271,25 @@ class Generador(unittest.TestCase):
         errores = generar.generar(self.tmp)
         self.assertTrue(any("fuentes" in e for e in errores))
         self.assertEqual((self.tmp / "blog" / "index.html").read_text(encoding="utf-8"), "NO-TOCAR")
+
+    def test_anuncios_siguen_el_interruptor(self):
+        post(self.tmp, "2026-11-02-anuncio.md", borrador="false")
+        (self.tmp / "js").mkdir()
+        (self.tmp / "js" / "config.js").write_text("window.ads = { activo: false };\n", encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "anuncio.html").read_text(encoding="utf-8")
+        indice = (self.tmp / "blog" / "index.html").read_text(encoding="utf-8")
+        for pagina in (html, indice):
+            self.assertNotIn("ad-inline", pagina)
+            self.assertNotIn("highperformanceformat", pagina)
+            self.assertNotIn("adsbygoogle", pagina)
+            self.assertNotIn("adsterra", pagina.lower())
+        (self.tmp / "js" / "config.js").write_text("window.ads = { activo: true };\n", encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "anuncio.html").read_text(encoding="utf-8")
+        self.assertIn('data-ad-size="banner"', html)
+        self.assertIn('data-ad-size="rect"', html)
+        self.assertNotIn("highperformanceformat", html)
 
 
 if __name__ == "__main__":
