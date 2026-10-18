@@ -86,7 +86,7 @@ Ten a mano, antes de empezar: pala, rasqueta, cepillo de cerdas duras, detergent
 
 Fuera comederos, bebederos, nidos portátiles y perchas que se puedan desmontar. Fuera la cama, las plumas, el polvo, el alimento viejo, la sangre seca y, si los hay, los cadáveres. Alberta incluye el material de los nidos. Un nido «que todavía sirve» con la misma viruta de hace dos meses no está limpio: ahí duermen ácaros y se ensucia el huevo.
 
-Si el piso es de tierra, Alberta recomienda retirar los 3 cm de arriba y tratarlos como el resto de la materia orgánica. El desinfectante no cura un suelo de tierra empapado. Tres centímetros no son una excavación del patio: es la capa que las patas y el agua han mezclado con heces. En un piso de concreto no hay esa capa que retirar, pero sí la costra pegada, y esa se raspa. En listones o bambú, la FAO recuerda que en zonas de mucha lluvia el piso va levantado y con alero: la limpieza no arregla un piso que se inunda cada tarde. Primero el alero y el drenaje; después el balde.
+Si el piso es de tierra, Alberta recomienda retirar los 3 cm de arriba y tratarlos como el resto de la materia orgánica. El desinfectante no cura un suelo de tierra empapado. En concreto no hay esa capa, pero sí la costra pegada, y esa se raspa. En listones o bambú, la FAO recuerda que en zonas de mucha lluvia el piso va levantado y con alero: la limpieza no arregla un piso que se inunda cada tarde. Primero el alero y el drenaje; después el balde.
 
 Alberta pide retirar también el alimento y los medicamentos usados con ese lote. Un saco abierto en el piso ya tomó el polvo del local: no se lo des a los pollitos nuevos.
 
