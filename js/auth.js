@@ -861,6 +861,15 @@
     demo: modoDemo,
     usuario: function () { return usuarioActual; },
     apodo: apodoValido,
+    token: function () {
+      return prepararNube().then(function () {
+        if (!cliente) return "";
+        return cliente.auth.getSession().then(function (res) {
+          var s = res && res.data && res.data.session;
+          return (s && s.access_token) || "";
+        });
+      }).catch(function () { return ""; });
+    },
     abrir: abrir,
     cerrar: cerrar,
     exigir: exigir,

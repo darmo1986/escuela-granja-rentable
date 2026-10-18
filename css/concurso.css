@@ -1,0 +1,132 @@
+.concurso-premio { font-weight: 850; color: var(--gd); margin: 8px 0 0; }
+#concurso-cuenta { font-weight: 750; }
+.concurso-bases, #concurso-bases ul { margin: 8px 0 0; padding-left: 1.1rem; }
+#concurso-bases li { margin: 6px 0; }
+.concurso-nota {
+  background: #fff6d8;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 750;
+}
+.concurso-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+  margin: 12px 0;
+}
+.concurso-card h2, #paso-juego, #paso-fin, .concurso-paso, #fin-titulo { scroll-margin-top: 180px; }
+.concurso-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 750;
+  margin: 10px 0;
+}
+.concurso-error { color: var(--danger); font-weight: 800; min-height: 1.2em; }
+.concurso-paso { margin: 0; font-weight: 800; color: var(--gd); }
+.concurso-tema { margin: 8px 0; }
+.concurso-reloj {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  margin: 8px 0 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--gl);
+  overflow: hidden;
+  font-weight: 800;
+}
+.concurso-reloj-num {
+  font-size: clamp(1.8rem, 8vw, 2.4rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  min-width: 2.2ch;
+}
+.concurso-reloj-barra {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 6px;
+  width: 100%;
+  background: var(--g);
+}
+.concurso-reloj.urgente { background: #fdecea; color: var(--danger); }
+.concurso-reloj.urgente .concurso-reloj-barra { background: var(--danger); }
+.concurso-opciones { display: grid; gap: 8px; margin: 10px 0; }
+.concurso-opcion {
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+.concurso-opcion.is-ok,
+.concurso-opcion.is-ok:disabled,
+.concurso-opcion.is-ok:focus {
+  background: var(--gl) !important;
+  color: var(--gd) !important;
+  border: 2px solid var(--gm) !important;
+  opacity: 1;
+}
+.concurso-opcion.is-bad,
+.concurso-opcion.is-bad:disabled,
+.concurso-opcion.is-bad:focus {
+  background: #fdecea !important;
+  color: var(--danger) !important;
+  border: 2px solid var(--danger) !important;
+  opacity: 1;
+}
+.concurso-opcion:disabled { cursor: default; }
+.concurso-mark { font-weight: 800; }
+.concurso-explica { background: var(--gl); border-radius: 12px; padding: 10px 12px; font-weight: 750; }
+.concurso-explica.is-ok { background: var(--gl); color: var(--gd); }
+.concurso-explica.is-bad { background: #fdecea; color: var(--danger); }
+.concurso-score {
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+  font-weight: 850;
+  color: var(--gd);
+  margin: 0;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.concurso-wa { background: var(--wa); color: #fff; }
+.concurso-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.concurso-actions .btn { flex: 1 1 200px; }
+.concurso-rank ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.concurso-rank li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  background: var(--gl);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+.concurso-pos { font-weight: 800; color: var(--gd); width: 1.4rem; text-align: center; }
+.concurso-periodo {
+  font-weight: 800;
+  color: var(--gd);
+  min-width: 5.6rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.concurso-check { display: flex; gap: 8px; align-items: flex-start; font-weight: 650; }
+.concurso-check input { margin-top: 0.3rem; }
+.concurso-rank p { margin: 0; }
+.concurso-yo { outline: 2px solid var(--gold); }
+#concurso-reclamo[hidden],
+#concurso-hero[hidden],
+#concurso-modo[hidden],
+#paso-inicio[hidden],
+#paso-juego[hidden],
+#paso-fin[hidden],
+#ranking[hidden],
+#preg-fb[hidden],
+#preg-exp[hidden],
+#preg-fuente[hidden],
+#preg-siguiente[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .concurso-reloj-barra { transition: none; }
+}
