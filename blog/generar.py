@@ -658,7 +658,7 @@ def html_post(post, publicados, catalogo, raiz_sitio):
     migas = (f'<p class="crumbs"><a href="{raiz}index.html">Inicio</a> › '
              f'<a href="index.html">Artículos</a> › '
              f'<a href="{esc(CATS[post["categoria"]]["slug"])}.html">{esc(CATS[post["categoria"]]["nombre"])}</a></p>')
-    meta = fecha_larga(post["fecha"])
+    meta = fecha_larga(post["fecha"]) + " · " + esc(AUTOR)
     if post["leccion"]:
         meta += f' · Basado en la lección <a href="{raiz}lecciones/{esc(post["leccion"])}.html">{esc(post["leccion"].upper())}</a>'
     cabeza = (f'<header class="page-hero post-head">\n{migas}\n'
@@ -741,6 +741,7 @@ def envolver(shell, rel, titulo, descripcion, canonical, robots, og_type, og_ima
         "@@OG_TYPE@@": og_type,
         "@@OG_IMAGE@@": esc(og_image),
         "@@OG_ALT@@": esc(og_alt),
+        "@@AUTOR@@": esc(AUTOR),
         "@@EXTRA_HEAD@@": extra,
         "@@CONTENIDO@@": contenido,
     }
@@ -764,6 +765,7 @@ def ld_blog():
         "name": "Artículos de avicultura | Granja Rentable",
         "url": SITIO + "/blog/",
         "inLanguage": "es-419",
+        "author": {"@type": "Person", "name": AUTOR},
         "publisher": {"@type": "Organization", "name": EDITOR, "logo": LOGO},
     }) + "</script>"
 
