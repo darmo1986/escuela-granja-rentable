@@ -122,4 +122,4 @@ Revisa agua, sombra y que el saco sea de postura. La concha aparte es lo que las
 
 No. El calcio de postura es el problema que Alabama y Maine describen en el pollito. El artículo de engorde explica el otro saco.
 
-La pollita que va a comer esto se cría en la L05A. El gallinero donde el comedero no se moja está en [gallinero casero, semiprofesional y nave](gallinero-casero-semiprofesional-y-nave.html). Si la puesta ya se cortó, el alimento es solo una de las causas.
+La pollita que va a comer esto se cría en la L05A. El gallinero donde el comedero no se moja está en [gallinero casero, semiprofesional y nave](gallinero-casero-semiprofesional-y-nave.html). Si la puesta ya se cortó, el alimento es solo una de las causas: luz, muda, clueca y enfermedad están en [por qué las gallinas dejan de poner](por-que-las-gallinas-dejan-de-poner.html).
