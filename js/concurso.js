@@ -1,6 +1,7 @@
 /* Concurso mensual. La página no lleva las respuestas.
    Con concursoPublicado en false no llama a Supabase y no hay modo local.
-   El apodo es perfiles.nombre. El premio es el de quiz_premios: 20 €. */
+   El apodo es perfiles.nombre y se valida con GRAuth.apodo.
+   El premio mostrado sale de GR.premioEuros y de premio_euros(). */
 (function () {
   var LIMITE_MS = 30000;
   var PAISES = [
@@ -12,19 +13,9 @@
     ["NI", "Nicaragua"], ["CR", "Costa Rica"], ["PA", "Panamá"]
   ];
   var NOMBRE = {};
-  var VETADAS = {
-    puta: 1, puto: 1, mierda: 1, pendejo: 1, pendeja: 1, cabron: 1, cabrona: 1,
-    maricon: 1, marica: 1, verga: 1, culero: 1, culera: 1, culo: 1, hdp: 1,
-    hijueputa: 1, malparido: 1, malparida: 1, gonorrea: 1,
-    boludo: 1, boluda: 1, pelotudo: 1, pelotuda: 1, huevon: 1, huevona: 1,
-    cojudo: 1, cojuda: 1, cono: 1, polla: 1, zorra: 1, pinche: 1, idiota: 1,
-    fuck: 1, perra: 1, joto: 1, cerote: 1, carajo: 1, imbecil: 1, subnormal: 1,
-    mamaguevo: 1, pija: 1, follar: 1, joder: 1, shit: 1, bitch: 1,
-    nazi: 1, nigger: 1, nigga: 1, hitler: 1, faggot: 1, asshole: 1, gilipollas: 1,
-    porno: 1, viagra: 1
-  };
-  var COMPUESTAS = { hijodeputa: 1, hijaputa: 1, putamadre: 1, hijueputa: 1 };
   PAISES.forEach(function (p) { if (p[0]) NOMBRE[p[0]] = p[1]; });
+  var turnoWidget = null;
+  var premioVisto = 0;
 
   var root = document.body.getAttribute("data-root") || "";
   var fase = "inicio";
@@ -67,8 +58,14 @@
   }
 
   function euros() {
-    var n = window.GR && GR.comunidad && Number(GR.comunidad.premioEuros);
-    return n > 0 ? n : 20;
+    if (premioVisto > 0) return premioVisto;
+    var n = window.GR && Number(GR.premioEuros);
+    return isFinite(n) && n > 0 ? n : 0;
+  }
+
+  function verPremio(n) {
+    var v = Number(n);
+    if (isFinite(v) && v > 0) premioVisto = v;
   }
 
   function escTexto(s) {
@@ -83,33 +80,13 @@
       .trim();
   }
 
-  function plegar(s, volverU) {
-    var t = s.toLowerCase()
-      .replace(/[áàä]/g, "a").replace(/[éèë]/g, "e").replace(/[íìï]/g, "i")
-      .replace(/[óòö]/g, "o").replace(/[úùü]/g, "u").replace(/ñ/g, "n")
-      .replace(/0/g, "o").replace(/1/g, "i").replace(/3/g, "e")
-      .replace(/4/g, "a").replace(/5/g, "s").replace(/7/g, "t");
-    if (volverU) t = t.replace(/v/g, "u");
-    return t;
+  function apodoCuenta(t) {
+    if (window.GRAuth && typeof GRAuth.apodo === "function") return GRAuth.apodo(t);
+    return "";
   }
 
-  function revisa(plegado) {
-    var partes = plegado.split(/\s+/);
-    var i;
-    var sq;
-    for (i = 0; i < partes.length; i++) {
-      if (VETADAS[partes[i].replace(/[._-]/g, "")]) return true;
-    }
-    sq = plegado.replace(/[^a-z0-9]/g, "");
-    return !!(VETADAS[sq] || COMPUESTAS[sq]);
-  }
-
-  function apodoPermitido(t) {
-    t = limpiar(t);
-    if (t.length < 2 || t.length > 40) return false;
-    if (t.indexOf("@") >= 0 || /\d{8,}/.test(t)) return false;
-    if (!/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 ._-]{2,40}$/.test(t)) return false;
-    return !revisa(plegar(t, false)) && !revisa(plegar(t, true));
+  function claveTurnstile() {
+    return String((window.GR && GR.turnstileSiteKey) || "").trim();
   }
 
   function esPlaceholder(t) {
@@ -219,7 +196,12 @@
   function pintarPremio(iso) {
     var premio = document.getElementById("concurso-premio");
     var cuenta = document.getElementById("concurso-cuenta");
-    if (premio) premio.textContent = "Premio de este mes: " + euros() + " €";
+    if (premio) {
+      var cifra = euros();
+      premio.textContent = cifra > 0 ? "Premio de este mes: " + cifra + " €" : "Premio de este mes";
+    }
+    var base = document.getElementById("base-importe");
+    if (base && euros() > 0) base.textContent = euros() + " €";
     if (iso) {
       var t = Date.parse(iso);
       if (!isNaN(t)) reinicioMs = t;
@@ -232,12 +214,6 @@
     pintarPremio();
     if (cuentaId) clearInterval(cuentaId);
     cuentaId = setInterval(function () { pintarPremio(); }, 30000);
-  }
-
-  function formatoSeg(n) {
-    var v = Number(n);
-    if (!isFinite(v)) v = 0;
-    return v.toLocaleString("es", { minimumFractionDigits: 0, maximumFractionDigits: 1 }) + " s";
   }
 
   function pintarRanking(filas) {
@@ -260,14 +236,14 @@
       }
       var pos = document.createElement("span");
       pos.className = "concurso-pos";
-      pos.textContent = String(i + 1);
+      pos.textContent = String(f.puesto || (i + 1));
       var caja = document.createElement("div");
       var nom = document.createElement("p");
       nom.textContent = escTexto(f.apodo);
       var det = document.createElement("p");
       det.className = "fine";
       var paisTxt = f.pais && NOMBRE[f.pais] ? NOMBRE[f.pais] + " · " : "";
-      det.textContent = paisTxt + f.aciertos + " de 10 · " + formatoSeg(f.segundos);
+      det.textContent = paisTxt + f.aciertos + " de 10";
       caja.appendChild(nom);
       caja.appendChild(det);
       li.appendChild(pos);
@@ -291,7 +267,7 @@
     rows.forEach(function (f) {
       var li = document.createElement("li");
       var pos = document.createElement("span");
-      pos.className = "concurso-pos";
+      pos.className = "concurso-periodo";
       pos.textContent = escTexto(f.periodo);
       var nom = document.createElement("p");
       nom.textContent = escTexto(f.apodo);
@@ -302,34 +278,59 @@
     ganadoresBox.appendChild(ol);
   }
 
+  function fechaMadrid(iso) {
+    var t = Date.parse(iso || "");
+    if (isNaN(t)) return "";
+    try {
+      return new Intl.DateTimeFormat("es", { dateStyle: "long", timeZone: "Europe/Madrid" }).format(new Date(t));
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function pintarMetodos(pais) {
+    var sel = document.getElementById("reclamo-metodo");
+    if (!sel) return;
+    var bizum = sel.querySelector('option[value="bizum"]');
+    if (bizum) bizum.hidden = pais !== "ES";
+    if (pais !== "ES" && sel.value === "bizum") sel.value = "paypal";
+  }
+
   function pintarReclamo(mi) {
     if (!reclamo) return;
     var txt = document.getElementById("reclamo-txt");
-    if (!mi || !mi.periodo || (mi.estado !== "pendiente" && mi.estado !== "reclamado")) {
+    var formPago = document.getElementById("reclamo-form");
+    if (!mi || !mi.periodo || (mi.estado !== "pendiente_verificar" && mi.estado !== "pendiente" && mi.estado !== "reclamado")) {
       reclamo.hidden = true;
       return;
     }
     reclamo.hidden = false;
+    pintarMetodos(mi.pais || "");
+    var hasta = fechaMadrid(mi.reclamable_hasta);
     if (txt) {
-      txt.textContent = mi.estado === "reclamado"
-        ? "Ya recibimos tus datos de " + mi.periodo + ". Te escribimos para confirmar el pago de " + euros() + " €."
-        : "Ganaste los " + euros() + " € de " + mi.periodo + ". Elige PayPal o Bizum. No se publica.";
+      if (mi.estado === "pendiente_verificar") {
+        txt.textContent = "Tu premio de " + mi.periodo + " está pendiente de verificar. Cuando el administrador lo confirme, podrás enviar el cobro. El apodo del ganador se publica.";
+      } else if (mi.estado === "reclamado") {
+        txt.textContent = "Ya recibimos tus datos de " + mi.periodo + ". Te escribimos para confirmar el pago de " + euros() + " €. La comisión la paga el organizador.";
+      } else {
+        txt.textContent = "Ganaste los " + euros() + " € de " + mi.periodo + ". "
+          + (hasta ? "Tienes hasta el " + hasta + " para enviar el cobro. " : "Tienes 14 días para enviar el cobro. ")
+          + "Si no respondes, pasa a la siguiente marca válida. "
+          + (mi.pais === "ES" ? "Puedes usar PayPal o Bizum." : "El cobro es por PayPal. Bizum solo está disponible en España.");
+      }
     }
-    var formPago = document.getElementById("reclamo-form");
     if (formPago) formPago.hidden = mi.estado !== "pendiente";
   }
 
   function textoModo() {
     if (!publicada) return "El concurso todavía no está abierto.";
     if (!abierta) return "El concurso no está disponible. Inténtalo más tarde.";
-    return "Ranking de este mes. Gana quien más acierta; si empatan, el menor tiempo del servidor.";
+    return "Ranking de este mes. Gana quien más acierta. Si empatan, un sorteo del servidor que queda guardado.";
   }
 
   function aplicarEstado(data) {
     abierta = !!(data && data.abierto);
-    if (data && data.premio_euros) {
-      if (window.GR && GR.comunidad) GR.comunidad.premioEuros = Number(data.premio_euros) || 20;
-    }
+    if (data && data.premio_euros) verPremio(data.premio_euros);
     pintarPremio(data && data.reinicio);
     pintarRanking(data && data.ranking);
     pintarGanadores(data && data.ganadores);
@@ -550,7 +551,7 @@
   }
 
   function textoCierre(r) {
-    if (r.timeout) return "Se acabó el tiempo. Incorrecto.";
+    if (r.timeout) return "Se acabó el tiempo.";
     if (r.muy_rapido && r.acertada) return "Correcto, pero hace falta al menos 1 segundo para que cuente.";
     if (!r.ok) return "Incorrecto.";
     return "Correcto. Llevas " + r.aciertos + " de 10.";
@@ -565,22 +566,31 @@
     var frase = textoCierre(r);
     botones.forEach(function (b, k) {
       b.disabled = true;
+      if (r.timeout) return;
       if (k === r.indice_correcto) marcarOpcion(b, true, "Correcta");
       else if (k === elegida) marcarOpcion(b, false, "Incorrecta");
     });
     if (fb) {
       fb.hidden = false;
       fb.classList.remove("is-ok", "is-bad");
-      fb.classList.add(r.ok ? "is-ok" : "is-bad");
+      fb.classList.add(!r.timeout && r.ok ? "is-ok" : "is-bad");
       fb.textContent = frase;
     }
     if (exp) {
-      exp.hidden = false;
-      exp.textContent = r.explicacion || "";
+      exp.hidden = true;
+      exp.textContent = "";
+      if (!r.timeout && r.explicacion) {
+        exp.hidden = false;
+        exp.textContent = r.explicacion;
+      }
     }
-    if (fuente && r.fuente) {
-      fuente.hidden = false;
-      fuente.textContent = "Fuente: " + r.fuente;
+    if (fuente) {
+      fuente.hidden = true;
+      fuente.textContent = "";
+      if (!r.timeout && r.fuente) {
+        fuente.hidden = false;
+        fuente.textContent = "Fuente: " + r.fuente;
+      }
     }
     if (next) {
       next.hidden = false;
@@ -609,7 +619,7 @@
       auth: true,
       body: { p_partida: partidaId, p_opcion: i }
     }).then(function (res) {
-      if (!res.ok || !res.data || res.data.explicacion == null) {
+      if (!res.ok || !res.data || typeof res.data.ok === "undefined" || typeof res.data.timeout === "undefined") {
         cortada = true;
         if (error) error.textContent = textoError(res);
         if (fb) {
@@ -631,10 +641,10 @@
     if (titulo) titulo.textContent = "Tu marca";
     if (puntos) puntos.textContent = aciertos + " de 10";
     if (detalle) {
-      detalle.textContent = "Tiempo del servidor: " + formatoSeg(segundos) + ". El premio del mes lo gana quien más acierta; si empatan, el menor tiempo.";
+      detalle.textContent = "El premio del mes lo gana quien más acierta. Si empatan, el servidor hace un sorteo y lo guarda.";
     }
     if (wa) {
-      var texto = "Jugué el concurso de Granja Rentable: " + aciertos + " de 10 en " + formatoSeg(segundos) + ".";
+      var texto = "Jugué el concurso de Granja Rentable: " + aciertos + " de 10.";
       wa.href = "https://wa.me/?text=" + encodeURIComponent(texto);
     }
     cargarEstado();
@@ -670,7 +680,7 @@
       if (window.GRAuth && typeof GRAuth.abrir === "function") GRAuth.abrir("entrar");
       return;
     }
-    if (esVecino || esPlaceholder(apodo) || !apodoPermitido(apodo)) {
+    if (esVecino || esPlaceholder(apodo) || !apodoCuenta(apodo)) {
       if (window.GRAuth && typeof GRAuth.abrir === "function") GRAuth.abrir("apodo");
       if (error) error.textContent = "Elige un apodo en Mi cuenta antes de jugar.";
       return;
@@ -679,17 +689,27 @@
       if (error) error.textContent = "El concurso no está disponible. Inténtalo más tarde.";
       return;
     }
+    var mayor = document.getElementById("concurso-mayor");
+    if (!mayor || !mayor.checked) {
+      if (error) error.textContent = "Para jugar hay que tener 18 años o más.";
+      return;
+    }
+    if (claveTurnstile() && !tokenTurnstile()) {
+      if (error) error.textContent = "Confirma que no eres un programa e inténtalo otra vez.";
+      return;
+    }
     var sel = document.getElementById("concurso-pais");
     var pais = sel ? sel.value : "";
     if (boton) boton.disabled = true;
     pedir("/rest/v1/rpc/concurso_empezar", {
       method: "POST",
       auth: true,
-      body: { p_pais: pais }
+      body: { p_pais: pais, p_mayor: true, p_turno: tokenTurnstile() }
     }).then(function (res) {
       if (boton) boton.disabled = false;
       if (!res.ok || !res.data || !res.data.pregunta || !res.data.partida) {
         if (error) error.textContent = textoError(res);
+        if (window.turnstile && turnoWidget !== null) window.turnstile.reset(turnoWidget);
         return;
       }
       partidaId = res.data.partida;
@@ -697,14 +717,42 @@
       aciertos = 0;
       segundos = 0;
       cortada = false;
-      if (res.data.premio_euros && window.GR && GR.comunidad) {
-        GR.comunidad.premioEuros = Number(res.data.premio_euros) || 20;
-      }
+      if (res.data.premio_euros) verPremio(res.data.premio_euros);
+      if (window.turnstile && turnoWidget !== null) window.turnstile.reset(turnoWidget);
       pintarPremio(res.data.reinicio);
       pantalla("juego");
       pintarPregunta(res.data.pregunta, Number(res.data.indice) || 1);
       arrancarReloj();
     });
+  }
+
+  function tokenTurnstile() {
+    if (!claveTurnstile() || !window.turnstile || turnoWidget === null) return "";
+    return window.turnstile.getResponse(turnoWidget) || "";
+  }
+
+  function montarTurnstile() {
+    var caja = document.getElementById("concurso-turnstile");
+    var clave = claveTurnstile();
+    if (!caja) return;
+    if (!clave) {
+      caja.hidden = true;
+      return;
+    }
+    caja.hidden = false;
+    function render() {
+      if (!window.turnstile || turnoWidget !== null) return;
+      turnoWidget = window.turnstile.render(caja, { sitekey: clave });
+    }
+    if (window.turnstile) {
+      render();
+      return;
+    }
+    var s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    s.async = true;
+    s.onload = render;
+    document.head.appendChild(s);
   }
 
   function prepararPais() {
@@ -721,6 +769,7 @@
 
   publicada = !!(window.GR && GR.comunidad && GR.comunidad.concursoPublicado === true);
   prepararPais();
+  montarTurnstile();
   arrancarCuenta();
   pantalla("inicio");
   pintarIdentidad();

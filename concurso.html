@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Concurso de avicultura | Granja Rentable</title>
-<meta name="description" content="Concurso de avicultura: 10 preguntas, 30 segundos y 20 € al primero de cada mes. Hace falta una cuenta gratis. Sin obligación de compra.">
+<meta name="description" content="Concurso de pollos de engorde: 10 preguntas y 30 segundos. Premio mensual al primero. Cuenta gratis, mayores de 18 años y sin obligación de compra.">
 <link rel="canonical" href="https://granjarentable.com/concurso.html">
 <meta property="og:url" content="https://granjarentable.com/concurso.html">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Concurso de avicultura | Granja Rentable">
-<meta property="og:description" content="10 preguntas, 30 segundos y 20 € al primero de cada mes. Cuenta gratis, sin obligación de compra.">
+<meta property="og:description" content="10 preguntas de pollos de engorde y 30 segundos. Premio mensual al primero. Cuenta gratis y mayores de 18 años.">
 <meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
 <meta property="og:locale" content="es_419">
 <meta property="og:image:alt" content="Logo de Granja Rentable">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Concurso de avicultura | Granja Rentable">
-<meta name="twitter:description" content="10 preguntas, 30 segundos y 20 € al primero de cada mes. Cuenta gratis, sin obligación de compra.">
+<meta name="twitter:description" content="10 preguntas de pollos de engorde y 30 segundos. Premio mensual al primero. Cuenta gratis y mayores de 18 años.">
 <meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -97,8 +97,8 @@
 <section class="page-hero" id="concurso-hero">
 <p class="kicker">Concurso</p>
 <h1>10 preguntas de avicultura</h1>
-<p>Cuatro opciones y 30 segundos por pregunta. Cada ronda elige 10 al azar, de engorde, ponedoras, incubación, salud y manejo. Un acierto cuenta si pasa al menos 1 segundo. El premio no se decide por la rapidez: manda el número de aciertos y, si empatan, el tiempo total que mide el servidor.</p>
-<p class="concurso-premio" id="concurso-premio">Premio de este mes: 20 €</p>
+<p>Cuatro opciones y 30 segundos por pregunta, solo de pollos de engorde. Cada ronda elige 10 al azar. Un acierto cuenta si pasa al menos 1 segundo. El premio no se decide por la rapidez: manda el número de aciertos y, si empatan, un sorteo del servidor que queda guardado.</p>
+<p class="concurso-premio" id="concurso-premio">Premio de este mes</p>
 <p id="concurso-cuenta">El ranking vuelve a cero al empezar el mes siguiente.</p>
 </section>
 <p class="concurso-nota" id="concurso-modo">El concurso todavía no está abierto.</p>
@@ -107,12 +107,14 @@
 <p id="concurso-quien">Para jugar hace falta la cuenta gratis del sitio. El ranking usa el apodo de esa cuenta.</p>
 <form id="concurso-form" class="concurso-form">
 <p id="concurso-apodo-nota" class="fine">Juegas con el apodo de tu cuenta. Para cambiarlo, entra en <a href="cuenta.html">Mi cuenta</a>.</p>
+<label class="concurso-check" for="concurso-mayor"><input id="concurso-mayor" name="mayor" type="checkbox"> Confirmo que tengo 18 años o más.</label>
 <label for="concurso-pais">País (opcional)</label>
 <select id="concurso-pais" name="pais"></select>
+<div id="concurso-turnstile" hidden></div>
 <p id="concurso-error" class="concurso-error" role="alert"></p>
 <button type="submit" class="btn gold" id="concurso-empezar">Entrar para jugar</button>
 </form>
-<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Al acertar o fallar verás la explicación antes de seguir. No hace falta comprar nada.</p>
+<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Si respondes a tiempo, verás la explicación antes de seguir. Si se acaba el tiempo, no se muestra la respuesta. No hace falta comprar nada. El apodo del ganador se publica.</p>
 </section>
 <section id="concurso-reclamo" class="concurso-card" hidden>
 <h2>Tu premio</h2>
@@ -166,11 +168,17 @@
 <section id="concurso-bases" class="concurso-card">
 <h2>Bases del premio</h2>
 <ul>
-<li>Puede participar quien tenga una cuenta gratis del sitio. No hay obligación de compra. Una persona, una cuenta.</li>
-<li>Cada mes gana la mejor ronda: más aciertos. Si empatan, gana el menor tiempo total, medido por el servidor. Hace falta al menos 1 segundo para que un acierto cuente.</li>
-<li>El premio es 20 €. Al empezar el mes siguiente, con la hora de Madrid, el ranking vuelve a cero y empieza otra vez.</li>
-<li>Contactamos al ganador por el correo de su cuenta. El pago es por PayPal o Bizum. Esos datos se piden solo al ganador y no se publican.</li>
-<li>Una cuenta con trampas queda descalificada. El premio pasa a la siguiente marca válida.</li>
+<li>Organiza Juan Pablo González García (Granja Rentable). El contacto está en el pie de esta página.</li>
+<li>Puede jugar quien tenga 18 años o más y una cuenta gratis. No hay obligación de compra. Una persona, una cuenta. El territorio es el de la lista del formulario: México, Estados Unidos, Colombia, Perú, España, Argentina, Venezuela, Ecuador, República Dominicana, Chile, Paraguay, Uruguay, Bolivia, Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panamá.</li>
+<li>Cada edición es un mes natural en hora de Madrid: empieza a las 00:00 del día 1 y cierra al terminar el último día. Al empezar el mes siguiente el ranking público vuelve a cero. La primera edición arranca cuando esta página se publique.</li>
+<li>Son 10 preguntas de pollos de engorde, cuatro opciones y 30 segundos. Gana quien más acierta en su mejor ronda. Hace falta al menos 1 segundo para que un acierto cuente. Si empatan en aciertos, el servidor sortea entre los empatados y guarda el resultado. La rapidez no desempata.</li>
+<li>El premio de este mes es <span id="base-importe">el publicado arriba</span>. Queda pendiente de verificar hasta que el administrador lo marque. Después, el ganador tiene 14 días para reclamar. Si no responde, el premio se anula y pasa a la siguiente marca válida. Si no queda nadie, ese mes no tiene ganador.</li>
+<li>Para verificar, el administrador revisa la cuenta y puede escribir al correo de esa cuenta. El apodo del ganador se publica. El correo no se publica.</li>
+<li>El cobro es por PayPal. Bizum solo si el país indicado al jugar es España. Esos datos se piden solo al ganador y no se publican. El organizador paga en un plazo de 30 días desde que recibe el cobro ya verificado, y paga la comisión: no se descuenta del premio.</li>
+<li>El premio puede estar sujeto a impuestos en el país de quien gana. El organizador solo retiene si la ley lo obliga.</li>
+<li>Es trampa usar más de una cuenta, un programa o un script, compartir o usar un banco de respuestas, automatizar las jugadas o jugar con la cuenta de otra persona. Esa cuenta queda descalificada y el premio pasa a la siguiente marca válida.</li>
+<li>El Premium no da ventaja: no cambia las preguntas, el tiempo ni el ranking.</li>
+<li>El organizador puede corregir estas bases. Un mes ya empezado se juega con las que estaban publicadas, salvo fraude o un deber legal. Si el concurso se suspende, ese mes puede cerrar sin premio. El cambio se publica en esta página.</li>
 </ul>
 </section>
 <p id="concurso-live" class="sr" aria-live="polite"></p>
