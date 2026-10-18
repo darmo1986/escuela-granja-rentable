@@ -1,10 +1,8 @@
-/* Ronda de 10 preguntas. El apodo lo escribe quien juega: no sale de un correo.
-   Con concursoPublicado en false, la página practica en este navegador y no llama a Supabase.
-   Cuando Pablo publica el SQL, el servidor califica: esta página no inserta el puntaje. */
+/* Concurso mensual. La página no lleva las respuestas.
+   Con concursoPublicado en false no llama a Supabase y no hay modo local.
+   El apodo es perfiles.nombre. El premio es el de quiz_premios: 20 €. */
 (function () {
-  var RONDA = 10;
   var LIMITE_MS = 30000;
-  var CLAVE = "gr_concurso_partidas";
   var PAISES = [
     ["", "Prefiero no decirlo"],
     ["MX", "México"], ["US", "Estados Unidos"], ["CO", "Colombia"], ["PE", "Perú"],
@@ -14,30 +12,38 @@
     ["NI", "Nicaragua"], ["CR", "Costa Rica"], ["PA", "Panamá"]
   ];
   var NOMBRE = {};
-  var RAICES = ["put", "mierd", "pend", "cabr", "maric", "nazi", "nigg", "hitler", "faggot", "asshole", "gilipoll", "verga", "culer", "ching", "hdp", "malparid", "gonorre", "conch", "bolud", "pelotud", "huevon", "cojud", "viagra", "casino", "porno", "cripto"];
+  var VETADAS = {
+    puta: 1, puto: 1, mierda: 1, pendejo: 1, pendeja: 1, cabron: 1, cabrona: 1,
+    maricon: 1, marica: 1, verga: 1, culero: 1, culera: 1, culo: 1, hdp: 1,
+    hijueputa: 1, malparido: 1, malparida: 1, gonorrea: 1,
+    boludo: 1, boluda: 1, pelotudo: 1, pelotuda: 1, huevon: 1, huevona: 1,
+    cojudo: 1, cojuda: 1, cono: 1, polla: 1, zorra: 1, pinche: 1, idiota: 1,
+    fuck: 1, perra: 1, joto: 1, cerote: 1, carajo: 1, imbecil: 1, subnormal: 1,
+    mamaguevo: 1, pija: 1, follar: 1, joder: 1, shit: 1, bitch: 1,
+    nazi: 1, nigger: 1, nigga: 1, hitler: 1, faggot: 1, asshole: 1, gilipollas: 1,
+    porno: 1, viagra: 1
+  };
+  var COMPUESTAS = { hijodeputa: 1, hijaputa: 1, putamadre: 1, hijueputa: 1 };
   PAISES.forEach(function (p) { if (p[0]) NOMBRE[p[0]] = p[1]; });
 
   var root = document.body.getAttribute("data-root") || "";
-  var banco = [];
-  var ronda = [];
-  var indice = 0;
   var fase = "inicio";
+  var indice = 0;
+  var total = 10;
   var aciertos = 0;
-  var puntaje = 0;
-  var bonus = 0;
   var segundos = 0;
   var endsAt = 0;
   var timerId = 0;
   var avisoSeg = 0;
   var apodo = "";
-  var pais = "";
-  var estadoNube = "local";
+  var esVecino = false;
   var publicada = false;
-  var sonda = null;
+  var abierta = false;
   var partidaId = null;
-  var enServidor = false;
   var relojListo = false;
   var cortada = false;
+  var reinicioMs = 0;
+  var cuentaId = 0;
 
   var hero = document.getElementById("concurso-hero");
   var inicio = document.getElementById("paso-inicio");
@@ -48,194 +54,208 @@
   var error = document.getElementById("concurso-error");
   var modo = document.getElementById("concurso-modo");
   var lista = document.getElementById("ranking-lista");
+  var ganadoresBox = document.getElementById("ganadores-lista");
   var live = document.getElementById("concurso-live");
+  var quien = document.getElementById("concurso-quien");
+  var nota = document.getElementById("concurso-apodo-nota");
+  var boton = document.getElementById("concurso-empezar");
+  var reclamo = document.getElementById("concurso-reclamo");
   if (!inicio || !juego || !form) return;
 
   function decir(t) {
     if (live) live.textContent = t || "";
   }
 
-  function puntosDe(ok, ms) {
-    if (!ok) return { puntos: 0, base: 0, rapido: 0 };
-    var usado = ms < 0 ? 0 : ms;
-    if (usado > LIMITE_MS) usado = LIMITE_MS;
-    var rapido = Math.round(5 * (1 - usado / LIMITE_MS));
-    return { puntos: 10 + rapido, base: 10, rapido: rapido };
+  function euros() {
+    var n = window.GR && GR.comunidad && Number(GR.comunidad.premioEuros);
+    return n > 0 ? n : 20;
   }
 
-  function barajar(lista) {
-    var a = lista.slice();
-    var i;
-    for (i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i];
-      a[i] = a[j];
-      a[j] = t;
-    }
-    return a;
+  function escTexto(s) {
+    return String(s == null ? "" : s);
   }
 
-  function normaliza(t) {
-    return String(t || "").toLowerCase()
+  function limpiar(s) {
+    return String(s || "").normalize("NFKC")
+      .replace(/[\u00AD\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF]/g, "")
+      .replace(/\p{Cf}/gu, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function plegar(s, volverU) {
+    var t = s.toLowerCase()
       .replace(/[áàä]/g, "a").replace(/[éèë]/g, "e").replace(/[íìï]/g, "i")
       .replace(/[óòö]/g, "o").replace(/[úùü]/g, "u").replace(/ñ/g, "n")
-      .replace(/0/g, "o").replace(/1/g, "i").replace(/3/g, "e").replace(/4/g, "a")
-      .replace(/5/g, "s").replace(/7/g, "t").replace(/@/g, "a")
-      .replace(/[._\-\s]/g, "");
+      .replace(/0/g, "o").replace(/1/g, "i").replace(/3/g, "e")
+      .replace(/4/g, "a").replace(/5/g, "s").replace(/7/g, "t");
+    if (volverU) t = t.replace(/v/g, "u");
+    return t;
   }
 
-  function prohibido(t) {
-    var n = normaliza(t);
+  function revisa(plegado) {
+    var partes = plegado.split(/\s+/);
     var i;
-    for (i = 0; i < RAICES.length; i++) {
-      if (n.indexOf(RAICES[i]) >= 0) return true;
+    var sq;
+    for (i = 0; i < partes.length; i++) {
+      if (VETADAS[partes[i].replace(/[._-]/g, "")]) return true;
     }
-    return false;
+    sq = plegado.replace(/[^a-z0-9]/g, "");
+    return !!(VETADAS[sq] || COMPUESTAS[sq]);
   }
 
-  function apodoValido(t) {
-    t = String(t || "").replace(/\s+/g, " ").trim();
-    if (t.length < 2 || t.length > 40) return "El apodo necesita entre 2 y 40 caracteres.";
-    if (t.indexOf("@") >= 0 || /\d{8,}/.test(t)) return "Sin correo ni teléfono: solo un apodo.";
-    if (prohibido(t)) return "Ese apodo no se puede usar. Elige otro, sin insultos.";
-    return "";
+  function apodoPermitido(t) {
+    t = limpiar(t);
+    if (t.length < 2 || t.length > 40) return false;
+    if (t.indexOf("@") >= 0 || /\d{8,}/.test(t)) return false;
+    if (!/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 ._-]{2,40}$/.test(t)) return false;
+    return !revisa(plegar(t, false)) && !revisa(plegar(t, true));
   }
 
-  function apodoDeCuenta() {
-    try {
-      var u = window.GRAuth && typeof GRAuth.usuario === "function" ? GRAuth.usuario() : null;
-      if (!u || !u.nombre) return "";
-      return String(u.nombre).replace(/\s+/g, " ").trim();
-    } catch (e) {
-      return "";
-    }
-  }
-
-  function aplicarApodoCuenta() {
-    var campo = document.getElementById("concurso-apodo");
-    var nota = document.getElementById("concurso-apodo-nota");
-    var nombre = apodoDeCuenta();
-    if (!campo || !nombre) {
-      if (nota) nota.hidden = true;
-      return;
-    }
-    campo.value = nombre;
-    if (nota) nota.hidden = false;
-  }
-
-  function mejorMarca(a, b) {
-    if (!a) return b;
-    if (!b) return a;
-    if (b.puntaje !== a.puntaje) return b.puntaje > a.puntaje ? b : a;
-    if (a.segundos !== b.segundos) return a.segundos < b.segundos ? a : b;
-    return a;
-  }
-
-  function compactar(filas) {
-    var mapa = {};
-    (filas || []).forEach(function (f) {
-      if (!f || !f.apodo || !(Number(f.puntaje) > 0)) return;
-      var k = String(f.apodo).toLowerCase();
-      mapa[k] = mejorMarca(mapa[k], f);
-    });
-    return Object.keys(mapa).map(function (k) { return mapa[k]; });
-  }
-
-  function leerLocal() {
-    try {
-      var raw = JSON.parse(localStorage.getItem(CLAVE) || "[]");
-      return compactar(Array.isArray(raw) ? raw : []);
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function guardarLocal(fila) {
-    var marcas = ordenar(compactar(leerLocal().concat(fila ? [fila] : [])));
-    if (marcas.length > 50) marcas = marcas.slice(0, 50);
-    try { localStorage.setItem(CLAVE, JSON.stringify(marcas)); } catch (e) {}
-  }
-
-  function ordenar(filas) {
-    return filas.slice().sort(function (a, b) {
-      if (b.puntaje !== a.puntaje) return b.puntaje - a.puntaje;
-      if (a.segundos !== b.segundos) return a.segundos - b.segundos;
-      return String(a.creado || "").localeCompare(String(b.creado || ""));
-    });
+  function esPlaceholder(t) {
+    return /^Vecino [0-9a-f]{4}$/i.test(limpiar(t));
   }
 
   function nube() {
     var c = (window.GR && GR.comunidad) || {};
     var url = String(c.supabaseUrl || "").replace(/\/$/, "");
     var key = String(c.supabaseAnonKey || "").trim();
-    if (!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)) return null;
-    if (!key || /tu_clave|placeholder|ejemplo/i.test(key)) return null;
-    if (!/^sb_publishable_[A-Za-z0-9_-]+$/.test(key) && !/^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(key)) return null;
+    var oficial = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url);
+    var local = /^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(url);
+    if (!oficial && !local) return null;
+    if (!key) return null;
+    if (oficial && !/^sb_publishable_[A-Za-z0-9_-]+$/.test(key) && !/^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(key)) return null;
     return { url: url, key: key };
+  }
+
+  function tokenDeSesion() {
+    if (window.GRAuth && typeof GRAuth.token === "function") return GRAuth.token();
+    return Promise.resolve("");
   }
 
   function pedir(path, opts) {
     var cfg = nube();
     if (!cfg) return Promise.resolve({ ok: false, status: 0, data: null, red: true });
-    var headers = {
-      apikey: cfg.key,
-      Authorization: "Bearer " + cfg.key,
-      Accept: "application/json"
-    };
-    if (opts && opts.body) headers["Content-Type"] = "application/json";
-    return fetch(cfg.url + path, {
-      method: (opts && opts.method) || "GET",
-      headers: headers,
-      body: opts && opts.body ? JSON.stringify(opts.body) : undefined
-    }).then(function (r) {
-      return r.text().then(function (t) {
-        var data = null;
-        if (t) {
-          try { data = JSON.parse(t); } catch (e) { data = null; }
-        }
-        return { ok: r.ok, status: r.status, data: data };
+    function enviar(token) {
+      var headers = {
+        apikey: cfg.key,
+        Authorization: "Bearer " + (token || cfg.key),
+        Accept: "application/json"
+      };
+      if (opts && opts.body) headers["Content-Type"] = "application/json";
+      return fetch(cfg.url + path, {
+        method: (opts && opts.method) || "GET",
+        headers: headers,
+        body: opts && opts.body ? JSON.stringify(opts.body) : undefined
+      }).then(function (r) {
+        return r.text().then(function (t) {
+          var data = null;
+          if (t) {
+            try { data = JSON.parse(t); } catch (e) { data = null; }
+          }
+          return { ok: r.ok, status: r.status, data: data };
+        });
+      }).catch(function () {
+        return { ok: false, status: 0, data: null, red: true };
       });
-    }).catch(function () {
-      return { ok: false, status: 0, data: null, red: true };
-    });
+    }
+    if (opts && opts.auth) return tokenDeSesion().then(enviar);
+    return enviar("");
   }
 
   function textoError(res) {
-    if (!res || !res.data) return "";
-    return String(res.data.message || res.data.error_description || res.data.hint || "");
+    if (!res) return "No se pudo conectar. Inténtalo más tarde.";
+    if (res.red) return "No se pudo conectar. Inténtalo más tarde.";
+    if (res.status === 404 || (res.data && (res.data.code === "PGRST202" || res.data.code === "PGRST205"))) {
+      return "El concurso no está disponible. Inténtalo más tarde.";
+    }
+    var msg = res.data && (res.data.message || res.data.error_description || res.data.hint);
+    if (msg) return String(msg);
+    return "No se pudo completar. Inténtalo más tarde.";
   }
 
-  function sinTabla(res) {
-    if (!res || res.red) return false;
-    if (res.status === 404) return true;
-    var code = res.data && res.data.code;
-    var msg = textoError(res);
-    return code === "PGRST205" || code === "PGRST202" || /schema cache|does not exist|Could not find/i.test(msg);
+  function partesMadrid(ms) {
+    var o = {};
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Madrid",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(new Date(ms)).forEach(function (p) { o[p.type] = p.value; });
+    return o;
   }
 
-  function textoModo() {
-    if (estadoNube === "limite") return "Hoy ya hay varias marcas con ese apodo. Esta quedó en este navegador.";
-    if (estadoNube === "general") return "Ranking de quienes jugaron. Se ve el apodo y, si lo indicaron, el país.";
-    if (estadoNube === "red") return "No se pudo leer el ranking general. Ves las mejores marcas de este navegador.";
-    return "Por ahora el ranking general no está publicado. Ves las mejores marcas de este navegador.";
+  function desfaseMadrid(ms) {
+    var q = partesMadrid(ms);
+    var comoUtc = Date.UTC(+q.year, +q.month - 1, +q.day, +q.hour, +q.minute, +q.second);
+    return comoUtc - ms;
+  }
+
+  function proximoMes(ahora) {
+    var p = partesMadrid(ahora);
+    var y = +p.year;
+    var m = +p.month;
+    var ny = m === 12 ? y + 1 : y;
+    var nm = m === 12 ? 1 : m + 1;
+    var guess = Date.UTC(ny, nm - 1, 1, 0, 0, 0);
+    var t = guess - desfaseMadrid(guess);
+    return guess - desfaseMadrid(t);
+  }
+
+  function textoCuenta(ms) {
+    var falta = Math.max(0, ms - Date.now());
+    var dias = Math.floor(falta / 86400000);
+    var horas = Math.floor((falta % 86400000) / 3600000);
+    var min = Math.floor((falta % 3600000) / 60000);
+    if (dias > 0) return "El ranking vuelve a cero en " + dias + " d " + horas + " h " + min + " min.";
+    if (horas > 0) return "El ranking vuelve a cero en " + horas + " h " + min + " min.";
+    return "El ranking vuelve a cero en " + min + " min.";
+  }
+
+  function pintarPremio(iso) {
+    var premio = document.getElementById("concurso-premio");
+    var cuenta = document.getElementById("concurso-cuenta");
+    if (premio) premio.textContent = "Premio de este mes: " + euros() + " €";
+    if (iso) {
+      var t = Date.parse(iso);
+      if (!isNaN(t)) reinicioMs = t;
+    }
+    if (!reinicioMs) reinicioMs = proximoMes(Date.now());
+    if (cuenta) cuenta.textContent = textoCuenta(reinicioMs);
+  }
+
+  function arrancarCuenta() {
+    pintarPremio();
+    if (cuentaId) clearInterval(cuentaId);
+    cuentaId = setInterval(function () { pintarPremio(); }, 30000);
+  }
+
+  function formatoSeg(n) {
+    var v = Number(n);
+    if (!isFinite(v)) v = 0;
+    return v.toLocaleString("es", { minimumFractionDigits: 0, maximumFractionDigits: 1 }) + " s";
   }
 
   function pintarRanking(filas) {
-    if (modo && !modo.hidden) modo.textContent = textoModo();
-    else if (modo) modo.textContent = textoModo();
     if (!lista) return;
     lista.textContent = "";
-    var top = ordenar(filas.filter(function (f) { return f && f.puntaje > 0; })).slice(0, 20);
+    var top = (filas || []).filter(function (f) { return f && Number(f.aciertos) > 0; }).slice(0, 20);
     if (!top.length) {
       var vacio = document.createElement("p");
-      vacio.textContent = "Todavía no hay marcas. Juega una ronda para abrir la lista.";
+      vacio.textContent = publicada && abierta
+        ? "Todavía no hay marcas este mes."
+        : "El concurso todavía no está abierto.";
       lista.appendChild(vacio);
       return;
     }
     var ol = document.createElement("ol");
     top.forEach(function (f, i) {
       var li = document.createElement("li");
-      if (fase === "fin" && apodo && f.apodo === apodo && f.puntaje === puntaje && f.segundos === segundos) {
+      if (fase === "fin" && apodo && f.apodo === apodo && Number(f.aciertos) === aciertos) {
         li.className = "concurso-yo";
       }
       var pos = document.createElement("span");
@@ -243,11 +263,11 @@
       pos.textContent = String(i + 1);
       var caja = document.createElement("div");
       var nom = document.createElement("p");
-      nom.textContent = f.apodo;
+      nom.textContent = escTexto(f.apodo);
       var det = document.createElement("p");
       det.className = "fine";
       var paisTxt = f.pais && NOMBRE[f.pais] ? NOMBRE[f.pais] + " · " : "";
-      det.textContent = paisTxt + f.puntaje + " puntos · " + f.aciertos + " de 10";
+      det.textContent = paisTxt + f.aciertos + " de 10 · " + formatoSeg(f.segundos);
       caja.appendChild(nom);
       caja.appendChild(det);
       li.appendChild(pos);
@@ -257,51 +277,148 @@
     lista.appendChild(ol);
   }
 
-  function mostrarLocal() {
-    pintarRanking(leerLocal());
+  function pintarGanadores(filas) {
+    if (!ganadoresBox) return;
+    ganadoresBox.textContent = "";
+    var rows = filas || [];
+    if (!rows.length) {
+      var vacio = document.createElement("p");
+      vacio.textContent = "Cuando cierre un mes, aquí queda el apodo del ganador.";
+      ganadoresBox.appendChild(vacio);
+      return;
+    }
+    var ol = document.createElement("ol");
+    rows.forEach(function (f) {
+      var li = document.createElement("li");
+      var pos = document.createElement("span");
+      pos.className = "concurso-pos";
+      pos.textContent = escTexto(f.periodo);
+      var nom = document.createElement("p");
+      nom.textContent = escTexto(f.apodo);
+      li.appendChild(pos);
+      li.appendChild(nom);
+      ol.appendChild(li);
+    });
+    ganadoresBox.appendChild(ol);
   }
 
-  function asegurar() {
-    if (sonda) return sonda;
-    var publicado = window.GR && GR.comunidad && GR.comunidad.concursoPublicado === true;
-    if (!publicado) {
-      estadoNube = "local";
-      mostrarLocal();
-      sonda = Promise.resolve("no");
-      return sonda;
+  function pintarReclamo(mi) {
+    if (!reclamo) return;
+    var txt = document.getElementById("reclamo-txt");
+    if (!mi || !mi.periodo || (mi.estado !== "pendiente" && mi.estado !== "reclamado")) {
+      reclamo.hidden = true;
+      return;
     }
-    var cfg = nube();
-    if (!cfg) {
-      estadoNube = "red";
-      mostrarLocal();
-      sonda = Promise.resolve("red");
-      return sonda;
+    reclamo.hidden = false;
+    if (txt) {
+      txt.textContent = mi.estado === "reclamado"
+        ? "Ya recibimos tus datos de " + mi.periodo + ". Te escribimos para confirmar el pago de " + euros() + " €."
+        : "Ganaste los " + euros() + " € de " + mi.periodo + ". Elige PayPal o Bizum. No se publica.";
     }
-    sonda = pedir("/rest/v1/concurso_partidas?select=apodo,pais,puntaje,aciertos,segundos,creado&order=puntaje.desc,segundos.asc&limit=20").then(function (res) {
-      if (sinTabla(res)) {
-        estadoNube = "local";
-        mostrarLocal();
-        return "no";
+    var formPago = document.getElementById("reclamo-form");
+    if (formPago) formPago.hidden = mi.estado !== "pendiente";
+  }
+
+  function textoModo() {
+    if (!publicada) return "El concurso todavía no está abierto.";
+    if (!abierta) return "El concurso no está disponible. Inténtalo más tarde.";
+    return "Ranking de este mes. Gana quien más acierta; si empatan, el menor tiempo del servidor.";
+  }
+
+  function aplicarEstado(data) {
+    abierta = !!(data && data.abierto);
+    if (data && data.premio_euros) {
+      if (window.GR && GR.comunidad) GR.comunidad.premioEuros = Number(data.premio_euros) || 20;
+    }
+    pintarPremio(data && data.reinicio);
+    pintarRanking(data && data.ranking);
+    pintarGanadores(data && data.ganadores);
+    pintarReclamo(data && data.mi_premio);
+    if (modo) modo.textContent = textoModo();
+  }
+
+  function cargarEstado() {
+    if (!publicada) {
+      abierta = false;
+      pintarPremio();
+      pintarRanking([]);
+      pintarGanadores([]);
+      pintarReclamo(null);
+      if (modo) modo.textContent = textoModo();
+      return Promise.resolve();
+    }
+    return pedir("/rest/v1/rpc/concurso_estado", { method: "POST", body: {}, auth: true }).then(function (res) {
+      if (!res.ok || !res.data) {
+        abierta = false;
+        if (modo) modo.textContent = textoError(res);
+        pintarRanking([]);
+        return;
       }
-      if (!res.ok || !Array.isArray(res.data)) {
-        estadoNube = "red";
-        mostrarLocal();
-        return "red";
-      }
-      estadoNube = "general";
-      pintarRanking(res.data.map(function (f) {
-        return {
-          apodo: f.apodo,
-          pais: f.pais || "",
-          puntaje: f.puntaje,
-          aciertos: f.aciertos,
-          segundos: f.segundos,
-          creado: f.creado
-        };
-      }));
-      return "si";
+      aplicarEstado(res.data);
     });
-    return sonda;
+  }
+
+  function usuario() {
+    try {
+      return window.GRAuth && typeof GRAuth.usuario === "function" ? GRAuth.usuario() : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function pintarIdentidad() {
+    var u = usuario();
+    var sel = document.getElementById("concurso-pais");
+    if (!publicada) {
+      if (quien) quien.textContent = "El concurso todavía no está abierto.";
+      if (nota) nota.hidden = true;
+      if (boton) boton.textContent = "Empezar";
+      if (sel) sel.disabled = true;
+      return;
+    }
+    if (!u) {
+      apodo = "";
+      esVecino = false;
+      if (quien) quien.textContent = "Para jugar hace falta la cuenta gratis del sitio. El ranking usa el apodo de esa cuenta.";
+      if (nota) nota.hidden = true;
+      if (boton) boton.textContent = "Entrar para jugar";
+      if (sel) sel.disabled = true;
+      return;
+    }
+    if (sel) sel.disabled = false;
+    pedir("/rest/v1/perfiles?id=eq." + encodeURIComponent(u.id) + "&select=nombre", { auth: true }).then(function (res) {
+      var fila = res.ok && Array.isArray(res.data) ? res.data[0] : null;
+      apodo = fila && fila.nombre ? limpiar(fila.nombre) : "";
+      esVecino = !apodo || esPlaceholder(apodo);
+      if (quien) {
+        quien.textContent = apodo
+          ? "Juegas como " + apodo + "."
+          : "No pudimos leer el apodo de tu cuenta.";
+      }
+      if (nota) {
+        nota.hidden = false;
+        nota.textContent = "";
+        nota.appendChild(document.createTextNode(
+          esVecino
+            ? "Elige un apodo antes de jugar. "
+            : "Para cambiar el apodo, entra en "
+        ));
+        var a = document.createElement("a");
+        a.href = root + "cuenta.html";
+        a.textContent = "Mi cuenta";
+        nota.appendChild(a);
+        nota.appendChild(document.createTextNode("."));
+      }
+      if (boton) boton.textContent = esVecino ? "Elegir apodo" : "Empezar";
+    });
+  }
+
+  function alinear(el) {
+    if (!el || !el.getBoundingClientRect) return;
+    var head = document.querySelector("header.top");
+    var alto = head ? head.getBoundingClientRect().height : 140;
+    var y = el.getBoundingClientRect().top + window.scrollY - alto - 18;
+    window.scrollTo(0, Math.max(0, y));
   }
 
   function pantalla(id) {
@@ -311,6 +428,10 @@
     juego.hidden = id !== "juego";
     fin.hidden = id !== "fin";
     if (ranking) ranking.hidden = id === "juego";
+    var g = document.getElementById("concurso-ganadores");
+    var b = document.getElementById("concurso-bases");
+    if (g) g.hidden = id === "juego";
+    if (b) b.hidden = id === "juego";
     fase = id;
   }
 
@@ -348,12 +469,7 @@
     }
   }
 
-  function preguntaActual() {
-    return ronda[indice];
-  }
-
-  function pintarPregunta() {
-    var q = preguntaActual();
+  function pintarPregunta(q, n) {
     var titulo = document.getElementById("preg-titulo");
     var paso = document.getElementById("paso-txt");
     var tema = document.getElementById("preg-tema");
@@ -362,17 +478,18 @@
     var exp = document.getElementById("preg-exp");
     var fuente = document.getElementById("preg-fuente");
     var next = document.getElementById("preg-siguiente");
-    if (paso) paso.textContent = "Pregunta " + (indice + 1) + " de " + ronda.length;
-    if (tema) tema.textContent = q.tema;
-    if (titulo) titulo.textContent = q.pregunta;
+    indice = n;
+    if (paso) paso.textContent = "Pregunta " + n + " de " + total;
+    if (tema) tema.textContent = q.tema || "";
+    if (titulo) titulo.textContent = q.pregunta || "";
     if (ops) {
       ops.textContent = "";
-      q.ops.forEach(function (op, i) {
+      (q.opciones || []).forEach(function (op, i) {
         var b = document.createElement("button");
-      b.type = "button";
-      b.className = "btn sec concurso-opcion";
-      b.disabled = true;
-      b.textContent = op.t;
+        b.type = "button";
+        b.className = "btn sec concurso-opcion";
+        b.disabled = true;
+        b.textContent = String(op);
         b.addEventListener("click", function () { responder(i); });
         ops.appendChild(b);
       });
@@ -386,8 +503,9 @@
     if (fuente) { fuente.hidden = true; fuente.textContent = ""; }
     if (next) next.hidden = true;
     relojListo = false;
+    cortada = false;
     pararReloj();
-    if (juego && juego.scrollIntoView) juego.scrollIntoView({ block: "start" });
+    alinear(paso || juego);
     if (titulo) {
       titulo.tabIndex = -1;
       titulo.focus({ preventScroll: true });
@@ -402,8 +520,6 @@
 
   function arrancarReloj() {
     if (fase !== "juego" || cortada) return;
-    var q = preguntaActual();
-    if (!q || q.cerrada) return;
     relojListo = true;
     avisoSeg = 0;
     endsAt = performance.now() + LIMITE_MS;
@@ -424,85 +540,64 @@
     }, 200);
   }
 
-  function marcarOpcion(boton, buena, texto) {
-    boton.classList.add(buena ? "is-ok" : "is-bad");
-    boton.appendChild(document.createTextNode(" "));
+  function marcarOpcion(botonEl, buena, texto) {
+    botonEl.classList.add(buena ? "is-ok" : "is-bad");
+    botonEl.appendChild(document.createTextNode(" "));
     var marca = document.createElement("span");
     marca.className = "concurso-mark";
     marca.textContent = texto;
-    boton.appendChild(marca);
+    botonEl.appendChild(marca);
   }
 
-  function mostrarCierre(i, ok, puntosTxt, explicacion, fuenteTxt, indiceCorrecto) {
+  function textoCierre(r) {
+    if (r.timeout) return "Se acabó el tiempo. Incorrecto.";
+    if (r.muy_rapido && r.acertada) return "Correcto, pero hace falta al menos 1 segundo para que cuente.";
+    if (!r.ok) return "Incorrecto.";
+    return "Correcto. Llevas " + r.aciertos + " de 10.";
+  }
+
+  function mostrarCierre(elegida, r) {
     var fb = document.getElementById("preg-fb");
     var exp = document.getElementById("preg-exp");
     var fuente = document.getElementById("preg-fuente");
     var next = document.getElementById("preg-siguiente");
     var botones = document.querySelectorAll("#preg-ops .concurso-opcion");
+    var frase = textoCierre(r);
     botones.forEach(function (b, k) {
       b.disabled = true;
-      if (k === indiceCorrecto) marcarOpcion(b, true, "Correcta");
-      else if (k === i) marcarOpcion(b, false, "Incorrecta");
+      if (k === r.indice_correcto) marcarOpcion(b, true, "Correcta");
+      else if (k === elegida) marcarOpcion(b, false, "Incorrecta");
     });
     if (fb) {
       fb.hidden = false;
       fb.classList.remove("is-ok", "is-bad");
-      fb.classList.add(ok ? "is-ok" : "is-bad");
-      fb.textContent = puntosTxt;
+      fb.classList.add(r.ok ? "is-ok" : "is-bad");
+      fb.textContent = frase;
     }
     if (exp) {
       exp.hidden = false;
-      exp.textContent = explicacion || "";
+      exp.textContent = r.explicacion || "";
     }
-    if (fuente && fuenteTxt) {
+    if (fuente && r.fuente) {
       fuente.hidden = false;
-      fuente.textContent = "Fuente: " + fuenteTxt;
+      fuente.textContent = "Fuente: " + r.fuente;
     }
-    if (next && !cortada) {
+    if (next) {
       next.hidden = false;
-      next.textContent = indice + 1 >= ronda.length ? "Ver resultado" : "Siguiente pregunta";
+      next.textContent = r.acabada ? "Ver resultado" : "Siguiente pregunta";
       next.focus();
     }
-    decir(puntosTxt + " " + (explicacion || ""));
-  }
-
-  function textoPuntos(i, ok, muyRapido, p) {
-    if (i < 0) return "Se acabó el tiempo. Incorrecto. Sumas 0.";
-    if (muyRapido) return "Correcto, pero hace falta al menos 1 segundo para sumar. Sumas 0.";
-    if (!ok) return "Incorrecto. Sumas 0.";
-    var extra = p.rapido ? " y " + p.rapido + " por rapidez" : "";
-    return "Correcto. Sumas " + p.puntos + " puntos (" + p.base + " del acierto" + extra + ").";
+    aciertos = Number(r.aciertos) || 0;
+    segundos = Number(r.segundos) || 0;
+    decir(frase);
   }
 
   function responder(i) {
-    if (fase !== "juego" || cortada) return;
-    var q = preguntaActual();
-    if (!q || q.cerrada || !relojListo) return;
+    if (fase !== "juego" || cortada || !relojListo || !partidaId) return;
     if (i >= 0 && quedaMs() <= 0) i = -1;
-    q.cerrada = true;
     relojListo = false;
     pararReloj();
     bloquearOpciones();
-    if (enServidor) {
-      responderServidor(i);
-      return;
-    }
-    var usado = i < 0 ? LIMITE_MS : Math.min(LIMITE_MS, Math.max(0, Math.round(LIMITE_MS - quedaMs())));
-    var elegida = i >= 0 && q.ops[i] && q.ops[i].ok;
-    var muyRapido = elegida && usado < 1000;
-    var suma = elegida && !muyRapido;
-    var p = suma ? puntosDe(true, usado) : { puntos: 0, base: 0, rapido: 0 };
-    var segUsado = i < 0 ? 30 : Math.max(1, Math.min(30, Math.ceil(usado / 1000)));
-    if (suma) aciertos += 1;
-    puntaje += p.puntos;
-    bonus += p.rapido || 0;
-    segundos += segUsado;
-    var bueno = -1;
-    q.ops.forEach(function (op, k) { if (op.ok) bueno = k; });
-    mostrarCierre(i, elegida, textoPuntos(i, suma, muyRapido, p), q.explicacion, q.fuente, bueno);
-  }
-
-  function responderServidor(i) {
     var fb = document.getElementById("preg-fb");
     if (fb) {
       fb.hidden = false;
@@ -511,277 +606,110 @@
     }
     pedir("/rest/v1/rpc/concurso_responder", {
       method: "POST",
+      auth: true,
       body: { p_partida: partidaId, p_opcion: i }
     }).then(function (res) {
-      if (!res.ok || !res.data) {
-        cortarPartida("No se pudo calificar esta pregunta. Recarga la página e inténtalo de nuevo.");
+      if (!res.ok || !res.data || res.data.explicacion == null) {
+        cortada = true;
+        if (error) error.textContent = textoError(res);
+        if (fb) {
+          fb.classList.add("is-bad");
+          fb.textContent = textoError(res);
+        }
         return;
       }
-      var r = res.data;
-      var suma = !!r.ok;
-      var muyRapido = !!r.muy_rapido && !!r.acertada;
-      var acertada = !!r.acertada && !r.timeout;
-      var elegido = r.timeout ? -1 : i;
-      var bueno = (r.indice_correcto === null || r.indice_correcto === undefined) ? -1 : Number(r.indice_correcto);
-      puntaje = Number(r.puntaje) || 0;
-      aciertos = Number(r.aciertos) || 0;
-      segundos = Number(r.segundos) || 0;
-      bonus += Number(r.rapido) || 0;
-      var q = preguntaActual();
-      if (q) {
-        q.explicacion = r.explicacion || "";
-        q.fuente = r.fuente || "";
-      }
-      mostrarCierre(
-        elegido,
-        acertada,
-        textoPuntos(elegido, suma, muyRapido, { puntos: r.puntos, base: r.base, rapido: r.rapido }),
-        r.explicacion,
-        r.fuente,
-        bueno
-      );
+      mostrarCierre(i, res.data);
     });
   }
 
-  function cortarPartida(mensaje) {
-    cortada = true;
-    enServidor = false;
-    pararReloj();
-    relojListo = false;
-    bloquearOpciones();
-    var fb = document.getElementById("preg-fb");
-    if (fb) {
-      fb.hidden = false;
-      fb.classList.remove("is-ok");
-      fb.classList.add("is-bad");
-      fb.textContent = mensaje;
-    }
-    var next = document.getElementById("preg-siguiente");
-    if (next) {
-      next.hidden = false;
-      next.textContent = "Volver al inicio";
-    }
-  }
-
-  function filaResultado() {
-    return {
-      apodo: apodo,
-      pais: pais || "",
-      puntaje: puntaje,
-      aciertos: aciertos,
-      segundos: segundos,
-      creado: new Date().toISOString()
-    };
-  }
-
-  function publicar(fila) {
-    if (publicada) return;
-    publicada = true;
-    guardarLocal(fila);
-    if (!enServidor) {
-      mostrarLocal();
-      return;
-    }
-    sonda = null;
-    estadoNube = "general";
-    asegurar();
-  }
-
-  function pintarFin() {
+  function mostrarResultado() {
     pantalla("fin");
-    var h = document.getElementById("fin-titulo");
-    var pts = document.getElementById("fin-puntos");
-    var det = document.getElementById("fin-detalle");
+    var puntos = document.getElementById("fin-puntos");
+    var detalle = document.getElementById("fin-detalle");
     var wa = document.getElementById("fin-wa");
-    if (pts) pts.textContent = String(puntaje);
-    if (det) {
-      det.textContent = aciertos + " de " + ronda.length + " aciertos. Bonus por rapidez: " + bonus + ". Tiempo usado: " + segundos + " s. Jugaste como " + apodo + ".";
+    var titulo = document.getElementById("fin-titulo");
+    if (titulo) titulo.textContent = "Tu marca";
+    if (puntos) puntos.textContent = aciertos + " de 10";
+    if (detalle) {
+      detalle.textContent = "Tiempo del servidor: " + formatoSeg(segundos) + ". El premio del mes lo gana quien más acierta; si empatan, el menor tiempo.";
     }
     if (wa) {
-      var sitio = (window.GR && GR.siteUrl ? GR.siteUrl : "https://granjarentable.com").replace(/\/$/, "");
-      var texto = "En el concurso de avicultura de Granja Rentable hice " + aciertos + " de " + ronda.length + " y " + puntaje + " puntos. ¿Lo superas? " + sitio + "/concurso.html";
+      var texto = "Jugué el concurso de Granja Rentable: " + aciertos + " de 10 en " + formatoSeg(segundos) + ".";
       wa.href = "https://wa.me/?text=" + encodeURIComponent(texto);
     }
-    publicar(filaResultado());
-    if (h) {
-      h.tabIndex = -1;
-      h.focus();
-    }
+    cargarEstado();
+    alinear(document.getElementById("fin-titulo") || fin);
   }
 
-  function reiniciarMarcador() {
-    indice = 0;
-    aciertos = 0;
-    puntaje = 0;
-    bonus = 0;
-    segundos = 0;
-    publicada = false;
-    cortada = false;
-    relojListo = false;
-  }
-
-  function armarRonda() {
-    var copia = banco.map(function (q) {
-      return {
-        tema: q.tema,
-        pregunta: q.pregunta,
-        explicacion: q.explicacion,
-        fuente: q.fuente,
-        ops: q.opciones.map(function (t, i) { return { t: t, ok: i === q.correcta }; })
-      };
-    });
-    ronda = barajar(copia).slice(0, RONDA).map(function (q) {
-      q.ops = barajar(q.ops);
-      q.cerrada = false;
-      return q;
-    });
-    reiniciarMarcador();
-    enServidor = false;
-    partidaId = null;
-  }
-
-  function empezarLocal() {
-    if (!banco.length) {
-      if (error) error.textContent = "Todavía no cargan las preguntas. Revisa la conexión.";
-      return;
-    }
-    armarRonda();
-    pantalla("juego");
-    pintarPregunta();
-    arrancarReloj();
-  }
-
-  function preguntasServidor(lista) {
-    return lista.map(function (q) {
-      var ops = Array.isArray(q.opciones) ? q.opciones : [];
-      return {
-        tema: q.tema || "",
-        pregunta: q.pregunta || "",
-        explicacion: "",
-        fuente: "",
-        ops: ops.map(function (t) { return { t: typeof t === "string" ? t : String(t) }; }),
-        cerrada: false
-      };
-    });
-  }
-
-  function empezarServidor() {
-    return pedir("/rest/v1/rpc/concurso_empezar", {
+  function abrirSiguiente() {
+    pedir("/rest/v1/rpc/concurso_abrir", {
       method: "POST",
-      body: { p_apodo: apodo, p_pais: pais }
+      auth: true,
+      body: { p_partida: partidaId }
     }).then(function (res) {
-      var msg = textoError(res);
-      if (sinTabla(res) || res.red) {
-        estadoNube = res.red ? "red" : "local";
-        if (error) error.textContent = "";
-        empezarLocal();
+      if (!res.ok || !res.data || !res.data.pregunta) {
+        cortada = true;
+        pantalla("inicio");
+        if (error) error.textContent = textoError(res);
         return;
       }
-      if (!res.ok) {
-        if (/apodo no permitido|pais no permitido/i.test(msg)) {
-          if (error) error.textContent = "Ese apodo no se puede usar. Elige otro, sin insultos.";
-          return;
-        }
-        if (/limite de envios/i.test(msg)) {
-          estadoNube = "limite";
-          if (error) error.textContent = "";
-          empezarLocal();
-          return;
-        }
-        if (error) error.textContent = "No se pudo abrir la partida. Inténtalo otra vez.";
-        return;
-      }
-      var data = res.data || {};
-      var qs = data.preguntas;
-      if (!data.partida || !Array.isArray(qs) || qs.length < RONDA) {
-        if (error) error.textContent = "No se pudo abrir la partida. Inténtalo otra vez.";
-        return;
-      }
-      enServidor = true;
-      partidaId = data.partida;
-      ronda = preguntasServidor(qs);
-      reiniciarMarcador();
-      enServidor = true;
-      pantalla("juego");
-      pintarPregunta();
+      pintarPregunta(res.data.pregunta, Number(res.data.indice) || indice + 1);
       arrancarReloj();
     });
   }
 
   function empezar(ev) {
-    if (ev) ev.preventDefault();
-    aplicarApodoCuenta();
-    var campo = document.getElementById("concurso-apodo");
-    var sel = document.getElementById("concurso-pais");
-    var msg = apodoValido(campo ? campo.value : "");
-    if (msg) {
-      if (error) error.textContent = msg;
-      if (campo) campo.focus();
-      return;
-    }
+    ev.preventDefault();
     if (error) error.textContent = "";
-    apodo = String(campo.value || "").replace(/\s+/g, " ").trim();
-    pais = sel && sel.value ? sel.value : "";
-    var publicado = window.GR && GR.comunidad && GR.comunidad.concursoPublicado === true && nube();
-    var btn = form.querySelector("[type=submit]");
-    if (btn) btn.disabled = true;
-    var hecho = publicado ? empezarServidor() : Promise.resolve(empezarLocal());
-    Promise.resolve(hecho).then(function () {
-      if (btn) btn.disabled = false;
-    }, function () {
-      if (btn) btn.disabled = false;
-      if (error) error.textContent = "No se pudo abrir la partida. Inténtalo otra vez.";
-    });
-  }
-
-  function siguiente() {
-    if (cortada) {
-      otra();
+    if (!publicada) {
+      if (error) error.textContent = "El concurso todavía no está abierto.";
       return;
     }
-    if (indice + 1 >= ronda.length) {
-      pintarFin();
+    var u = usuario();
+    if (!u) {
+      if (window.GRAuth && typeof GRAuth.abrir === "function") GRAuth.abrir("entrar");
       return;
     }
-    indice += 1;
-    if (!enServidor) {
-      pintarPregunta();
-      arrancarReloj();
+    if (esVecino || esPlaceholder(apodo) || !apodoPermitido(apodo)) {
+      if (window.GRAuth && typeof GRAuth.abrir === "function") GRAuth.abrir("apodo");
+      if (error) error.textContent = "Elige un apodo en Mi cuenta antes de jugar.";
       return;
     }
-    pintarPregunta();
-    pedir("/rest/v1/rpc/concurso_abrir", {
+    if (!abierta) {
+      if (error) error.textContent = "El concurso no está disponible. Inténtalo más tarde.";
+      return;
+    }
+    var sel = document.getElementById("concurso-pais");
+    var pais = sel ? sel.value : "";
+    if (boton) boton.disabled = true;
+    pedir("/rest/v1/rpc/concurso_empezar", {
       method: "POST",
-      body: { p_partida: partidaId }
+      auth: true,
+      body: { p_pais: pais }
     }).then(function (res) {
-      if (!res.ok) {
-        cortarPartida("No se pudo abrir la siguiente pregunta. Recarga la página e inténtalo de nuevo.");
+      if (boton) boton.disabled = false;
+      if (!res.ok || !res.data || !res.data.pregunta || !res.data.partida) {
+        if (error) error.textContent = textoError(res);
         return;
       }
+      partidaId = res.data.partida;
+      total = Number(res.data.total) || 10;
+      aciertos = 0;
+      segundos = 0;
+      cortada = false;
+      if (res.data.premio_euros && window.GR && GR.comunidad) {
+        GR.comunidad.premioEuros = Number(res.data.premio_euros) || 20;
+      }
+      pintarPremio(res.data.reinicio);
+      pantalla("juego");
+      pintarPregunta(res.data.pregunta, Number(res.data.indice) || 1);
       arrancarReloj();
     });
   }
 
-  function otra() {
-    publicada = false;
-    puntaje = 0;
-    segundos = 0;
-    aciertos = 0;
-    pantalla("inicio");
-    var campo = document.getElementById("concurso-apodo");
-    if (campo) {
-      campo.value = apodo;
-      campo.focus();
-    }
-    if (estadoNube === "general") {
-      sonda = null;
-      asegurar();
-    } else mostrarLocal();
-  }
-
-  function llenarPaises() {
+  function prepararPais() {
     var sel = document.getElementById("concurso-pais");
-    if (!sel) return;
+    if (!sel || sel.options.length) return;
     PAISES.forEach(function (p) {
       var o = document.createElement("option");
       o.value = p[0];
@@ -791,40 +719,75 @@
     sel.value = "";
   }
 
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden || fase !== "juego" || cortada || !relojListo) return;
-    var q = preguntaActual();
-    if (!q || q.cerrada) return;
-    if (quedaMs() <= 0) {
-      bloquearOpciones();
-      responder(-1);
-    }
-  });
+  publicada = !!(window.GR && GR.comunidad && GR.comunidad.concursoPublicado === true);
+  prepararPais();
+  arrancarCuenta();
+  pantalla("inicio");
+  pintarIdentidad();
+  cargarEstado();
 
-  document.getElementById("preg-siguiente").addEventListener("click", siguiente);
-  document.getElementById("fin-otra").addEventListener("click", otra);
   form.addEventListener("submit", empezar);
-  form.classList.add("concurso-form");
-  llenarPaises();
-  aplicarApodoCuenta();
-  window.addEventListener("gr-auth", aplicarApodoCuenta);
-  mostrarLocal();
-  asegurar();
-
-  fetch(root + "data/concurso.json", { credentials: "omit" }).then(function (r) {
-    if (!r.ok) throw new Error("preguntas");
-    return r.json();
-  }).then(function (data) {
-    var qs = data && data.preguntas;
-    if (!Array.isArray(qs) || qs.length < 40) throw new Error("banco");
-    qs.forEach(function (q) {
-      if (!q || !q.pregunta || !Array.isArray(q.opciones) || q.opciones.length !== 4) throw new Error("forma");
-      if (q.correcta < 0 || q.correcta > 3) throw new Error("forma");
+  var siguiente = document.getElementById("preg-siguiente");
+  if (siguiente) {
+    siguiente.addEventListener("click", function () {
+      if (siguiente.textContent.indexOf("resultado") >= 0) {
+        mostrarResultado();
+        return;
+      }
+      abrirSiguiente();
     });
-    banco = qs;
-  }).catch(function () {
-    if (error) error.textContent = "No se pudieron cargar las preguntas. Recarga la página.";
-    var btn = form.querySelector("[type=submit]");
-    if (btn) btn.disabled = true;
+  }
+  var otra = document.getElementById("fin-otra");
+  if (otra) {
+    otra.addEventListener("click", function () {
+      partidaId = null;
+      pantalla("inicio");
+      pintarIdentidad();
+      cargarEstado();
+    });
+  }
+  var formPago = document.getElementById("reclamo-form");
+  if (formPago) {
+    formPago.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var err = document.getElementById("reclamo-error");
+      var metodo = document.getElementById("reclamo-metodo");
+      var dato = document.getElementById("reclamo-dato");
+      if (err) err.textContent = "";
+      pedir("/rest/v1/rpc/concurso_estado", { method: "POST", body: {}, auth: true }).then(function (estado) {
+        var mi = estado.ok && estado.data && estado.data.mi_premio;
+        if (!mi || mi.estado !== "pendiente") {
+          if (err) err.textContent = "No hay un premio pendiente a tu nombre.";
+          return null;
+        }
+        return pedir("/rest/v1/rpc/concurso_reclamar", {
+          method: "POST",
+          auth: true,
+          body: {
+            p_periodo: mi.periodo,
+            p_metodo: metodo ? metodo.value : "",
+            p_dato: dato ? dato.value : ""
+          }
+        });
+      }).then(function (res) {
+        if (!res) return;
+        if (!res.ok) {
+          if (err) err.textContent = textoError(res);
+          return;
+        }
+        if (dato) dato.value = "";
+        cargarEstado();
+      });
+    });
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState !== "visible") return;
+    if (fase === "juego" && relojListo && quedaMs() <= 0) responder(-1);
+  });
+  window.addEventListener("gr-auth", function () {
+    if (fase === "inicio") {
+      pintarIdentidad();
+      cargarEstado();
+    }
   });
 })();

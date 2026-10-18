@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Concurso de avicultura | Granja Rentable</title>
-<meta name="description" content="Concurso de avicultura: 10 preguntas al azar, cuatro opciones y 30 segundos. Engorde, ponedoras, incubación, salud y manejo. Ranking por apodo.">
+<meta name="description" content="Concurso de avicultura: 10 preguntas, 30 segundos y 20 € al primero de cada mes. Hace falta una cuenta gratis. Sin obligación de compra.">
 <link rel="canonical" href="https://granjarentable.com/concurso.html">
 <meta property="og:url" content="https://granjarentable.com/concurso.html">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Concurso de avicultura | Granja Rentable">
-<meta property="og:description" content="10 preguntas al azar, 30 segundos y ranking por apodo. Sin correo.">
+<meta property="og:description" content="10 preguntas, 30 segundos y 20 € al primero de cada mes. Cuenta gratis, sin obligación de compra.">
 <meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
 <meta property="og:locale" content="es_419">
 <meta property="og:image:alt" content="Logo de Granja Rentable">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Concurso de avicultura | Granja Rentable">
-<meta name="twitter:description" content="10 preguntas al azar, 30 segundos y ranking por apodo. Sin correo.">
+<meta name="twitter:description" content="10 preguntas, 30 segundos y 20 € al primero de cada mes. Cuenta gratis, sin obligación de compra.">
 <meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -71,7 +71,6 @@
 <div class="nav-sub" id="nav-tienda">
 <a href="tienda.html#incubadoras"><span class="nav-label">Incubadoras</span></a>
 <a href="tienda.html#complementos"><span class="nav-label">Complementos</span></a>
-<a href="tienda.html#salud"><span class="nav-label">Salud avícola</span></a>
 </div>
 </div>
 <a class="" href="curso.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><ellipse cx="24.2" cy="9.2" rx="2.5" ry="5.2" transform="rotate(-38 24.2 9.2)"/><ellipse cx="26.4" cy="12.6" rx="2.2" ry="4.8" transform="rotate(-12 26.4 12.6)"/><ellipse cx="25.2" cy="16" rx="2.1" ry="4.4" transform="rotate(18 25.2 16)"/><ellipse cx="15.8" cy="16.2" rx="6.3" ry="4.5"/><path d="M12.4 14.4c-.2-2.8-1.6-4.6-4.2-5.4 2.4.6 3.8 2.4 4.2 5.4z"/><circle cx="8.4" cy="10.2" r="3.15"/><circle cx="7.1" cy="6.7" r="1.35"/><circle cx="9.3" cy="6.2" r="1.35"/><circle cx="11.1" cy="7.1" r="1.2"/><path d="M5.6 10.4 2.5 11.6l3.1 1z"/><path d="M3.2 24.2 14.5 22.4v7.3L3.2 31.2z"/><path d="M17.5 22.4 28.8 24.2v7L17.5 29.7z"/><path d="M14.5 22.4h3v7.3h-3z"/></g></svg></span><span class="nav-label">Curso gratis</span></a>
@@ -98,22 +97,38 @@
 <section class="page-hero" id="concurso-hero">
 <p class="kicker">Concurso</p>
 <h1>10 preguntas de avicultura</h1>
-<p>Cuatro opciones y 30 segundos por pregunta. Cada ronda elige 10 al azar entre más de 40, de engorde, ponedoras, incubación, salud y manejo. Un acierto vale 10 puntos y hasta 5 más si respondes pronto. Tiene que pasar al menos 1 segundo: si no, no suma. Diez preguntas: máximo 150.</p>
-<p>Escribes un apodo. Si ya entraste, el concurso usa el apodo de tu cuenta. El país es opcional. No pedimos correo.</p>
+<p>Cuatro opciones y 30 segundos por pregunta. Cada ronda elige 10 al azar, de engorde, ponedoras, incubación, salud y manejo. Un acierto cuenta si pasa al menos 1 segundo. El premio no se decide por la rapidez: manda el número de aciertos y, si empatan, el tiempo total que mide el servidor.</p>
+<p class="concurso-premio" id="concurso-premio">Premio de este mes: 20 €</p>
+<p id="concurso-cuenta">El ranking vuelve a cero al empezar el mes siguiente.</p>
 </section>
-<p class="concurso-nota" id="concurso-modo">Por ahora el ranking general no está publicado. Ves las mejores marcas de este navegador.</p>
+<p class="concurso-nota" id="concurso-modo">El concurso todavía no está abierto.</p>
 <section id="paso-inicio" class="concurso-card">
 <h2>Antes de empezar</h2>
+<p id="concurso-quien">Para jugar hace falta la cuenta gratis del sitio. El ranking usa el apodo de esa cuenta.</p>
 <form id="concurso-form" class="concurso-form">
-<label for="concurso-apodo">Apodo</label>
-<input id="concurso-apodo" name="apodo" required minlength="2" maxlength="40" autocomplete="nickname" autocapitalize="words" spellcheck="false" placeholder="Tu apodo">
-<p id="concurso-apodo-nota" class="fine" hidden>Este es el apodo de tu cuenta. El ranking usa ese mismo nombre.</p>
+<p id="concurso-apodo-nota" class="fine">Juegas con el apodo de tu cuenta. Para cambiarlo, entra en <a href="cuenta.html">Mi cuenta</a>.</p>
 <label for="concurso-pais">País (opcional)</label>
 <select id="concurso-pais" name="pais"></select>
 <p id="concurso-error" class="concurso-error" role="alert"></p>
-<button type="submit" class="btn gold">Empezar</button>
+<button type="submit" class="btn gold" id="concurso-empezar">Entrar para jugar</button>
 </form>
-<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Al acertar o fallar verás la explicación antes de seguir.</p>
+<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Al acertar o fallar verás la explicación antes de seguir. No hace falta comprar nada.</p>
+</section>
+<section id="concurso-reclamo" class="concurso-card" hidden>
+<h2>Tu premio</h2>
+<p id="reclamo-txt"></p>
+<form id="reclamo-form" class="concurso-form">
+<label for="reclamo-metodo">Cómo quieres cobrar</label>
+<select id="reclamo-metodo" name="metodo">
+<option value="paypal">PayPal</option>
+<option value="bizum">Bizum</option>
+</select>
+<label for="reclamo-dato">Correo de PayPal o teléfono de Bizum</label>
+<input id="reclamo-dato" name="dato" maxlength="80" autocomplete="off" inputmode="email">
+<p id="reclamo-error" class="concurso-error" role="alert"></p>
+<button type="submit" class="btn gold">Enviar datos de pago</button>
+</form>
+<p class="fine">Esos datos se piden solo al ganador y no se publican.</p>
 </section>
 <section id="paso-juego" class="concurso-card" hidden>
 <p class="concurso-paso" id="paso-txt">Pregunta 1 de 10</p>
@@ -141,8 +156,22 @@
 </div>
 </section>
 <section id="ranking" class="concurso-card concurso-rank" aria-labelledby="ranking-titulo">
-<h2 id="ranking-titulo">Ranking</h2>
+<h2 id="ranking-titulo">Ranking de este mes</h2>
 <div id="ranking-lista"></div>
+</section>
+<section id="concurso-ganadores" class="concurso-card concurso-rank" aria-labelledby="ganadores-titulo">
+<h2 id="ganadores-titulo">Ganadores</h2>
+<div id="ganadores-lista"></div>
+</section>
+<section id="concurso-bases" class="concurso-card">
+<h2>Bases del premio</h2>
+<ul>
+<li>Puede participar quien tenga una cuenta gratis del sitio. No hay obligación de compra. Una persona, una cuenta.</li>
+<li>Cada mes gana la mejor ronda: más aciertos. Si empatan, gana el menor tiempo total, medido por el servidor. Hace falta al menos 1 segundo para que un acierto cuente.</li>
+<li>El premio es 20 €. Al empezar el mes siguiente, con la hora de Madrid, el ranking vuelve a cero y empieza otra vez.</li>
+<li>Contactamos al ganador por el correo de su cuenta. El pago es por PayPal o Bizum. Esos datos se piden solo al ganador y no se publican.</li>
+<li>Una cuenta con trampas queda descalificada. El premio pasa a la siguiente marca válida.</li>
+</ul>
 </section>
 <p id="concurso-live" class="sr" aria-live="polite"></p>
 </main>
