@@ -114,7 +114,7 @@ La de alta patogenicidad también es de declaración obligatoria ante la OMSA. E
 
 ## Lo que se parece y no entra en este artículo
 
-Ojos llorosos, ronquido o cara hinchada también aparecen en otras fichas del sitio: [coriza](../enfermedades/coriza.html), [bronquitis](../enfermedades/bronquitis.html), [micoplasma](../enfermedades/micoplasma.html). [La enfermedad de Marek](enfermedad-de-marek-en-pollos.html) puede tumbar patas. Las costras de la cresta y la forma húmeda de la boca están en [viruela aviar](viruela-aviar-en-pollos.html). [Piojos](../enfermedades/piojos.html) y [ácaro rojo](../enfermedades/acaro-rojo.html) pican y bajan la puesta sin ser un virus de declaración obligatoria. Úsalas para describir lo que ves. El nombre lo pone quien vea el ave o la muestra.
+Ojos llorosos, ronquido o cara hinchada también aparecen en otras fichas del sitio: [coriza infecciosa](coriza-infecciosa-en-gallinas.html), [bronquitis](../enfermedades/bronquitis.html), [micoplasma](../enfermedades/micoplasma.html). [La enfermedad de Marek](enfermedad-de-marek-en-pollos.html) puede tumbar patas. Las costras de la cresta y la forma húmeda de la boca están en [viruela aviar](viruela-aviar-en-pollos.html). [Piojos](../enfermedades/piojos.html) y [ácaro rojo](../enfermedades/acaro-rojo.html) pican y bajan la puesta sin ser un virus de declaración obligatoria. Úsalas para describir lo que ves. El nombre lo pone quien vea el ave o la muestra.
 
 ## Prevención que sí depende del manejo
 
