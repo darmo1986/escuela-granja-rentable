@@ -68,7 +68,7 @@ Signos que citan esas fuentes, no todos a la vez:
 - Diarrea. *Eimeria tenella*, en los ciegos, produce sangre; Mississippi nombra la diarrea con sangre como signo de coccidiosis en pollos.
 - En un cuadro grave, muchas aves enfermas y mortalidad alta.
 
-La sangre en la cama no cierra el diagnóstico. Otras causas manchan las heces. El veterinario se apoya en las lesiones y, si hace falta, en el laboratorio. Merck recuerda que cada especie de *Eimeria* ataca un tramo del intestino y que la inmunidad contra una no protege contra otra. Lo mismo dice Mississippi: no hay protección cruzada.
+La sangre en la cama no cierra el diagnóstico. Otras causas manchan las heces. El veterinario se apoya en las lesiones y, si hace falta, en el laboratorio. Merck recuerda que cada especie de *Eimeria* ataca un tramo del intestino y que la inmunidad contra una no protege contra otra. Lo mismo dice Mississippi: no hay protección cruzada. La guía larga, con la tabla de especies y los errores de manejo, está en [coccidiosis en pollos](coccidiosis-en-pollos.html).
 
 ### Por qué se dispara
 

@@ -179,7 +179,7 @@ Alberta: retira los 3 cm de arriba y deséchalos con la gallinaza. No esperes qu
 
 ### ¿La limpieza cura la coccidiosis?
 
-No. Merck y Extension.org explican que los ooquistes aguantan desinfectantes habituales. Lo que sí baja el riesgo diario es la cama seca y el bebedero que no gotea. El cuadro clínico lo ve el veterinario. Está desarrollado en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
+No. Merck y Extension.org explican que los ooquistes aguantan desinfectantes habituales. Lo que sí baja el riesgo diario es la cama seca y el bebedero que no gotea. El cuadro clínico lo ve el veterinario. Está desarrollado en [coccidiosis en pollos](coccidiosis-en-pollos.html).
 
 ### ¿Cada cuánto se hace?
 
