@@ -20,7 +20,8 @@ function adsterraHasKey(){
     const o=A[k]; return !!(o&&((o.key&&String(o.key).trim())||(o.movil&&o.movil.key&&String(o.movil.key).trim())));
   });
 }
-function adsConfigured(){return !!(window.ADSENSE_CLIENT||adsterraHasKey());}
+function adsOn(){return !(window.GR&&window.GR.anunciosActivos===false);}
+function adsConfigured(){return adsOn()&&!!(window.ADSENSE_CLIENT||adsterraHasKey());}
 function pickAdsterra(cfg,size){
   if(size==='banner')return smallBannerCfg();
   if(!cfg)return null;
@@ -121,6 +122,7 @@ function loadAdsense(){
   return true;
 }
 function loadAds(){
+  if(!adsOn()){document.documentElement.classList.remove('ad-ok');return;}
   if(window.__adsLoaded)return; window.__adsLoaded=1;
   /* Si hay Adsterra con key, gana frente a AdSense. */
   if(adsterraHasKey()){loadAdsterra();return;}

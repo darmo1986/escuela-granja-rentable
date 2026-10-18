@@ -17,6 +17,8 @@ window.ADSTERRA = {
 
 /* Sitio unificado. La tienda propia y el curso van primero. */
 window.GR = {
+  /* Interruptor de publicidad. false = no se inserta ningún script de Adsterra ni de otra red. */
+  anunciosActivos: false,
   siteUrl: "https://granjarentable.com",
   /* Única URL de la tienda de pago. Hoy sigue en Netlify.
      Para pasar a la tienda nueva, cambia solo esta línea a
