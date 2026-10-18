@@ -579,7 +579,15 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 .qa-sesion[hidden], #qa-entrar[hidden], #qa-sugerir[hidden], #qa-crear[hidden], #qa-admin-fila[hidden], #qa-euros-fila[hidden], #qa-admin-nota[hidden], #qa-reset[hidden], #qa-demo[hidden], #qa-entrar-demo[hidden], #qa-entrar-correo[hidden], #qa-entrar-google[hidden], #qa-premio-banda[hidden], #qa-cola[hidden] { display: none !important; }
 .qa-opciones { display: grid; gap: 8px; margin: 10px 0; }
 .qa-opcion { width: 100%; text-align: left; min-height: 48px; white-space: normal; }
-.qa-reloj { font-weight: 800; margin: 8px 0; }
+.qa-reloj {
+  position: relative; display: flex; align-items: center; gap: 12px;
+  min-height: 64px; margin: 8px 0; padding: 8px 12px; border-radius: 12px;
+  background: var(--gl); overflow: hidden; font-weight: 800;
+}
+.qa-reloj-num { font-size: clamp(1.8rem, 8vw, 2.4rem); font-variant-numeric: tabular-nums; line-height: 1; min-width: 2.2ch; }
+.qa-reloj-barra { position: absolute; left: 0; bottom: 0; height: 6px; background: var(--g); }
+.qa-reloj.urgente { background: #fdecea; color: #8C2F2F; }
+.qa-reloj.urgente .qa-reloj-barra { background: #8C2F2F; }
 .qa-explica { background: var(--gl); border-radius: 12px; padding: 10px 12px; }
 .pago-grid { display: grid; gap: 10px; }
 .pago-card { background: #fff; border-radius: 12px; padding: 10px 12px; }

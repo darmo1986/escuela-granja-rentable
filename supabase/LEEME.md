@@ -14,13 +14,13 @@ Mientras `comunidad.supabaseUrl` en `js/config.js` diga `https://TU-PROYECTO.sup
 
    `update public.perfiles set es_admin = true where id = 'UUID-DE-PABLO';`
 
-6. En `js/config.js`, sustituye la URL y la clave **anon public**. No uses la clave `service_role`. `premioEuros` es la cantidad del mes, entre 20 y 30. `diasReclamo` son los días para reclamar (15). `segundos` es el tiempo de cada pregunta (45).
+6. En `js/config.js`, sustituye la URL y la clave **anon public**. No uses la clave `service_role`. `premioEuros` es la cantidad del mes, entre 20 y 30. `diasReclamo` son los días para reclamar (15). `segundos` es el tiempo de cada pregunta: 30, fijo. El servidor guarda la hora al servirla y al recibir la respuesta, y admite 2 segundos de margen.
 7. La página, cuando deje la demo, tiene que llamar a `preguntas_publicas`, `empezar_pregunta` y `responder`. No hagas un `select` de `quiz_preguntas`: esa tabla no está concedida al visitante precisamente para no llevarse la clave.
 
 ## Reglas
 
 - `preguntas_publicas` devuelve el texto y las cuatro opciones. No devuelve `correcta` ni `explica`.
-- `empezar_pregunta` abre el reloj en el servidor. `responder` solo acepta una opción si el tiempo no se pasó, guarda un intento por cuenta y entonces sí devuelve la explicación.
+- `empezar_pregunta` anota `servida_en` con la hora del servidor. `responder` anota `recibida_en` y solo da puntos si llegaron dentro de 30 s más 2 s de margen. Pasado eso, o si al volver a entrar sigue abierta (`cerrar_abiertas`), cuenta como fallo, 0 puntos y el intento usado. El extra de rapidez se calcula sobre esos 30 s. Entonces sí devuelve la explicación.
 - 10 puntos por acierto, hasta 5 por rapidez y 5 por ser el primero. Quien propuso la pregunta no suma en ella.
 - Tope: 1 intento cada 3 segundos y 40 a la hora, además del único intento por pregunta.
 - El ranking del mes sale de `ranking_mes`. Orden: más puntos, quien llegó antes a esa cifra, más aciertos, y el nombre.

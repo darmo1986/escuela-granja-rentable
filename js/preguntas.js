@@ -14,6 +14,8 @@
     sugerencia: [{ ventana: 86400000, tope: 3 }]
   };
   var PUNTOS = { acierto: 10, primero: 5, rapidoMax: 5 };
+  var LIMITE_S = 30;
+  var GRACIA_MS = 2000;
   var CLAVE = "gr_preguntas_v1";
   var CLAVE_ADMIN = "gr_preguntas_admin";
   var CLAVE_NOMBRE = "gr_preguntas_nombre";
@@ -77,10 +79,10 @@
 
   function puntosIntento(acierto, ms, limiteMs, esPrimero) {
     if (!acierto) return { puntos: 0, base: 0, rapido: 0, primero: 0 };
-    var rapido = 0;
-    if (limiteMs > 0 && ms >= 0 && ms <= limiteMs) {
-      rapido = Math.round(PUNTOS.rapidoMax * (1 - ms / limiteMs));
-    }
+    var usado = ms;
+    if (usado < 0) usado = 0;
+    if (limiteMs > 0 && usado > limiteMs) usado = limiteMs;
+    var rapido = limiteMs > 0 ? Math.round(PUNTOS.rapidoMax * (1 - usado / limiteMs)) : 0;
     var primero = esPrimero ? PUNTOS.primero : 0;
     return { puntos: PUNTOS.acierto + rapido + primero, base: PUNTOS.acierto, rapido: rapido, primero: primero };
   }
@@ -165,10 +167,7 @@
   }
 
   function segundosIniciales() {
-    var c = (typeof window !== "undefined" && window.GR && window.GR.comunidad) || {};
-    var n = Math.round(Number(c.segundos));
-    if (n < 15 || n > 120) return 45;
-    return n;
+    return LIMITE_S;
   }
 
   function diasReclamo() {
@@ -183,7 +182,7 @@
     var ahora = Date.now();
     function hace(horas) { return ahora - horas * H; }
     var periodo = periodoDe(ahora);
-    var limite = 45000;
+    var limite = LIMITE_S * 1000;
     var intentos = [];
     function anotar(pregunta, usuario, opcion, acierto, ms, creado, dispositivo) {
       var primero = !!(acierto && !intentos.some(function (i) {
@@ -216,7 +215,7 @@
     anotar("q-amon", "u-ana", "m2", true, 5000, hace(20), "dev-ana");
     anotar("q-amon", "u-pedro", "m1", false, 20000, hace(18), "dev-pedro");
     return {
-      v: 3,
+      v: 4,
       premioEuros: eurosIniciales(),
       usuarios: [
         { id: "u-marta", nombre: "Marta López", correo: "marta@ejemplo.test", dispositivo: "dev-marta" },
@@ -227,31 +226,31 @@
       ],
       sesion: null,
       preguntas: [
-        { id: "q-puesta", periodo: periodo, origen: "", segundos: 45, texto: "¿Cuándo empiezan a poner, de forma orientativa, las ponedoras comerciales?", explica: "Suelen empezar hacia las 18–22 semanas. Si partes de pollitos, no cuentes huevos antes de unos 5 meses. Es orientativo.", correcta: "p2", opciones: [
+        { id: "q-puesta", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "¿Cuándo empiezan a poner, de forma orientativa, las ponedoras comerciales?", explica: "Suelen empezar hacia las 18–22 semanas. Si partes de pollitos, no cuentes huevos antes de unos 5 meses. Es orientativo.", correcta: "p2", opciones: [
           { id: "p1", texto: "A la semana de nacer" },
           { id: "p2", texto: "Hacia las 18–22 semanas" },
           { id: "p3", texto: "Al cumplir el año justo" },
           { id: "p4", texto: "Solo en primavera el primer año" }
         ] },
-        { id: "q-calcio", periodo: periodo, origen: "", segundos: 45, texto: "En postura, ¿dónde dejo el calcio?", explica: "El calcio va aparte, a libre disposición: unos 3–5 g por gallina y día. De día, calcio fino. De tarde-noche, concha o grano grueso. Es orientativo.", correcta: "c2", opciones: [
+        { id: "q-calcio", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "En postura, ¿dónde dejo el calcio?", explica: "El calcio va aparte, a libre disposición: unos 3–5 g por gallina y día. De día, calcio fino. De tarde-noche, concha o grano grueso. Es orientativo.", correcta: "c2", opciones: [
           { id: "c1", texto: "Mezclado en el pienso, para que no elijan" },
           { id: "c2", texto: "Aparte, a libre disposición" },
           { id: "c3", texto: "Solo disuelto en el agua" },
           { id: "c4", texto: "No hace falta calcio extra en postura" }
         ] },
-        { id: "q-temp", periodo: periodo, origen: "", segundos: 45, texto: "La primera semana, ¿qué temperatura orientativa se usa en la criadora?", explica: "Muchos dejan la criadora cerca de 32–35 °C la primera semana y van bajando. Si se amontonan, tienen frío. Si se apartan de la lámpara, tienen calor. Es orientativo.", correcta: "t2", opciones: [
+        { id: "q-temp", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "La primera semana, ¿qué temperatura orientativa se usa en la criadora?", explica: "Muchos dejan la criadora cerca de 32–35 °C la primera semana y van bajando. Si se amontonan, tienen frío. Si se apartan de la lámpara, tienen calor. Es orientativo.", correcta: "t2", opciones: [
           { id: "t1", texto: "18–20 °C" },
           { id: "t2", texto: "32–35 °C" },
           { id: "t3", texto: "40–42 °C" },
           { id: "t4", texto: "La del ambiente, sin lámpara" }
         ] },
-        { id: "q-cobb", periodo: periodo, origen: "", segundos: 45, texto: "Cobb 500 y Ross 308, ¿para qué se crían?", explica: "Son líneas de engorde. No se crían para huevo. Hacia las 6–8 semanas suelen estar en peso de faena, según el manejo. Es orientativo.", correcta: "k2", opciones: [
+        { id: "q-cobb", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "Cobb 500 y Ross 308, ¿para qué se crían?", explica: "Son líneas de engorde. No se crían para huevo. Hacia las 6–8 semanas suelen estar en peso de faena, según el manejo. Es orientativo.", correcta: "k2", opciones: [
           { id: "k1", texto: "Huevo de mesa" },
           { id: "k2", texto: "Carne, no para huevo" },
           { id: "k3", texto: "Incubar huevos de raza pura" },
           { id: "k4", texto: "Solo de adorno" }
         ] },
-        { id: "q-amon", periodo: periodo, origen: "", segundos: 45, texto: "Si el gallinero huele a amoníaco, ¿qué miro primero?", explica: "La cama mojada suelta amoníaco. Se saca esa parte y se ventila sin una corriente directa sobre las aves. Es orientativo.", correcta: "m2", opciones: [
+        { id: "q-amon", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "Si el gallinero huele a amoníaco, ¿qué miro primero?", explica: "La cama mojada suelta amoníaco. Se saca esa parte y se ventila sin una corriente directa sobre las aves. Es orientativo.", correcta: "m2", opciones: [
           { id: "m1", texto: "Echo más pienso" },
           { id: "m2", texto: "La cama húmeda y la ventilación" },
           { id: "m3", texto: "Cierro todo para que no entre frío" },
@@ -364,7 +363,7 @@
       var raw = localStorage.getItem(CLAVE);
       if (raw) {
         var o = JSON.parse(raw);
-        if (o && o.v === 3 && Array.isArray(o.preguntas) && Array.isArray(o.intentos)) return normalizar(o);
+        if (o && o.v === 4 && Array.isArray(o.preguntas) && Array.isArray(o.intentos)) return normalizar(o);
       }
     } catch (e) {}
     return semilla();
@@ -431,41 +430,72 @@
     return true;
   }
 
-  function cerrarIntento(pregunta, opcionId, ms, porTiempo) {
-    var propia = pregunta.origen && pregunta.origen === estado.sesion.id;
-    var acierto = !porTiempo && opcionId === pregunta.correcta;
+  function anotarCierre(usuarioId, pregunta, opcionId, ms, servida, modo) {
+    if (intentoDe(usuarioId, pregunta.id)) return false;
+    var propia = pregunta.origen && pregunta.origen === usuarioId;
+    var aTiempo = modo === "" && ms <= LIMITE_S * 1000 + GRACIA_MS;
+    var acierto = aTiempo && opcionId === pregunta.correcta;
     var primero = acierto && !propia && esPrimero(pregunta.id);
-    var limite = pregunta.segundos * 1000;
-    var p = puntosIntento(acierto && !propia, ms, limite, primero);
+    var p = puntosIntento(acierto && !propia, Math.min(ms, LIMITE_S * 1000), LIMITE_S * 1000, primero);
     if (propia) p = { puntos: 0, base: 0, rapido: 0, primero: 0 };
+    var motivo = modo === "recarga" ? "Recarga" : (modo === "tiempo" ? "Tiempo" : "");
     estado.intentos.push({
       id: "i-" + Math.random().toString(36).slice(2, 10),
       pregunta: pregunta.id,
-      usuario: estado.sesion.id,
-      opcion: opcionId || "",
+      usuario: usuarioId,
+      opcion: aTiempo ? (opcionId || "") : "",
       acierto: !!acierto,
       puntos: p.puntos,
       base: p.base,
       rapido: p.rapido,
       primero: p.primero,
       ms: ms,
+      servida: servida,
+      recibida: Date.now(),
       creado: Date.now(),
       anulado: false,
-      motivo: "",
+      motivo: motivo,
       dispositivo: dispositivo(),
       propia: !!propia
     });
     estado.abiertas = estado.abiertas.filter(function (a) {
-      return !(a.usuario === estado.sesion.id && a.pregunta === pregunta.id);
+      return !(a.usuario === usuarioId && a.pregunta === pregunta.id);
     });
+    return p;
+  }
+
+  function cerrarIntento(pregunta, opcionId, ms, modo) {
+    var abierta = abiertaDe(estado.sesion.id, pregunta.id);
+    var p = anotarCierre(estado.sesion.id, pregunta, opcionId, ms, abierta ? abierta.inicio : Date.now(), modo);
+    if (!p) return false;
     var user = buscar(estado.usuarios, estado.sesion.id);
     if (user) user.dispositivo = dispositivo();
     guardar();
-    if (porTiempo) aviso("Se acabó el tiempo. Cuenta como intento y no suma puntos.", false);
-    else if (propia) aviso("Acertaste, pero propusiste esta pregunta: no suma puntos.", false);
-    else if (acierto) aviso("Correcta. " + p.puntos + " puntos" + (p.primero ? " (incluye el extra de ser el primero)." : "."), false);
+    if (modo === "tiempo") aviso("Se acabaron los 30 s. Cuenta como fallo: 0 puntos y el intento usado.", false);
+    else if (modo === "recarga") aviso("Se cerró o se recargó la página. Cuenta como fallo: 0 puntos y el intento usado.", false);
+    else if (pregunta.origen && pregunta.origen === estado.sesion.id && opcionId === pregunta.correcta) aviso("Acertaste, pero propusiste esta pregunta: no suma puntos.", false);
+    else if (p.puntos > 0) aviso("Correcta. " + p.puntos + " puntos" + (p.primero ? " (incluye el extra de ser el primero)." : "."), false);
     else aviso("Esta no era. No suma puntos. Abajo va la explicación.", false);
     return true;
+  }
+
+  function fallarAbiertas(motivo) {
+    var n = 0;
+    var copia = (estado.abiertas || []).slice();
+    var i;
+    for (i = 0; i < copia.length; i++) {
+      var a = copia[i];
+      var pregunta = buscar(estado.preguntas, a.pregunta);
+      if (!pregunta || intentoDe(a.usuario, a.pregunta)) {
+        estado.abiertas = estado.abiertas.filter(function (x) { return x !== a; });
+        continue;
+      }
+      var ms = Math.max(0, Date.now() - a.inicio);
+      anotarCierre(a.usuario, pregunta, "", ms, a.inicio, motivo || "recarga");
+      n++;
+    }
+    if (n) guardar();
+    return n;
   }
 
   function empezar(preguntaId) {
@@ -475,6 +505,16 @@
     if (!pregunta || pregunta.periodo !== periodoDe(Date.now())) { aviso("Esa pregunta no está en el mes.", true); return false; }
     if (intentoDe(estado.sesion.id, preguntaId)) { aviso("Ya respondiste esta. Un intento por cuenta.", true); return false; }
     if (abiertaDe(estado.sesion.id, preguntaId)) return true;
+    var previsto = cupo(estado.ritmo.intento, Date.now(), REGLAS.intento);
+    if (!previsto.ok) { aviso(textoEspera(previsto.espera), true); return false; }
+    var otras = estado.abiertas.filter(function (a) { return a.usuario === estado.sesion.id; });
+    if (otras.length) {
+      otras.forEach(function (a) {
+        var previa = buscar(estado.preguntas, a.pregunta);
+        if (previa) anotarCierre(estado.sesion.id, previa, "", Math.max(0, Date.now() - a.inicio), a.inicio, "recarga");
+      });
+      aviso("La pregunta que tenías abierta cuenta como fallo.", false);
+    }
     var cup = tomarCupo("intento");
     if (!cup.ok) { aviso(textoEspera(cup.espera), true); return false; }
     estado.abiertas.push({ usuario: estado.sesion.id, pregunta: preguntaId, inicio: Date.now() });
@@ -483,18 +523,21 @@
   }
 
   function responder(preguntaId, opcionId) {
-    if (!modoDemo()) { aviso("En el servidor, la función responder comprueba el acierto. Esta vista es la demo.", true); return false; }
+    if (!modoDemo()) { aviso("En el servidor, la función responder comprueba el acierto con la hora del servidor. Esta vista es la demo.", true); return false; }
     if (!exigirSesion()) return false;
     var pregunta = buscar(estado.preguntas, preguntaId);
     var abierta = abiertaDe(estado.sesion.id, preguntaId);
     if (!pregunta || !abierta) { aviso("Pulsa Empezar. El tiempo corre desde ahí.", true); return false; }
-    if (intentoDe(estado.sesion.id, preguntaId)) { aviso("Ya respondiste esta. Un intento por cuenta.", true); return false; }
+    if (intentoDe(estado.sesion.id, preguntaId)) {
+      if (opcionId) aviso("Ya respondiste esta. Un intento por cuenta.", true);
+      return false;
+    }
     var ms = Date.now() - abierta.inicio;
-    var limite = pregunta.segundos * 1000;
-    if (ms >= limite) return cerrarIntento(pregunta, "", limite, true);
+    var limite = LIMITE_S * 1000;
+    if (ms > limite + GRACIA_MS || !opcionId) return cerrarIntento(pregunta, "", ms, "tiempo");
     var valida = (pregunta.opciones || []).some(function (o) { return o.id === opcionId; });
     if (!valida) { aviso("Esa opción no es de esta pregunta.", true); return false; }
-    return cerrarIntento(pregunta, opcionId, ms, false);
+    return cerrarIntento(pregunta, opcionId, ms, "");
   }
 
   function leerOpciones(form) {
@@ -707,7 +750,7 @@
     var abierta = sesion && abiertaDe(sesion, p.id);
     art.appendChild(el("h3", "", p.texto));
     var meta = el("p", "qa-meta");
-    meta.textContent = nombrePeriodo(p.periodo) + " · " + p.segundos + " s · un intento";
+    meta.textContent = nombrePeriodo(p.periodo) + " · " + LIMITE_S + " s · un intento";
     if (p.origen) meta.appendChild(document.createTextNode(" · propuesta de " + nombreDe(p.origen)));
     art.appendChild(meta);
     if (!sesion) {
@@ -717,7 +760,8 @@
     if (it) {
       var buena = buscar(p.opciones, p.correcta);
       var elegida = buscar(p.opciones, it.opcion);
-      art.appendChild(el("p", "", it.acierto ? "Correcta." : (it.opcion ? "No era esa." : "Se acabó el tiempo.")));
+      var cierre = it.acierto ? "Correcta." : (it.motivo === "Recarga" ? "Se cerró o se recargó. Cuenta como fallo." : (it.motivo === "Tiempo" || !it.opcion ? "Se acabaron los 30 s. Cuenta como fallo." : "No era esa."));
+      art.appendChild(el("p", "", cierre));
       if (elegida) art.appendChild(el("p", "fine", "Elegiste: " + elegida.texto));
       if (buena) art.appendChild(el("p", "", "Respuesta: " + buena.texto));
       art.appendChild(el("p", "qa-explica", p.explica));
@@ -729,14 +773,11 @@
       return art;
     }
     if (!abierta) {
-      art.appendChild(el("p", "fine", "Al pulsar Empezar corre el tiempo. Un intento por cuenta."));
+      art.appendChild(el("p", "fine", "Al pulsar Empezar corren 30 segundos. Si recargas o cierras, cuenta como fallo."));
       art.appendChild(boton("gold", "empezar", p.id, "Empezar"));
       return art;
     }
-    var queda = Math.max(0, Math.ceil((p.segundos * 1000 - (Date.now() - abierta.inicio)) / 1000));
-    var relojN = el("p", "qa-reloj", "Quedan " + queda + " s");
-    relojN.setAttribute("data-reloj", p.id);
-    art.appendChild(relojN);
+    art.appendChild(pintaReloj(p.id, abierta));
     var caja = el("div", "qa-opciones");
     var orden = barajar(p.opciones, semillaNum(sesion + ":" + p.id));
     orden.forEach(function (o) {
@@ -980,17 +1021,42 @@
     });
   }
 
+  function quedaSegundos(abierta) {
+    return Math.max(0, Math.ceil((LIMITE_S * 1000 - (Date.now() - abierta.inicio)) / 1000));
+  }
+
+  function pintaReloj(preguntaId, abierta) {
+    var queda = quedaSegundos(abierta);
+    var box = el("div", "qa-reloj" + (queda <= 10 ? " urgente" : ""));
+    box.setAttribute("data-reloj", preguntaId);
+    box.setAttribute("role", "timer");
+    var num = el("span", "qa-reloj-num", String(queda));
+    box.appendChild(num);
+    box.appendChild(el("span", "qa-reloj-txt", queda <= 10 ? "Últimos " + queda + " s" : "Quedan " + queda + " s"));
+    var barra = el("span", "qa-reloj-barra");
+    barra.style.width = Math.round(queda / LIMITE_S * 100) + "%";
+    box.appendChild(barra);
+    return box;
+  }
+
   function tick() {
     if (!estado || !estado.sesion) return;
     var cerrar = null;
     document.querySelectorAll("[data-reloj]").forEach(function (n) {
       var id = n.getAttribute("data-reloj");
-      var pregunta = buscar(estado.preguntas, id);
       var abierta = abiertaDe(estado.sesion.id, id);
-      if (!pregunta || !abierta) return;
-      var queda = Math.ceil((pregunta.segundos * 1000 - (Date.now() - abierta.inicio)) / 1000);
+      if (!abierta) return;
+      var queda = quedaSegundos(abierta);
       if (queda <= 0) cerrar = id;
-      else n.textContent = "Quedan " + queda + " s";
+      else {
+        n.classList.toggle("urgente", queda <= 10);
+        var num = n.querySelector(".qa-reloj-num");
+        var txt = n.querySelector(".qa-reloj-txt");
+        var barra = n.querySelector(".qa-reloj-barra");
+        if (num) num.textContent = String(queda);
+        if (txt) txt.textContent = queda <= 10 ? "Últimos " + queda + " s" : "Quedan " + queda + " s";
+        if (barra) barra.style.width = Math.round(queda / LIMITE_S * 100) + "%";
+      }
     });
     if (cerrar) lanzar(function () { return responder(cerrar, ""); });
   }
@@ -1102,13 +1168,15 @@
     cfgNube = configNube();
     if (!cfgNube) {
       estado = cargar();
+      var cerradas = fallarAbiertas("recarga");
       try { document.getElementById("qa-admin").checked = localStorage.getItem(CLAVE_ADMIN) === "1"; } catch (e) {}
+      if (cerradas) aviso("Se cerró o se recargó una pregunta a medio hacer. Cuenta como fallo: 0 puntos y el intento usado.", false);
       pintar();
       if (reloj) clearInterval(reloj);
       reloj = setInterval(tick, 250);
       return;
     }
-    estado = normalizar({ v: 3, premioEuros: eurosIniciales(), usuarios: [], sesion: null, preguntas: [], sugerencias: [], intentos: [], abiertas: [], premios: [], ritmo: { intento: [], sugerencia: [] } });
+    estado = normalizar({ v: 4, premioEuros: eurosIniciales(), usuarios: [], sesion: null, preguntas: [], sugerencias: [], intentos: [], abiertas: [], premios: [], ritmo: { intento: [], sugerencia: [] } });
     aviso("Con una clave real, el acierto lo dice la función del SQL, no esta página. Hasta pegarlo, aquí no hay preguntas.", true);
     pintar();
   }

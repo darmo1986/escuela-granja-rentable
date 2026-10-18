@@ -24,7 +24,7 @@ create table if not exists public.quiz_preguntas (
   texto text not null check (char_length(texto) between 8 and 280),
   explica text not null check (char_length(explica) between 8 and 600),
   correcta uuid,
-  segundos int not null default 45 check (segundos between 15 and 120),
+  segundos int not null default 30 check (segundos between 15 and 120),
   periodo text not null check (periodo ~ '^[0-9]{4}-[0-9]{2}$'),
   creado timestamptz not null default now()
 );
@@ -44,7 +44,7 @@ alter table public.quiz_preguntas
 create table if not exists public.quiz_abiertas (
   usuario uuid not null references public.perfiles (id) on delete cascade,
   pregunta uuid not null references public.quiz_preguntas (id) on delete cascade,
-  expira timestamptz not null,
+  servida_en timestamptz not null default now(),
   primary key (usuario, pregunta)
 );
 
@@ -56,6 +56,8 @@ create table if not exists public.quiz_intentos (
   acierto boolean not null,
   puntos int not null check (puntos between 0 and 20),
   ms int not null default 0,
+  servida_en timestamptz,
+  recibida_en timestamptz,
   anulado boolean not null default false,
   motivo text not null default '',
   dispositivo text not null default '',
@@ -234,6 +236,51 @@ $$;
 revoke all on function public.preguntas_publicas() from public;
 grant execute on function public.preguntas_publicas() to anon, authenticated;
 
+-- Cierra las preguntas ya servidas. excepto = null las cierra todas.
+-- Recargar o volver a entrar convierte la abierta en fallo (0 puntos).
+create or replace function public.cerrar_abiertas(excepto uuid)
+returns int
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  n int := 0;
+  a record;
+begin
+  if auth.uid() is null then
+    return 0;
+  end if;
+  for a in
+    select * from public.quiz_abiertas
+    where usuario = auth.uid()
+      and (excepto is null or pregunta is distinct from excepto)
+  loop
+    if not exists (
+      select 1 from public.quiz_intentos i
+      where i.usuario = a.usuario and i.pregunta = a.pregunta
+    ) then
+      insert into public.quiz_intentos (
+        usuario, pregunta, opcion, acierto, puntos, ms, motivo, servida_en, recibida_en, dispositivo, ip
+      ) values (
+        a.usuario, a.pregunta, null, false, 0,
+        greatest(0, floor(extract(epoch from (now() - a.servida_en)) * 1000))::int,
+        'Recarga',
+        a.servida_en, now(),
+        coalesce((select dispositivo from public.perfiles where id = a.usuario), ''),
+        public.ip_peticion()
+      );
+      n := n + 1;
+    end if;
+    delete from public.quiz_abiertas where usuario = a.usuario and pregunta = a.pregunta;
+  end loop;
+  return n;
+end;
+$$;
+
+revoke all on function public.cerrar_abiertas(uuid) from public;
+grant execute on function public.cerrar_abiertas(uuid) to authenticated;
+
 create or replace function public.empezar_pregunta(pregunta_id uuid)
 returns timestamptz
 language plpgsql
@@ -242,7 +289,7 @@ set search_path = public
 as $$
 declare
   p public.quiz_preguntas;
-  expira timestamptz;
+  servida timestamptz;
 begin
   if auth.uid() is null then
     raise exception 'Entra con el correo o con Google.';
@@ -258,14 +305,15 @@ begin
      or exists (select 1 from public.quiz_intentos where usuario = auth.uid() and creado > now() - interval '3 seconds') then
     raise exception 'Espera un momento para volver a intentarlo.';
   end if;
-  select a.expira into expira from public.quiz_abiertas a
+  perform public.cerrar_abiertas(pregunta_id);
+  select a.servida_en into servida from public.quiz_abiertas a
     where a.usuario = auth.uid() and a.pregunta = pregunta_id;
   if found then
-    return expira;
+    return servida;
   end if;
-  expira := now() + make_interval(secs => p.segundos);
-  insert into public.quiz_abiertas (usuario, pregunta, expira) values (auth.uid(), pregunta_id, expira);
-  return expira;
+  servida := now();
+  insert into public.quiz_abiertas (usuario, pregunta, servida_en) values (auth.uid(), pregunta_id, servida);
+  return servida;
 end;
 $$;
 
@@ -290,6 +338,9 @@ declare
   total int := 0;
   ms int := 0;
   nuevo uuid;
+  recibida timestamptz := now();
+  limite_ms int := 30000;
+  gracia_ms int := 2000;
 begin
   if auth.uid() is null then
     raise exception 'Entra con el correo o con Google.';
@@ -306,9 +357,9 @@ begin
   if not found then
     raise exception 'Pulsa Empezar. El tiempo corre desde ahí.';
   end if;
-  ms := greatest(0, floor(extract(epoch from (now() - (abierta.expira - make_interval(secs => p.segundos)))) * 1000))::int;
+  ms := greatest(0, floor(extract(epoch from (recibida - abierta.servida_en)) * 1000))::int;
   propia := p.origen is not null and p.origen = auth.uid();
-  if now() <= abierta.expira and opcion_id = p.correcta then
+  if ms <= limite_ms + gracia_ms and opcion_id is not null and opcion_id = p.correcta then
     acierto := true;
   end if;
   if acierto and not propia and not exists (
@@ -319,11 +370,19 @@ begin
     extra := 5;
   end if;
   if acierto and not propia then
-    rapido := round(5 * (1 - least(1, ms::numeric / (p.segundos * 1000))))::int;
+    rapido := round(5 * (1 - least(1, least(ms, limite_ms)::numeric / limite_ms)))::int;
     total := 10 + rapido + extra;
   end if;
-  insert into public.quiz_intentos (usuario, pregunta, opcion, acierto, puntos, ms, dispositivo, ip)
-  values (auth.uid(), pregunta_id, opcion_id, acierto, total, ms, coalesce((select dispositivo from public.perfiles where id = auth.uid()), ''), public.ip_peticion())
+  insert into public.quiz_intentos (usuario, pregunta, opcion, acierto, puntos, ms, motivo, servida_en, recibida_en, dispositivo, ip)
+  values (
+    auth.uid(), pregunta_id,
+    case when ms <= limite_ms + gracia_ms then opcion_id else null end,
+    acierto, total, ms,
+    case when ms > limite_ms + gracia_ms or opcion_id is null then 'Tiempo' else '' end,
+    abierta.servida_en, recibida,
+    coalesce((select dispositivo from public.perfiles where id = auth.uid()), ''),
+    public.ip_peticion()
+  )
   returning id into nuevo;
   delete from public.quiz_abiertas where usuario = auth.uid() and pregunta = pregunta_id;
   return jsonb_build_object(
@@ -409,7 +468,7 @@ begin
     raise exception 'Hacen falta cuatro opciones y una correcta.';
   end if;
   insert into public.quiz_preguntas (autor, origen, texto, explica, segundos, periodo)
-  values (auth.uid(), p_origen, p_texto, p_explica, coalesce(p_segundos, 45), public.periodo_madrid(now()))
+  values (auth.uid(), p_origen, p_texto, p_explica, 30, public.periodo_madrid(now()))
   returning id into pid;
   for i in 1..4 loop
     insert into public.quiz_opciones (pregunta, texto) values (pid, p_opciones[i]) returning id into oid;
@@ -447,7 +506,7 @@ begin
   end if;
   select array_agg(value order by ord) into textos
   from jsonb_array_elements_text(s.opciones) with ordinality as t(value, ord);
-  nuevo := public.publicar_pregunta(s.texto, s.explica, textos, s.correcta, 45, s.autor);
+  nuevo := public.publicar_pregunta(s.texto, s.explica, textos, s.correcta, 30, s.autor);
   update public.quiz_sugerencias set estado = 'aprobada' where id = sugerencia_id;
   return nuevo;
 end;

@@ -97,12 +97,12 @@
 <section class="page-hero">
 <p class="kicker">Reto del mes</p>
 <h1>Preguntas de avicultura</h1>
-<p>Cada pregunta tiene cuatro opciones y una correcta. Quien acierta suma puntos. Quien acierta pronto, o es el primero en acertar, suma un extra. El ranking es de este mes.</p>
+<p>Cada pregunta tiene cuatro opciones, una correcta y 30 segundos. Quien acierta suma puntos. Quien acierta pronto, o es el primero en acertar, suma un extra. Si se acaba el tiempo, o si recargas después de verla, cuenta como fallo.</p>
 <p>Las preguntas las pone quien administra. Tú puedes proponer una, y se publica si la aprueba. Las respuestas fijas del sitio siguen en <a href="faq.html">Preguntas frecuentes</a>.</p>
 <p>Quien va primero al cerrar el mes puede llevarse un premio de 20 a 30 €. La cantidad la fija el admin. No se paga solo: lo aprueba y lo envía a mano.</p>
 </section>
 <aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
-<p class="qa-demo" id="qa-demo">Modo demo. No hay base de datos: lo que contestes se queda en este navegador. Aquí la clave está en el script de la página; con Supabase no se envía hasta después de contestar.</p>
+<p class="qa-demo" id="qa-demo">Modo demo. No hay base de datos: lo que contestes se queda en este navegador. Aquí el reloj es el del navegador. Con Supabase manda la hora del servidor: 30 s y 2 s de margen. Recargar después de ver la pregunta cuenta como fallo.</p>
 <p id="qa-aviso" class="qa-aviso" role="status"></p>
 <div id="qa-premio-banda" class="qa-premio-banda" hidden></div>
 <section id="qa-cola" class="panel qa" hidden>
@@ -210,7 +210,7 @@
 <p>Organiza Juan Pablo González García, Calle Juan Rumeu García 6 bajo, 38008 Santa Cruz de Tenerife, España. Correo: <a href="mailto:pablopersonal86@gmail.com">pablopersonal86@gmail.com</a>.</p>
 <p>Es un concurso de conocimiento, no una lotería ni un sorteo. Gana quien más puntos suma. El azar no decide el premio. Participar es gratis y no hace falta comprar nada.</p>
 <p>Hay que tener 18 años o más. Si no, el premio no se entrega. Una cuenta por persona, con el correo comprobado (enlace) o con Google. Quien participe desde otro país acepta estas bases y conserva la protección de consumo de su ley.</p>
-<p>El periodo es el mes natural en hora de Madrid, del día 1 a las 00:00 al último día a las 23:59. Cada pregunta tiene cuatro opciones, un tiempo limitado y un solo intento por cuenta. Son 10 puntos por acierto, hasta 5 por rapidez y 5 por ser el primero en acertar esa pregunta. Quien propuso la pregunta no suma en ella. El administrador puede anular un intento.</p>
+<p>El periodo es el mes natural en hora de Madrid, del día 1 a las 00:00 al último día a las 23:59. Cada pregunta tiene cuatro opciones, 30 segundos y un solo intento por cuenta. Si se acaba el tiempo, o si se cierra o se recarga la página después de verla, cuenta como fallo y gasta el intento. El servidor anota la hora al mostrarla y al recibir la respuesta, con 2 segundos de margen por la red. El extra de rapidez sale de esos 30 segundos. Son 10 puntos por acierto, hasta 5 por rapidez y 5 por ser el primero en acertar esa pregunta. Quien propuso la pregunta no suma en ella. El administrador puede anular un intento.</p>
 <p>Al cerrar el mes gana quien tenga más puntos. Si empatan, gana quien llegó antes a esa puntuación. Si también empatan el momento y los aciertos, queda delante el nombre que vaya antes por orden alfabético. El premio es la cantidad en euros que el organizador fije antes de empezar el mes, entre 20 y 30.</p>
 <p>El ganador se avisa por el correo de su cuenta y con un aviso en esta página, dentro de los 3 días siguientes al cierre. Tiene 15 días desde ese aviso para reclamar. Si no reclama, el organizador puede ofrecerlo una sola vez a quien vaya segundo. Si tampoco reclama, el premio queda desierto.</p>
 <p>Para reclamar hacen falta el nombre, el país, confirmar la mayoría de edad y el medio: PayPal, una tarjeta regalo de eBay o un crédito del curso. El administrador comprueba que el nombre y el medio son de esa persona antes de pagar. Puede pedir un dato más si no coinciden. El pago es siempre manual. No hay cargo automático. Puede anular el premio si ve trampa, multicuenta o datos que no cuadran. Una misma señal de aparato o de IP es un aviso, no una prueba por sí sola.</p>

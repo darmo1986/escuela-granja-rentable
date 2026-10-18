@@ -52,7 +52,7 @@ window.GR = {
     /* Premio del ranking mensual, en euros. Entre 20 y 30. El pago es manual. */
     premioEuros: 25,
     diasReclamo: 15,
-    segundos: 45
+    segundos: 30
   }
 };
 
