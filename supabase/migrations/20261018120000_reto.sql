@@ -416,6 +416,11 @@ $$;
 revoke all on function public.responder(uuid, uuid) from public;
 grant execute on function public.responder(uuid, uuid) to authenticated;
 
+-- Si este archivo se vuelve a pegar después del SQL de Premium, hay que soltar
+-- la función: Premium le añade la columna premium y, si no, Postgres aborta el script.
+-- Después de pegarlo otra vez, corre de nuevo 20261018150000_premium.sql.
+drop function if exists public.ranking_mes(text);
+
 create or replace function public.ranking_mes(p_periodo text)
 returns table (usuario uuid, nombre text, puntos int, aciertos int, llegado timestamptz)
 language sql

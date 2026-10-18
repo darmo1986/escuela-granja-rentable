@@ -55,6 +55,12 @@ Cuando se encienda el reto:
 
 Si se escribe una pregunta sobre el calcio de la puesta, la explicación tiene que ser esta, sin cifra que parezca una dosis: «El pienso de postura ya lleva calcio. Además, deja concha o grit a libre disposición: la gallina toma lo que le falta.»
 
+## Premium
+
+La suscripción no se enciende con este archivo. Los pasos, en castellano y en orden, están en `README_PREMIUM.md` (raíz del repositorio). El SQL es `supabase/migrations/20261018150000_premium.sql`. No se ha ejecutado. No lleva claves. El checkout lo crea el servidor con la sesión. El navegador no puede poner `perfiles.premium` ni leer `premium_hasta`.
+
+`perfiles_insignia` es una vista con `security_invoker = false` a propósito: authenticated ve el sí/no de la insignia y no la fecha `premium_hasta`. El linter de Supabase puede marcarla como *security definer view*. anon no tiene `SELECT` sobre ella.
+
 ## Plan gratis
 
 Cifras públicas de supabase.com/pricing al armar esta nota. Conviene mirarlas otra vez antes de encender: 0 € al mes, 500 MB de base, 50.000 usuarios activos al mes, y el proyecto se puede pausar si pasa una semana casi sin consultas.

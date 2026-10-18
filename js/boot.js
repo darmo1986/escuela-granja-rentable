@@ -108,15 +108,26 @@
     "America/Panama": "PA"
   };
   var p = "";
+  var origen = "defecto";
   try {
     var q = new URLSearchParams(location.search).get("pais");
     if (q) {
       p = q.toUpperCase();
       localStorage.setItem("gr_pais", p);
+      origen = "elegido";
     }
-    if (!p) p = localStorage.getItem("gr_pais") || "";
-    if (!p) p = localStorage.getItem("gr_pais_ip") || "";
-    if (!p) p = map[tz] || "";
+    if (!p) {
+      p = localStorage.getItem("gr_pais") || "";
+      if (p) origen = "elegido";
+    }
+    if (!p) {
+      p = localStorage.getItem("gr_pais_ip") || "";
+      if (p) origen = "geo";
+    }
+    if (!p) {
+      p = map[tz] || "";
+      if (p) origen = "inferido";
+    }
     if (!p) {
       var known = { MX:1, US:1, CO:1, PE:1, ES:1, AR:1, VE:1, EC:1, DO:1, CL:1, PY:1, UY:1, BO:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1 };
       var langs = navigator.languages || [navigator.language || ""];
@@ -126,9 +137,12 @@
            Estados Unidos entra por la zona horaria, por ?pais= o por una elección guardada. */
         if (m && known[m[1]] && m[1] !== "US") p = m[1];
       }
+      if (p) origen = "inferido";
     }
   } catch (e) {}
   document.documentElement.dataset.pais = p || "MX";
+  document.documentElement.dataset.paisOrigen = p ? origen : "defecto";
+  if (origen === "geo") document.documentElement.dataset.geo = "ok";
   try {
     if (new URLSearchParams(location.search).get("tema") === "claro") {
       document.documentElement.dataset.tema = "claro";
