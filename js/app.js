@@ -20,7 +20,7 @@ function adsterraHasKey(){
     const o=A[k]; return !!(o&&((o.key&&String(o.key).trim())||(o.movil&&o.movil.key&&String(o.movil.key).trim())));
   });
 }
-function adsOn(){return !(window.ads&&window.ads.activo===false);}
+function adsOn(){return !!(window.ads&&window.ads.activo===true);}
 function ocultarHuecos(){
   document.documentElement.classList.remove('ad-ok');
   document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
@@ -196,6 +196,7 @@ function notaLibre(){
   if(main)main.prepend(n); else document.body.prepend(n);
 }
 function abrirAviso(){
+  if(!adsOn()){ocultarHuecos();return;}
   if(consentimientoEstricto())banner();
   else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
 }
@@ -206,9 +207,10 @@ function cerrarPregunta(){
   try { sessionStorage.removeItem('gr_pedir_cookies'); } catch(e){}
 }
 const c=localStorage.getItem(CK);
-if(pedirDeNuevo()) banner();
-else if(consentimientoEstricto()){ if(c==='si')loadAds(); else if(!c)banner(); }
-else if(c==='si')loadAds();
+if(!adsOn()) ocultarHuecos();
+else if(pedirDeNuevo()) banner();
+else if(consentimientoEstricto()){ if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();} else if(!c)banner(); }
+else if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}
 else if(c!=='no')abrirAviso();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();

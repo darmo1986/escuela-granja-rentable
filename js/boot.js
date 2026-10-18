@@ -36,7 +36,8 @@
   try { pedir = sessionStorage.getItem("gr_pedir_cookies") === "1"; } catch (eP) {}
   try {
     var consent = localStorage.getItem("gr_consent");
-    if (!pedir && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
+    var adsActivos = !!(window.ads && window.ads.activo === true);
+    if (adsActivos && !pedir && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
   } catch (e0) {}
   var map = {
     "America/Mexico_City": "MX",
