@@ -161,8 +161,38 @@ function loadAdsense(){
   });
   return true;
 }
+/* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
+   gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
+   html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
+function esPremiumLocal(){
+  if (typeof window.GR_esPremium === 'function' && window.GR_esPremium()) return true;
+  var u = window.GRAuth && window.GRAuth.usuarioActual;
+  if (u && u.premium) {
+    var fh = u.premiumHasta || u.premium_hasta;
+    if (fh && Date.parse(fh) > Date.now()) return true;
+  }
+  return false;
+}
+window.esPremiumLocal = esPremiumLocal;
+function quitarAnuncios(){
+  document.documentElement.classList.add('ad-off');
+  document.documentElement.classList.remove('ad-ok');
+  var b = document.getElementById('cookie-banner');
+  if (b) b.remove();
+  var nota = document.getElementById('cookie-note');
+  if (nota) nota.remove();
+  window.__adsLoaded = 1;
+}
+window.GR_quitarAnuncios = quitarAnuncios;
+function pedirDeNuevo(){
+  try { return sessionStorage.getItem('gr_pedir_cookies')==='1'; } catch(e){ return false; }
+}
+function cerrarPregunta(){
+  try { sessionStorage.removeItem('gr_pedir_cookies'); } catch(e){}
+}
 function loadAds(){
   if(!adsOn()){ocultarHuecos();return;}
+  if(esPremiumLocal()){ quitarAnuncios(); return; }
   if(window.__adsLoaded)return; window.__adsLoaded=1;
   /* Si hay Adsterra con key, gana frente a AdSense. */
   if(adsterraHasKey()){loadAdsterra();return;}
@@ -170,6 +200,7 @@ function loadAds(){
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
+  if(!adsOn() || esPremiumLocal())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
@@ -179,7 +210,7 @@ function banner(){
 }
 /* Fuera de la UE el aviso va en el flujo de la página: no tapa el contenido. */
 function notaLibre(){
-  if(!adsConfigured()||document.getElementById('cookie-note'))return;
+  if(!adsOn() || esPremiumLocal() || !adsConfigured() || document.getElementById('cookie-note'))return;
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
@@ -196,28 +227,74 @@ function notaLibre(){
   if(main)main.prepend(n); else document.body.prepend(n);
 }
 function abrirAviso(){
-  if(!adsOn()){ocultarHuecos();return;}
+  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
   if(consentimientoEstricto())banner();
   else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
 }
-function pedirDeNuevo(){
-  try { return sessionStorage.getItem('gr_pedir_cookies')==='1'; } catch(e){ return false; }
+function decidirAnuncios(){
+  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  window.__adsLoaded = 0;
+  document.documentElement.classList.remove('ad-off');
+  var c = null;
+  try { c = localStorage.getItem(CK); } catch (e) {}
+  if(pedirDeNuevo()){ banner(); }
+  else if(consentimientoEstricto()){
+    if(c==='si'){ document.documentElement.classList.add('ad-ok'); loadAds(); }
+    else if(!c) banner();
+  } else if(c==='si'){
+    document.documentElement.classList.add('ad-ok');
+    loadAds();
+  } else if(c!=='no') abrirAviso();
 }
-function cerrarPregunta(){
-  try { sessionStorage.removeItem('gr_pedir_cookies'); } catch(e){}
+function sesionAbierta(){
+  try { return !!localStorage.getItem('gr-auth'); } catch (e) { return false; }
 }
-const c=localStorage.getItem(CK);
-if(!adsOn()) ocultarHuecos();
-else if(pedirDeNuevo()) banner();
-else if(consentimientoEstricto()){ if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();} else if(!c)banner(); }
-else if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}
-else if(c!=='no')abrirAviso();
+function premiumConocido(){
+  try { return localStorage.getItem('gr_premium_listo') === '1'; } catch (e) { return false; }
+}
+function esperaPago(){
+  try {
+    if (/[?&]premium=ok(?:&|$)/.test(location.search)) sessionStorage.setItem('gr_premium_espera', String(Date.now()));
+    var t = Number(sessionStorage.getItem('gr_premium_espera') || 0);
+    return t > 0 && Date.now() - t < 120000;
+  } catch (e) { return false; }
+}
+function arrancarAnuncios(){
+  if(!adsOn() || esPremiumLocal() || esperaPago()){ quitarAnuncios(); return; }
+  var sesion = sesionAbierta();
+  if (sesion && !premiumConocido()) quitarAnuncios();
+  if (!sesion) { decidirAnuncios(); return; }
+  if (premiumConocido()) { decidirAnuncios(); return; }
+  var listo = false;
+  function seguir(){
+    if (!adsOn() || esPremiumLocal() || esperaPago()) { quitarAnuncios(); listo = true; return; }
+    if (!premiumConocido() || listo) return;
+    listo = true;
+    decidirAnuncios();
+  }
+  window.addEventListener('gr-premium', seguir);
+  setTimeout(function () {
+    if (listo || esPremiumLocal() || esperaPago() || !adsOn()) return;
+    listo = true;
+    decidirAnuncios();
+  }, 1500);
+  setTimeout(function () {
+    if (listo) return;
+    listo = true;
+    window.removeEventListener('gr-premium', seguir);
+    if (!adsOn() || esPremiumLocal()) quitarAnuncios();
+    else decidirAnuncios();
+  }, 12000);
+}
+arrancarAnuncios();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
+  if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
+  if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
   localStorage.removeItem(CK);
   document.documentElement.classList.remove('ad-ok');
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
-  if(window.__adsLoaded){ location.reload(); return; }
+  if(window.__adsLoaded){location.reload();return;}
   if(!adsConfigured()){ alert('Ahora mismo este sitio no usa cookies publicitarias.'); return; }
   const prev=document.getElementById('cookie-banner');
   if(prev) prev.remove();

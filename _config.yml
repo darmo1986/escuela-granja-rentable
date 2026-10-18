@@ -3,6 +3,11 @@
 # las notas internas de redacción. Jekyll no copia las carpetas que empiezan
 # por _ y, además, esta lista deja fuera el resto que no es una página del sitio.
 # El HTML, el CSS, el JS y las imágenes se copian tal cual.
+#
+# Artículos: la Action corre el generador antes de Jekyll y deploy-pages
+# publica solo _site/. _articulos/ empieza por _ y Jekyll no la copia; está
+# en esta lista, igual que las plantillas y el generador, para que el
+# Markdown y el código no se puedan descargar.
 exclude:
   - _fuentes
   - supabase
@@ -11,6 +16,12 @@ exclude:
   - "**/LEEME.md"
   - LEEME.md
   - js/apodo-pruebas.js
+  - apps-script/Codigo.gs
+  - _articulos
+  - blog/plantillas
+  - blog/pruebas
+  - blog/generar.py
+  - blog/README.md
   - vendor/bundle
   - vendor/cache
   - vendor/gems

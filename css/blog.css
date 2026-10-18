@@ -1,0 +1,21 @@
+/* Artículos. El resto del aspecto sale de estilo.css. */
+.cats a[aria-current="page"] { background: var(--g); color: #fff; }
+.pcard-media.post-media { aspect-ratio: 16 / 9; }
+.pcard-media.post-media img { width: 100%; height: 100%; object-fit: cover; }
+.post-meta { margin: 0; color: var(--muted); font-size: .88rem; }
+.pcard .post-more { font-weight: 800; color: var(--gm); margin-top: auto; padding-top: 6px; }
+.blog-guias { margin: 18px 0 8px; }
+.crumbs { font-size: .88rem; color: var(--muted); margin: 0 0 6px; }
+.crumbs a { color: var(--gm); text-decoration: none; font-weight: 750; }
+.post-head .post-meta { margin-bottom: 8px; }
+.post-body h2 { margin-top: 1.1em; }
+.post-body .tabla { max-width: 42rem; }
+.post-cta { display: grid; gap: 12px; margin: 16px 0; }
+@media (min-width: 800px) { .post-cta { grid-template-columns: 1fr 1fr; max-width: 52rem; } }
+.post-cta .panel h3 { margin-top: 0; }
+.post-cta .media-mini { display: flex; gap: 12px; align-items: center; }
+.post-cta .media-mini img { width: 84px; height: 84px; object-fit: contain; background: #f4f1e8; border-radius: 12px; flex: none; }
+.fuentes { font-size: .92rem; color: var(--muted); }
+.post-foto { margin: 0 0 14px; }
+.post-foto img { width: 100%; max-width: 42rem; height: auto; border-radius: 16px; aspect-ratio: 16 / 9; object-fit: cover; background: #f4f1e8; }
+.blog-vacio { background: #fff; border-radius: 16px; padding: 16px 18px; border: 1px solid var(--line); }

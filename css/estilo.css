@@ -88,7 +88,8 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
 .nav-row > a { flex: 1; }
 .nav-more { width: 64px; min-width: 64px; justify-content: center; padding: 0; }
 .nav-redes { font: inherit; }
-.nav a[aria-current="page"] { outline: 2px solid var(--gold); outline-offset: -2px; }
+.nav a[aria-current="page"],
+.nav button[aria-current="page"] { outline: 2px solid var(--gold); outline-offset: -2px; }
 .nav a.nav-shop { background: var(--gold); color: var(--gold-ink) !important; }
 .nav-cta { border: 2px solid #fff; background: transparent; }
 .nav-drop { display: flex; flex-direction: column; gap: 6px; }
@@ -113,20 +114,23 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
   .wa-chip, .nav-toggle { display: none; }
   .head-link, .js-comprar { display: inline-flex; }
   .nav {
-    grid-area: nav; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
-    gap: 10px; align-items: stretch;
+    grid-area: nav; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(max-content, 1fr);
+    gap: 4px; align-items: stretch;
     width: auto; max-height: none; overflow: visible; padding: 2px 0 10px;
   }
-  .nav > a, .nav > .nav-drop { min-width: 0; }
+  .nav > a, .nav > .nav-drop { min-width: max-content; }
   .nav-drop { position: relative; }
   .nav-row { width: 100%; height: 100%; min-width: 0; }
   .nav-row > a, .nav > a, .nav-redes {
-    justify-content: center; min-height: 62px; white-space: nowrap; border-radius: 16px; width: 100%; min-width: 0;
+    justify-content: center; min-height: 48px; white-space: nowrap; border-radius: 14px; width: 100%; min-width: max-content;
+    gap: 4px; padding: 4px 3px;
   }
   .nav-shop .nav-label::after, .nav-redes .nav-label::after, .nav-tools .nav-label::after { content: " ▾"; font-size: .85em; }
   .nav-parent, .nav a.nav-extra { display: none; }
-  .nav-label { font-size: 1.05rem; }
-  .nav-ico, .nav-ico svg { width: 28px; height: 28px; }
+  /* 8 entradas (con Herramientas y Premium) tienen que caber enteras desde 1040 px.
+     La barra no pasa de 1240 px, así que la letra no vuelve a 1.05 rem. */
+  .nav-label { font-size: .78rem; white-space: nowrap; }
+  .nav-ico, .nav-ico svg { width: 18px; height: 18px; }
   .nav-sub {
     display: none; position: absolute; top: calc(100% + 6px); left: 0; z-index: 50;
     min-width: 230px; padding: 8px; background: #fff; border-radius: 14px;
@@ -137,6 +141,17 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
   .nav-drop:hover .nav-sub, .nav-drop:focus-within .nav-sub, .nav-drop.is-open .nav-sub { display: flex; }
   .nav-drop.is-dismissed .nav-sub { display: none; }
   }
+@media (min-width: 1280px) {
+  .nav { gap: 6px; }
+  .nav-label { font-size: .78rem; }
+  .nav-ico, .nav-ico svg { width: 22px; height: 22px; }
+  .nav-row > a, .nav > a, .nav-redes { gap: 6px; padding: 6px 4px; min-height: 52px; border-radius: 14px; }
+}
+@media (min-width: 1440px) {
+  .nav { gap: 8px; }
+  .nav-label { font-size: .78rem; }
+  .nav-row > a, .nav > a, .nav-redes { padding: 8px 6px; min-height: 56px; }
+}
 html[data-tema="claro"] .top {
   background: #FFFcf8; color: #0F3D1C;
   box-shadow: 0 1px 0 #E4E0D4, 0 8px 18px rgba(15, 61, 28, .06);
@@ -223,7 +238,8 @@ html[data-tema="claro"] .auth-yo { border-color: #1F5E2E; color: #1F5E2E; backgr
 .auth-aviso .btn.sec { background: #eee; color: #222; }
 .auth-fav { margin: 8px 0 12px; }
 .auth-yo-linea { display: flex; gap: 12px; align-items: center; }
-html[data-tema="claro"] .nav a[aria-current="page"] { outline-color: #1F5E2E; }
+html[data-tema="claro"] .nav a[aria-current="page"],
+html[data-tema="claro"] .nav button[aria-current="page"] { outline-color: #1F5E2E; }
 @media (min-width: 1040px) {
   html[data-tema="claro"] .nav-sub,
   html[data-tema="claro"] .nav-sub a { background: #fff; }
@@ -418,12 +434,14 @@ body:has(#cookie-banner) main { padding-bottom: 120px; }
 .cta-card.gold .btn { background: var(--gd); color: #fff; }
 /* Huecos SLOT_* vacíos: ni la etiqueta «Publicidad» ni el banner, hasta que haya un anuncio de verdad. */
 .ad-inline, .ad-slot, .ad-label { display: none; }
+html.ad-off .ad-inline, html.ad-off .ad-slot, html.ad-off .ad-label { display: none !important; }
 html.ad-ok .ad-inline { display: block; position: static; margin: 14px 0; clear: both; }
 html.ad-ok .ad-label { display: block; font-size: .7rem; color: #888; margin: 0 0 4px; letter-spacing: .04em; text-transform: uppercase; }
 html.ad-ok .ad-slot { display: block; overflow: hidden; background: transparent; }
 html.ad-ok .ad-inline[data-ad-size="banner"] { width: min(320px, 100%); margin-left: auto; margin-right: auto; }
-html.ad-ok .ad-inline[data-ad-size="banner"] .ad-slot { width: min(320px, 100%); height: 50px; background: #f4f1e8; border: 1px solid #e5e0d4; }
-html.ad-ok .ad-inline[data-ad-size="rect"] .ad-slot { width: min(300px, 100%); height: 250px; }
+/* Alto fijo desde el primer pintado: el anuncio ocupa su hueco y no empuja el texto. */
+html.ad-ok .ad-inline[data-ad-size="banner"] .ad-slot { width: min(320px, 100%); height: 50px; min-height: 50px; background: #f4f1e8; border: 1px solid #e5e0d4; }
+html.ad-ok .ad-inline[data-ad-size="rect"] .ad-slot { width: min(300px, 100%); height: 250px; min-height: 250px; }
 html.ad-ok .ad-gap { margin: 0; height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4px 8px; font-size: .75rem; font-weight: 800; color: #6d5a16; background: #fff6d8; border: 2px dashed var(--gold); }
 .lock-msg { background: #fff6d8; border: 2px solid var(--gold); border-radius: 14px; padding: 14px; margin: 16px 0; font-weight: 700; }
 .tabla { overflow-x: auto; margin: 12px 0; }
@@ -639,7 +657,7 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 }
 @media (min-width: 1040px) and (max-width: 1199px) {
   .nav { gap: 6px; }
-  .nav-label { font-size: .92rem; }
+  .nav-label { font-size: .78rem; }
   .nav a, .nav-parent, .nav-redes { padding: 8px 8px; gap: 6px; }
   .nav-ico, .nav-ico svg { width: 22px; height: 22px; }
 }
