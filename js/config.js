@@ -15,6 +15,9 @@ window.ADSTERRA = {
   }
 };
 
+/* Interruptor de publicidad. false = no se inyecta ningún script ni iframe de anuncios. */
+window.ads = { activo: false };
+
 /* Sitio unificado. La tienda propia y el curso van primero. */
 window.GR = {
   siteUrl: "https://granjarentable.com",
