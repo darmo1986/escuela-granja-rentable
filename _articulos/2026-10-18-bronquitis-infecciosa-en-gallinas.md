@@ -42,7 +42,7 @@ La OMSA: en las gallinas se ve menos puesta y peor calidad. Si el virus toca el 
 | Florida, PS044 | «Dramática», sin porcentaje | Áspera; clara aguada | En 5 o 6 semanas, a un ritmo más bajo |
 | OMSA, Manual Terrestre | Menos puesta, sin un porcentaje | Pared fina, deforme, menos pigmento; o cese si el daño fue de pollita | El daño temprano del oviducto puede ser permanente |
 
-El 50 % no es un 70 % mal copiado. Kentucky y Merck midieron distinto, o al menos lo escribieron distinto. Florida no te deja promediarlos: habla de una recuperación incompleta en 5 o 6 semanas, mientras Merck deja abierta la vuelta a lo normal en hasta 8. Si a las seis semanas sigues por debajo, no concludes que «Florida falló». Puede ser el techo de esa página, o el daño permanente que la OMSA reserva para la infección de pollita.
+El 50 % no es un 70 % mal copiado. Kentucky y Merck midieron distinto, o al menos lo escribieron distinto. Florida no te deja promediarlos: habla de una recuperación incompleta en 5 o 6 semanas, mientras Merck deja abierta la vuelta a lo normal en hasta 8. Si a las seis semanas sigues por debajo, no concluyas que «Florida falló». Puede ser el techo de esa página, o el daño permanente que la OMSA reserva para la infección de pollita.
 
 Ese daño tiene nombre en Merck: síndrome de la falsa ponedora. El virus, muy temprano, deja un oviducto quístico. El ovario sigue y la gallina ovula, pero el oviducto no atrapa la yema. Nunca llega a una puesta normal. La OMSA describe el mismo golpe permanente. Una pollita que «estornudó de chica» y de adulta no llena el nido no se arregla con más luz. La luz y la muda están en la otra guía. Esto es otra causa.
 

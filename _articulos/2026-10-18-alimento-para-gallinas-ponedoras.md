@@ -20,7 +20,7 @@ fuentes:
   - "[Nutrition for backyard chicken flocks, Alabama Extension](https://www.aces.edu/wp-content/uploads/2022/07/ANR-1317_NutritionforBackyardChickenFlocks_071222aL.pdf)"
   - "[Nutrition for backyard chicken flocks, University of Maine](https://extension.umaine.edu/publications/2222e/)"
   - "[Feeding the flock, University of Maryland Extension](https://extension.umd.edu/resource/feeding-flock)"
-  - "[Guía de rendimiento Hy-Line Brown, sistemas convencionales](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
+  - "[Hy-Line Brown, Performance Standards Guide, Commercial Layers Conventional Systems](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
 ---
 
 El saco equivocado se nota en el hueso del pollito o en la cáscara del huevo, y se nota rápido. Las extensiones universitarias de Estados Unidos no publican una sola fórmula para toda América Latina. Publican el mismo orden: un alimento de inicio, otro de crecimiento y otro de postura, y prohíben darle el de postura a un ave que todavía no pone. Este texto sigue ese orden. Los porcentajes los pongo como los publica cada universidad, porque no coinciden al decimal. Manda la etiqueta del saco que compraste, no un promedio mío.
@@ -43,7 +43,7 @@ Alabama Extension y la Universidad de Maine publican el mismo aviso: el alimento
 
 Maine, para líneas livianas tipo Leghorn, precisa el momento: se cambia al saco de postura cuando empieza el huevo, y no se adelanta más de dos semanas. Adelantarlo puede alterar el desarrollo del hueso.
 
-Hy-Line, en la guía de la Brown para sistemas convencionales, tiene una fase de pre-postura con su propia regla: no darla antes de las 15 semanas y no seguir con ella después del primer huevo, porque ese alimento no trae calcio bastante para la puesta. Si no puedes usar pre-postura (por ejemplo, edades mezcladas), Hy-Line pide subir el calcio del último alimento de recría a 1,4 %. Eso es una instrucción de esa guía, no la dosis de un saco de pueblo. En una granja pequeña, Penn State y Oregon resuelven el salto de otra forma: alimento de crecimiento hasta cerca de las 18 semanas o del primer huevo, y entonces el de postura.
+La Performance Standards Guide de Hy-Line Brown (Commercial Layers Conventional Systems) tiene una fase de pre-postura con su propia regla: no darla antes de las 15 semanas y no seguir con ella después del primer huevo, porque ese alimento no trae calcio bastante para la puesta. Si no puedes usar pre-postura (por ejemplo, edades mezcladas), Hy-Line pide subir el calcio del último alimento de recría a 1,4 %. Eso es una instrucción de esa guía, no la dosis de un saco de pueblo. En una granja pequeña, Penn State y Oregon resuelven el salto de otra forma: alimento de crecimiento hasta cerca de las 18 semanas o del primer huevo, y entonces el de postura.
 
 ## Calcio cuando ya hay huevo
 

@@ -1,7 +1,7 @@
 ---
 titulo: "Gallina Leghorn: huevo blanco y peso"
 titulo_seo: "Gallina Leghorn: huevo y peso"
-descripcion: "Unas 200 o más en la ficha de raza, y unas 265 en la Leghorn comercial blanca de Oregon. No son el mismo número."
+descripcion: "La gallina Leghorn pone huevo blanco. Oklahoma State habla de 200 huevos o más al año; Oregon, de unas 265 en la comercial blanca."
 categoria: razas
 fecha: 2026-10-18
 borrador: false

@@ -90,9 +90,9 @@ Si puedes, entra primero a los pollitos y después a las adultas, con otro calza
 
 ### Vacuna o alimento medicado: lo decide quien te entregó las aves
 
-Merck describe las vacunas comerciales como ooquistes vivos esporulados, a dosis baja, en el pollito de un día, en la planta o en la granja. La vacuna solo introduce la infección. El ave se reinfecta en el piso con la descendencia de esa cepa. Por eso una cama completamente estéril, o un anticoccidial que mate justo la cepa de la vacuna, puede tumbar el plan. Esos dos caminos no se improvisan juntos. Léelo en la etiqueta y confírmalo con quien vacunó.
+Merck describe las vacunas comerciales como ooquistes vivos esporulados, a dosis baja, en el pollito de un día, en la planta o en la granja. La vacuna solo introduce la infección. El ave se reinfecta en el piso con la descendencia de esa cepa. Por eso una cama completamente estéril puede estorbar ese plan: la vacuna necesita la reinfección. El veterinario decide entre vacuna y alimento medicado; no se combinan sin su indicación. Léelo en la etiqueta y confírmalo con quien vacunó.
 
-Mississippi, para no tener brotes en pollitas, habla de un alimento con un coccidiostato eficaz durante el crecimiento. No copies de ahí un nombre ni un gramo. En tu país el registro manda. La Extensión de Minnesota, en el artículo de engorde, recomienda pedir los pollitos ya vacunados en la planta si vas a usar alimento sin medicar. Es una decisión de antes de la llegada.
+Mississippi, para no tener brotes en pollitas, habla de un alimento con un coccidiostato eficaz durante el crecimiento. No copies de ahí un nombre ni un gramo. En tu país el registro manda. La Extensión de Minnesota, en el artículo de engorde, dice que se considere vacunar los pollitos en la planta si vas a usar alimento sin medicar. Es una decisión de antes de la llegada. El veterinario decide entre vacuna y alimento medicado; no se combinan sin su indicación.
 
 La FAO repite el límite: no trates un hallazgo bajo de ooquistes en un ave que ya convive con el parásito solo porque el análisis «salió positivo». Puedes quitarle la inmunidad que estaba formando.
 
@@ -131,7 +131,7 @@ No cuentes con eso. Merck y Extension.org dicen que resiste desinfectantes habit
 
 ### ¿Puedo dar el mismo producto si el lote va vacunado?
 
-No lo decidas tú. Merck explica que la vacuna es una infección controlada que tiene que recircular en la cama. Un anticoccidial mal elegido puede tumbarla. Quien vacunó y la etiqueta del país dicen si el alimento va medicado o no.
+No lo decidas tú. Merck explica que la vacuna es una infección controlada que tiene que recircular en la cama. El veterinario decide entre vacuna y alimento medicado; no se combinan sin su indicación. La etiqueta del país dice si el alimento va medicado o no.
 
 ### ¿Sirve encontrar ooquistes en un análisis para echar medicamento?
 

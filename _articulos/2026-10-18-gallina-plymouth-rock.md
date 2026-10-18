@@ -1,7 +1,7 @@
 ---
 titulo: "Gallina Plymouth Rock: peso y huevo"
 titulo_seo: "Plymouth Rock: peso y huevo barrado"
-descripcion: "Unas 200 huevos al año las dice la Conservancy. Oklahoma State no da ese número. El origen 1849 y 1869 no se funden."
+descripcion: "Peso y huevo marrón de la Plymouth Rock. La Conservancy publica cerca de 200 huevos grandes al año."
 categoria: razas
 fecha: 2026-10-18
 borrador: false

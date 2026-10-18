@@ -59,7 +59,7 @@ Casi todo el ciclo ocurre en la misma ave. Pasan a otra por contacto cercano. La
 
 En el lote se ve inquietud, plumas dañadas, peor aspecto, menos alimento, crecimiento más lento y menos huevos. Arizona cita un muestreo de traspatio en California donde el piojo fue el ectoparásito más común. Es una región, no tu cifra.
 
-El piojo de la gallina no se instala en las personas. Arizona lo dice claro: es específico del ave y muere en cerca de una semana si se separa del hospedador. Si te pica el cuero cabelludo, no concludes que «se te pegaron los de las gallinas». El ácaro rojo sí puede picar a mamíferos de paso, incluida la persona, sobre todo de noche. Arizona lo trata como infestación temporal. No son la misma frase.
+El piojo de la gallina no se instala en las personas. Arizona lo dice claro: es específico del ave y muere en cerca de una semana si se separa del hospedador. Si te pica el cuero cabelludo, no concluyas que «se te pegaron los de las gallinas». El ácaro rojo sí puede picar a mamíferos de paso, incluida la persona, sobre todo de noche. Arizona lo trata como infestación temporal. No son la misma frase.
 
 Tampoco se les conoce como vectores de enfermedades. El daño es la irritación, la pluma y la puesta.
 

@@ -72,11 +72,11 @@ La luz también es manejo. No la dejo en un número de horas aquí porque los pr
 
 ## Alimento por etapas
 
-El manual de Ross separa un alimento de inicio, que debe darse al menos 10 días y alargarse si el peso de la primera semana no llega, y alimentos siguientes. El inicio va en migaja; lo que viene después, en gránulo, si la calidad del gránulo es buena. Mucho fino (partículas por debajo de 1 mm) se desperdicia y sube el consumo de agua.
+El manual de Ross separa un alimento de inicio, que debe darse al menos 10 días y alargarse si el peso de la primera semana no llega, y alimentos siguientes. El inicio va en migaja; lo que viene después, en gránulo, si la calidad del gránulo es buena. De las partículas de menos de 1 mm, Ross pide que queden por debajo del 10 %. Esa guía no dice que el fino se tire ni que suba el agua.
 
 Cobb también arranca con migaja de buena calidad. Ni Cobb ni Ross te piden que armes la fórmula en la cocina. El saco tiene que ser de pollos de engorde, de la fase que toca, y el cambio se hace como diga la etiqueta, no de golpe a un saco de gallinas ponedoras. Por qué el alimento de postura no va a un pollito está en [alimento para gallinas ponedoras](alimento-para-gallinas-ponedoras.html): el calcio de ese saco es otra etapa.
 
-La Extensión de Minnesota, para un lote pequeño, recomienda pedir los pollitos ya vacunados en la planta contra coccidiosis si vas a usar alimento sin medicar. Es una decisión de antes de la llegada, no un frasco el día que aparece sangre en la cama. Los signos y lo que no debes dosificar por tu cuenta están en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
+La Extensión de Minnesota, para un lote pequeño, dice que se considere vacunar los pollitos en la planta contra coccidiosis si vas a usar alimento sin medicar. Es una decisión de antes de la llegada, no un frasco el día que aparece sangre en la cama. El veterinario decide entre vacuna y alimento medicado; no se combinan sin su indicación. Los signos y lo que no debes dosificar por tu cuenta están en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
 
 ## Cuántos caben
 
@@ -90,7 +90,7 @@ Minnesota también dice que el cruce de crecimiento rápido que allí llaman cru
 
 ## Agua, cama y la vuelta de cada día
 
-A unos 21 °C, Cobb sitúa el agua bebida entre 1,6 y 2,0 veces el alimento del día. Por encima de 30 °C el consumo de agua puede pasar de 2 veces el alimento. La nota de Aviagen en español da, para bebedero de campana a 21 °C, una relación cercana a 1,8, y cita un aumento del 6 al 7 % por cada grado por encima de 21 °C. El artículo de bebederos baja al detalle de tetina, campana y temperatura del agua.
+A unos 21 °C, el cartel de bebederos de tetina de Cobb 2026 sitúa el agua bebida entre 1,6 y 2,0 veces el alimento del día. No es la guía de manejo de 2021. Por encima de 30 °C el consumo de agua puede pasar de 2 veces el alimento. La nota de Aviagen en español da, para bebedero de campana a 21 °C, una relación cercana a 1,8, y cita un aumento del 6 al 7 % por cada grado por encima de 21 °C. El artículo de bebederos baja al detalle de tetina, campana y temperatura del agua.
 
 Cama mojada bajo el bebedero es el sitio clásico de la coccidiosis. Si el piso se encharca, baja la presión o sube el bebedero antes de echar más viruta encima para tapar el charco.
 

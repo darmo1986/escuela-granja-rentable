@@ -17,6 +17,7 @@ guia: empezar
 fuentes:
   - "[Criar pollos para carne, Extensión de la Universidad de Minnesota](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-chickens-for-meat)"
   - "[Guía de manejo Cobb, 2021](https://www.cobbgenetics.com/assets/Cobb-Files/Broiler-Guide_English-2021-min.pdf)"
+  - "[Cartel de bebederos de tetina, Cobb 2026](https://www.cobbgenetics.com/assets/Cobb-Files/2026-Nipple-Drinker-Poster-Digital-v2.pdf)"
   - "[Guía de bolsillo Ross, Aviagen](https://aviagen.com/assets/Tech_Center/Ross_Broiler/Aviagen-ROSS-Broiler-PocketGuide-EN.pdf)"
   - "[Harina de soja, Feedipedia](https://www.feedipedia.org/node/674)"
   - "[Nutrition for backyard chicken flocks, Alabama Extension](https://www.aces.edu/wp-content/uploads/2022/07/ANR-1317_NutritionforBackyardChickenFlocks_071222aL.pdf)"
@@ -32,8 +33,9 @@ El lote, el calor y la cama están en [cómo criar pollos de engorde en casa](co
 | Quién | Qué dice del alimento | Qué no dice |
 | --- | --- | --- |
 | Minnesota | Inicio de 22–24 % de proteína al menos la primera semana y hasta la semana 4. Después, finalizador no menor de 18–19 %. | No da la mezcla de maíz y soja en kilos |
-| Ross, guía de bolsillo | Un inicio de al menos 10 días, en migaja; lo siguiente en gránulo si el gránulo es bueno. Mucho fino, por debajo de 1 mm, se desperdicia | No arma la fórmula en la casa |
-| Cobb, guía 2021 | Arranque con migaja de buena calidad. El agua, a 21 °C, entre 1,6 y 2,0 veces el alimento | No un porcentaje de maíz |
+| Ross, guía de bolsillo | Un inicio de al menos 10 días, en migaja; lo siguiente en gránulo si el gránulo es bueno. Las partículas de menos de 1 mm, por debajo del 10 % | No arma la fórmula en la casa. No dice que el fino se tire ni que suba el agua |
+| Cobb, guía 2021 | Arranque con migaja de buena calidad | No un porcentaje de maíz. El 1,6–2,0 de agua no es de esta guía |
+| Cobb, cartel de tetinas 2026 | El agua, a 21 °C, entre 1,6 y 2,0 veces el alimento | No es la guía de manejo de 2021 |
 | Feedipedia, harina de soja | La harina procesada es el estándar. El grano crudo trae inhibidores de tripsina | No autoriza tostar «hasta que huela» |
 | Alabama y Maine | El alimento de postura no se da a pollitos ni a aves en crecimiento | El 2,5–3,5 % de calcio es de Maine, y es de puesta, no de engorde |
 
@@ -47,24 +49,24 @@ La energía del maíz no trae la proteína ni la metionina. Feedipedia recuerda 
 
 Alabama y Maine repiten el aviso que más se salta en una granja mixta: el alimento de postura no va a pollitos. El calcio de esa etapa puede causar problemas de crecimiento, daño renal o muerte. En un patio donde las gallinas y los pollitos comparten comedero, el error es uno solo y alcanza a los dos. El calcio de 2,5–3,5 % es el que Maine pide en el saco de postura, no una cucharada para el engorde.
 
-Ross separa el inicio, al menos 10 días, más largo si el peso de la primera semana no llega. El inicio va en migaja. Después, gránulo, si el gránulo no se hace polvo. El fino por debajo de 1 mm se pierde y sube el consumo de agua. Cobb también arranca con migaja de buena calidad. Ni Cobb ni Ross te piden la báscula de la cocina para armar aminoácidos.
+Ross separa el inicio, al menos 10 días, más largo si el peso de la primera semana no llega. El inicio va en migaja. Después, gránulo, si el gránulo no se hace polvo. De las partículas de menos de 1 mm, Ross pide que queden por debajo del 10 %. Esa guía no dice que el fino se tire ni que suba el agua. Cobb también arranca con migaja de buena calidad. Ni Cobb ni Ross te piden la báscula de la cocina para armar aminoácidos.
 
 ## Fases, sin convertirlas en receta
 
 Minnesota, para el lote pequeño:
 
-- Las dos primeras semanas, y mejor hasta la cuarta, un iniciador de pollito de 22–24 % de proteína, o cerca de eso.
+- Al menos la primera semana y, mejor, hasta la semana 4, un iniciador de pollito de 22–24 % de proteína, o cerca de eso.
 - Después, un finalizador que no baje de 18–19 % durante el resto.
 - Si el destino es un ave más pesada (la extensión habla de asadores y capones), un desarrollador más bajo después del inicio, y un finalizador alto en energía las últimas dos o tres semanas. El programa alto en energía desde el principio, dice, puede traer problemas de patas y ampollas en la pechuga en esos animales más pesados.
 - Un poco de grit una o dos veces por semana si hace falta. No es el alimento.
 
 Eso es comprar sacos, no moler. Si el molino de tu pueblo solo vende «engorde» en un solo costal, lee la etiqueta: proteína, fase y si lleva medicamento. Si no dice la fase, no es el programa de Minnesota ni el de Ross.
 
-El agua cierra la cuenta. A unos 21 °C, Cobb sitúa lo bebido entre 1,6 y 2,0 veces el alimento del día. Si pasa de 2, mira calor de más de 30 °C, un error de fórmula o un bebedero que gotea. Son tres causas, las del cartel de Cobb, y están desarrolladas en [bebederos y agua](bebederos-y-agua-para-pollos.html). Un pienso polvoriento que obliga a beber de más moja la cama. La coccidiosis agradece ese charco: [coccidiosis en pollos](coccidiosis-en-pollos.html).
+El agua cierra la cuenta. A unos 21 °C, el cartel de bebederos de tetina de Cobb 2026 sitúa lo bebido entre 1,6 y 2,0 veces el alimento del día. No es la guía de manejo de 2021. Si pasa de 2, mira calor de más de 30 °C, un error de fórmula o un bebedero que gotea. Son tres causas, las de ese cartel, y están desarrolladas en [bebederos y agua](bebederos-y-agua-para-pollos.html). Un pienso polvoriento que obliga a beber de más moja la cama. La coccidiosis agradece ese charco: [coccidiosis en pollos](coccidiosis-en-pollos.html).
 
 ## Medicado, vacunado o ninguno: no los tres a la vez
 
-Minnesota pide, si vas a usar alimento sin medicar, encargar los pollitos ya vacunados en la planta contra coccidiosis. Es una decisión de antes de la llegada. Un anticoccidial en el saco y una vacuna de coccidiosis no se improvisan juntos: el producto puede tumbar la vacuna. El nombre y los días de espera van en la etiqueta, no aquí.
+Minnesota dice que, si vas a usar alimento sin medicar, se considere vacunar los pollitos en la planta contra coccidiosis. Es una decisión de antes de la llegada, no una orden. El veterinario decide entre vacuna y alimento medicado; no se combinan sin su indicación. El nombre y los días de espera van en la etiqueta, no aquí.
 
 No alargues un inicio medicado «hasta que se acabe el saco» en aves que ya no están en esa fase. Si no entiendes la retirada, no vendas esa carne: pregunta al veterinario o al molino.
 
@@ -72,7 +74,7 @@ No alargues un inicio medicado «hasta que se acabe el saco» en aves que ya no 
 
 Minnesota escribe para un invierno que pide lámpara y para un verano en el que, si el lote ya está en las últimas semanas y pasan de 85–90 °F (unos 29–32 °C), conviene retirar el alimento en la hora más caliente. También dice que, después de la primera semana de alimento a libre disposición, quitar el alimento de noche durante las tres semanas siguientes ayuda a prevenir el «flip», un ataque al corazón por comer de más, y que no es raro perder 1–2 % por eso. Es el consejo de esa página. No es una ley para un galpón de la costa donde el problema de la noche es el calor, no el atracón de un galpón frío. En calor, el mismo texto pide cuidar el pico de la tarde. No hagas las dos cosas a la vez sin leer cuál es tu caso.
 
-En lluvia, el saco abierto en el piso toma humedad y el fino se apelmaza. Ross ya advirtió que el fino se desperdicia. Guarda el saco seco, sobre tarima, no contra la pared de tierra.
+En lluvia, el saco abierto en el piso toma humedad y el fino se apelmaza. Ross pide que las partículas de menos de 1 mm queden por debajo del 10 %; un costal mojado no es esa migaja. Guarda el saco seco, sobre tarima, no contra la pared de tierra.
 
 La larva o la lombriz no cierran este hueco. La FAO y el ensayo de 2021 están en el artículo de proteína: un 15 % de la proteína de la soja no es un 15 % del comedero, y el 30 % de ese ensayo bajó el crecimiento. Encima de maíz, peor.
 
@@ -87,7 +89,7 @@ En muchos pueblos el costal dice «engorde» y nada más. Antes de cargarlo, bus
 
 Si el molino te ofrece armar la mezcla, pídele que la firme alguien que formule, con la metionina incluida. Una mezcla de maíz y torta de soja a porcentajes redondos no es esa firma. La torta mal cocida sigue siendo el problema de la tripsina.
 
-Guarda el saco sobre tarima, lejos de la pared que suda en época de lluvia, y ciérralo el mismo día. El fino que Ross no quiere es el que queda en el fondo del costal mojado. Ese fondo, tirado al piso, es cama húmeda y desperdicio a la vez.
+Guarda el saco sobre tarima, lejos de la pared que suda en época de lluvia, y ciérralo el mismo día. Ross limita a menos del 10 % las partículas de menos de 1 mm. El fondo de un costal mojado no es esa migaja. Tirado al piso, es cama húmeda.
 
 ## La semana en que se acaba el saco
 
@@ -102,7 +104,7 @@ No esperes al comedero vacío. El número de días que dura un saco no está en 
 
 - Lee la fase y la proteína. Si dice postura, no es este lote.
 - Mira si trae medicamento y cuál es la retirada. Si no está escrito, no lo uses para vender carne.
-- Da migaja al inicio. Si solo tienes harina muy fina, no la «arregles» con maíz entero: el pollito no la aprovecha y el desperdicio sube el agua.
+- Da migaja al inicio. Si solo tienes harina muy fina, no la «arregles» con maíz entero. Ross pide que lo de menos de 1 mm quede por debajo del 10 %.
 - Anota el día que abriste el saco y los kilos que entran. Minnesota da libras de referencia; las tuyas salen de la báscula, no de esa tabla sola.
 - Pesca el agua a la misma hora. Si beben menos y el calor no lo explica, busca bebedero tapado, alimento que no llega o aves enfermas. El cuadro está en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
 - No mezcles el lote de engorde con las ponedoras en el mismo comedero.
@@ -137,7 +139,7 @@ No. Alabama y Maine dicen que el de postura no va a quien todavía crece. Mejor 
 
 ### ¿Y si el molino solo tiene un saco medicado?
 
-Lee la retirada antes de usarlo. Si los pollitos ya vienen vacunados de coccidiosis, confirma con quien los vacunó que ese saco no anula la vacuna. Minnesota separa las dos vías.
+Lee la retirada antes de usarlo. Si los pollitos ya vienen vacunados de coccidiosis, el veterinario decide si ese saco medicado y la vacuna van juntos. No se combinan sin su indicación. Minnesota habla de considerar la vacuna cuando el alimento va sin medicar.
 
 ### ¿La cocina alcanza para veinte pollos?
 

@@ -20,6 +20,7 @@ fuentes:
   - "[Common Poultry Diseases, University of Florida IFAS, PS044](https://ask.ifas.ufl.edu/publication/PS044)"
   - "[Recognizing Immunosuppressive Diseases in Commercial Poultry, University of Florida IFAS, VM274](https://ask.ifas.ufl.edu/publication/VM274)"
   - "[Infectious bursal disease (Gumboro disease), Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/en/disease/infectious-bursal-disease-gumboro-disease/)"
+  - "[Manual Terrestre, capítulo 3.3.12, bursitis infecciosa, Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/fileadmin/Home/eng/Health_standards/tahm/3.03.12_IBD.pdf)"
 ---
 
 A las tres o cuatro semanas el lote se echa, mancha la cloaca y al día siguiente hay bajas. O no se ve nada, y más tarde las vacunas «no agarran» y cualquier cosa los tumba. Las dos cosas pueden ser Gumboro: la bursitis infecciosa, un birnavirus de pollos jóvenes. Merck, Florida y la Organización Mundial de Sanidad Animal (OMSA) coinciden en que no hay tratamiento y en que la bolsa de Fabricio es el órgano que mira el diagnóstico. No coinciden en una sola mortalidad. Esta guía no la inventa. El pollito de esas semanas está en [cómo criar pollitos de un día](como-criar-pollitos-de-un-dia.html). Otras causas de un lote caído están en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
@@ -67,7 +68,7 @@ Merck, si hay signos: tras 3 o 4 días, abatimiento grave, incoordinación, diar
 
 El diagnóstico de Merck: lesión macro y microscópica de la bolsa, y el genoma por RT-PCR. La serología de un pollito no prueba infección: casi todos traen anticuerpo de la madre. Entre las bolsas atróficas, Merck lista Marek, hepatitis por cuerpos de inclusión, aflatoxicosis, la propia vacuna y el estrés, además de la involución normal. La parálisis de Marek es otra guía: [enfermedad de Marek](enfermedad-de-marek-en-pollos.html). El maíz húmedo y las micotoxinas están en [por qué las gallinas dejan de poner](por-que-las-gallinas-dejan-de-poner.html). No son lo mismo, y Merck las pone en el diferencial de una bolsa chica.
 
-La OMSA: lo clínico se sospecha por signos y lesiones; lo subclínico, por anticuerpos en aves no vacunadas o por antígeno o genoma en los tejidos. Si hay reacciones positivas en no vacunadas, hay que dar todo el lote por infectado. La vacuna viva también puede atrofiar la bolsa: está en la lista de Merck. Un take de vacuna no es un brote, y un brote no se descarta porque «ya vacuné».
+El Manual Terrestre de la Organización Mundial de Sanidad Animal (OMSA), capítulo 3.3.12, no la ficha general de la enfermedad: lo clínico se sospecha por signos y lesiones; lo subclínico, por anticuerpos en aves no vacunadas o por antígeno o genoma en los tejidos. Si hay reacciones positivas en no vacunadas, hay que dar todo el lote por infectado. La vacuna viva también puede atrofiar la bolsa: está en la lista de Merck. Un take de vacuna no es un brote, y un brote no se descarta porque «ya vacuné».
 
 ## La vacuna: de la madre, no un día copiado
 
@@ -113,9 +114,9 @@ Puede haber sido la forma subclínica. Merck: es la más importante en pérdidas
 
 Depende del anticuerpo de la madre y de la cepa. Merck: entre 1 y 21 días la viva puede ir por gota, agua o subcutánea, y el anticuerpo materno cambia la respuesta. Las de vector o inmunocomplejo van al nacimiento o al huevo y ese anticuerpo no las anula. El día lo elige quien conozca el virus de tu zona. Un frasco genérico no es ese plan.
 
-### ¿Por qué las Leghorn aguantan el calendario de las otras?
+### ¿Gumboro solo pega entre las 3 y las 6 semanas?
 
-Merck ha visto infecciones graves en Leghorn hasta las 18 semanas. La ventana de 3 a 6 semanas es la más susceptible, no la única. La línea está en [razas de gallinas y cómo elegir](razas-de-gallinas-como-elegir.html). No es una razón para no vacunar a las madres.
+Merck sitúa ahí la ventana más susceptible. En la Leghorn ha visto infecciones graves hasta las 18 semanas. Esa ventana no es la única, y la raza no se libra por poner huevo blanco. La línea está en [razas de gallinas y cómo elegir](razas-de-gallinas-como-elegir.html). No es una razón para no vacunar a las madres.
 
 ### ¿Esto se declara como Newcastle?
 

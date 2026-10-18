@@ -1,7 +1,7 @@
 ---
 titulo: "Gallina Brahma: peso, huevo y calor"
 titulo_seo: "Gallina Brahma: peso, huevo y calor"
-descripcion: "12 libras no es 9,5, y el «1 1 lbs» de Oklahoma State no es un peso. Hasta 200 huevos es de la Conservancy, no de esa ficha."
+descripcion: "Peso y huevo de la gallina Brahma. La Conservancy publica hasta 200 huevos marrones al año. El calor no le va bien."
 categoria: razas
 fecha: 2026-10-18
 borrador: false
@@ -40,7 +40,7 @@ Oklahoma State separa la clara del par oscura y buff.
 | Gallo joven | 10 lb | 9 lb | No separa jóvenes en esa frase |
 | Pollita | 8 lb | 7 lb | No separa pollitas en esa frase |
 
-«1 1 lbs» no es un gallo de una libra. Es un corte de línea en esa ficha. No lo publiques como 1 lb ni lo completes tú a 11 porque «se ve» un 11. La Conservancy dice otra cosa, y hay que dejarla como suya: las oscuras tendían a pesar alrededor de una libra menos que la clara. Si la clara de Oklahoma State son 12 lb, esa frase de la Conservancy apunta cerca de 11, pero no es el número que Oklahoma State escribió. No lo pongas en la báscula como si fuera el estándar impreso.
+«1 1 lbs» no es un gallo de una libra. Es un corte de línea en esa ficha. No lo publiques como 1 lb ni lo completes tú a 11 porque «se ve» un 11. La Conservancy lo publica por su cuenta: las oscuras tendían a pesar alrededor de una libra menos que la clara. Si la clara de Oklahoma State son 12 lb, esa frase de la Conservancy apunta cerca de 11, pero no es el número que Oklahoma State escribió. No lo pongas en la báscula como si fuera el estándar impreso.
 
 Tampoco juntes 9,5 lb (gallina clara de Oklahoma State) con 10 lb (hembra de la Conservancy). Las dos páginas hablan de la raza y no firman el mismo kilo. La Conservancy añade un peso de mercado de 8 a 10 libras, distinto del macho de 12. Y cuenta que hacia 1901 hubo individuos documentados de 13–14 libras en hembras y 17–18,25 en machos. Eso es un extremo de esa página, no el estándar de hoy. La misma página dice que la regla era, y sigue siendo, 10 libras la hembra y 12 el macho.
 

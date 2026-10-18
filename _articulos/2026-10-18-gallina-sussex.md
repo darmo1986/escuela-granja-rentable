@@ -1,7 +1,7 @@
 ---
 titulo: "Gallina Sussex: huevo, peso y calor"
 titulo_seo: "Gallina Sussex: huevo, peso y calor"
-descripcion: "De 200 a 250 huevos lo dice la Conservancy, no Oklahoma State. No le gusta el calor. Los 9 y 7 libras no son el peso de mercado de 6 a 7,5."
+descripcion: "La Sussex pone huevo marrón y aguanta mejor el frío que el calor. La Conservancy publica de 200 a 250 huevos al año."
 categoria: razas
 fecha: 2026-10-18
 borrador: false

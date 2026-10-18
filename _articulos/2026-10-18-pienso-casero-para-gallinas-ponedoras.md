@@ -21,7 +21,7 @@ fuentes:
   - "[Nutrition for backyard chicken flocks, Alabama Extension](https://www.aces.edu/wp-content/uploads/2022/07/ANR-1317_NutritionforBackyardChickenFlocks_071222aL.pdf)"
   - "[Nutrition for backyard chicken flocks, University of Maine](https://extension.umaine.edu/publications/2222e/)"
   - "[Feeding the flock, University of Maryland Extension](https://extension.umd.edu/resource/feeding-flock)"
-  - "[Guía de rendimiento Hy-Line Brown, sistemas convencionales](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
+  - "[Hy-Line Brown, Performance Standards Guide, Commercial Layers Conventional Systems](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
 ---
 
 El pienso casero de las ponedoras suele ser maíz, sobra de cocina, pasto y un poco de concha. Las extensiones de Estados Unidos no publican esa mezcla. Publican sacos por fase y avisan de lo que la sobra le hace a la puesta. Esta guía es la de no armar el saco en la cocina. Las fases ya contadas, con cada porcentaje en su universidad, están en [alimento para gallinas ponedoras](alimento-para-gallinas-ponedoras.html). Aquí no se promedian. No hay precio del kilo.
@@ -42,11 +42,11 @@ Oregon, en PNW 565, lo resume así: dieta balanceada; cualquier suplemento de gr
 
 ## El saco de la fase, otra vez, porque el casero lo salta
 
-Penn State: inicio 18–20 % unas 6–8 semanas, crecimiento 14–15 % hasta cerca de las 18 semanas, luego postura 16–18 % más grit y concha a libre acceso. Oregon, en PNW 477: crecimiento cerca de 15–16 % desde unas 6 semanas, desarrollo 14–15 % después de unas 14 semanas, y postura hacia las 18–20 semanas o al primer huevo, con cerca de 16 % de proteína y 3–4 % de calcio. No juntes el 18–20 % de Penn State con el 3–4 % de Oregon en un balde. Son descripciones de alimentos ya hechos.
+Esas fases ya están contadas, universidad por universidad, en [alimento para gallinas ponedoras](alimento-para-gallinas-ponedoras.html). No las repito aquí. El límite que sí importa en la cocina es este: no juntes el inicio de una página con el calcio de otra en un balde. Son descripciones de alimentos ya hechos.
 
 Maine, no Alabama, pide que el saco de postura traiga al menos 2,5–3,5 % de calcio, y ofrece concha, calcita o piedra caliza a libre acceso si el saco no llega. Oregon habla de 3–4 % en el alimento y de concha aparte si la cáscara sale fina. El comedero de la concha va separado. Si va revuelta con el maíz del suelo, no sabes cuánto calcio comió cada una.
 
-Maine, para líneas livianas tipo Leghorn, precisa el momento: se cambia al saco de postura cuando empieza el huevo, y no se adelanta más de dos semanas. Hy-Line Brown, en sistemas convencionales, tiene pre-postura: no darla antes de las 15 semanas y no seguir después del primer huevo, porque ese alimento no trae calcio bastante para la puesta. Si no hay pre-postura, Hy-Line pide subir el calcio del último alimento de recría a 1,4 %. Eso es una instrucción de esa guía, no la dosis de un saco de pueblo.
+Maine, para líneas livianas tipo Leghorn, precisa el momento: se cambia al saco de postura cuando empieza el huevo, y no se adelanta más de dos semanas. La Performance Standards Guide de Hy-Line Brown (Commercial Layers Conventional Systems) tiene pre-postura: no darla antes de las 15 semanas y no seguir después del primer huevo, porque ese alimento no trae calcio bastante para la puesta. Si no hay pre-postura, esa guía pide subir el calcio del último alimento de recría a 1,4 %. Eso es una instrucción de ese documento, no la dosis de un saco de pueblo.
 
 El de postura no se da a pollitos. Alabama y Maine lo publican por el calcio. En un gallinero donde la pollita picotea el comedero de la madre, el «pienso de la casa» es justo ese error.
 

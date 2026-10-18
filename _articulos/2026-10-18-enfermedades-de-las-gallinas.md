@@ -37,7 +37,7 @@ Recorre el gallinero con calma y anota cuántas aves están mal, desde cuándo y
 
 La Organización Mundial de Sanidad Animal (OMSA) describe la enfermedad de Newcastle como un cuadro que puede ser respiratorio, nervioso o digestivo, con caída de la puesta y mortalidad variable, a veces muy alta. El manual Merck dice que no hay un signo que, por sí solo, confirme Newcastle: el inicio en aves sin protección puede ser rápido y a veces la primera señal es la muerte súbita.
 
-El servicio de sanidad animal de Estados Unidos (USDA APHIS) lista, para la influenza aviar de alta patogenicidad, diarrea, incoordinación, mocos, estornudos, cresta y patas moradas, hinchazón de cabeza, cresta, párpados y barbillas, menos huevos o huevos deformes, decaimiento y muerte súbita. La OMSA advierte que Newcastle y la influenza aviar pueden verse parecidas, así que el laboratorio es el que separa una de otra.
+El servicio de sanidad animal de Estados Unidos (USDA APHIS), en «How To Spot Sickness», lista como signos de alarma (influenza aviar u otras enfermedades) diarrea, incoordinación, mocos, estornudos, cresta y patas moradas, hinchazón de cabeza, cresta, párpados y barbillas, menos huevos o huevos deformes, decaimiento y muerte súbita. La OMSA advierte que Newcastle y la influenza aviar pueden verse parecidas, así que el laboratorio es el que separa una de otra.
 
 Señales para no dejar pasar la noche:
 
@@ -80,7 +80,7 @@ La cama seca es la palanca diaria. Cómo no encharcar el piso está en [bebedero
 
 Merck y Mississippi describen dos caminos de prevención, no un remedio casero: un anticoccidial en el alimento o en el agua, o una vacuna con ooquistes vivos a dosis baja, normalmente en el pollito de un día. Extension.org dice lo mismo y añade que la vacuna solo introduce la infección: el ave se reinfecta en la cama con la descendencia de esa cepa y así arma inmunidad. Por eso una cama de alambre, que separa al ave de las heces, baja la infección clínica (Merck) y a la vez puede estorbar el trabajo de una vacuna que necesita reinfección.
 
-No copies una dosis de internet. Merck insiste en que el daño muchas veces ya está hecho cuando se ven los signos, y en que el tratamiento llega tarde si se espera al brote. El veterinario elige el producto, la vía y si el lote va vacunado o medicado. Esos dos caminos no se improvisan juntos: un anticoccidial mal usado puede tumbar la vacuna. Léelo en la etiqueta y confírmalo con quien te vacunó las aves.
+No copies una dosis de internet. Merck insiste en que el daño muchas veces ya está hecho cuando se ven los signos, y en que el tratamiento llega tarde si se espera al brote. El veterinario elige el producto, la vía y si el lote va vacunado o medicado. El veterinario decide entre vacuna y alimento medicado; no se combinan sin su indicación. Léelo en la etiqueta y confírmalo con quien te vacunó las aves.
 
 La FAO añade un matiz de parvada familiar: encontrar ooquistes en heces indica infección, no siempre enfermedad. Tratar un nivel bajo, cuando el ave ya convive con el parásito, puede quitarle la inmunidad que estaba formando. Por eso «le echo el polvo que me recomendaron en la tienda» no es un plan.
 
@@ -108,7 +108,7 @@ La lección [L05C](../lecciones/l05c.html) recorre enfermedades y vacunas de pon
 
 El manual Merck separa cepas de baja patogenicidad, que en aves de corral suelen dar signos respiratorios (estornudos, tos, mocos, senos hinchados) y, en ponedoras y reproductoras, caída de puesta o problemas de ovario, y cepas de alta patogenicidad, que pueden matar mucho y rápido.
 
-APHIS describe la de alta patogenicidad como muy contagiosa y a menudo fatal en aves domésticas, con los signos de la lista de arriba: cabeza hinchada, cresta morada, diarrea, huevos deformes, muerte súbita. Las de baja patogenicidad circulan en aves acuáticas silvestres y a veces entran a la granja con pocos signos.
+La lista de «How To Spot Sickness» de APHIS es general: esos signos pueden apuntar a influenza aviar o a otras enfermedades aviares. No es el retrato exclusivo de la de alta patogenicidad. Las de baja patogenicidad, en el manual Merck, circulan en aves acuáticas silvestres y a veces entran a la granja con pocos signos.
 
 La de alta patogenicidad también es de declaración obligatoria ante la OMSA. El aviso es el mismo que en Newcastle: servicio veterinario oficial, no mover aves, no improvisar un antiviral. No hay una dosis casera que «corte» un brote. El parecido con Newcastle es justo la razón para no ponerle nombre tú solo.
 

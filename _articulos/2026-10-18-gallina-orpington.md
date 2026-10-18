@@ -1,7 +1,7 @@
 ---
 titulo: "Gallina Orpington: peso, huevo y clueca"
 titulo_seo: "Gallina Orpington: peso y huevo"
-descripcion: "Pesos de la APA, de Australia, del Reino Unido y de Sudáfrica, sin promediarlos. Huevos al año solo donde la fuente los da."
+descripcion: "Peso, huevo marrón y clueca de la Orpington. Cada estándar se cita en su unidad, sin mezclar libras y kilos."
 categoria: razas
 fecha: 2026-10-18
 borrador: false

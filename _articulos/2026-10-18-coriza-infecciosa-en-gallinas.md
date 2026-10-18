@@ -39,12 +39,12 @@ No va en el huevo al pollito. Merck, Maryland y Hy-Line coinciden. El pollito de
 | Qué anota | Merck, 2024 | Maryland, FS-1131, 2020 | Hy-Line, actualización técnica |
 | --- | --- | --- | --- |
 | Incubación | 1 a 3 días | Signos rápidos; no da otro número | Signos en 1 a 3 días |
-| Cuánto dura | 2 a 3 semanas; más si hay micoplasma | 2 a 3 semanas; más si hay micoplasma, [bronquitis](bronquitis-infecciosa-en-gallinas.html) o mal alojamiento, y puede oler mal | No fija las semanas del signo; el predio de varias edades la arrastra |
+| Cuánto dura | 2 a 3 semanas; más si hay micoplasma | 2 a 3 semanas; más si hay micoplasma, [bronquitis](bronquitis-infecciosa-en-gallinas.html) o mal alojamiento, y puede oler mal | 14 días en laboratorio, sin otras complicaciones; 3 a 6 semanas en campo. El brote del lote puede durar 4 a 10 semanas |
 | Muerte | No publica un porcentaje | Variable; puede llegar al 48 % en lotes viejos | Habla de pérdidas de producción y de mortalidad comunicada, sin un techo único |
-| Puesta | Se atrasa en pollitas; baja mucho en las que ya ponen | Caída del 10 % al 40 % | Baja de producción y pérdidas económicas |
+| Puesta | Se atrasa en pollitas; baja mucho en las que ya ponen | Caída del 10 % al 40 % | Caída de la puesta del 10 % al 60 %, según edad, salud, otras enfermedades y el galpón |
 | Fuera del ave | No da horas | Pocos días; 45–55 °C durante 10 minutos la mata (113–131 °F en la hoja) | Más de 4 horas en calor seco; más de 24 horas en frío húmedo |
 
-El 48 % es el techo de Maryland para lotes viejos, no la muerte de todas las caras hinchadas. El 10–40 % de huevo es de esa misma hoja. Merck dice «baja mucho» y no publica ese rango. No conviertas las dos frases en un 25 % de término medio.
+El 48 % es el techo de Maryland para lotes viejos, no la muerte de todas las caras hinchadas. El 10–40 % de huevo es de esa misma hoja. El 10–60 % es de Hy-Line, junto con los 14 días de laboratorio, las 3 a 6 semanas de campo y los brotes de 4 a 10 semanas. Merck dice «baja mucho» y no publica ese rango. No promedies 10–40 con 10–60.
 
 La temperatura de Maryland se deja en grados sin redondear a otra meta: (113 − 32) × 5/9 = 45 °C y (131 − 32) × 5/9 = 55 °C, durante 10 minutos. Es la sensibilidad de la bacteria en esa hoja. No es una orden de calentar el galpón con las gallinas dentro, ni una receta de desinfectante. Hy-Line, en cambio, mide horas según el clima: poco más de 4 en calor seco y más de 24 en frío húmedo. En la costa húmeda no uses el «calor seco» como si la bacteria se muriera a media tarde. En la sierra fría y húmeda, el día de Hy-Line pesa más que las 4 horas.
 

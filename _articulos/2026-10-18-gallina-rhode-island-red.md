@@ -1,7 +1,7 @@
 ---
 titulo: "Gallina Rhode Island Red: huevo y peso"
 titulo_seo: "Rhode Island Red: huevo y peso"
-descripcion: "Unas 150 a 200 huevos en Oklahoma State. La APA está en libras y el Reino Unido en kilos: no se promedian."
+descripcion: "Huevo y peso de la Rhode Island Red. Oklahoma State publica de 150 a 200 huevos al año."
 categoria: razas
 fecha: 2026-10-18
 borrador: false

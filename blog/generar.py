@@ -89,9 +89,9 @@ CARPETA_POSTS = "_articulos"
 MAX_TITULO = 60
 MAX_DESCRIPCION = 150
 SUFIJO_TITULO = " | Granja Rentable"
-VERSION_ACTIVOS = "202610185"
-# Solo las páginas del blog. El 202610185 ya lo usa otro PR en el resto del sitio.
-VERSION_BLOG = "202610191"
+# Un solo cache-buster. El 202610185 es el del PR #22; no se reutiliza.
+VERSION_ACTIVOS = "202610192"
+VERSION_BLOG = "202610192"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
 CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}
@@ -675,9 +675,9 @@ def poner_version(html, version=None):
     version = version or VERSION_ACTIVOS
     for nombre in (
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
-            "js/site.js", "js/app.js", "js/config.js"):
+            "js/site.js", "js/app.js", "js/config.js", "js/catalogo.js"):
         html = re.sub(
-            rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=\d+)?"',
+            rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[^"]*)?"',
             rf'\1?v={version}"',
             html)
     return html

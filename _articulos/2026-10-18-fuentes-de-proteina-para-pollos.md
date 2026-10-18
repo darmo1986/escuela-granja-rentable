@@ -16,6 +16,7 @@ red: ""
 guia: empezar
 fuentes:
   - "[Harina de soja, Feedipedia](https://www.feedipedia.org/node/674)"
+  - "[Nutrition for backyard chicken flocks, University of Maine](https://extension.umaine.edu/publications/2222e/)"
   - "[Insectos como alimento animal, revisión FAO de Makkar y colaboradores](https://openknowledge.fao.org/server/api/core/bitstreams/0c0ee783-878a-41c1-9f32-d64ff7e9b61c/content)"
   - "[Sustitución de proteína de soja por larva desgrasada de Hermetia, Animals 2021](https://www.mdpi.com/2076-2615/11/6/1628)"
   - "[Harina de lombriz, Feedipedia](https://www.feedipedia.org/node/665)"
@@ -50,7 +51,7 @@ El calor importa tanto como el porcentaje. La semilla trae factores que el calor
 
 Willis, McDonald y Ewing, en esa misma ficha, citan inclusiones de harina de soja de alrededor del 25 % en dietas de pollitos y del 30–40 % en pollos de engorde, reproductoras y ponedoras. Son rangos de dietas ya formuladas en la literatura, no la receta de una granja de diez aves. Elkin, también citado, recuerda que otras harinas vegetales (algodón, maní, girasol, palmiste) pueden entrar solo en parte, con lisina de apoyo, y que sus factores antinutritivos las limitan. No las juntes a ojo para «estirar» un saco.
 
-Para América Latina, Feedipedia recoge un dato de comercio, no de tu tienda: Oil World 2015 situaba la producción de 2014 en 243 millones de toneladas, con Argentina y Brasil entre los grandes exportadores. Sirve para entender por qué el saco llega, no para calcular el flete de este mes.
+Para América Latina, Feedipedia recoge un dato de comercio, no de tu tienda: Soybean Meal Info Center 2018 sitúa la producción de 2014 en 243 millones de toneladas. Oil World 2015 nombra a Argentina y Brasil entre los exportadores. Sirve para entender por qué llega el saco, no para el flete del mes.
 
 La fase del saco sigue mandando. El de postura no va a un pollito: el calcio de esa etapa está explicado en el artículo de alimento, y el 2,5–3,5 % es de Maine, no una mezcla casera.
 

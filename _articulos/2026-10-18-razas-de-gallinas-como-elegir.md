@@ -17,7 +17,7 @@ guia: empezar
 fuentes:
   - "[La gallina, FAO](https://www.fao.org/poultry-production-products/production/poultry-species/chicken/en)"
   - "[Mejora genética avícola, FAO](https://www.fao.org/poultry-production-products/production/breeding/en/)"
-  - "[Guía de rendimiento Hy-Line Brown, sistemas convencionales](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
+  - "[Hy-Line Brown, Performance Standards Guide, Commercial Layers Conventional Systems](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
   - "[Guía de manejo Lohmann Brown-Classic en jaula](https://lohmann-breeders.com/files/downloads/MG/Cage/LB_MG_Cage_LB-Classic_EN.pdf)"
   - "[Líneas de aves del curso](../razas.html)"
   - "[Criar pollos para carne, Extensión de la Universidad de Minnesota](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-chickens-for-meat)"
@@ -42,7 +42,7 @@ Hy-Line Brown, Lohmann Brown-Classic e ISA Brown son líneas de huevo marrón. N
 
 ### Hy-Line Brown
 
-En la guía de rendimiento para sistemas convencionales, Hy-Line publica, entre otros objetivos:
+En la Performance Standards Guide (Commercial Layers Conventional Systems), Hy-Line publica, entre otros objetivos:
 
 - Puesta pico entre 93,6 % y 98,5 %.
 - Días hasta el 50 % de puesta, desde el nacimiento: 139.
