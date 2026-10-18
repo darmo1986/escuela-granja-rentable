@@ -10,13 +10,13 @@
     usd: {
       cifra: "US$ 39",
       periodo: "/ año",
-      nota: "Precio anunciado en dólares, con el impuesto incluido en el precio de Stripe. Si la dirección de facturación está en la Unión Europea, ese impuesto es el del país. El menú no lo quita.",
+      nota: "Precio anunciado en dólares. Los impuestos se aplican según la normativa aplicable. El menú no decide ese impuesto.",
       ahorro: "Ahorras un 35 % frente al mensual"
     },
     eur: {
       cifra: "39 €",
       periodo: "/ año",
-      nota: "Unión Europea: precio en euros con el impuesto incluido. En la península es IVA; en Canarias es IGIC. Si no sabemos el país, mostramos euros.",
+      nota: "Unión Europea: precio en euros. Los impuestos se aplican según la normativa aplicable. Si no sabemos el país, mostramos euros.",
       ahorro: "Ahorras un 35 % frente al mensual"
     }
   };
@@ -24,13 +24,13 @@
     usd: {
       cifra: "US$ 4,99",
       periodo: "/ mes",
-      nota: "Precio anunciado en dólares, con el impuesto incluido en el precio de Stripe. Si la dirección de facturación está en la Unión Europea, ese impuesto es el del país. El menú no lo quita.",
+      nota: "Precio anunciado en dólares. Los impuestos se aplican según la normativa aplicable. El menú no decide ese impuesto.",
       ahorro: ""
     },
     eur: {
       cifra: "4,99 €",
       periodo: "/ mes",
-      nota: "Unión Europea: precio en euros con el impuesto incluido. En la península es IVA; en Canarias es IGIC. Si no sabemos el país, mostramos euros.",
+      nota: "Unión Europea: precio en euros. Los impuestos se aplican según la normativa aplicable. Si no sabemos el país, mostramos euros.",
       ahorro: ""
     }
   };

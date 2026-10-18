@@ -27,10 +27,10 @@ export function codificarForma(pares) {
   }).join("&");
 }
 
-export function stripeForm(ruta, clave, cuerpo, method) {
+export function stripeForm(ruta, clave, cuerpo, method, extra) {
   return stripePedir(ruta, clave, {
     method: method || "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    headers: Object.assign({ "Content-Type": "application/x-www-form-urlencoded" }, extra || {}),
     body: typeof cuerpo === "string" ? cuerpo : codificarForma(cuerpo)
   });
 }

@@ -27,7 +27,7 @@ No pongas `STRIPE_PERMITIR_REAL` todavía. Mientras no exista, un aviso de modo 
 
 ## Impuesto: léelo antes de cobrar de verdad
 
-Estás en Santa Cruz de Tenerife. En Canarias el impuesto indirecto es el **IGIC**, no el IVA. Una venta a la península tiene otro régimen. Stripe Tax calcula con la dirección de facturación del cliente. **El gestor tiene que confirmar** el tipo que te corresponde, y cómo se declara, antes de quitar el modo prueba. Elegir dólares en el menú de la web no quita el IVA de un cliente de la Unión Europea: el cobro no usa el país del menú.
+Estás en Santa Cruz de Tenerife. En la web los impuestos se anuncian como «según la normativa aplicable». Cómo se aplica el IGIC en Canarias, el IVA en el resto de la Unión Europea y el resto de impuestos lo decides tú con tu gestor, antes de quitar el modo prueba. Elegir dólares en el menú no decide ese impuesto.
 
 ## 1. Producto, dos precios y el impuesto, en modo prueba
 
@@ -153,7 +153,7 @@ En el panel de Supabase, «Enforce JWT» queda **apagado** solo en `stripe-webho
 
 1. Publica la web (o ábrela en local) con los secretos ya puestos y las funciones desplegadas.
 2. Crea una cuenta en Granja Rentable y entra.
-3. Abre Premium. Si el país no se sabe, o falla la localización, el precio sale en **euros, con IVA**. Elige España u otro país de la Unión Europea: euros. Elige México a mano: dólares en el anuncio. El cobro, en Stripe, pide la dirección y el IVA de la Unión Europea no se quita por ese menú.
+3. Abre Premium. Si el país no se sabe, o falla la localización, el precio sale en **euros**. Elige España u otro país de la Unión Europea: euros. Elige México a mano: dólares en el anuncio. Los impuestos se aplican según la normativa aplicable; el menú no los decide.
 4. Marca la casilla de condiciones y pulsa «Probar 7 días gratis». Te lleva a Stripe, no a una página nuestra. La prueba de 7 días la pone el servidor.
 5. Tarjeta: `4242 4242 4242 4242`. Fecha: cualquiera futura, por ejemplo `12/34`. CVC: `123`. Código postal: `38008`. Rellena la dirección: Stripe la usa para el impuesto.
 6. Vuelves a Mi cuenta. Tiene que decir que Premium está en vigor y, junto al apodo, la insignia. En esa primera página no se piden anuncios. El apodo es el que escribiste al registrarte, no el correo.
@@ -170,7 +170,7 @@ El soporte de Premium es por Messenger de la Página o por el formulario de la w
 
 ## 9. Antes de cobrar dinero de verdad
 
-No quites el modo prueba hasta que el gestor confirme el IGIC de Tenerife, el IVA de las ventas a la Unión Europea, los impuestos de Latinoamérica si aplican, y cómo se hace la factura. Está marcado en amarillo en `condiciones-premium.html` y en la privacidad.
+No quites el modo prueba hasta que, con tu gestor, decidas cómo se aplican los impuestos (IGIC, IVA y Latinoamérica) y cómo se hace la factura. En la web solo se dice «impuestos según la normativa aplicable». Está marcado en amarillo en `condiciones-premium.html` y en la privacidad.
 
 Cuando el gestor dé el visto bueno:
 
@@ -181,7 +181,7 @@ Cuando el gestor dé el visto bueno:
 
 ## Qué hace cada pieza
 
-- `/premium.html` — la oferta. La Unión Europea, y quien no tiene país confirmado, ve euros con IVA. El botón llama al servidor.
+- `/premium.html` — la oferta. La Unión Europea, y quien no tiene país confirmado, ve euros. Los impuestos se anuncian según la normativa aplicable. El botón llama al servidor.
 - `js/premium.js` — elige el plan (mes o año) y nada más. No manda el id de la cuenta ni un enlace de pago.
 - `supabase/functions/crear-checkout` — abre el pago con el id de la sesión. Pide la dirección y activa Stripe Tax. La prueba son 7 días.
 - `supabase/functions/stripe-webhook` — comprueba la firma, relee el aviso en Stripe, guarda el id del aviso y escribe una fila por suscripción. Premium sale de todas las que sigan vivas, y siempre con fecha de fin.

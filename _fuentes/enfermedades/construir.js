@@ -160,7 +160,7 @@ function head(opts) {
 }
 
 function scripts(root, extra) {
-  return '<script src="' + root + 'js/config.js"></script>\n<script src="' + root + 'js/app.js"></script>\n<script src="' + root + 'js/catalogo.js"></script>\n<script src="' + root + 'js/site.js"></script>\n' + (extra || "");
+  return '<script src="' + root + 'js/config.js?v=20261019"></script>\n<script src="' + root + 'js/app.js?v=20261019"></script>\n<script src="' + root + 'js/catalogo.js"></script>\n<script src="' + root + 'js/site.js"></script>\n' + (extra || "");
 }
 
 function anuncio(tipo) {

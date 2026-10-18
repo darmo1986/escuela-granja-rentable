@@ -17,7 +17,7 @@ import {
   usuariosCompatibles
 } from "../_shared/premium_estado.mjs";
 import { firmaValida } from "../_shared/firma_stripe.mjs";
-import { stripeGet } from "../_shared/stripe_api.mjs";
+import { stripeGet, stripePedir } from "../_shared/stripe_api.mjs";
 
 const EVENTOS = new Set([
   "checkout.session.completed",
@@ -183,9 +183,52 @@ async function aplicarSuscripcion(sub: Record<string, unknown>, eventoEn: string
   const duenoCliente = customer ? await buscarUsuario(customer, "") : "";
   if (duenoCliente && duenoCliente !== userId) return;
 
+  if (customer) {
+    const cliente = await db(
+      "/rest/v1/clientes_stripe?select=stripe_customer_id,prueba_usada,prueba_sub&user_id=eq." +
+        encodeURIComponent(userId) + "&limit=1",
+      { method: "GET" }
+    );
+    if (!cliente.ok) throw new Error("supabase");
+    const filaCliente = Array.isArray(cliente.data) ? cliente.data[0] as {
+      stripe_customer_id?: string;
+      prueba_usada?: boolean;
+      prueba_sub?: string;
+    } : null;
+    if (filaCliente && filaCliente.stripe_customer_id && filaCliente.stripe_customer_id !== customer) {
+      console.warn("otro cliente de stripe, no se aplica: " + subId);
+      return;
+    }
+    const esPrueba = String(real.status || "") === "trialing";
+    if (esPrueba && filaCliente && filaCliente.prueba_usada && filaCliente.prueba_sub && filaCliente.prueba_sub !== subId) {
+      console.warn("segunda prueba, se cancela: " + subId);
+      await stripePedir("subscriptions/" + encodeURIComponent(subId), clave, { method: "DELETE" });
+      return;
+    }
+  }
+
   const acceso = decidirAcceso(real, Date.now());
   if ((acceso.estado === "active" || acceso.estado === "trialing") && !acceso.premium_hasta) {
     throw new Error("sin fecha de fin");
+  }
+  const viva = acceso.estado === "active" || acceso.estado === "trialing" || acceso.estado === "past_due";
+  if (viva) {
+    const otras = await db(
+      "/rest/v1/suscripciones?select=stripe_subscription_id&user_id=eq." + encodeURIComponent(userId) +
+        "&estado=in.(active,trialing,past_due)&stripe_subscription_id=neq." + encodeURIComponent(subId) + "&limit=1",
+      { method: "GET" }
+    );
+    if (!otras.ok) throw new Error("supabase");
+    const hayOtra = Array.isArray(otras.data) && otras.data.length > 0;
+    if (hayOtra) {
+      if (String(real.status || "") === "trialing") {
+        console.warn("segunda prueba con otra suscripcion viva, se cancela: " + subId);
+        await stripePedir("subscriptions/" + encodeURIComponent(subId), clave, { method: "DELETE" });
+      } else {
+        console.warn("ya hay una suscripcion viva, no se añade otra: " + subId);
+      }
+      return;
+    }
   }
   await guardarFila(userId, {
     customer,
@@ -196,6 +239,19 @@ async function aplicarSuscripcion(sub: Record<string, unknown>, eventoEn: string
     vence: acceso.premium_hasta,
     eventoEn
   });
+  if (customer) {
+    const marca = await db("/rest/v1/clientes_stripe?on_conflict=user_id", {
+      method: "POST",
+      headers: { Prefer: "resolution=merge-duplicates,return=minimal" },
+      body: JSON.stringify({
+        user_id: userId,
+        stripe_customer_id: customer,
+        prueba_usada: true,
+        prueba_sub: subId
+      })
+    });
+    if (!marca.ok && marca.status !== 409) throw new Error("supabase");
+  }
   await recalcular(userId);
 }
 

@@ -5,6 +5,7 @@ import {
   decidirAcceso,
   dentroDePlazo,
   devolucionYaHecha,
+  finPlazoNatural,
   esUuid,
   eventoNuevo,
   facturaExigeDevolucion,
@@ -156,17 +157,22 @@ test("la factura basil devuelve el payment intent, no el campo antiguo", functio
   assert.equal(devolucionYaHecha(402, { error: { message: "already been refunded" } }), false);
 });
 
-test("los 14 días cuentan desde el primer cobro y no se acortan", function () {
-  var dia = 86400;
-  var alta = 1700000000;
-  var cobro = [{ amount_paid: 499, status_transitions: { paid_at: alta + 7 * dia } }];
-  assert.equal(primerCobroMs(cobro), (alta + 7 * dia) * 1000);
-  assert.equal(dentroDePlazo(alta, cobro, (alta + 17 * dia) * 1000), true);
-  assert.equal(dentroDePlazo(alta, cobro, (alta + 21 * dia) * 1000), true);
-  assert.equal(dentroDePlazo(alta, cobro, (alta + 22 * dia) * 1000), false);
-  assert.equal(dentroDePlazo(alta, [], (alta + 10 * dia) * 1000), true);
-  assert.equal(dentroDePlazo(alta, [], (alta + 16 * dia) * 1000), false);
-  assert.equal(dentroDePlazo(alta, [{ amount_paid: 0, status_transitions: { paid_at: alta + dia } }], (alta + 16 * dia) * 1000), false);
+test("los 14 días son naturales y acaban a las 23:59 de Madrid", function () {
+  var alta = Date.parse("2026-10-01T21:00:00Z");
+  var cobroEn = Date.parse("2026-10-08T21:00:00Z");
+  var cobro = [{ amount_paid: 499, status_transitions: { paid_at: cobroEn / 1000 } }];
+  assert.equal(primerCobroMs(cobro), cobroEn);
+  assert.equal(finPlazoNatural(alta, 14), Date.parse("2026-10-14T21:59:59Z"));
+  assert.equal(dentroDePlazo(alta / 1000, [], Date.parse("2026-10-14T21:59:00Z")), true);
+  assert.equal(dentroDePlazo(alta / 1000, [], Date.parse("2026-10-14T22:00:00Z")), false);
+  assert.equal(dentroDePlazo(alta / 1000, cobro, Date.parse("2026-10-18T12:00:00Z")), true);
+  assert.equal(dentroDePlazo(alta / 1000, cobro, Date.parse("2026-10-21T21:59:00Z")), true);
+  assert.equal(dentroDePlazo(alta / 1000, cobro, Date.parse("2026-10-21T22:00:00Z")), false);
+  assert.equal(dentroDePlazo(alta / 1000, [{ amount_paid: 0, status_transitions: { paid_at: cobroEn / 1000 } }], Date.parse("2026-10-15T10:00:00Z")), false);
+  var invierno = Date.parse("2026-01-01T23:00:00Z");
+  assert.equal(finPlazoNatural(invierno, 14), Date.parse("2026-01-15T22:59:59Z"));
+  assert.equal(dentroDePlazo(invierno / 1000, [], Date.parse("2026-01-15T22:59:00Z")), true);
+  assert.equal(dentroDePlazo(invierno / 1000, [], Date.parse("2026-01-15T23:00:00Z")), false);
 });
 
 test("el acuse lleva el contenido, la fecha y la hora", function () {

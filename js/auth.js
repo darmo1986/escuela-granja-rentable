@@ -875,6 +875,16 @@
     pintarCuenta();
   }
 
+  function textoDeFuncion(res) {
+    var directo = res && res.data && (res.data.mensaje || res.data.error);
+    if (directo) return Promise.resolve(String(directo));
+    var ctx = res && res.error && res.error.context;
+    if (!ctx || typeof ctx.json !== "function") return Promise.resolve("");
+    return ctx.json().then(function (cuerpo) {
+      return String((cuerpo && (cuerpo.error || cuerpo.mensaje)) || "");
+    }).catch(function () { return ""; });
+  }
+
   function enviarDesistimiento(ev) {
     ev.preventDefault();
     if (!cliente || !usuarioActual) {
@@ -884,16 +894,17 @@
     pasoDesistir = true;
     notaCuenta("");
     cliente.functions.invoke("desistir", { body: { confirmado: true } }).then(function (res) {
-      var mensaje = res.data && (res.data.mensaje || res.data.error);
-      if (res.data && res.data.ok) {
-        pasoDesistir = false;
-        notaCuenta(mensaje || "Desististe. La suscripción queda cancelada. El acuse está en tu correo.");
-        marcarPremium(usuarioActual.id);
-        return;
-      }
-      notaCuenta(mensaje || "No se pudo desistir. Escríbenos al correo de la cuenta.");
+      return textoDeFuncion(res).then(function (mensaje) {
+        if (res.data && res.data.ok) {
+          pasoDesistir = false;
+          notaCuenta(mensaje || "Desististe. La suscripción queda cancelada. El acuse está en tu correo.");
+          marcarPremium(usuarioActual.id);
+          return;
+        }
+        notaCuenta(mensaje || "No se pudo desistir. Escríbenos a dahanitrading@gmail.com con tu apodo y el correo de la cuenta.");
+      });
     }).catch(function () {
-      notaCuenta("Próximamente. Cuando el pago esté activo, este botón cancela y pide la devolución.");
+      notaCuenta("No se pudo desistir. Si el pago todavía no está conectado, el botón no cancela nada. Escríbenos a dahanitrading@gmail.com.");
     });
   }
 

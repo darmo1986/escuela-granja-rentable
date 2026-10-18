@@ -89,6 +89,27 @@ create table if not exists public.suscripciones (
 create index if not exists suscripciones_usuario on public.suscripciones (user_id);
 create index if not exists suscripciones_cliente on public.suscripciones (stripe_customer_id);
 
+-- Una sola suscripción viva por cuenta. La cancelada no cuenta.
+create unique index if not exists una_suscripcion_viva
+  on public.suscripciones (user_id)
+  where estado in ('trialing', 'active', 'past_due');
+
+-- Un cliente de Stripe por cuenta. El checkout toma este candado para no abrir dos pruebas a la vez.
+create table if not exists public.clientes_stripe (
+  user_id uuid primary key references public.perfiles (id) on delete cascade,
+  stripe_customer_id text not null,
+  prueba_usada boolean not null default false,
+  prueba_sub text,
+  checkout_en timestamptz
+);
+
+create unique index if not exists clientes_stripe_customer
+  on public.clientes_stripe (stripe_customer_id);
+
+alter table public.clientes_stripe enable row level security;
+revoke all on public.clientes_stripe from public, anon, authenticated;
+grant select, insert, update on public.clientes_stripe to service_role;
+
 alter table public.suscripciones enable row level security;
 revoke all on public.suscripciones from public, anon, authenticated;
 grant select on public.suscripciones to authenticated;
@@ -111,18 +132,33 @@ revoke all on public.stripe_eventos from public, anon, authenticated;
 grant select, insert, delete on public.stripe_eventos to service_role;
 
 -- Acuse del botón de desistimiento. Solo lo escribe el servidor. anon no lo lee.
+-- Sin clave ajena: cerrar la cuenta no borra el registro. Se conserva 6 años.
 create table if not exists public.desistimientos (
   id bigint generated always as identity primary key,
-  user_id uuid not null references public.perfiles (id) on delete cascade,
+  user_id uuid not null,
   stripe_subscription_id text not null,
   pedido_en timestamptz not null default now(),
   ip text,
-  correo text
+  correo text,
+  acuse_en timestamptz,
+  conservar_hasta timestamptz not null default (now() + interval '6 years')
 );
+
+alter table public.desistimientos drop constraint if exists desistimientos_user_id_fkey;
+alter table public.desistimientos add column if not exists acuse_en timestamptz;
+alter table public.desistimientos add column if not exists conservar_hasta timestamptz;
+update public.desistimientos
+  set conservar_hasta = pedido_en + interval '6 years'
+  where conservar_hasta is null;
+alter table public.desistimientos alter column conservar_hasta set default (now() + interval '6 years');
+alter table public.desistimientos alter column conservar_hasta set not null;
+
+create unique index if not exists desistimientos_una_vez
+  on public.desistimientos (user_id, stripe_subscription_id);
 
 alter table public.desistimientos enable row level security;
 revoke all on public.desistimientos from public, anon, authenticated;
-grant select, insert on public.desistimientos to service_role;
+grant select, insert, update on public.desistimientos to service_role;
 
 -- 4) ¿Sigue en vigor alguna suscripción de quien pregunta?
 --    premium_hasta null no cuenta, aunque premium estuviera en true.

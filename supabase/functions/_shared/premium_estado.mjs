@@ -132,7 +132,45 @@ export function monedaAnunciada(pais, origen, geo, ads) {
   return "eur";
 }
 
-var CATORCE_DIAS_MS = 14 * 24 * 60 * 60 * 1000;
+function partesZona(ms, zona) {
+  var fmt = new Intl.DateTimeFormat("en-US", {
+    timeZone: zona,
+    hourCycle: "h23",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+  var map = {};
+  fmt.formatToParts(new Date(ms)).forEach(function (p) {
+    if (p.type !== "literal") map[p.type] = p.value;
+  });
+  if (map.hour === "24") map.hour = "00";
+  return map;
+}
+
+function instanteEnZona(y, m, d, hh, mm, ss, zona) {
+  var supuesto = Date.UTC(y, m - 1, d, hh, mm, ss);
+  var visto = partesZona(supuesto, zona);
+  var comoUtc = Date.UTC(+visto.year, +visto.month - 1, +visto.day, +visto.hour, +visto.minute, +visto.second);
+  return supuesto - (comoUtc - supuesto);
+}
+
+/** Fin del día `dias` (el día del hecho es el 1) a las 23:59:59 en Europe/Madrid. */
+export function finPlazoNatural(ms, dias) {
+  var p = partesZona(ms, "Europe/Madrid");
+  var cursor = new Date(Date.UTC(+p.year, +p.month - 1, +p.day));
+  cursor.setUTCDate(cursor.getUTCDate() + (Number(dias) - 1));
+  return instanteEnZona(
+    cursor.getUTCFullYear(),
+    cursor.getUTCMonth() + 1,
+    cursor.getUTCDate(),
+    23, 59, 59,
+    "Europe/Madrid"
+  );
+}
 
 /** Instante del primer cobro (amount_paid > 0). paid_at de basil, o created si falta. */
 export function primerCobroMs(facturas) {
@@ -148,15 +186,15 @@ export function primerCobroMs(facturas) {
 }
 
 /**
- * El botón llega hasta el día 14 desde el alta y, si hubo cobro, hasta 14 días
- * después de ese primer cobro. No acorta la promesa de las condiciones.
+ * 14 días naturales, hasta las 23:59:59 del día 14 en Europe/Madrid.
+ * El día del alta o del primer cobro es el día 1. Si hubo cobro, vale el plazo más largo.
  */
 export function dentroDePlazo(creadaSeg, facturas, ahoraMs) {
   var creada = Number(creadaSeg) * 1000;
   if (!Number.isFinite(creada) || creada <= 0) return false;
-  var limite = creada + CATORCE_DIAS_MS;
+  var limite = finPlazoNatural(creada, 14);
   var primero = primerCobroMs(facturas);
-  if (primero) limite = Math.max(limite, primero + CATORCE_DIAS_MS);
+  if (primero) limite = Math.max(limite, finPlazoNatural(primero, 14));
   return Number(ahoraMs) <= limite;
 }
 

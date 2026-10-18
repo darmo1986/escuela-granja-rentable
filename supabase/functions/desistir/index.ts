@@ -49,7 +49,9 @@ Deno.serve(async (req: Request) => {
   const claveCorreo = env("RESEND_API_KEY");
   const desde = env("CORREO_DESDE");
   if (!claveCorreo || !desde) {
-    return json(req, { error: "El acuse por correo no está conectado. No cancelamos la suscripción." }, 503);
+    return json(req, {
+      error: "El acuse por correo todavía no está conectado, así que no cancelamos la suscripción. Escríbenos a dahanitrading@gmail.com con tu apodo y el correo de la cuenta."
+    }, 409);
   }
 
   const cab = { apikey: sesion.servicio, Authorization: "Bearer " + sesion.servicio };
@@ -123,24 +125,30 @@ Deno.serve(async (req: Request) => {
   }
 
   const cuando = new Date();
-  const ids = dentro.map(function (d) { return d.id; });
-  const acuse = await enviarAcuse({
-    clave: claveCorreo,
-    desde,
-    correo,
-    apodo,
-    suscripciones: ids,
-    cuando
-  });
-  if (!acuse.ok) {
-    return json(req, { error: "No se pudo enviar el acuse por correo. La suscripción sigue activa." }, 502);
-  }
-
+  const intento = crypto.randomUUID();
   const ip = ipDe(req);
+  const avisar: string[] = [];
+
   for (const item of dentro) {
-    const alta = await fetch(sesion.base + "/rest/v1/desistimientos", {
+    for (const pi of item.pagos) {
+      const dev = await stripePedir("refunds", stripe, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Idempotency-Key": "desistir-" + pi + "-" + intento
+        },
+        body: "payment_intent=" + encodeURIComponent(pi) + "&metadata[motivo]=desistimiento"
+      });
+      if (!dev.ok && !devolucionYaHecha(dev.status, dev.data)) {
+        return json(req, { error: "No se pudo pedir la devolución. La suscripción sigue activa. Escríbenos." }, 502);
+      }
+    }
+    const alta = await fetch(sesion.base + "/rest/v1/desistimientos?on_conflict=user_id,stripe_subscription_id", {
       method: "POST",
-      headers: Object.assign({ "Content-Type": "application/json", Prefer: "return=minimal" }, cab),
+      headers: Object.assign({
+        "Content-Type": "application/json",
+        Prefer: "resolution=ignore-duplicates,return=representation"
+      }, cab),
       body: JSON.stringify({
         user_id: sesion.usuario.id,
         stripe_subscription_id: item.id,
@@ -149,25 +157,50 @@ Deno.serve(async (req: Request) => {
         correo
       })
     });
-    if (!alta.ok) {
-      return json(req, { error: "Enviamos el acuse, pero no se pudo guardar. La suscripción sigue activa." }, 500);
+    if (!alta.ok && alta.status !== 409) {
+      return json(req, { error: "La devolución se pidió, pero no se pudo guardar el registro. La suscripción sigue activa." }, 500);
+    }
+    const creadas = alta.ok ? await alta.json() as Array<{ acuse_en?: string }> : [];
+    if (creadas.length) {
+      avisar.push(item.id);
+      continue;
+    }
+    const previa = await fetch(
+      sesion.base + "/rest/v1/desistimientos?select=acuse_en&user_id=eq." + encodeURIComponent(sesion.usuario.id) +
+        "&stripe_subscription_id=eq." + encodeURIComponent(item.id) + "&limit=1",
+      { headers: cab }
+    );
+    const ya = previa.ok ? await previa.json() as Array<{ acuse_en?: string }> : [];
+    if (!ya[0] || !ya[0].acuse_en) avisar.push(item.id);
+  }
+
+  if (avisar.length) {
+    const acuse = await enviarAcuse({
+      clave: claveCorreo,
+      desde,
+      correo,
+      apodo,
+      suscripciones: avisar,
+      cuando
+    });
+    if (!acuse.ok) {
+      return json(req, { error: "Pedimos la devolución, pero no se pudo enviar el acuse. La suscripción sigue activa. Vuelve a pulsar para reenviar el acuse." }, 502);
+    }
+    const marca = await fetch(
+      sesion.base + "/rest/v1/desistimientos?user_id=eq." + encodeURIComponent(sesion.usuario.id) +
+        "&stripe_subscription_id=in.(" + avisar.map(encodeURIComponent).join(",") + ")",
+      {
+        method: "PATCH",
+        headers: Object.assign({ "Content-Type": "application/json", Prefer: "return=minimal" }, cab),
+        body: JSON.stringify({ acuse_en: cuando.toISOString() })
+      }
+    );
+    if (!marca.ok) {
+      return json(req, { error: "Enviamos el acuse, pero no se pudo anotar. La suscripción sigue activa." }, 500);
     }
   }
 
   for (const item of dentro) {
-    for (const pi of item.pagos) {
-      const dev = await stripePedir("refunds", stripe, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "Idempotency-Key": "desistir-" + pi
-        },
-        body: "payment_intent=" + encodeURIComponent(pi) + "&metadata[motivo]=desistimiento"
-      });
-      if (!dev.ok && !devolucionYaHecha(dev.status, dev.data)) {
-        return json(req, { error: "No se pudo pedir la devolución. La suscripción sigue activa. Escríbenos." }, 502);
-      }
-    }
     const baja = await stripePedir("subscriptions/" + encodeURIComponent(item.id), stripe, { method: "DELETE" });
     if (!baja.ok && baja.status !== 404) {
       return json(req, { error: "Pedimos la devolución, pero Stripe no canceló la suscripción." }, 502);
