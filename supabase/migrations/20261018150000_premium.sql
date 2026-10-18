@@ -3,35 +3,45 @@
 --   20261018120000_reto.sql
 --   20261018120100_cuenta.sql
 --   20261018130000_apodo.sql
+-- Si ya pegaste una versión anterior de ESTE archivo, vuélvelo a pegar:
+-- la tabla de suscripciones de prueba se recrea (una fila por suscripción).
 -- No toca las tablas del concurso (PR #15, migración 20261018140200_concurso.sql).
 -- No lleva claves. El navegador no puede poner premium = true.
+-- anon no puede leer premium_hasta, ni ejecutar es_premium(), ni abrir perfiles_insignia.
 
--- 1) Marca pública. Solo la escribe el webhook (service_role).
+-- 1) Marca en el perfil. Solo la escribe el webhook (service_role).
 alter table public.perfiles add column if not exists premium boolean not null default false;
 alter table public.perfiles add column if not exists premium_hasta timestamptz;
 
 comment on column public.perfiles.premium is
-  'La pone el webhook de Stripe. El apodo público sigue siendo nombre, nada más.';
+  'La pone el webhook de Stripe, a partir de todas las suscripciones vivas. El apodo público sigue siendo nombre.';
 comment on column public.perfiles.premium_hasta is
-  'Fin del periodo pagado o de la prueba. Pasada esa hora, es_premium() devuelve false.';
+  'Fin de la suscripción viva que acaba más tarde. Si premium es true, esta fecha no puede ser null.';
 
--- El grant de perfiles es por columnas. Estas dos se pueden LEER (insignia y cuenta).
--- No se añaden a grant update: el navegador no puede escribirlas.
-grant select (premium, premium_hasta) on public.perfiles to anon, authenticated;
+alter table public.perfiles drop constraint if exists premium_con_fecha;
+alter table public.perfiles add constraint premium_con_fecha
+  check (not premium or premium_hasta is not null);
+
+-- Estas dos columnas no se leen desde el navegador. La fecha propia sale de suscripciones.
+-- La insignia pública es un sí/no (ranking_mes o la vista), nunca la fecha.
+revoke select (premium, premium_hasta) on public.perfiles from public, anon, authenticated;
+revoke update (premium, premium_hasta) on public.perfiles from public, anon, authenticated;
 grant update (premium, premium_hasta) on public.perfiles to service_role;
 
 create or replace function public.proteger_premium()
 returns trigger
 language plpgsql
-set search_path = public
+set search_path = ''
 as $$
 begin
-  if auth.role() in ('anon', 'authenticated')
-     and (
-       new.premium is distinct from old.premium
-       or new.premium_hasta is distinct from old.premium_hasta
-     ) then
-    raise exception 'premium solo lo cambia el servidor';
+  if auth.role() in ('anon', 'authenticated') then
+    if tg_op = 'INSERT' then
+      new.premium := false;
+      new.premium_hasta := null;
+    elsif new.premium is distinct from old.premium
+       or new.premium_hasta is distinct from old.premium_hasta then
+      raise exception 'premium solo lo cambia el servidor';
+    end if;
   end if;
   return new;
 end;
@@ -39,14 +49,32 @@ $$;
 
 drop trigger if exists perfiles_proteger_premium on public.perfiles;
 create trigger perfiles_proteger_premium
-  before update on public.perfiles
+  before insert or update on public.perfiles
   for each row execute function public.proteger_premium();
 
--- 2) Datos de Stripe. Cada persona solo lee su fila. Nadie la escribe desde el navegador.
+-- 2) Una fila por suscripción de Stripe, no por persona.
+--    Si la versión anterior usaba user_id como clave, se tira: era solo de prueba.
+do $$
+begin
+  if exists (
+    select 1
+    from pg_index i
+    join pg_attribute a on a.attrelid = i.indrelid and a.attnum = any (i.indkey)
+    join pg_class c on c.oid = i.indrelid
+    join pg_namespace n on n.oid = c.relnamespace
+    where n.nspname = 'public'
+      and c.relname = 'suscripciones'
+      and i.indisprimary
+      and a.attname = 'user_id'
+  ) then
+    drop table public.suscripciones;
+  end if;
+end $$;
+
 create table if not exists public.suscripciones (
-  user_id uuid primary key references public.perfiles (id) on delete cascade,
-  stripe_customer_id text unique,
-  stripe_subscription_id text unique,
+  stripe_subscription_id text primary key,
+  user_id uuid not null references public.perfiles (id) on delete cascade,
+  stripe_customer_id text,
   estado text not null default 'incomplete',
   plan text check (plan is null or plan in ('mensual', 'anual')),
   moneda text check (moneda is null or moneda in ('usd', 'eur')),
@@ -55,8 +83,11 @@ create table if not exists public.suscripciones (
   actualizado timestamptz not null default now()
 );
 
+create index if not exists suscripciones_usuario on public.suscripciones (user_id);
+create index if not exists suscripciones_cliente on public.suscripciones (stripe_customer_id);
+
 alter table public.suscripciones enable row level security;
-revoke all on public.suscripciones from anon, authenticated;
+revoke all on public.suscripciones from public, anon, authenticated;
 grant select on public.suscripciones to authenticated;
 grant select, insert, update, delete on public.suscripciones to service_role;
 
@@ -65,30 +96,43 @@ create policy suscripcion_propia on public.suscripciones
   for select to authenticated
   using (user_id = auth.uid());
 
--- 3) ¿Sigue en vigor la suscripción de quien pregunta?
+-- 3) Cada aviso de Stripe se guarda una vez. El webhook relee el evento en la API.
+create table if not exists public.stripe_eventos (
+  id text primary key,
+  tipo text not null,
+  recibido timestamptz not null default now()
+);
+
+alter table public.stripe_eventos enable row level security;
+revoke all on public.stripe_eventos from public, anon, authenticated;
+grant select, insert, delete on public.stripe_eventos to service_role;
+
+-- 4) ¿Sigue en vigor alguna suscripción de quien pregunta?
+--    premium_hasta null no cuenta, aunque premium estuviera en true.
 create or replace function public.es_premium()
 returns boolean
 language sql
 stable
 security definer
-set search_path = public
+set search_path = ''
 as $$
   select coalesce(
     (
-      select premium and (premium_hasta is null or premium_hasta > now())
-      from public.perfiles
-      where id = auth.uid()
+      select p.premium
+         and p.premium_hasta is not null
+         and p.premium_hasta > pg_catalog.now()
+      from public.perfiles p
+      where p.id = auth.uid()
     ),
     false
   );
 $$;
 
-revoke all on function public.es_premium() from public;
-grant execute on function public.es_premium() to authenticated;
+revoke all on function public.es_premium() from public, anon, authenticated;
+grant execute on function public.es_premium() to authenticated, service_role;
 
--- 4) Lecciones. El texto real no se sube a GitHub: se inserta aquí, en Supabase.
+-- 5) Lecciones. El texto real no se sube a GitHub: se inserta aquí, en Supabase.
 --    Las dos filas de abajo son EJEMPLO y también están en este archivo, que es público.
---    El curso de verdad no se pega en el repositorio.
 create table if not exists public.contenido_premium (
   slug text primary key check (slug ~ '^[a-z0-9-]{2,80}$'),
   titulo text not null check (char_length(titulo) between 2 and 140),
@@ -102,7 +146,7 @@ create table if not exists public.contenido_premium (
 );
 
 alter table public.contenido_premium enable row level security;
-revoke all on public.contenido_premium from anon, authenticated;
+revoke all on public.contenido_premium from public, anon, authenticated;
 grant select on public.contenido_premium to authenticated;
 grant select, insert, update, delete on public.contenido_premium to service_role;
 
@@ -124,14 +168,19 @@ values
   (
     'ejemplo-plantilla',
     'EJEMPLO · Dónde está la plantilla de prueba',
-    '<p><strong>EJEMPLO.</strong> La hoja de verdad no está en la web. Vive en el almacén privado de Supabase, en la ruta <strong>ejemplo/plantilla-costos.txt</strong>.</p><p>El botón de descarga pide un enlace que caduca en dos minutos. Si la cuenta no es Premium, la base no entrega la fila y el almacén tampoco abre el archivo.</p><p>WhatsApp prioritario, el mismo número de siempre: <a href="https://wa.me/34656267726?text=Hola%2C%20soy%20Premium%20en%20Granja%20Rentable.%20Mi%20apodo%20es%20">+34 656 267 726</a>. Escribe ese texto para que Pablo vea que eres miembro. Respuesta en 48 horas laborables. No es una consulta veterinaria ni un sitio para pedir dosis.</p>',
+    '<p><strong>EJEMPLO.</strong> La hoja de verdad no está en la web. Vive en el almacén privado de Supabase, en la ruta <strong>ejemplo/plantilla-costos.txt</strong>.</p><p>El botón de descarga pide un enlace al servidor. Caduca a los dos minutos, y ese plazo lo fija el servidor. Si la cuenta no es Premium, no se entrega la fila ni el archivo.</p><p>Soporte prioritario por Messenger de la Página o formulario de la web, respuesta en un máximo de 2 días hábiles. Información general: no sustituye al veterinario; ante urgencias, acude hoy a tu veterinario. No damos dosis de medicamentos. El usuario de Messenger de la Página está PENDIENTE (m.me/…).</p>',
     2,
     'ejemplo/plantilla-costos.txt',
     true
   )
-on conflict (slug) do nothing;
+on conflict (slug) do update
+  set titulo = excluded.titulo,
+      html = excluded.html,
+      orden = excluded.orden,
+      archivo = excluded.archivo,
+      ejemplo = excluded.ejemplo;
 
--- 5) Lotes de la calculadora avanzada. Cada persona ve los suyos, y solo si es Premium.
+-- 6) Lotes de la calculadora avanzada. Cada persona ve los suyos, y solo si es Premium.
 create table if not exists public.lotes (
   id uuid primary key default gen_random_uuid(),
   usuario uuid not null references public.perfiles (id) on delete cascade,
@@ -144,7 +193,7 @@ create table if not exists public.lotes (
 );
 
 alter table public.lotes enable row level security;
-revoke all on public.lotes from anon, authenticated;
+revoke all on public.lotes from public, anon, authenticated;
 grant select, insert, update, delete on public.lotes to authenticated;
 grant select, insert, update, delete on public.lotes to service_role;
 
@@ -154,8 +203,8 @@ create policy lotes_propios on public.lotes
   using (usuario = auth.uid() and public.es_premium())
   with check (usuario = auth.uid() and public.es_premium());
 
--- 6) Insignia. El ranking del reto devuelve el apodo (perfiles.nombre) y un sí/no.
---    No devuelve el correo. Hay que volver a crear la función porque cambia lo que devuelve.
+-- 7) Insignia. El ranking del reto devuelve el apodo (perfiles.nombre) y un sí/no.
+--    No devuelve el correo ni la fecha. Hay que volver a crear la función porque cambia lo que devuelve.
 drop function if exists public.ranking_mes(text);
 
 create or replace function public.ranking_mes(p_periodo text)
@@ -163,13 +212,17 @@ returns table (usuario uuid, nombre text, puntos int, aciertos int, llegado time
 language sql
 stable
 security definer
-set search_path = public
+set search_path = ''
 as $$
   select i.usuario, pf.nombre,
     sum(i.puntos)::int as puntos,
     count(*) filter (where i.acierto and i.puntos > 0)::int as aciertos,
     max(i.creado) filter (where i.puntos > 0) as llegado,
-    bool_or(pf.premium and (pf.premium_hasta is null or pf.premium_hasta > now())) as premium
+    bool_or(
+      pf.premium
+      and pf.premium_hasta is not null
+      and pf.premium_hasta > pg_catalog.now()
+    ) as premium
   from public.quiz_intentos i
   join public.quiz_preguntas q on q.id = i.pregunta
   join public.perfiles pf on pf.id = i.usuario
@@ -182,18 +235,57 @@ $$;
 revoke all on function public.ranking_mes(text) from public;
 grant execute on function public.ranking_mes(text) to anon, authenticated;
 
--- Vista corta para pintar la insignia junto al apodo, nunca junto a otro nombre.
-create or replace view public.perfiles_insignia
-with (security_invoker = true) as
+-- La vista corre como su dueño y solo devuelve el sí/no. anon no tiene acceso.
+drop view if exists public.perfiles_insignia;
+create view public.perfiles_insignia
+with (security_invoker = false) as
 select id,
        nombre,
-       (premium and (premium_hasta is null or premium_hasta > now())) as premium
+       (premium and premium_hasta is not null and premium_hasta > pg_catalog.now()) as premium
 from public.perfiles;
 
-grant select on public.perfiles_insignia to anon, authenticated;
+revoke all on table public.perfiles_insignia from public, anon, authenticated;
+grant select on table public.perfiles_insignia to authenticated;
 
--- 7) Almacén privado. Si esta inserción falla, créalo a mano:
---    Storage → New bucket → nombre «premium» → Public desactivado.
+-- Los privilegios por defecto de Supabase vuelven a dar EXECUTE a anon en cada función nueva,
+-- y ALL a anon en cada tabla o vista nueva. Además Postgres da EXECUTE a PUBLIC en toda función
+-- nueva: ese permiso solo se quita sin «in schema». Revocarlos aquí evita que un alta futura
+-- reabra es_premium() o la vista. Las funciones que anon sí usa (ranking_mes) se conceden a mano.
+do $$
+declare
+  dueno text;
+begin
+  foreach dueno in array array['postgres', 'supabase_admin']
+  loop
+    begin
+      execute format(
+        'alter default privileges for role %I revoke execute on functions from public, anon, authenticated',
+        dueno
+      );
+      execute format(
+        'alter default privileges for role %I in schema public revoke execute on functions from public, anon, authenticated',
+        dueno
+      );
+      execute format(
+        'alter default privileges for role %I in schema public revoke all on tables from anon',
+        dueno
+      );
+    exception
+      when undefined_object or insufficient_privilege then
+        raise notice 'No se pudieron ajustar los privilegios por defecto de %.', dueno;
+    end;
+  end loop;
+end $$;
+
+-- 8) Almacén privado. El navegador no firma enlaces: lo hace la función premium-archivo,
+--    con 120 segundos fijos. Esta política no existe a propósito.
+do $$
+begin
+  drop policy if exists premium_descarga on storage.objects;
+exception when undefined_table then
+  null;
+end $$;
+
 do $$
 begin
   insert into storage.buckets (id, name, public, file_size_limit)
@@ -204,8 +296,3 @@ begin
 exception when others then
   raise notice 'No se pudo crear el bucket premium (%). Créalo a mano, con Public desactivado.', sqlerrm;
 end $$;
-
-drop policy if exists premium_descarga on storage.objects;
-create policy premium_descarga on storage.objects
-  for select to authenticated
-  using (bucket_id = 'premium' and public.es_premium());

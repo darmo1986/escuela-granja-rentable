@@ -1,17 +1,22 @@
-/* Página Premium. Los enlaces de pago salen de GR.premium.
-   Si están vacíos, el botón queda en «Próximamente». La tarjeta no pasa por esta web. */
+/* Página Premium. El pago lo abre el servidor con la sesión.
+   El navegador no elige el precio ni el id de la cuenta. La tarjeta no pasa por esta web. */
 (function () {
+  var UE = {
+    AT: 1, BE: 1, BG: 1, HR: 1, CY: 1, CZ: 1, DK: 1, EE: 1, FI: 1, FR: 1,
+    DE: 1, GR: 1, HU: 1, IE: 1, IT: 1, LV: 1, LT: 1, LU: 1, MT: 1, NL: 1,
+    PL: 1, PT: 1, RO: 1, SK: 1, SI: 1, ES: 1, SE: 1
+  };
   var ANUAL = {
     usd: {
       cifra: "US$ 39",
       periodo: "/ año",
-      nota: "En España: 39 € al año, IVA incluido. Sale a unos US$ 3,25 al mes.",
+      nota: "Precio anunciado en dólares. Si la dirección de facturación está en la Unión Europea, Stripe suma el IVA: el país del menú no lo quita.",
       ahorro: "Ahorras un 35 % frente al mensual"
     },
     eur: {
       cifra: "39 €",
       periodo: "/ año",
-      nota: "IVA incluido. En Latinoamérica y Estados Unidos: US$ 39 al año. Sale a unos 3,25 € al mes.",
+      nota: "Unión Europea: precio en euros, IVA según el país de facturación. Si no sabemos el país, mostramos euros.",
       ahorro: "Ahorras un 35 % frente al mensual"
     }
   };
@@ -19,13 +24,13 @@
     usd: {
       cifra: "US$ 4,99",
       periodo: "/ mes",
-      nota: "En España: 4,99 € al mes, IVA incluido.",
+      nota: "Precio anunciado en dólares. Si la dirección de facturación está en la Unión Europea, Stripe suma el IVA: el país del menú no lo quita.",
       ahorro: ""
     },
     eur: {
       cifra: "4,99 €",
       periodo: "/ mes",
-      nota: "IVA incluido. En Latinoamérica y Estados Unidos: US$ 4,99 al mes.",
+      nota: "Unión Europea: precio en euros, IVA según el país de facturación. Si no sabemos el país, mostramos euros.",
       ahorro: ""
     }
   };
@@ -34,31 +39,25 @@
   function pais() {
     var sel = document.querySelector(".js-pais");
     if (sel && sel.value) return sel.value;
-    try { return localStorage.getItem("gr_pais") || "MX"; } catch (e) { return "MX"; }
+    return document.documentElement.dataset.pais || "";
   }
 
-  function moneda() { return pais() === "ES" ? "eur" : "usd"; }
+  function monedaAnunciada(code, origen, geo) {
+    code = String(code || "").toUpperCase();
+    if (UE[code]) return "eur";
+    if (origen === "elegido") return "usd";
+    if (geo === "ok" && (origen === "inferido" || origen === "geo")) return "usd";
+    return "eur";
+  }
+
+  function moneda() {
+    var html = document.documentElement;
+    return monedaAnunciada(pais(), html.dataset.paisOrigen || "", html.dataset.geo || "");
+  }
 
   function plan() {
     var mensual = document.getElementById("plan-mensual");
     return mensual && mensual.classList.contains("is-on") ? "mensual" : "anual";
-  }
-
-  function enlaceStripe(valor) {
-    var s = String(valor || "").trim();
-    if (!s) return "";
-    try {
-      var u = new URL(s);
-      if (u.protocol !== "https:") return "";
-      if (u.hostname !== "buy.stripe.com" && u.hostname !== "checkout.stripe.com") return "";
-      return u.href;
-    } catch (e) { return ""; }
-  }
-
-  function enlaceDe() {
-    var cfg = (window.GR && GR.premium) || {};
-    var clave = (plan() === "mensual" ? "mensual" : "anual") + (moneda() === "eur" ? "Eur" : "Usd");
-    return enlaceStripe(cfg[clave]);
   }
 
   function usuario() {
@@ -91,13 +90,6 @@
       if (aviso) aviso.textContent = "Ya eres Premium. Gestionas la tarjeta y la baja en la página de Stripe, en dos clics.";
       return;
     }
-    var enlace = enlaceDe();
-    if (!enlace) {
-      boton.disabled = true;
-      boton.textContent = "Próximamente";
-      if (aviso) aviso.textContent = "Mensual: US$ 4,99 o 4,99 €. Pago seguro con Stripe. Necesitas una cuenta de Granja Rentable.";
-      return;
-    }
     if (acepto && !acepto.checked) {
       boton.disabled = true;
       boton.textContent = "Acepta las condiciones";
@@ -106,7 +98,7 @@
     }
     boton.disabled = false;
     boton.textContent = u ? "Probar 7 días gratis" : "Entra para probar 7 días gratis";
-    if (aviso) aviso.textContent = "Mensual: US$ 4,99 o 4,99 €. Pago seguro con Stripe. No vemos el número de tu tarjeta.";
+    if (aviso) aviso.textContent = "Mensual: US$ 4,99 o 4,99 €. El pago lo abre el servidor con tu sesión. No vemos el número de tu tarjeta.";
   }
 
   function elegir(cual) {
@@ -129,18 +121,37 @@
       location.href = "cuenta.html";
       return;
     }
-    var enlace = enlaceDe();
     var acepto = document.getElementById("premium-acepto");
-    if (!enlace || (acepto && !acepto.checked)) return;
+    if (acepto && !acepto.checked) return;
     if (!u) {
       if (window.GRAuth && GRAuth.abrir) GRAuth.abrir("entrar");
       else location.href = "cuenta.html";
       return;
     }
-    var destino = new URL(enlace);
-    destino.searchParams.set("client_reference_id", u.id);
-    if (u.correo) destino.searchParams.set("prefilled_email", u.correo);
-    location.href = destino.href;
+    var boton = document.getElementById("premium-cta");
+    var aviso = document.getElementById("premium-aviso");
+    if (!window.GRAuth || !GRAuth.iniciarPago) {
+      if (boton) { boton.disabled = true; boton.textContent = "Próximamente"; }
+      return;
+    }
+    if (boton) { boton.disabled = true; boton.textContent = "Abriendo el pago…"; }
+    GRAuth.iniciarPago(plan()).then(function (res) {
+      var url = res && res.data && res.data.url;
+      if (url) {
+        location.href = url;
+        return;
+      }
+      var detalle = (res && res.data && res.data.error) || "";
+      var pronto = !detalle || /Próximamente|no está conectado|Failed to send|not found|404|FunctionsFetch|Failed to fetch/i.test(detalle);
+      if (boton) {
+        boton.disabled = !!pronto;
+        boton.textContent = pronto ? "Próximamente" : "Probar 7 días gratis";
+      }
+      if (aviso) aviso.textContent = pronto ? "Próximamente. El pago todavía no está conectado." : detalle;
+    }).catch(function () {
+      if (boton) { boton.disabled = true; boton.textContent = "Próximamente"; }
+      if (aviso) aviso.textContent = "Próximamente. El pago todavía no está conectado.";
+    });
   }
 
   function limpio(html) {

@@ -1,6 +1,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { decidirAcceso, esUuid, finPeriodo } from "./premium_estado.mjs";
+import {
+  anuncioPermitido,
+  decidirAcceso,
+  esUuid,
+  eventoNuevo,
+  finPeriodo,
+  monedaAnunciada,
+  resumirPremium,
+  suscripcionDeFactura,
+  usuarioAutorizado,
+  usuariosCompatibles
+} from "./premium_estado.mjs";
 import { firmaValida } from "./firma_stripe.mjs";
 
 const AHORA = Date.parse("2026-10-18T12:00:00Z");
@@ -43,6 +54,79 @@ test("si el fin del periodo viene en la partida, también vale", function () {
   };
   assert.equal(finPeriodo(s), FUTURO);
   assert.equal(decidirAcceso(s, AHORA).plan, "mensual");
+});
+
+test("sin fecha de fin no hay Premium", function () {
+  var alta = decidirAcceso({ status: "active", items: { data: [] } }, AHORA);
+  assert.equal(alta.premium, false);
+  assert.equal(alta.premium_hasta, null);
+  assert.equal(alta.premium && !alta.premium_hasta, false);
+});
+
+test("la factura basil trae la suscripción dentro de parent", function () {
+  var factura = {
+    parent: { subscription_details: { subscription: "sub_basil" } },
+    lines: { data: [{ parent: { subscription_item_details: { subscription: "sub_linea" } } }] }
+  };
+  assert.equal(suscripcionDeFactura(factura), "sub_basil");
+  assert.equal(suscripcionDeFactura({ subscription: "sub_antigua" }), "sub_antigua");
+  assert.equal(suscripcionDeFactura({
+    lines: { data: [{ parent: { subscription_item_details: { subscription: { id: "sub_obj" } } } }] }
+  }), "sub_obj");
+  assert.equal(suscripcionDeFactura({}), "");
+});
+
+test("el Premium sale de todas las suscripciones vivas y nunca sin fecha", function () {
+  var futuro = new Date(AHORA + 86400000).toISOString();
+  var lejos = new Date(AHORA + 20 * 86400000).toISOString();
+  var uno = resumirPremium([
+    { estado: "canceled", vence: futuro },
+    { estado: "active", vence: futuro },
+    { estado: "trialing", vence: lejos }
+  ], AHORA);
+  assert.equal(uno.premium, true);
+  assert.equal(uno.premium_hasta, lejos);
+  var ninguna = resumirPremium([
+    { estado: "active", vence: null },
+    { estado: "past_due", vence: futuro },
+    { estado: "canceled", vence: lejos }
+  ], AHORA);
+  assert.deepEqual(ninguna, { premium: false, premium_hasta: null });
+});
+
+test("el id de la cuenta solo vale si lo puso el servidor", function () {
+  var id = "11111111-1111-4111-8111-111111111111";
+  var otro = "22222222-2222-4222-8222-222222222222";
+  assert.equal(usuarioAutorizado({ user_id: id, client_reference_id: otro }), id);
+  assert.equal(usuarioAutorizado({ client_reference_id: id }), "");
+  assert.equal(usuariosCompatibles(id, otro), false);
+  assert.equal(usuariosCompatibles(id, id), true);
+  assert.equal(usuariosCompatibles(id, ""), true);
+});
+
+test("un aviso ya guardado no se vuelve a aplicar", function () {
+  assert.equal(eventoNuevo([{ id: "evt_1" }]), true);
+  assert.equal(eventoNuevo([]), false);
+  assert.equal(eventoNuevo(null), false);
+});
+
+test("si falla el país, el precio anunciado es en euros", function () {
+  assert.equal(monedaAnunciada("MX", "defecto", "fallo"), "eur");
+  assert.equal(monedaAnunciada("MX", "inferido", "fallo"), "eur");
+  assert.equal(monedaAnunciada("MX", "defecto", ""), "eur");
+  assert.equal(monedaAnunciada("ES", "defecto", "fallo"), "eur");
+  assert.equal(monedaAnunciada("DE", "elegido", "ok"), "eur");
+  assert.equal(monedaAnunciada("MX", "elegido", "ok"), "usd");
+  assert.equal(monedaAnunciada("MX", "geo", "ok"), "usd");
+  assert.equal(monedaAnunciada("US", "inferido", "ok"), "usd");
+});
+
+test("con la sesión abierta no hay anuncios hasta saber si es Premium", function () {
+  assert.equal(anuncioPermitido({ sesion: true, conocido: false, premium: false }), false);
+  assert.equal(anuncioPermitido({ premium: true, conocido: true }), false);
+  assert.equal(anuncioPermitido({ premiumOk: true }), false);
+  assert.equal(anuncioPermitido({ sesion: true, conocido: true, premium: false }), true);
+  assert.equal(anuncioPermitido({ sesion: false, conocido: false, premium: false }), true);
 });
 
 test("solo acepta un uuid", function () {

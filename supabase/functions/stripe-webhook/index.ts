@@ -2,12 +2,22 @@
 // Se despliega SIN verificación JWT: quien llama es Stripe y se autentica con la firma.
 // Secretos (solo en Supabase, nunca en el repositorio):
 //   STRIPE_WEBHOOK_SECRET  whsec_…
-//   STRIPE_SECRET_KEY      clave restringida de prueba (rk_test_…), no la clave completa
+//   STRIPE_SECRET_KEY      clave restringida de prueba (rk_test_…), con permiso de leer eventos
 //   SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY los pone Supabase solo.
 // Mientras STRIPE_PERMITIR_REAL no sea «si», un evento de modo real se ignora.
+// El id de la cuenta sale de metadata.user_id, puesto al crear el checkout. No del navegador.
 
-import { decidirAcceso, esUuid } from "../_shared/premium_estado.mjs";
+import {
+  decidirAcceso,
+  esUuid,
+  eventoNuevo,
+  resumirPremium,
+  suscripcionDeFactura,
+  usuarioAutorizado,
+  usuariosCompatibles
+} from "../_shared/premium_estado.mjs";
 import { firmaValida } from "../_shared/firma_stripe.mjs";
+import { stripeGet } from "../_shared/stripe_api.mjs";
 
 const EVENTOS = new Set([
   "checkout.session.completed",
@@ -37,21 +47,13 @@ function idStripe(valor: unknown): string {
   return "";
 }
 
-async function stripeGet(ruta: string, clave: string): Promise<Record<string, unknown> | null> {
-  const res = await fetch("https://api.stripe.com/v1/" + ruta, {
-    headers: { Authorization: "Bearer " + clave }
-  });
-  if (!res.ok) return null;
-  return await res.json();
-}
-
-async function db(ruta: string, init: RequestInit): Promise<unknown> {
+async function db(ruta: string, init: RequestInit): Promise<{ ok: boolean; status: number; data: unknown }> {
   const base = env("SUPABASE_URL").replace(/\/$/, "");
   const clave = env("SUPABASE_SERVICE_ROLE_KEY");
   const headers = new Headers(init.headers || {});
   headers.set("apikey", clave);
   headers.set("Authorization", "Bearer " + clave);
-  if (!headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+  if (!headers.has("Content-Type") && init.body) headers.set("Content-Type", "application/json");
   const res = await fetch(base + ruta, { ...init, headers });
   const texto = await res.text();
   let data: unknown = null;
@@ -60,11 +62,7 @@ async function db(ruta: string, init: RequestInit): Promise<unknown> {
   } catch {
     data = texto;
   }
-  if (!res.ok) {
-    console.error("supabase", res.status);
-    throw new Error("supabase");
-  }
-  return data;
+  return { ok: res.ok, status: res.status, data };
 }
 
 async function buscarUsuario(customer: string, subId: string): Promise<string> {
@@ -72,10 +70,12 @@ async function buscarUsuario(customer: string, subId: string): Promise<string> {
   if (customer) filtros.push("stripe_customer_id=eq." + encodeURIComponent(customer));
   if (subId) filtros.push("stripe_subscription_id=eq." + encodeURIComponent(subId));
   for (const filtro of filtros) {
-    const filas = await db(
+    const res = await db(
       "/rest/v1/suscripciones?select=user_id&" + filtro + "&limit=1",
       { method: "GET" }
     );
+    if (!res.ok) throw new Error("supabase");
+    const filas = res.data;
     if (Array.isArray(filas) && filas[0] && esUuid((filas[0] as { user_id?: string }).user_id)) {
       return (filas[0] as { user_id: string }).user_id;
     }
@@ -83,206 +83,212 @@ async function buscarUsuario(customer: string, subId: string): Promise<string> {
   return "";
 }
 
-async function guardar(userId: string, fila: {
+async function perfilExiste(userId: string): Promise<boolean> {
+  const res = await db(
+    "/rest/v1/perfiles?select=id&id=eq." + encodeURIComponent(userId) + "&limit=1",
+    { method: "GET" }
+  );
+  if (!res.ok) throw new Error("supabase");
+  return Array.isArray(res.data) && res.data.length > 0;
+}
+
+async function guardarFila(userId: string, fila: {
   customer: string;
   subId: string;
-  premium: boolean;
-  premium_hasta: string | null;
   estado: string;
   plan: string | null;
   moneda: string | null;
+  vence: string | null;
   eventoEn: string;
 }): Promise<void> {
-  const previas = await db(
-    "/rest/v1/suscripciones?select=evento_en,stripe_customer_id,stripe_subscription_id,plan,moneda&user_id=eq." +
-      userId + "&limit=1",
+  if (!fila.subId) throw new Error("sin suscripcion");
+  const previaRes = await db(
+    "/rest/v1/suscripciones?select=evento_en,user_id&stripe_subscription_id=eq." +
+      encodeURIComponent(fila.subId) + "&limit=1",
     { method: "GET" }
   );
-  const previa = Array.isArray(previas) ? previas[0] as {
+  if (!previaRes.ok) throw new Error("supabase");
+  const previa = Array.isArray(previaRes.data) ? previaRes.data[0] as {
     evento_en?: string;
-    stripe_customer_id?: string;
-    stripe_subscription_id?: string;
-    plan?: string;
-    moneda?: string;
+    user_id?: string;
   } : null;
+  if (previa && previa.user_id && previa.user_id !== userId) return;
   if (previa && previa.evento_en && fila.eventoEn && previa.evento_en > fila.eventoEn) return;
 
   const cuerpo = {
+    stripe_subscription_id: fila.subId,
     user_id: userId,
-    stripe_customer_id: fila.customer || previa?.stripe_customer_id || null,
-    stripe_subscription_id: fila.subId || previa?.stripe_subscription_id || null,
+    stripe_customer_id: fila.customer || null,
     estado: fila.estado,
-    plan: fila.plan || previa?.plan || null,
-    moneda: fila.moneda || previa?.moneda || null,
-    vence: fila.premium_hasta,
+    plan: fila.plan,
+    moneda: fila.moneda,
+    vence: fila.vence,
     evento_en: fila.eventoEn,
     actualizado: new Date().toISOString()
   };
+  const alta = await db("/rest/v1/suscripciones?on_conflict=stripe_subscription_id", {
+    method: "POST",
+    headers: { Prefer: "resolution=merge-duplicates,return=minimal" },
+    body: JSON.stringify(cuerpo)
+  });
+  if (!alta.ok) throw new Error("supabase");
+}
 
-  if (previa) {
-    await db("/rest/v1/suscripciones?user_id=eq." + userId, {
-      method: "PATCH",
-      headers: { Prefer: "return=minimal" },
-      body: JSON.stringify(cuerpo)
-    });
-  } else {
-    await db("/rest/v1/suscripciones", {
-      method: "POST",
-      headers: { Prefer: "return=minimal" },
-      body: JSON.stringify(cuerpo)
-    });
-  }
-
-  await db("/rest/v1/perfiles?id=eq." + userId, {
+async function recalcular(userId: string): Promise<void> {
+  const res = await db(
+    "/rest/v1/suscripciones?select=estado,vence&user_id=eq." + encodeURIComponent(userId),
+    { method: "GET" }
+  );
+  if (!res.ok) throw new Error("supabase");
+  const resumen = resumirPremium(Array.isArray(res.data) ? res.data as Array<{ estado?: string; vence?: string }> : [], Date.now());
+  if (resumen.premium && !resumen.premium_hasta) throw new Error("premium sin fecha");
+  const patch = await db("/rest/v1/perfiles?id=eq." + encodeURIComponent(userId), {
     method: "PATCH",
     headers: { Prefer: "return=minimal" },
     body: JSON.stringify({
-      premium: fila.premium,
-      premium_hasta: fila.premium_hasta
+      premium: resumen.premium,
+      premium_hasta: resumen.premium_hasta
     })
   });
+  if (!patch.ok) throw new Error("supabase");
 }
 
-function usuarioDe(meta: unknown, referencia: unknown): string {
-  if (esUuid(referencia)) return String(referencia);
-  if (meta && typeof meta === "object") {
-    const m = meta as { user_id?: string; client_reference_id?: string };
-    if (esUuid(m.user_id)) return String(m.user_id);
-    if (esUuid(m.client_reference_id)) return String(m.client_reference_id);
+async function aplicarSuscripcion(sub: Record<string, unknown>, eventoEn: string, clave: string): Promise<void> {
+  const subId = idStripe(sub.id);
+  if (!subId) throw new Error("sin suscripcion");
+  const fresco = await stripeGet("subscriptions/" + encodeURIComponent(subId), clave);
+  if (!fresco.ok || !fresco.data) throw new Error("no se pudo leer la suscripcion");
+  const real = fresco.data as Record<string, unknown>;
+  const customer = idStripe(real.customer);
+  let deCliente = "";
+  if (customer) {
+    const cus = await stripeGet("customers/" + encodeURIComponent(customer), clave);
+    if (cus.ok && cus.data) deCliente = usuarioAutorizado((cus.data as { metadata?: unknown }).metadata);
   }
-  return "";
+  const deSub = usuarioAutorizado(real.metadata);
+  if (!usuariosCompatibles(deSub, deCliente)) return;
+  let userId = deSub || deCliente;
+  if (!userId) userId = await buscarUsuario(customer, subId);
+  if (!userId) {
+    const estado = String(real.status || "");
+    if (estado === "canceled" || estado === "incomplete_expired") return;
+    throw new Error("sin usuario");
+  }
+  if (!(await perfilExiste(userId))) return;
+  const dueno = await buscarUsuario("", subId);
+  if (dueno && dueno !== userId) return;
+  const duenoCliente = customer ? await buscarUsuario(customer, "") : "";
+  if (duenoCliente && duenoCliente !== userId) return;
+
+  const acceso = decidirAcceso(real, Date.now());
+  if ((acceso.estado === "active" || acceso.estado === "trialing") && !acceso.premium_hasta) {
+    throw new Error("sin fecha de fin");
+  }
+  await guardarFila(userId, {
+    customer,
+    subId,
+    estado: acceso.estado,
+    plan: acceso.plan,
+    moneda: acceso.moneda,
+    vence: acceso.premium_hasta,
+    eventoEn
+  });
+  await recalcular(userId);
 }
 
 async function aplicar(evento: {
   type: string;
   created: number;
   data: { object: Record<string, unknown> };
-}): Promise<void> {
+}, clave: string): Promise<void> {
   const objeto = evento.data.object || {};
   const eventoEn = new Date((Number(evento.created) || 0) * 1000).toISOString();
-  const clave = env("STRIPE_SECRET_KEY");
 
   if (evento.type === "checkout.session.completed") {
-    const userId = usuarioDe(objeto.metadata, objeto.client_reference_id);
-    if (!userId) return;
-    const customer = idStripe(objeto.customer);
-    const subId = idStripe(objeto.subscription);
-    let acceso = {
-      premium: objeto.payment_status === "paid" || objeto.payment_status === "no_payment_required",
-      premium_hasta: null as string | null,
-      estado: objeto.payment_status === "no_payment_required" ? "trialing" : "active",
-      plan: null as string | null,
-      moneda: null as string | null
-    };
-    if (subId && clave) {
-      const sub = await stripeGet("subscriptions/" + encodeURIComponent(subId), clave);
-      if (sub) acceso = decidirAcceso(sub, Date.now());
-    }
-    await guardar(userId, {
-      customer,
-      subId,
-      premium: acceso.premium,
-      premium_hasta: acceso.premium_hasta,
-      estado: acceso.estado,
-      plan: acceso.plan,
-      moneda: acceso.moneda,
-      eventoEn
-    });
+    const sesionId = idStripe(objeto.id);
+    if (!sesionId) throw new Error("sin sesion");
+    const leida = await stripeGet("checkout/sessions/" + encodeURIComponent(sesionId), clave);
+    if (!leida.ok || !leida.data) throw new Error("no se pudo leer la sesion");
+    const sesion = leida.data as Record<string, unknown>;
+    const subId = idStripe(sesion.subscription);
+    if (!subId) throw new Error("sin suscripcion");
+    await aplicarSuscripcion({ id: subId }, eventoEn, clave);
     return;
   }
 
   if (evento.type.startsWith("customer.subscription.")) {
-    const customer = idStripe(objeto.customer);
-    const subId = idStripe(objeto.id);
-    let userId = usuarioDe(objeto.metadata, null);
-    if (!userId) userId = await buscarUsuario(customer, subId);
-    if (!userId) throw new Error("sin usuario");
-    const acceso = decidirAcceso(objeto, Date.now());
-    await guardar(userId, {
-      customer,
-      subId,
-      premium: acceso.premium,
-      premium_hasta: acceso.premium_hasta,
-      estado: acceso.estado,
-      plan: acceso.plan,
-      moneda: acceso.moneda,
-      eventoEn
-    });
+    await aplicarSuscripcion(objeto, eventoEn, clave);
     return;
   }
 
-  const customer = idStripe(objeto.customer);
-  const subId = idStripe(objeto.subscription);
-  let userId = usuarioDe(objeto.metadata, objeto.client_reference_id);
-  if (!userId) userId = await buscarUsuario(customer, subId);
-  if (!userId) throw new Error("sin usuario");
+  const subId = suscripcionDeFactura(objeto);
+  if (!subId) throw new Error("sin suscripcion");
+  await aplicarSuscripcion({ id: subId }, eventoEn, clave);
+}
 
-  let sub: Record<string, unknown> | null = null;
-  if (subId && clave) sub = await stripeGet("subscriptions/" + encodeURIComponent(subId), clave);
-
-  if (evento.type === "invoice.payment_failed") {
-    const acceso = sub
-      ? decidirAcceso(sub, Date.now())
-      : { premium: false, premium_hasta: null, estado: "past_due", plan: null, moneda: null };
-    const quitar = acceso.estado === "past_due" || acceso.estado === "unpaid" ||
-      acceso.estado === "canceled" || acceso.estado === "incomplete" || !sub;
-    await guardar(userId, {
-      customer,
-      subId,
-      premium: quitar ? false : acceso.premium,
-      premium_hasta: acceso.premium_hasta,
-      estado: quitar ? (acceso.estado === "active" || acceso.estado === "trialing" ? "past_due" : acceso.estado) : acceso.estado,
-      plan: acceso.plan,
-      moneda: acceso.moneda,
-      eventoEn
-    });
-    return;
-  }
-
-  const acceso = sub
-    ? decidirAcceso(sub, Date.now())
-    : { premium: true, premium_hasta: null, estado: "active", plan: null, moneda: null };
-  await guardar(userId, {
-    customer,
-    subId,
-    premium: acceso.premium,
-    premium_hasta: acceso.premium_hasta,
-    estado: acceso.estado,
-    plan: acceso.plan,
-    moneda: acceso.moneda,
-    eventoEn
+async function marcarEvento(id: string, tipo: string): Promise<boolean> {
+  const res = await db("/rest/v1/stripe_eventos?on_conflict=id", {
+    method: "POST",
+    headers: { Prefer: "resolution=ignore-duplicates,return=representation" },
+    body: JSON.stringify({ id, tipo, recibido: new Date().toISOString() })
   });
+  if (res.status === 409) return false;
+  if (!res.ok) throw new Error("supabase");
+  return eventoNuevo(res.data as unknown[]);
+}
+
+async function olvidarEvento(id: string): Promise<void> {
+  await db("/rest/v1/stripe_eventos?id=eq." + encodeURIComponent(id), { method: "DELETE" });
 }
 
 Deno.serve(async (req: Request) => {
   if (req.method !== "POST") return json({ ok: false }, 405);
-  if (!env("STRIPE_WEBHOOK_SECRET") || !env("SUPABASE_SERVICE_ROLE_KEY") || !env("SUPABASE_URL")) {
+  const clave = env("STRIPE_SECRET_KEY");
+  if (!env("STRIPE_WEBHOOK_SECRET") || !env("SUPABASE_SERVICE_ROLE_KEY") || !env("SUPABASE_URL") || !clave) {
     return json({ ok: false, error: "Faltan secretos" }, 500);
   }
   const crudo = await req.text();
   const ok = await firmaValida(crudo, req.headers.get("stripe-signature") || "", env("STRIPE_WEBHOOK_SECRET"));
   if (!ok) return json({ ok: false, error: "Firma" }, 400);
 
-  let evento: { type?: string; livemode?: boolean; created?: number; data?: { object?: Record<string, unknown> } };
+  let aviso: { id?: string };
   try {
-    evento = JSON.parse(crudo);
+    aviso = JSON.parse(crudo);
   } catch {
     return json({ ok: false }, 400);
   }
+  if (!aviso.id) return json({ ok: false }, 400);
+
+  const leido = await stripeGet("events/" + encodeURIComponent(aviso.id), clave);
+  if (!leido.ok || !leido.data || (leido.data as { object?: string }).object !== "event") {
+    return json({ ok: false }, 500);
+  }
+  const evento = leido.data as {
+    id?: string;
+    type?: string;
+    livemode?: boolean;
+    created?: number;
+    data?: { object?: Record<string, unknown> };
+  };
   if (evento.livemode === true && env("STRIPE_PERMITIR_REAL") !== "si") {
     return json({ ok: true, ignorado: "modo real" });
   }
   if (!evento.type || !EVENTOS.has(evento.type) || !evento.data || !evento.data.object) {
     return json({ ok: true, ignorado: evento.type || "vacio" });
   }
+
+  const nuevo = await marcarEvento(String(evento.id || aviso.id), evento.type);
+  if (!nuevo) return json({ ok: true, repetido: true });
+
   try {
     await aplicar(evento as {
       type: string;
       created: number;
       data: { object: Record<string, unknown> };
-    });
+    }, clave);
     return json({ ok: true });
   } catch (e) {
+    await olvidarEvento(String(evento.id || aviso.id));
     console.error("webhook", evento.type, e instanceof Error ? e.message : "error");
     return json({ ok: false }, 500);
   }

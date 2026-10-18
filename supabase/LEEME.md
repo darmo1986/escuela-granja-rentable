@@ -57,7 +57,7 @@ Si se escribe una pregunta sobre el calcio de la puesta, la explicación tiene q
 
 ## Premium
 
-La suscripción no se enciende con este archivo. Los pasos, en castellano y en orden, están en `README_PREMIUM.md` (raíz del repositorio). El SQL es `supabase/migrations/20261018150000_premium.sql`. No se ha ejecutado. No lleva claves. El navegador no puede poner `perfiles.premium`.
+La suscripción no se enciende con este archivo. Los pasos, en castellano y en orden, están en `README_PREMIUM.md` (raíz del repositorio). El SQL es `supabase/migrations/20261018150000_premium.sql`. No se ha ejecutado. No lleva claves. El checkout lo crea el servidor con la sesión. El navegador no puede poner `perfiles.premium` ni leer `premium_hasta`.
 
 ## Plan gratis
 

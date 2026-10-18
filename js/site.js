@@ -407,6 +407,7 @@
     pais = valid(code);
     document.documentElement.dataset.pais = pais;
     if (persist) {
+      document.documentElement.dataset.paisOrigen = "elegido";
       try { localStorage.setItem("gr_pais", pais); } catch (e) {}
     }
     var p = PAISES[pais];
@@ -948,11 +949,21 @@
         .then(function (r) { return r.json(); })
         .then(function (d) {
           var code = String((d && (d.country || d.country_code)) || "").toUpperCase();
-          if (!PAISES[code]) return;
+          if (!PAISES[code]) {
+            document.documentElement.dataset.geo = "fallo";
+            try { window.dispatchEvent(new CustomEvent("gr-pais")); } catch (eGeo2) {}
+            return;
+          }
+          document.documentElement.dataset.geo = "ok";
+          document.documentElement.dataset.paisOrigen = "geo";
           try { localStorage.setItem("gr_pais_ip", code); } catch (e1) {}
-          if (code !== pais && !localStorage.getItem("gr_pais")) applyPais(code, false);
+          if (!localStorage.getItem("gr_pais")) applyPais(code, false);
+          else { try { window.dispatchEvent(new CustomEvent("gr-pais")); } catch (eGeo3) {} }
         })
-        .catch(function () {});
+        .catch(function () {
+          document.documentElement.dataset.geo = "fallo";
+          try { window.dispatchEvent(new CustomEvent("gr-pais")); } catch (eGeo4) {}
+        });
     } catch (eGeo) {}
   }
   askGeo();
