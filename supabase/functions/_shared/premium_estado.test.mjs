@@ -11,7 +11,10 @@ import {
   facturaExigeDevolucion,
   finPeriodo,
   intencionesDePago,
+  MENSAJE_REGION,
   monedaAnunciada,
+  pruebasContradictorias,
+  regionVenta,
   primerCobroMs,
   resumirPremium,
   suscripcionDeFactura,
@@ -197,6 +200,30 @@ test("con la sesión abierta no hay anuncios hasta saber si es Premium", functio
   assert.equal(anuncioPermitido({ premiumOk: true }), false);
   assert.equal(anuncioPermitido({ sesion: true, conocido: true, premium: false }), true);
   assert.equal(anuncioPermitido({ sesion: false, conocido: false, premium: false }), true);
+});
+
+test("fase 1: Canarias y fuera de la UE; el resto no", function () {
+  assert.equal(regionVenta("ES", "38008"), "canarias");
+  assert.equal(regionVenta("ES", "35001"), "canarias");
+  assert.equal(regionVenta("es", "38 008"), "canarias");
+  assert.equal(regionVenta("ES", "28001"), "bloqueada");
+  assert.equal(regionVenta("ES", "07001"), "bloqueada");
+  assert.equal(regionVenta("ES", "51001"), "bloqueada");
+  assert.equal(regionVenta("ES", "52001"), "bloqueada");
+  assert.equal(regionVenta("ES", "35"), "bloqueada");
+  assert.equal(regionVenta("FR", "75001"), "bloqueada");
+  assert.equal(regionVenta("DE", ""), "bloqueada");
+  assert.equal(regionVenta("MX", ""), "fuera");
+  assert.equal(regionVenta("US", "10001"), "fuera");
+  assert.equal(regionVenta("", "38008"), "bloqueada");
+  assert.equal(MENSAJE_REGION, "Próximamente en tu región");
+  assert.equal(pruebasContradictorias("canarias", "ES", ""), false);
+  assert.equal(pruebasContradictorias("canarias", "FR", ""), true);
+  assert.equal(pruebasContradictorias("fuera", "MX", "US"), false);
+  assert.equal(pruebasContradictorias("fuera", "US", "FR"), true);
+  assert.equal(pruebasContradictorias("fuera", "MX", ""), false);
+  assert.equal(pruebasContradictorias("fuera", "", "ES"), true);
+  assert.equal(pruebasContradictorias("canarias", "", ""), false);
 });
 
 test("solo acepta un uuid", function () {

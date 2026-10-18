@@ -10,13 +10,15 @@
     usd: {
       cifra: "US$ 39",
       periodo: "/ año",
-      nota: "Precio anunciado en dólares. Los impuestos se aplican según la normativa aplicable. El menú no decide ese impuesto.",
+      nota: "Fuera de la Unión Europea: precio en dólares, sin impuestos españoles. El menú no decide el impuesto.",
+      igic: "",
       ahorro: "Ahorras un 35 % frente al mensual"
     },
     eur: {
       cifra: "39 €",
       periodo: "/ año",
-      nota: "Unión Europea: precio en euros. Los impuestos se aplican según la normativa aplicable. Si no sabemos el país, mostramos euros.",
+      nota: "Canarias: 39 € con el IGIC del 7 % incluido.",
+      igic: "39 € = 36,45 € + 2,55 € de IGIC.",
       ahorro: "Ahorras un 35 % frente al mensual"
     }
   };
@@ -24,16 +26,28 @@
     usd: {
       cifra: "US$ 4,99",
       periodo: "/ mes",
-      nota: "Precio anunciado en dólares. Los impuestos se aplican según la normativa aplicable. El menú no decide ese impuesto.",
+      nota: "Fuera de la Unión Europea: precio en dólares, sin impuestos españoles. El menú no decide el impuesto.",
+      igic: "",
       ahorro: ""
     },
     eur: {
       cifra: "4,99 €",
       periodo: "/ mes",
-      nota: "Unión Europea: precio en euros. Los impuestos se aplican según la normativa aplicable. Si no sabemos el país, mostramos euros.",
+      nota: "Canarias: 4,99 € con el IGIC del 7 % incluido.",
+      igic: "4,99 € = 4,66 € + 0,33 € de IGIC.",
       ahorro: ""
     }
   };
+  var PAISES_FACTURA = [
+    ["ES", "España"],
+    ["MX", "México"], ["US", "Estados Unidos"], ["CO", "Colombia"], ["PE", "Perú"],
+    ["AR", "Argentina"], ["CL", "Chile"], ["EC", "Ecuador"], ["VE", "Venezuela"],
+    ["UY", "Uruguay"], ["PY", "Paraguay"], ["BO", "Bolivia"], ["GT", "Guatemala"],
+    ["HN", "Honduras"], ["SV", "El Salvador"], ["NI", "Nicaragua"], ["CR", "Costa Rica"],
+    ["PA", "Panamá"], ["DO", "República Dominicana"], ["BR", "Brasil"], ["GB", "Reino Unido"],
+    ["CH", "Suiza"], ["CA", "Canadá"],
+    ["FR", "Francia"], ["DE", "Alemania"], ["IT", "Italia"], ["PT", "Portugal"], ["NL", "Países Bajos"]
+  ];
   var PERMITIDOS = { P: 1, BR: 1, STRONG: 1, EM: 1, UL: 1, OL: 1, LI: 1, H2: 1, H3: 1, A: 1, BLOCKQUOTE: 1 };
 
   function pais() {
@@ -78,18 +92,53 @@
     return window.GRAuth && GRAuth.usuario ? GRAuth.usuario() : null;
   }
 
+  function monedaVisible() {
+    var region = regionElegida();
+    if (region === "canarias") return "eur";
+    if (region === "fuera") return "usd";
+    return moneda();
+  }
+
   function pintarPrecio() {
-    var tarifa = (plan() === "mensual" ? MENSUAL : ANUAL)[moneda()];
+    var region = regionElegida();
+    var tarifa = (plan() === "mensual" ? MENSUAL : ANUAL)[monedaVisible()];
     var linea = document.getElementById("precio-linea");
     var nota = document.getElementById("precio-nota");
     var ahorro = document.getElementById("precio-ahorro");
     if (linea) linea.innerHTML = tarifa.cifra + " <small>" + tarifa.periodo + "</small>";
-    if (nota) nota.textContent = tarifa.nota;
+    if (nota) nota.textContent = region === "bloqueada" ? "Próximamente en tu región" : tarifa.nota;
+    var igic = document.getElementById("precio-igic");
+    if (igic) {
+      if (region === "bloqueada") igic.textContent = "Próximamente en tu región";
+      else if (region === "fuera") igic.textContent = "Fuera de la UE no se añade IGIC ni IVA español.";
+      else igic.textContent = tarifa.igic || "Fuera de la UE no se añade IGIC ni IVA español.";
+    }
     if (ahorro) {
       ahorro.hidden = !tarifa.ahorro;
       ahorro.textContent = tarifa.ahorro;
     }
     pintarBoton();
+  }
+
+  function regionElegida() {
+    var sel = document.getElementById("premium-pais");
+    var cp = document.getElementById("premium-cp");
+    var code = sel && sel.value ? sel.value : "";
+    var postal = cp && cp.value ? cp.value : "";
+    if (!code) return "";
+    if (code === "ES") return /^(35|38)\d{3}$/.test(String(postal).replace(/\D/g, "")) ? "canarias" : "bloqueada";
+    if (UE[code]) return "bloqueada";
+    return "fuera";
+  }
+
+  function pintarRegion() {
+    var nota = document.getElementById("premium-region");
+    if (!nota) return;
+    var region = regionElegida();
+    if (!region) nota.textContent = "Elige el país y el código postal de facturación. Solo vendemos en Canarias (códigos 35 y 38) y fuera de la Unión Europea.";
+    else if (region === "bloqueada") nota.textContent = "Próximamente en tu región";
+    else if (region === "canarias") nota.textContent = "Canarias: el precio lleva el IGIC del 7 % incluido.";
+    else nota.textContent = "Fuera de la UE: se cobra en US$ y sin impuestos españoles.";
   }
 
   function pintarBoton() {
@@ -98,10 +147,17 @@
     var acepto = document.getElementById("premium-acepto");
     if (!boton) return;
     var u = usuario();
+    pintarRegion();
     if (!(window.GR && GR.premium && GR.premium.activo) && !(u && u.premium)) {
       boton.disabled = true;
       boton.textContent = "Próximamente";
       if (aviso) aviso.textContent = "Próximamente. El pago todavía no está conectado.";
+      return;
+    }
+    if (regionElegida() === "bloqueada") {
+      boton.disabled = true;
+      boton.textContent = "Próximamente en tu región";
+      if (aviso) aviso.textContent = "Próximamente en tu región";
       return;
     }
     if (u && u.premium) {
@@ -118,7 +174,7 @@
     }
     boton.disabled = false;
     boton.textContent = u ? "Probar 7 días gratis" : "Entra para probar 7 días gratis";
-    if (aviso) aviso.textContent = "Mensual: US$ 4,99 o 4,99 €. El pago lo abre el servidor con tu sesión. No vemos el número de tu tarjeta.";
+    if (aviso) aviso.textContent = "El pago lo abre el servidor con tu sesión. En Canarias el IGIC va incluido. No vemos el número de tu tarjeta.";
   }
 
   function elegir(cual) {
@@ -155,7 +211,21 @@
       return;
     }
     if (boton) { boton.disabled = true; boton.textContent = "Abriendo el pago…"; }
-    GRAuth.iniciarPago(plan(), true).then(function (res) {
+    var sel = document.getElementById("premium-pais");
+    var cp = document.getElementById("premium-cp");
+    var region = regionElegida();
+    if (region !== "canarias" && region !== "fuera") {
+      if (boton) { boton.disabled = true; boton.textContent = "Próximamente en tu región"; }
+      if (aviso) aviso.textContent = "Próximamente en tu región";
+      return;
+    }
+    var ipOk = false;
+    try { ipOk = localStorage.getItem("gr_consent") === "si"; } catch (eIp) {}
+    GRAuth.iniciarPago(plan(), true, {
+      pais: sel ? sel.value : "",
+      cp: cp ? cp.value : "",
+      ipOk: ipOk
+    }).then(function (res) {
       var url = res && res.data && res.data.url;
       if (url) {
         location.href = url;
@@ -372,6 +442,18 @@
     });
   }
 
+  var selPais = document.getElementById("premium-pais");
+  var campoCp = document.getElementById("premium-cp");
+  if (selPais) {
+    PAISES_FACTURA.forEach(function (par) {
+      var op = document.createElement("option");
+      op.value = par[0];
+      op.textContent = par[1];
+      selPais.appendChild(op);
+    });
+    selPais.addEventListener("change", pintarPrecio);
+  }
+  if (campoCp) campoCp.addEventListener("input", pintarPrecio);
   var anual = document.getElementById("plan-anual");
   var mensual = document.getElementById("plan-mensual");
   var boton = document.getElementById("premium-cta");

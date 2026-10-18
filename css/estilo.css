@@ -660,6 +660,9 @@ html.ad-off .ad-inline, html.ad-off .ad-slot, html.ad-off #cookie-banner { displ
 .plan-opt.is-on { background: var(--g); color: #fff; }
 .price-usd small { font-size: 1rem; font-weight: 700; color: var(--muted); }
 .btn:disabled { opacity: .72; cursor: not-allowed; }
+.premium-lugar { display: grid; gap: 6px; margin-top: 12px; }
+.premium-lugar label { font-weight: 700; font-size: .92rem; }
+.premium-lugar select, .premium-lugar input { width: 100%; min-height: 44px; font-size: 16px; padding: 8px 10px; }
 .premium-acepto { display: flex; gap: 8px; align-items: flex-start; margin: 10px 0 0; font-size: .92rem; }
 .premium-acepto input { width: 22px; height: 22px; min-height: 22px; margin-top: 2px; flex: none; }
 .aviso-gestor { background: #fff6d8; border: 1px solid #e6d48a; border-radius: 14px; padding: 12px 14px; margin: 16px 0; }

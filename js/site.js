@@ -892,7 +892,7 @@
   (function cargarCuenta() {
     if (window.GRAuth) return;
     var s = document.createElement("script");
-    s.src = root + "js/auth.js";
+    s.src = root + "js/auth.js?v=20261020";
     document.body.appendChild(s);
   })();
 

@@ -118,9 +118,43 @@ export function esUuid(s) {
 
 /**
  * Precio que se enseña. La Unión Europea, en euros.
- * Si la geolocalización falla, o el país es solo el de México por defecto, euros con IVA.
- * Una elección explícita de otro país cambia el anuncio, no el impuesto del cobro.
+ * Si la geolocalización falla, o el país es solo el de México por defecto, euros.
+ * El menú solo cambia el anuncio. El impuesto lo decide la dirección de facturación.
  */
+export var MENSAJE_REGION = "Próximamente en tu región";
+
+/**
+ * Fase 1: solo Canarias (CP 35 y 38) y fuera de la UE.
+ * Península, Baleares, Ceuta, Melilla y el resto de la UE quedan bloqueados.
+ */
+export function regionVenta(pais, cp) {
+  var code = String(pais || "").trim().toUpperCase();
+  var digitos = String(cp || "").replace(/\D/g, "");
+  if (!/^[A-Z]{2}$/.test(code)) return "bloqueada";
+  if (code === "ES") return /^(35|38)\d{3}$/.test(digitos) ? "canarias" : "bloqueada";
+  if (UE[code]) return "bloqueada";
+  return "fuera";
+}
+
+/** es, ue, fuera, o vacío si no hay código. */
+export function zonaPais(code) {
+  var c = String(code || "").trim().toUpperCase();
+  if (!/^[A-Z]{2}$/.test(c)) return "";
+  if (c === "ES") return "es";
+  if (UE[c]) return "ue";
+  return "fuera";
+}
+
+/** La tarjeta o la IP contradicen la dirección. Un dato que falta no contradice. */
+export function pruebasContradictorias(region, tarjeta, ip) {
+  var zonas = [zonaPais(tarjeta), zonaPais(ip)].filter(Boolean);
+  for (var i = 0; i < zonas.length; i++) {
+    if (region === "canarias" && zonas[i] !== "es") return true;
+    if (region === "fuera" && zonas[i] !== "fuera") return true;
+  }
+  return false;
+}
+
 export function monedaAnunciada(pais, origen, geo, ads) {
   var code = String(pais || "").toUpperCase();
   if (UE[code]) return "eur";

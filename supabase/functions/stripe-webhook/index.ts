@@ -11,6 +11,8 @@ import {
   decidirAcceso,
   esUuid,
   eventoNuevo,
+  pruebasContradictorias,
+  regionVenta,
   resumirPremium,
   suscripcionDeFactura,
   usuarioAutorizado,
@@ -153,6 +155,71 @@ async function recalcular(userId: string): Promise<void> {
   if (!patch.ok) throw new Error("supabase");
 }
 
+async function devolverYCancelar(subId: string, clave: string): Promise<void> {
+  const facturas = await stripeGet(
+    "invoices?subscription=" + encodeURIComponent(subId) + "&status=paid&limit=10&expand[]=data.payments",
+    clave
+  );
+  if (facturas.ok) {
+    const pagadas = ((facturas.data as { data?: Array<Record<string, unknown>> }).data) || [];
+    for (const factura of pagadas) {
+      if (Number(factura.amount_paid || 0) <= 0) continue;
+      const pagos = ((factura.payments as { data?: Array<Record<string, unknown>> } | undefined)?.data) || [];
+      for (const pago of pagos) {
+        if (pago.status !== "paid") continue;
+        const medio = pago.payment as { type?: string; payment_intent?: string | { id?: string } } | undefined;
+        if (!medio || medio.type !== "payment_intent") continue;
+        const pi = typeof medio.payment_intent === "string" ? medio.payment_intent : (medio.payment_intent && medio.payment_intent.id) || "";
+        if (!pi) continue;
+        const dev = await stripePedir("refunds", clave, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Idempotency-Key": "zona-" + pi + "-" + crypto.randomUUID()
+          },
+          body: "payment_intent=" + encodeURIComponent(pi) + "&metadata[motivo]=fuera_de_zona"
+        });
+        if (!dev.ok && dev.status !== 400) throw new Error("reembolso zona");
+      }
+    }
+  }
+  const baja = await stripePedir("subscriptions/" + encodeURIComponent(subId), clave, { method: "DELETE" });
+  if (!baja.ok && baja.status !== 404) throw new Error("cancelar zona");
+}
+
+async function guardarUbicacion(fila: {
+  userId: string;
+  subId: string;
+  invoiceId: string;
+  direccion: string;
+  pais: string;
+  cp: string;
+  tarjeta: string;
+  ipPais: string;
+  ipOk: boolean;
+  coinciden: boolean;
+  aceptada: boolean;
+}): Promise<void> {
+  const alta = await db("/rest/v1/premium_ubicacion?on_conflict=user_id,stripe_subscription_id,stripe_invoice_id", {
+    method: "POST",
+    headers: { Prefer: "resolution=merge-duplicates,return=minimal" },
+    body: JSON.stringify({
+      user_id: fila.userId,
+      stripe_subscription_id: fila.subId,
+      stripe_invoice_id: fila.invoiceId || "",
+      direccion: fila.direccion,
+      pais: fila.pais,
+      codigo_postal: fila.cp,
+      pais_tarjeta: fila.tarjeta || null,
+      pais_ip: fila.ipOk ? (fila.ipPais || null) : null,
+      consentimiento_ip: fila.ipOk,
+      coinciden: fila.coinciden,
+      aceptada: fila.aceptada
+    })
+  });
+  if (!alta.ok && alta.status !== 409) throw new Error("supabase");
+}
+
 async function aplicarSuscripcion(sub: Record<string, unknown>, eventoEn: string, clave: string): Promise<void> {
   const subId = idStripe(sub.id);
   if (!subId) throw new Error("sin suscripcion");
@@ -227,6 +294,47 @@ async function aplicarSuscripcion(sub: Record<string, unknown>, eventoEn: string
       } else {
         console.warn("ya hay una suscripcion viva, no se añade otra: " + subId);
       }
+      return;
+    }
+    const dir = await stripeGet("customers/" + encodeURIComponent(customer), clave);
+    if (!dir.ok || !dir.data) throw new Error("no se pudo leer la direccion");
+    const address = (dir.data as { address?: { line1?: string; line2?: string; city?: string; state?: string; postal_code?: string; country?: string } }).address || {};
+    const pais = String(address.country || "");
+    const cp = String(address.postal_code || "");
+    if (!pais) return;
+    const region = regionVenta(pais, cp);
+    const meta = (real.metadata || {}) as { ip_ok?: string; ip_pais?: string };
+    const ipOk = meta.ip_ok === "si";
+    const ipPais = ipOk ? String(meta.ip_pais || "") : "";
+    const expandida = await stripeGet(
+      "subscriptions/" + encodeURIComponent(subId) + "?expand[]=default_payment_method",
+      clave
+    );
+    const medio = expandida.ok
+      ? (expandida.data as { default_payment_method?: { card?: { country?: string } } | string }).default_payment_method
+      : "";
+    const tarjeta = medio && typeof medio === "object" && medio.card ? String(medio.card.country || "") : "";
+    const contradice = region === "bloqueada" || pruebasContradictorias(region, tarjeta, ipPais);
+    const invoiceId = idStripe((real as { latest_invoice?: unknown }).latest_invoice);
+    const direccion = [address.line1, address.line2, address.postal_code, address.city, address.state, address.country]
+      .filter(Boolean)
+      .join(", ");
+    await guardarUbicacion({
+      userId,
+      subId,
+      invoiceId,
+      direccion,
+      pais,
+      cp,
+      tarjeta,
+      ipPais,
+      ipOk,
+      coinciden: !contradice,
+      aceptada: !contradice
+    });
+    if (contradice) {
+      console.warn("fuera de la zona de venta, se cancela: " + subId);
+      await devolverYCancelar(subId, clave);
       return;
     }
   }

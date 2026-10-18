@@ -3,7 +3,7 @@
 // Secretos: STRIPE_SECRET_KEY, STRIPE_PRECIO_MENSUAL, STRIPE_PRECIO_ANUAL.
 // Hace falta la clave anon (SUPABASE_ANON_KEY). No se usa la service_role para leer el JWT.
 
-import { esUuid } from "../_shared/premium_estado.mjs";
+import { esUuid, MENSAJE_REGION, regionVenta } from "../_shared/premium_estado.mjs";
 import { env, json, usuarioDeJwt, vueltaSegura } from "../_shared/sesion.mjs";
 import { codificarForma, stripeForm, stripeGet, stripePedir } from "../_shared/stripe_api.mjs";
 
@@ -49,6 +49,43 @@ async function clienteDe(userId: string, email: string, clave: string): Promise<
   return id || "";
 }
 
+async function tasaIgic(clave: string): Promise<string> {
+  const lista = await stripeGet("tax_rates?active=true&limit=100", clave);
+  const tasas = lista.ok && lista.data && (lista.data as { data?: Array<{ id?: string; inclusive?: boolean; percentage?: number; display_name?: string }> }).data;
+  const ya = (tasas || []).find(function (t: { id?: string; inclusive?: boolean; percentage?: number; display_name?: string }) {
+    return t.inclusive === true && Number(t.percentage) === 7 && t.display_name === "IGIC" && t.id;
+  });
+  if (ya && ya.id) return ya.id;
+  const alta = await stripeForm("tax_rates", clave, [
+    ["display_name", "IGIC"],
+    ["description", "IGIC 7 % incluido, solo Canarias"],
+    ["percentage", "7"],
+    ["inclusive", "true"],
+    ["jurisdiction", "Canarias"],
+    ["country", "ES"]
+  ], "POST", { "Idempotency-Key": "igic-7-inclusivo" });
+  const id = alta.ok && alta.data && (alta.data as { id?: string }).id;
+  return id || "";
+}
+
+async function paisIp(req: Request): Promise<string> {
+  const header = String(req.headers.get("cf-ipcountry") || req.headers.get("x-country-code") || "").trim().toUpperCase();
+  if (/^[A-Z]{2}$/.test(header) && header !== "XX" && header !== "T1") return header;
+  const ip = (req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "").split(",")[0].trim();
+  if (!ip || ip === "127.0.0.1" || ip === "::1") return "";
+  try {
+    const res = await fetch("https://get.geojs.io/v1/ip/country/" + encodeURIComponent(ip) + ".json", {
+      signal: AbortSignal.timeout(1500)
+    });
+    if (!res.ok) return "";
+    const data = await res.json() as { country?: string };
+    const code = String(data.country || "").trim().toUpperCase();
+    return /^[A-Z]{2}$/.test(code) ? code : "";
+  } catch {
+    return "";
+  }
+}
+
 async function caducarSesiones(customer: string, clave: string): Promise<boolean> {
   const abiertas = await stripeGet(
     "checkout/sessions?customer=" + encodeURIComponent(customer) + "&status=open&limit=10",
@@ -79,7 +116,7 @@ Deno.serve(async (req: Request) => {
   if (sesion.error || !sesion.usuario) return json(req, { error: sesion.error || "Entra en tu cuenta." }, sesion.status || 401);
   if (!esUuid(sesion.usuario.id)) return json(req, { error: "La sesión no vale. Vuelve a entrar." }, 401);
 
-  let cuerpo: { plan?: string; exito?: string; cancel?: string; acepto?: boolean } = {};
+  let cuerpo: { plan?: string; exito?: string; cancel?: string; acepto?: boolean; pais?: string; cp?: string; ip_ok?: boolean } = {};
   try {
     cuerpo = await req.json();
   } catch {
@@ -93,6 +130,12 @@ Deno.serve(async (req: Request) => {
   if (cuerpo.acepto !== true) {
     return json(req, { error: "Acepta las condiciones para continuar." }, 400);
   }
+  const pais = String(cuerpo.pais || "").trim().toUpperCase();
+  const cp = String(cuerpo.cp || "").trim().slice(0, 20);
+  const region = regionVenta(pais, cp);
+  if (region === "bloqueada") return json(req, { error: MENSAJE_REGION }, 409);
+  const ipOk = cuerpo.ip_ok === true;
+  const ipPais = ipOk ? await paisIp(req) : "";
 
   const filasRes = await fetch(
     sesion.base + "/rest/v1/suscripciones?select=estado,vence&user_id=eq." + encodeURIComponent(sesion.usuario.id),
@@ -176,11 +219,21 @@ Deno.serve(async (req: Request) => {
       return json(req, { error: "No se pudieron cerrar los pagos abiertos. Inténtalo otra vez." }, 502);
     }
 
+    await stripeForm("customers/" + encodeURIComponent(customer), clave, [
+      ["address[country]", pais],
+      ["address[postal_code]", cp]
+    ]);
+
     const exito = vueltaSegura(cuerpo.exito, "https://granjarentable.com/cuenta.html");
     const cancel = vueltaSegura(cuerpo.cancel, "https://granjarentable.com/premium.html");
     const exitoConSesion = exito + (exito.indexOf("?") === -1 ? "?" : "&") + "premium=ok&session_id={CHECKOUT_SESSION_ID}";
     const aceptoEn = new Date().toISOString();
     const avisoCasilla = "Pido que el contenido empiece durante la prueba y sé que, al acceder, pierdo el desistimiento. Aun así, en 14 días naturales desde el primer cobro devolvemos ese cobro.";
+    let tasa = "";
+    if (region === "canarias") {
+      tasa = await tasaIgic(clave);
+      if (!tasa) return json(req, { error: "No se pudo preparar el IGIC del 7 %. El pago no se ha abierto." }, 502);
+    }
 
     const pares: Array<[string, string] | [string, string, string]> = [
       ["mode", "subscription"],
@@ -190,21 +243,29 @@ Deno.serve(async (req: Request) => {
       ["cancel_url", cancel],
       ["line_items[0][price]", precio],
       ["line_items[0][quantity]", "1"],
+      ["currency", region === "fuera" ? "usd" : "eur"],
+      ["expires_at", String(Math.floor(Date.now() / 1000) + 1800)],
       ["billing_address_collection", "required"],
-      ["automatic_tax[enabled]", "true"],
       ["customer_update[address]", "auto"],
       ["consent_collection[terms_of_service]", "required"],
       ["custom_text[terms_of_service_acceptance][message]", avisoCasilla],
       ["subscription_data[metadata][user_id]", sesion.usuario.id],
       ["subscription_data[metadata][acepto]", aceptoEn],
+      ["subscription_data[metadata][region]", region],
+      ["subscription_data[metadata][ip_ok]", ipOk ? "si" : "no"],
+      ["subscription_data[metadata][ip_pais]", ipPais],
       ["metadata[user_id]", sesion.usuario.id],
-      ["metadata[acepto]", aceptoEn]
+      ["metadata[acepto]", aceptoEn],
+      ["metadata[region]", region],
+      ["metadata[ip_ok]", ipOk ? "si" : "no"],
+      ["metadata[ip_pais]", ipPais]
     ];
+    if (tasa) pares.push(["subscription_data[default_tax_rates][0]", tasa]);
     if (!yaProbo) pares.push(["subscription_data[trial_period_days]", DIAS_PRUEBA]);
 
     const alta = await stripeForm("checkout/sessions", clave, codificarForma(pares));
     const url = alta.ok && alta.data && (alta.data as { url?: string }).url;
-    if (!url) return json(req, { error: "Stripe no abrió el pago. Revisa los precios y Stripe Tax." }, 502);
+    if (!url) return json(req, { error: "Stripe no abrió el pago. Revisa los precios (euros y dólares) y la tasa de IGIC." }, 502);
     return json(req, { url });
   } finally {
     await soltar();

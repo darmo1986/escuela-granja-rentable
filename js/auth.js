@@ -1113,15 +1113,19 @@
         if (res.error) throw res.error;
       });
     },
-    iniciarPago: function (plan, acepto) {
+    iniciarPago: function (plan, acepto, lugar) {
       if (!cliente || !usuarioActual) return Promise.reject(new Error("Entra en tu cuenta."));
       if (acepto !== true) return Promise.reject(new Error("Acepta las condiciones para continuar."));
+      var sitio = lugar || {};
       return cliente.functions.invoke("crear-checkout", {
         body: {
           plan: plan === "mensual" ? "mensual" : "anual",
           exito: urlDe("cuenta.html"),
           cancel: urlDe("premium.html"),
-          acepto: true
+          acepto: true,
+          pais: String(sitio.pais || ""),
+          cp: String(sitio.cp || ""),
+          ip_ok: sitio.ipOk === true
         }
       });
     },

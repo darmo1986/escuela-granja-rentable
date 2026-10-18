@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-sin-anuncios>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Premium | Granja Rentable</title>
-<meta name="description" content="Suscripción Premium: curso avanzado, plantillas, calculadora con lotes guardados, soporte prioritario y web sin anuncios. US$ 4,99 al mes o US$ 39 al año. En la Unión Europea, 4,99 € o 39 €. Impuestos según la normativa aplicable. Prueba de 7 días.">
+<meta name="description" content="Suscripción Premium: curso avanzado, plantillas, calculadora con lotes guardados y soporte prioritario, sin anuncios aunque el sitio vuelva a tenerlos. En Canarias, 4,99 € al mes o 39 € al año, con el IGIC incluido. Fuera de la Unión Europea, US$ 4,99 o US$ 39, sin impuestos españoles. Impuestos según tu ubicación. Prueba de 7 días.">
 <link rel="canonical" href="https://granjarentable.com/premium.html">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Premium | Granja Rentable">
-<meta property="og:description" content="Suscripción Premium: curso avanzado, plantillas, calculadora con lotes guardados, soporte prioritario y web sin anuncios. US$ 4,99 al mes o US$ 39 al año. En la Unión Europea, 4,99 € o 39 €. Impuestos según la normativa aplicable. Prueba de 7 días.">
+<meta property="og:description" content="Suscripción Premium: curso avanzado, plantillas, calculadora con lotes guardados y soporte prioritario, sin anuncios aunque el sitio vuelva a tenerlos. En Canarias, 4,99 € al mes o 39 € al año, con el IGIC incluido. Fuera de la Unión Europea, US$ 4,99 o US$ 39, sin impuestos españoles. Impuestos según tu ubicación. Prueba de 7 días.">
 <meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
 <meta property="og:locale" content="es_419">
 <meta property="og:url" content="https://granjarentable.com/premium.html">
 <meta property="og:image:alt" content="Logo de Granja Rentable">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Premium | Granja Rentable">
-<meta name="twitter:description" content="Suscripción Premium: curso avanzado, plantillas, calculadora con lotes guardados, soporte prioritario y web sin anuncios. US$ 4,99 al mes o US$ 39 al año. En la Unión Europea, 4,99 € o 39 €. Impuestos según la normativa aplicable. Prueba de 7 días.">
+<meta name="twitter:description" content="Suscripción Premium: curso avanzado, plantillas, calculadora con lotes guardados y soporte prioritario, sin anuncios aunque el sitio vuelva a tenerlos. En Canarias, 4,99 € al mes o 39 € al año, con el IGIC incluido. Fuera de la Unión Europea, US$ 4,99 o US$ 39, sin impuestos españoles. Impuestos según tu ubicación. Prueba de 7 días.">
 <meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/estilo.css?v=20261020">
 <script src="js/boot.js"></script>
 </head>
 <body data-root="">
@@ -112,9 +112,17 @@
 <button type="button" class="plan-opt" id="plan-mensual" aria-pressed="false">Mensual</button>
 </div>
 <p class="price-usd" id="precio-linea">39 € <small>/ año</small></p>
-<p class="fine" id="precio-nota">Unión Europea: precio en euros. Los impuestos se aplican según la normativa aplicable. Si no sabemos el país, mostramos euros.</p>
-<p class="fine" id="precio-igic">Impuestos según la normativa aplicable. Cómo se aplica en Canarias lo decide el titular con su gestor, antes del cobro real.</p>
+<p class="fine" id="precio-nota">Canarias: 39 € con el IGIC del 7 % incluido.</p>
+<p class="fine" id="precio-igic">39 € = 36,45 € + 2,55 € de IGIC. El mensual: 4,99 € = 4,66 € + 0,33 € de IGIC.</p>
+<p class="fine" id="precio-zona">4,99 €/mes o 39 €/año en Canarias (IGIC incluido): 4,99 € = 4,66 € + 0,33 € de IGIC, y 39 € = 36,45 € + 2,55 € de IGIC. US$ 4,99/mes o US$ 39/año fuera de la UE, sin impuestos españoles. De momento no vendemos en la península, Baleares, Ceuta, Melilla ni el resto de la UE. <a href="condiciones-premium.html#precio">Condiciones e impuestos</a></p>
 <p class="badge" id="precio-ahorro">Ahorras un 35 % frente al mensual</p>
+<div class="premium-lugar">
+<label for="premium-pais">País de facturación</label>
+<select id="premium-pais"><option value="">Elige el país</option></select>
+<label for="premium-cp">Código postal</label>
+<input id="premium-cp" name="cp" inputmode="numeric" maxlength="12" autocomplete="postal-code" placeholder="38008">
+<p class="fine" id="premium-region">Elige el país y el código postal de facturación. Solo vendemos en Canarias (códigos 35 y 38) y fuera de la Unión Europea.</p>
+</div>
 <button type="button" class="btn gold" id="premium-cta" disabled>Próximamente</button>
 <label class="premium-acepto"><input type="checkbox" id="premium-acepto"> <span>Acepto las <a href="condiciones-premium.html">condiciones de Premium</a>. Pido que el contenido digital empiece durante la prueba y sé que, si accedo a él, puedo perder el desistimiento. Aun así, en los 14 días naturales siguientes al primer cobro devolvemos ese cobro.</span></label>
 <p class="fine" id="premium-aviso">Próximamente. El pago todavía no está conectado.</p>
@@ -166,7 +174,7 @@
 <div class="faq-item"><h2>¿Tengo que pagar para seguir viendo el curso gratis?</h2><p>No. El curso básico, las guías, la calculadora básica, los juegos y el concurso siguen gratis.</p></div>
 <div class="faq-item"><h2>¿Cómo funciona la prueba de 7 días?</h2><p>Pones tu tarjeta y no se cobra nada durante 7 días. Una prueba gratis por cuenta: si ya tuviste una, la siguiente suscripción se cobra desde el primer día. Si cancelas antes del primer cobro, no pagas. Te avisamos por correo antes de ese cobro.</p></div>
 <div class="faq-item"><h2>¿Cómo cancelo?</h2><p>Desde «Mi cuenta» → «Gestionar suscripción». Se abre la página segura de Stripe y cancelas en dos clics. Mantienes el acceso hasta el final del periodo pagado.</p></div>
-<div class="faq-item"><h2>¿Desde qué países puedo pagar?</h2><p>Con tarjeta desde Latinoamérica, la Unión Europea y Estados Unidos. En la Unión Europea el precio se anuncia en euros. Los impuestos se aplican según la normativa aplicable. Si no sabemos tu país, también mostramos euros. Elegir otro país en el menú cambia el precio anunciado y no decide ese impuesto. Tu banco puede sumar una comisión por moneda extranjera.</p></div>
+<div class="faq-item"><h2>¿Desde qué países puedo pagar?</h2><p>Ahora mismo, con dirección de facturación en Canarias (código postal 35 o 38) o fuera de la Unión Europea. En Canarias el precio lleva el IGIC del 7 % incluido: 4,99 € son 4,66 € más 0,33 €. Fuera de la UE se cobra en dólares y sin impuestos españoles. En la península, Baleares, Ceuta, Melilla y el resto de la UE la respuesta es «Próximamente en tu región». El país del menú solo cambia la moneda que ves.</p></div>
 <div class="faq-item"><h2>¿Qué pasa con los anuncios y con el ranking?</h2><p>Con Premium la web deja de cargar los anuncios. En el ranking se ve tu apodo, el mismo de la cuenta, y al lado una insignia. No se publica el correo.</p></div>
 </section>
 
@@ -241,9 +249,9 @@
 <p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 <a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
-<script src="js/config.js?v=20261019"></script>
-<script src="js/app.js?v=20261019"></script>
+<script src="js/config.js?v=20261020"></script>
+<script src="js/app.js?v=20261020"></script>
 <script src="js/catalogo.js"></script>
 <script src="js/site.js"></script>
-<script src="js/premium.js?v=20261019"></script>
+<script src="js/premium.js?v=20261020"></script>
 </body></html>

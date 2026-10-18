@@ -160,6 +160,39 @@ alter table public.desistimientos enable row level security;
 revoke all on public.desistimientos from public, anon, authenticated;
 grant select, insert, update on public.desistimientos to service_role;
 
+-- Pruebas de dónde está el cliente. Sin clave ajena: cerrar la cuenta no las borra.
+-- 10 años, el plazo del registro del régimen exterior. El país de la IP solo si hubo consentimiento.
+create table if not exists public.premium_ubicacion (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null,
+  stripe_subscription_id text not null,
+  stripe_invoice_id text not null default '',
+  direccion text not null default '',
+  pais text not null default '',
+  codigo_postal text not null default '',
+  pais_tarjeta text,
+  pais_ip text,
+  consentimiento_ip boolean not null default false,
+  coinciden boolean not null default false,
+  aceptada boolean not null default false,
+  creado timestamptz not null default now(),
+  conservar_hasta timestamptz not null default (now() + interval '10 years')
+);
+
+do $$ begin
+  if not exists (
+    select 1 from pg_constraint where conname = 'premium_ubicacion_una'
+  ) then
+    alter table public.premium_ubicacion
+      add constraint premium_ubicacion_una
+      unique (user_id, stripe_subscription_id, stripe_invoice_id);
+  end if;
+end $$;
+
+alter table public.premium_ubicacion enable row level security;
+revoke all on public.premium_ubicacion from public, anon, authenticated;
+grant select, insert, update on public.premium_ubicacion to service_role;
+
 -- 4) ¿Sigue en vigor alguna suscripción de quien pregunta?
 --    premium_hasta null no cuenta, aunque premium estuviera en true.
 create or replace function public.es_premium()
