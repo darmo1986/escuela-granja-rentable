@@ -1,45 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://granjarentable.com/</loc></url>
-<url><loc>https://granjarentable.com/tienda.html</loc></url>
-<url><loc>https://granjarentable.com/curso.html</loc></url>
-<url><loc>https://granjarentable.com/app.html</loc></url>
-<url><loc>https://granjarentable.com/registro.html</loc></url>
-<url><loc>https://granjarentable.com/afiliados.html</loc></url>
-<url><loc>https://granjarentable.com/afiliados-condiciones.html</loc></url>
-<url><loc>https://granjarentable.com/aviso-legal.html</loc></url>
-<url><loc>https://granjarentable.com/privacidad.html</loc></url>
-<url><loc>https://granjarentable.com/cookies.html</loc></url>
-<url><loc>https://granjarentable.com/calculadoras.html</loc></url>
-<url><loc>https://granjarentable.com/calculadora.html</loc></url>
-<url><loc>https://granjarentable.com/razas.html</loc></url>
-<url><loc>https://granjarentable.com/lista.html</loc></url>
-<url><loc>https://granjarentable.com/faq.html</loc></url>
-<url><loc>https://granjarentable.com/guias.html</loc></url>
-<url><loc>https://granjarentable.com/guia-empezar.html</loc></url>
-<url><loc>https://granjarentable.com/guia-espacio.html</loc></url>
-<url><loc>https://granjarentable.com/guia-incubadora.html</loc></url>
-<url><loc>https://granjarentable.com/examen-final.html</loc></url>
-<url><loc>https://granjarentable.com/lecciones/l01.html</loc></url>
-<url><loc>https://granjarentable.com/lecciones/l02.html</loc></url>
-<url><loc>https://granjarentable.com/lecciones/l03.html</loc></url>
-<url><loc>https://granjarentable.com/lecciones/l04a.html</loc></url>
-<url><loc>https://granjarentable.com/lecciones/l04b.html</loc></url>
-<url><loc>https://granjarentable.com/producto/incubadora-24egg-dual.html</loc></url>
-<url><loc>https://granjarentable.com/producto/incubadora-wonegg-48.html</loc></url>
-<url><loc>https://granjarentable.com/producto/corralito.html</loc></url>
-<url><loc>https://granjarentable.com/producto/bombilla.html</loc></url>
-<url><loc>https://granjarentable.com/producto/termohigrometro.html</loc></url>
-<url><loc>https://granjarentable.com/producto/bascula.html</loc></url>
-<url><loc>https://granjarentable.com/producto/medidorph.html</loc></url>
-<url><loc>https://granjarentable.com/producto/alfombrilla.html</loc></url>
-<url><loc>https://granjarentable.com/producto/comedero.html</loc></url>
-<url><loc>https://granjarentable.com/producto/anillas.html</loc></url>
-<url><loc>https://granjarentable.com/juegos.html</loc></url>
-<url><loc>https://granjarentable.com/enfermedades.html</loc></url>
-<url><loc>https://granjarentable.com/enfermedades/categoria/respiratorias.html</loc></url>
-<url><loc>https://granjarentable.com/enfermedades/categoria/parasitarias.html</loc></url>
-<url><loc>https://granjarentable.com/enfermedades/coriza.html</loc></url>
-<url><loc>https://granjarentable.com/enfermedades/coccidiosis.html</loc></url>
-<url><loc>https://granjarentable.com/enfermedades/acaro-rojo.html</loc></url>
+  <url>
+    <loc>https://granjarentable.com/afiliados.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/app.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/aviso-legal.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/calculadora.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/calculadoras.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/cookies.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/curso.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/enfermedades/acaro-rojo.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/enfermedades/categoria/parasitarias.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/enfermedades/categoria/respiratorias.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/enfermedades/coccidiosis.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/enfermedades/coriza.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/enfermedades.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/faq.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guia-empezar.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guia-espacio.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guia-incubadora.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/agua-para-gallinas.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/alimento-gallinas-ponedoras.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/criar-gallinas-ponedoras.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/cuanto-come-una-gallina.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/enfermedades-gallinas-que-mirar.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/gallinas-por-gallo.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/gallinero-para-ponedoras.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/incubar-huevos-de-gallina.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/luz-gallinas-ponedoras.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/negocio-pollos-rentable.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/pollos-engorde-dias.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/pollos-por-metro.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/primeros-dias-pollito.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias/razas-gallinas-ponedoras.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/guias.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/juegos.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/lecciones/l01.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/lecciones/l02.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/lecciones/l03.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/lecciones/l04a.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/lecciones/l04b.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/lista.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/privacidad.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/alfombrilla.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/anillas.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/bascula.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/bombilla.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/comedero.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/corralito.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/incubadora-24egg-dual.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/incubadora-wonegg-48.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/medidorph.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/producto/termohigrometro.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/razas.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/registro.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://granjarentable.com/tienda.html</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+
 </urlset>
