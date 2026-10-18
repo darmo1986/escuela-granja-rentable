@@ -534,7 +534,7 @@ window.GR_CATALOGO = [
     "resumen": "App gratis para Android. Peso, tareas, avisos, pienso, bajas y coste del lote.",
     "parrafos": [
       "Se descarga gratis en la página de la app. Android 8 o superior.",
-      "Si más adelante la instalas desde Google Play, desinstala antes esta copia."
+      "Si más adelante la instalas desde Google Play, desinstala antes esta copia. Van firmadas con claves distintas y una no actualiza a la otra."
     ],
     "incluye": [],
     "capacidad": "",
