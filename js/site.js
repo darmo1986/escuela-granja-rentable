@@ -726,11 +726,6 @@
       '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calcular</span>',
       /\/calculadora(?:\.html)?\/?$/
     );
-    var foro = put(
-      "preguntas.html",
-      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 6.5h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H13l-5.5 4.2V22.5H6a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z"/></svg></span><span class="nav-label">Reto</span>',
-      /\/preguntas(?:\.html)?\/?$/
-    );
     var salud = put(
       "enfermedades.html",
       '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="currentColor" d="M14.2 8.2h3.6v6h6v3.6h-6v6h-3.6v-6h-6v-3.6h6z"/></svg></span><span class="nav-label">Enfermedades</span>',
@@ -741,8 +736,7 @@
     if (!appLink) return;
     var despues = appLink.nextSibling;
     if (calc.previousElementSibling !== appLink) nav.insertBefore(calc, despues);
-    nav.insertBefore(foro, calc.nextSibling);
-    nav.insertBefore(salud, foro.nextSibling);
+    nav.insertBefore(salud, calc.nextSibling);
   })();
 
   document.querySelectorAll(".foot-brand").forEach(function (p) {
@@ -755,7 +749,6 @@
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],
       ["cuenta.html", "Mi cuenta"],
-      ["preguntas.html", "Reto del mes"],
       ["enfermedades.html", "Enfermedades"],
       ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],

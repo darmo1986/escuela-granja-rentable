@@ -19,6 +19,7 @@ function slice(html, start, end) {
 }
 
 var CABECERA = slice(calc, '<a class="skip"', "</header>") + '\n<p id="ref-note" class="ref-note" hidden></p>\n';
+CABECERA = CABECERA.replace(/<a href="tienda\.html#salud">[\s\S]*?<\/a>\s*/g, "");
 var PIE = slice(calc, "<footer", "</footer>") + "\n" + slice(calc, '<a class="wa-float"', "</a>");
 
 function relativize(html, root) {
@@ -88,12 +89,12 @@ function lista(items) {
 function figuras(art, root) {
   return (art.imagenes || []).map(function (img) {
     var credito = img.credito || CREDITO;
-    return '<figure class="enf-fig">\n<div class="enf-ph" role="img" aria-label="' + esc(img.alt) + '"><p class="enf-ph-kicker">Imagen pendiente</p><p>' + esc(img.alt) + "</p></div>\n<figcaption>Texto alternativo: " + esc(img.alt) + "<br>Crédito: " + esc(credito) + "</figcaption>\n</figure>\n";
+    return '<figure class="enf-fig">\n<div class="enf-ph" role="img" aria-label="' + esc(img.alt) + '"><p class="enf-ph-kicker">Ilustración</p><p>' + esc(img.alt) + "</p></div>\n<figcaption>Texto alternativo: " + esc(img.alt) + "<br>Crédito: " + esc(credito) + "</figcaption>\n</figure>\n";
   }).join("");
 }
 
 function avisoOficial() {
-  return '<aside class="enf-oficial"><p><strong>Declaración obligatoria.</strong> Avisa hoy a los servicios veterinarios oficiales. En España, la oficina de sanidad animal de tu comunidad. En otros países, el servicio público de sanidad animal. No des remedios caseros, no muevas las aves a otra granja y no esperes a confirmarlo en casa.</p></aside>\n';
+  return '<aside class="enf-oficial"><p><strong>Declaración obligatoria.</strong> La gripe aviar es una zoonosis: puede pasar a las personas. No toques aves muertas sin guantes y no te las lleves a casa. Avisa hoy a los servicios oficiales. En España, el MAPA o la oficina de sanidad animal de tu comunidad. En México, SENASICA. En Colombia, el ICA. En Perú, SENASA. No des remedios caseros, no muevas las aves a otra granja y no esperes a confirmarlo en casa. Ante un ave enferma, llama al veterinario.</p></aside>\n';
 }
 
 function validar() {
@@ -140,7 +141,7 @@ function validar() {
 function head(opts) {
   var root = opts.root;
   var canon = SITIO + opts.path;
-  return '<!doctype html>\n<html lang="es">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>' + esc(opts.title) + '</title>\n<meta name="description" content="' + esc(opts.description) + '">\n<link rel="canonical" href="' + esc(canon) + '">\n<meta name="robots" content="index,follow">\n<meta property="og:url" content="' + esc(canon) + '">\n<meta property="og:type" content="' + (opts.article ? "article" : "website") + '">\n<meta property="og:title" content="' + esc(opts.title) + '">\n<meta property="og:description" content="' + esc(opts.description) + '">\n<meta property="og:image" content="' + SITIO + '/img/logo.jpg">\n<meta property="og:locale" content="es_419">\n<meta property="og:image:alt" content="Logo de Granja Rentable">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="' + esc(opts.title) + '">\n<meta name="twitter:description" content="' + esc(opts.description) + '">\n<meta name="twitter:image" content="' + SITIO + '/img/logo.jpg">\n<meta name="theme-color" content="#1F5E2E">\n<link rel="icon" href="' + root + 'img/favicon.svg" type="image/svg+xml">\n<link rel="icon" href="' + root + 'img/favicon.png" sizes="64x64" type="image/png">\n<link rel="stylesheet" href="' + root + 'css/estilo.css">\n<script src="' + root + 'js/boot.js"></script>\n' + (opts.schema ? '<script type="application/ld+json">\n' + opts.schema + "\n</script>\n" : "") + "</head>\n";
+  return '<!doctype html>\n<html lang="es">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>' + esc(opts.title) + '</title>\n<meta name="description" content="' + esc(opts.description) + '">\n<link rel="canonical" href="' + esc(canon) + '">\n<meta name="robots" content="' + (opts.robots || "index,follow") + '">\n<meta property="og:url" content="' + esc(canon) + '">\n<meta property="og:type" content="' + (opts.article ? "article" : "website") + '">\n<meta property="og:title" content="' + esc(opts.title) + '">\n<meta property="og:description" content="' + esc(opts.description) + '">\n<meta property="og:image" content="' + SITIO + '/img/logo.jpg">\n<meta property="og:locale" content="es_419">\n<meta property="og:image:alt" content="Logo de Granja Rentable">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="' + esc(opts.title) + '">\n<meta name="twitter:description" content="' + esc(opts.description) + '">\n<meta name="twitter:image" content="' + SITIO + '/img/logo.jpg">\n<meta name="theme-color" content="#1F5E2E">\n<link rel="icon" href="' + root + 'img/favicon.svg" type="image/svg+xml">\n<link rel="icon" href="' + root + 'img/favicon.png" sizes="64x64" type="image/png">\n<link rel="stylesheet" href="' + root + 'css/estilo.css">\n<script src="' + root + 'js/boot.js"></script>\n' + (opts.schema ? '<script type="application/ld+json">\n' + opts.schema + "\n</script>\n" : "") + "</head>\n";
 }
 
 function scripts(root, extra) {
@@ -187,6 +188,9 @@ function menuDe(cat) {
   return cat.menu || cat.nombre;
 }
 
+function publicados() {
+  return data.articulos.filter(function (a) { return a.estado === "completo"; });
+}
 function deCategoria(id) {
   return data.articulos.filter(function (a) { return a.categoria === id; });
 }
@@ -211,7 +215,7 @@ function migas(items) {
 
 function subnav(activo, prefijo) {
   var enlaces = data.categorias.map(function (cat) {
-    var n = deCategoria(cat.id).length;
+    var n = deCategoria(cat.id).filter(function (a) { return a.estado === "completo"; }).length;
     var actual = cat.id === activo ? ' aria-current="page"' : "";
     return '<li><a href="' + esc(prefijo + cat.id) + '.html"' + actual + "><span>" + esc(menuDe(cat)) + '</span><span class="enf-sub-n">' + n + "</span></a></li>";
   }).join("\n");
@@ -223,7 +227,7 @@ function zona(activo, prefijo, cuerpo) {
 }
 
 function vecinos(art) {
-  var lista = deCategoria(art.categoria);
+  var lista = deCategoria(art.categoria).filter(function (a) { return a.estado === "completo"; });
   var i = 0;
   for (; i < lista.length; i++) if (lista[i].id === art.id) break;
   var prev = lista[i - 1];
@@ -244,13 +248,35 @@ function ficha(art) {
   var tags = (art.etiquetas || []).map(function (e) { return '<li>' + esc(etiNombre(e)) + "</li>"; }).join("");
   var rel = (art.relacionados || []).map(function (id) {
     var otro = porId(id);
-    return '<li><a href="' + esc(id) + '.html">' + esc(otro.titulo) + "</a>" + (otro.estado === "borrador" ? " <span class=\"fine\">(próximamente)</span>" : "") + "</li>";
+    if (!otro) return "";
+    if (otro.estado !== "completo") return "<li>" + esc(otro.titulo) + " <span class=\"fine\">(próximamente)</span></li>";
+    return '<li><a href="' + esc(id) + '.html">' + esc(otro.titulo) + "</a></li>";
   }).join("");
+  if (art.estado !== "completo") {
+    var corto = "<h1>" + esc(art.titulo) + "</h1>\n" +
+      '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n" +
+      (art.declaracion ? avisoOficial() : "") +
+      "<p><strong>Próximamente.</strong> Esta ficha todavía no está publicada.</p>\n";
+    var mainCorto = migas([
+      { href: root + "index.html", texto: "Inicio" },
+      { href: root + "enfermedades.html", texto: "Enfermedades" },
+      { href: "categoria/" + cat.id + ".html", texto: menuDe(cat) },
+      { texto: art.titulo }
+    ]) + zona(cat.id, "categoria/", corto);
+    return pagina({
+      root: root,
+      path: "/enfermedades/" + art.id + ".html",
+      title: art.titulo + " | Enfermedades | Granja Rentable",
+      description: "Ficha en preparación. Todavía no está publicada.",
+      robots: "noindex,follow",
+      main: mainCorto,
+      extra: '<script src="' + root + 'js/enfermedades.js"></script>\n'
+    });
+  }
   var cuerpo = "";
   cuerpo += "<h1>" + esc(art.titulo) + "</h1>\n";
   cuerpo += '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n";
   if (art.declaracion) cuerpo += avisoOficial();
-  if (art.estado === "borrador") cuerpo += '<p class="enf-todo"><strong>Próximamente.</strong> ' + esc(art.todo) + "</p>\n";
   cuerpo += "<p>" + esc(art.resumen) + "</p>\n";
   cuerpo += '<p class="enf-meta">Lectura: ' + mins + " min · " + esc(art.actualizado) + "</p>\n";
   if (tags) cuerpo += '<ul class="badges">' + tags + "</ul>\n";
@@ -293,7 +319,7 @@ function tarjeta(art, href) {
   var cat = catDe(art.categoria);
   var sints = sintomasDe(art.id);
   var busca = [
-    art.titulo, art.resumen, cat.nombre, menuDe(cat), art.todo || "",
+    art.titulo, art.estado === "completo" ? art.resumen : "", cat.nombre, menuDe(cat),
     (art.etiquetas || []).map(etiNombre).join(" "),
     sints.map(function (s) { return s.texto; }).join(" ")
   ].join(" ");
@@ -302,8 +328,8 @@ function tarjeta(art, href) {
   var obliga = art.declaracion ? " · Declaración obligatoria" : "";
   return '<article class="enf-card panel" data-enf="' + esc(art.id) + '" data-categoria="' + esc(art.categoria) + '" data-etiquetas="' + esc((art.etiquetas || []).join(" ")) + '" data-sintomas="' + esc(sints.map(function (s) { return s.id; }).join(" ")) + '" data-busca="' + esc(busca) + '">\n' +
     '<p class="enf-meta">' + esc(menuDe(cat)) + " · " + minutosDe(art) + " min" + estado + obliga + "</p>\n" +
-    "<h3><a href=\"" + esc(href) + "\">" + esc(art.titulo) + "</a></h3>\n" +
-    "<p>" + esc(art.resumen) + "</p>\n" +
+    "<h3>" + (art.estado === "completo" ? "<a href=\"" + esc(href) + "\">" + esc(art.titulo) + "</a>" : esc(art.titulo)) + "</h3>\n" +
+    "<p>" + (art.estado === "completo" ? esc(art.resumen) : "Se publicará cuando esté revisada.") + "</p>\n" +
     (tags ? '<ul class="badges">' + tags + "</ul>\n" : "") +
     "</article>\n";
 }
@@ -315,7 +341,7 @@ function indice() {
   var etiquetas = data.etiquetas.map(function (e) {
     return '<button type="button" class="btn sec" data-etiqueta="' + esc(e.id) + '">' + esc(e.nombre) + "</button>";
   }).join("\n");
-  var resultados = data.articulos.map(function (art) {
+  var resultados = publicados().map(function (art) {
     return tarjeta(art, "enfermedades/" + art.id + ".html");
   }).join("");
   var cats = data.categorias.map(function (cat) {
@@ -339,7 +365,7 @@ function indice() {
     { href: "index.html", texto: "Inicio" },
     { texto: "Enfermedades" }
   ]);
-  main += '<header class="page-hero">\n<p class="kicker">Zona de enfermedades</p>\n<h1>Enfermedades de gallinas y pollos</h1>\n<p>Una zona del sitio, no una lista suelta. Empieza por el signo que ves y, si prefieres, entra por una categoría.</p>\n<p class="enf-aviso">' + esc(data.aviso) + "</p>\n</header>\n";
+  main += '<header class="page-hero">\n<p class="kicker">Zona de enfermedades</p>\n<h1>Enfermedades de gallinas y pollos</h1>\n<p>Empieza por el signo que ves y, si prefieres, entra por una categoría. Ante un ave enferma, llama al veterinario.</p>\n<p class="enf-aviso">' + esc(data.aviso) + "</p>\n</header>\n";
   main += zona("", "enfermedades/categoria/", cuerpo);
   return pagina({
     root: "",
@@ -360,7 +386,7 @@ function paginaCategoria(cat) {
   cuerpo += "<p>" + esc(cat.nota) + "</p>\n";
   cuerpo += '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n";
   if (cat.id === "viricas") cuerpo += avisoOficial();
-  if (!listas.length) cuerpo += '<p class="enf-todo"><strong>Próximamente.</strong> Las fichas de esta categoría están por redactar. Lo que hay ahora es un borrador, sin dosis y pendiente de revisión.</p>\n';
+  if (!listas.length) cuerpo += "<p><strong>Próximamente.</strong> Las fichas de esta categoría todavía no están publicadas.</p>\n";
   cuerpo += '<div class="enf-grid">\n' + lista.map(function (art) {
     return tarjeta(art, "../" + art.id + ".html");
   }).join("") + "</div>\n";
@@ -392,11 +418,12 @@ function sitemap() {
   var file = path.join(ROOT, "sitemap.xml");
   var xml = fs.readFileSync(file, "utf8");
   xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc><\/url>/g, "");
+  xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc><\/url>/g, "");
   var urls = ['<url><loc>https://granjarentable.com/enfermedades.html</loc></url>']
     .concat(data.categorias.map(function (c) {
       return "<url><loc>https://granjarentable.com/enfermedades/categoria/" + c.id + ".html</loc></url>";
     }))
-    .concat(data.articulos.map(function (a) {
+    .concat(publicados().map(function (a) {
       return "<url><loc>https://granjarentable.com/enfermedades/" + a.id + ".html</loc></url>";
     })).join("\n");
   xml = xml.replace("</urlset>", urls + "\n</urlset>");

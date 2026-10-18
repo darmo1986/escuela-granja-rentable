@@ -155,13 +155,12 @@ declare
   candidato text;
 begin
   candidato := coalesce(
-    nullif(new.raw_user_meta_data->>'full_name', ''),
-    nullif(new.raw_user_meta_data->>'name', ''),
-    split_part(coalesce(new.email, ''), '@', 1),
-    ''
+    nullif(btrim(new.raw_user_meta_data->>'nombre'), ''),
+    nullif(btrim(new.raw_user_meta_data->>'full_name'), ''),
+    nullif(btrim(new.raw_user_meta_data->>'name'), '')
   );
-  if candidato is null or char_length(candidato) < 2 then
-    candidato := 'Vecino';
+  if candidato is null or char_length(candidato) < 2 or position('@' in candidato) > 0 then
+    candidato := 'Vecino ' || right(replace(new.id::text, '-', ''), 4);
   end if;
   insert into public.perfiles (id, nombre)
   values (new.id, left(candidato, 40))

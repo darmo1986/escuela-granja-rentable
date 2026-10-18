@@ -1,25 +1,20 @@
-/* Una cuenta para todo el sitio. Con la URL y la clave publicable de js/config.js
-   el correo y la contraseña van a Supabase. La demo (Ana Ruiz) queda de reserva
-   si el servidor no responde. Google solo redirige cuando el proyecto lo tiene activo. */
+/* Una cuenta para todo el sitio. El correo y la contraseña van a Supabase.
+   Si el servidor no responde, se avisa y no se guarda la contraseña.
+   Google solo redirige cuando el proyecto lo tiene activo.
+   La biblioteca se sirve desde este sitio y solo se carga al entrar,
+   en Mi cuenta, o si ya había una sesión. */
 (function () {
   var SESION = "gr_sesion";
-  var CUENTAS = "gr_cuentas";
   var DATOS = "gr_cuenta_datos";
-  var AVISO = "gr_auth_aviso";
-  var DEMO = {
-    id: "u-ana",
-    nombre: "Ana Ruiz",
-    correo: "ana@ejemplo.test",
-    demo: true
-  };
   var root = (document.body && document.body.dataset.root) || "";
   var oyentes = [];
   var cliente = null;
   var listoNube = null;
-  var usuarioActual = leerLocal();
+  var usuarioActual = null;
   var cursoTimer = 0;
-  var googleApagado = false;
-  var reservaDemo = false;
+  var googleApagado = true;
+  var ultimoError = "";
+  try { localStorage.removeItem("gr_cuentas"); } catch (eCu) {}
 
   function nube() {
     var c = (window.GR && GR.comunidad) || {};
@@ -31,15 +26,30 @@
     return { url: url, key: key };
   }
 
-  function modoDemo() { return reservaDemo || !nube(); }
+  function modoDemo() { return false; }
 
   function falloDeRed(e) {
     var m = String(e && (e.message || e) || "");
-    return /failed to fetch|network|load failed|no se pudo cargar|timeout|authretryable|failed to fetch/i.test(m);
+    return /failed to fetch|network|load failed|no se pudo cargar|timeout|authretryable/i.test(m);
   }
 
   function mensajeGoogle() {
-    mensaje("Google todavía no está activado. Entra con correo y contraseña, o prueba como Ana Ruiz.", true);
+    mensaje("Google todavía no está activado. Entra con correo y contraseña.", true);
+  }
+
+  function apodoValido(s) {
+    s = String(s || "").trim();
+    if (s.length < 2 || s.length > 40) return "";
+    if (s.indexOf("@") !== -1) return "";
+    return s;
+  }
+
+  function apodoPublico(meta, id) {
+    meta = meta || {};
+    var s = apodoValido(meta.nombre) || apodoValido(meta.full_name) || apodoValido(meta.name);
+    if (s) return s;
+    var digits = String(id || "").replace(/[^0-9a-f]/gi, "").slice(-4) || "0000";
+    return ("Vecino " + digits).slice(0, 40);
   }
 
   function leerJson(clave, vacio) {
@@ -65,12 +75,8 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || "").trim());
   }
 
-  function nombreDe(s, correo) {
-    s = String(s || "").trim();
-    if (s.length >= 2 && s.length <= 40) return s;
-    var trozo = String(correo || "").split("@")[0].replace(/[._-]+/g, " ").trim();
-    if (trozo.length < 2) trozo = "Vecino";
-    return trozo.slice(0, 40);
+  function nombreDe(s) {
+    return apodoValido(s);
   }
 
   function iniciales(nombre) {
@@ -118,7 +124,7 @@
     var meta = user.user_metadata || {};
     return {
       id: user.id,
-      nombre: nombreDe(meta.nombre || meta.full_name || meta.name, user.email),
+      nombre: apodoPublico(meta, user.id),
       correo: user.email || "",
       avatar: meta.avatar_url || meta.picture || "",
       demo: false,
@@ -130,7 +136,7 @@
     if (window.supabase && window.supabase.createClient) return Promise.resolve(window.supabase);
     return new Promise(function (resolve, reject) {
       var s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js";
+      s.src = root + "js/vendor/supabase.js";
       s.onload = function () {
         if (window.supabase && window.supabase.createClient) resolve(window.supabase);
         else reject(new Error("No se pudo preparar el acceso."));
@@ -263,6 +269,9 @@
     if (!fondo) return;
     fondo.hidden = false;
     modoCaja(modo || "entrar");
+    prepararNube().catch(function () {
+      mensaje("No se pudo conectar. Inténtalo más tarde.", true);
+    });
     var foco = fondo.querySelector(modo === "registro" ? "[name=nombre]" : "[name=correo]");
     if (foco) foco.focus();
   }
@@ -280,45 +289,14 @@
     return null;
   }
 
-  function entrarDemo() {
-    poner({
-      id: DEMO.id,
-      nombre: DEMO.nombre,
-      correo: DEMO.correo,
-      avatar: "",
-      demo: true
-    });
-    cerrar();
-  }
-
-  function cuentasLocales() {
-    var lista = leerJson(CUENTAS, []);
-    return Array.isArray(lista) ? lista : [];
-  }
-
-  function entrarLocal(correo, clave, nombre, alta) {
-    correo = String(correo || "").trim().toLowerCase();
-    clave = String(clave || "");
-    if (!correoValido(correo)) throw new Error("Escribe un correo válido.");
-    if (alta) {
-      nombre = nombreDe(nombre, correo);
-      if (clave.length < 8) throw new Error("La contraseña necesita 8 caracteres o más.");
-      var lista = cuentasLocales().filter(function (c) { return c.correo !== correo; });
-      var nueva = { id: "u-" + Math.random().toString(36).slice(2, 10), nombre: nombre, correo: correo, clave: clave };
-      lista.push(nueva);
-      try { localStorage.setItem(CUENTAS, JSON.stringify(lista)); } catch (e) {}
-      poner({ id: nueva.id, nombre: nueva.nombre, correo: nueva.correo, avatar: "", demo: true });
-      return "Demo: la cuenta se quedó en este navegador. No se envió ningún correo.";
+  function textoGuardado(res) {
+    if (!res || !res.error) return "";
+    var m = String(res.error.message || "");
+    var c = String(res.error.code || "");
+    if (c === "PGRST205" || c === "42P01" || /schema cache|does not exist|relation/i.test(m)) {
+      return "No se pudo guardar en la cuenta. Inténtalo más tarde.";
     }
-    if (correo === DEMO.correo) {
-      entrarDemo();
-      return "";
-    }
-    var encontrada = null;
-    cuentasLocales().forEach(function (c) { if (c.correo === correo) encontrada = c; });
-    if (!encontrada || encontrada.clave !== clave) throw new Error("Ese correo o esa contraseña no coinciden en la demo.");
-    poner({ id: encontrada.id, nombre: encontrada.nombre, correo: encontrada.correo, avatar: "", demo: true });
-    return "";
+    return "No se pudo guardar. " + (m || "Inténtalo más tarde.");
   }
 
   function enviar(ev) {
@@ -330,74 +308,59 @@
     var nombre = form.nombre.value;
     var boton = form.querySelector("[type=submit]");
     boton.disabled = true;
-    var trabajo;
-    if (modoDemo()) {
-      trabajo = Promise.resolve().then(function () {
-        if (modo === "reset" || modo === "magico") {
-          if (!correoValido(correo)) throw new Error("Escribe un correo válido.");
-          return "Demo: no se envían correos. Cuando la clave de Supabase esté puesta, llegará el enlace.";
-        }
-        return entrarLocal(correo, clave, nombre, modo === "registro");
-      });
-    } else {
-      trabajo = prepararNube().then(function () {
-        var vuelta = urlDe("cuenta.html");
-        if (modo === "registro") {
-          if (!correoValido(correo)) throw new Error("Escribe un correo válido.");
-          if (String(clave).length < 8) throw new Error("La contraseña necesita 8 caracteres o más.");
-          return cliente.auth.signUp({
-            email: String(correo).trim(),
-            password: clave,
-            options: { emailRedirectTo: vuelta, data: { nombre: nombreDe(nombre, correo) } }
-          }).then(function (res) {
-            if (res.error) throw new Error(res.error.message);
-            if (!res.data.session) return "Revisa el correo para confirmar la cuenta. Hasta entonces no queda la sesión.";
-            return "Cuenta creada.";
-          });
-        }
-        if (modo === "reset") {
-          return cliente.auth.resetPasswordForEmail(String(correo).trim(), { redirectTo: vuelta }).then(function (res) {
-            if (res.error) throw new Error(res.error.message);
-            return "Si el correo existe, llegará un enlace para elegir otra contraseña.";
-          });
-        }
-        if (modo === "magico") {
-          return cliente.auth.signInWithOtp({
-            email: String(correo).trim(),
-            options: { emailRedirectTo: vuelta, shouldCreateUser: true }
-          }).then(function (res) {
-            if (res.error) throw new Error(res.error.message);
-            return "Te enviamos un enlace. Ábrelo en este mismo navegador.";
-          });
-        }
-        return cliente.auth.signInWithPassword({
+    if (!nube()) {
+      boton.disabled = false;
+      mensaje("El acceso no está disponible. Inténtalo más tarde.", true);
+      return;
+    }
+    var trabajo = prepararNube().then(function () {
+      var vuelta = urlDe("cuenta.html");
+      if (modo === "registro") {
+        if (!correoValido(correo)) throw new Error("Escribe un correo válido.");
+        var apodo = apodoValido(nombre);
+        if (!apodo) throw new Error("Escribe un apodo de 2 a 40 letras. No uses el correo: ese nombre es el que sale en el ranking.");
+        if (String(clave).length < 8) throw new Error("La contraseña necesita 8 caracteres o más.");
+        return cliente.auth.signUp({
           email: String(correo).trim(),
-          password: clave
+          password: clave,
+          options: { emailRedirectTo: vuelta, data: { nombre: apodo, full_name: apodo } }
         }).then(function (res) {
           if (res.error) throw new Error(res.error.message);
-          return "";
+          if (!res.data.session) return "Revisa el correo para confirmar la cuenta. Hasta entonces no queda la sesión.";
+          return "Cuenta creada.";
         });
+      }
+      if (modo === "reset") {
+        return cliente.auth.resetPasswordForEmail(String(correo).trim(), { redirectTo: vuelta }).then(function (res) {
+          if (res.error) throw new Error(res.error.message);
+          return "Si el correo existe, llegará un enlace para elegir otra contraseña.";
+        });
+      }
+      if (modo === "magico") {
+        return cliente.auth.signInWithOtp({
+          email: String(correo).trim(),
+          options: { emailRedirectTo: vuelta, shouldCreateUser: true }
+        }).then(function (res) {
+          if (res.error) throw new Error(res.error.message);
+          return "Te enviamos un enlace. Ábrelo en este mismo navegador.";
+        });
+      }
+      return cliente.auth.signInWithPassword({
+        email: String(correo).trim(),
+        password: clave
+      }).then(function (res) {
+        if (res.error) throw new Error(res.error.message);
+        return "";
       });
-    }
+    });
     trabajo.then(function (texto) {
       boton.disabled = false;
       if (texto) mensaje(texto, false);
       else cerrar();
     }).catch(function (e) {
       boton.disabled = false;
-      if (!modoDemo() && falloDeRed(e) && (modo === "entrar" || modo === "registro")) {
-        reservaDemo = true;
-        try {
-          var avisoLocal = entrarLocal(correo, clave, nombre, modo === "registro");
-          mensaje(avisoLocal || "Supabase no respondió. Quedó la demo de este navegador.", !avisoLocal);
-          if (!avisoLocal) cerrar();
-        } catch (local) {
-          mensaje("Supabase no respondió. " + (local && local.message ? local.message : "Puedes probar como Ana Ruiz."), true);
-        }
-        return;
-      }
-      if (!modoDemo() && falloDeRed(e)) {
-        mensaje("Supabase no respondió. Prueba otra vez en un momento, o entra con la demo.", true);
+      if (falloDeRed(e)) {
+        mensaje("No se pudo conectar. Inténtalo más tarde.", true);
         return;
       }
       mensaje(textoError(e), true);
@@ -409,12 +372,12 @@
     if (/invalid login credentials/i.test(m)) return "Ese correo o esa contraseña no coinciden.";
     if (/email not confirmed/i.test(m)) return "Revisa el correo: falta confirmar la cuenta.";
     if (/already registered|already been registered/i.test(m)) return "Ese correo ya tiene cuenta. Entra o pide otra contraseña.";
-    if (/provider.*not enabled|unsupported provider|validation_failed/i.test(m)) return "Google todavía no está activado. Entra con correo y contraseña, o prueba como Ana Ruiz.";
+    if (/provider.*not enabled|unsupported provider|validation_failed/i.test(m)) return "Google todavía no está activado. Entra con correo y contraseña.";
     return m || "No se pudo entrar.";
   }
 
   function google() {
-    if (modoDemo() || googleApagado) {
+    if (!nube() || googleApagado) {
       mensajeGoogle();
       return;
     }
@@ -433,8 +396,7 @@
         mensaje(textoError(res.error), true);
       }
     }).catch(function (e) {
-      if (falloDeRed(e)) reservaDemo = true;
-      mensajeGoogle();
+      mensaje(falloDeRed(e) ? "No se pudo conectar. Inténtalo más tarde." : textoError(e), true);
     });
   }
 
@@ -458,31 +420,44 @@
         usuario: usuarioActual.id,
         datos: bloque.curso,
         actualizado: new Date().toISOString()
-      }).then(function () {});
+      }).then(function (res) {
+        ultimoError = textoGuardado(res);
+        if (!ultimoError) guardarDatos(usuarioActual.id, bloque);
+        pintarCuenta();
+      }).catch(function () {
+        ultimoError = "No se pudo conectar. Inténtalo más tarde.";
+        pintarCuenta();
+      });
     }, 400);
   }
 
   function guardarCalculo(nombre, datos) {
     var u = exigir();
-    if (!u) return false;
-    var bloque = datosDe(u.id);
+    if (!u) return Promise.resolve({ ok: false, error: "" });
+    if (!cliente) return Promise.resolve({ ok: false, error: "No se pudo conectar. Inténtalo más tarde." });
     var item = {
-      id: "c-" + Date.now().toString(36),
       nombre: String(nombre || "Cálculo").slice(0, 80),
-      datos: datos,
-      cuando: new Date().toISOString()
+      datos: datos
     };
-    bloque.calculos = [item].concat(bloque.calculos || []).slice(0, 20);
-    guardarDatos(u.id, bloque);
-    if (cliente && !u.demo) {
-      cliente.from("calculos").insert({
-        usuario: u.id,
-        nombre: item.nombre,
-        datos: datos
-      }).then(function () { traerNube(u.id); });
-    }
-    pintarCuenta();
-    return true;
+    return cliente.from("calculos").insert({
+      usuario: u.id,
+      nombre: item.nombre,
+      datos: datos
+    }).then(function (res) {
+      var fallo = textoGuardado(res);
+      if (fallo) {
+        ultimoError = fallo;
+        pintarCuenta();
+        return { ok: false, error: fallo };
+      }
+      ultimoError = "";
+      traerNube(u.id);
+      return { ok: true, error: "" };
+    }).catch(function () {
+      ultimoError = "No se pudo conectar. Inténtalo más tarde.";
+      pintarCuenta();
+      return { ok: false, error: ultimoError };
+    });
   }
 
   function fichaActual() {
@@ -505,18 +480,38 @@
     var bloque = datosDe(u.id);
     var lista = bloque.favoritos || [];
     var ya = lista.some(function (f) { return f.id === ficha.id; });
-    if (ya) {
-      bloque.favoritos = lista.filter(function (f) { return f.id !== ficha.id; });
-      if (cliente && !u.demo) cliente.from("favoritos").delete().eq("usuario", u.id).eq("ficha", ficha.id).then(function () {});
-    } else {
-      bloque.favoritos = [{ id: ficha.id, titulo: ficha.titulo, href: ficha.href }].concat(lista).slice(0, 40);
-      if (cliente && !u.demo) {
-        cliente.from("favoritos").upsert({ usuario: u.id, ficha: ficha.id, titulo: ficha.titulo }).then(function () {});
+    function aplicar(listaNueva, peticion) {
+      if (!cliente) {
+        ultimoError = "No se pudo conectar. Inténtalo más tarde.";
+        pintarFicha();
+        return;
       }
+      peticion.then(function (res) {
+        var fallo = textoGuardado(res);
+        if (fallo) {
+          ultimoError = fallo;
+          pintarFicha();
+          pintarCuenta();
+          return;
+        }
+        ultimoError = "";
+        bloque.favoritos = listaNueva;
+        guardarDatos(u.id, bloque);
+        pintarFicha();
+        pintarCuenta();
+      }).catch(function () {
+        ultimoError = "No se pudo conectar. Inténtalo más tarde.";
+        pintarFicha();
+      });
     }
-    guardarDatos(u.id, bloque);
-    pintarFicha();
-    pintarCuenta();
+    if (ya) {
+      aplicar(lista.filter(function (f) { return f.id !== ficha.id; }), cliente.from("favoritos").delete().eq("usuario", u.id).eq("ficha", ficha.id));
+    } else {
+      aplicar(
+        [{ id: ficha.id, titulo: ficha.titulo, href: ficha.href }].concat(lista).slice(0, 40),
+        cliente.from("favoritos").upsert({ usuario: u.id, ficha: ficha.id, titulo: ficha.titulo })
+      );
+    }
   }
 
   function cerrarMenu() {
@@ -539,7 +534,7 @@
       b.type = "button";
       b.className = "auth-entrar";
       b.setAttribute("aria-label", "Entrar o registrarse");
-      b.innerHTML = '<span class="auth-corto">Entrar</span><span class="auth-largo">Entrar / Registrarse</span>';
+      b.innerHTML = '<span class="auth-ico" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22"><path fill="currentColor" d="M16 15.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4zM7.2 25.4c.6-4.2 4-6.6 8.8-6.6s8.2 2.4 8.8 6.6H7.2z"/></svg></span><span class="auth-corto">Entrar</span><span class="auth-largo">Entrar / Registrarse</span>';
       b.addEventListener("click", function () { abrir("entrar"); });
       caja.appendChild(b);
     } else {
@@ -558,7 +553,7 @@
       panel.className = "auth-panel";
       panel.hidden = true;
       panel.innerHTML = '<p class="auth-panel-nom">' + esc(usuarioActual.nombre) + "</p>" +
-        '<p class="fine">' + esc(usuarioActual.correo) + (usuarioActual.demo ? " · demo" : "") + "</p>" +
+        '<p class="fine">' + esc(usuarioActual.correo) + "</p>" +
         '<a href="' + esc(urlDe("cuenta.html")) + '">Mi cuenta</a>' +
         '<button type="button" data-auth="salir">Salir</button>';
       yo.addEventListener("click", function () {
@@ -592,6 +587,14 @@
     var on = esFavorita(ficha.id);
     btn.textContent = on ? "Guardada en mi cuenta" : "Guardar ficha";
     btn.setAttribute("aria-pressed", on ? "true" : "false");
+    var notaFav = document.getElementById("auth-fav-nota");
+    if (!notaFav) {
+      notaFav = document.createElement("p");
+      notaFav.id = "auth-fav-nota";
+      notaFav.className = "fine";
+      btn.insertAdjacentElement("afterend", notaFav);
+    }
+    notaFav.textContent = ultimoError || "";
   }
 
   function leccionesAprobadas(curso) {
@@ -602,9 +605,10 @@
     var caja = document.getElementById("cuenta-cuerpo");
     if (!caja) return;
     if (!usuarioActual) {
-      caja.innerHTML = '<p>No has entrado. El curso, las fichas y la calculadora se usan igual. La cuenta sirve para guardar el avance, los cálculos y las fichas, y para responder el reto.</p>' +
+      caja.innerHTML = '<p>No has entrado. El curso, las fichas y la calculadora se usan igual. La cuenta sirve para guardar el avance, los cálculos y las fichas.</p>' +
         '<p><button type="button" class="btn gold" id="cuenta-entrar">Entrar / Registrarse</button></p>' +
-        '<h2>El curso</h2><p>El curso de este sitio es gratis. No hay Stripe, ni suscripción, ni un precio de 2,99 €. El avance sigue en el navegador (<code>gr_progreso</code>) aunque no entres. Si entras, se copia a la cuenta.</p>';
+        '<h2>El curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta.</p>' +
+        (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "");
       document.getElementById("cuenta-entrar").addEventListener("click", function () { abrir("entrar"); });
       return;
     }
@@ -617,34 +621,50 @@
     }).join("");
     caja.innerHTML = '<p class="auth-yo-linea">' +
       (usuarioActual.avatar ? '<img class="auth-avatar" src="' + esc(usuarioActual.avatar) + '" alt="">' : '<span class="auth-avatar">' + esc(iniciales(usuarioActual.nombre)) + "</span>") +
-      "<span><strong>" + esc(usuarioActual.nombre) + "</strong><br><span class=\"fine\">" + esc(usuarioActual.correo) + (usuarioActual.demo ? " · demo, solo en este navegador" : "") + "</span></span></p>" +
-      '<p><a class="btn sec" href="' + esc(root + "preguntas.html") + '">Ir al reto</a> <button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
-      "<h2>Curso</h2><p>Es gratis. No hay muro de pago ni Stripe en este repositorio. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas guardadas en la cuenta. Sin entrar, el avance sigue en el navegador.</p>" +
+      "<span><strong>" + esc(usuarioActual.nombre) + "</strong><br><span class=\"fine\">" + esc(usuarioActual.correo) + "</span></span></p>" +
+      (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "") +
+      '<form id="cuenta-apodo"><label>Apodo del ranking<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
+      '<p><button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
+      "<h2>Curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas.</p>" +
       "<h2>Cálculos</h2>" + (calcs ? "<ul>" + calcs + "</ul>" : "<p>Todavía no guardaste ninguno. En la calculadora, el botón «Guardar en mi cuenta».</p>") +
       "<h2>Fichas guardadas</h2>" + (favs ? "<ul>" + favs + "</ul>" : "<p>En una ficha de enfermedades, «Guardar ficha».</p>");
     document.getElementById("cuenta-salir").addEventListener("click", salir);
+    document.getElementById("cuenta-apodo").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var apodo = apodoValido(ev.target.apodo.value);
+      if (!apodo) {
+        ultimoError = "El apodo necesita de 2 a 40 letras y no puede ser un correo.";
+        pintarCuenta();
+        return;
+      }
+      if (!cliente) {
+        ultimoError = "No se pudo conectar. Inténtalo más tarde.";
+        pintarCuenta();
+        return;
+      }
+      cliente.auth.updateUser({ data: { nombre: apodo, full_name: apodo } }).then(function (resUser) {
+        if (resUser.error) throw new Error(resUser.error.message);
+        return cliente.from("perfiles").update({ nombre: apodo }).eq("id", usuarioActual.id);
+      }).then(function (resPerfil) {
+        var fallo = textoGuardado(resPerfil);
+        if (fallo) {
+          ultimoError = fallo;
+          pintarCuenta();
+          return;
+        }
+        ultimoError = "";
+        usuarioActual.nombre = apodo;
+        avisar();
+      }).catch(function (e) {
+        ultimoError = falloDeRed(e) ? "No se pudo conectar. Inténtalo más tarde." : textoError(e);
+        pintarCuenta();
+      });
+    });
   }
 
   function pintarAviso() {
-    var descartado = false;
-    try { descartado = localStorage.getItem(AVISO) === "no"; } catch (e) { descartado = true; }
-    if (usuarioActual || descartado || document.getElementById("cookie-banner")) {
-      var viejo = document.getElementById("auth-aviso");
-      if (viejo) viejo.remove();
-      return;
-    }
-    if (document.getElementById("auth-aviso")) return;
-    var barra = document.createElement("div");
-    barra.id = "auth-aviso";
-    barra.className = "auth-aviso";
-    barra.innerHTML = "<p><strong>¿Quieres una cuenta?</strong> Puedes leer el curso y las fichas sin ella. Si entras, guardas el avance, los cálculos y las fichas, y respondes el reto.</p>" +
-      '<div class="row"><button type="button" class="btn" data-auth="entrar">Entrar / Registrarse</button><button type="button" class="btn sec" data-auth="luego">Ahora no</button></div>';
-    document.body.appendChild(barra);
-    barra.querySelector("[data-auth=entrar]").addEventListener("click", function () { abrir("entrar"); });
-    barra.querySelector("[data-auth=luego]").addEventListener("click", function () {
-      try { localStorage.setItem(AVISO, "no"); } catch (e) {}
-      barra.remove();
-    });
+    var viejo = document.getElementById("auth-aviso");
+    if (viejo) viejo.remove();
   }
 
   function montarCaja() {
@@ -657,10 +677,10 @@
       '<button type="button" class="auth-cerrar" aria-label="Cerrar">×</button>' +
       '<h2 id="auth-titulo">Entrar</h2>' +
       '<p id="auth-msg" class="auth-msg" role="status"></p>' +
-      '<p class="fine" id="auth-demo-nota"></p><p><button type="button" class="btn sec" id="auth-ana">Probar como Ana Ruiz</button></p>' +
+      '<p class="fine" id="auth-demo-nota"></p>' +
       '<button type="button" class="btn sec auth-google" id="auth-google">Continuar con Google</button>' +
       '<form id="auth-form">' +
-      '<label class="auth-campo auth-solo-registro">Nombre<input name="nombre" maxlength="40" autocomplete="nickname"></label>' +
+      '<label class="auth-campo auth-solo-registro">Apodo del ranking<input name="nombre" maxlength="40" autocomplete="nickname"></label>' +
       '<label class="auth-campo">Correo<input name="correo" type="email" maxlength="80" autocomplete="email" required></label>' +
       '<label class="auth-campo auth-con-clave">Contraseña<input name="clave" type="password" minlength="8" autocomplete="current-password"></label>' +
       '<button class="btn gold" type="submit" id="auth-submit">Entrar</button>' +
@@ -676,8 +696,6 @@
     fondo.querySelector(".auth-cerrar").addEventListener("click", cerrar);
     fondo.querySelector("#auth-form").addEventListener("submit", enviar);
     fondo.querySelector("#auth-google").addEventListener("click", google);
-    var ana = fondo.querySelector("#auth-ana");
-    if (ana) ana.addEventListener("click", entrarDemo);
     fondo.querySelectorAll(".auth-links button").forEach(function (b) {
       b.addEventListener("click", function () { modoCaja(b.getAttribute("data-modo")); });
     });
@@ -690,28 +708,22 @@
   function notaDemo() {
     var n = document.getElementById("auth-demo-nota");
     if (!n) return;
-    if (!nube() || reservaDemo) n.textContent = "Demo de reserva: Ana Ruiz se queda en este navegador y no se envía nada.";
-    else if (googleApagado) n.textContent = "El correo y la contraseña usan Supabase. Google se activará cuando esté configurado. Ana Ruiz sigue como demo.";
-    else n.textContent = "Puedes entrar con Google o con correo. Ana Ruiz sigue como demo si hace falta.";
+    if (!nube()) n.textContent = "El acceso no está disponible. Inténtalo más tarde.";
+    else if (googleApagado) n.textContent = "Entra con correo y contraseña. Google se activará cuando esté configurado. El apodo es el nombre del ranking, nunca el correo.";
+    else n.textContent = "Puedes entrar con Google o con correo. El apodo es el nombre del ranking, nunca el correo.";
   }
 
-  function observarCookies() {
-    var obs = new MutationObserver(function () {
-      if (!document.getElementById("cookie-banner")) pintarAviso();
-    });
-    obs.observe(document.body, { childList: true });
+  function haceFaltaNube() {
+    if (/\/cuenta(?:\.html)?\/?$/.test(location.pathname || "")) return true;
+    try { return !!localStorage.getItem("gr-auth"); } catch (e) { return false; }
   }
 
   montarCaja();
   pintarCabeza();
   pintarCuenta();
   pintarFicha();
-  observarCookies();
-  if (modoDemo()) {
-    setTimeout(pintarAviso, 1200);
-  } else {
+  if (haceFaltaNube()) {
     prepararNube().then(function () { avisar(); }).catch(function () { avisar(); });
-    setTimeout(pintarAviso, 1200);
   }
 
   window.GRAuth = {
@@ -721,7 +733,6 @@
     cerrar: cerrar,
     exigir: exigir,
     salir: salir,
-    entrarDemo: entrarDemo,
     onChange: function (fn) { oyentes.push(fn); },
     guardarCurso: guardarCurso,
     guardarCalculo: guardarCalculo,

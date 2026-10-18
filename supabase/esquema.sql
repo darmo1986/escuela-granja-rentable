@@ -152,13 +152,12 @@ declare
   candidato text;
 begin
   candidato := coalesce(
-    nullif(new.raw_user_meta_data->>'full_name', ''),
-    nullif(new.raw_user_meta_data->>'name', ''),
-    split_part(coalesce(new.email, ''), '@', 1),
-    ''
+    nullif(btrim(new.raw_user_meta_data->>'nombre'), ''),
+    nullif(btrim(new.raw_user_meta_data->>'full_name'), ''),
+    nullif(btrim(new.raw_user_meta_data->>'name'), '')
   );
-  if candidato is null or char_length(candidato) < 2 then
-    candidato := 'Vecino';
+  if candidato is null or char_length(candidato) < 2 or position('@' in candidato) > 0 then
+    candidato := 'Vecino ' || right(replace(new.id::text, '-', ''), 4);
   end if;
   insert into public.perfiles (id, nombre)
   values (new.id, left(candidato, 40))
@@ -572,3 +571,22 @@ create policy favoritos_propios on public.favoritos
   for all to authenticated
   using (usuario = auth.uid())
   with check (usuario = auth.uid());
+
+insert into public.perfiles (id, nombre)
+select u.id,
+  left(
+    case
+      when char_length(btrim(coalesce(u.raw_user_meta_data->>'nombre', ''))) >= 2
+        and position('@' in coalesce(u.raw_user_meta_data->>'nombre', '')) = 0
+        then btrim(u.raw_user_meta_data->>'nombre')
+      when char_length(btrim(coalesce(u.raw_user_meta_data->>'full_name', ''))) >= 2
+        and position('@' in coalesce(u.raw_user_meta_data->>'full_name', '')) = 0
+        then btrim(u.raw_user_meta_data->>'full_name')
+      when char_length(btrim(coalesce(u.raw_user_meta_data->>'name', ''))) >= 2
+        and position('@' in coalesce(u.raw_user_meta_data->>'name', '')) = 0
+        then btrim(u.raw_user_meta_data->>'name')
+      else 'Vecino ' || right(replace(u.id::text, '-', ''), 4)
+    end
+  , 40)
+from auth.users u
+on conflict (id) do nothing;

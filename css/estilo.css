@@ -164,7 +164,15 @@ html[data-tema="claro"] .auth-yo { border-color: #1F5E2E; color: #1F5E2E; backgr
 }
 .auth-corto { display: none; }
 .auth-largo { display: inline; }
+.auth-ico { display: none; }
 .auth-entrar { font-size: .92rem; }
+.top-actions a[href$="registro.html"],
+.top-actions a[href$="afiliados.html"] { display: none !important; }
+@media (max-width: 719px) {
+  .auth-largo, .auth-corto, .auth-nombre { display: none; }
+  .auth-ico { display: inline-flex; }
+  .auth-entrar, .auth-yo { padding: 8px; min-width: 48px; justify-content: center; }
+}
 .auth-avatar { width: 32px; height: 32px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--gold); color: var(--gold-ink); font-size: .85rem; object-fit: cover; }
 .auth-nombre { max-width: 7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .auth-panel {
@@ -323,10 +331,10 @@ label.check input { width: 22px; height: 22px; min-height: 22px; margin-top: 2px
 .split { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
 .foot { background: var(--gd); color: #E7F3EA; padding: 28px 0 96px; margin-top: 12px; }
-.foot a { color: #fff; }
+.foot a { color: #fff; display: inline-block; padding: 8px 0; line-height: 1.35; }
 .foot-grid { display: grid; gap: 18px; }
 .foot ul { list-style: none; padding: 0; margin: 0; }
-.foot li { margin: .25em 0; }
+.foot li { margin: 0; }
 .foot-brand { font-weight: 800; margin: 0 0 .4em; color: #fff; }
 .copy { font-size: .88rem; color: #d5e6d8; }
 @media (min-width: 800px) { .foot-grid { grid-template-columns: 1.3fr .8fr 1.1fr; } }
@@ -596,7 +604,8 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 .semaforo { border-radius: 12px; padding: 10px 12px; font-weight: 800; background: var(--gl); }
 .semaforo.verde { background: #E7F3EA; color: #0F3D1C; }
 .semaforo.ambar { background: #fff6d8; color: #2B2205; }
-.semaforo.rojo { background: #fdecea; color: #8C2F2F; }
+.semaforo.rojo, .semaforo.faltan { background: #fdecea; color: #8C2F2F; }
+.semaforo.faltan { background: #fff6d8; color: #2B2205; }
 .rent-chart { width: 100%; height: 180px; display: block; margin: 8px 0; }
 #rent-out, #comederos { scroll-margin-top: 96px; }
 .rent-actions { display: flex; flex-wrap: wrap; gap: 8px; }

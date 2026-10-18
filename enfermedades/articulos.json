@@ -1,9 +1,9 @@
 {
-  "aviso": "Información orientativa para aprender. No es un diagnóstico ni un tratamiento. Si un ave está enferma, consulta a un veterinario. El dueño tiene que revisar este texto antes de darlo por bueno.",
-  "creditoImagen": "Pendiente. El equipo pondrá una imagen con licencia o generada. No se enlaza ni se copia una foto de otro sitio.",
+  "aviso": "Información orientativa para aprender. No es un diagnóstico ni un tratamiento. Si un ave está enferma, llama al veterinario.",
+  "creditoImagen": "La imagen se publicará con licencia propia o generada. No se enlaza ni se copia una foto de otro sitio.",
   "categorias": [
     { "id": "respiratorias", "menu": "Respiratorias", "nombre": "Respiratorias", "nota": "Coriza, micoplasma y bronquitis se parecen. Hace falta el veterinario para distinguirlas." },
-    { "id": "viricas", "menu": "Víricas graves", "nombre": "Víricas graves de declaración obligatoria", "nota": "Gripe aviar y Newcastle se comunican a sanidad animal. No hay remedio casero. Marek va en este grupo porque es vírica y grave; la ficha está por revisar y no afirma, por ahora, que sea de declaración obligatoria." },
+    { "id": "viricas", "menu": "Víricas graves", "nombre": "Víricas graves de declaración obligatoria", "nota": "Gripe aviar y Newcastle se comunican a sanidad animal. No hay remedio casero. La gripe aviar es una zoonosis. Marek va en este grupo porque es vírica y grave; su ficha se publicará cuando esté revisada." },
     { "id": "parasitarias", "menu": "Parásitos", "nombre": "Parásitos", "nota": "Coccidiosis, piojos, ácaros (incluido el ácaro rojo) y lombrices." },
     { "id": "digestivas", "menu": "Digestivas", "nombre": "Digestivas", "nota": "Diarrea, buche o ave que no come. Muchas causas distintas." },
     { "id": "carencias", "menu": "Carencias", "nombre": "Carencias nutricionales", "nota": "La ración importa. Aquí no hay dosis de vitaminas ni de minerales." },
@@ -94,14 +94,14 @@
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar con el dueño. Explicar que se parece a la coriza y a la bronquitis, que puede bajar la puesta y que no se diagnostica en casa. No añadir dosis ni antibióticos.",
-      "reconocer": ["Estornudos, mocos o ruidos al respirar, a veces con poca hinchazón. TODO: completar los signos sin presentarlos como un diagnóstico."],
-      "contagio": ["Pasa entre aves y puede entrar con animales nuevos. TODO: precisar las vías cuando se redacte."],
-      "prevenir": ["Lote cerrado, cuarentena y no compartir bebederos con aves de fuera. TODO: ampliar."],
-      "natural": ["Aislar, agua limpia y menos amoníaco. Eso no cura. TODO: no prometer hierbas ni productos."],
+      "todo": "redactar con el dueño. Explicar que se parece a la coriza y a la bronquitis, que puede bajar la puesta y que no se diagnostica en casa. No añadir dosis ni antibióticos.",
+      "reconocer": ["Estornudos, mocos o ruidos al respirar, a veces con poca hinchazón. completar los signos sin presentarlos como un diagnóstico."],
+      "contagio": ["Pasa entre aves y puede entrar con animales nuevos. precisar las vías cuando se redacte."],
+      "prevenir": ["Lote cerrado, cuarentena y no compartir bebederos con aves de fuera. ampliar."],
+      "natural": ["Aislar, agua limpia y menos amoníaco. Eso no cura. no prometer hierbas ni productos."],
       "veterinario": ["Si hay varias aves con signos respiratorios, consulta. No des un antibiótico guardado."],
       "imagenes": [
-        { "alt": "Gallina con el pico entreabierto y las plumas erizadas. Hueco para una foto que muestre un signo respiratorio sin afirmar el diagnóstico." }
+        { "alt": "Gallina con el pico entreabierto y las plumas erizadas. Ilustración que muestre un signo respiratorio sin afirmar el diagnóstico." }
       ],
       "relacionados": ["coriza", "bronquitis"]
     },
@@ -112,19 +112,19 @@
       "titulo": "Bronquitis infecciosa",
       "resumen": "Enfermedad vírica respiratoria. Puede bajar la puesta y deformar el huevo. Borrador pendiente.",
       "metaTitulo": "Bronquitis infecciosa en gallinas | Granja Rentable",
-      "metaDescripcion": "Borrador orientativo sobre la bronquitis infecciosa. Sin cura casera y sin dosis. Pendiente de revisión del dueño.",
+      "metaDescripcion": "Borrador orientativo sobre la bronquitis infecciosa. Sin cura casera y sin dosis. se publicará cuando esté revisada.",
       "fecha": "2026-10-18",
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar. Dejar claro que es vírica, que no hay cura en casa y que la vacuna, si se usa, la decide el veterinario. No hablar de remedios.",
-      "reconocer": ["Signos respiratorios y, en ponedoras, huevos deformes o puesta en caída. TODO: completar."],
-      "contagio": ["Se extiende rápido entre las aves del mismo aire. TODO: precisar."],
-      "prevenir": ["No mezclar lotes y consultar la vacunación con el veterinario. TODO."],
+      "todo": "redactar. Dejar claro que es vírica, que no hay cura en casa y que la vacuna, si se usa, la decide el veterinario. No hablar de remedios.",
+      "reconocer": ["Signos respiratorios y, en ponedoras, huevos deformes o puesta en caída. completar."],
+      "contagio": ["Se extiende rápido entre las aves del mismo aire. precisar."],
+      "prevenir": ["No mezclar lotes y consultar la vacunación con el veterinario. "],
       "natural": [],
       "veterinario": ["Consulta si baja la puesta de golpe o varias aves respiran mal. No hay tratamiento casero."],
       "imagenes": [
-        { "alt": "Huevos de cáscara irregular junto a un huevo de forma normal. Hueco de imagen para la bronquitis, sin usarlo como diagnóstico." }
+        { "alt": "Huevos de cáscara irregular junto a un huevo de forma normal. Ilustración para la bronquitis, sin usarlo como diagnóstico." }
       ],
       "relacionados": ["coriza", "micoplasma"]
     },
@@ -140,14 +140,14 @@
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": true,
-      "todo": "TODO: el dueño debe añadir el teléfono o la oficina de sanidad animal de su comunidad y revisar el texto. No añadir remedios, dosis ni productos.",
+      "todo": "el dueño debe añadir el teléfono o la oficina de sanidad animal de su comunidad y revisar el texto. No añadir remedios, dosis ni productos.",
       "reconocer": [
         "Muertes repentinas, muchas aves enfermas a la vez, crestas o barbillas moradas, hinchazón de la cabeza, caída brusca de la puesta o signos nerviosos.",
         "Estos signos no confirman la gripe. También pueden ser otra cosa. Aun así, no esperes a estar seguro."
       ],
       "contagio": [
         "Puede entrar con aves silvestres, con aves nuevas o con equipo y calzado contaminados.",
-        "TODO: completar las vías cuando lo revise quien corresponda, sin bajar el aviso de declaración."
+        "completar las vías cuando lo revise quien corresponda, sin bajar el aviso de declaración."
       ],
       "prevenir": [
         "Evita que las silvestres coman y beban con tus gallinas.",
@@ -160,7 +160,7 @@
         "No des nada por tu cuenta. No hay remedio casero para la gripe aviar y esta ficha no lo va a ofrecer."
       ],
       "imagenes": [
-        { "alt": "Gallinero cerrado, sin aves silvestres dentro. Hueco de imagen para prevención, no para un ave enferma de archivo ajeno." }
+        { "alt": "Gallinero cerrado, sin aves silvestres dentro. Ilustración para prevención, no para un ave enferma de archivo ajeno." }
       ],
       "relacionados": ["newcastle", "coriza"]
     },
@@ -171,25 +171,25 @@
       "titulo": "Newcastle",
       "resumen": "Enfermedad de declaración obligatoria. Cuellos torcidos y muertes no se tratan en casa: se avisa a sanidad animal.",
       "metaTitulo": "Newcastle: avisa a sanidad animal | Granja Rentable",
-      "metaDescripcion": "La enfermedad de Newcastle se comunica a los servicios veterinarios oficiales. Sin remedios caseros ni dosis. Pendiente de revisión.",
+      "metaDescripcion": "La enfermedad de Newcastle se comunica a los servicios veterinarios oficiales. Sin remedios caseros ni dosis. se publicará cuando esté revisada.",
       "fecha": "2026-10-18",
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": true,
-      "todo": "TODO: revisar con el dueño. Mantener el aviso a sanidad animal. No añadir remedios ni dosis. La vacuna, si se menciona, solo como decisión del veterinario, sin pauta.",
+      "todo": "revisar con el dueño. Mantener el aviso a sanidad animal. No añadir remedios ni dosis. La vacuna, si se menciona, solo como decisión del veterinario, sin pauta.",
       "reconocer": [
         "Signos respiratorios, diarrea, caída de la puesta y signos nerviosos, como el cuello torcido o la parálisis.",
         "No se confirma en casa. Si lo ves, sobre todo con varias aves, avisa."
       ],
-      "contagio": ["Se contagia muy fácil entre aves. TODO: precisar vías en la redacción final, sin suavizar la declaración."],
-      "prevenir": ["Lote cerrado y no llevar aves a concentraciones si hay sospecha. La vacunación, donde se use, la marca el veterinario. TODO: no escribir una pauta."],
+      "contagio": ["Se contagia muy fácil entre aves. precisar vías en la redacción final, sin suavizar la declaración."],
+      "prevenir": ["Lote cerrado y no llevar aves a concentraciones si hay sospecha. La vacunación, donde se use, la marca el veterinario. no escribir una pauta."],
       "natural": [],
       "veterinario": [
         "Avisa a los servicios veterinarios oficiales. En España, sanidad animal de tu comunidad. En otros países, el servicio público equivalente.",
         "No des remedios caseros. No muevas las aves a otra granja."
       ],
       "imagenes": [
-        { "alt": "Aves juntas en un gallinero. Hueco de imagen. No usar una foto de un ave con signos nerviosos sacada de otro sitio." }
+        { "alt": "Aves juntas en un gallinero. Ilustración. No usar una foto de un ave con signos nerviosos sacada de otro sitio." }
       ],
       "relacionados": ["gripe-aviar", "marek"]
     },
@@ -200,19 +200,19 @@
       "titulo": "Marek",
       "resumen": "Enfermedad vírica grave. Puede paralizar una pata o un ala. No tiene cura en casa. Borrador pendiente.",
       "metaTitulo": "Enfermedad de Marek en gallinas | Granja Rentable",
-      "metaDescripcion": "Borrador sobre Marek: parálisis, sin cura casera y sin dosis. Pendiente de que el dueño confirme el texto y el encuadre legal.",
+      "metaDescripcion": "Borrador sobre Marek: parálisis, sin cura casera y sin dosis. se publicará cuando esté revisada.",
       "fecha": "2026-10-18",
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: el dueño confirma el texto. Marek es grave y no tiene cura casera. No afirmar en esta ficha que sea de declaración obligatoria: ese deber, en este borrador, queda escrito solo en gripe aviar y Newcastle. La vacuna, si se cita, es del primer día y la decide quien incuba o el veterinario, sin pauta ni marca.",
-      "reconocer": ["Una pata estirada hacia delante o un ala caída, en un ave joven, es un motivo para llamar al veterinario. TODO: completar sin convertir el signo en un diagnóstico seguro."],
-      "contagio": ["Se relaciona con la caspa y el polvo de las aves. TODO: redactar con cuidado."],
-      "prevenir": ["La prevención habitual es la vacuna al día de edad, antes de que el pollito se exponga. No se improvisa en casa. TODO."],
+      "todo": "el dueño confirma el texto. Marek es grave y no tiene cura casera. No afirmar en esta ficha que sea de declaración obligatoria: ese deber, en este borrador, queda escrito solo en gripe aviar y Newcastle. La vacuna, si se cita, es del primer día y la decide quien incuba o el veterinario, sin pauta ni marca.",
+      "reconocer": ["Una pata estirada hacia delante o un ala caída, en un ave joven, es un motivo para llamar al veterinario. completar sin convertir el signo en un diagnóstico seguro."],
+      "contagio": ["Se relaciona con la caspa y el polvo de las aves. redactar con cuidado."],
+      "prevenir": ["La prevención habitual es la vacuna al día de edad, antes de que el pollito se exponga. No se improvisa en casa. "],
       "natural": [],
       "veterinario": ["Consulta al veterinario. No hay cura en casa ni remedio que deba probarse mientras tanto."],
       "imagenes": [
-        { "alt": "Ave joven sentada, con una pata extendida. Hueco de imagen para Marek. El signo no confirma la enfermedad por sí solo." }
+        { "alt": "Ave joven sentada, con una pata extendida. Ilustración para Marek. El signo no confirma la enfermedad por sí solo." }
       ],
       "relacionados": ["newcastle", "pollitos"]
     },
@@ -312,7 +312,7 @@
       ],
       "imagenes": [
         { "alt": "Grieta entre dos tablas de un gallinero, de día, un escondite típico del ácaro rojo." },
-        { "alt": "Gallina en la percha de noche, momento en que el ácaro rojo suele subir al ave. Hueco de imagen, sin foto real todavía." }
+        { "alt": "Gallina en la percha de noche, momento en que el ácaro rojo suele subir al ave. La foto se publicará más adelante." }
       ],
       "relacionados": ["piojos", "sarna-patas", "coriza"]
     },
@@ -323,19 +323,19 @@
       "titulo": "Piojos y otros ácaros",
       "resumen": "Se ven de día sobre la piel, a diferencia del ácaro rojo. Borrador: sin productos ni dosis.",
       "metaTitulo": "Piojos y ácaros en gallinas | Granja Rentable",
-      "metaDescripcion": "Borrador sobre piojos y ácaros distintos del ácaro rojo. Sin insecticidas caseros ni dosis. Pendiente de revisión.",
+      "metaDescripcion": "Borrador sobre piojos y ácaros distintos del ácaro rojo. Sin insecticidas caseros ni dosis. se publicará cuando esté revisada.",
       "fecha": "2026-10-18",
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar la diferencia con el ácaro rojo, cómo mirar la base de la pluma y la prevención. Prohibido recomendar insecticida de perro, baños o dosis.",
-      "reconocer": ["Insectos o huevos pegados en la base de la pluma, visibles de día, y aves que se rascan. TODO: completar."],
-      "contagio": ["Pasan por contacto entre aves. TODO."],
-      "prevenir": ["Revisar aves nuevas y no amontonar. TODO."],
-      "natural": ["Cepillar y limpiar el gallinero puede bajar la carga. No es una cura. TODO: no añadir polvos ni aceites."],
+      "todo": "redactar la diferencia con el ácaro rojo, cómo mirar la base de la pluma y la prevención. Prohibido recomendar insecticida de perro, baños o dosis.",
+      "reconocer": ["Insectos o huevos pegados en la base de la pluma, visibles de día, y aves que se rascan. completar."],
+      "contagio": ["Pasan por contacto entre aves. "],
+      "prevenir": ["Revisar aves nuevas y no amontonar. "],
+      "natural": ["Cepillar y limpiar el gallinero puede bajar la carga. No es una cura. no añadir polvos ni aceites."],
       "veterinario": ["Si hay muchas aves afectadas o la cresta se pone pálida, consulta. No uses un producto de otra especie."],
       "imagenes": [
-        { "alt": "Base de una pluma de gallina donde se buscarían piojos de día. Hueco de imagen, sin foto de archivo." }
+        { "alt": "Base de una pluma de gallina donde se buscarían piojos de día. Ilustración, sin foto de archivo." }
       ],
       "relacionados": ["acaro-rojo", "sarna-patas"]
     },
@@ -346,19 +346,19 @@
       "titulo": "Lombrices",
       "resumen": "La gallina come y adelgaza. El desparasitante lo decide el veterinario. Borrador sin dosis.",
       "metaTitulo": "Lombrices en gallinas | Granja Rentable",
-      "metaDescripcion": "Borrador orientativo sobre lombrices intestinales. Sin productos ni dosis. Pendiente de revisión del dueño.",
+      "metaDescripcion": "Borrador orientativo sobre lombrices intestinales. Sin productos ni dosis. se publicará cuando esté revisada.",
       "fecha": "2026-10-18",
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar signos y prevención (rotación de parque, heces). No escribir nombre comercial ni dosis de desparasitante. No decir que un ajo o una calabaza curan.",
-      "reconocer": ["Adelgazan aunque coman. A veces se ve un gusano en las heces. TODO: no presentar eso como prueba única."],
-      "contagio": ["Los huevos están en el suelo y el ave los picotea. TODO."],
-      "prevenir": ["No dejar el parque hecho barro y mover comederos. TODO."],
+      "todo": "redactar signos y prevención (rotación de parque, heces). No escribir nombre comercial ni dosis de desparasitante. No decir que un ajo o una calabaza curan.",
+      "reconocer": ["Adelgazan aunque coman. A veces se ve un gusano en las heces. no presentar eso como prueba única."],
+      "contagio": ["Los huevos están en el suelo y el ave los picotea. "],
+      "prevenir": ["No dejar el parque hecho barro y mover comederos. "],
       "natural": [],
       "veterinario": ["Pide una revisión de heces antes de desparasitar. La dosis no se copia de otra especie ni de otro año."],
       "imagenes": [
-        { "alt": "Gallina delgada junto al comedero. Hueco de imagen para la ficha de lombrices." }
+        { "alt": "Gallina delgada junto al comedero. Ilustración para la ficha de lombrices." }
       ],
       "relacionados": ["coccidiosis", "carencias"]
     },
@@ -374,14 +374,14 @@
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas"],
       "declaracion": false,
-      "todo": "TODO: separar, cuando se redacte, diarrea, impactación del buche y otras causas. No dar aceite, vinagre ni dosis. Si hay sangre, enlazar coccidiosis.",
-      "reconocer": ["Heces muy líquidas, buche que no se vacía o un ave que deja de comer. TODO."],
-      "contagio": ["Unas causas se contagian y otras no. TODO: no simplificar."],
-      "prevenir": ["Agua limpia, pienso en buen estado y nada de comida enmohecida. TODO."],
-      "natural": ["Agua fresca y comida a mano es apoyo. No cura. TODO: no añadir recetas."],
+      "todo": "separar, cuando se redacte, diarrea, impactación del buche y otras causas. No dar aceite, vinagre ni dosis. Si hay sangre, enlazar coccidiosis.",
+      "reconocer": ["Heces muy líquidas, buche que no se vacía o un ave que deja de comer. "],
+      "contagio": ["Unas causas se contagian y otras no. no simplificar."],
+      "prevenir": ["Agua limpia, pienso en buen estado y nada de comida enmohecida. "],
+      "natural": ["Agua fresca y comida a mano es apoyo. No cura. no añadir recetas."],
       "veterinario": ["Si no come, si hay sangre, si hay varias aves o si el buche sigue duro al día siguiente, consulta."],
       "imagenes": [
-        { "alt": "Bebedero limpio y comedero bajo techo. Hueco de imagen para la ficha digestiva." }
+        { "alt": "Bebedero limpio y comedero bajo techo. Ilustración para la ficha digestiva." }
       ],
       "relacionados": ["coccidiosis", "lombrices"]
     },
@@ -397,14 +397,14 @@
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar con el curso. Enlazar la calculadora y la ficha de calcio del reto solo como manejo, no como tratamiento. No escribir gramos de vitamina ni de medicamento. El calcio a libre disposición en postura ya está en la calculadora: no duplicar una dosis nueva.",
-      "reconocer": ["Cáscara fina, huevos sin cáscara, pico blando o pollitos con las patas abiertas. TODO: dejar claro que hay otras causas."],
+      "todo": "redactar con el curso. Enlazar la calculadora y la ficha de calcio del reto solo como manejo, no como tratamiento. No escribir gramos de vitamina ni de medicamento. El calcio a libre disposición en postura ya está en la calculadora: no duplicar una dosis nueva.",
+      "reconocer": ["Cáscara fina, huevos sin cáscara, pico blando o pollitos con las patas abiertas. dejar claro que hay otras causas."],
       "contagio": ["No se contagia. Una ración pobre afecta al lote que la come."],
-      "prevenir": ["Pienso adecuado a la etapa y, en postura, calcio a libre disposición como ya explica el sitio. TODO: no inventar otra pauta."],
+      "prevenir": ["Pienso adecuado a la etapa y, en postura, calcio a libre disposición como ya explica el sitio. no inventar otra pauta."],
       "natural": [],
       "veterinario": ["Si hay deformidades, muchas cáscaras rotas o aves que no se tienen en pie, consulta. No des un complejo vitamínico al tuntún."],
       "imagenes": [
-        { "alt": "Huevo de cáscara fina junto a un huevo normal. Hueco de imagen para carencias. La cáscara frágil tiene varias causas." }
+        { "alt": "Huevo de cáscara fina junto a un huevo normal. Ilustración para carencias. La cáscara frágil tiene varias causas." }
       ],
       "relacionados": ["huevo-retenido", "pollitos"]
     },
@@ -420,14 +420,14 @@
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas"],
       "declaracion": false,
-      "todo": "TODO: redactar signos (cola baja, pujo, cloaca hinchada) sin enseñar maniobras. Prohibido explicar cómo romper el huevo, cómo meter un dedo o cuánto aceite usar.",
-      "reconocer": ["Puja una y otra vez, va muy echada o deja de comer. TODO: completar con el dueño."],
+      "todo": "redactar signos (cola baja, pujo, cloaca hinchada) sin enseñar maniobras. Prohibido explicar cómo romper el huevo, cómo meter un dedo o cuánto aceite usar.",
+      "reconocer": ["Puja una y otra vez, va muy echada o deja de comer. completar con el dueño."],
       "contagio": ["No se contagia. A veces se relaciona con un huevo grande o con una gallina joven."],
-      "prevenir": ["Ponedora en buen estado y ración de postura. TODO: no convertir la prevención en una promesa."],
+      "prevenir": ["Ponedora en buen estado y ración de postura. no convertir la prevención en una promesa."],
       "natural": [],
       "veterinario": ["Es un motivo para llamar el mismo día. No intentes sacar el huevo, no lo rompas y no eches aceite ni lubricante."],
       "imagenes": [
-        { "alt": "Gallina echada, aparte del grupo. Hueco de imagen para el huevo retenido, sin mostrar una maniobra." }
+        { "alt": "Gallina echada, aparte del grupo. Ilustración para el huevo retenido, sin mostrar una maniobra." }
       ],
       "relacionados": ["prolapso", "carencias"]
     },
@@ -438,19 +438,19 @@
       "titulo": "Prolapso",
       "resumen": "Asoma tejido rojo por la cloaca. Aparta a la gallina para que no la piquen y llama al veterinario. No lo empujes.",
       "metaTitulo": "Prolapso en gallinas | Granja Rentable",
-      "metaDescripcion": "Borrador sobre el prolapso: es urgente, sin maniobras caseras. Pendiente de revisión. Llama al veterinario.",
+      "metaDescripcion": "Borrador sobre el prolapso: es urgente, sin maniobras caseras. se publicará cuando esté revisada. Llama al veterinario.",
       "fecha": "2026-10-18",
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas"],
       "declaracion": false,
-      "todo": "TODO: redactar sin enseñar a reintroducir el tejido. Avisar de que las demás lo picotean. Sin ungüentos ni dosis.",
-      "reconocer": ["Se ve tejido rojo saliendo de la cloaca después de poner o de pujar. TODO."],
+      "todo": "redactar sin enseñar a reintroducir el tejido. Avisar de que las demás lo picotean. Sin ungüentos ni dosis.",
+      "reconocer": ["Se ve tejido rojo saliendo de la cloaca después de poner o de pujar. "],
       "contagio": ["No es contagioso, pero las otras gallinas pueden picarlo y empeorarlo en minutos."],
-      "prevenir": ["TODO: poner y luz sin exagerar, ración adecuada. No prometer que se evita siempre."],
+      "prevenir": ["poner y luz sin exagerar, ración adecuada. No prometer que se evita siempre."],
       "natural": [],
       "veterinario": ["Aparta a la gallina ya, en penumbra si puedes, y llama al veterinario. No empujes el tejido hacia dentro."],
       "imagenes": [
-        { "alt": "Gallina separada del lote, en un sitio tranquilo. Hueco de imagen. No mostrar un primer plano gráfico de un prolapso de archivo ajeno." }
+        { "alt": "Gallina separada del lote, en un sitio tranquilo. Ilustración. No mostrar un primer plano gráfico de un prolapso de archivo ajeno." }
       ],
       "relacionados": ["huevo-retenido", "coriza"]
     },
@@ -466,14 +466,14 @@
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar causas (perchas astilladas, cama húmeda, obesidad) y prevención. Prohibido explicar cómo abrir el absceso o qué pomada poner.",
-      "reconocer": ["Cojera y una costra o un bulto en la planta. TODO."],
+      "todo": "redactar causas (perchas astilladas, cama húmeda, obesidad) y prevención. Prohibido explicar cómo abrir el absceso o qué pomada poner.",
+      "reconocer": ["Cojera y una costra o un bulto en la planta. "],
       "contagio": ["No es una enfermedad que salte de ave a ave, aunque varias pueden sufrir la misma cama mala."],
-      "prevenir": ["Cama seca, perchas lisas y peso razonable. TODO."],
-      "natural": ["Mejorar el suelo es manejo, no un tratamiento del absceso. TODO: no añadir recetas."],
+      "prevenir": ["Cama seca, perchas lisas y peso razonable. "],
+      "natural": ["Mejorar el suelo es manejo, no un tratamiento del absceso. no añadir recetas."],
       "veterinario": ["Si cojea, si la planta está hinchada o si deja de apoyarla, consulta. No cortes ni aprietes la costra."],
       "imagenes": [
-        { "alt": "Planta de una pata de gallina con una costra. Hueco de imagen para la pododermatitis." }
+        { "alt": "Planta de una pata de gallina con una costra. Ilustración para la pododermatitis." }
       ],
       "relacionados": ["sarna-patas", "acaro-rojo"]
     },
@@ -484,19 +484,19 @@
       "titulo": "Sarna de las patas",
       "resumen": "Escamas levantadas y patas con costras. La confirma el veterinario. Borrador sin dosis ni vaselina como cura.",
       "metaTitulo": "Sarna de las patas en gallinas | Granja Rentable",
-      "metaDescripcion": "Borrador sobre la sarna de las patas. Sin dosis, sin baños y sin presentar la vaselina como cura. Pendiente de revisión.",
+      "metaDescripcion": "Borrador sobre la sarna de las patas. Sin dosis, sin baños y sin presentar la vaselina como cura. se publicará cuando esté revisada.",
       "fecha": "2026-10-18",
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar. No recomendar vaselina, gasolina, aceite ni un antiparasitario con cantidad. El producto lo pone el veterinario.",
-      "reconocer": ["Las escamas de la pata se levantan y la pata se ve más gruesa y con costras. TODO."],
-      "contagio": ["Pasa por contacto y por el suelo. TODO."],
-      "prevenir": ["Revisar las patas de las aves nuevas. TODO."],
+      "todo": "redactar. No recomendar vaselina, gasolina, aceite ni un antiparasitario con cantidad. El producto lo pone el veterinario.",
+      "reconocer": ["Las escamas de la pata se levantan y la pata se ve más gruesa y con costras. "],
+      "contagio": ["Pasa por contacto y por el suelo. "],
+      "prevenir": ["Revisar las patas de las aves nuevas. "],
       "natural": [],
       "veterinario": ["Consulta para confirmar que es sarna y no otra costra. No apliques un remedio de internet."],
       "imagenes": [
-        { "alt": "Pata de gallina con las escamas levantadas. Hueco de imagen para la sarna de las patas." }
+        { "alt": "Pata de gallina con las escamas levantadas. Ilustración para la sarna de las patas." }
       ],
       "relacionados": ["pododermatitis", "piojos"]
     },
@@ -512,14 +512,14 @@
       "actualizado": "2026-10-18",
       "etiquetas": ["sintomas", "prevencion"],
       "declaracion": false,
-      "todo": "TODO: redactar pegado de cloaca, onfalitis y frío sin dar temperaturas nuevas que contradigan el reto (la primera semana, muchos usan 32–35 °C como orientación). No añadir azúcares, antibióticos ni dosis.",
-      "reconocer": ["Se amontonan si tienen frío y se apartan de la lámpara si tienen calor. El ombligo húmedo o el trasero pegado necesitan revisión. TODO."],
-      "contagio": ["El ombligo sucio y algunas diarreas sí se relacionan con el lote. TODO: no mezclar causas."],
-      "prevenir": ["Criadora limpia, agua alcanzable y no mezclar con adultas. TODO."],
-      "natural": ["Calor correcto y agua limpia son manejo. No curan una infección. TODO."],
+      "todo": "redactar pegado de cloaca, onfalitis y frío sin dar temperaturas nuevas que contradigan el reto (la primera semana, muchos usan 32–35 °C como orientación). No añadir azúcares, antibióticos ni dosis.",
+      "reconocer": ["Se amontonan si tienen frío y se apartan de la lámpara si tienen calor. El ombligo húmedo o el trasero pegado necesitan revisión. "],
+      "contagio": ["El ombligo sucio y algunas diarreas sí se relacionan con el lote. no mezclar causas."],
+      "prevenir": ["Criadora limpia, agua alcanzable y no mezclar con adultas. "],
+      "natural": ["Calor correcto y agua limpia son manejo. No curan una infección. "],
       "veterinario": ["Si hay varios débiles, ombligos sucios, muertes o heces con sangre, llama. La sangre también está en la ficha de coccidiosis."],
       "imagenes": [
-        { "alt": "Pollitos bajo una lámpara de criadora, repartidos en círculo. Hueco de imagen. Si se amontonan, suelen tener frío." }
+        { "alt": "Pollitos bajo una lámpara de criadora, repartidos en círculo. Ilustración. Si se amontonan, suelen tener frío." }
       ],
       "relacionados": ["coccidiosis", "carencias"]
     }

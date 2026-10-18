@@ -46,7 +46,7 @@
       engordeFinal: bloque([140, 180], [18, 20], "Pienso de engorde de finalización", false, true, "Hacia las 6–8 semanas. Rango ancho y orientativo. L01 cita un ejemplo de unos 2,2 kg a los 35 días con conversión ~1,5: unos 3,3 kg de pienso en 35 días (media cercana a 94 g al día). El día a día va de poco al principio a bastante más al final.")
     },
     campero: {
-      arranque: bloque([20, 40], [20, 22], "Pienso de arranque", false, false, "Crecimiento lento. No uses la rampa del broiler industrial."),
+      arranque: bloque([20, 40], [20, 22], "Pienso de arranque", false, false, "Crecimiento lento. No uses la rampa del pollo de engorde industrial (Cobb o Ross)."),
       recria: bloque([55, 95], [16, 18], "Pienso de crecimiento", false, false, ""),
       puesta: bloque([100, 125], [16, 17], "Pienso de puesta", true, false, "Solo si se deja de adulta. Si se sacrifica a las 8–12 semanas, no llega a postura."),
       muda: bloque([80, 110], [16, 16], "Pienso de muda o de puesta, con buena proteína para la pluma", false, false, ""),
@@ -147,9 +147,28 @@
     return RAZAS[0];
   }
   function medio(par) { return (par[0] + par[1]) / 2; }
-  function num(v) {
+  function num(v, entero) {
     if (typeof v === "number") return isFinite(v) ? v : 0;
-    var n = parseFloat(String(v == null ? "" : v).trim().replace(/\s/g, "").replace(",", "."));
+    var s = String(v == null ? "" : v).trim().replace(/\s/g, "");
+    if (!s) return 0;
+    if (entero) {
+      if (s.indexOf(".") !== -1 && s.indexOf(",") !== -1) {
+        if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
+        else s = s.replace(/,/g, "");
+      } else s = s.replace(/\./g, "").replace(",", ".");
+      var ni = parseFloat(s);
+      return isFinite(ni) ? Math.round(ni) : 0;
+    }
+    else {
+      var punto = s.indexOf(".") !== -1;
+      var coma = s.indexOf(",") !== -1;
+      if (punto && coma) {
+        if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
+        else s = s.replace(/,/g, "");
+      } else if (coma) s = s.replace(",", ".");
+      else if (punto && /^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
+    }
+    var n = parseFloat(s);
     return isFinite(n) ? n : 0;
   }
   function numOrNull(v) {
@@ -248,36 +267,43 @@
     };
   }
 
+  function lotesEnteros(dias, cria, vacio) {
+    var hueco = cria + Math.max(0, vacio);
+    if (!(dias > 0) || !(cria > 0)) return 0;
+    var n = Math.floor((dias + vacio) / hueco);
+    if (n < 1 && dias + 0.01 >= cria * 0.95) n = 1;
+    return n;
+  }
   function plan(state) {
     var dias = Math.max(0, num(state.meses)) * DIAS_MES;
+    var vacio = Math.max(0, num(state.vacio));
+    if (!isFinite(vacio)) vacio = 14;
     var clase = state.clase;
     var obj = state.objetivo;
     if (clase === "engorde") {
-      var lote = dias <= LOTE_ENGORDE ? { n: 1, d: dias } : { n: dias / LOTE_ENGORDE, d: LOTE_ENGORDE };
+      var n = lotesEnteros(dias, LOTE_ENGORDE, vacio);
       var segs = [];
-      var corte = Math.min(21, lote.d);
-      if (corte > 0) segs.push({ id: "engordeInicio", from: 0, to: corte });
-      if (lote.d > 21) segs.push({ id: "engordeFinal", from: 21, to: lote.d });
+      segs.push({ id: "engordeInicio", from: 0, to: 21 });
+      segs.push({ id: "engordeFinal", from: 21, to: LOTE_ENGORDE });
       return {
-        nLots: lote.n, diasBase: lote.d, segs: segs, huevos: false,
-        aviso: "Cobb y Ross no se crían para huevo. Un lote dura unas 6–8 semanas (aquí, 7). Si el plazo es más largo, la cuenta repite lotes de las mismas aves."
+        nLots: n, diasBase: LOTE_ENGORDE, segs: n ? segs : [], huevos: false,
+        aviso: "Pollos de engorde (Cobb o Ross): cada lote dura 7 semanas y luego " + Math.round(vacio) + " días de vacío para limpiar. Solo cuentan lotes enteros."
       };
     }
     if (clase === "campero" && obj === "carne") {
-      var loteC = dias <= LOTE_CAMPERO ? { n: 1, d: dias } : { n: dias / LOTE_CAMPERO, d: LOTE_CAMPERO };
+      var nC = lotesEnteros(dias, LOTE_CAMPERO, vacio);
       var segsC = [];
-      var corteC = Math.min(21, loteC.d);
-      if (corteC > 0) segsC.push({ id: "engordeInicio", from: 0, to: corteC });
-      if (loteC.d > corteC) segsC.push({ id: "engordeFinal", from: corteC, to: loteC.d });
+      segsC.push({ id: "engordeInicio", from: 0, to: 21 });
+      segsC.push({ id: "engordeFinal", from: 21, to: LOTE_CAMPERO });
       return {
-        nLots: loteC.n, diasBase: loteC.d, segs: segsC, huevos: false,
-        aviso: "Campero de carne: unos 8–12 semanas por lote (la cuenta usa 10). No es la rampa de Cobb o Ross. Si el plazo es más largo, repite lotes."
+        nLots: nC, diasBase: LOTE_CAMPERO, segs: nC ? segsC : [], huevos: false,
+        aviso: "Campero de carne: cada lote dura 10 semanas y luego " + Math.round(vacio) + " días de vacío. Solo cuentan lotes enteros. No es la rampa de Cobb o Ross."
       };
     }
     if (obj === "carne") {
       return {
         nLots: 1, diasBase: dias, segs: dias > 0 ? [{ id: "recria", from: 0, to: dias }] : [], huevos: false,
-        aviso: "Carne con esta raza: entra el pienso de crecimiento durante todo el plazo, sin huevos. No es un broiler industrial."
+        aviso: "Carne con esta raza: entra el pienso de crecimiento durante todo el plazo, sin huevos. No es un pollo de engorde industrial (Cobb o Ross)."
       };
     }
     var hayHuevos = state.huevosAplica !== false;
@@ -308,7 +334,13 @@
   }
 
   function calcular(state) {
-    var aves = Math.max(0, num(state.aves));
+    var avesPedidas = Math.max(0, num(state.aves, true));
+    var aves = avesPedidas;
+    var tope = "";
+    if (aves > 100000) {
+      aves = 100000;
+      tope = "El máximo de esta cuenta es 100.000 aves.";
+    }
     var mort = Math.min(100, Math.max(0, num(state.mortalidad))) / 100;
     var meses = Math.max(0, num(state.meses));
     var pl = plan(state);
@@ -339,6 +371,13 @@
       ? num(state.horasDia) * num(state.precioHora) * meses * DIAS_MES
       : num(state.manoMes) * meses;
     var costeOtros = num(state.otrosMes) * meses;
+    var manoCero = state.manoModo === "horas"
+      ? !(num(state.horasDia) > 0 && num(state.precioHora) > 0)
+      : !(num(state.manoMes) > 0);
+    var otrosCero = !(num(state.otrosMes) > 0);
+    var raro = aves === 1 && num(state.otrosMes) >= 100
+      ? "Revisa la cifra: 1 ave con otros costes muy altos. Si querías miles, 1.000 se lee como mil."
+      : "";
     var costes = costePienso + costeAves + costeInst + costeMano + costeOtros;
     var huevosProd = 0;
     var dias = meses * DIAS_MES;
@@ -369,16 +408,27 @@
     var costeDocena = costeHuevo == null ? null : costeHuevo * 12;
     var minDocena = costeDocena;
     var minAve = vivos > 0 ? (costes - ingresoHuevos) / vivos : null;
+    var hayPrecio = num(state.precioPienso) > 0 || num(state.precioHuevo) > 0 || num(state.precioVenta) > 0 || num(state.precioAve) > 0;
+    if (!hayPrecio) {
+      return { ok: false, vacio: true, error: "Escribe los precios", luz: "" };
+    }
     var luz = "";
+    var faltan = "";
     if (margen != null && (costes > 0 || ingresos > 0)) {
-      if (margen > 15) luz = "verde";
+      if (manoCero && otrosCero) {
+        luz = "faltan";
+        faltan = "Faltan costes. Con la mano de obra y los otros costes a 0 el semáforo no se pone en verde.";
+      } else if (margen > 15) luz = "verde";
       else if (margen >= 0) luz = "ambar";
       else luz = "rojo";
     }
     return {
       ok: true,
       error: "",
-      aviso: pl.aviso,
+      aviso: [pl.aviso, tope, raro, faltan].filter(Boolean).join(" "),
+      tope: tope,
+      raro: raro,
+      faltan: faltan,
       nLots: pl.nLots,
       etapas: etapas,
       kg: kg,
@@ -389,8 +439,8 @@
       costeMano: costeMano,
       costeOtros: costeOtros,
       costes: costes,
-      huevosProd: huevosProd,
-      huevosVend: huevosVend,
+      huevosProd: Math.round(huevosProd),
+      huevosVend: Math.round(huevosVend),
       ingresoHuevos: ingresoHuevos,
       ingresoAves: ingresoAves,
       ingresos: ingresos,
@@ -400,7 +450,7 @@
       costeDocena: costeDocena,
       minDocena: minDocena,
       minAve: minAve,
-      vivos: vivos,
+      vivos: Math.round(vivos),
       luz: luz,
       huevos: pl.huevos
     };
@@ -444,15 +494,45 @@
     var el = document.querySelector("input[name='" + name + "']:checked");
     return el ? el.value : "";
   }
-  function simbolo() {
-    var m = $("c-moneda").value;
-    if (m === "otra") {
-      var t = ($("c-moneda-custom").value || "").trim();
-      return t ? t.slice(0, 4) : "¤";
+  var MONEDA = {
+    EUR: { s: "€", delante: false, etiq: "€" },
+    MXN: { s: "$", delante: true, etiq: "MXN" },
+    COP: { s: "$", delante: true, etiq: "COP" },
+    PEN: { s: "S/", delante: true, etiq: "PEN" },
+    ARS: { s: "$", delante: true, etiq: "ARS" },
+    USD: { s: "US$", delante: true, etiq: "US$" }
+  };
+  function monedaActual() {
+    var m = ($("c-moneda") && $("c-moneda").value) || "EUR";
+    if (m === "€") m = "EUR";
+    if (m === "$") m = "MXN";
+    if (m === "otra" || m === "OTRA") {
+      var t = ($("c-moneda-custom") && $("c-moneda-custom").value || "").trim().slice(0, 4);
+      return { s: t || "¤", delante: true, etiq: t || "¤" };
     }
-    return m;
+    return MONEDA[m] || MONEDA.EUR;
   }
-  function dinero(n) { return fmt(n, 2) + " " + esc(simbolo()); }
+  function simbolo() { return monedaActual().s; }
+  function cifra(n, dec) {
+    var m = monedaActual();
+    var t = fmt(n, dec == null ? 2 : dec);
+    return m.delante ? m.s + " " + t : t + " " + m.s;
+  }
+  function dinero(n) { return esc(cifra(n)); }
+  function etiquetasMoneda() {
+    var et = monedaActual().etiq;
+    document.querySelectorAll("[data-etiq]").forEach(function (el) {
+      if (el.id === "lbl-venta-txt") return;
+      var base = el.getAttribute("data-etiq");
+      el.textContent = base + " (" + et + ")";
+    });
+    var venta = $("lbl-venta-txt");
+    if (venta) {
+      var st = radio("objetivo");
+      var baseV = st === "huevo" ? "Precio de la gallina de desvieje" : "Precio de venta del ave";
+      venta.textContent = baseV + " (" + et + ")";
+    }
+  }
   function poner(id, texto) { if ($(id)) $(id).textContent = texto; }
   function mostrar(id, on) { var el = $(id); if (el) el.hidden = !on; }
 
@@ -523,8 +603,8 @@
       huevos.disabled = true;
     }
     hintsDe(item);
-    if (!mesesTouched && item.clase === "engorde") setCampo("meses", 2);
-    else if (!mesesTouched && item.clase === "campero" && radio("objetivo") === "carne") setCampo("meses", 3);
+    if (item.clase === "engorde") setCampo("meses", 1.6);
+    else if (item.clase === "campero" && radio("objetivo") === "carne") setCampo("meses", 2.8);
     if (!feederRazaTouched) {
       $("f-raza").value = item.id;
       if (item.clase === "engorde" || (item.clase === "campero" && radio("objetivo") === "carne")) $("f-etapa").value = "engorde-inicio";
@@ -543,6 +623,7 @@
       aves: $("c-aves").value,
       mortalidad: $("c-mortalidad").value,
       meses: $("c-meses").value,
+      vacio: $("c-vacio") ? $("c-vacio").value : 14,
       precioAve: $("c-precio-ave").value,
       precioPienso: $("c-precio-pienso").value,
       precioEtapa: {
@@ -591,13 +672,8 @@
     mostrar("grp-horas", st.manoModo === "horas");
     mostrar("grp-mano-mes", st.manoModo !== "horas");
     mostrar("grp-peso", st.ventaModo === "kg");
-    mostrar("grp-custom", $("c-moneda").value === "otra");
-    var venta = $("lbl-venta-txt");
-    if (venta) {
-      venta.textContent = st.objetivo === "huevo"
-        ? "Precio de la gallina de desvieje"
-        : "Precio de venta del ave";
-    }
+    mostrar("grp-custom", $("c-moneda").value === "OTRA" || $("c-moneda").value === "otra");
+    etiquetasMoneda();
     var nota = $("nota-plan");
     if (nota) nota.textContent = pl.aviso;
     var ini = document.getElementById("grp-inicio");
@@ -617,18 +693,24 @@
       luz.textContent = res.error;
       resumen.textContent = "";
       box.innerHTML = "";
-      draw($("calc-chart"), 0, 0);
+      draw($("calc-chart"), 0, 0, true);
       return;
     }
-    var nombres = { verde: "Verde: margen por encima del 15 %.", ambar: "Ámbar: margen entre 0 % y 15 %.", rojo: "Rojo: el lote sale a pérdida." };
+    var nombres = {
+      verde: "Verde: margen por encima del 15 %.",
+      ambar: "Ámbar: margen entre 0 % y 15 %.",
+      rojo: "Rojo: el lote sale a pérdida.",
+      faltan: "Faltan costes."
+    };
+    var margenTxt = res.margen == null ? "" : (res.margen < -100 ? " Margen < −100 %." : " Margen " + fmt(res.margen, 1) + " %.");
     luz.className = "semaforo " + (res.luz || "");
-    luz.textContent = res.luz ? nombres[res.luz] + " Margen " + fmt(res.margen, 1) + " %." : "Escribe precios para ver el semáforo.";
-    var extra = res.nLots > 1.05 ? " Lotes en el plazo: " + fmtR(res.nLots) + "." : "";
-    resumen.textContent = "Beneficio " + fmt(res.beneficio, 2) + " " + simbolo() + ". Ingresos " + fmt(res.ingresos, 2) + " " + simbolo() + ". Costes " + fmt(res.costes, 2) + " " + simbolo() + "." + extra;
+    luz.textContent = (res.luz ? nombres[res.luz] + margenTxt : "Escribe precios para ver el semáforo.") + (res.faltan ? " " + res.faltan : "") + (res.tope ? " " + res.tope : "") + (res.raro ? " " + res.raro : "");
+    var extra = res.nLots > 1 ? " Lotes enteros en el plazo: " + String(res.nLots) + "." : (res.nLots === 1 ? " Lotes enteros en el plazo: 1." : " No cabe un lote entero en ese plazo.");
+    resumen.textContent = "Beneficio " + cifra(res.beneficio) + ". Ingresos " + cifra(res.ingresos) + ". Costes " + cifra(res.costes) + "." + extra;
     var html = "";
     html += fila("Pienso", dinero(res.costePienso));
     res.etapas.forEach(function (e) {
-      html += fila(ETAPA_UI[e.id] || e.id, esc(fmtR(e.gramos) + " g/ave/día · " + fmtR(e.kg) + " kg · " + fmt(e.coste, 2) + " " + simbolo()));
+      html += fila(ETAPA_UI[e.id] || e.id, esc(fmtR(e.gramos) + " g/ave/día · " + fmtR(e.kg) + " kg · " + cifra(e.coste)));
     });
     html += fila("Aves compradas", dinero(res.costeAves));
     html += fila("Instalaciones (amortizadas)", dinero(res.costeInst));
@@ -644,21 +726,21 @@
     }
     html += fila("Ingresos por venta de aves", dinero(res.ingresoAves));
     html += fila("Beneficio neto", dinero(res.beneficio));
-    html += fila("Margen", res.margen == null ? "—" : esc(fmt(res.margen, 1) + " %"));
+    html += fila("Margen", res.margen == null ? "—" : esc(res.margen < -100 ? "< −100 %" : fmt(res.margen, 1) + " %"));
     if (res.costeHuevo != null) {
-      html += fila("Coste por huevo", fmt(res.costeHuevo, 3) + " " + esc(simbolo()));
+      html += fila("Coste por huevo", esc(cifra(res.costeHuevo, 3)));
       html += fila("Coste por docena", dinero(res.costeDocena));
-      html += fila("Precio mínimo de la docena", res.minDocena <= 0 ? "0 " + esc(simbolo()) + " (las aves ya cubren el coste)" : dinero(res.minDocena));
+      html += fila("Precio mínimo de la docena", res.minDocena <= 0 ? esc(cifra(0)) + " (las aves ya cubren el coste)" : dinero(res.minDocena));
     }
     if (!res.huevos && res.minAve != null) html += fila("Precio mínimo por ave", dinero(res.minAve));
     html += fila("Pienso total", esc(fmtR(res.kg) + " kg"));
-    html += fila("Pienso al mes", esc(fmtR(res.kgMes) + " kg"));
+    html += fila("Pienso al mes (media)", esc(fmtR(res.kgMes) + " kg. La mortalidad se reparte a lo largo del plazo."));
     box.innerHTML = html;
     draw($("calc-chart"), res.costes, res.ingresos);
-    $("calc-chart").setAttribute("aria-label", "Gráfica de barras: costes " + fmt(res.costes, 2) + " " + simbolo() + ", ingresos " + fmt(res.ingresos, 2) + " " + simbolo());
+    $("calc-chart").setAttribute("aria-label", "Gráfica de barras: costes " + cifra(res.costes) + ", ingresos " + cifra(res.ingresos));
   }
 
-  function draw(canvas, cost, income) {
+  function draw(canvas, cost, income, vacio) {
     if (!canvas || !canvas.getContext) return;
     var cssW = canvas.clientWidth || 320;
     var cssH = 180;
@@ -668,6 +750,7 @@
     var ctx = canvas.getContext("2d");
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, cssW, cssH);
+    if (vacio) return;
     var max = Math.max(cost, income, 1);
     var bars = [
       { label: "Costes", value: Math.max(0, cost), color: "#8C2F2F" },
@@ -795,16 +878,20 @@
     $("c-meses").value = "12";
     $("c-precio-ave").value = "5";
     $("c-precio-pienso").value = "0,45";
-    ["c-p-arranque", "c-p-recria", "c-p-puesta", "c-p-einicio", "c-p-efinal", "c-instalacion", "c-horas", "c-precio-hora", "c-mano-mes", "c-otros", "c-precio-venta", "c-peso"].forEach(function (id) {
+    ["c-p-arranque", "c-p-recria", "c-p-puesta", "c-p-einicio", "c-p-efinal", "c-horas", "c-precio-hora", "c-precio-venta", "c-peso"].forEach(function (id) {
       if ($(id)) $(id).value = "";
     });
+    $("c-instalacion").value = "1500";
+    $("c-mano-mes").value = "50";
+    $("c-otros").value = "32";
+    if ($("c-vacio")) $("c-vacio").value = "14";
     $("c-anios").value = "5";
     document.querySelector("input[name='mano'][value='mes']").checked = true;
     document.querySelector("input[name='huevo-modo'][value='docena']").checked = true;
     $("c-precio-huevo").value = "3";
     $("c-vendibles").value = "95";
     document.querySelector("input[name='venta-modo'][value='unidad']").checked = true;
-    $("c-moneda").value = "€";
+    if (!$("c-moneda").value || $("c-moneda").value === "€") $("c-moneda").value = "EUR";
     mesesTouched = true;
     silent = false;
     aplicarRaza(porId("isa-brown"));
@@ -835,6 +922,16 @@
     fillSelect($("f-raza"), "isa-brown");
     pintarTabla();
     var tenia = cargar();
+    if ($("c-moneda")) {
+      var legado = { "€": "EUR", "$": "MXN", otra: "OTRA" };
+      if (legado[$("c-moneda").value]) $("c-moneda").value = legado[$("c-moneda").value];
+      if (!tenia) {
+        var pais = "MX";
+        try { pais = localStorage.getItem("gr_pais") || "MX"; } catch (ePais) {}
+        var porPais = { MX: "MXN", CO: "COP", PE: "PEN", AR: "ARS", ES: "EUR", US: "USD" };
+        $("c-moneda").value = porPais[pais] || "MXN";
+      }
+    }
     if (!tenia) aplicarRaza(porId("isa-brown"));
     form.addEventListener("submit", function (e) { e.preventDefault(); refrescar(); });
     document.querySelectorAll("#calc-form input, #calc-form select, #calc-form textarea").forEach(function (el) {
@@ -845,6 +942,11 @@
       });
       el.addEventListener("change", function () {
         if (el.id === "c-raza" && !silent) aplicarRaza(porId(el.value));
+        if (el.name === "objetivo" && !silent) {
+          var elegida = porId($("c-raza").value);
+          if (elegida.clase === "engorde") setCampo("meses", 1.6);
+          if (elegida.clase === "campero" && el.value === "carne") setCampo("meses", 2.8);
+        }
         refrescar();
       });
     });
@@ -876,8 +978,12 @@
       });
       var raza = $("c-raza");
       var nombre = (raza && raza.selectedOptions && raza.selectedOptions[0] ? raza.selectedOptions[0].textContent : "Cálculo");
-      var ok = GRAuth.guardarCalculo(nombre, data);
-      if (ok && nota) nota.textContent = "Guardado en la cuenta de " + GRAuth.usuario().nombre + ". También sigue en este navegador.";
+      var hecho = GRAuth.guardarCalculo(nombre, data);
+      Promise.resolve(hecho).then(function (res) {
+        if (!nota) return;
+        if (res && res.ok) nota.textContent = "Guardado en la cuenta de " + GRAuth.usuario().nombre + ". También sigue en este navegador.";
+        else nota.textContent = (res && res.error) || "No se pudo guardar. Inténtalo más tarde.";
+      });
     });
     $("btn-reset").addEventListener("click", function () {
       try { localStorage.removeItem(STORE); } catch (e) {}

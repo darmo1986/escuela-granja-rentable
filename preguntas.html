@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Reto de avicultura | Granja Rentable</title>
-<meta name="description" content="Preguntas de avicultura con cuatro opciones. El ranking es mensual y quien queda primero puede llevarse un premio.">
+<meta name="description" content="El reto de avicultura todavía no está abierto.">
 <link rel="canonical" href="https://granjarentable.com/preguntas.html">
 <meta property="og:url" content="https://granjarentable.com/preguntas.html">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Reto de avicultura | Granja Rentable">
-<meta property="og:description" content="Preguntas de avicultura con cuatro opciones. El ranking es mensual y quien queda primero puede llevarse un premio.">
+<meta property="og:description" content="El reto de avicultura todavía no está abierto.">
 <meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
 <meta property="og:locale" content="es_419">
 <meta property="og:image:alt" content="Logo de Granja Rentable">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Reto de avicultura | Granja Rentable">
-<meta name="twitter:description" content="Preguntas de avicultura con cuatro opciones. El ranking es mensual y quien queda primero puede llevarse un premio.">
+<meta name="twitter:description" content="El reto de avicultura todavía no está abierto.">
 <meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -95,131 +95,11 @@
 <p id="ref-note" class="ref-note" hidden></p>
 <main id="contenido">
 <section class="page-hero">
-<p class="kicker">Reto del mes</p>
-<h1>Preguntas de avicultura</h1>
-<p>Cada pregunta tiene cuatro opciones, una correcta y 30 segundos. Quien acierta suma puntos. Quien acierta pronto, o es el primero en acertar, suma un extra. Si se acaba el tiempo, o si recargas después de verla, cuenta como fallo.</p>
-<p>Las preguntas las pone quien administra. Tú puedes proponer una, y se publica si la aprueba. Las respuestas fijas del sitio siguen en <a href="faq.html">Preguntas frecuentes</a>. Para repasar un tema, está la guía de <a href="enfermedades.html">enfermedades</a>.</p>
-<p>Quien va primero al cerrar el mes puede llevarse un premio de 20 a 30 €. La cantidad la fija el admin. No se paga solo: lo aprueba y lo envía a mano.</p>
+<p class="kicker">Próximamente</p>
+<h1>Reto de avicultura</h1>
+<p>Esta página todavía no está abierta. Cuando lo esté, hará falta una cuenta y el nombre del ranking será el apodo que escribas, nunca el correo.</p>
+<p><a class="btn gold" href="calculadora.html">Ir a la calculadora</a> <a class="btn sec" href="enfermedades.html">Ver enfermedades</a></p>
 </section>
-<aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
-<p class="qa-demo" id="qa-demo">Modo demo. No hay base de datos: lo que contestes se queda en este navegador. Aquí el reloj es el del navegador. Con Supabase manda la hora del servidor: 30 s y 2 s de margen. Recargar después de ver la pregunta cuenta como fallo.</p>
-<p id="qa-aviso" class="qa-aviso" role="status"></p>
-<div id="qa-premio-banda" class="qa-premio-banda" hidden></div>
-<section id="qa-cola" class="panel qa" hidden>
-<h2>Cola del admin</h2>
-<p class="fine">Aprueba propuestas y premios. Nada se paga solo. Puedes anular. Una misma señal de aparato es un aviso, no una prueba.</p>
-<div id="qa-cola-lista"></div>
-</section>
-<div id="qa-sesion" class="qa-sesion" hidden>
-<p id="qa-hola"></p>
-<button type="button" class="btn sec" id="qa-salir">Salir</button>
-</div>
-<div class="qa-layout">
-<div class="qa-main">
-<section id="qa-entrar" class="panel qa">
-<h2>Entra para responder</h2>
-<p class="fine" id="qa-entrar-nota"></p>
-<div class="qa-actions">
-<button class="btn gold" type="button" id="qa-abrir-cuenta">Entrar / Registrarse</button>
-</div>
-</section>
-<form id="qa-crear" class="panel qa" hidden>
-<h2>Nueva pregunta</h2>
-<p class="fine">Cuatro opciones y una correcta. La explicación se ve solo después de contestar.</p>
-<label>Pregunta<textarea name="texto" maxlength="280" minlength="8" rows="2" required></textarea></label>
-<label>Opción 1<input name="o1" maxlength="140" required></label>
-<label>Opción 2<input name="o2" maxlength="140" required></label>
-<label>Opción 3<input name="o3" maxlength="140" required></label>
-<label>Opción 4<input name="o4" maxlength="140" required></label>
-<fieldset>
-<legend>Correcta</legend>
-<label class="check"><input type="radio" name="correcta" value="1" required> Opción 1</label>
-<label class="check"><input type="radio" name="correcta" value="2"> Opción 2</label>
-<label class="check"><input type="radio" name="correcta" value="3"> Opción 3</label>
-<label class="check"><input type="radio" name="correcta" value="4"> Opción 4</label>
-</fieldset>
-<label>Explicación<textarea name="explica" maxlength="600" minlength="8" rows="2" required></textarea></label>
-<button class="btn gold" type="submit">Publicar este mes</button>
-</form>
-<div id="qa-lista"></div>
-<form id="qa-sugerir" class="panel qa" hidden>
-<h2>Proponer una pregunta</h2>
-<p class="fine">El admin la revisa. Si la publica, tú puedes jugarla, pero no te suma puntos.</p>
-<label>Pregunta<textarea name="texto" maxlength="280" minlength="8" rows="2" required></textarea></label>
-<label>Opción 1<input name="o1" maxlength="140" required></label>
-<label>Opción 2<input name="o2" maxlength="140" required></label>
-<label>Opción 3<input name="o3" maxlength="140" required></label>
-<label>Opción 4<input name="o4" maxlength="140" required></label>
-<fieldset>
-<legend>La que crees correcta</legend>
-<label class="check"><input type="radio" name="correcta" value="1" required> Opción 1</label>
-<label class="check"><input type="radio" name="correcta" value="2"> Opción 2</label>
-<label class="check"><input type="radio" name="correcta" value="3"> Opción 3</label>
-<label class="check"><input type="radio" name="correcta" value="4"> Opción 4</label>
-</fieldset>
-<label>Explicación<textarea name="explica" maxlength="600" minlength="8" rows="2" required></textarea></label>
-<button class="btn" type="submit">Enviar al admin</button>
-</form>
-</div>
-<aside class="qa-rank panel" aria-labelledby="qa-rank-titulo">
-<div class="qa-premio-caja">
-<p class="kicker">Premio de <span id="qa-periodo">este mes</span></p>
-<h2 id="qa-premio-nombre">25 €</h2>
-<p class="fine" id="qa-lider"></p>
-<p class="fine">De 20 a 30 €, lo fijas tú. Se paga a mano, después de aprobar. No hay cobro automático.</p>
-</div>
-<h2 id="qa-rank-titulo">Ranking del mes</h2>
-<p class="fine">10 puntos por acierto, hasta 5 por rapidez y 5 por ser el primero en acertar. Si empatan los puntos, gana quien llegó antes a esa cifra.</p>
-<ol id="qa-ranking"></ol>
-<label class="check" id="qa-euros-fila" hidden>Premio del mes (€)<input id="qa-euros" type="number" min="20" max="30" step="1" value="25"></label>
-<label class="check" id="qa-admin-fila"><input type="checkbox" id="qa-admin"> Ver como admin de prueba</label>
-<p class="fine" id="qa-admin-nota">Solo en este navegador. Desde aquí publicas preguntas, apruebas propuestas y anotas el pago.</p>
-<button type="button" class="btn sec" id="qa-reset">Volver a los datos de ejemplo</button>
-</aside>
-</div>
-<section class="panel qa" id="pago-opciones">
-<h2>Cómo se podría pagar</h2>
-<p class="fine">Comparación para quien organiza. El ganador elige preferencia; el admin decide y paga siempre a mano. La cuenta de PayPal del sitio es dahanitrading@gmail.com. No se conecta ningún pago en esta demo.</p>
-<div class="pago-grid">
-<article class="pago-card">
-<h3>PayPal, a mano</h3>
-<p>Llega a España y a parte de Latinoamérica si el ganador tiene PayPal.</p>
-<p class="fine">A favor: es dinero, y la cuenta ya existe. En contra: comisión y tipo de cambio los pone PayPal; al retirar en otro país puede haber otro coste; el nombre tiene que coincidir; un envío de premio no es «amigos y familia». Sin payout automático.</p>
-</article>
-<article class="pago-card">
-<h3>Tarjeta regalo de eBay</h3>
-<p>Preferida frente a Amazon, que este sitio no usa.</p>
-<p class="fine">A favor: el coste es el valor de la tarjeta, sin comisión de un pago. En España se puede comprar y enviar el código. En contra: en gran parte de Latinoamérica esa tarjeta no sirve, porque eBay la ata al país.</p>
-</article>
-<article class="pago-card">
-<h3>Crédito del curso</h3>
-<p>Se anota en la cuenta del ganador. No sale dinero.</p>
-<p class="fine">A favor: sin país, sin comisión y fácil de anular. En contra: hoy el curso es gratis, así que no vale 20–30 € hasta que sea de pago. Sigue haciendo falta saber que es mayor de edad.</p>
-</article>
-</div>
-</section>
-<section class="panel qa" id="bases-premio">
-<h2>Bases del premio (borrador)</h2>
-<p><strong>Borrador para que lo revise quien organiza.</strong> No es un texto legal cerrado ni un consejo fiscal. El público está en España y en Latinoamérica. El responsable está en España y, antes de encender el premio, tiene que leerlo y adaptarlo.</p>
-<details>
-<summary>Leer las bases</summary>
-<p>Organiza Juan Pablo González García, Calle Juan Rumeu García 6 bajo, 38008 Santa Cruz de Tenerife, España. Correo: <a href="mailto:pablopersonal86@gmail.com">pablopersonal86@gmail.com</a>.</p>
-<p>Es un concurso de conocimiento, no una lotería ni un sorteo. Gana quien más puntos suma. El azar no decide el premio. Participar es gratis y no hace falta comprar nada.</p>
-<p>Hay que tener 18 años o más. Si no, el premio no se entrega. Una cuenta por persona, con el correo comprobado (enlace) o con Google. Quien participe desde otro país acepta estas bases y conserva la protección de consumo de su ley.</p>
-<p>El periodo es el mes natural en hora de Madrid, del día 1 a las 00:00 al último día a las 23:59. Cada pregunta tiene cuatro opciones, 30 segundos y un solo intento por cuenta. Si se acaba el tiempo, o si se cierra o se recarga la página después de verla, cuenta como fallo y gasta el intento. El servidor anota la hora al mostrarla y al recibir la respuesta, con 2 segundos de margen por la red. El extra de rapidez sale de esos 30 segundos. Son 10 puntos por acierto, hasta 5 por rapidez y 5 por ser el primero en acertar esa pregunta. Quien propuso la pregunta no suma en ella. El administrador puede anular un intento.</p>
-<p>Al cerrar el mes gana quien tenga más puntos. Si empatan, gana quien llegó antes a esa puntuación. Si también empatan el momento y los aciertos, queda delante el nombre que vaya antes por orden alfabético. El premio es la cantidad en euros que el organizador fije antes de empezar el mes, entre 20 y 30.</p>
-<p>El ganador se avisa por el correo de su cuenta y con un aviso en esta página, dentro de los 3 días siguientes al cierre. Tiene 15 días desde ese aviso para reclamar. Si no reclama, el organizador puede ofrecerlo una sola vez a quien vaya segundo. Si tampoco reclama, el premio queda desierto.</p>
-<p>Para reclamar hacen falta el nombre, el país, confirmar la mayoría de edad y el medio: PayPal, una tarjeta regalo de eBay o un crédito del curso. El administrador comprueba que el nombre y el medio son de esa persona antes de pagar. Puede pedir un dato más si no coinciden. El pago es siempre manual. No hay cargo automático. Puede anular el premio si ve trampa, multicuenta o datos que no cuadran. Una misma señal de aparato o de IP es un aviso, no una prueba por sí sola.</p>
-<p>Impuestos: el premio puede tener que declararse. En España el organizador tiene que mirar si corresponde retención o ingreso a cuenta en el IRPF. Quien gane desde otro país lo declara según su ley. Que sean 20–30 € no quita ese deber. Este párrafo no es un asesoramiento fiscal.</p>
-<p>Esos datos se usan para decidir y entregar. No se venden. Los derechos se piden al correo de privacidad. El responsable puede pausar el reto. Si lo enciende, la ley del organizador es la de España.</p>
-</details>
-</section>
-<section class="panel qa" id="privacidad-foro">
-<h2>Privacidad</h2>
-<p>Para jugar hace falta un nombre, que ven los demás, y un correo, que no se publica. Si reclamas el premio del mes, también el país, que tienes 18 años o más, cómo prefieres cobrar y, si es PayPal, ese correo. Se guarda una señal del aparato como aviso de cuentas repetidas. En esta demo no salen de tu navegador. Cuando se conecte Supabase, el correo sirve para entrar (Google o un enlace), el ranking y el premio. No se vende. Puedes pedir el borrado en la <a href="privacidad.html">política de privacidad</a>.</p>
-</section>
-<aside class="ad-inline" data-ad-size="rect"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="rect" data-ad-size="rect"></div></aside>
-<noscript><p>Para ver el reto hace falta JavaScript. En la demo la respuesta no sale de tu navegador.</p></noscript>
 </main>
 <footer class="foot">
 <div class="wrap foot-grid">
@@ -253,12 +133,11 @@
 </ul>
 </div>
 </div>
-<p class="copy wrap">© 2026 Granja Rentable. La página secundaria de eBay puede llevar un enlace de afiliado: si compras allí, eBay puede pagarnos una comisión, sin costo extra para ti.</p>
+<p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 <a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
 <script src="js/config.js"></script>
 <script src="js/app.js"></script>
 <script src="js/catalogo.js"></script>
-<script src="js/preguntas.js"></script>
 <script src="js/site.js"></script>
 </body></html>
