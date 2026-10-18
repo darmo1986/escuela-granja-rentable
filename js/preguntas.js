@@ -16,6 +16,11 @@
   var PUNTOS = { acierto: 10, primero: 5, rapidoMax: 5 };
   var LIMITE_S = 30;
   var GRACIA_MS = 2000;
+  var GUIAS = {
+    coriza: "Coriza infecciosa",
+    carencias: "Carencias nutricionales",
+    pollitos: "Problemas de los pollitos"
+  };
   var CLAVE = "gr_preguntas_v1";
   var CLAVE_ADMIN = "gr_preguntas_admin";
   var CLAVE_NOMBRE = "gr_preguntas_nombre";
@@ -215,7 +220,7 @@
     anotar("q-amon", "u-ana", "m2", true, 5000, hace(20), "dev-ana");
     anotar("q-amon", "u-pedro", "m1", false, 20000, hace(18), "dev-pedro");
     return {
-      v: 4,
+      v: 5,
       premioEuros: eurosIniciales(),
       usuarios: [
         { id: "u-marta", nombre: "Marta López", correo: "marta@ejemplo.test", dispositivo: "dev-marta" },
@@ -232,13 +237,13 @@
           { id: "p3", texto: "Al cumplir el año justo" },
           { id: "p4", texto: "Solo en primavera el primer año" }
         ] },
-        { id: "q-calcio", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "En postura, ¿dónde dejo el calcio?", explica: "El calcio va aparte, a libre disposición: unos 3–5 g por gallina y día. De día, calcio fino. De tarde-noche, concha o grano grueso. Es orientativo.", correcta: "c2", opciones: [
+        { id: "q-calcio", periodo: periodo, origen: "", segundos: LIMITE_S, guia: "carencias", texto: "En postura, ¿dónde dejo el calcio?", explica: "El calcio va aparte, a libre disposición: unos 3–5 g por gallina y día. De día, calcio fino. De tarde-noche, concha o grano grueso. Es orientativo.", correcta: "c2", opciones: [
           { id: "c1", texto: "Mezclado en el pienso, para que no elijan" },
           { id: "c2", texto: "Aparte, a libre disposición" },
           { id: "c3", texto: "Solo disuelto en el agua" },
           { id: "c4", texto: "No hace falta calcio extra en postura" }
         ] },
-        { id: "q-temp", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "La primera semana, ¿qué temperatura orientativa se usa en la criadora?", explica: "Muchos dejan la criadora cerca de 32–35 °C la primera semana y van bajando. Si se amontonan, tienen frío. Si se apartan de la lámpara, tienen calor. Es orientativo.", correcta: "t2", opciones: [
+        { id: "q-temp", periodo: periodo, origen: "", segundos: LIMITE_S, guia: "pollitos", texto: "La primera semana, ¿qué temperatura orientativa se usa en la criadora?", explica: "Muchos dejan la criadora cerca de 32–35 °C la primera semana y van bajando. Si se amontonan, tienen frío. Si se apartan de la lámpara, tienen calor. Es orientativo.", correcta: "t2", opciones: [
           { id: "t1", texto: "18–20 °C" },
           { id: "t2", texto: "32–35 °C" },
           { id: "t3", texto: "40–42 °C" },
@@ -250,7 +255,7 @@
           { id: "k3", texto: "Incubar huevos de raza pura" },
           { id: "k4", texto: "Solo de adorno" }
         ] },
-        { id: "q-amon", periodo: periodo, origen: "", segundos: LIMITE_S, texto: "Si el gallinero huele a amoníaco, ¿qué miro primero?", explica: "La cama mojada suelta amoníaco. Se saca esa parte y se ventila sin una corriente directa sobre las aves. Es orientativo.", correcta: "m2", opciones: [
+        { id: "q-amon", periodo: periodo, origen: "", segundos: LIMITE_S, guia: "coriza", texto: "Si el gallinero huele a amoníaco, ¿qué miro primero?", explica: "La cama mojada suelta amoníaco. Se saca esa parte y se ventila sin una corriente directa sobre las aves. Es orientativo. Ese ambiente favorece los problemas respiratorios.", correcta: "m2", opciones: [
           { id: "m1", texto: "Echo más pienso" },
           { id: "m2", texto: "La cama húmeda y la ventilación" },
           { id: "m3", texto: "Cierro todo para que no entre frío" },
@@ -363,7 +368,7 @@
       var raw = localStorage.getItem(CLAVE);
       if (raw) {
         var o = JSON.parse(raw);
-        if (o && o.v === 4 && Array.isArray(o.preguntas) && Array.isArray(o.intentos)) return normalizar(o);
+        if (o && o.v === 5 && Array.isArray(o.preguntas) && Array.isArray(o.intentos)) return normalizar(o);
       }
     } catch (e) {}
     return semilla();
@@ -765,6 +770,16 @@
       if (elegida) art.appendChild(el("p", "fine", "Elegiste: " + elegida.texto));
       if (buena) art.appendChild(el("p", "", "Respuesta: " + buena.texto));
       art.appendChild(el("p", "qa-explica", p.explica));
+      if (p.guia && GUIAS[p.guia]) {
+        var guia = el("p", "fine");
+        guia.appendChild(document.createTextNode("Para seguir leyendo, de forma orientativa: "));
+        var enlace = document.createElement("a");
+        enlace.href = "enfermedades/" + p.guia + ".html";
+        enlace.textContent = GUIAS[p.guia];
+        guia.appendChild(enlace);
+        guia.appendChild(document.createTextNode(". No es un diagnóstico."));
+        art.appendChild(guia);
+      }
       art.appendChild(el("p", "fine", textoPuntos(it)));
       if (esAdmin() && !it.anulado) {
         art.appendChild(boton("sec", "anular-intento", it.id, "Anular este intento"));
@@ -1176,7 +1191,7 @@
       reloj = setInterval(tick, 250);
       return;
     }
-    estado = normalizar({ v: 4, premioEuros: eurosIniciales(), usuarios: [], sesion: null, preguntas: [], sugerencias: [], intentos: [], abiertas: [], premios: [], ritmo: { intento: [], sugerencia: [] } });
+    estado = normalizar({ v: 5, premioEuros: eurosIniciales(), usuarios: [], sesion: null, preguntas: [], sugerencias: [], intentos: [], abiertas: [], premios: [], ritmo: { intento: [], sugerencia: [] } });
     aviso("Con una clave real, el acierto lo dice la función del SQL, no esta página. Hasta pegarlo, aquí no hay preguntas.", true);
     pintar();
   }

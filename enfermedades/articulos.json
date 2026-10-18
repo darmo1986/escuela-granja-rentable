@@ -1,0 +1,527 @@
+{
+  "aviso": "Información orientativa para aprender. No es un diagnóstico ni un tratamiento. Si un ave está enferma, consulta a un veterinario. El dueño tiene que revisar este texto antes de darlo por bueno.",
+  "creditoImagen": "Pendiente. El equipo pondrá una imagen con licencia o generada. No se enlaza ni se copia una foto de otro sitio.",
+  "categorias": [
+    { "id": "respiratorias", "nombre": "Respiratorias", "nota": "Coriza, micoplasma y bronquitis se parecen. Hace falta el veterinario para distinguirlas." },
+    { "id": "viricas", "nombre": "Víricas graves de declaración obligatoria", "nota": "Gripe aviar y Newcastle se comunican a sanidad animal. No hay remedio casero. Marek va en este grupo porque es vírica y grave; la ficha está por revisar y no afirma, por ahora, que sea de declaración obligatoria." },
+    { "id": "parasitarias", "nombre": "Parasitarias", "nota": "Coccidiosis, piojos, ácaros (incluido el ácaro rojo) y lombrices." },
+    { "id": "digestivas", "nombre": "Digestivas", "nota": "Diarrea, buche o ave que no come. Muchas causas distintas." },
+    { "id": "carencias", "nombre": "Carencias nutricionales", "nota": "La ración importa. Aquí no hay dosis de vitaminas ni de minerales." },
+    { "id": "puesta", "nombre": "Problemas de puesta", "nota": "Huevo retenido y prolapso pueden ser urgentes." },
+    { "id": "patas", "nombre": "Patas y piel", "nota": "Pododermatitis y sarna de las patas." },
+    { "id": "pollitos", "nombre": "Pollitos", "nota": "Frío, ombligo y pollitos pegados. Si hay sangre en las heces, mira también la coccidiosis." }
+  ],
+  "etiquetas": [
+    { "id": "sintomas", "nombre": "Síntomas" },
+    { "id": "prevencion", "nombre": "Prevención" },
+    { "id": "natural", "nombre": "Natural" }
+  ],
+  "sintomas": [
+    { "id": "cara", "texto": "Estornudos, mocos o cara hinchada", "articulos": ["coriza", "micoplasma", "bronquitis"] },
+    { "id": "muerte-subita", "texto": "Muchas aves enfermas o muertas de golpe", "oficial": true, "articulos": ["gripe-aviar", "newcastle"] },
+    { "id": "paralisis", "texto": "Ala caída o una pata estirada", "articulos": ["marek"] },
+    { "id": "sangre-heces", "texto": "Heces con sangre o pollitos muy apagados", "articulos": ["coccidiosis"] },
+    { "id": "noche", "texto": "Inquietas de noche, palidez o puntos en los huevos", "articulos": ["acaro-rojo"] },
+    { "id": "plumas", "texto": "Insectos en las plumas, de día", "articulos": ["piojos"] },
+    { "id": "delgadez", "texto": "Comen y aun así adelgazan", "articulos": ["lombrices"] },
+    { "id": "diarrea", "texto": "Diarrea, buche raro o no comen", "articulos": ["digestivas"] },
+    { "id": "cascara", "texto": "Huevos frágiles, pico blando o patas torcidas", "articulos": ["carencias"] },
+    { "id": "no-pone", "texto": "Puja y no pone, o va muy echada", "articulos": ["huevo-retenido"] },
+    { "id": "cloaca", "texto": "Asoma tejido por la cloaca", "articulos": ["prolapso"] },
+    { "id": "cojera", "texto": "Cojera o costra en la planta del pie", "articulos": ["pododermatitis"] },
+    { "id": "escamas", "texto": "Escamas levantadas en las patas", "articulos": ["sarna-patas"] },
+    { "id": "pollito", "texto": "Pollito frío, pegado u ombligo sucio", "articulos": ["pollitos", "coccidiosis"] }
+  ],
+  "articulos": [
+    {
+      "id": "coriza",
+      "estado": "completo",
+      "categoria": "respiratorias",
+      "titulo": "Coriza infecciosa",
+      "resumen": "Enfermedad respiratoria de las gallinas. Suele hinchar la cara, cerrar un ojo y soltar mocos. Se parece a otras y no se cura con hierbas.",
+      "metaTitulo": "Coriza infecciosa en gallinas | Granja Rentable",
+      "metaDescripcion": "Cómo reconocer la coriza, cómo se contagia y cómo prevenirla. Texto orientativo, sin dosis: el diagnóstico lo da el veterinario.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion", "natural"],
+      "declaracion": false,
+      "reconocer": [
+        "La cara se hincha, a menudo de un lado. El ojo puede quedar semicerrado por la hinchazón.",
+        "Hay estornudos y mocos. A veces el moco huele mal.",
+        "Baja la puesta. El ave come menos y se aparta.",
+        "Es más frecuente en adultas que en pollitos. Varias gallinas pueden enfermar en pocos días.",
+        "El micoplasma, la bronquitis y otras enfermedades se ven parecido. La cara hinchada no basta para decir que es coriza."
+      ],
+      "contagio": [
+        "Pasa de ave a ave por el moco, el pico y los bebederos compartidos.",
+        "Una gallina que ya se vio bien puede seguir soltando el microbio. Por eso un lote «recuperado» no es un lote limpio.",
+        "Entra con aves nuevas, con equipo prestado o con quien visita varios gallineros el mismo día.",
+        "Fuera del ave dura poco, pero el contagio entre compañeras es fácil si beben juntas."
+      ],
+      "prevenir": [
+        "Lote cerrado: no metas gallinas de otro sitio sin separarlas unas semanas, en otro espacio, sin compartir bebedero.",
+        "No mezcles edades si puedes evitarlo.",
+        "Limpia los bebederos cada día. No dejes que el agua se ponga turbia.",
+        "Ventila sin una corriente directa sobre las aves. La cama húmeda suelta amoníaco y empeora cualquier problema de las vías respiratorias.",
+        "Quien visite el gallinero, que no venga de otro con aves enfermas. Cambia el calzado o límpialo antes de entrar."
+      ],
+      "natural": [
+        "Aparta a la enferma para que no comparta el bebedero. Eso baja el contagio; no la cura.",
+        "Ofrécele agua limpia y comida fácil de alcanzar, en un sitio seco y sin corriente.",
+        "Saca la cama mojada y ventila. Menos amoníaco, menos irritación.",
+        "El ajo, los vahos, las hierbas y el vinagre no curan la coriza. Un antibiótico guardado de otra vez tampoco se usa por tu cuenta: no hay dosis en esta ficha y puede no servir."
+      ],
+      "veterinario": [
+        "Llama si hay cara hinchada, varias aves con mocos, dificultad para respirar o una caída clara de la puesta.",
+        "El veterinario la distingue de otras enfermedades respiratorias. A simple vista no se puede asegurar.",
+        "Si muchas mueren de golpe, las crestas se ponen moradas o hay cuellos torcidos, no lo trates como coriza: mira gripe aviar y Newcastle y avisa a sanidad animal."
+      ],
+      "imagenes": [
+        { "alt": "Cabeza de gallina con la cara hinchada y un ojo semicerrado. Puede verse en la coriza y también en otras enfermedades respiratorias." },
+        { "alt": "Bebedero compartido en un gallinero. El agua sucia es una vía habitual de contagio entre gallinas." }
+      ],
+      "relacionados": ["micoplasma", "bronquitis", "gripe-aviar"]
+    },
+    {
+      "id": "micoplasma",
+      "estado": "borrador",
+      "categoria": "respiratorias",
+      "titulo": "Micoplasma",
+      "resumen": "Problema respiratorio que se confunde con la coriza. Borrador: falta redactar la ficha.",
+      "metaTitulo": "Micoplasma en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador orientativo sobre el micoplasma. Sin dosis y pendiente de revisión. Ante un ave enferma, el veterinario.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar con el dueño. Explicar que se parece a la coriza y a la bronquitis, que puede bajar la puesta y que no se diagnostica en casa. No añadir dosis ni antibióticos.",
+      "reconocer": ["Estornudos, mocos o ruidos al respirar, a veces con poca hinchazón. TODO: completar los signos sin presentarlos como un diagnóstico."],
+      "contagio": ["Pasa entre aves y puede entrar con animales nuevos. TODO: precisar las vías cuando se redacte."],
+      "prevenir": ["Lote cerrado, cuarentena y no compartir bebederos con aves de fuera. TODO: ampliar."],
+      "natural": ["Aislar, agua limpia y menos amoníaco. Eso no cura. TODO: no prometer hierbas ni productos."],
+      "veterinario": ["Si hay varias aves con signos respiratorios, consulta. No des un antibiótico guardado."],
+      "imagenes": [
+        { "alt": "Gallina con el pico entreabierto y las plumas erizadas. Hueco para una foto que muestre un signo respiratorio sin afirmar el diagnóstico." }
+      ],
+      "relacionados": ["coriza", "bronquitis"]
+    },
+    {
+      "id": "bronquitis",
+      "estado": "borrador",
+      "categoria": "respiratorias",
+      "titulo": "Bronquitis infecciosa",
+      "resumen": "Enfermedad vírica respiratoria. Puede bajar la puesta y deformar el huevo. Borrador pendiente.",
+      "metaTitulo": "Bronquitis infecciosa en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador orientativo sobre la bronquitis infecciosa. Sin cura casera y sin dosis. Pendiente de revisión del dueño.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar. Dejar claro que es vírica, que no hay cura en casa y que la vacuna, si se usa, la decide el veterinario. No hablar de remedios.",
+      "reconocer": ["Signos respiratorios y, en ponedoras, huevos deformes o puesta en caída. TODO: completar."],
+      "contagio": ["Se extiende rápido entre las aves del mismo aire. TODO: precisar."],
+      "prevenir": ["No mezclar lotes y consultar la vacunación con el veterinario. TODO."],
+      "natural": [],
+      "veterinario": ["Consulta si baja la puesta de golpe o varias aves respiran mal. No hay tratamiento casero."],
+      "imagenes": [
+        { "alt": "Huevos de cáscara irregular junto a un huevo de forma normal. Hueco de imagen para la bronquitis, sin usarlo como diagnóstico." }
+      ],
+      "relacionados": ["coriza", "micoplasma"]
+    },
+    {
+      "id": "gripe-aviar",
+      "estado": "borrador",
+      "categoria": "viricas",
+      "titulo": "Gripe aviar",
+      "resumen": "Enfermedad de declaración obligatoria. Si la sospechas, avisa a sanidad animal. No hay remedio casero.",
+      "metaTitulo": "Gripe aviar: avisa a sanidad animal | Granja Rentable",
+      "metaDescripcion": "La gripe aviar se comunica a los servicios veterinarios oficiales. No se trata en casa. Texto orientativo, pendiente de revisión.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": true,
+      "todo": "TODO: el dueño debe añadir el teléfono o la oficina de sanidad animal de su comunidad y revisar el texto. No añadir remedios, dosis ni productos.",
+      "reconocer": [
+        "Muertes repentinas, muchas aves enfermas a la vez, crestas o barbillas moradas, hinchazón de la cabeza, caída brusca de la puesta o signos nerviosos.",
+        "Estos signos no confirman la gripe. También pueden ser otra cosa. Aun así, no esperes a estar seguro."
+      ],
+      "contagio": [
+        "Puede entrar con aves silvestres, con aves nuevas o con equipo y calzado contaminados.",
+        "TODO: completar las vías cuando lo revise quien corresponda, sin bajar el aviso de declaración."
+      ],
+      "prevenir": [
+        "Evita que las silvestres coman y beban con tus gallinas.",
+        "No visites otro gallinero y el tuyo el mismo día sin limpiar el calzado.",
+        "No lleves aves enfermas a una feria, a otra casa ni al veterinario de clínica sin que sanidad animal te diga cómo moverlas."
+      ],
+      "natural": [],
+      "veterinario": [
+        "Contacta hoy con los servicios veterinarios oficiales. En España, la oficina de sanidad animal de tu comunidad. En otros países, el servicio público de sanidad animal.",
+        "No des nada por tu cuenta. No hay remedio casero para la gripe aviar y esta ficha no lo va a ofrecer."
+      ],
+      "imagenes": [
+        { "alt": "Gallinero cerrado, sin aves silvestres dentro. Hueco de imagen para prevención, no para un ave enferma de archivo ajeno." }
+      ],
+      "relacionados": ["newcastle", "coriza"]
+    },
+    {
+      "id": "newcastle",
+      "estado": "borrador",
+      "categoria": "viricas",
+      "titulo": "Newcastle",
+      "resumen": "Enfermedad de declaración obligatoria. Cuellos torcidos y muertes no se tratan en casa: se avisa a sanidad animal.",
+      "metaTitulo": "Newcastle: avisa a sanidad animal | Granja Rentable",
+      "metaDescripcion": "La enfermedad de Newcastle se comunica a los servicios veterinarios oficiales. Sin remedios caseros ni dosis. Pendiente de revisión.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": true,
+      "todo": "TODO: revisar con el dueño. Mantener el aviso a sanidad animal. No añadir remedios ni dosis. La vacuna, si se menciona, solo como decisión del veterinario, sin pauta.",
+      "reconocer": [
+        "Signos respiratorios, diarrea, caída de la puesta y signos nerviosos, como el cuello torcido o la parálisis.",
+        "No se confirma en casa. Si lo ves, sobre todo con varias aves, avisa."
+      ],
+      "contagio": ["Se contagia muy fácil entre aves. TODO: precisar vías en la redacción final, sin suavizar la declaración."],
+      "prevenir": ["Lote cerrado y no llevar aves a concentraciones si hay sospecha. La vacunación, donde se use, la marca el veterinario. TODO: no escribir una pauta."],
+      "natural": [],
+      "veterinario": [
+        "Avisa a los servicios veterinarios oficiales. En España, sanidad animal de tu comunidad. En otros países, el servicio público equivalente.",
+        "No des remedios caseros. No muevas las aves a otra granja."
+      ],
+      "imagenes": [
+        { "alt": "Aves juntas en un gallinero. Hueco de imagen. No usar una foto de un ave con signos nerviosos sacada de otro sitio." }
+      ],
+      "relacionados": ["gripe-aviar", "marek"]
+    },
+    {
+      "id": "marek",
+      "estado": "borrador",
+      "categoria": "viricas",
+      "titulo": "Marek",
+      "resumen": "Enfermedad vírica grave. Puede paralizar una pata o un ala. No tiene cura en casa. Borrador pendiente.",
+      "metaTitulo": "Enfermedad de Marek en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador sobre Marek: parálisis, sin cura casera y sin dosis. Pendiente de que el dueño confirme el texto y el encuadre legal.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: el dueño confirma el texto. Marek es grave y no tiene cura casera. No afirmar en esta ficha que sea de declaración obligatoria: ese deber, en este borrador, queda escrito solo en gripe aviar y Newcastle. La vacuna, si se cita, es del primer día y la decide quien incuba o el veterinario, sin pauta ni marca.",
+      "reconocer": ["Una pata estirada hacia delante o un ala caída, en un ave joven, es un motivo para llamar al veterinario. TODO: completar sin convertir el signo en un diagnóstico seguro."],
+      "contagio": ["Se relaciona con la caspa y el polvo de las aves. TODO: redactar con cuidado."],
+      "prevenir": ["La prevención habitual es la vacuna al día de edad, antes de que el pollito se exponga. No se improvisa en casa. TODO."],
+      "natural": [],
+      "veterinario": ["Consulta al veterinario. No hay cura en casa ni remedio que deba probarse mientras tanto."],
+      "imagenes": [
+        { "alt": "Ave joven sentada, con una pata extendida. Hueco de imagen para Marek. El signo no confirma la enfermedad por sí solo." }
+      ],
+      "relacionados": ["newcastle", "pollitos"]
+    },
+    {
+      "id": "coccidiosis",
+      "estado": "completo",
+      "categoria": "parasitarias",
+      "titulo": "Coccidiosis",
+      "resumen": "Parásito intestinal muy frecuente en pollitos. A veces hay sangre en las heces. El vinagre y el ajo no la curan.",
+      "metaTitulo": "Coccidiosis en pollitos y gallinas | Granja Rentable",
+      "metaDescripcion": "Cómo reconocer la coccidiosis, cómo se contagia por la cama húmeda y cómo prevenirla. Sin dosis: el tratamiento lo decide el veterinario.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion", "natural"],
+      "declaracion": false,
+      "reconocer": [
+        "Los pollitos se amontonan, erizan las plumas, comen menos y se quedan atrás.",
+        "Las heces pueden ser blandas, chocolate o con sangre. No todos los casos muestran sangre, y no toda mancha roja es coccidiosis.",
+        "Puede haber muertes en el grupo joven, sobre todo entre las 3 y las 6 semanas, si la cama está húmeda y hay muchas aves juntas. Es una orientación, no un calendario fijo.",
+        "Las adultas suelen resistir mejor, pero pueden soltar el parásito y contagiar a los pollitos.",
+        "Una diarrea sin sangre tiene otras causas. Si dudas, no esperes a hacer pruebas por tu cuenta: llama al veterinario."
+      ],
+      "contagio": [
+        "El parásito sale en las heces y el pollito lo traga al picotear la cama, el pienso caído o el agua sucia.",
+        "En la humedad se multiplica. El sol y la cama seca le van peor.",
+        "Entra con aves nuevas, con una criadora mal lavada o con botas que pisaron otro lote.",
+        "No es una lombriz y no se ve a simple vista en la cama."
+      ],
+      "prevenir": [
+        "Cama seca. Quita la parte apelmazada bajo el bebedero cada día.",
+        "No amontones pollitos. Más espacio, menos contagio.",
+        "Agua limpia, bebedero que no gotee sobre la cama y pienso que no se mezcle con heces.",
+        "No mezcles pollitos con adultas.",
+        "Lava la criadora entre lotes y déjala secar.",
+        "Algunos piensos de arranque llevan un producto contra este parásito. Lo decide quien formula el alimento o el veterinario. Esta ficha no dice cuál ni en qué cantidad."
+      ],
+      "natural": [
+        "Pasa a los enfermos a un sitio seco, templado y con poca densidad. Es apoyo, no un tratamiento.",
+        "Acerca el agua y la comida para que el pollito débil alcance. Cambia el agua si se ensucia.",
+        "Retira la cama húmeda. Sin humedad, el ciclo se corta mejor.",
+        "El vinagre, el ajo, el orégano, el yogur y las hierbas no curan la coccidiosis. No los uses como tratamiento ni prepares una mezcla.",
+        "Un antibiótico de otra vez no sirve para este parásito. Si hace falta un medicamento, lo receta el veterinario. Aquí no hay dosis."
+      ],
+      "veterinario": [
+        "Llama el mismo día si hay sangre en las heces, varios pollitos apagados o alguna muerte.",
+        "Puede hacer falta mirar las heces al microscopio. No lo sustituye una foto.",
+        "No mediques a todo el lote con un resto de frasco."
+      ],
+      "imagenes": [
+        { "alt": "Pollitos amontonados en la criadora, con las plumas erizadas y aspecto decaído." },
+        { "alt": "Cama de ave con heces blandas y un trazo rojizo. La imagen no sirve para diagnosticar coccidiosis." }
+      ],
+      "relacionados": ["pollitos", "digestivas", "lombrices"]
+    },
+    {
+      "id": "acaro-rojo",
+      "estado": "completo",
+      "categoria": "parasitarias",
+      "titulo": "Ácaro rojo",
+      "resumen": "Se esconde de día en las grietas y sube a la gallina de noche. No vive en la pluma como el piojo. Limpiar el gallinero ayuda; no es una cura mágica.",
+      "metaTitulo": "Ácaro rojo de las gallinas | Granja Rentable",
+      "metaDescripcion": "Cómo reconocer el ácaro rojo, de noche y en las grietas, y cómo prevenirlo. Sin dosis ni insecticidas caseros. Texto orientativo.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion", "natural"],
+      "declaracion": false,
+      "reconocer": [
+        "De día casi no se ve sobre la gallina. De noche sube a picar, sobre todo al posarse.",
+        "Las aves se inquietan en la percha, se picotean o duermen mal.",
+        "La cresta puede ponerse pálida si pican mucho y el ave pierde sangre.",
+        "Baja la puesta. En los huevos a veces quedan puntitos rojos.",
+        "Busca en los extremos de la percha, en las grietas y bajo el nidal: un polvo gris o unos puntos que se mueven. Una hoja de papel blanco por la noche ayuda a verlos.",
+        "El piojo y otros ácaros sí se ven de día sobre la piel. Si los encuentras de día en la pluma, mira la ficha de piojos: no es el mismo bicho."
+      ],
+      "contagio": [
+        "Entra con gallinas nuevas, con madera usada, con cajas de huevos o con aves silvestres que se cuelan.",
+        "Puede aguantar meses en una grieta vacía, sin gallinas.",
+        "Un gallinero de tablas con rendijas le da más escondite que una pared lisa."
+      ],
+      "prevenir": [
+        "Revisa de noche una vez al mes, no solo cuando ya están pálidas.",
+        "Tapa grietas o alisa los nidos y las perchas para que tenga menos donde meterse.",
+        "No metas palés ni tablas de otro corral sin limpiarlos y secarlos al sol.",
+        "Separa a las aves nuevas unas semanas.",
+        "Evita que las silvestres aniden dentro o coman en el mismo comedero."
+      ],
+      "natural": [
+        "Limpia a fondo: saca la cama, cepilla grietas, lava perchas y nidales con agua caliente y déjalo secar al sol. Eso baja la carga. No promete dejar el gallinero a cero.",
+        "Mete la cama muy cargada en una bolsa cerrada y tírala fuera del corral.",
+        "Repite la limpieza, porque los huevos del ácaro no mueren todos a la primera pasada.",
+        "No uses insecticida de perros, de gatos ni del hogar sobre la gallina ni en el nidal.",
+        "Si un polvo o un aceite se vende como ayuda, no es una cura. Si el envase no dice que vale para aves, no lo uses. No lo eches en la cara ni levantes una nube que se respire. Ante la duda, el veterinario. Esta ficha no trae dosis."
+      ],
+      "veterinario": [
+        "Consulta si hay muchas aves pálidas, muertes, una caída fuerte de la puesta o si la limpieza no cambia nada.",
+        "El producto, cuando hace falta, tiene que ser apto para aves y lo elige el veterinario. No improvises con un frasco de otra especie."
+      ],
+      "imagenes": [
+        { "alt": "Grieta entre dos tablas de un gallinero, de día, un escondite típico del ácaro rojo." },
+        { "alt": "Gallina en la percha de noche, momento en que el ácaro rojo suele subir al ave. Hueco de imagen, sin foto real todavía." }
+      ],
+      "relacionados": ["piojos", "sarna-patas", "coriza"]
+    },
+    {
+      "id": "piojos",
+      "estado": "borrador",
+      "categoria": "parasitarias",
+      "titulo": "Piojos y otros ácaros",
+      "resumen": "Se ven de día sobre la piel, a diferencia del ácaro rojo. Borrador: sin productos ni dosis.",
+      "metaTitulo": "Piojos y ácaros en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador sobre piojos y ácaros distintos del ácaro rojo. Sin insecticidas caseros ni dosis. Pendiente de revisión.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar la diferencia con el ácaro rojo, cómo mirar la base de la pluma y la prevención. Prohibido recomendar insecticida de perro, baños o dosis.",
+      "reconocer": ["Insectos o huevos pegados en la base de la pluma, visibles de día, y aves que se rascan. TODO: completar."],
+      "contagio": ["Pasan por contacto entre aves. TODO."],
+      "prevenir": ["Revisar aves nuevas y no amontonar. TODO."],
+      "natural": ["Cepillar y limpiar el gallinero puede bajar la carga. No es una cura. TODO: no añadir polvos ni aceites."],
+      "veterinario": ["Si hay muchas aves afectadas o la cresta se pone pálida, consulta. No uses un producto de otra especie."],
+      "imagenes": [
+        { "alt": "Base de una pluma de gallina donde se buscarían piojos de día. Hueco de imagen, sin foto de archivo." }
+      ],
+      "relacionados": ["acaro-rojo", "sarna-patas"]
+    },
+    {
+      "id": "lombrices",
+      "estado": "borrador",
+      "categoria": "parasitarias",
+      "titulo": "Lombrices",
+      "resumen": "La gallina come y adelgaza. El desparasitante lo decide el veterinario. Borrador sin dosis.",
+      "metaTitulo": "Lombrices en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador orientativo sobre lombrices intestinales. Sin productos ni dosis. Pendiente de revisión del dueño.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar signos y prevención (rotación de parque, heces). No escribir nombre comercial ni dosis de desparasitante. No decir que un ajo o una calabaza curan.",
+      "reconocer": ["Adelgazan aunque coman. A veces se ve un gusano en las heces. TODO: no presentar eso como prueba única."],
+      "contagio": ["Los huevos están en el suelo y el ave los picotea. TODO."],
+      "prevenir": ["No dejar el parque hecho barro y mover comederos. TODO."],
+      "natural": [],
+      "veterinario": ["Pide una revisión de heces antes de desparasitar. La dosis no se copia de otra especie ni de otro año."],
+      "imagenes": [
+        { "alt": "Gallina delgada junto al comedero. Hueco de imagen para la ficha de lombrices." }
+      ],
+      "relacionados": ["coccidiosis", "carencias"]
+    },
+    {
+      "id": "digestivas",
+      "estado": "borrador",
+      "categoria": "digestivas",
+      "titulo": "Problemas digestivos",
+      "resumen": "Diarrea, buche duro o ave que no come. Hay muchas causas. Borrador pendiente.",
+      "metaTitulo": "Problemas digestivos de las gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador sobre diarrea y otros problemas digestivos. Sin remedios ni dosis. Si hay sangre, mira también la coccidiosis y llama al veterinario.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas"],
+      "declaracion": false,
+      "todo": "TODO: separar, cuando se redacte, diarrea, impactación del buche y otras causas. No dar aceite, vinagre ni dosis. Si hay sangre, enlazar coccidiosis.",
+      "reconocer": ["Heces muy líquidas, buche que no se vacía o un ave que deja de comer. TODO."],
+      "contagio": ["Unas causas se contagian y otras no. TODO: no simplificar."],
+      "prevenir": ["Agua limpia, pienso en buen estado y nada de comida enmohecida. TODO."],
+      "natural": ["Agua fresca y comida a mano es apoyo. No cura. TODO: no añadir recetas."],
+      "veterinario": ["Si no come, si hay sangre, si hay varias aves o si el buche sigue duro al día siguiente, consulta."],
+      "imagenes": [
+        { "alt": "Bebedero limpio y comedero bajo techo. Hueco de imagen para la ficha digestiva." }
+      ],
+      "relacionados": ["coccidiosis", "lombrices"]
+    },
+    {
+      "id": "carencias",
+      "estado": "borrador",
+      "categoria": "carencias",
+      "titulo": "Carencias nutricionales",
+      "resumen": "Huevo frágil, pico blando o patas torcidas pueden deberse a la ración. Borrador: aquí no hay dosis.",
+      "metaTitulo": "Carencias nutricionales en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador sobre carencias de la ración. Sin dosis de vitaminas ni de calcio. El calcio de la puesta se explica en el curso, no como medicamento.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar con el curso. Enlazar la calculadora y la ficha de calcio del reto solo como manejo, no como tratamiento. No escribir gramos de vitamina ni de medicamento. El calcio a libre disposición en postura ya está en la calculadora: no duplicar una dosis nueva.",
+      "reconocer": ["Cáscara fina, huevos sin cáscara, pico blando o pollitos con las patas abiertas. TODO: dejar claro que hay otras causas."],
+      "contagio": ["No se contagia. Una ración pobre afecta al lote que la come."],
+      "prevenir": ["Pienso adecuado a la etapa y, en postura, calcio a libre disposición como ya explica el sitio. TODO: no inventar otra pauta."],
+      "natural": [],
+      "veterinario": ["Si hay deformidades, muchas cáscaras rotas o aves que no se tienen en pie, consulta. No des un complejo vitamínico al tuntún."],
+      "imagenes": [
+        { "alt": "Huevo de cáscara fina junto a un huevo normal. Hueco de imagen para carencias. La cáscara frágil tiene varias causas." }
+      ],
+      "relacionados": ["huevo-retenido", "pollitos"]
+    },
+    {
+      "id": "huevo-retenido",
+      "estado": "borrador",
+      "categoria": "puesta",
+      "titulo": "Huevo retenido",
+      "resumen": "La gallina puja y el huevo no sale. Puede ser urgente. No lo saques ni eches aceite. Borrador.",
+      "metaTitulo": "Huevo retenido en la gallina | Granja Rentable",
+      "metaDescripcion": "Borrador: si una gallina puja y no pone, llama al veterinario el mismo día. No intentes sacar el huevo ni uses aceite. Sin dosis.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas"],
+      "declaracion": false,
+      "todo": "TODO: redactar signos (cola baja, pujo, cloaca hinchada) sin enseñar maniobras. Prohibido explicar cómo romper el huevo, cómo meter un dedo o cuánto aceite usar.",
+      "reconocer": ["Puja una y otra vez, va muy echada o deja de comer. TODO: completar con el dueño."],
+      "contagio": ["No se contagia. A veces se relaciona con un huevo grande o con una gallina joven."],
+      "prevenir": ["Ponedora en buen estado y ración de postura. TODO: no convertir la prevención en una promesa."],
+      "natural": [],
+      "veterinario": ["Es un motivo para llamar el mismo día. No intentes sacar el huevo, no lo rompas y no eches aceite ni lubricante."],
+      "imagenes": [
+        { "alt": "Gallina echada, aparte del grupo. Hueco de imagen para el huevo retenido, sin mostrar una maniobra." }
+      ],
+      "relacionados": ["prolapso", "carencias"]
+    },
+    {
+      "id": "prolapso",
+      "estado": "borrador",
+      "categoria": "puesta",
+      "titulo": "Prolapso",
+      "resumen": "Asoma tejido rojo por la cloaca. Aparta a la gallina para que no la piquen y llama al veterinario. No lo empujes.",
+      "metaTitulo": "Prolapso en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador sobre el prolapso: es urgente, sin maniobras caseras. Pendiente de revisión. Llama al veterinario.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas"],
+      "declaracion": false,
+      "todo": "TODO: redactar sin enseñar a reintroducir el tejido. Avisar de que las demás lo picotean. Sin ungüentos ni dosis.",
+      "reconocer": ["Se ve tejido rojo saliendo de la cloaca después de poner o de pujar. TODO."],
+      "contagio": ["No es contagioso, pero las otras gallinas pueden picarlo y empeorarlo en minutos."],
+      "prevenir": ["TODO: poner y luz sin exagerar, ración adecuada. No prometer que se evita siempre."],
+      "natural": [],
+      "veterinario": ["Aparta a la gallina ya, en penumbra si puedes, y llama al veterinario. No empujes el tejido hacia dentro."],
+      "imagenes": [
+        { "alt": "Gallina separada del lote, en un sitio tranquilo. Hueco de imagen. No mostrar un primer plano gráfico de un prolapso de archivo ajeno." }
+      ],
+      "relacionados": ["huevo-retenido", "coriza"]
+    },
+    {
+      "id": "pododermatitis",
+      "estado": "borrador",
+      "categoria": "patas",
+      "titulo": "Pododermatitis",
+      "resumen": "Costra o hinchazón en la planta del pie, a menudo con cama húmeda. No cortes la pata. Borrador.",
+      "metaTitulo": "Pododermatitis en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador sobre la pododermatitis o bumblefoot. Sin cortes ni dosis. Cama seca y veterinario si cojea o hay hinchazón.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar causas (perchas astilladas, cama húmeda, obesidad) y prevención. Prohibido explicar cómo abrir el absceso o qué pomada poner.",
+      "reconocer": ["Cojera y una costra o un bulto en la planta. TODO."],
+      "contagio": ["No es una enfermedad que salte de ave a ave, aunque varias pueden sufrir la misma cama mala."],
+      "prevenir": ["Cama seca, perchas lisas y peso razonable. TODO."],
+      "natural": ["Mejorar el suelo es manejo, no un tratamiento del absceso. TODO: no añadir recetas."],
+      "veterinario": ["Si cojea, si la planta está hinchada o si deja de apoyarla, consulta. No cortes ni aprietes la costra."],
+      "imagenes": [
+        { "alt": "Planta de una pata de gallina con una costra. Hueco de imagen para la pododermatitis." }
+      ],
+      "relacionados": ["sarna-patas", "acaro-rojo"]
+    },
+    {
+      "id": "sarna-patas",
+      "estado": "borrador",
+      "categoria": "patas",
+      "titulo": "Sarna de las patas",
+      "resumen": "Escamas levantadas y patas con costras. La confirma el veterinario. Borrador sin dosis ni vaselina como cura.",
+      "metaTitulo": "Sarna de las patas en gallinas | Granja Rentable",
+      "metaDescripcion": "Borrador sobre la sarna de las patas. Sin dosis, sin baños y sin presentar la vaselina como cura. Pendiente de revisión.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar. No recomendar vaselina, gasolina, aceite ni un antiparasitario con cantidad. El producto lo pone el veterinario.",
+      "reconocer": ["Las escamas de la pata se levantan y la pata se ve más gruesa y con costras. TODO."],
+      "contagio": ["Pasa por contacto y por el suelo. TODO."],
+      "prevenir": ["Revisar las patas de las aves nuevas. TODO."],
+      "natural": [],
+      "veterinario": ["Consulta para confirmar que es sarna y no otra costra. No apliques un remedio de internet."],
+      "imagenes": [
+        { "alt": "Pata de gallina con las escamas levantadas. Hueco de imagen para la sarna de las patas." }
+      ],
+      "relacionados": ["pododermatitis", "piojos"]
+    },
+    {
+      "id": "pollitos",
+      "estado": "borrador",
+      "categoria": "pollitos",
+      "titulo": "Problemas de los pollitos",
+      "resumen": "Frío, ombligo sucio o pollito pegado por detrás. Si hay sangre en las heces, mira la coccidiosis. Borrador.",
+      "metaTitulo": "Problemas de los pollitos | Granja Rentable",
+      "metaDescripcion": "Borrador sobre pollitos fríos, pegados o con el ombligo mal. Sin dosis. La temperatura de la criadora está en el reto, como orientación.",
+      "fecha": "2026-10-18",
+      "actualizado": "2026-10-18",
+      "etiquetas": ["sintomas", "prevencion"],
+      "declaracion": false,
+      "todo": "TODO: redactar pegado de cloaca, onfalitis y frío sin dar temperaturas nuevas que contradigan el reto (la primera semana, muchos usan 32–35 °C como orientación). No añadir azúcares, antibióticos ni dosis.",
+      "reconocer": ["Se amontonan si tienen frío y se apartan de la lámpara si tienen calor. El ombligo húmedo o el trasero pegado necesitan revisión. TODO."],
+      "contagio": ["El ombligo sucio y algunas diarreas sí se relacionan con el lote. TODO: no mezclar causas."],
+      "prevenir": ["Criadora limpia, agua alcanzable y no mezclar con adultas. TODO."],
+      "natural": ["Calor correcto y agua limpia son manejo. No curan una infección. TODO."],
+      "veterinario": ["Si hay varios débiles, ombligos sucios, muertes o heces con sangre, llama. La sangre también está en la ficha de coccidiosis."],
+      "imagenes": [
+        { "alt": "Pollitos bajo una lámpara de criadora, repartidos en círculo. Hueco de imagen. Si se amontonan, suelen tener frío." }
+      ],
+      "relacionados": ["coccidiosis", "carencias"]
+    }
+  ]
+}

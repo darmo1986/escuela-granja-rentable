@@ -731,11 +731,17 @@
       '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 6.5h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H13l-5.5 4.2V22.5H6a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z"/></svg></span><span class="nav-label">Reto</span>',
       /\/preguntas(?:\.html)?\/?$/
     );
+    var salud = put(
+      "enfermedades.html",
+      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="currentColor" d="M14.2 8.2h3.6v6h6v3.6h-6v6h-3.6v-6h-6v-3.6h6z"/></svg></span><span class="nav-label">Salud</span>',
+      /\/enfermedades(?:\.html|\/)/
+    );
     var appLink = nav.querySelector('a[href$="app.html"]');
     if (!appLink) return;
     var despues = appLink.nextSibling;
     if (calc.previousElementSibling !== appLink) nav.insertBefore(calc, despues);
     nav.insertBefore(foro, calc.nextSibling);
+    nav.insertBefore(salud, foro.nextSibling);
   })();
 
   document.querySelectorAll(".foot-brand").forEach(function (p) {
@@ -748,6 +754,7 @@
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],
       ["preguntas.html", "Reto del mes"],
+      ["enfermedades.html", "Enfermedades"],
       ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],
       ["juegos.html", "Juegos"]
