@@ -2,7 +2,11 @@
 const root=document.body.dataset.root||'';
 const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
-const save=p=>{localStorage.setItem(PK,JSON.stringify(p));if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);};
+const save=p=>{
+  try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){}
+  const dentro=window.GRAuth&&GRAuth.usuario&&GRAuth.usuario();
+  if(dentro&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);
+};
 /* ── Consentimiento + publicidad (Adsterra o AdSense; nada sin key y sin «Aceptar») ── */
 function smallBannerCfg(){
   const g=(window.GR&&window.GR.redes&&window.GR.redes.adsterra)||{};
@@ -316,34 +320,53 @@ const VIDEO_RE=/^[a-z0-9_-]+\.mp4$/i;
 const EXAM_RE=/^[a-z0-9_-]+\.json$/i;
 const ID_RE=/^[a-z0-9]+$/;
 
+function idsCertificado(){
+  const data=window.__cursoWeb;
+  if(data&&Array.isArray(data.lecciones)){
+    const ids=data.lecciones.filter(L=>L&&L.estado==='disponible'&&L.examen&&EXAM_RE.test(L.examen)).map(L=>L.id);
+    if(data.examenFinal&&data.examenFinal.estado==='disponible')ids.push('final');
+    return ids;
+  }
+  const ids=[...document.querySelectorAll('.lesson.ok')].map(li=>li.dataset.id).filter(Boolean);
+  if(ids.length&&(document.getElementById('finalbtn')||document.querySelector('[data-key="final"]')))ids.push('final');
+  return ids;
+}
+function certificadoListo(){
+  const ids=idsCertificado();
+  return ids.length>0&&ids.every(passed);
+}
+function sesionCurso(){
+  return !!(window.GRAuth&&GRAuth.usuario&&GRAuth.usuario());
+}
 function paintProgress(){
   const lis=[...document.querySelectorAll('.lesson.ok')];
   if(!lis.length)return;
   let n=0,next=null;
-  lis.forEach((li,i)=>{const id=li.dataset.id,st=li.querySelector('.st');
-    if(passed(id)){n++;li.classList.add('done');st.textContent='✔ '+prog()[id].mejor+' pts';}
-    else if(i>0&&!passed(lis[i-1].dataset.id)){li.classList.add('locked');st.textContent='🔒';const a=li.querySelector('a');if(a){a.removeAttribute('href');a.setAttribute('aria-disabled','true');a.title='Aprueba antes la lección anterior';}}
+  lis.forEach(li=>{
+    const id=li.dataset.id,st=li.querySelector('.st');
+    li.classList.remove('locked');
+    const a=li.querySelector('a');
+    if(a){a.removeAttribute('aria-disabled');if(a.title==='Aprueba antes la lección anterior')a.removeAttribute('title');}
+    if(passed(id)){n++;li.classList.add('done');if(st)st.textContent='✔ '+prog()[id].mejor+' pts';}
     else if(!next)next=li;
   });
   const tot=lis.length;
   const bar=document.getElementById('pbar'),txt=document.getElementById('ptxt');
-  if(bar)bar.style.width=(100*n/tot)+'%';
-  if(txt)txt.textContent='Progreso: '+n+' de '+tot+' lecciones aprobadas'+(passed('final')?' · Examen final aprobado 🎓':'');
+  if(bar)bar.style.width=(tot?(100*n/tot):0)+'%';
+  if(txt)txt.textContent='Progreso: '+n+' de '+tot+' lecciones aprobadas'+(passed('final')?' · Examen final aprobado':'');
   const fb=document.getElementById('finalbtn');
-  if(fb&&n<tot){fb.textContent='🔒 Examen final (aprueba todas las lecciones)';fb.removeAttribute('href');fb.classList.add('dis');}
+  if(fb){
+    fb.classList.remove('dis');
+    fb.textContent=certificadoListo()?'Ver el certificado':'Examen final';
+    fb.setAttribute('href',certificadoListo()?'examen-final.html#certificado':'examen-final.html');
+  }
   const b=document.getElementById('continuar');
   if(!b)return;
   if(n&&next){const a=next.querySelector('a');b.textContent='Continuar: '+next.querySelector('.code').textContent;if(a)b.href=a.getAttribute('href');}
-  else if(n===tot){b.textContent=passed('final')?'¡Curso completado! 🎓':'Ir al examen final';b.href='examen-final.html';}
+  else if(n===tot){b.textContent=passed('final')?'Ver el certificado':'Ir al examen final';b.href=passed('final')?'examen-final.html#certificado':'examen-final.html';}
 }
 function paintLocks(){
-  const req=document.querySelector('[data-requires]');
-  if(!req||!req.dataset.requires)return;
-  const need=req.dataset.requires.split(' ').filter(Boolean);
-  if(need.some(id=>!passed(id))){
-    const msg=req.querySelector('.lock-msg'); if(msg) msg.hidden=false;
-    req.querySelectorAll('.lockable').forEach(e=>{e.remove();});
-  }
+  /* Las lecciones y el examen están abiertos. Aprobar un test no abre ni cierra nada. */
 }
 function bindQuizzes(scope){
   (scope||document).querySelectorAll('.quiz').forEach(q=>{
@@ -364,8 +387,11 @@ function bindQuizzes(scope){
           let ok=0;blocks.forEach((b,n)=>{const ops=qs[n].ops,ch=b.querySelector('input:checked');b.querySelectorAll('input').forEach(i=>{i.disabled=true;if(ops[+i.value].ok)i.parentNode.classList.add('right');});
             if(ch&&ops[+ch.value].ok)ok++;else{if(ch)ch.parentNode.classList.add('wrong');b.querySelector('.exp').hidden=false;}});
           const ap=ok>=pass,pr=prog(),o=pr[key]||{mejor:0,aprobado:false};o.mejor=Math.max(o.mejor,ok);o.aprobado=o.aprobado||ap;o.fecha=new Date().toISOString();pr[key]=o;save(pr);
+          asegurarCertificado();
+          pintarCertificado();
           const r=w.querySelector('.res');r.className='res result '+(ap?'pass':'fail');
-          r.innerHTML=(ap?'🎉 ¡Aprobado! ':'Casi… ')+ok+' de '+blocks.length+' aciertos (necesitas '+pass+'). '+(ap?'':'Repasa las explicaciones de las falladas y vuelve a intentarlo.')+'<br><button class="btn retry" style="margin-top:8px">Repetir test</button>';
+          const guarda=sesionCurso()?'':' Crea tu cuenta gratis para guardar tu progreso.';
+          r.innerHTML=(ap?'🎉 ¡Aprobado! ':'Casi… ')+ok+' de '+blocks.length+' aciertos (necesitas '+pass+'). '+(ap?'Cuenta para el certificado. Las demás lecciones siguen abiertas.':'Repasa las explicaciones de las falladas y vuelve a intentarlo.')+guarda+'<br><button class="btn retry" style="margin-top:8px">Repetir test</button>';
           r.querySelector('.retry').onclick=()=>{render();q.scrollIntoView();};
           w.querySelector('.corr').remove();r.scrollIntoView({behavior:'smooth',block:'center'});
         };
@@ -509,11 +535,8 @@ async function renderDynamicLesson(){
   const fuente=fuenteLeccion(L);
   const media=lessonMedia(fuente);
   const withExam=!!(L.examen&&EXAM_RE.test(L.examen));
-  const prev=withExam?lessons.slice(0,idx).filter(x=>x.estado==='disponible'&&x.examen&&EXAM_RE.test(x.examen)).map(x=>x.id):[];
-  if(prev.length)host.dataset.requires=prev.join(' ');
   let html='<p class="crumb"><a href="'+root+'curso.html">Curso</a> › '+esc(L.codigo||'')+'</p>';
   html+='<h1><span class="code">'+esc(L.codigo||'')+'</span> '+esc(L.titulo||'')+'</h1>';
-  html+='<div class="lock-msg" hidden>Esta lección se abre cuando apruebes las anteriores. <a href="'+root+'curso.html">Ver tu progreso</a>.</div>';
   if(media&&media.kind==='file'){
     html+='<div class="video lockable" data-lesson-video="'+esc(L.id)+'"><video controls playsinline preload="none" poster="'+esc(root+'img/logo.jpg')+'" src="'+esc(media.src)+'"></video></div>';
   }else if(media&&media.kind==='youtube'){
@@ -528,7 +551,7 @@ async function renderDynamicLesson(){
   }
   if(L.descripcion)html+='<section class="texto lockable"><h2>De qué trata</h2><p>'+esc(L.descripcion)+'</p></section>';
   if(withExam){
-    html+='<section class="quiz lockable" data-exam="'+esc(root+'data/examenes/'+L.examen)+'" data-pass="10" data-key="'+esc(L.id)+'"><h2>Test de la lección</h2><p>Apruebas con 10 aciertos.</p><div class="qwrap">Cargando test…</div></section>';
+    html+='<section class="quiz" data-exam="'+esc(root+'data/examenes/'+L.examen)+'" data-pass="10" data-key="'+esc(L.id)+'"><h2>Test de la lección</h2><p>Apruebas con 10 aciertos. El test es para el certificado; la lección ya está abierta. Puedes repetirlo.</p><div class="qwrap">Cargando test…</div></section>';
   }
   host.innerHTML=html;
   const t=document.querySelector('title');
@@ -551,9 +574,82 @@ async function mountFinalVideos(){
     slot.innerHTML='<video controls preload="metadata" playsinline poster="'+esc(root+'img/logo.jpg')+'" src="'+esc(root+base+name)+'"></video>';
   });
 }
+function fechaCurso(iso){
+  try{return new Date(iso).toLocaleDateString('es',{day:'numeric',month:'long',year:'numeric'});}
+  catch(e){return '';}
+}
+function asegurarCertificado(){
+  if(!certificadoListo())return;
+  const pr=prog();
+  const prev=pr.certificado||{};
+  const u=sesionCurso()?GRAuth.usuario():null;
+  const nombre=(u&&u.nombre)||prev.nombre||'';
+  const fecha=prev.fecha||new Date().toISOString();
+  const guardado=!!u;
+  if(prev.fecha===fecha&&prev.nombre===nombre&&!!prev.guardado===guardado)return;
+  pr.certificado={fecha:fecha,nombre:nombre,guardado:guardado};
+  save(pr);
+}
+function esPaginaCurso(){
+  return /\/(?:curso|examen-final|leccion)(?:\.html)?$/.test(location.pathname)||/\/lecciones\//.test(location.pathname);
+}
+function pintarAvisoCuenta(){
+  if(!esPaginaCurso())return;
+  let el=document.getElementById('aviso-cuenta');
+  if(!el){
+    el=document.createElement('p');
+    el.id='aviso-cuenta';
+    el.className='aviso-cuenta';
+    el.innerHTML='Crea tu cuenta gratis para guardar tu progreso. <button type="button">Crear cuenta</button>';
+    const main=document.getElementById('contenido');
+    if(!main)return;
+    main.insertAdjacentElement('afterbegin',el);
+    el.querySelector('button').addEventListener('click',function(){
+      if(window.GRAuth&&GRAuth.abrir)GRAuth.abrir('registro');
+    });
+  }
+  el.hidden=sesionCurso();
+}
+async function pintarCertificado(){
+  const enCurso=document.querySelector('ul.lessons');
+  const enExamen=document.querySelector('[data-key="final"]');
+  if(!enCurso&&!enExamen)return;
+  await cursoWeb();
+  asegurarCertificado();
+  let box=document.getElementById('certificado');
+  if(!box){
+    box=document.createElement('section');
+    box.id='certificado';
+    box.className='certificado';
+    const ancla=document.querySelector('.final-link')||enExamen;
+    if(ancla)ancla.insertAdjacentElement('afterend',box);
+  }
+  if(!certificadoListo()){box.hidden=true;return;}
+  const pr=prog();
+  const cert=pr.certificado||{};
+  const u=sesionCurso()?GRAuth.usuario():null;
+  const nombre=(u&&u.nombre)||cert.nombre||'';
+  const cuando=cert.fecha?fechaCurso(cert.fecha):'';
+  box.hidden=false;
+  box.innerHTML='<h2>Certificado</h2>'+
+    (u?'<p>Está guardado en tu cuenta.</p>':'<p>En este navegador ya está listo. Crea tu cuenta gratis para guardar tu progreso.</p>')+
+    '<div class="cert-hoja"><p class="kicker">Granja Rentable</p><h3>Certificado del curso de avicultura</h3>'+
+    '<p class="cert-nombre">'+(nombre?esc(nombre):'Alumno del curso gratis')+'</p>'+
+    '<p>Aprobó los tests de las lecciones publicadas y el examen final.</p>'+
+    (cuando?'<p class="cert-fecha">'+esc(cuando)+'</p>':'')+
+    '</div><p><button type="button" class="btn sec" id="cert-print">Imprimir</button></p>';
+  const btn=document.getElementById('cert-print');
+  if(btn)btn.addEventListener('click',function(){
+    document.body.classList.add('imprimir-cert');
+    window.print();
+  });
+}
+window.addEventListener('afterprint',function(){document.body.classList.remove('imprimir-cert');});
+window.addEventListener('gr-auth',function(){pintarAvisoCuenta();pintarCertificado();paintProgress();});
 paintProgress();
 paintLocks();
 bindQuizzes();
+pintarAvisoCuenta();
 (async function(){
   await promoteFromJson();
   paintProgress();
@@ -562,5 +658,8 @@ bindQuizzes();
   await mountFinalVideos();
   paintLocks();
   bindQuizzes();
+  pintarAvisoCuenta();
+  await pintarCertificado();
+  paintProgress();
 })();
 })();

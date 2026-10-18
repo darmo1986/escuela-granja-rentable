@@ -310,8 +310,10 @@
       try { localStorage.setItem("gr_progreso", JSON.stringify(junto)); } catch (e) {}
       bloque.curso = junto;
       guardarDatos(id, bloque);
+      guardarCurso(junto);
       pintarCuenta();
       pintarFicha();
+      avisar();
     }).catch(function () {});
   }
 
@@ -321,6 +323,7 @@
     Object.keys(a || {}).forEach(function (k) { keys[k] = 1; });
     Object.keys(b || {}).forEach(function (k) { keys[k] = 1; });
     Object.keys(keys).forEach(function (k) {
+      if (k === "certificado") return;
       var x = (a && a[k]) || {};
       var y = (b && b[k]) || {};
       if (typeof x !== "object" && typeof y !== "object") return;
@@ -330,6 +333,17 @@
         fecha: x.fecha || y.fecha || ""
       };
     });
+    var ca = a && a.certificado;
+    var cb = b && b.certificado;
+    if ((ca && ca.fecha) || (cb && cb.fecha)) {
+      var fa = (ca && ca.fecha) || "";
+      var fb = (cb && cb.fecha) || "";
+      out.certificado = {
+        fecha: fa && fb ? (fa < fb ? fa : fb) : (fa || fb),
+        nombre: (ca && ca.nombre) || (cb && cb.nombre) || "",
+        guardado: !!((ca && ca.guardado) || (cb && cb.guardado))
+      };
+    }
     return out;
   }
 
@@ -742,16 +756,18 @@
   }
 
   function leccionesAprobadas(curso) {
-    return Object.keys(curso || {}).filter(function (k) { return curso[k] && curso[k].aprobado; }).length;
+    return Object.keys(curso || {}).filter(function (k) {
+      return k !== "certificado" && curso[k] && curso[k].aprobado;
+    }).length;
   }
 
   function pintarCuenta() {
     var caja = document.getElementById("cuenta-cuerpo");
     if (!caja) return;
     if (!usuarioActual) {
-      caja.innerHTML = '<p>No has entrado. El curso, las fichas y la calculadora se usan igual. La cuenta sirve para guardar el avance, los cálculos y las fichas.</p>' +
+      caja.innerHTML = '<p>No has entrado. El curso, las fichas y la calculadora se usan igual, y siguen siendo gratis. Crea tu cuenta gratis para guardar tu progreso.</p>' +
         '<p><button type="button" class="btn gold" id="cuenta-entrar">Entrar / Registrarse</button></p>' +
-        '<h2>El curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta.</p>' +
+        '<h2>El curso</h2><p>Las lecciones están abiertas. Los tests y el examen final sirven para el certificado. La cuenta lo guarda.</p>' +
         (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "");
       document.getElementById("cuenta-entrar").addEventListener("click", function () { abrir("entrar"); });
       return;
@@ -769,7 +785,8 @@
       (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "") +
       '<form id="cuenta-apodo"><label>Apodo<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
       '<p><button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
-      "<h2>Curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas.</p>" +
+      "<h2>Curso</h2><p>El curso es gratis. Tu progreso está en la cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas." +
+      ((bloque.curso && bloque.curso.certificado && bloque.curso.certificado.fecha) ? " El certificado está guardado." : " El certificado se guarda aquí cuando apruebes los tests y el examen final.") + "</p>" +
       "<h2>Cálculos</h2>" + (calcs ? "<ul>" + calcs + "</ul>" : "<p>Todavía no guardaste ninguno. En la calculadora, el botón «Guardar en mi cuenta».</p>") +
       "<h2>Fichas guardadas</h2>" + (favs ? "<ul>" + favs + "</ul>" : "<p>En una ficha de enfermedades, «Guardar ficha».</p>");
     document.getElementById("cuenta-salir").addEventListener("click", salir);

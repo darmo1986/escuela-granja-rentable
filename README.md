@@ -75,7 +75,7 @@ La ficha ya está en `data/curso-web.json`, la fila ya está en `curso.html` y l
 1. Copia el mp4 a `videos/` con el nombre de la ficha, por ejemplo `videos/l05a.mp4`. Solo letras minúsculas, números, guion o guion bajo, y extensión `.mp4`.
 2. En esa entrada de `data/curso-web.json` pon `"estado": "disponible"` y `"video": "l05a.mp4"`.
 3. Opcional: `"minutos": 18` para la duración de la lista. Si no está, la lista dice «Video».
-4. Opcional, para que cuente en el progreso y bloquee el examen final: crea `data/examenes/l05a.json` (el mismo formato que `l01.json`) y añade `"examen": "l05a.json"`. Sin ese archivo, el video se puede ver y no bloquea las lecciones anteriores.
+4. Opcional, para que cuente para el certificado: crea `data/examenes/l05a.json` (el mismo formato que `l01.json`) y añade `"examen": "l05a.json"` con `"estado": "disponible"`. Sin ese archivo, el video se puede ver. Las lecciones no se bloquean entre sí.
 
 `leccion.html?id=l05a` lee el JSON y reproduce `videos/` + el nombre del archivo. L01–L04B siguen en `lecciones/`, con su texto y su test.
 

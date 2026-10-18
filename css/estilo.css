@@ -635,6 +635,14 @@ code { overflow-wrap: anywhere; }
 .field-error { color: #8C2F2F; font-weight: 750; font-size: .88rem; margin: 4px 0 0; }
 .calc input.is-invalid, .qa input.is-invalid, form input.is-invalid { border-color: #8C2F2F; }
 .nota-norma { background: #fff6d8; color: #2B2205; border-radius: 12px; padding: 10px 12px; font-weight: 750; margin: 12px 0; }
+.aviso-cuenta { background: #f3f7f3; color: #1a3d24; border-radius: 12px; padding: 10px 12px; margin: 0 0 14px; font-weight: 650; }
+.aviso-cuenta button { margin-left: 8px; min-height: 40px; border: 0; border-radius: 10px; padding: 6px 12px; background: #fff; color: #1F5E2E; font-weight: 750; cursor: pointer; }
+.certificado { margin: 16px 0 8px; }
+.cert-hoja { background: #fff; border: 2px solid #1F5E2E; border-radius: 16px; padding: 18px 16px; text-align: center; }
+.cert-nombre { font-size: 1.35rem; font-weight: 800; color: #1F5E2E; margin: 8px 0; }
+body.imprimir-cert * { visibility: hidden; }
+body.imprimir-cert .cert-hoja, body.imprimir-cert .cert-hoja * { visibility: visible; }
+body.imprimir-cert .cert-hoja { position: absolute; left: 0; top: 0; width: 100%; }
 .semaforo { border-radius: 12px; padding: 10px 12px; font-weight: 800; background: var(--gl); }
 .semaforo.verde { background: #E7F3EA; color: #0F3D1C; }
 .semaforo.ambar { background: #fff6d8; color: #2B2205; }

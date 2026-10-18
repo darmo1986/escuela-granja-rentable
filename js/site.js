@@ -886,7 +886,7 @@
   (function cargarCuenta() {
     if (window.GRAuth) return;
     var s = document.createElement("script");
-    s.src = root + "js/auth.js?v=20261018b";
+    s.src = root + "js/auth.js?v=20261018c";
     document.body.appendChild(s);
   })();
 
