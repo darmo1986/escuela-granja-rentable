@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Concurso de avicultura | Granja Rentable</title>
-<meta name="description" content="Concurso de pollos de engorde: 10 preguntas y 30 segundos. Premio mensual al primero. Cuenta gratis, mayores de 18 años y sin obligación de compra.">
+<meta name="description" content="Concurso de avicultura: 10 preguntas y 30 segundos. Premio mensual al primero. Cuenta gratis, mayores de 18 años y sin obligación de compra.">
 <link rel="canonical" href="https://granjarentable.com/concurso.html">
 <meta property="og:url" content="https://granjarentable.com/concurso.html">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Concurso de avicultura | Granja Rentable">
-<meta property="og:description" content="10 preguntas de pollos de engorde y 30 segundos. Premio mensual al primero. Cuenta gratis y mayores de 18 años.">
+<meta property="og:description" content="10 preguntas de avicultura y 30 segundos. Premio mensual al primero. Cuenta gratis y mayores de 18 años.">
 <meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
 <meta property="og:locale" content="es_419">
 <meta property="og:image:alt" content="Logo de Granja Rentable">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Concurso de avicultura | Granja Rentable">
-<meta name="twitter:description" content="10 preguntas de pollos de engorde y 30 segundos. Premio mensual al primero. Cuenta gratis y mayores de 18 años.">
+<meta name="twitter:description" content="10 preguntas de avicultura y 30 segundos. Premio mensual al primero. Cuenta gratis y mayores de 18 años.">
 <meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -97,7 +97,7 @@
 <section class="page-hero" id="concurso-hero">
 <p class="kicker">Concurso</p>
 <h1>10 preguntas de avicultura</h1>
-<p>Cuatro opciones y 30 segundos por pregunta, solo de pollos de engorde. Cada ronda elige 10 al azar. Un acierto cuenta si pasa al menos 1 segundo. El premio no se decide por la rapidez: manda el número de aciertos y, si empatan, un sorteo del servidor que queda guardado. Cerrar el mes no concede el premio: queda pendiente de verificar hasta que el administrador lo apruebe.</p>
+<p>Cuatro opciones y 30 segundos por pregunta, de avicultura: razas, alimentación, enfermedades y vacunas, incubación, instalaciones, puesta, engorde, manejo, bioseguridad y economía. Cada partida trae la misma mezcla, 4 fáciles, 3 medias y 3 difíciles, y no repite una pregunta tuya dentro del mes. La fácil suma 1 punto, la media 2 y la difícil 3. Hace falta al menos 5 segundos para que una respuesta, acertada o fallada, cuente. Durante el mes no se muestra cuál era la opción correcta. La rapidez no desempata: si empatan en puntos, un sorteo del servidor queda guardado. Cerrar el mes no concede el premio: queda pendiente de verificar hasta que el administrador lo apruebe.</p>
 <p class="concurso-premio" id="concurso-premio">Premio de este mes</p>
 <p id="concurso-cuenta">El ranking vuelve a cero al empezar el mes siguiente.</p>
 </section>
@@ -114,7 +114,7 @@
 <p id="concurso-error" class="concurso-error" role="alert"></p>
 <button type="submit" class="btn gold" id="concurso-empezar">Entrar para jugar</button>
 </form>
-<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Si respondes a tiempo, verás la explicación antes de seguir. Si se acaba el tiempo, no se muestra la respuesta. No hace falta comprar nada. El apodo solo se publica como ganador cuando el administrador aprueba el mes.</p>
+<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Las opciones se abren a los 5 segundos. Si respondes a tiempo, verás solo si tu opción fue correcta o no. La explicación queda para cuando el mes ya cerró. Si se acaba el tiempo, tampoco se muestra la respuesta. No hace falta comprar nada. El apodo solo se publica como ganador cuando el administrador aprueba el mes.</p>
 </section>
 <section id="concurso-reclamo" class="concurso-card" hidden>
 <h2 id="reclamo-titulo">Tu premio</h2>
@@ -166,13 +166,25 @@
 <h2 id="ganadores-titulo">Ganadores</h2>
 <div id="ganadores-lista"></div>
 </section>
+<section id="concurso-repaso" class="concurso-card">
+<h2>Repaso cuando el mes cerró</h2>
+<p>Durante el mes no se muestra la opción correcta. Cuando ese mes ya pasó, puedes ver tus respuestas contadas y la explicación.</p>
+<form id="repaso-form" class="concurso-form">
+<label for="repaso-periodo">Mes cerrado (AAAA-MM)</label>
+<input id="repaso-periodo" name="periodo" inputmode="numeric" maxlength="7" autocomplete="off" placeholder="2026-09">
+<p id="repaso-error" class="concurso-error" role="alert"></p>
+<button type="submit" class="btn sec">Ver mis explicaciones</button>
+</form>
+<div id="repaso-lista"></div>
+</section>
 <section id="concurso-bases" class="concurso-card">
 <h2>Bases del premio</h2>
 <ul>
 <li>Organiza Juan Pablo González García (Granja Rentable). El contacto está en el pie de esta página.</li>
 <li>Puede jugar quien tenga 18 años o más y una cuenta gratis. No hay obligación de compra. Una persona, una cuenta. El territorio es el de la lista del formulario: México, Estados Unidos, Colombia, Perú, España, Argentina, Venezuela, Ecuador, República Dominicana, Chile, Paraguay, Uruguay, Bolivia, Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panamá.</li>
 <li>Cada edición es un mes natural en hora de Madrid: empieza a las 00:00 del día 1 y cierra al terminar el último día. Al empezar el mes siguiente el ranking público vuelve a cero. La primera edición arranca cuando esta página se publique.</li>
-<li>Son 10 preguntas de pollos de engorde, cuatro opciones y 30 segundos. Cuenta la mejor ronda por aciertos. Hace falta al menos 1 segundo para que un acierto cuente. Si empatan en aciertos, el desempate es un sorteo del servidor entre los empatados, y queda guardado. La rapidez no desempata.</li>
+<li>Son 10 preguntas de avicultura, cuatro opciones y 30 segundos. Los temas son razas, alimentación, enfermedades y vacunas, incubación, instalaciones, puesta, engorde, manejo, bioseguridad y economía. Cada partida lleva la misma mezcla: 4 fáciles, 3 medias y 3 difíciles. La fácil vale 1 punto, la media 2 y la difícil 3. Cuenta la mejor ronda por puntos. Hace falta al menos 5 segundos para que la respuesta cuente, tanto si es correcta como si no. Durante el mes no se enseña la opción correcta ni la explicación. Si empatan en puntos, el desempate es un sorteo del servidor entre los empatados, y queda guardado. La rapidez no desempata.</li>
+<li>Dentro del mismo mes, una cuenta no recibe dos veces la misma pregunta. Si ya no quedan preguntas nuevas de alguna dificultad, la partida no empieza y el servidor lo dice. No se rellena con preguntas repetidas ni cambiando la mezcla.</li>
 <li>Cerrar el mes no concede el premio. La marca elegida queda en «pendiente de verificar». El administrador la revisa, también por si hubo trampas, y decide a mano: la aprueba o la anula. Hasta esa aprobación no hay ganador: no sale en el ranking ni en el historial, y no se puede reclamar.</li>
 <li>Si la anula, el premio pasa a la siguiente marca válida y esa también queda pendiente de verificar. Si no queda nadie, ese mes no tiene ganador.</li>
 <li>Si la aprueba, el premio de este mes es <span id="base-importe">el publicado arriba</span>. Entonces se publica el apodo y el ganador tiene 14 días para reclamar. Si no responde, el premio se anula y pasa a la siguiente marca válida.</li>
@@ -222,9 +234,9 @@
 <p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 <a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
-<script src="js/config.js"></script>
-<script src="js/app.js"></script>
-<script src="js/concurso.js"></script>
+<script src="js/config.js?v=20261018"></script>
+<script src="js/app.js?v=20261018"></script>
+<script src="js/concurso.js?v=20261018"></script>
 <script src="js/catalogo.js"></script>
 <script src="js/site.js"></script>
 </body></html>

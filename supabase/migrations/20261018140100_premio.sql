@@ -15,7 +15,7 @@ as $$
 $$;
 
 comment on function public.premio_euros() is
-  'Única cifra del premio. Es del concurso: 10 preguntas, más aciertos y, si empatan en aciertos, un sorteo en el servidor entre los empatados, que queda guardado. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
+  'Única cifra del premio. Es del concurso: 10 preguntas, la misma mezcla de dificultades y más puntos (la difícil vale más). Si empatan en puntos, un sorteo en el servidor entre los empatados queda guardado. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
 
 revoke all on function public.premio_euros() from public;
 grant execute on function public.premio_euros() to anon, authenticated;

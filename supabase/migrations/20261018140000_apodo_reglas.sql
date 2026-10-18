@@ -14,6 +14,7 @@ declare
   s text;
   letras text;
   junto text;
+  junto_c text;
   malas text[] := array[
     'cono', 'conos', 'polla', 'pollas', 'zorra', 'zorras',
     'pinche', 'pinches', 'idiota', 'idiotas',
@@ -32,6 +33,7 @@ declare
     'pelotudo', 'pelotuda', 'pelotudos', 'pelotudas',
     'huevon', 'huevona', 'huevones', 'huevonas',
     'cojudo', 'cojuda', 'cojudos', 'cojudas',
+    'conazo', 'conaza',
     'viagra', 'casino', 'porno', 'cripto',
     'joder', 'culo', 'culos', 'imbecil', 'imbeciles',
     'bitch', 'bitches',
@@ -47,7 +49,8 @@ declare
     'computo', 'computos', 'computacion',
     'reputacion', 'reputado', 'reputada', 'reputados', 'reputadas',
     'amputar', 'amputado', 'amputada', 'amputados', 'amputadas', 'amputacion',
-    'disputo', 'reputo', 'imputo', 'computa', 'putri', 'putra', 'putnam', 'puttanesca'
+    'disputo', 'reputo', 'imputo', 'computa', 'putri', 'putra', 'putnam', 'puttanesca',
+    'conchita'
   ];
 begin
   if raw is null then
@@ -93,36 +96,70 @@ begin
   if exists (
     select 1
     from regexp_split_to_table(letras, '[^a-z]+') as palabra(w)
+    cross join lateral (
+      select regexp_replace(palabra.w, '(.)\1+', '\1', 'g') as c
+    ) col
     where palabra.w <> ''
+      and palabra.w <> all (permitidos)
+      and col.c <> all (permitidos)
       and (
         palabra.w = any (malas)
-        or (
-          palabra.w <> all (permitidos)
-          and (
-            palabra.w like 'put%'
-            or palabra.w like '%putas'
-            or palabra.w like '%putos'
-            or palabra.w like '%puta'
-            or palabra.w like '%puto'
-            or palabra.w ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
-          )
-        )
+        or col.c = any (malas)
+        or palabra.w like '%pendejo%'
+        or palabra.w like '%pendeja%'
+        or col.c like '%pendejo%'
+        or col.c like '%pendeja%'
+        or palabra.w like '%fuck%'
+        or col.c like '%fuck%'
+        or palabra.w like '%conazo%'
+        or palabra.w like '%conaza%'
+        or col.c like '%conazo%'
+        or col.c like '%conaza%'
+        or palabra.w like 'put%'
+        or col.c like 'put%'
+        or palabra.w like '%putas'
+        or col.c like '%putas'
+        or palabra.w like '%putos'
+        or col.c like '%putos'
+        or palabra.w like '%puta'
+        or col.c like '%puta'
+        or palabra.w like '%puto'
+        or col.c like '%puto'
+        or palabra.w ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
+        or col.c ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
       )
   ) then
     return false;
   end if;
   junto := regexp_replace(letras, '[^a-z]+', '', 'g');
-  if junto = any (malas)
-     or (
-       junto <> all (permitidos)
-       and (
-         junto like 'put%'
-         or junto like '%putas'
-         or junto like '%putos'
-         or junto like '%puta'
-         or junto like '%puto'
-         or junto ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
-       )
+  junto_c := regexp_replace(junto, '(.)\1+', '\1', 'g');
+  if junto <> all (permitidos)
+     and junto_c <> all (permitidos)
+     and (
+       junto = any (malas)
+       or junto_c = any (malas)
+       or junto like '%pendejo%'
+       or junto like '%pendeja%'
+       or junto_c like '%pendejo%'
+       or junto_c like '%pendeja%'
+       or junto like '%fuck%'
+       or junto_c like '%fuck%'
+       or junto like '%conazo%'
+       or junto like '%conaza%'
+       or junto_c like '%conazo%'
+       or junto_c like '%conaza%'
+       or junto like 'put%'
+       or junto_c like 'put%'
+       or junto like '%putas'
+       or junto_c like '%putas'
+       or junto like '%putos'
+       or junto_c like '%putos'
+       or junto like '%puta'
+       or junto_c like '%puta'
+       or junto like '%puto'
+       or junto_c like '%puto'
+       or junto ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
+       or junto_c ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
      ) then
     return false;
   end if;

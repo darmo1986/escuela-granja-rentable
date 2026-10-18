@@ -57,6 +57,7 @@
     pelotudo: 1, pelotuda: 1, pelotudos: 1, pelotudas: 1,
     huevon: 1, huevona: 1, huevones: 1, huevonas: 1,
     cojudo: 1, cojuda: 1, cojudos: 1, cojudas: 1,
+    conazo: 1, conaza: 1,
     viagra: 1, casino: 1, porno: 1, cripto: 1,
     joder: 1, culo: 1, culos: 1, imbecil: 1, imbeciles: 1,
     bitch: 1, bitches: 1,
@@ -74,8 +75,9 @@
     reputacion: 1, reputado: 1, reputada: 1, reputados: 1, reputadas: 1,
     amputar: 1, amputado: 1, amputada: 1, amputados: 1, amputadas: 1, amputacion: 1,
     disputo: 1, reputo: 1, imputo: 1, computa: 1,
-    putri: 1, putra: 1, putnam: 1, puttanesca: 1
+    conchita: 1, putri: 1, putra: 1, putnam: 1, puttanesca: 1
   };
+  var APODO_RAICES = ["pendejo", "pendeja", "pendejos", "pendejas", "fuck", "fucking", "fucker", "conazo", "conaza"];
   /* put en medio, entre un prefijo y un sufijo típicos de insulto. */
   var APODO_PUT_MEDIO = /^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$/;
 
@@ -103,12 +105,29 @@
       .replace(/\p{Lm}/gu, " ");
   }
 
-  function apodoPorRaiz(w) {
-    if (!w || APODO_RAIZ_OK[w]) return false;
+  function apodoColapsar(w) {
+    return String(w || "").replace(/(.)\1+/g, "$1");
+  }
+
+  function apodoPorPut(w) {
+    if (!w) return false;
     if (w.indexOf("put") === 0) return true;
     if (w.length >= 4 && (w.slice(-4) === "puta" || w.slice(-4) === "puto")) return true;
     if (w.length >= 5 && (w.slice(-5) === "putas" || w.slice(-5) === "putos")) return true;
     if (APODO_PUT_MEDIO.test(w)) return true;
+    return false;
+  }
+
+  function apodoPorRaiz(w) {
+    var c, i, r;
+    if (!w || APODO_RAIZ_OK[w]) return false;
+    c = apodoColapsar(w);
+    if (APODO_RAIZ_OK[c]) return false;
+    if (apodoPorPut(w) || apodoPorPut(c)) return true;
+    for (i = 0; i < APODO_RAICES.length; i++) {
+      r = APODO_RAICES[i];
+      if (w.indexOf(r) >= 0 || c.indexOf(r) >= 0) return true;
+    }
     return false;
   }
 
@@ -118,12 +137,14 @@
 
   function apodoInsulto(s) {
     var palabras = apodoPalabras(s);
-    var i;
+    var i, pieza, junto, juntoC;
     for (i = 0; i < palabras.length; i++) {
-      if (APODO_MALAS[palabras[i]] || apodoPorRaiz(palabras[i])) return true;
+      pieza = palabras[i];
+      if (APODO_MALAS[pieza] || APODO_MALAS[apodoColapsar(pieza)] || apodoPorRaiz(pieza)) return true;
     }
-    var junto = palabras.join("");
-    return !!APODO_MALAS[junto] || apodoPorRaiz(junto);
+    junto = palabras.join("");
+    juntoC = apodoColapsar(junto);
+    return !!APODO_MALAS[junto] || !!APODO_MALAS[juntoC] || apodoPorRaiz(junto);
   }
 
   function apodoValido(s) {

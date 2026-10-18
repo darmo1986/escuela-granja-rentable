@@ -4,7 +4,9 @@ Sigue en borrador. La página dice que no está abierto mientras `comunidad.conc
 
 El premio es uno solo y es del concurso. La cifra está solo en `public.premio_euros()`. El navegador la lee de esa función y no guarda otra copia. El reto de `/preguntas` no tiene premio.
 
-Gana quien más acierta. Si empatan, el servidor sortea entre los empatados y guarda la llave en `concurso_sorteos`. No se usa el tiempo ni los milisegundos. Esa llave no se enseña.
+Cada partida lleva la misma mezcla: 4 fáciles (1 punto), 3 medias (2 puntos) y 3 difíciles (3 puntos). El máximo de una ronda es 19. Gana quien más puntos suma en su mejor ronda. Si empatan en puntos, el servidor sortea entre los empatados y guarda la llave en `concurso_sorteos`. No se usa el tiempo ni los milisegundos. Esa llave no se enseña.
+
+Una cuenta no recibe dos veces la misma pregunta en el mes. `concurso_empezar` lo anota en `concurso_servidas` en la misma operación que crea la partida. Si no quedan al menos 4 fáciles, 3 medias y 3 difíciles sin usar, no empieza y responde: «Este mes ya no quedan preguntas nuevas para ti. No se repiten.» No cambia la mezcla ni repite. Con 8 partidas al día, esa reserva alcanza los 31 días del mes. Si el banco etiquetado no llega ni para una mezcla, el mensaje es el de banco sin publicar.
 
 Nota interna: revisar con el gestor.
 
@@ -18,7 +20,7 @@ En el editor SQL de Supabase, y solo cuando se quiera encender:
 4. `supabase/migrations/20261018140000_apodo_reglas.sql` (`apodo_ok`).
 5. `supabase/migrations/20261018140100_premio.sql` (`premio_euros`).
 6. `supabase/migrations/20261018140200_concurso.sql`. Crea las tablas y las funciones. No trae las preguntas.
-7. El archivo privado `banco-concurso-v2.sql`, que no está en el repositorio. Se pega en el mismo editor después del paso 6. El banco viejo de 44 preguntas quedó publicado en commits anteriores y no se reutiliza.
+7. El archivo privado `banco-concurso-v3.sql`, que no está en el repositorio. La copia para revisarlo está en el almacén del agente: `/cursor/stores/self/banco-concurso-v3.sql`. Se pega entero en el mismo editor después del paso 6. Trae la dificultad (`facil`, `media`, `dificil`). El banco viejo de 44 preguntas quedó publicado en commits anteriores y no se reutiliza. El script empieza con `delete from public.concurso_preguntas where id !~ '^v[0-9]{3}$';` y después borra todo id `v` más dígitos, también los de cuatro cifras, y vuelve a insertar. Hay que correr el archivo completo. Si después de cargarlo se ejecuta solo el primer delete, se borran las preguntas `v1000` en adelante.
 
 Luego, en `js/config.js`, `comunidad.concursoPublicado` pasa a `true` y se publica el sitio.
 
@@ -26,9 +28,9 @@ Luego, en `js/config.js`, `comunidad.concursoPublicado` pasa a `true` y se publi
 
 `concurso_empezar` exige la cuenta, 18 años o más y `perfiles.nombre`. El apodo se valida con `public.apodo_ok` (en el navegador, `GRAuth.apodo`), también cuando se cambia después de jugar. Hay un índice único sin distinguir mayúsculas ni acentos.
 
-No acepta un apodo escrito en la página. Devuelve solo la primera pregunta, sin la correcta y sin la explicación. `concurso_abrir` entrega la siguiente y no reinicia el reloj. `concurso_responder` califica con el reloj del servidor. Si se acaba el tiempo, no manda la opción correcta ni la explicación.
+No acepta un apodo escrito en la página. Devuelve solo la primera pregunta, sin la correcta, sin la explicación y sin decir si es fácil o difícil. `concurso_abrir` entrega la siguiente y no reinicia el reloj. `concurso_responder` califica con el reloj del servidor y no devuelve la opción correcta, ni la explicación, ni la fuente, ni durante el mes ni si la respuesta fue mal o se pasó el tiempo. Hace falta al menos 5 segundos: si llega antes, no avanza y responde `demasiado_pronto`. Un acierto contado suma 1, 2 o 3 puntos según la dificultad. Cada intento guarda milisegundos, opción e IP en `concurso_respuestas`. `concurso_revisar` solo devuelve explicaciones de un mes ya cerrado y solo a esa cuenta. La marca del mes solo se sustituye cuando la ronda nueva tiene más puntos.
 
-El ranking del mes ordena por aciertos y no nombra un ganador. El día 1, con la hora de Madrid, la lista pública vuelve a cero. Cerrar el mes no concede el premio: `concurso_cerrar_meses` deja la marca elegida en `quiz_premios` con estado `pendiente_verificar`. No pasa sola a `pendiente`.
+El ranking del mes ordena por puntos y no nombra un ganador. El día 1, con la hora de Madrid, la lista pública vuelve a cero. Cerrar el mes no concede el premio: `concurso_cerrar_meses` elige la marca con más puntos y, si hay empate, la llave ya guardada. La deja en `quiz_premios` con estado `pendiente_verificar`. No pasa sola a `pendiente`.
 
 El administrador lo revisa en el editor SQL de Supabase, con un rol que pueda escribir (`postgres` o `service_role`). `authenticated` solo puede leer `quiz_premios`. Puede aprobar o anular.
 
@@ -79,7 +81,7 @@ Si el secreto está puesto y la comprobación no puede hacerse, la partida no em
 
 ## Plazos de borrado
 
-La IP de la partida se borra a las 24 horas. La partida se borra a los 7 días. Las marcas, el sorteo y las exclusiones de un mes se borran cuando ese premio está pagado.
+La fila de la partida, con su IP, se borra a los 7 días. Los milisegundos, la opción y la IP de cada respuesta se quedan en `concurso_respuestas` hasta que el premio de ese mes está pagado. Las marcas, las preguntas ya servidas, el sorteo y las exclusiones de un mes se borran en ese mismo momento.
 
 El límite es 30 partidas nuevas por minuto y por cuenta, y también por IP si la IP viene informada. Una IP vacía no se usa como cubo compartido. Además, 8 partidas empezadas por día y por cuenta, aunque no se hayan cerrado.
 

@@ -41,7 +41,7 @@ El ranking del reto es de cada mes: `periodo` es `AAAA-MM` y `ranking_mes` solo 
 
 ## Premio del concurso
 
-El premio es del concurso, no del reto. Son 10 preguntas, 4 respuestas y 30 s. Gana quien más acierta. Si empatan en aciertos, el desempate es un sorteo en el servidor entre los empatados, y queda guardado. El mes se cuenta en hora de Madrid (`Europe/Madrid`): al empezar el mes siguiente el ranking público vuelve a cero y la marca del mes cerrado queda para el premio.
+El premio es del concurso, no del reto. Son 10 preguntas, 4 respuestas y 30 s, con la misma mezcla de dificultades. Gana quien más puntos suma. Si empatan en puntos, el desempate es un sorteo en el servidor entre los empatados, y queda guardado. El mes se cuenta en hora de Madrid (`Europe/Madrid`): al empezar el mes siguiente el ranking público vuelve a cero y la marca del mes cerrado queda para el premio.
 
 La cifra está solo en `public.premio_euros()`. El navegador la lee de esa función. No hay una copia en `js/config.js`. El concurso tiene que llamarla y no repetir la cantidad. El pago sigue siendo manual. `/preguntas` no lo anuncia. Las bases están en la página del concurso.
 

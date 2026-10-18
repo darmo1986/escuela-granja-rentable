@@ -4,6 +4,7 @@
    El premio mostrado sale de public.premio_euros(). No hay otra cifra en el navegador. */
 (function () {
   var LIMITE_MS = 30000;
+  var MINIMO_MS = 5000;
   var PAISES = [
     ["", "Prefiero no decirlo"],
     ["MX", "México"], ["US", "Estados Unidos"], ["CO", "Colombia"], ["PE", "Perú"],
@@ -22,6 +23,7 @@
   var indice = 0;
   var total = 10;
   var aciertos = 0;
+  var puntos = 0;
   var segundos = 0;
   var endsAt = 0;
   var timerId = 0;
@@ -217,7 +219,7 @@
   function pintarRanking(filas) {
     if (!lista) return;
     lista.textContent = "";
-    var top = (filas || []).filter(function (f) { return f && Number(f.aciertos) > 0; }).slice(0, 20);
+    var top = (filas || []).filter(function (f) { return f && Number(f.puntos) > 0; }).slice(0, 20);
     if (!top.length) {
       var vacio = document.createElement("p");
       vacio.textContent = publicada && abierta
@@ -229,7 +231,7 @@
     var ol = document.createElement("ol");
     top.forEach(function (f, i) {
       var li = document.createElement("li");
-      if (fase === "fin" && apodo && f.apodo === apodo && Number(f.aciertos) === aciertos) {
+      if (fase === "fin" && apodo && f.apodo === apodo && Number(f.puntos) === puntos) {
         li.className = "concurso-yo";
       }
       var pos = document.createElement("span");
@@ -241,7 +243,7 @@
       var det = document.createElement("p");
       det.className = "fine";
       var paisTxt = f.pais && NOMBRE[f.pais] ? NOMBRE[f.pais] + " · " : "";
-      det.textContent = paisTxt + f.aciertos + " de 10";
+      det.textContent = paisTxt + f.puntos + " puntos · " + f.aciertos + " de 10";
       caja.appendChild(nom);
       caja.appendChild(det);
       li.appendChild(pos);
@@ -331,7 +333,7 @@
   function textoModo() {
     if (!publicada) return "El concurso todavía no está abierto.";
     if (!abierta) return "El concurso no está disponible. Inténtalo más tarde.";
-    return "Ranking de este mes, por aciertos. El premio no se concede al cerrar el mes: queda pendiente de verificar hasta que el administrador lo apruebe.";
+    return "Ranking de este mes, por puntos. La difícil vale más. El premio no se concede al cerrar el mes: queda pendiente de verificar hasta que el administrador lo apruebe.";
   }
 
   function aplicarEstado(data) {
@@ -532,9 +534,10 @@
       });
     }
     if (fb) {
-      fb.hidden = true;
+      fb.hidden = false;
       fb.textContent = "";
       fb.classList.remove("is-ok", "is-bad");
+      fb.textContent = "Lee la pregunta. Las opciones se abren a los 5 segundos.";
     }
     if (exp) { exp.hidden = true; exp.textContent = ""; }
     if (fuente) { fuente.hidden = true; fuente.textContent = ""; }
@@ -563,7 +566,7 @@
     pintarReloj();
     pararReloj();
     document.querySelectorAll("#preg-ops .concurso-opcion").forEach(function (b) {
-      b.disabled = false;
+      b.disabled = true;
     });
     timerId = setInterval(function () {
       if (fase !== "juego") return;
@@ -574,7 +577,21 @@
         return;
       }
       pintarReloj();
+      habilitarOpciones();
     }, 200);
+  }
+
+  function habilitarOpciones() {
+    var pasado = LIMITE_MS - quedaMs();
+    var listo = relojListo && !cortada && pasado >= MINIMO_MS && quedaMs() > 0;
+    var fb = document.getElementById("preg-fb");
+    document.querySelectorAll("#preg-ops .concurso-opcion").forEach(function (b) {
+      b.disabled = !listo;
+    });
+    if (listo && fb && fb.textContent.indexOf("Lee la pregunta") === 0) {
+      fb.hidden = true;
+      fb.textContent = "";
+    }
   }
 
   function marcarOpcion(botonEl, buena, texto) {
@@ -588,9 +605,10 @@
 
   function textoCierre(r) {
     if (r.timeout) return "Se acabó el tiempo.";
-    if (r.muy_rapido && r.acertada) return "Correcto, pero hace falta al menos 1 segundo para que cuente.";
     if (!r.ok) return "Incorrecto.";
-    return "Correcto. Llevas " + r.aciertos + " de 10.";
+    var suma = Number(r.puntos_ganados) || 0;
+    var etiqueta = suma === 1 ? "1 punto" : suma + " puntos";
+    return "Correcto. Suma " + etiqueta + ". Llevas " + r.aciertos + " aciertos y " + r.puntos + " puntos.";
   }
 
   function mostrarCierre(elegida, r) {
@@ -602,9 +620,8 @@
     var frase = textoCierre(r);
     botones.forEach(function (b, k) {
       b.disabled = true;
-      if (r.timeout) return;
-      if (k === r.indice_correcto) marcarOpcion(b, true, "Correcta");
-      else if (k === elegida) marcarOpcion(b, false, "Incorrecta");
+      if (r.timeout || k !== elegida || elegida < 0) return;
+      marcarOpcion(b, !!r.ok, r.ok ? "Correcto" : "Incorrecto");
     });
     if (fb) {
       fb.hidden = false;
@@ -615,18 +632,10 @@
     if (exp) {
       exp.hidden = true;
       exp.textContent = "";
-      if (!r.timeout && r.explicacion) {
-        exp.hidden = false;
-        exp.textContent = r.explicacion;
-      }
     }
     if (fuente) {
       fuente.hidden = true;
       fuente.textContent = "";
-      if (!r.timeout && r.fuente) {
-        fuente.hidden = false;
-        fuente.textContent = "Fuente: " + r.fuente;
-      }
     }
     if (next) {
       next.hidden = false;
@@ -634,6 +643,7 @@
       next.focus();
     }
     aciertos = Number(r.aciertos) || 0;
+    puntos = Number(r.puntos) || 0;
     segundos = Number(r.segundos) || 0;
     decir(frase);
   }
@@ -664,23 +674,48 @@
         }
         return;
       }
+      if (res.data.demasiado_pronto) {
+        relojListo = true;
+        habilitarOpciones();
+        if (quedaMs() > 0) {
+          pararReloj();
+          timerId = setInterval(function () {
+            if (fase !== "juego") return;
+            if (quedaMs() <= 0) {
+              pintarReloj();
+              bloquearOpciones();
+              responder(-1);
+              return;
+            }
+            pintarReloj();
+            habilitarOpciones();
+          }, 200);
+        }
+        if (fb) {
+          fb.hidden = false;
+          fb.classList.remove("is-ok", "is-bad");
+          fb.textContent = "Demasiado pronto. Hace falta al menos 5 segundos. El reloj sigue.";
+        }
+        decir("Demasiado pronto. El reloj sigue.");
+        return;
+      }
       mostrarCierre(i, res.data);
     });
   }
 
   function mostrarResultado() {
     pantalla("fin");
-    var puntos = document.getElementById("fin-puntos");
+    var marca = document.getElementById("fin-puntos");
     var detalle = document.getElementById("fin-detalle");
     var wa = document.getElementById("fin-wa");
     var titulo = document.getElementById("fin-titulo");
     if (titulo) titulo.textContent = "Tu marca";
-    if (puntos) puntos.textContent = aciertos + " de 10";
+    if (marca) marca.textContent = aciertos + " aciertos · " + puntos + " puntos";
     if (detalle) {
-      detalle.textContent = "El premio no se concede con esta marca. Al cerrar el mes queda pendiente de verificar hasta que el administrador lo apruebe. Si empatan en aciertos, el servidor sortea y guarda el resultado.";
+      detalle.textContent = "El premio no se concede con esta marca. Al cerrar el mes queda pendiente de verificar hasta que el administrador lo apruebe. Si empatan en puntos, el servidor sortea y guarda el resultado.";
     }
     if (wa) {
-      var texto = "Jugué el concurso de Granja Rentable: " + aciertos + " de 10.";
+      var texto = "Jugué el concurso de Granja Rentable: " + aciertos + " aciertos y " + puntos + " puntos.";
       wa.href = "https://wa.me/?text=" + encodeURIComponent(texto);
     }
     cargarEstado();
@@ -751,6 +786,7 @@
       partidaId = res.data.partida;
       total = Number(res.data.total) || 10;
       aciertos = 0;
+      puntos = 0;
       segundos = 0;
       cortada = false;
       if (res.data.premio_euros) verPremio(res.data.premio_euros);
@@ -812,6 +848,68 @@
   cargarEstado();
 
   form.addEventListener("submit", empezar);
+  var formRepaso = document.getElementById("repaso-form");
+  if (formRepaso) {
+    formRepaso.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var err = document.getElementById("repaso-error");
+      var lista = document.getElementById("repaso-lista");
+      var campo = document.getElementById("repaso-periodo");
+      var periodo = campo ? String(campo.value || "").trim() : "";
+      if (err) err.textContent = "";
+      if (lista) lista.textContent = "";
+      if (!publicada) {
+        if (err) err.textContent = "El concurso todavía no está abierto.";
+        return;
+      }
+      if (!usuario()) {
+        if (window.GRAuth && typeof GRAuth.abrir === "function") GRAuth.abrir("entrar");
+        return;
+      }
+      if (!/^[0-9]{4}-[0-9]{2}$/.test(periodo)) {
+        if (err) err.textContent = "Escribe el mes como AAAA-MM.";
+        return;
+      }
+      pedir("/rest/v1/rpc/concurso_revisar", {
+        method: "POST",
+        auth: true,
+        body: { p_periodo: periodo }
+      }).then(function (res) {
+        if (!res.ok || !res.data || !res.data.respuestas) {
+          if (err) err.textContent = textoError(res);
+          return;
+        }
+        var filas = res.data.respuestas;
+        if (!filas.length) {
+          if (lista) lista.textContent = "No hay respuestas contadas tuyas en ese mes.";
+          return;
+        }
+        filas.forEach(function (fila) {
+          var art = document.createElement("article");
+          art.className = "concurso-repaso";
+          var h = document.createElement("h3");
+          h.textContent = fila.pregunta || "";
+          var tu = document.createElement("p");
+          tu.textContent = fila.elegida_texto
+            ? ((fila.acertada ? "Tu opción fue correcta: " : "Tu opción: ") + fila.elegida_texto)
+            : "Esa pregunta se cerró por tiempo.";
+          var buena = document.createElement("p");
+          buena.textContent = "La opción correcta era: " + (fila.correcta_texto || "");
+          var ex = document.createElement("p");
+          ex.textContent = fila.explicacion || "";
+          var fu = document.createElement("p");
+          fu.className = "fine";
+          fu.textContent = fila.fuente ? ("Fuente: " + fila.fuente) : "";
+          art.appendChild(h);
+          art.appendChild(tu);
+          art.appendChild(buena);
+          art.appendChild(ex);
+          art.appendChild(fu);
+          if (lista) lista.appendChild(art);
+        });
+      });
+    });
+  }
   var siguiente = document.getElementById("preg-siguiente");
   if (siguiente) {
     siguiente.addEventListener("click", function () {

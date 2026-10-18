@@ -358,7 +358,10 @@ begin
       ('laputaza', false),
       ('hijoeputaso', false),
       ('superputaso', false),
-      (U&'\028Dmierda', false)
+      (U&'\028Dmierda', false),
+      ('elpendejo', false),
+      ('fuuck', false),
+      ('coñazo', false)
     ) as t(nombre, vale)
   loop
     if public.apodo_ok(caso.nombre) is distinct from caso.vale then

@@ -6,12 +6,15 @@
 --   4) supabase/migrations/20261018140000_apodo_reglas.sql
 --   5) supabase/migrations/20261018140100_premio.sql
 --   6) este archivo
---   7) el banco privado banco-concurso-v2.sql (no está en git)
+--   7) el banco privado banco-concurso-v3.sql (no está en git;
+--      ruta del agente: /cursor/stores/self/banco-concurso-v3.sql)
 -- Después, en js/config.js, pasa comunidad.concursoPublicado a true.
 --
 -- La cifra del premio es public.premio_euros(). No se repite aquí.
--- Gana quien más acierta. Si empatan, un sorteo del servidor queda guardado
--- en concurso_sorteos y no se vuelve a tirar. El mes es Europe/Madrid.
+-- Cada partida reparte la misma mezcla: 4 fáciles (1 punto), 3 medias (2) y
+-- 3 difíciles (3). Gana quien más puntos suma. Si empatan en puntos, un
+-- sorteo del servidor queda guardado en concurso_sorteos y no se vuelve a
+-- tirar. Una cuenta no repite pregunta dentro del mes. El mes es Europe/Madrid.
 -- El premio entra como pendiente_verificar. Cerrar el mes no lo concede.
 -- El administrador lo aprueba a mano (estado pendiente) o lo anula.
 -- Si lo anula, concurso_cerrar_meses pasa al siguiente, otra vez en
@@ -27,6 +30,7 @@ drop function if exists public.concurso_empezar(text);
 drop function if exists public.concurso_empezar(text, boolean, text);
 drop function if exists public.concurso_abrir(uuid);
 drop function if exists public.concurso_responder(uuid, int);
+drop function if exists public.concurso_revisar(text);
 drop function if exists public.concurso_estado();
 drop function if exists public.concurso_ganadores();
 drop function if exists public.concurso_reclamar(text, text, text);
@@ -75,6 +79,19 @@ create table if not exists public.concurso_preguntas (
 comment on table public.concurso_preguntas is
   'Banco del concurso. Sin lectura para el navegador: se carga aparte y no va en git.';
 
+alter table public.concurso_preguntas
+  add column if not exists dificultad text;
+
+alter table public.concurso_preguntas
+  drop constraint if exists concurso_preguntas_dificultad_check;
+
+alter table public.concurso_preguntas
+  add constraint concurso_preguntas_dificultad_check
+  check (dificultad is null or dificultad in ('facil', 'media', 'dificil'));
+
+comment on column public.concurso_preguntas.dificultad is
+  'facil vale 1 punto, media vale 2 y dificil vale 3. Sin etiqueta no entra en una partida.';
+
 create table public.concurso_sesiones (
   id uuid primary key default gen_random_uuid(),
   usuario uuid not null references public.perfiles (id) on delete cascade,
@@ -85,6 +102,7 @@ create table public.concurso_sesiones (
   indice int not null default 1 check (indice between 1 and 10),
   marca timestamptz,
   aciertos int not null default 0 check (aciertos between 0 and 10),
+  puntos int not null default 0 check (puntos between 0 and 19),
   segundos numeric(8, 3) not null default 0 check (segundos >= 0 and segundos <= 400),
   cerrada boolean not null default false,
   ip text not null default '',
@@ -92,7 +110,7 @@ create table public.concurso_sesiones (
 );
 
 comment on table public.concurso_sesiones is
-  'Partida en curso. La IP solo sirve para el límite de abuso y se borra a las 24 horas. La fila se borra a los 7 días.';
+  'Partida en curso. La IP queda en la fila hasta que esa fila se borra, a los 7 días. Cada respuesta copia los milisegundos y la IP a concurso_respuestas, y eso dura hasta que el premio del mes está pagado.';
 
 create table if not exists public.concurso_marcas (
   usuario uuid not null references public.perfiles (id) on delete cascade,
@@ -100,6 +118,7 @@ create table if not exists public.concurso_marcas (
   apodo text not null,
   pais text,
   aciertos int not null check (aciertos between 0 and 10),
+  puntos int not null default 0 check (puntos between 0 and 19),
   segundos numeric(8, 3) not null check (segundos >= 0 and segundos <= 400),
   oculto boolean not null default false,
   partida uuid,
@@ -129,25 +148,70 @@ create table if not exists public.concurso_exclusiones (
 comment on table public.concurso_exclusiones is
   'Quien ya quedó anulado u oculto en ese mes no vuelve a salir en el sorteo.';
 
+alter table public.concurso_marcas add column if not exists puntos int not null default 0;
+alter table public.concurso_marcas drop constraint if exists concurso_marcas_puntos_check;
+alter table public.concurso_marcas add constraint concurso_marcas_puntos_check check (puntos between 0 and 19);
+
+create table if not exists public.concurso_servidas (
+  usuario uuid not null references public.perfiles (id) on delete cascade,
+  periodo text not null check (periodo ~ '^[0-9]{4}-[0-9]{2}$'),
+  pregunta text not null,
+  creado timestamptz not null default clock_timestamp(),
+  primary key (usuario, periodo, pregunta)
+);
+
+comment on table public.concurso_servidas is
+  'Preguntas ya entregadas a esa cuenta en ese mes. No se repiten. Se borran cuando el premio de ese mes está pagado.';
+
+create table if not exists public.concurso_respuestas (
+  id bigint generated always as identity primary key,
+  usuario uuid not null references public.perfiles (id) on delete cascade,
+  periodo text not null check (periodo ~ '^[0-9]{4}-[0-9]{2}$'),
+  partida uuid not null,
+  pregunta text not null,
+  ms int not null check (ms >= 0),
+  ip text not null default '',
+  opcion int not null check (opcion between -1 and 3),
+  orig int check (orig is null or orig between 0 and 3),
+  contada boolean not null default false,
+  creado timestamptz not null default clock_timestamp()
+);
+
+comment on table public.concurso_respuestas is
+  'Milisegundos, opción e IP de cada intento. Sirve para revisar el cierre. Se borra cuando el premio de ese mes está pagado. Durante el mes el navegador no recibe la opción correcta.';
+
+alter table public.concurso_respuestas add column if not exists contada boolean not null default false;
+alter table public.concurso_respuestas add column if not exists orig int;
+
+create index if not exists concurso_respuestas_usuario_periodo
+  on public.concurso_respuestas (usuario, periodo);
+
 create index if not exists concurso_sesiones_usuario_creado
   on public.concurso_sesiones (usuario, creado desc);
 create index if not exists concurso_sesiones_ip_creado
   on public.concurso_sesiones (ip, creado desc);
 drop index if exists concurso_marcas_mes;
 create index concurso_marcas_mes
-  on public.concurso_marcas (periodo, aciertos desc);
+  on public.concurso_marcas (periodo, puntos desc);
+
+create index if not exists concurso_servidas_usuario_periodo
+  on public.concurso_servidas (usuario, periodo);
 
 alter table public.concurso_preguntas enable row level security;
 alter table public.concurso_sesiones enable row level security;
 alter table public.concurso_marcas enable row level security;
 alter table public.concurso_sorteos enable row level security;
 alter table public.concurso_exclusiones enable row level security;
+alter table public.concurso_servidas enable row level security;
+alter table public.concurso_respuestas enable row level security;
 
 revoke all on table public.concurso_preguntas from public, anon, authenticated;
 revoke all on table public.concurso_sesiones from public, anon, authenticated;
 revoke all on table public.concurso_marcas from public, anon, authenticated;
 revoke all on table public.concurso_sorteos from public, anon, authenticated;
 revoke all on table public.concurso_exclusiones from public, anon, authenticated;
+revoke all on table public.concurso_servidas from public, anon, authenticated;
+revoke all on table public.concurso_respuestas from public, anon, authenticated;
 
 alter table public.quiz_premios add column if not exists apodo text;
 alter table public.quiz_premios add column if not exists reclamable_hasta timestamptz;
@@ -463,14 +527,14 @@ begin
       on s.periodo = m.periodo and s.usuario = m.usuario
     where m.periodo = r.periodo
       and not m.oculto
-      and m.aciertos > 0
+      and m.puntos > 0
       and public.apodo_ok(p.nombre)
       and not exists (
         select 1
         from public.concurso_exclusiones e
         where e.periodo = m.periodo and e.usuario = m.usuario
       )
-    order by m.aciertos desc, s.llave asc
+    order by m.puntos desc, s.llave asc
     limit 1;
 
     if siguiente is not null then
@@ -537,11 +601,6 @@ security definer
 set search_path = public
 as $$
 begin
-  update public.concurso_sesiones
-  set ip = ''
-  where ip <> ''
-    and creado < clock_timestamp() - interval '24 hours';
-
   delete from public.concurso_sesiones
   where creado < clock_timestamp() - interval '7 days';
 
@@ -573,6 +632,18 @@ begin
   where q.periodo = m.periodo
     and q.origen = 'concurso'
     and q.estado = 'pagado';
+
+  delete from public.concurso_servidas sv
+  using public.quiz_premios q
+  where q.periodo = sv.periodo
+    and q.origen = 'concurso'
+    and q.estado = 'pagado';
+
+  delete from public.concurso_respuestas r
+  using public.quiz_premios q
+  where q.periodo = r.periodo
+    and q.origen = 'concurso'
+    and q.estado = 'pagado';
 end;
 $$;
 
@@ -593,25 +664,29 @@ begin
   perform public.concurso_mantenimiento();
   reinicio := (date_trunc('month', now() at time zone 'Europe/Madrid') + interval '1 month')
     at time zone 'Europe/Madrid';
-  select count(*) >= 10 into abierto from public.concurso_preguntas;
+  select count(*) >= 10 into abierto
+  from public.concurso_preguntas
+  where dificultad in ('facil', 'media', 'dificil');
 
   select coalesce(jsonb_agg(jsonb_build_object(
     'puesto', x.puesto,
     'apodo', x.apodo,
     'pais', coalesce(x.pais, ''),
-    'aciertos', x.aciertos
+    'aciertos', x.aciertos,
+    'puntos', x.puntos
   ) order by x.puesto, x.apodo), '[]'::jsonb)
   into ranking
   from (
     select p.nombre as apodo,
            m.pais,
            m.aciertos,
-           rank() over (order by m.aciertos desc) as puesto
+           m.puntos,
+           rank() over (order by m.puntos desc) as puesto
     from public.concurso_marcas m
     join public.perfiles p on p.id = m.usuario
     where m.periodo = mes
       and not m.oculto
-      and m.aciertos > 0
+      and m.puntos > 0
       and public.apodo_ok(p.nombre)
   ) x
   where x.puesto <= 20;
@@ -719,6 +794,13 @@ declare
   pack jsonb;
   pid uuid;
   n int;
+  n_facil int;
+  n_media int;
+  n_dificil int;
+  t_facil int;
+  t_media int;
+  t_dificil int;
+  mes_srv text;
   paises text[] := array[
     'MX', 'US', 'CO', 'PE', 'ES', 'AR', 'VE', 'EC', 'DO', 'CL',
     'PY', 'UY', 'BO', 'GT', 'HN', 'SV', 'NI', 'CR', 'PA'
@@ -774,23 +856,91 @@ begin
     raise exception 'Hoy ya empezaste 8 partidas. Mañana puedes volver a jugar.';
   end if;
 
-  select count(*) into n from public.concurso_preguntas;
-  if n < 10 then
+  mes_srv := public.periodo_madrid(now());
+  select
+    count(*) filter (where dificultad = 'facil'),
+    count(*) filter (where dificultad = 'media'),
+    count(*) filter (where dificultad = 'dificil')
+  into t_facil, t_media, t_dificil
+  from public.concurso_preguntas
+  where dificultad in ('facil', 'media', 'dificil');
+  n := t_facil + t_media + t_dificil;
+  if n < 10 or t_facil < 4 or t_media < 3 or t_dificil < 3 then
     raise exception 'El concurso no está disponible. Falta publicar el banco de preguntas.';
+  end if;
+
+  select
+    count(*) filter (where p.dificultad = 'facil'),
+    count(*) filter (where p.dificultad = 'media'),
+    count(*) filter (where p.dificultad = 'dificil')
+  into n_facil, n_media, n_dificil
+  from public.concurso_preguntas p
+  where p.dificultad in ('facil', 'media', 'dificil')
+    and not exists (
+      select 1
+      from public.concurso_servidas sv
+      where sv.usuario = uid
+        and sv.periodo = mes_srv
+        and sv.pregunta = p.id
+    );
+  if n_facil < 4 or n_media < 3 or n_dificil < 3 then
+    raise exception 'Este mes ya no quedan preguntas nuevas para ti. No se repiten.';
   end if;
 
   select jsonb_agg(jsonb_build_object('id', s.id, 'orden', to_jsonb(public.concurso_barajar())) order by s.n)
   into pack
   from (
-    select id, row_number() over () as n
+    select id, row_number() over (order by random()) as n
     from (
-      select id from public.concurso_preguntas order by random() limit 10
+      (
+        select p.id
+        from public.concurso_preguntas p
+        where p.dificultad = 'facil'
+          and not exists (
+            select 1 from public.concurso_servidas sv
+            where sv.usuario = uid and sv.periodo = mes_srv and sv.pregunta = p.id
+          )
+        order by random()
+        limit 4
+      )
+      union all
+      (
+        select p.id
+        from public.concurso_preguntas p
+        where p.dificultad = 'media'
+          and not exists (
+            select 1 from public.concurso_servidas sv
+            where sv.usuario = uid and sv.periodo = mes_srv and sv.pregunta = p.id
+          )
+        order by random()
+        limit 3
+      )
+      union all
+      (
+        select p.id
+        from public.concurso_preguntas p
+        where p.dificultad = 'dificil'
+          and not exists (
+            select 1 from public.concurso_servidas sv
+            where sv.usuario = uid and sv.periodo = mes_srv and sv.pregunta = p.id
+          )
+        order by random()
+        limit 3
+      )
     ) z
   ) s;
+
+  if pack is null or jsonb_array_length(pack) <> 10 then
+    raise exception 'Este mes ya no quedan preguntas nuevas para ti. No se repiten.';
+  end if;
 
   insert into public.concurso_sesiones (usuario, apodo, pais, mayor, preguntas, indice, marca, ip)
   values (uid, nom, pais, true, pack, 1, clock_timestamp(), dir)
   returning id into pid;
+
+  insert into public.concurso_servidas (usuario, periodo, pregunta)
+  select uid, mes_srv, elem->>'id'
+  from jsonb_array_elements(pack) elem;
 
   return jsonb_build_object(
     'partida', pid,
@@ -798,6 +948,7 @@ begin
     'total', 10,
     'pregunta', public.concurso_texto(pack, 1),
     'aciertos', 0,
+    'puntos', 0,
     'periodo', public.periodo_madrid(now()),
     'premio_euros', public.premio_euros(),
     'reinicio', (date_trunc('month', now() at time zone 'Europe/Madrid') + interval '1 month')
@@ -836,7 +987,8 @@ begin
     'indice', s.indice,
     'total', 10,
     'pregunta', public.concurso_texto(s.preguntas, s.indice),
-    'aciertos', s.aciertos
+    'aciertos', s.aciertos,
+    'puntos', s.puntos
   );
 end;
 $$;
@@ -852,15 +1004,15 @@ declare
   elem jsonb;
   fila public.concurso_preguntas%rowtype;
   ms int;
-  k int;
   orig int;
-  bueno int;
   timeout boolean;
-  muy_rapido boolean;
+  pronto boolean;
   es_correcta boolean;
   acierto boolean;
   sumar int;
+  peso int;
   nuevo_aciertos int;
+  nuevo_puntos int;
   nuevo_segundos numeric(8, 3);
   acabada boolean;
   mes text;
@@ -892,73 +1044,144 @@ begin
   if ms < 0 then
     ms := 0;
   end if;
-  timeout := p_opcion = -1 or ms > 32000;
-  es_correcta := false;
-  if not timeout and p_opcion between 0 and 3 then
+  -- El -1 solo es tiempo agotado si ya pasaron 28 s. Un -1 temprano no cierra la pregunta.
+  timeout := ms > 32000 or (p_opcion = -1 and ms >= 28000);
+  pronto := (not timeout) and (ms < 5000 or p_opcion = -1);
+  orig := null;
+  if p_opcion between 0 and 3 then
     orig := (elem->'orden'->>p_opcion)::int;
-    es_correcta := orig = fila.correcta;
-  end if;
-  muy_rapido := es_correcta and not timeout and ms < 1000;
-  acierto := es_correcta and not muy_rapido;
-  bueno := null;
-  if not timeout then
-    for k in 0..3 loop
-      if (elem->'orden'->>k)::int = fila.correcta then
-        bueno := k;
-      end if;
-    end loop;
   end if;
 
+  insert into public.concurso_respuestas (usuario, periodo, partida, pregunta, ms, ip, opcion, orig, contada)
+  values (
+    s.usuario,
+    public.periodo_madrid(s.creado),
+    s.id,
+    fila.id,
+    ms,
+    coalesce(s.ip, ''),
+    p_opcion,
+    orig,
+    not pronto
+  );
+
+  if pronto then
+    return jsonb_build_object(
+      'ok', false,
+      'timeout', false,
+      'demasiado_pronto', true,
+      'aciertos', s.aciertos,
+      'puntos', s.puntos,
+      'acabada', false,
+      'indice', s.indice
+    );
+  end if;
+
+  es_correcta := false;
+  if not timeout and orig is not null then
+    es_correcta := orig = fila.correcta;
+  end if;
+  acierto := es_correcta;
+
+  peso := case fila.dificultad
+    when 'facil' then 1
+    when 'media' then 2
+    when 'dificil' then 3
+    else 0
+  end;
   sumar := least(ms, 30000);
   nuevo_aciertos := s.aciertos + (case when acierto then 1 else 0 end);
+  nuevo_puntos := s.puntos + (case when acierto then peso else 0 end);
   nuevo_segundos := s.segundos + (sumar / 1000.0);
   acabada := s.indice >= 10;
 
   update public.concurso_sesiones
   set aciertos = nuevo_aciertos,
+      puntos = nuevo_puntos,
       segundos = nuevo_segundos,
       marca = null,
       indice = case when acabada then s.indice else s.indice + 1 end,
       cerrada = acabada
   where id = s.id;
 
-  if acabada and nuevo_aciertos > 0 then
+  if acabada and nuevo_puntos > 0 then
     mes := public.periodo_madrid(now());
     select nombre into nom from public.perfiles where id = s.usuario;
     if nom is null or not public.apodo_ok(nom) then
       raise exception 'Ese apodo no se puede usar. Cámbialo en Mi cuenta, sin insultos.';
     end if;
-    insert into public.concurso_marcas (usuario, periodo, apodo, pais, aciertos, segundos, partida)
-    values (s.usuario, mes, nom, s.pais, nuevo_aciertos, nuevo_segundos, s.id)
+    insert into public.concurso_marcas (usuario, periodo, apodo, pais, aciertos, puntos, segundos, partida)
+    values (s.usuario, mes, nom, s.pais, nuevo_aciertos, nuevo_puntos, nuevo_segundos, s.id)
     on conflict (usuario, periodo) do update
     set apodo = excluded.apodo,
         pais = excluded.pais,
         aciertos = excluded.aciertos,
+        puntos = excluded.puntos,
         segundos = excluded.segundos,
         partida = excluded.partida,
         creado = clock_timestamp()
-    where excluded.aciertos > public.concurso_marcas.aciertos;
+    where excluded.puntos > public.concurso_marcas.puntos;
   end if;
 
   resp := jsonb_build_object(
     'ok', acierto,
     'timeout', timeout,
-    'muy_rapido', muy_rapido,
+    'demasiado_pronto', false,
     'aciertos', nuevo_aciertos,
+    'puntos', nuevo_puntos,
     'acabada', acabada,
-    'indice', s.indice
+    'indice', s.indice,
+    'puntos_ganados', case when acierto then peso else 0 end
   );
-  if not timeout then
-    resp := resp || jsonb_build_object(
-      'acertada', es_correcta,
-      'indice_correcto', bueno,
-      'explicacion', fila.explicacion,
-      'fuente', fila.fuente
-    );
-  end if;
   return resp;
 end;
 $$;
+
+create or replace function public.concurso_revisar(p_periodo text)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  mes text := public.periodo_madrid(now());
+  filas jsonb;
+begin
+  if auth.uid() is null then
+    raise exception 'Entra con tu cuenta para jugar.';
+  end if;
+  if p_periodo is null or p_periodo !~ '^[0-9]{4}-[0-9]{2}$' then
+    raise exception 'Ese mes no vale.';
+  end if;
+  if p_periodo >= mes then
+    raise exception 'Las explicaciones se abren cuando el mes ya cerró.';
+  end if;
+
+  select coalesce(jsonb_agg(jsonb_build_object(
+    'tema', p.tema,
+    'pregunta', p.pregunta,
+    'opciones', p.opciones,
+    'elegida', r.orig,
+    'elegida_texto', case when r.orig is null then '' else p.opciones ->> r.orig end,
+    'correcta', p.correcta,
+    'correcta_texto', p.opciones ->> p.correcta,
+    'acertada', r.orig is not null and r.orig = p.correcta,
+    'explicacion', p.explicacion,
+    'fuente', p.fuente,
+    'ms', r.ms
+  ) order by r.creado), '[]'::jsonb)
+  into filas
+  from public.concurso_respuestas r
+  join public.concurso_preguntas p on p.id = r.pregunta
+  where r.usuario = auth.uid()
+    and r.periodo = p_periodo
+    and r.contada;
+  return jsonb_build_object('periodo', p_periodo, 'respuestas', filas);
+end;
+$$;
+
+comment on function public.concurso_revisar(text) is
+  'Explicaciones de un mes ya cerrado, solo de la cuenta que pregunta. Durante el mes en curso no devuelve nada.';
 
 create or replace function public.concurso_reclamar(p_periodo text, p_metodo text, p_dato text)
 returns jsonb
@@ -1021,7 +1244,7 @@ end;
 $$;
 
 comment on function public.premio_euros() is
-  'Única cifra del premio. Es del concurso: 10 preguntas, más aciertos y, si empatan en aciertos, un sorteo en el servidor entre los empatados, que queda guardado. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
+  'Única cifra del premio. Es del concurso: 10 preguntas, la misma mezcla de dificultades y más puntos (la difícil vale más). Si empatan en puntos, un sorteo en el servidor entre los empatados queda guardado. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
 
 revoke all on function public.concurso_barajar() from public, anon, authenticated;
 revoke all on function public.concurso_texto(jsonb, int) from public, anon, authenticated;
@@ -1038,6 +1261,7 @@ revoke all on function public.concurso_premio_pendiente(text) from public, anon;
 revoke all on function public.concurso_empezar(text, boolean, text) from public;
 revoke all on function public.concurso_abrir(uuid) from public;
 revoke all on function public.concurso_responder(uuid, int) from public;
+revoke all on function public.concurso_revisar(text) from public;
 revoke all on function public.concurso_reclamar(text, text, text) from public;
 
 grant execute on function public.concurso_estado() to anon, authenticated;
@@ -1047,4 +1271,5 @@ grant execute on function public.concurso_premio_pendiente(text) to authenticate
 grant execute on function public.concurso_empezar(text, boolean, text) to authenticated;
 grant execute on function public.concurso_abrir(uuid) to authenticated;
 grant execute on function public.concurso_responder(uuid, int) to authenticated;
+grant execute on function public.concurso_revisar(text) to authenticated;
 grant execute on function public.concurso_reclamar(text, text, text) to authenticated;

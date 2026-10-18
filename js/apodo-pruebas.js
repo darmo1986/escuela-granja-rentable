@@ -22,7 +22,8 @@ const noPasan = [
   "imbécil", "bitch", "f u c k", "Pụta", "HIJODEPUTA",
   "putita", "pvtita", "granjaputa", "Elputo", "subnormal", "perra", "shit", "carajo",
   "\u02CDmierda", "p.v.t.a", "Putin",
-  "laputaza", "hijoeputaso", "superputaso", "\u028Dmierda"
+  "laputaza", "hijoeputaso", "superputaso", "\u028Dmierda",
+  "elpendejo", "fuuck", "coñazo"
 ];
 let fallos = 0;
 function mal(msg) { fallos += 1; console.error(msg); }
