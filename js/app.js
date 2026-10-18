@@ -636,6 +636,7 @@ async function pintarCertificado(){
     '<div class="cert-hoja"><p class="kicker">Granja Rentable</p><h3>Certificado del curso de avicultura</h3>'+
     '<p class="cert-nombre">'+(nombre?esc(nombre):'Alumno del curso gratis')+'</p>'+
     '<p>Aprobó los tests de las lecciones publicadas y el examen final.</p>'+
+    '<p>Constancia de autoevaluación, sin verificación externa.</p>'+
     (cuando?'<p class="cert-fecha">'+esc(cuando)+'</p>':'')+
     '</div><p><button type="button" class="btn sec" id="cert-print">Imprimir</button></p>';
   const btn=document.getElementById('cert-print');

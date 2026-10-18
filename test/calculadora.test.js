@@ -119,4 +119,55 @@ assert.ok(/entero/.test(avesPantalla.error));
 var espacio = calcs.espacio("ponedora_patio", 100, 0);
 assert.ok(/^100 ponedoras/.test(espacio.text), espacio.text);
 
+var doble = rent.calcular(ejemplo({ objetivo: "doble", precioVenta: "80" }));
+assert.strictEqual(doble.ok, true, JSON.stringify(doble.errores || doble.error));
+assert.ok(doble.costeHuevo >= 0, "coste por huevo " + doble.costeHuevo);
+assert.ok(doble.netoHuevo <= 0, "el ejemplo a 80 €/ave debe cubrir el huevo");
+assert.strictEqual(doble.costeHuevo, 0);
+
+var milAves = rent.leerNumero("1.000", { entero: true });
+assert.strictEqual(milAves.ok, true);
+assert.strictEqual(milAves.value, 1000);
+assert.strictEqual(rent.leerNumero("1,000", { entero: true }).value, 1000);
+assert.strictEqual(calcs.leerNumero("1.000", { entero: true }).value, 1000);
+assert.strictEqual(calcs.leerNumero("1,000", { entero: true }).value, 1000);
+var loteMil = rent.calcular(ejemplo({ aves: "1.000" }));
+assert.strictEqual(loteMil.ok, true, JSON.stringify(loteMil.errores));
+cerca(loteMil.costeAves, 7000, "1.000 aves son 1000");
+
+var ambiguo = rent.leerNumero("1,250");
+assert.strictEqual(ambiguo.value, 1.25);
+assert.strictEqual(ambiguo.aviso, "¿1,250 es 1,25 o 1250? Para miles escribe 1250 sin punto ni coma.");
+assert.strictEqual(rent.leerNumero("1.000").value, 1);
+assert.ok(/1 o 1000/.test(rent.leerNumero("1.000").aviso));
+assert.strictEqual(rent.leerNumero("0.520").value, 0.52);
+assert.strictEqual(rent.leerNumero("0.520").aviso, undefined);
+assert.strictEqual(rent.leerNumero("0,520").value, 0.52);
+assert.strictEqual(rent.leerNumero("0,520").aviso, undefined);
+var inst = rent.calcular(ejemplo({ instalacion: "1,250" }));
+assert.strictEqual(inst.ok, true, JSON.stringify(inst.errores));
+assert.ok(inst.avisos && /1,25 o 1250/.test(inst.avisos["c-instalacion"]), JSON.stringify(inst.avisos));
+cerca(inst.beneficio, base.beneficio + 299.75, "1,250 € de instalación es 1,25");
+
+var menos = rent.leerNumero("\u22125");
+assert.strictEqual(menos.ok, false);
+assert.ok(/positivo/.test(menos.error), menos.error);
+assert.strictEqual(calcs.leerNumero("\u22125").ok, false);
+assert.ok(/positivo/.test(calcs.leerNumero("\u22125").error));
+assert.strictEqual(rent.leerNumero("5 5").ok, false);
+assert.ok(/espacios/.test(rent.leerNumero("5 5").error));
+assert.strictEqual(calcs.leerNumero("5 5").ok, false);
+assert.strictEqual(rent.leerNumero("1 000", { entero: true }).value, 1000);
+assert.strictEqual(rent.leerNumero("1 000 000").value, 1000000);
+assert.strictEqual(calcs.leerNumero("1 000").value, 1000);
+
+assert.strictEqual(calcs.leerNumero("", { opcional: true }).value, 0);
+assert.strictEqual(calcs.leerNumero("", { opcional: true }).ok, true);
+var una = calcs.espacio("ponedora_patio", 1, 0);
+assert.ok(/^1 ponedora /.test(una.text), una.text);
+var unPollo = calcs.espacio("engorde", 1, 2.5);
+assert.ok(/^1 pollo /.test(unPollo.text), unPollo.text);
+var unCampero = calcs.espacio("campero", 1, 0);
+assert.ok(/^1 pollo campero/.test(unCampero.text), unCampero.text);
+
 console.log("ok", rent.fmt(base.beneficio, 2), "€");

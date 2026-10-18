@@ -633,6 +633,8 @@ code { overflow-wrap: anywhere; }
 .rent-dl dt { font-size: .82rem; color: var(--muted); font-weight: 700; }
 .rent-dl dd { margin: 0; font-weight: 800; color: var(--gd); }
 .field-error { color: #8C2F2F; font-weight: 750; font-size: .88rem; margin: 4px 0 0; }
+.field-hint { color: #2B2205; background: #fff6d8; font-weight: 650; font-size: .88rem; margin: 4px 0 0; border-radius: 8px; padding: 6px 8px; }
+.nota-miles { margin: 0 0 12px; font-weight: 650; }
 .calc input.is-invalid, .qa input.is-invalid, form input.is-invalid { border-color: #8C2F2F; }
 .nota-norma { background: #fff6d8; color: #2B2205; border-radius: 12px; padding: 10px 12px; font-weight: 750; margin: 12px 0; }
 .aviso-cuenta { background: #f3f7f3; color: #1a3d24; border-radius: 12px; padding: 10px 12px; margin: 0 0 14px; font-weight: 650; }
