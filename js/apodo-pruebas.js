@@ -13,14 +13,16 @@ eval(src.slice(start, end));
 const pasan = [
   "Putumayo", "Maricarmen", "Conchita", "Cabrera", "Diputado",
   "Gonçalo", "O'Brien", "Łukasz", "Ana Ruiz", "María", "Navarro", "Eva",
-  "disputa", "computadora", "reputación"
+  "disputa", "computadora", "reputación",
+  "Disputo", "Reputo", "Imputo", "Computa", "Putri", "Putra", "Putnam", "Puttanesca"
 ];
 const noPasan = [
   "coño", "polla", "zorra", "pinche", "idiota", "fuck", "pvta",
   "pụta", "ıdiota", "pvto", "hijodeputa", "putamadre", "joder", "culo",
   "imbécil", "bitch", "f u c k", "Pụta", "HIJODEPUTA",
   "putita", "pvtita", "granjaputa", "Elputo", "subnormal", "perra", "shit", "carajo",
-  "\u02CDmierda", "p.v.t.a"
+  "\u02CDmierda", "p.v.t.a", "Putin",
+  "laputaza", "hijoeputaso", "superputaso", "\u028Dmierda"
 ];
 let fallos = 0;
 function mal(msg) { fallos += 1; console.error(msg); }

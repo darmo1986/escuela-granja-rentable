@@ -7,16 +7,36 @@ begin
   if has_table_privilege('anon', 'public.quiz_premios', 'INSERT')
      or has_table_privilege('anon', 'public.quiz_premios', 'UPDATE')
      or has_table_privilege('anon', 'public.quiz_premios', 'DELETE')
+     or has_table_privilege('anon', 'public.quiz_premios', 'TRUNCATE')
+     or has_table_privilege('anon', 'public.quiz_premios', 'TRIGGER')
+     or has_table_privilege('anon', 'public.quiz_premios', 'REFERENCES')
      or has_table_privilege('authenticated', 'public.quiz_premios', 'INSERT')
      or has_table_privilege('authenticated', 'public.quiz_premios', 'UPDATE')
      or has_table_privilege('authenticated', 'public.quiz_premios', 'DELETE')
+     or has_table_privilege('authenticated', 'public.quiz_premios', 'TRUNCATE')
+     or has_table_privilege('authenticated', 'public.quiz_premios', 'TRIGGER')
+     or has_table_privilege('authenticated', 'public.quiz_premios', 'REFERENCES')
      or has_table_privilege('anon', 'public.reto_premios', 'INSERT')
      or has_table_privilege('anon', 'public.reto_premios', 'UPDATE')
      or has_table_privilege('anon', 'public.reto_premios', 'DELETE')
+     or has_table_privilege('anon', 'public.reto_premios', 'TRUNCATE')
+     or has_table_privilege('anon', 'public.reto_premios', 'TRIGGER')
+     or has_table_privilege('anon', 'public.reto_premios', 'REFERENCES')
      or has_table_privilege('authenticated', 'public.reto_premios', 'INSERT')
      or has_table_privilege('authenticated', 'public.reto_premios', 'UPDATE')
-     or has_table_privilege('authenticated', 'public.reto_premios', 'DELETE') then
-    raise exception 'anon o authenticated todavía pueden escribir premios';
+     or has_table_privilege('authenticated', 'public.reto_premios', 'DELETE')
+     or has_table_privilege('authenticated', 'public.reto_premios', 'TRUNCATE')
+     or has_table_privilege('authenticated', 'public.reto_premios', 'TRIGGER')
+     or has_table_privilege('authenticated', 'public.reto_premios', 'REFERENCES') then
+    raise exception 'anon o authenticated conservan truncate, trigger u otra escritura';
+  end if;
+  if not has_table_privilege('authenticated', 'public.quiz_premios', 'SELECT')
+     or not has_table_privilege('authenticated', 'public.reto_premios', 'SELECT') then
+    raise exception 'authenticated no puede leer los premios';
+  end if;
+  if has_table_privilege('anon', 'public.quiz_premios', 'SELECT')
+     or has_table_privilege('anon', 'public.reto_premios', 'SELECT') then
+    raise exception 'anon puede leer los premios';
   end if;
   if has_function_privilege('anon', 'public.concurso_premio_pendiente(text)', 'EXECUTE') then
     raise exception 'anon puede ejecutar concurso_premio_pendiente';
@@ -297,6 +317,14 @@ begin
       ('disputa', true),
       ('computadora', true),
       ('reputación', true),
+      ('Disputo', true),
+      ('Reputo', true),
+      ('Imputo', true),
+      ('Computa', true),
+      ('Putri', true),
+      ('Putra', true),
+      ('Putnam', true),
+      ('Puttanesca', true),
       ('coño', false),
       ('polla', false),
       ('zorra', false),
@@ -325,7 +353,12 @@ begin
       ('shit', false),
       ('carajo', false),
       (U&'\02CDmierda', false),
-      ('p.v.t.a', false)
+      ('p.v.t.a', false),
+      ('Putin', false),
+      ('laputaza', false),
+      ('hijoeputaso', false),
+      ('superputaso', false),
+      (U&'\028Dmierda', false)
     ) as t(nombre, vale)
   loop
     if public.apodo_ok(caso.nombre) is distinct from caso.vale then

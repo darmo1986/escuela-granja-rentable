@@ -116,8 +116,8 @@ grant update (nombre, dispositivo) on public.perfiles to authenticated;
 
 revoke all on public.quiz_preguntas, public.quiz_opciones, public.quiz_abiertas, public.quiz_intentos from anon, authenticated;
 grant select, insert on public.quiz_sugerencias to authenticated;
+revoke all on public.quiz_premios from public, anon, authenticated;
 grant select on public.quiz_premios to authenticated;
-revoke insert, update, delete on public.quiz_premios from public, anon, authenticated;
 
 alter table public.perfiles enable row level security;
 alter table public.quiz_preguntas enable row level security;
@@ -633,8 +633,8 @@ where p.id = u.id
 -- Reglas del apodo de la cuenta. El premio del concurso va al final de este archivo.
 -- Se ejecuta después de 20261018130000_apodo.sql.
 -- No se ha corrido desde el repositorio: lo pega quien administra el proyecto.
--- El concurso debe usar public.apodo_ok. La raíz put se rechaza al principio o al final,
--- salvo una lista de nombres reales. Un filtro suelto de raíces rechaza esos nombres.
+-- El concurso debe usar public.apodo_ok. La raíz put se rechaza al principio, al final
+-- o en medio si la rodean prefijos o sufijos de insulto, salvo una lista de nombres reales.
 
 create or replace function public.apodo_ok(raw text)
 returns boolean
@@ -678,7 +678,8 @@ declare
     'computadora', 'computadoras', 'computador', 'computadores',
     'computo', 'computos', 'computacion',
     'reputacion', 'reputado', 'reputada', 'reputados', 'reputadas',
-    'amputar', 'amputado', 'amputada', 'amputados', 'amputadas', 'amputacion'
+    'amputar', 'amputado', 'amputada', 'amputados', 'amputadas', 'amputacion',
+    'disputo', 'reputo', 'imputo', 'computa', 'putri', 'putra', 'putnam', 'puttanesca'
   ];
 begin
   if raw is null then
@@ -719,6 +720,7 @@ begin
   letras := replace(letras, U&'\0153', 'oe');
   letras := replace(letras, U&'\00DF', 'ss');
   letras := translate(letras, '013457v', 'oieastu');
+  letras := replace(letras, U&'\028D', 'm');
   letras := regexp_replace(letras, U&'[\02B0-\02FF]', ' ', 'g');
   if exists (
     select 1
@@ -734,6 +736,7 @@ begin
             or palabra.w like '%putos'
             or palabra.w like '%puta'
             or palabra.w like '%puto'
+            or palabra.w ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
           )
         )
       )
@@ -750,6 +753,7 @@ begin
          or junto like '%putos'
          or junto like '%puta'
          or junto like '%puto'
+         or junto ~ '^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$'
        )
      ) then
     return false;
@@ -841,7 +845,6 @@ alter table public.reto_premios enable row level security;
 
 revoke all on public.reto_premios from public, anon, authenticated;
 grant select on public.reto_premios to authenticated;
-revoke insert, update, delete on public.reto_premios from public, anon, authenticated;
 
 drop policy if exists reto_premio_leer on public.reto_premios;
 create policy reto_premio_leer on public.reto_premios
@@ -995,5 +998,7 @@ revoke all on function public.concurso_historial() from public;
 revoke all on function public.concurso_premio_pendiente(text) from public, anon;
 grant execute on function public.concurso_historial() to anon, authenticated;
 grant execute on function public.concurso_premio_pendiente(text) to authenticated;
-revoke insert, update, delete on public.quiz_premios from public, anon, authenticated;
-revoke insert, update, delete on public.reto_premios from public, anon, authenticated;
+revoke all on public.quiz_premios from public, anon, authenticated;
+grant select on public.quiz_premios to authenticated;
+revoke all on public.reto_premios from public, anon, authenticated;
+grant select on public.reto_premios to authenticated;

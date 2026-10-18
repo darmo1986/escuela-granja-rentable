@@ -72,8 +72,12 @@
     computadora: 1, computadoras: 1, computador: 1, computadores: 1,
     computo: 1, computos: 1, computacion: 1,
     reputacion: 1, reputado: 1, reputada: 1, reputados: 1, reputadas: 1,
-    amputar: 1, amputado: 1, amputada: 1, amputados: 1, amputadas: 1, amputacion: 1
+    amputar: 1, amputado: 1, amputada: 1, amputados: 1, amputadas: 1, amputacion: 1,
+    disputo: 1, reputo: 1, imputo: 1, computa: 1,
+    putri: 1, putra: 1, putnam: 1, puttanesca: 1
   };
+  /* put en medio, entre un prefijo y un sufijo típicos de insulto. */
+  var APODO_PUT_MEDIO = /^(la|el|lo|super|mega|ultra|requete|hijoe|hija|hijo|hije|re)put[ao](aza|azo|asa|aso|ona|on|za|zo|sa|so)$/;
 
   function apodoTexto(s) {
     try { s = String(s || "").normalize("NFKC"); }
@@ -95,6 +99,7 @@
       .replace(/\u00e6/g, "ae").replace(/\u0153/g, "oe").replace(/\u00df/g, "ss")
       .replace(/0/g, "o").replace(/1/g, "i").replace(/3/g, "e").replace(/4/g, "a")
       .replace(/5/g, "s").replace(/7/g, "t").replace(/v/g, "u")
+      .replace(/\u028D/g, "m")
       .replace(/\p{Lm}/gu, " ");
   }
 
@@ -103,6 +108,7 @@
     if (w.indexOf("put") === 0) return true;
     if (w.length >= 4 && (w.slice(-4) === "puta" || w.slice(-4) === "puto")) return true;
     if (w.length >= 5 && (w.slice(-5) === "putas" || w.slice(-5) === "putos")) return true;
+    if (APODO_PUT_MEDIO.test(w)) return true;
     return false;
   }
 
@@ -125,6 +131,7 @@
     if (s.length < 2 || s.length > 40) return "";
     if (apodoInvisible(s)) return "";
     if (/\p{Script=Cyrillic}/u.test(s)) return "";
+    if (/[\u0250-\u02AF]/u.test(s)) return "";
     if (!/^[\p{Script=Latin}0-9 '\-]+$/u.test(s)) return "";
     if (/\d{8,}/.test(s)) return "";
     if (apodoInsulto(s)) return "";

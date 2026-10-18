@@ -42,7 +42,6 @@ alter table public.reto_premios enable row level security;
 
 revoke all on public.reto_premios from public, anon, authenticated;
 grant select on public.reto_premios to authenticated;
-revoke insert, update, delete on public.reto_premios from public, anon, authenticated;
 
 drop policy if exists reto_premio_leer on public.reto_premios;
 create policy reto_premio_leer on public.reto_premios
@@ -196,5 +195,7 @@ revoke all on function public.concurso_historial() from public;
 revoke all on function public.concurso_premio_pendiente(text) from public, anon;
 grant execute on function public.concurso_historial() to anon, authenticated;
 grant execute on function public.concurso_premio_pendiente(text) to authenticated;
-revoke insert, update, delete on public.quiz_premios from public, anon, authenticated;
-revoke insert, update, delete on public.reto_premios from public, anon, authenticated;
+revoke all on public.quiz_premios from public, anon, authenticated;
+grant select on public.quiz_premios to authenticated;
+revoke all on public.reto_premios from public, anon, authenticated;
+grant select on public.reto_premios to authenticated;
