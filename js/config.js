@@ -1,15 +1,17 @@
-/* Publicidad. Sitio aprobado en Adsterra: darmo1986.github.io (id 6120999).
-   El cartelito usa redes.adsterra.bannerKey (320×50). Sin popups ni sonido. */
+/* Publicidad. Sitio aprobado en Adsterra: granjarentable.com (id 6132524).
+   El cartelito usa redes.adsterra.bannerKey (320×50). Solo banners en iframe. */
 window.ADSENSE_CLIENT = "";
 window.ADSTERRA = {
+  /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así. */
+  host: "https://www.highrevenueformat.com",
   banner: {
-    key: "c7e91c7d03eae0ab61a26d112e2d59b5",
+    key: "054847add79800fd21407ef878aef225",
     w: 728,
     h: 90,
-    movil: { key: "b82a679c2962b10cf24c6c9f4a1d93ab", w: 320, h: 50 }
+    movil: { key: "96014a59041982a1a0b8be24828db835", w: 320, h: 50 }
   },
   rect: {
-    key: "53a2e67f012f44fbe334cef3592e2fea",
+    key: "4c10efc097372233b52ed4f05e0a6ab8",
     w: 300,
     h: 250
   }
@@ -57,7 +59,7 @@ window.GR = {
     adsterra: {
       /* PEGAR AQUÍ la clave del banner pequeño (320×50). Esta ya estaba en el repo.
          Vacío = la página muestra el hueco «Falta bannerKey» y no llama a Adsterra. */
-      bannerKey: "b82a679c2962b10cf24c6c9f4a1d93ab",
+      bannerKey: "96014a59041982a1a0b8be24828db835",
       w: 320,
       h: 50
     }

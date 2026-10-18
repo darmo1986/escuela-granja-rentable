@@ -42,7 +42,13 @@ function markBannerGap(el){
   el.appendChild(p);
 }
 /* Cada pieza va en su propio iframe para que atOptions no se pise.
-   format iframe, params vacío: sin tema ni palabras clave. */
+   format iframe, params vacío: sin tema ni palabras clave.
+   El dominio sale de ADSTERRA.host (config.js). */
+function adsterraScriptHost(){
+  const fallback='https://www.highrevenueformat.com';
+  const raw=String((window.ADSTERRA&&window.ADSTERRA.host)||'').trim().replace(/\/+$/,'');
+  return /^https:\/\/[a-z0-9.-]+$/i.test(raw)?raw:fallback;
+}
 function mountAdsterra(el,cfg){
   if(!adsOn())return;
   if(el.dataset.adFilled)return;
@@ -58,7 +64,7 @@ function mountAdsterra(el,cfg){
   doc.open();
   doc.write('<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;overflow:hidden">'+
     '<script>atOptions={key:'+JSON.stringify(key)+',format:"iframe",height:'+cfg.h+',width:'+cfg.w+',params:{}};<\/script>'+
-    '<script src="https://www.highperformanceformat.com/'+encodeURIComponent(key)+'/invoke.js"><\/script>'+
+    '<script src="'+adsterraScriptHost()+'/'+encodeURIComponent(key)+'/invoke.js"><\/script>'+
     '</body></html>');
   doc.close();
 }
