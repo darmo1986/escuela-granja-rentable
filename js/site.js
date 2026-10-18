@@ -605,7 +605,7 @@
         if (interesLead) interesLead.value = "checklist " + fecha.value;
       }
       if (!endpoint) {
-        say("El formulario está listo, pero todavía no envía datos: falta la URL de Google Apps Script en js/config.js. No salió nada de este navegador. Si te urge, escríbenos por WhatsApp.");
+        say("Ahora mismo el formulario no puede enviar los datos. No salió nada de este navegador. Si te urge, escríbenos por WhatsApp.");
         return;
       }
       var data = {};

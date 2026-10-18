@@ -32,7 +32,7 @@ function markBannerGap(el){
   el.dataset.adFilled='gap';
   const p=document.createElement('p');
   p.className='ad-gap';
-  p.textContent='Falta la clave: js/config.js → redes.adsterra.bannerKey';
+  p.textContent='Publicidad no disponible.';
   el.appendChild(p);
 }
 /* Cada pieza va en su propio iframe para que atOptions no se pise.
