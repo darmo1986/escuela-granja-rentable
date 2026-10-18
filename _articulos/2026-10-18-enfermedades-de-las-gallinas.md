@@ -106,7 +106,7 @@ La lección [L05C](../lecciones/l05c.html) recorre enfermedades y vacunas de pon
 
 ## Influenza aviar
 
-El manual Merck separa cepas de baja patogenicidad, que en aves de corral suelen dar signos respiratorios (estornudos, tos, mocos, senos hinchados) y, en ponedoras y reproductoras, caída de puesta o problemas de ovario, y cepas de alta patogenicidad, que pueden matar mucho y rápido.
+La guía larga, con la mortalidad de la OMSA y la de Merck sin promediar, está en [influenza aviar en gallinas](influenza-aviar-en-gallinas.html). El manual Merck separa cepas de baja patogenicidad, que en aves de corral suelen dar signos respiratorios (estornudos, tos, mocos, senos hinchados) y, en ponedoras y reproductoras, caída de puesta o problemas de ovario, y cepas de alta patogenicidad, que pueden matar mucho y rápido.
 
 La lista de «How To Spot Sickness» de APHIS es general: esos signos pueden apuntar a influenza aviar o a otras enfermedades aviares. No es el retrato exclusivo de la de alta patogenicidad. Las de baja patogenicidad, en el manual Merck, circulan en aves acuáticas silvestres y a veces entran a la granja con pocos signos.
 
