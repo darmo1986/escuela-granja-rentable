@@ -1,39 +1,28 @@
 # Concurso
 
-Esta migración **no se ha ejecutado**. El visitante juega en el navegador y el ranking general sigue apagado (`comunidad.concursoPublicado` en `false` dentro de `js/config.js`).
+Sigue en borrador. La página dice que no está abierto mientras `comunidad.concursoPublicado` sea `false`. Así no llama a Supabase.
 
-## SQL que tiene que ejecutar Pablo
+El premio es uno solo: **20 €** al primero del ranking de cada mes. Se guarda en `quiz_premios`, la misma tabla del reto. `euros` solo puede ser 20. No hay otro premio ni otra cantidad.
 
-Pega y ejecuta **entero** este archivo en el editor SQL de Supabase:
+## Orden del SQL
 
-`supabase/migrations/20261018140200_concurso.sql`
+En el editor SQL de Supabase, y solo cuando se quiera encender:
 
-Ese archivo es el que vale. No uses un borrador anterior del concurso: aquel dejaba a `anon` insertar el puntaje a mano.
+1. `supabase/migrations/20261018120000_reto.sql` (si todavía no se corrió).
+2. `supabase/migrations/20261018120100_cuenta.sql` (si todavía no se corrió).
+3. `supabase/migrations/20261018140200_concurso.sql`. Crea las tablas y las funciones. No trae las preguntas.
+4. El archivo privado `banco-concurso.sql`, que no está en el repositorio. Se pega en el mismo editor después del paso 3. Si un borrador viejo creó `concurso_partidas`, el paso 3 ya la elimina.
 
-Si ese borrador llegó a crearse y la tabla `concurso_partidas` ya existe, bórrala **antes** y luego ejecuta el archivo nuevo:
+Luego, en `js/config.js`, `comunidad.concursoPublicado` pasa a `true` y se publica el sitio.
 
-```sql
-drop table if exists public.concurso_partidas cascade;
-```
+## Qué ve el navegador
 
-Qué hace el SQL nuevo:
+`concurso_empezar` exige la cuenta y lee `perfiles.nombre`. No acepta un apodo escrito en la página. Devuelve solo la primera pregunta, sin la correcta y sin la explicación. `concurso_abrir` entrega la siguiente y arranca el reloj de esa pregunta. `concurso_responder` califica con el reloj del servidor y, solo entonces, manda la explicación.
 
-- `concurso_preguntas` guarda las respuestas correctas. El visitante no puede leerla.
-- `concurso_sesiones` es la partida abierta. El reloj es el del servidor.
-- `concurso_partidas` es el ranking: una fila por apodo, solo la mejor marca, y solo si sumó puntos.
-- `anon` puede **leer** el ranking (filas con `oculto = false`) y puede **ejecutar** `concurso_empezar`, `concurso_abrir` y `concurso_responder`. No puede insertar ni actualizar el puntaje.
-- Esas tres funciones son `SECURITY DEFINER`: reciben la opción elegida y el reloj del servidor, y calculan los puntos. Hace falta al menos 1 segundo por acierto. Hay un tope de 30 partidas nuevas por minuto y 8 por apodo en 24 horas.
-- La columna `oculto` (por defecto `false`) no se muestra en la página. Para esconder una marca, en el editor de tablas de Supabase pon `oculto = true` en esa fila.
+El ranking del mes ordena por aciertos y, si empatan, por el tiempo del servidor. El día 1, con la hora de Madrid, la lista pública vuelve a cero. El primero del mes cerrado queda en `quiz_premios` con 20 € y estado `pendiente`. El historial público muestra el periodo y el apodo.
 
-## Después de ejecutar el SQL
+Para descalificar una marca: `oculto = true` en `concurso_marcas`. Si el premio sigue pendiente, reclamado o anulado, pasa a la siguiente marca válida. Un premio ya pagado no se mueve solo.
 
-En `js/config.js`, pasa `comunidad.concursoPublicado` a `true` y publica el sitio. Hasta entonces la página no llama a Supabase.
+El ganador envía PayPal o Bizum desde la página. Eso se guarda en la fila del premio y no sale en el historial.
 
-No hay premios ni dinero. No se guarda correo ni IP. El nombre público es el apodo.
-
-Ese apodo es el mismo que `perfiles.nombre` de la cuenta, cuando la persona ya entró: de 2 a 40 caracteres, escrito a mano, nunca sacado del correo. Si no hay sesión, lo escribe en el concurso. El filtro de insultos sigue valiendo en los dos casos.
-
-## Cuando se fusione la cuenta (PR #12)
-
-- En `js/config.js` hay un solo objeto `comunidad`. Ahí viven la URL, la clave publicable y `concursoPublicado`. No dupliques el bloque.
-- El enlace Concurso entra en el menú Herramientas en cuanto ese menú existe. Hasta entonces queda junto a Juegos. No hace falta una entrada aparte.
+Las partidas a medias se borran a los 7 días. El límite es 30 partidas nuevas por minuto y por cuenta, y también por IP, más 8 partidas cerradas por día y por cuenta.

@@ -1,3 +1,7 @@
+.concurso-premio { font-weight: 850; color: var(--gd); margin: 8px 0 0; }
+#concurso-cuenta { font-weight: 750; }
+.concurso-bases, #concurso-bases ul { margin: 8px 0 0; padding-left: 1.1rem; }
+#concurso-bases li { margin: 6px 0; }
 .concurso-nota {
   background: #fff6d8;
   border-radius: 12px;
@@ -11,7 +15,7 @@
   box-shadow: var(--shadow);
   margin: 12px 0;
 }
-.concurso-card h2, #paso-juego, .concurso-paso { scroll-margin-top: 150px; }
+.concurso-card h2, #paso-juego, #paso-fin, .concurso-paso, #fin-titulo { scroll-margin-top: 180px; }
 .concurso-form label {
   display: flex;
   flex-direction: column;
@@ -103,6 +107,7 @@
 .concurso-pos { font-weight: 800; color: var(--gd); width: 1.4rem; text-align: center; }
 .concurso-rank p { margin: 0; }
 .concurso-yo { outline: 2px solid var(--gold); }
+#concurso-reclamo[hidden],
 #concurso-hero[hidden],
 #concurso-modo[hidden],
 #paso-inicio[hidden],

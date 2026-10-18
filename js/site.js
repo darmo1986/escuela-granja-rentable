@@ -757,7 +757,7 @@
       '<button class="nav-redes nav-tools" type="button" aria-expanded="false" aria-controls="nav-herramientas">' +
       '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 8h8v8H6zm12 0h8v8h-8zM6 20h8v6H6zm12 0h8v6h-8z"/></svg></span>' +
       '<span class="nav-label">Herramientas</span></button>' +
-      '<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-herramientas" aria-label="Calculadora, enfermedades y juegos"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>' +
+      '<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-herramientas" aria-label="Calculadora, enfermedades, juegos y concurso"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>' +
       '</div><div class="nav-sub" id="nav-herramientas"></div>';
     var sub = drop.querySelector("#nav-herramientas");
     function enlace(href, html, actual) {
