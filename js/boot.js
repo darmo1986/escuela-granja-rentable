@@ -3,7 +3,8 @@
    código de país está en la lista) → México. Un inglés genérico no
    se convierte en Estados Unidos.
    El aviso de anuncios mira la zona horaria, sin llamar a nadie:
-   UE, EEE, Reino Unido, Suiza, Brasil, zona desconocida o GPC piden Aceptar. */
+   UE, EEE, Reino Unido, Suiza, Brasil, zona desconocida o GPC piden Aceptar.
+   No se consulta la IP. */
 (function () {
   function zonaEstricta(tz) {
     if (!tz || tz === "UTC" || tz.indexOf("Etc/") === 0) return true;
@@ -115,7 +116,6 @@
       localStorage.setItem("gr_pais", p);
     }
     if (!p) p = localStorage.getItem("gr_pais") || "";
-    if (!p) p = localStorage.getItem("gr_pais_ip") || "";
     if (!p) p = map[tz] || "";
     if (!p) {
       var known = { MX:1, US:1, CO:1, PE:1, ES:1, AR:1, VE:1, EC:1, DO:1, CL:1, PY:1, UY:1, BO:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1 };

@@ -1,15 +1,63 @@
 /* Calculadoras con las cifras ya citadas en las lecciones. */
 (function () {
-  function num(form, name) {
-    var el = form.querySelector("[name=" + name + "]");
-    var n = el ? parseFloat(String(el.value).replace(",", ".")) : NaN;
-    return isFinite(n) ? n : NaN;
+  function interpretarDecimal(s) {
+    var tienePunto = s.indexOf(".") !== -1;
+    var tieneComa = s.indexOf(",") !== -1;
+    if (tienePunto && tieneComa) {
+      if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
+      else s = s.replace(/,/g, "");
+    } else if (tieneComa) {
+      if (s.split(",").length > 2) {
+        if (!/^\d{1,3}(,\d{3})+$/.test(s)) return null;
+        s = s.replace(/,/g, "");
+      } else s = s.replace(",", ".");
+    } else if (tienePunto && s.split(".").length > 2) {
+      if (!/^\d{1,3}(\.\d{3})+$/.test(s)) return null;
+      s = s.replace(/\./g, "");
+    }
+    if (!/^\d+(\.\d+)?$/.test(s)) return null;
+    var n = Number(s);
+    return isFinite(n) ? n : null;
   }
-  function money(n) {
-    if (!isFinite(n)) return "—";
-    var pais = (document.documentElement.getAttribute("data-pais") || "MX").toUpperCase();
-    var loc = pais === "ES" ? "es-ES" : "es-MX";
-    return n.toLocaleString(loc, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+  function textoTope(n) {
+    var s = String(n);
+    var p = s.split(".");
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return p.length > 1 ? p[0] + "," + p[1] : p[0];
+  }
+  function leerNumero(raw, opts) {
+    opts = opts || {};
+    var s = String(raw == null ? "" : raw).trim().replace(/[\s\u00a0]/g, "");
+    if (!s) return { ok: false, error: "Escribe un número." };
+    if (/[eE]/.test(s)) return { ok: false, error: "Escribe un número, sin notación científica." };
+    if (/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(s)) return { ok: false, error: "Escribe un número, sin letras." };
+    if (s.charAt(0) === "-") return { ok: false, error: "Escribe un número positivo." };
+    if (s.charAt(0) === "+") s = s.slice(1);
+    if (/[^0-9.,]/.test(s)) return { ok: false, error: "Escribe un número, sin letras." };
+    var n = interpretarDecimal(s);
+    if (n == null) return { ok: false, error: "Escribe un número." };
+    if (opts.entero && Math.abs(n - Math.round(n)) > 1e-9) {
+      return { ok: false, error: opts.enteroMsg || "Escribe un número entero." };
+    }
+    if (opts.entero) n = Math.round(n);
+    if (opts.min != null && n < opts.min - 1e-9) return { ok: false, error: "El mínimo es " + textoTope(opts.min) + "." };
+    if (opts.max != null && n > opts.max + 1e-9) return { ok: false, error: "El máximo es " + textoTope(opts.max) + "." };
+    return { ok: true, value: n };
+  }
+  function money(n, dec) {
+    if (!isFinite(n) || Math.abs(n) >= 1e15) return "—";
+    var d = dec == null ? 2 : dec;
+    var sign = n < 0 ? "−" : "";
+    var s = Math.abs(n).toFixed(d);
+    var p = s.split(".");
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return sign + p[0] + "," + p[1];
+  }
+  /* El coste por huevo puede ser de milésimas. Con 2 decimales salía «0,00». */
+  function moneyFino(n) {
+    if (!isFinite(n) || n === 0) return money(n, 2);
+    if (Math.abs(Math.round(n * 100) / 100) === 0) return money(n, 4);
+    return money(n, 2);
   }
   function espacio(tipo, aves, kg) {
     if (!aves || aves < 1) return { error: "Escribe cuántas aves son." };
@@ -34,8 +82,8 @@
     if (!(precio >= 0) || !(kg >= 0)) return { error: "Escribe el precio por kilo y los kilos de alimento." };
     var total = precio * kg;
     var lines = ["Alimento usado: " + money(total) + " en la moneda de tu precio."];
-    if (huevos > 0) lines.push("Por huevo: " + money(total / huevos) + ".");
-    if (carne > 0) lines.push("Por kilo producido: " + money(total / carne) + ".");
+    if (huevos > 0) lines.push("Por huevo: " + moneyFino(total / huevos) + ".");
+    if (carne > 0) lines.push("Por kilo producido: " + moneyFino(total / carne) + ".");
     if (!(huevos > 0) && !(carne > 0)) return { error: "Escribe huevos o kilos producidos." };
     lines.push("Si ese alimento es el 60 % del costo de insumos, el total de insumos ronda " + money(total / 0.6) + ". Si es el 80 %, ronda " + money(total / 0.8) + ". Es la cuenta de la cita de la FAO en L01, no un precio de tu granja.");
     return { text: lines.join(" ") };
@@ -51,8 +99,38 @@
     var larga = window.GR_lista.fechaLarga || function (s) { return s; };
     return { text: nombres[especie] + ": " + d + " días. Si empiezas el " + larga(iso) + ", la fecha orientativa es " + larga(fin) + "." };
   }
-  window.GR_calc = { espacio: espacio, alimento: alimento, eclosion: eclosion };
+  var api = { espacio: espacio, alimento: alimento, eclosion: eclosion, leerNumero: leerNumero, money: money, moneyFino: moneyFino };
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+  if (typeof window !== "undefined") window.GR_calc = api;
+  if (typeof document === "undefined") return;
 
+  function marcar(el, texto) {
+    if (!el) return;
+    var id = el.getAttribute("name") || "";
+    var msg = el.parentNode && el.parentNode.querySelector(".field-error[data-for='" + id + "']");
+    if (!texto) {
+      el.classList.remove("is-invalid");
+      el.removeAttribute("aria-invalid");
+      if (msg) msg.remove();
+      return;
+    }
+    el.classList.add("is-invalid");
+    el.setAttribute("aria-invalid", "true");
+    if (!msg) {
+      msg = document.createElement("p");
+      msg.className = "field-error";
+      msg.setAttribute("data-for", id);
+      msg.setAttribute("role", "alert");
+      el.insertAdjacentElement("afterend", msg);
+    }
+    msg.textContent = texto;
+  }
+  function campo(form, name, opts) {
+    var el = form.querySelector("[name=" + name + "]");
+    var res = leerNumero(el ? el.value : "", opts || {});
+    marcar(el, res.ok ? "" : res.error);
+    return res;
+  }
   function paint(id, result) {
     var out = document.getElementById(id);
     if (!out) return;
@@ -67,13 +145,29 @@
     sync();
     esp.addEventListener("submit", function (e) {
       e.preventDefault();
-      paint("calc-espacio-out", espacio(tipo.value, num(esp, "n"), num(esp, "kg")));
+      var n = campo(esp, "n", { min: 1, max: 100000, entero: true, enteroMsg: "Escribe un número entero de aves." });
+      var kg = { ok: true, value: 2.5 };
+      if (tipo && tipo.value === "engorde") kg = campo(esp, "kg", { min: 0.1, max: 20 });
+      else marcar(esp.querySelector("[name=kg]"), "");
+      if (!n.ok || !kg.ok) {
+        paint("calc-espacio-out", { error: "Revisa los campos marcados." });
+        return;
+      }
+      paint("calc-espacio-out", espacio(tipo.value, n.value, kg.value));
     });
   }
   var ali = document.getElementById("calc-alimento");
   if (ali) ali.addEventListener("submit", function (e) {
     e.preventDefault();
-    paint("calc-alimento-out", alimento(num(ali, "precio"), num(ali, "kg"), num(ali, "huevos"), num(ali, "carne")));
+    var precio = campo(ali, "precio", { min: 0, max: 1000000 });
+    var kg = campo(ali, "kg", { min: 0, max: 1000000 });
+    var huevos = campo(ali, "huevos", { min: 0, max: 10000000, entero: true, enteroMsg: "Escribe un número entero de huevos." });
+    var carne = campo(ali, "carne", { min: 0, max: 1000000 });
+    if (!precio.ok || !kg.ok || !huevos.ok || !carne.ok) {
+      paint("calc-alimento-out", { error: "Revisa los campos marcados." });
+      return;
+    }
+    paint("calc-alimento-out", alimento(precio.value, kg.value, huevos.value, carne.value));
   });
   var eco = document.getElementById("calc-eclosion");
   if (eco) eco.addEventListener("submit", function (e) {

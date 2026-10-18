@@ -38,7 +38,7 @@ La fuente de la tienda de incubación es `config` de https://granjarentable-incu
 | Termohigrómetro de aguja | Sí. Perú, México, España y Estados Unidos, cada uno con su precio. | Complemento `termohigrometro` |
 | Báscula de precisión 0,01 g | Sí. Perú, México, España y Estados Unidos. | Complemento `bascula` |
 | Medidor de pH del agua | Sí. En Perú, México y España se muestra como «Medidor digital de pH del agua». | Complemento `medidorph` |
-| Alfombrilla antideslizante | Sí. En Perú, México y España se llama «Tapete antideslizante». | Complemento `alfombrilla` |
+| Alfombrilla antideslizante | Sí. El nombre es Alfombrilla en la ficha y en WhatsApp. | Complemento `alfombrilla` |
 | Comedero 3 kg + bebedero 3 L | Sí. España (47,99 €) y Estados Unidos (US$ 34.99). | Complemento `comedero` |
 | Anillas identificadoras (50 uds.) | Sí. Solo Estados Unidos, US$ 14.99. | Complemento `anillas` |
 | Vitaminas y electrolitos en polvo para pollitos | Sí, como próximamente, sin precio ni foto. Así estaba en el origen. | Complemento `suplemento` (`soon`) |
@@ -122,7 +122,7 @@ El alta cae en la misma hoja. Cuando apruebes a alguien, inventa un código cort
 
 `https://granjarentable.com/?ref=CODIGO`
 
-Eso se guarda en la cookie `gr_ref` y en el navegador 30 días, y el botón de compra de la incubadora lleva `?ref=`. Para liquidar el 10 % sin pagar otra herramienta: cuando entre un pedido, anota el `ref` en la hoja y paga por PayPal al pasar US$ 20 y los 14 días de devolución. Hay una prueba sin comisión en `afiliados.html?ref=DEMO`.
+Eso se guarda en la cookie `gr_ref` y en el navegador 30 días, y el botón de compra de la incubadora lleva `?ref=`. Para liquidar el 10 % sin pagar otra herramienta: cuando entre un pedido, anota el `ref` en la hoja y paga por PayPal al pasar US$ 20 y los 14 días de devolución. El código `DEMO` no se acepta: no guarda la cookie ni se añade a la tienda.
 
 ## DNS en Namecheap
 

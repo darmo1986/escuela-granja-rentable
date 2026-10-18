@@ -22,8 +22,8 @@
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="css/estilo.css?v=202610184">
-<script src="js/boot.js?v=202610184"></script>
+<link rel="stylesheet" href="css/estilo.css?v=20261018b">
+<script src="js/boot.js?v=20261018b"></script>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -112,8 +112,7 @@
 <h2>Qué datos hay y para qué</h2>
 <ul>
 <li><strong>Progreso del curso</strong> (lecciones y notas). El curso es gratis y se lee sin cuenta. El avance se guarda en tu navegador (localStorage <code>gr_progreso</code>). Si entras, se copia a la cuenta. Con Supabase se guarda en tu fila, y solo tú puedes leerla. Base: interés legítimo de seguir el curso, y tu consentimiento si la copias a la cuenta. Si pides el borrado, lo borramos en un plazo máximo de un mes. Si cierras la cuenta sin pedirlo, se borra a los 24 meses, salvo que una ley obligue a guardarlo más.</li>
-<li><strong>País elegido</strong> para precios y enlaces (<code>gr_pais</code>, localStorage). Igual: solo en tu navegador.</li>
-<li><strong>País por la IP</strong>, solo si los anuncios están activos, pulsas Aceptar en el aviso de la UE (o de Brasil, o cuando la zona no dice el país) y todavía no elegiste país. Pedimos el código de país a get.geojs.io. Ellos ven la IP para contestar y en este navegador queda <code>gr_pais_ip</code>. Esa llamada no se usa para decidir el aviso, ni se hace al cargar anuncios en Latinoamérica o Estados Unidos, ni cuando el interruptor de anuncios está apagado. Si rechazas, no hay esa llamada: el país de los precios sale de la zona horaria, del idioma o de México. Base: consentimiento.</li>
+<li><strong>País elegido</strong> para precios y enlaces (<code>gr_pais</code>, localStorage). Si no has elegido, el sitio propone un país con la zona horaria del navegador (Intl), solo en tu aparato. No llamamos a un servicio de geolocalización por IP. El dato no sale del navegador hasta que tú cambias el país en el menú, y entonces se guarda ahí mismo.</li>
 <li><strong>Código de afiliado</strong> si entras con <code>?ref=</code>. Cookie <code>gr_ref</code> y localStorage, 30 días, para saber a quién pagar el 10 % si compras en nuestra tienda. No lo vendemos. Base: interés legítimo de liquidar una recomendación, limitado a ese fin.</li>
 <li><strong>Formularios</strong> (registro, prueba de la app, alta de afiliado, lista y calendario): nombre, correo y, si aplica, si quieres la app, el método de pago, el correo de PayPal y el día de inicio de la lista. Base: tu consentimiento, que puedes retirar. Finalidad: enviarte novedades, convocarte a la prueba, gestionar el alta o entregarte la lista. Al enviar, esos datos van a una hoja de cálculo de Google (Google Sheets) mediante una aplicación web gratuita de Google Apps Script. En la lista el tipo guardado es lead. Google puede tratar datos fuera del Espacio Económico Europeo con las cláusulas tipo del RGPD. Conservación: hasta que pidas la baja, y las altas de afiliado el tiempo que haga falta para pagar y cumplir obligaciones contables. El archivo de la lista se arma en tu navegador después de guardar el correo.</li>
 <li><strong>Cuenta del sitio</strong>: un solo acceso para el curso, la calculadora y las fichas. Puedes entrar con Google (cuando esté activado), con correo y contraseña (hay que confirmar el correo y se puede pedir otra contraseña) o con un enlace al correo. Guardamos el apodo que escribes, el correo y, si Google lo da, la foto. En público solo se ve el apodo (perfiles.nombre). No se publica el nombre de la cuenta de Google ni el correo. La contraseña no se guarda en el navegador. En la calculadora puedes guardar un cálculo. En una ficha puedes guardarla. Con Supabase, cada persona solo lee sus filas. La biblioteca de acceso se sirve desde este mismo sitio y solo se descarga al abrir Entrar, en Mi cuenta, o si ya habías entrado. Base: tu consentimiento al crear la cuenta o al guardar algo. Si pides el borrado, lo borramos en un plazo máximo de un mes. Si cierras la cuenta sin pedirlo, se borra a los 24 meses, salvo que una ley obligue a guardarlos más.</li>
@@ -136,7 +135,7 @@
 </ul>
 <p>Las notificaciones (calor, agua, tareas, ayuno) se programan en el propio teléfono. La app pide permiso para mostrarlas y no envía esos avisos a ningún servidor. Si escribes en Más › Buzón de sugerencias y pulsas enviar, se abre tu aplicación de correo con un mensaje para <a href="mailto:dahanitrading@gmail.com">dahanitrading@gmail.com</a>: lo envías tú, desde tu correo.</p>
 <h2>Con quién se comparten</h2>
-<p>Con Google (la hoja de cálculo, cuando el formulario esté conectado, y Google si entras así), con Supabase para la cuenta, el concurso, el contenido Premium y, cuando esté activo, para el reto, con Stripe en la tienda de la incubadora y en la suscripción Premium (ellos tienen su propio aviso; pueden tratar datos en Estados Unidos con cláusulas tipo), con Adsterra (www.highrevenueformat.com y www.highperformanceformat.com) cuando se carga un anuncio, con Google AdSense (pagead2.googlesyndication.com) si esa clave está puesta, con geojs.io (get.geojs.io) solo si los anuncios están activos, aceptas y aún no elegiste país, con Messenger de la Página (Meta) o el formulario de la web si escribes para el soporte de Premium, con Google si usas la app Registro de pollos (el SDK de anuncios de arriba) y con las autoridades si la ley lo pide. El proyecto de Supabase está en la región eu-west-2 (Londres, Reino Unido). El Reino Unido cuenta con una decisión de adecuación de la Comisión Europea. No vendemos listas de correos.</p>
+<p>Con Google (la hoja de cálculo, cuando el formulario esté conectado, y Google si entras así), con Supabase para la cuenta, el concurso, el contenido Premium y, cuando esté activo, para el reto, con Stripe en la tienda de la incubadora y en la suscripción Premium (ellos tienen su propio aviso; pueden tratar datos en Estados Unidos con cláusulas tipo), con Adsterra (www.highrevenueformat.com y www.highperformanceformat.com) cuando se carga un anuncio, con Google AdSense (pagead2.googlesyndication.com) si esa clave está puesta, con Messenger de la Página (Meta) o el formulario de la web si escribes para el soporte de Premium, con Google si usas la app Registro de pollos (el SDK de anuncios de arriba) y con las autoridades si la ley lo pide. El proyecto de Supabase está en la región eu-west-2 (Londres, Reino Unido). El Reino Unido cuenta con una decisión de adecuación de la Comisión Europea. No vendemos listas de correos.</p>
 <h2>Tus derechos</h2>
 <p>Acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo al correo de privacidad. También puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a>).</p>
 <p>Los textos legales están en español neutro. El responsable está en España. El permiso previo de los anuncios se pide en la UE, el EEE, Reino Unido, Suiza, Brasil, si no sabemos el país o si el navegador envía GPC. En Latinoamérica, Estados Unidos y el resto, los anuncios se cargan al entrar cuando están activos y puedes rechazarlos. Si el interruptor está apagado, no se carga ninguno.</p>
@@ -147,7 +146,7 @@
 <div class="wrap foot-grid">
 <div>
 <p class="foot-brand">Granja Rentable</p>
-<p>Juan Pablo González García<br>NIF 78701119H<br>Calle Juan Rumeu García 6 bajo<br>38008 Santa Cruz de Tenerife, España</p>
+<p>Juan Pablo González<br><a href="aviso-legal.html">Aviso legal</a></p>
 <p><a href="mailto:dahanitrading@gmail.com">dahanitrading@gmail.com</a></p>
 </div>
 <div>
@@ -189,8 +188,8 @@
 <p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 <a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
-<script src="js/config.js?v=202610184"></script>
-<script src="js/app.js?v=202610184"></script>
-<script src="js/catalogo.js"></script>
-<script src="js/site.js?v=202610184"></script>
+<script src="js/config.js?v=20261018b"></script>
+<script src="js/app.js?v=20261018b"></script>
+<script src="js/catalogo.js?v=20261018b"></script>
+<script src="js/site.js?v=20261018b"></script>
 </body></html>

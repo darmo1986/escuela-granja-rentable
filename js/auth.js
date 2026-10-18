@@ -422,7 +422,7 @@
     if (!usuarioActual || !usuarioActual.pideApodo || apodoOfrecido) return;
     apodoOfrecido = true;
     abrir("apodo");
-    mensaje("Elige un apodo para el ranking. No uses el nombre de Google, un correo ni un insulto.", false);
+    mensaje("Elige un apodo. No uses el nombre de Google, un correo ni un insulto.", false);
   }
 
   function enviar(ev) {
@@ -767,7 +767,7 @@
       (usuarioActual.avatar ? '<img class="auth-avatar" src="' + esc(usuarioActual.avatar) + '" alt="">' : '<span class="auth-avatar">' + esc(iniciales(usuarioActual.nombre)) + "</span>") +
       "<span><strong>" + esc(usuarioActual.nombre) + "</strong><br><span class=\"fine\">" + esc(usuarioActual.correo) + "</span></span></p>" +
       (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "") +
-      '<form id="cuenta-apodo"><label>Apodo del ranking<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
+      '<form id="cuenta-apodo"><label>Apodo<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
       '<p><button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
       "<h2>Curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas.</p>" +
       "<h2>Cálculos</h2>" + (calcs ? "<ul>" + calcs + "</ul>" : "<p>Todavía no guardaste ninguno. En la calculadora, el botón «Guardar en mi cuenta».</p>") +
@@ -811,7 +811,7 @@
       '<p class="fine" id="auth-demo-nota"></p>' +
       '<button type="button" class="btn sec auth-google" id="auth-google">Continuar con Google</button>' +
       '<form id="auth-form">' +
-      '<label class="auth-campo auth-solo-registro">Apodo del ranking<input name="nombre" maxlength="40" autocomplete="nickname"></label>' +
+      '<label class="auth-campo auth-solo-registro">Apodo<input name="nombre" maxlength="40" autocomplete="nickname"></label>' +
       '<label class="auth-campo">Correo<input name="correo" type="email" maxlength="80" autocomplete="email" required></label>' +
       '<label class="auth-campo auth-con-clave">Contraseña<input name="clave" type="password" minlength="8" autocomplete="current-password"></label>' +
       '<button class="btn gold" type="submit" id="auth-submit">Entrar</button>' +
@@ -840,8 +840,8 @@
     var n = document.getElementById("auth-demo-nota");
     if (!n) return;
     if (!nube()) n.textContent = "El acceso no está disponible. Inténtalo más tarde.";
-    else if (googleApagado) n.textContent = "Entra con correo y contraseña. Google se activará cuando esté configurado. El apodo es el nombre del ranking, nunca el correo.";
-    else n.textContent = "Puedes entrar con Google o con correo. El apodo es el nombre del ranking, nunca el correo.";
+    else if (googleApagado) n.textContent = "Entra con correo y contraseña. Google se activará cuando esté configurado. El apodo es tu nombre en el sitio, nunca el correo.";
+    else n.textContent = "Puedes entrar con Google o con correo. El apodo es tu nombre en el sitio, nunca el correo.";
   }
 
   function haceFaltaNube() {

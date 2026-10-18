@@ -19,8 +19,12 @@ window.ADSTERRA = {
   }
 };
 
-/* Interruptor de publicidad. false = no se inyecta ningún script ni iframe de anuncios. */
-window.ads = { activo: false };
+/* Interruptor de publicidad. false = no se inyecta ningún script ni iframe de anuncios.
+   paises: cuando activo pase a true, Adsterra solo se pide en estos países. */
+window.ads = {
+  activo: false,
+  paises: ["MX", "US", "CO", "PE", "ES", "AR", "VE", "EC", "DO", "CL", "PY", "UY", "BO", "GT", "HN", "SV", "NI", "CR", "PA"]
+};
 
 /* Sitio unificado. La tienda propia y el curso van primero. */
 window.GR = {
