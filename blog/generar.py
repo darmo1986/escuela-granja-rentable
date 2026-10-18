@@ -683,7 +683,10 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
         menu = conservar_messenger(quitar_whatsapp_nav(menu), html)
     pie = pie_html.replace("@@RAIZ@@", raiz)
     if "<!-- menu:inicio -->" in html and "<!-- menu:fin -->" in html:
-        html = re.sub(r"<!-- menu:inicio -->.*?<!-- menu:fin -->", lambda _: menu, html, count=1, flags=re.S)
+        html = re.sub(
+            r"<!-- menu:inicio -->.*?<!-- menu:fin -->[ \t]*\n*",
+            lambda _: menu.rstrip() + "\n",
+            html, count=1, flags=re.S)
     else:
         html, n = re.subn(
             r'(<nav id="site-nav" class="nav" aria-label="Principal">).*?(</nav>)',
@@ -692,7 +695,10 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
         if n != 1:
             raise Fallo(f"{rel}: tiene el menú, pero no pude sustituirlo.")
     if "<!-- pie-sitio:inicio -->" in html and "<!-- pie-sitio:fin -->" in html:
-        html = re.sub(r"<!-- pie-sitio:inicio -->.*?<!-- pie-sitio:fin -->", lambda _: pie, html, count=1, flags=re.S)
+        html = re.sub(
+            r"<!-- pie-sitio:inicio -->.*?<!-- pie-sitio:fin -->[ \t]*\n*",
+            lambda _: pie.rstrip() + "\n",
+            html, count=1, flags=re.S)
     else:
         html, n = re.subn(
             r'(<p class="foot-brand">Sitio</p>\s*)<ul>.*?</ul>',
