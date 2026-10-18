@@ -47,7 +47,7 @@ En este escalón:
 - Un rincón oscuro para poner, con los nidos contados, lejos de la percha para que no duerman encima del huevo.
 - Agua y alimento bajo techo o donde la lluvia no los llene de barro. El bebedero que gotea dentro del refugio te obliga a sacar cama mojada cada día. Está en [bebederos y agua](bebederos-y-agua-para-pollos.html).
 
-La FAO advierte el límite: el alojamiento sale más barato y el alimento balanceado hace menos falta si buscan en el campo, pero el sol y los parásitos pegan más. No es el sistema de una ponedora comercial que vive de la guía de Hy-Line o de Lohmann. Esa elección está en [razas de gallinas y cómo elegir](razas-de-gallinas-como-elegir.html).
+El límite de este refugio —sale más barato si buscan en el campo, y el sol y los parásitos pegan más— está en [gallinero casero, semiprofesional y nave](gallinero-casero-semiprofesional-y-nave.html). La raza que vive de una guía comercial no es este sistema: [razas de gallinas y cómo elegir](razas-de-gallinas-como-elegir.html).
 
 ## Mediano: cama, techo y piso que se barre
 
@@ -55,13 +55,7 @@ Es el gallinero fijo, de uso diario, con cama en el piso. La FAO, en cama profun
 
 La misma FAO, en otro párrafo, recuerda que las jaulas comerciales han llegado a densidades mucho más altas y que el bienestar empuja en sentido contrario. No uses una cifra de jaula para construir un gallinero de piso. La guía de espacio del curso trae, además, números de patio y de suelo que salen de las lecciones y de otras normas. Léelos al lado de estos 3–4 por m² y no los promedies: son sistemas distintos.
 
-En este escalón suma:
-
-- Cama seca. Se cambia el trozo mojado, no se tapa con viruta limpia encima del charco.
-- Nidos a la sombra, con cama fresca, y sin moverlos de sitio en plena puesta. La FAO dice que cambiar el nido de lugar puede cortar la rutina. La mayor parte de los huevos sale entre el amanecer y media mañana: recoge en esa ventana si quieres cáscara limpia.
-- Comedero. La FAO mide el espacio de pico: al menos 10 cm por ave en canal, contando los dos lados si comen por ambos, o al menos 4 cm por ave en comedero redondo.
-- Luz de día suficiente para moverse y poner. La FAO indica que la puesta baja si la intensidad cae por debajo de 5 lux a la altura del ojo. No hace falta un luxómetro para entender el extremo: un cuarto oscuro todo el día no es un gallinero de puesta.
-- Piso levantado o con drenaje si llueve fuerte. El bambú o la tierra apisonada que cita la FAO sirven donde ese material es el que hay. El hormigón solo vale si no queda helado y húmedo.
+Cama, comedero, luz y piso de este escalón, con los centímetros de la FAO, están en [gallinero casero, semiprofesional y nave](gallinero-casero-semiprofesional-y-nave.html). No los copio otra vez. El día de la obra el orden es este: primero el techo y el cierre de noche, después la percha que se puede levantar, después el nido lejos de esa percha. Si la lluvia llega antes de que el alero cubra el comedero, el piso se echa a perder y la cama de la otra guía no tiene dónde secarse.
 
 La limpieza por etapas (seco, lavado, descanso) la desarrolla el curso en las lecciones de engorde y de ponedoras. El orden completo, con el local vacío, está en [cómo limpiar y desinfectar el gallinero](como-limpiar-y-desinfectar-el-gallinero.html). Las lecciones L04A y L05B siguen el mismo criterio.
 
@@ -76,6 +70,20 @@ Aquí ya no basta con tablas y malla. Es el galpón de un lote de pollos de engo
 - Un solo lote por nave cuando puedas. Mezclar edades complica la coccidiosis y la limpieza. El porqué está en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
 
 Si todavía estás en el escalón básico, no saltes a este por comprar un extractor. Primero cierra de noche, seca la cama y cuenta los nidos. El extractor sin un gallinero estanco solo mueve polvo.
+
+## El orden, antes de comprar malla
+
+Marca el piso en el suelo, con cuerda, antes de clavar. Diez gallinas en cama profunda piden esos 2,5 a 3,3 m² de la FAO, y el pasillo, el saco y el nido —si el nido queda fuera de esa cuenta— no entran en el rectángulo. Si el terreno no da ese rectángulo, no aprietes las aves: baja el número. La jaula comercial, ya dicho, no te presta su densidad.
+
+El techo va antes que la percha. Sin alero, la lluvia de temporal llena el comedero y el piso, y la FAO pide piso levantado precisamente donde llueve mucho. Un techo corto que gotea sobre la cama anula el escalón mediano el primer aguacero. En la sierra el mismo techo tiene otro trabajo: que la rendija de aire no quede a la altura del cuerpo. Cobb lo describe en pollitos —el aire a ras de piso enfría aunque el techo esté tibio— y el refugio de noche de una ponedora joven falla igual.
+
+La percha se arma para levantarla. UC ANR pide que se pueda limpiar debajo, y la FAO recuerda que de noche cae más de la mitad de las heces. Una tabla fija, clavada para siempre, junta ese estiércol donde no lo puedes sacar. Diez aves: 1,5–2 m si usas los 15–20 cm de la FAO. No estires un palo de 80 cm y llámalo «suficiente porque duermen apretadas».
+
+El nido va después, lejos de esa percha, en un rincón oscuro. Dos cajas para diez, no una sola «grande»: la FAO pide uno cada 5 y UC ANR uno cada 4 o 5. El borde delantero de 10–15 cm de UC ANR es para que el huevo no ruede, no un adorno. Si cambias el nido de sitio en plena puesta, la rutina se corta: esa frase de la FAO está desarrollada, con la luz y el comedero, en [gallinero casero, semiprofesional y nave](gallinero-casero-semiprofesional-y-nave.html).
+
+La puerta se prueba de noche, empujándola desde fuera. Si cede, no es cierre. La FAO dice que una cerca viva no alcanza contra serpientes, rapaces ni ratas. La malla del parque de día no sustituye el cerrojo del dormidero.
+
+Recién entonces el agua y el saco, bajo el alero. El bebedero que gotea dentro te obliga a sacar cama cada día. El extractor, la cortina y los kilos por metro son el escalón de nave, no el de estas diez. Si todavía no cierra de noche, no lo compres.
 
 ## Para diez gallinas, en una hoja
 

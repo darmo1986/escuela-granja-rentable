@@ -49,7 +49,7 @@ El primer sitio que coloniza es el epitelio de la conjuntiva, la nariz, los seno
 
 | Qué anota Merck | Gallina | Pavo |
 | --- | --- | --- |
-| Signo | Puede no notarse, o dar distrés, estertores leves o marcados, dificultad para respirar, tos o estornudos. Moco nasal y conjuntivitis con espuma en el ojo | Más grave. Seno infraorbitario hinchado, exudado mucoide, moco nasal seco |
+| Signo | Puede no notarse, o dar dificultad respiratoria, estertores leves o marcados, tos o estornudos. Moco nasal y conjuntivitis con espuma en el ojo | Más grave. Seno infraorbitario hinchado, exudado mucoide, moco nasal seco |
 | Muerte si va solo | Morbilidad alta y mortalidad baja | La página no da un porcentaje distinto; dice que el cuadro es más grave |
 | Muerte si se complica | Puede ser alta, con virus respiratorios y con *E. coli*: aerosaculitis, pericarditis, perihepatitis | La misma lógica de complicación; el seno es el signo que esa página destaca |
 | Huevo o peso | En postura, sube la muerte crónica y baja la tasa de producción. En el texto de apertura: menos huevos por gallina en el ciclo. En los puntos clave: caídas pequeñas si no se complica | Bajan la conversión y la ganancia |

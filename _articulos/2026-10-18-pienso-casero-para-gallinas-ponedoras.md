@@ -46,13 +46,13 @@ Esas fases ya están contadas, universidad por universidad, en [alimento para ga
 
 Maine, no Alabama, pide que el saco de postura traiga al menos 2,5–3,5 % de calcio, y ofrece concha, calcita o piedra caliza a libre acceso si el saco no llega. Oregon habla de 3–4 % en el alimento y de concha aparte si la cáscara sale fina. El comedero de la concha va separado. Si va revuelta con el maíz del suelo, no sabes cuánto calcio comió cada una.
 
-Maine, para líneas livianas tipo Leghorn, precisa el momento: se cambia al saco de postura cuando empieza el huevo, y no se adelanta más de dos semanas. La Performance Standards Guide de Hy-Line Brown (Commercial Layers Conventional Systems) tiene pre-postura: no darla antes de las 15 semanas y no seguir después del primer huevo, porque ese alimento no trae calcio bastante para la puesta. Si no hay pre-postura, esa guía pide subir el calcio del último alimento de recría a 1,4 %. Eso es una instrucción de ese documento, no la dosis de un saco de pueblo.
+Cuándo se pasa al saco de postura en una línea liviana tipo Leghorn, y la pre-postura de la Performance Standards Guide de Hy-Line Brown, están en [alimento para gallinas ponedoras](alimento-para-gallinas-ponedoras.html). No los armes otra vez en la cocina. El 1,4 % de calcio que esa guía pide en el último alimento de recría, si no hay pre-postura, tampoco se improvisa con un puñado.
 
 El de postura no se da a pollitos. Alabama y Maine lo publican por el calcio. En un gallinero donde la pollita picotea el comedero de la madre, el «pienso de la casa» es justo ese error.
 
 ## Maíz, sobra y huerto en clima de aquí
 
-El maíz es energía. En la costa y en la sierra es lo que hay, y por eso se usa de más. Maryland dice que el grano suelto (maíz, cebada, avena o trigo) no hace falta si el saco ya es completo. Si aun así lo das, diluye el saco: conviene que no pase de cerca del 10 % de lo que comen en el día. Con grano entero hace falta grit insoluble, salvo que picoteen suelo y ya traguen piedritas.
+El maíz es energía. En la costa y en la sierra es lo que hay, y por eso se usa de más. El grano suelto, el tope de cerca del 10 % del día si aun así lo das, y el grit del grano entero están en [alimento para gallinas ponedoras](alimento-para-gallinas-ponedoras.html). Aquí el fallo es de patio: el elote o la yuca no sustituyen ese tope.
 
 PNW 565 aprieta más: la sobra, el grano y el desperdicio del huerto desbalancean, y solo deja lo que desaparezca en unos 15 minutos. En un patio donde el elote o la yuca sobran todo el día, ese cuarto de hora se pasa sin que nadie lo vea. El comedero de sobra no puede quedar lleno hasta la noche.
 

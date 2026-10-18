@@ -18,7 +18,7 @@ fuentes:
   - "[Chickens, FAO, Gateway to poultry production and products](https://www.fao.org/poultry-production-products/production/poultry-species/chicken/)"
   - "[Family poultry development, FAO](https://www.fao.org/4/i3595e/i3595e.pdf)"
   - "[Characterization of peasant family poultry farming in Southern Chile, Poultry Science, 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9731878/)"
-  - "[Observations on family poultry units in parts of Central America, Livestock Research for Rural Development](https://www.lrrd.cipav.org.co/lrrd11/3/mal113.htm)"
+  - "[Observations on family poultry units in parts of Central America, Livestock Research for Rural Development, 1999](https://www.lrrd.cipav.org.co/lrrd11/3/mal113.htm)"
 ---
 
 «Criolla» en la feria puede ser cualquier gallina de color. No es una raza con estándar de la APA, ni un peso de 8 libras, ni un contrato de 200 huevos. La FAO describe a las indígenas como aves de doble propósito, de bajo insumo, y las separa de las comerciales. Un estudio en el sur de Chile describe un municipio. Un texto de Centroamérica describe la costa y el interior de tres países. No arman un solo mapa. Las razas con ficha —[Leghorn](gallina-leghorn.html), [Rhode Island Red](gallina-rhode-island-red.html), [Sussex](gallina-sussex.html)— son otra cosa. El marco para elegir está en [razas de gallinas y cómo elegir](razas-de-gallinas-como-elegir.html).
@@ -27,13 +27,13 @@ fuentes:
 
 La FAO, en su página de la gallina: las comerciales de alto rendimiento se criaron para carne o para huevo y necesitan nutrición y sanidad intensivas para expresar lo que traen. Las indígenas de doble propósito viven sobre todo en zonas rurales y periurbanas. En una granja comercial se verían ineficientes. En un sistema de pocos insumos son las que encajan: adaptadas, resistentes a enfermedades, capaces de buscar comida, ágiles para esquivar predadores, con color de pluma que camufla. La gallina tiene instinto fuerte de clueca: incuba y cuida a los pollitos. Los cruces, en algunas regiones, dan carne y huevo relativamente buenos si el clima y la comida son moderados. Hay más de 1.600 razas reconocidas en el mundo. Eso no es una lista de países. No inventes aquí «la criolla mexicana» o «la centroamericana» como si fuera una sola.
 
-En 2020, dice la misma página, había más de 33.000 millones de gallinas en el mundo y alrededor del 46 % estaba en Asia. No es un censo de tu municipio.
+En 2020, dice la misma página, había más de 33.000 millones de pollos y gallinas en el mundo y alrededor del 46 % estaba en Asia. No es un censo de tu municipio.
 
 El documento de la FAO sobre aves de familia (el resultado de una conferencia electrónica, no una encuesta latinoamericana) va en la misma dirección. En el sistema de rebusque, lo que más encaja son razas locales con algo más de productividad, adaptación y resistencia, porque se reproducen solas y no dependen de que llegue el pollito de fuera. Conservarlas importa por esa rusticidad. Para un sistema semiintensivo, hablan de cruces —local con exótica, o dos líneas exóticas— solo donde hay alimento, alojamiento, sanidad y suministro de pollitos a la altura de la inversión. El sistema intensivo chico, en ese texto, se apoya en líneas comerciales de carne o de huevo, y se cae si faltan el pollito, el alimento, el control de enfermedad o el mercado. No metas una comercial de un día en un patio de rebusque y le exijas la guía de la casa de genética.
 
 ## Huevos: 40 a 60 no es el 40 % de Chile
 
-La FAO, en la página de la gallina, contrasta así: las ponedoras comerciales pueden pasar de 300 huevos al año, mientras las indígenas a menudo ponen solo 40 a 60. «A menudo» no es «todas». Y 300 no es la ficha de la Leghorn de raza (alrededor de 200 o más en Oklahoma State) ni las 265 de la comercial blanca de Oregon. Son frases de páginas distintas. El «más de 300» es el techo comercial de la FAO, no el de tu Red.
+La FAO, en la página de la gallina, contrasta así: las ponedoras comerciales pueden pasar de 300 huevos al año, mientras las indígenas a menudo ponen solo 40 a 60. «A menudo» no es «todas». Y 300 no es la ficha de la Leghorn de raza (alrededor de 200 o más en Oklahoma State) ni las 265 de la comercial blanca de Oregon. Son frases de páginas distintas. El «más de 300» es el techo comercial de la FAO, no el de tu Rhode Island Red.
 
 El estudio de Maullín, comuna de Los Lagos, en el sur de Chile (145 predios familiares): lotes de 15 a 30 gallinas nativas, criollas o indígenas. Empiezan a poner a los 5 o 6 meses. La tasa media de puesta es del 40 % y el pico es en septiembre. El huevo marrón es el más frecuente. Hay huevo verde azulado de ancestría mapuche. Un gallo cada 10 a 20 gallinas da alrededor del 60 % de eclosión en incubación natural. Los machos se quedan unas dos temporadas. Las hembras, más, algunas hasta viejas. La comida es grano local o propio, pasto, rebusque y sobra de cocina. La sanidad es poca o nula. El conocimiento es de tradición. La inversión en galpón y comida es baja. La venta de huevo y carne de más se da en otoño e invierno, y el manejo lo llevan sobre todo mujeres. Es un municipio del sur, no tropical. Septiembre es primavera allá. No lo copies como calendario de la costa ecuatorial.
 
@@ -43,7 +43,7 @@ El estudio de Maullín, comuna de Los Lagos, en el sur de Chile (145 predios fam
 | Maullín, Chile, 2022 | Tasa media del 40 %, pico en septiembre. Inicio a los 5 o 6 meses | 145 predios de esa comuna. No multipliques el 40 % por 365: el trabajo no publica ese producto |
 | Centroamérica, LRRD | Producción baja e irregular. Sin un número de huevos | Costa de Belice, Guatemala y la Mosquitia de Honduras, sistema extensivo el más frecuente |
 
-El 40 % de Maullín no se convierte en 146 huevos porque nadie en ese artículo hizo esa cuenta. El 40 a 60 de la FAO ya está en huevos por año. Son unidades distintas. Dejarlas juntas en una sola celda sería el error que esta serie viene evitando.
+El 40 % de Maullín no se convierte en 146 huevos porque nadie en ese artículo hizo esa cuenta. El 40 a 60 de la FAO ya está en huevos por año. Son unidades distintas. Dejarlas juntas en una sola celda mezclaría unidades.
 
 ## Centroamérica: costo bajo y muerte alta, sin porcentaje
 
@@ -85,7 +85,7 @@ Sugiere, entre otras cosas, encerrar los pollitos al menos hasta las seis semana
 
 ### ¿Cuántos huevos pone una criolla?
 
-La FAO: las indígenas a menudo ponen 40 a 60 al año, y las comerciales pueden pasar de 300. Maullín midió una tasa media del 40 % en su comuna, con pico en septiembre, no un total anual. Centroamérica dice producción baja e irregular, sin cifra. Elige la frase de la fuente. No armes una quinta.
+La FAO: las indígenas a menudo ponen 40 a 60 al año, y las comerciales pueden pasar de 300. Maullín midió una tasa media del 40 % en su comuna, con pico en septiembre, no un total anual. Centroamérica dice producción baja e irregular, sin cifra. Elige la frase de la fuente.
 
 ### ¿Es una raza?
 

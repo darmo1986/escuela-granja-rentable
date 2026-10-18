@@ -25,7 +25,7 @@ Un lote que amanece con varias muertas, cuellos torcidos y huevos raros puede se
 
 La OMSA: enfermedad muy contagiosa y a menudo grave, en aves que incluyen a las de corral, causada por cepas virulentas de paramixovirus aviar tipo 1. Suele verse como enfermedad respiratoria, pero el decaimiento, lo nervioso o la diarrea pueden ser lo que más se note.
 
-Merck, julio de 2026, usa el mismo virus (paramixovirus aviar tipo 1; el nombre taxonómico que escribe es *Orthoavulavirus javaense*). La enfermedad la causan las cepas virulentas. En aves sin vacunar: muerte súbita, decaimiento y distrés respiratorio. No es, en esa página, un problema de inocuidad del alimento ni de salud pública en el sentido de la carne. El daño es del lote y del comercio.
+Merck, julio de 2026, usa el mismo virus (paramixovirus aviar tipo 1; el nombre taxonómico que escribe es *Orthoavulavirus javaense*). La enfermedad la causan las cepas virulentas. En aves sin vacunar: muerte súbita, decaimiento y dificultad respiratoria. No es, en esa página, un problema de inocuidad del alimento ni de salud pública en el sentido de la carne. El daño es del lote y del comercio.
 
 La clasificación vieja tenía tres patotipos. Las dos páginas no los cierran igual para el aviso:
 
@@ -72,7 +72,7 @@ Merck separa el virus que prefiere respiración y digestivo (viscerotrópico) de
 
 | Cuadro en gallinas, Merck | Qué ve | Muerte que publica |
 | --- | --- | --- |
-| Velogénico viscerotrópico | Decaimiento, no comen, distrés (a veces un silbido), moco claro por el pico, postración, muerte súbita. A veces edema de cabeza y de alrededor del ojo. La cresta puede ponerse azul. Diarrea verdosa acuosa y signos nerviosos en las que no mueren en unos días, sobre todo si están vacunadas | Morbilidad y mortalidad de hasta el 100 %, sobre todo en poblaciones naïve |
+| Velogénico viscerotrópico | Decaimiento, no comen, dificultad respiratoria (a veces un silbido), moco claro por el pico, postración, muerte súbita. A veces edema de cabeza y de alrededor del ojo. La cresta puede ponerse azul. Diarrea verdosa acuosa y signos nerviosos en las que no mueren en unos días, sobre todo si están vacunadas | Morbilidad y mortalidad de hasta el 100 %, sobre todo en poblaciones sin inmunidad previa |
 | Velogénico neurotrópico | Distrés con estornudos, tos y moco. Lo nervioso suele ir antes: temblores, convulsiones, parálisis de alas y patas, cuello torcido, vueltas, parálisis completa | Morbilidad de hasta el 100 % y mortalidad del 50 % (hasta el 90 % en jóvenes) |
 | Mesogénico | En jóvenes: boqueo, tos, estornudos, estertores. La puesta baja y vuelve a lo normal en unas semanas. Lo nervioso, si el caso se alarga | Mortalidad baja, más alta en jóvenes |
 | Lentogénico | De subclínico a respiratorio leve. Las adultas a menudo no se notan. Las jóvenes pueden toser y estornudar. Una bacteria secundaria empeora el cuadro | No da un techo |
@@ -99,7 +99,7 @@ Merck: la vacuna induce anticuerpo, así que hace falta más virus para infectar
 
 Datos de manejo que Merck separa, y que el veterinario ordena:
 
-- Las vivas lentogénicas, sobre todo B1 y LaSota, se aplican mucho en masa por agua o spray. Esa vía deja inmunidad de mucosa y las infectadas eliminan menos virus que con una inactivada. Si la aplicación en masa falla, puede no llegarse al umbral del 85 % que ese manual cita para inmunidad de hato. El 85 % no es «vacuna a 9 de tus 12 y ya».
+- Las vivas lentogénicas, sobre todo B1 y LaSota, se aplican mucho en masa por agua o spray. Esa vía deja inmunidad de mucosa y las infectadas eliminan menos virus que con una inactivada. Si la aplicación en masa falla, puede no llegarse al umbral del 85 % que ese manual cita para inmunidad de lote. El 85 % no es «vacuna a 9 de tus 12 y ya».
 - También se pueden poner una a una en nariz o en el saco conjuntival. Es más trabajo.
 - Pollitos sanos, tan pronto como el día 1. Retrasar a la segunda o tercera semana evita que el anticuerpo de la madre tape la respuesta. Las dos frases son de Merck. No las juntes en «el día 10».
 - La inactivada con adyuvante oleoso va después de la viva en reproductoras y ponedoras, o sola cuando la viva está contraindicada (Merck nombra a las palomas). Cada ave se maneja. Si te pinchas con una oleosa, Merck pide atención médica pronto. No es una instrucción para aplicarla en la cocina.
@@ -130,7 +130,7 @@ Datos de manejo que Merck separa, y que el veterinario ordena:
 
 ### ¿Se contagia a la familia?
 
-La OMSA la llama zoonosis menor: puede causar conjuntivitis, en general muy leve y que se limita sola. Merck precisa dónde se ha visto: laboratorio y equipos de vacunación, no en quien cría o come las aves. No es un virus que, en estas páginas, enferme por comer el huevo. El riesgo grande es del lote y de mover aves.
+La OMSA la llama zoonosis menor: puede causar conjuntivitis, en general muy leve y que se limita sola. Merck precisa dónde se ha visto: sobre todo en laboratorio y en equipos de vacunación con mucho virus, y, cuando la vacunación aún no era habitual, en quienes evisceraban aves en plantas de procesado. No se ha descrito en quien cría o come las aves. No es un virus que, en estas páginas, enferme por comer el huevo. El riesgo grande es del lote y de mover aves.
 
 ### ¿La vacuna del día 1 alcanza?
 

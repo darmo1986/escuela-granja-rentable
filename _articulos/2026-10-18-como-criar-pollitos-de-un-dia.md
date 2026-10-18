@@ -75,14 +75,9 @@ Minnesota también escribe, para su clima, alimento a libre disposición la prim
 
 ## La semana que sigue
 
-No hay una sola curva. La lección L04A publica la curva que el curso atribuye a Ross: 30 °C el día de llegada y un descenso hasta unos 20 °C desde el día 27. Úsala como la usa la lección, sabiendo que es de esa guía y no un promedio con Cobb ni con Minnesota. Minnesota baja unos 5 °F por semana desde 90–95 °F, hacia unos 70 °F en tres o cuatro semanas, y dice que a las cuatro semanas el ave ya está emplumada y necesita poco calor extra, salvo frío (por debajo de unos 50 °F, cerca de 10 °C). Deja cada curva en su guía. El pollito te dice cuál falla:
+No hay una sola curva. La de la lección L04A, la que el curso atribuye a Ross, y lo que el pollito hace si tiene frío, calor o corriente están en [cómo criar pollos de engorde](como-criar-pollos-de-engorde.html). No las repito aquí.
 
-- Amontonados bajo la lámpara: frío, o corriente a ras de piso.
-- Pegados a la orilla, con el pico abierto: calor.
-- Todos de un lado: entra aire por el otro.
-- Repartidos, comiendo y bebiendo: es el cuadro que buscan Cobb y la guía de galpones abiertos.
-
-Mide a la altura del ave. Un termómetro en el techo miente.
+Minnesota baja unos 5 °F por semana desde 90–95 °F, hacia unos 70 °F en tres o cuatro semanas, y dice que a las cuatro semanas el ave ya está emplumada y necesita poco calor extra, salvo frío (por debajo de unos 50 °F, cerca de 10 °C). Esa curva es de esa extensión. No la promedies con la de la L04A. Mide a la altura del ave. Un termómetro en el techo miente.
 
 ## Pasos la víspera y la mañana
 

@@ -675,7 +675,9 @@ def poner_version(html, version=None):
     version = version or VERSION_ACTIVOS
     for nombre in (
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
-            "js/site.js", "js/app.js", "js/config.js", "js/catalogo.js"):
+            "js/site.js", "js/app.js", "js/config.js", "js/catalogo.js",
+            "js/enfermedades.js", "js/lista.js", "js/calculadoras.js",
+            "js/juegos.js", "js/calculadora.js"):
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[^"]*)?"',
             rf'\1?v={version}"',

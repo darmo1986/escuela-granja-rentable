@@ -80,7 +80,7 @@ La cama seca es la palanca diaria. Cómo no encharcar el piso está en [bebedero
 
 Merck y Mississippi describen dos caminos de prevención, no un remedio casero: un anticoccidial en el alimento o en el agua, o una vacuna con ooquistes vivos a dosis baja, normalmente en el pollito de un día. Extension.org dice lo mismo y añade que la vacuna solo introduce la infección: el ave se reinfecta en la cama con la descendencia de esa cepa y así arma inmunidad. Por eso una cama de alambre, que separa al ave de las heces, baja la infección clínica (Merck) y a la vez puede estorbar el trabajo de una vacuna que necesita reinfección.
 
-No copies una dosis de internet. Merck insiste en que el daño muchas veces ya está hecho cuando se ven los signos, y en que el tratamiento llega tarde si se espera al brote. El veterinario elige el producto, la vía y si el lote va vacunado o medicado. El veterinario decide entre vacuna y alimento medicado; no se combinan sin su indicación. Léelo en la etiqueta y confírmalo con quien te vacunó las aves.
+No copies una dosis de internet. Merck insiste en que el daño muchas veces ya está hecho cuando se ven los signos, y en que el tratamiento llega tarde si se espera al brote. El veterinario elige el producto, la vía y si el lote va vacunado o medicado; no se combinan sin su indicación. Léelo en la etiqueta y confírmalo con quien te vacunó las aves.
 
 La FAO añade un matiz de parvada familiar: encontrar ooquistes en heces indica infección, no siempre enfermedad. Tratar un nivel bajo, cuando el ave ya convive con el parásito, puede quitarle la inmunidad que estaba formando. Por eso «le echo el polvo que me recomendaron en la tienda» no es un plan.
 
@@ -94,7 +94,7 @@ La guía larga, con los plazos y las mortalidades de cada página sin promediar,
 
 La OMSA lista dificultad para respirar, tos, estornudos, estertores, temblores, alas y patas paralizadas, cuello torcido, aves que dan vueltas, diarrea y una caída parcial o total de la puesta. Los huevos pueden salir con color, forma o cáscara raros, y con la clara aguada. Los signos empiezan entre 2 y 12 días después del contacto y el lote se contagia rápido. La mortalidad varía y puede llegar a ser muy alta. En cepas extremas, la OMSA describe aves muertas con pocos signos previos.
 
-Merck coincide en muerte súbita, decaimiento y distrés respiratorio en aves no vacunadas, y dice que no hay tratamiento. Las vacunas reducen los signos clínicos; no impiden la infección. El control, en zonas donde el virus ya circula, es difícil.
+Merck coincide en muerte súbita, decaimiento y dificultad respiratoria en aves no vacunadas, y dice que no hay tratamiento. Las vacunas reducen los signos clínicos; no impiden la infección. El control, en zonas donde el virus ya circula, es difícil.
 
 Las aves eliminan virus por el aire, las secreciones y las heces. Merck señala como vías principales el movimiento de aves infectadas, de productos, de personas y de equipo o cama contaminados. Un visitante con las mismas botas, una jaula prestada o un ave nueva sin cuarentena mueven el virus mejor que el viento.
 
