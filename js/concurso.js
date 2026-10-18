@@ -319,7 +319,13 @@
           + (mi.pais === "ES" ? "Puedes usar PayPal o Bizum." : "El cobro es por PayPal. Bizum solo está disponible en España.");
       }
     }
-    if (formPago) formPago.hidden = mi.estado !== "pendiente";
+    if (formPago) formPago.hidden = true;
+    if (mi.estado === "pendiente") {
+      puedeReclamar(mi.periodo).then(function (si) {
+        if (formPago) formPago.hidden = !si;
+        if (!si && txt) txt.textContent = "No hay un premio pendiente a tu nombre.";
+      });
+    }
   }
 
   function textoModo() {
@@ -338,6 +344,24 @@
     if (modo) modo.textContent = textoModo();
   }
 
+  function cargarHistorial() {
+    return pedir("/rest/v1/rpc/concurso_historial", { method: "POST", body: {} }).then(function (res) {
+      return res.ok && Array.isArray(res.data) ? res.data : [];
+    });
+  }
+
+  function puedeReclamar(periodo) {
+    var u = usuario();
+    if (!u || !periodo) return Promise.resolve(false);
+    return pedir("/rest/v1/rpc/concurso_premio_pendiente", {
+      method: "POST",
+      auth: true,
+      body: { p_periodo: periodo, p_usuario: u.id }
+    }).then(function (res) {
+      return !!(res.ok && res.data === true);
+    });
+  }
+
   function cargarEstado() {
     if (!publicada) {
       abierta = false;
@@ -353,9 +377,12 @@
         abierta = false;
         if (modo) modo.textContent = textoError(res);
         pintarRanking([]);
-        return;
+        return cargarHistorial().then(pintarGanadores);
       }
-      aplicarEstado(res.data);
+      return cargarHistorial().then(function (filas) {
+        res.data.ganadores = filas;
+        aplicarEstado(res.data);
+      });
     });
   }
 
@@ -389,7 +416,7 @@
     if (sel) sel.disabled = false;
     pedir("/rest/v1/perfiles?id=eq." + encodeURIComponent(u.id) + "&select=nombre", { auth: true }).then(function (res) {
       var fila = res.ok && Array.isArray(res.data) ? res.data[0] : null;
-      apodo = fila && fila.nombre ? limpiar(fila.nombre) : "";
+      apodo = fila && fila.nombre ? apodoCuenta(fila.nombre) : "";
       esVecino = !apodo || esPlaceholder(apodo);
       if (quien) {
         quien.textContent = apodo
@@ -805,18 +832,24 @@
       if (err) err.textContent = "";
       pedir("/rest/v1/rpc/concurso_estado", { method: "POST", body: {}, auth: true }).then(function (estado) {
         var mi = estado.ok && estado.data && estado.data.mi_premio;
-        if (!mi || mi.estado !== "pendiente") {
+        if (!mi || !mi.periodo) {
           if (err) err.textContent = "No hay un premio pendiente a tu nombre.";
           return null;
         }
-        return pedir("/rest/v1/rpc/concurso_reclamar", {
-          method: "POST",
-          auth: true,
-          body: {
-            p_periodo: mi.periodo,
-            p_metodo: metodo ? metodo.value : "",
-            p_dato: dato ? dato.value : ""
+        return puedeReclamar(mi.periodo).then(function (si) {
+          if (!si) {
+            if (err) err.textContent = "No hay un premio pendiente a tu nombre.";
+            return null;
           }
+          return pedir("/rest/v1/rpc/concurso_reclamar", {
+            method: "POST",
+            auth: true,
+            body: {
+              p_periodo: mi.periodo,
+              p_metodo: metodo ? metodo.value : "",
+              p_dato: dato ? dato.value : ""
+            }
+          });
         });
       }).then(function (res) {
         if (!res) return;
