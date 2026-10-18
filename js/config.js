@@ -42,6 +42,13 @@ window.GR = {
       w: 320,
       h: 50
     }
+  },
+  /* Foro en /preguntas. Con estos textos de ejemplo la página no llama a Supabase:
+     los datos se quedan en el navegador. Para encenderlo, supabase/LEEME.md.
+     Pega solo la clave anon public. Nunca la service_role. */
+  comunidad: {
+    supabaseUrl: "https://TU-PROYECTO.supabase.co",
+    supabaseAnonKey: "TU_CLAVE_ANON_PUBLICA"
   }
 };
 

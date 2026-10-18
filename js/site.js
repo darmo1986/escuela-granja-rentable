@@ -706,18 +706,36 @@
     refBox.textContent = (GR.siteUrl || "https://granjarentable.com") + "/?ref=TUCODIGO";
   }
 
-  (function addCalcNav() {
-    var calcHref = root + "calculadora.html";
+  (function addToolNav() {
     var nav = document.getElementById("site-nav");
-    if (!nav || nav.querySelector('a[href="' + calcHref + '"]')) return;
-    var calcLink = document.createElement("a");
-    calcLink.href = calcHref;
-    calcLink.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calcular</span>';
+    if (!nav) return;
+    function put(href, html, currentRe) {
+      var full = root + href;
+      var a = nav.querySelector('a[href="' + full + '"]');
+      if (!a) {
+        a = document.createElement("a");
+        a.href = full;
+        a.innerHTML = html;
+        nav.appendChild(a);
+      }
+      if (currentRe.test(location.pathname || "")) a.setAttribute("aria-current", "page");
+      return a;
+    }
+    var calc = put(
+      "calculadora.html",
+      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calcular</span>',
+      /\/calculadora(?:\.html)?\/?$/
+    );
+    var foro = put(
+      "preguntas.html",
+      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 6.5h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H13l-5.5 4.2V22.5H6a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z"/></svg></span><span class="nav-label">Foro</span>',
+      /\/preguntas(?:\.html)?\/?$/
+    );
     var appLink = nav.querySelector('a[href$="app.html"]');
-    if (appLink && appLink.nextSibling) nav.insertBefore(calcLink, appLink.nextSibling);
-    else nav.appendChild(calcLink);
-    var path = location.pathname || "";
-    if (/\/calculadora(?:\.html)?\/?$/.test(path)) calcLink.setAttribute("aria-current", "page");
+    if (!appLink) return;
+    var despues = appLink.nextSibling;
+    if (calc.previousElementSibling !== appLink) nav.insertBefore(calc, despues);
+    nav.insertBefore(foro, calc.nextSibling);
   })();
 
   document.querySelectorAll(".foot-brand").forEach(function (p) {
@@ -729,7 +747,8 @@
       ["calculadoras.html", "Calculadoras"],
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],
-      ["faq.html", "Preguntas"],
+      ["preguntas.html", "Preguntas de la comunidad"],
+      ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],
       ["juegos.html", "Juegos"]
     ].forEach(function (pair) {

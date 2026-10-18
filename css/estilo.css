@@ -561,6 +561,48 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 @media (min-width: 1040px) {
   #site-nav > a, #site-nav > .nav-drop { min-width: 0; }
 }
+@media (min-width: 1040px) and (max-width: 1199px) {
+  .nav { gap: 6px; }
+  .nav-label { font-size: .92rem; }
+  .nav a, .nav-parent, .nav-redes { padding: 8px 8px; gap: 6px; }
+  .nav-ico, .nav-ico svg { width: 22px; height: 22px; }
+}
+.qa-layout { display: flex; flex-direction: column; gap: 14px; }
+.qa-rank { order: -1; }
+.qa label { display: flex; flex-direction: column; gap: 4px; font-weight: 750; margin: 10px 0; }
+.qa-demo { background: #fff6d8; border-radius: 12px; padding: 10px 12px; font-weight: 750; }
+.qa-aviso { background: var(--gl); border-radius: 12px; padding: 10px 12px; font-weight: 750; margin: 0 0 12px; }
+.qa-aviso:empty { display: none; }
+.qa-aviso.malo { background: #fdecea; color: var(--danger); }
+.qa-sesion { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 12px; }
+.qa-sesion p { margin: 0; font-weight: 800; }
+.qa-sesion[hidden], #qa-entrar[hidden], #qa-preguntar[hidden], #qa-admin-fila[hidden], #qa-admin-nota[hidden], #qa-reset[hidden], #qa-demo[hidden], #qa-entrar-demo[hidden], #qa-entrar-correo[hidden], #qa-entrar-google[hidden] { display: none !important; }
+.qa-sort { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.qa-sort .btn { min-height: 44px; padding: 8px 14px; }
+.qa-sort .btn[aria-pressed="true"] { background: var(--g); color: #fff; border-color: var(--g); }
+.qa-card, .qa-rank { scroll-margin-top: 96px; }
+.qa-card { background: #fff; border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); margin-bottom: 12px; }
+.qa-card h3 { margin-top: 0; }
+.qa-meta { color: var(--muted); font-size: .92rem; }
+.qa-meta .badge { margin-left: 4px; }
+.qa-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.qa-actions .btn { min-height: 44px; padding: 8px 12px; font-size: .92rem; }
+.qa-actions summary { min-height: 44px; display: inline-flex; align-items: center; cursor: pointer; font-weight: 800; color: var(--gd); }
+.qa-respuesta { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 10px; }
+.qa-oculto { border: 2px dashed var(--danger); border-radius: 12px; padding: 8px; }
+.qa-rank ol { list-style: none; padding: 0; margin: 0 0 12px; display: grid; gap: 8px; }
+.qa-rank li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: center; background: var(--gl); border-radius: 12px; padding: 8px 10px; }
+.qa-pos { font-weight: 800; color: var(--gd); width: 1.4rem; text-align: center; }
+.qa-rank-nom { margin: 0; }
+.qa-rank .fine { margin: 0; }
+.badge.referente { background: var(--gd); color: #fff; }
+.badge.buena { background: var(--gold); color: var(--gold-ink); }
+.badge.vecino { background: var(--gl); color: var(--gd); }
+.badge.semilla { background: #fff; color: var(--muted); border: 1px solid var(--line); }
+@media (min-width: 980px) {
+  .qa-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: start; }
+  .qa-rank { order: 0; position: sticky; top: 148px; }
+}
 @media print {
   .top, .foot, .wa-float, .ad-inline, #cookie-banner, .no-print { display: none !important; }
   body { background: #fff; }
