@@ -1,0 +1,6 @@
+# GitHub Pages publica la rama con Jekyll.
+# Sin este archivo, y con .nojekyll, se serviría _fuentes/enfermedades/articulos.json
+# (notas internas de redacción). Jekyll no copia las carpetas que empiezan por _.
+# El HTML, el CSS, el JS y las imágenes se copian tal cual: no llevan marcas de Jekyll.
+exclude:
+  - _fuentes

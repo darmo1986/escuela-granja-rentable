@@ -222,7 +222,6 @@
   var CAT_LABEL = {
     incubadoras: "Incubadoras",
     complementos: "Complementos",
-    salud: "Salud avícola",
     calefaccion: "Calefacción",
     guias: "Guías",
     app: "App",
@@ -480,6 +479,7 @@
           : "Llegaste con la recomendación " + ref + ". La guardamos 30 días para poder pagarle a esa persona si compras en nuestra tienda.";
       } else note.hidden = true;
     }
+    try { window.dispatchEvent(new CustomEvent("gr-pais", { detail: pais })); } catch (ePaisEvt) {}
   }
 
   document.querySelectorAll(".js-pais").forEach(function (sel) {
@@ -503,25 +503,26 @@
     });
   }
 
-  document.querySelectorAll(".nav-parent, .nav-redes").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var drop = btn.closest(".nav-drop");
-      if (!drop) return;
-      var open = drop.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  });
   if (nav) {
-    nav.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        if (window.matchMedia("(max-width: 1039px)").matches) {
-          nav.classList.remove("is-open");
-          if (navBtn) {
-            navBtn.setAttribute("aria-expanded", "false");
-            navBtn.textContent = "Menú";
-          }
+    nav.addEventListener("click", function (ev) {
+      var btn = ev.target.closest(".nav-parent, .nav-redes");
+      if (btn && nav.contains(btn)) {
+        var drop = btn.closest(".nav-drop");
+        if (drop) {
+          var open = drop.classList.toggle("is-open");
+          drop.querySelectorAll(".nav-parent, .nav-redes").forEach(function (b) {
+            b.setAttribute("aria-expanded", open ? "true" : "false");
+          });
         }
-      });
+      }
+      var enlace = ev.target.closest("a");
+      if (enlace && nav.contains(enlace) && window.matchMedia("(max-width: 1039px)").matches) {
+        nav.classList.remove("is-open");
+        if (navBtn) {
+          navBtn.setAttribute("aria-expanded", "false");
+          navBtn.textContent = "Menú";
+        }
+      }
     });
   }
 
@@ -707,36 +708,49 @@
   }
 
   (function addToolNav() {
-    var nav = document.getElementById("site-nav");
-    if (!nav) return;
-    function put(href, html, currentRe) {
+    var barra = document.getElementById("site-nav");
+    if (!barra || document.getElementById("nav-herramientas")) return;
+    var drop = document.createElement("div");
+    drop.className = "nav-drop";
+    drop.innerHTML = '<div class="nav-row">' +
+      '<button class="nav-redes nav-tools" type="button" aria-expanded="false" aria-controls="nav-herramientas">' +
+      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 8h8v8H6zm12 0h8v8h-8zM6 20h8v6H6zm12 0h8v6h-8z"/></svg></span>' +
+      '<span class="nav-label">Herramientas</span></button>' +
+      '<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-herramientas" aria-label="Calculadora, enfermedades y juegos"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>' +
+      '</div><div class="nav-sub" id="nav-herramientas"></div>';
+    var sub = drop.querySelector("#nav-herramientas");
+    function enlace(href, html, actual) {
       var full = root + href;
-      var a = nav.querySelector('a[href="' + full + '"]');
+      var a = barra.querySelector('a[href="' + full + '"]') || barra.querySelector('a[href$="' + href + '"]');
       if (!a) {
         a = document.createElement("a");
         a.href = full;
-        a.innerHTML = html;
-        nav.appendChild(a);
       }
-      if (currentRe.test(location.pathname || "")) a.setAttribute("aria-current", "page");
+      if (html) a.innerHTML = html;
+      if (actual) a.setAttribute("aria-current", "page");
+      sub.appendChild(a);
       return a;
     }
-    var calc = put(
+    var ruta = location.pathname || "";
+    enlace(
       "calculadora.html",
-      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calcular</span>',
-      /\/calculadora(?:\.html)?\/?$/
+      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calculadora</span>',
+      /\/calculadora(?:\.html)?\/?$/.test(ruta)
     );
-    var salud = put(
+    enlace(
       "enfermedades.html",
       '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="currentColor" d="M14.2 8.2h3.6v6h6v3.6h-6v6h-3.6v-6h-6v-3.6h6z"/></svg></span><span class="nav-label">Enfermedades</span>',
-      /\/enfermedades(?:\.html|\/)/
+      /\/enfermedades(?:\.html|\/)/.test(ruta)
     );
-    salud.classList.add("nav-enf");
-    var appLink = nav.querySelector('a[href$="app.html"]');
-    if (!appLink) return;
-    var despues = appLink.nextSibling;
-    if (calc.previousElementSibling !== appLink) nav.insertBefore(calc, despues);
-    nav.insertBefore(salud, calc.nextSibling);
+    /* Juegos queda el último de este desplegable.
+       El concurso, cuando exista su página, se inserta justo después de este enlace. */
+    var juegos = enlace("juegos.html", "", /\/juegos(?:\.html)?\/?$/.test(ruta));
+    if (!juegos.querySelector(".nav-label")) {
+      juegos.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span>';
+    }
+    var appLink = barra.querySelector('a[href$="app.html"]');
+    if (appLink) barra.insertBefore(drop, appLink);
+    else barra.appendChild(drop);
   })();
 
   document.querySelectorAll(".foot-brand").forEach(function (p) {

@@ -8,7 +8,7 @@ La biblioteca de acceso está en `js/vendor/supabase.js` (copia de `@supabase/su
 
 ## Cuenta
 
-El curso de este sitio es gratis. Entrar no lo cierra: copia el avance a la cuenta. El apodo se escribe al registrarse y es el campo `perfiles.nombre`. No se deriva del correo. En Mi cuenta se puede cambiar.
+El curso de este sitio es gratis. Entrar no lo cierra: copia el avance a la cuenta. El apodo público es uno solo: `perfiles.nombre`. No sale del correo ni del nombre de Google (`full_name` o `name`). El reto y el concurso reutilizan ese campo. En Mi cuenta se puede cambiar. Si alguien entra sin apodo, la página se lo pide y, hasta entonces, el ranking enseña «Vecino» y cuatro caracteres.
 
 ### Proyecto
 

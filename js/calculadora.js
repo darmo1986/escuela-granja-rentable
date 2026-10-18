@@ -374,7 +374,6 @@
     var manoCero = state.manoModo === "horas"
       ? !(num(state.horasDia) > 0 && num(state.precioHora) > 0)
       : !(num(state.manoMes) > 0);
-    var otrosCero = !(num(state.otrosMes) > 0);
     var raro = aves === 1 && num(state.otrosMes) >= 100
       ? "Revisa la cifra: 1 ave con otros costes muy altos. Si querías miles, 1.000 se lee como mil."
       : "";
@@ -415,9 +414,9 @@
     var luz = "";
     var faltan = "";
     if (margen != null && (costes > 0 || ingresos > 0)) {
-      if (manoCero && otrosCero) {
+      if (manoCero) {
         luz = "faltan";
-        faltan = "Faltan costes. Con la mano de obra y los otros costes a 0 el semáforo no se pone en verde.";
+        faltan = "Faltan costes. Con la mano de obra a 0 el semáforo no se pone en verde.";
       } else if (margen > 15) luz = "verde";
       else if (margen >= 0) luz = "ambar";
       else luz = "rojo";
@@ -699,12 +698,14 @@
     var nombres = {
       verde: "Verde: margen por encima del 15 %.",
       ambar: "Ámbar: margen entre 0 % y 15 %.",
-      rojo: "Rojo: el lote sale a pérdida.",
-      faltan: "Faltan costes."
+      rojo: "Rojo: el lote sale a pérdida."
     };
     var margenTxt = res.margen == null ? "" : (res.margen < -100 ? " Margen < −100 %." : " Margen " + fmt(res.margen, 1) + " %.");
+    var cola = (res.tope ? " " + res.tope : "") + (res.raro ? " " + res.raro : "");
     luz.className = "semaforo " + (res.luz || "");
-    luz.textContent = (res.luz ? nombres[res.luz] + margenTxt : "Escribe precios para ver el semáforo.") + (res.faltan ? " " + res.faltan : "") + (res.tope ? " " + res.tope : "") + (res.raro ? " " + res.raro : "");
+    if (res.luz === "faltan") luz.textContent = res.faltan + margenTxt + cola;
+    else if (res.luz) luz.textContent = nombres[res.luz] + margenTxt + cola;
+    else luz.textContent = "Escribe precios para ver el semáforo.";
     var extra = res.nLots > 1 ? " Lotes enteros en el plazo: " + String(res.nLots) + "." : (res.nLots === 1 ? " Lotes enteros en el plazo: 1." : " No cabe un lote entero en ese plazo.");
     resumen.textContent = "Beneficio " + cifra(res.beneficio) + ". Ingresos " + cifra(res.ingresos) + ". Costes " + cifra(res.costes) + "." + extra;
     var html = "";
@@ -809,10 +810,9 @@
 
   function bloqueCalcio(flag, r) {
     if (flag === "si") {
-      return "<div class=\"calcio\"><p><strong>Calcio a libre disposición</strong>, en otro comedero, desde unas 18 semanas o el primer huevo. Unos 3–5 g por gallina al día (concha de ostra o carbonato cálcico en grano; se ajusta).</p>" +
-        "<p>En " + esc(fmtR(r.aves)) + " gallinas: <strong>" + esc(textoRango(r.caDia, "g")) + " al día</strong> (" + esc(textoRango([r.caSem[0] / 1000, r.caSem[1] / 1000], "kg")) + " a la semana).</p>" +
+      return "<div class=\"calcio\"><p><strong>El pienso de postura ya lleva el calcio.</strong> Deja además concha o grit a libre disposición: cada gallina toma lo que le falta (suele ser poco).</p>" +
         "<p>Por el día: calcio fino (carbonato en polvo o grano fino). Por la tarde-noche: calcio grueso (concha de ostra o grano grueso), que se queda más tiempo en la molleja mientras se forma la cáscara y se desperdicia menos.</p>" +
-        "<p class=\"hint\">Orientativo. No está metido en el precio del pienso: si lo compras aparte, súmalo en otros costes.</p></div>";
+        "<p class=\"hint\">Orientativo. Esos 3–5 g que a veces se citan son la necesidad total del día, no un suplemento encima del pienso. Si compras concha aparte, súmala en otros costes.</p></div>";
     }
     if (flag === "muda") {
       return "<div class=\"calcio calcio-no\"><p><strong>Calcio:</strong> en muda la puesta se para o baja mucho. No añadas calcio como si estuvieran en puesta. Si alguna sigue poniendo, deja un poco a libre disposición. Orientativo.</p></div>";
@@ -876,14 +876,14 @@
     $("c-aves").value = "100";
     $("c-mortalidad").value = "5";
     $("c-meses").value = "12";
-    $("c-precio-ave").value = "5";
-    $("c-precio-pienso").value = "0,45";
+    $("c-precio-ave").value = "7";
+    $("c-precio-pienso").value = "0,52";
     ["c-p-arranque", "c-p-recria", "c-p-puesta", "c-p-einicio", "c-p-efinal", "c-horas", "c-precio-hora", "c-precio-venta", "c-peso"].forEach(function (id) {
       if ($(id)) $(id).value = "";
     });
     $("c-instalacion").value = "1500";
-    $("c-mano-mes").value = "50";
-    $("c-otros").value = "32";
+    $("c-mano-mes").value = "150";
+    $("c-otros").value = "95";
     if ($("c-vacio")) $("c-vacio").value = "14";
     $("c-anios").value = "5";
     document.querySelector("input[name='mano'][value='mes']").checked = true;
@@ -891,17 +891,20 @@
     $("c-precio-huevo").value = "3";
     $("c-vendibles").value = "95";
     document.querySelector("input[name='venta-modo'][value='unidad']").checked = true;
-    if (!$("c-moneda").value || $("c-moneda").value === "€") $("c-moneda").value = "EUR";
+    $("c-moneda").value = "EUR";
+    $("c-moneda").removeAttribute("data-auto");
     mesesTouched = true;
     silent = false;
     aplicarRaza(porId("isa-brown"));
-    $("c-huevos").value = "300";
+    $("c-huevos").value = "280";
     $("c-g-puesta").value = "117,5";
     if (!feederRazaTouched) {
       $("f-raza").value = "isa-brown";
       $("f-etapa").value = "puesta";
     }
     if (!feederAvesTouched) $("f-aves").value = "100";
+    var notaEj = document.getElementById("nota-ejemplo");
+    if (notaEj) notaEj.hidden = false;
     refrescar();
     var destino = $("rent-out");
     if (destino && destino.scrollIntoView) destino.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -922,16 +925,28 @@
     fillSelect($("f-raza"), "isa-brown");
     pintarTabla();
     var tenia = cargar();
+    function monedaDePais(code) {
+      var porPais = { MX: "MXN", CO: "COP", PE: "PEN", AR: "ARS", ES: "EUR", US: "USD" };
+      return porPais[String(code || "").toUpperCase()] || "MXN";
+    }
     if ($("c-moneda")) {
       var legado = { "€": "EUR", "$": "MXN", otra: "OTRA" };
       if (legado[$("c-moneda").value]) $("c-moneda").value = legado[$("c-moneda").value];
       if (!tenia) {
-        var pais = "MX";
-        try { pais = localStorage.getItem("gr_pais") || "MX"; } catch (ePais) {}
-        var porPais = { MX: "MXN", CO: "COP", PE: "PEN", AR: "ARS", ES: "EUR", US: "USD" };
-        $("c-moneda").value = porPais[pais] || "MXN";
+        var paisCalc = (document.documentElement && document.documentElement.dataset.pais) || "MX";
+        $("c-moneda").value = monedaDePais(paisCalc);
+        $("c-moneda").dataset.auto = "1";
       }
+      $("c-moneda").addEventListener("change", function () {
+        $("c-moneda").removeAttribute("data-auto");
+      });
     }
+    window.addEventListener("gr-pais", function (ev) {
+      var selMon = $("c-moneda");
+      if (!selMon || selMon.dataset.auto !== "1") return;
+      selMon.value = monedaDePais(ev.detail);
+      refrescar();
+    });
     if (!tenia) aplicarRaza(porId("isa-brown"));
     form.addEventListener("submit", function (e) { e.preventDefault(); refrescar(); });
     document.querySelectorAll("#calc-form input, #calc-form select, #calc-form textarea").forEach(function (el) {

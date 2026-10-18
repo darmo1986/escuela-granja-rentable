@@ -56,7 +56,8 @@ create policy favoritos_propios on public.favoritos
   with check (usuario = auth.uid());
 
 -- Quien se registró antes del trigger alta_perfil no tiene fila.
--- El apodo sale de los metadatos. Si no hay, «Vecino» y cuatro caracteres del id. Nunca el correo.
+-- El apodo sale solo de metadata.nombre. Si no hay, o lleva @ o un correo, «Vecino» y cuatro caracteres del id.
+-- No se usa full_name ni name: Google rellena esos campos con el nombre real.
 insert into public.perfiles (id, nombre)
 select u.id,
   left(
@@ -64,12 +65,6 @@ select u.id,
       when char_length(btrim(coalesce(u.raw_user_meta_data->>'nombre', ''))) >= 2
         and position('@' in coalesce(u.raw_user_meta_data->>'nombre', '')) = 0
         then btrim(u.raw_user_meta_data->>'nombre')
-      when char_length(btrim(coalesce(u.raw_user_meta_data->>'full_name', ''))) >= 2
-        and position('@' in coalesce(u.raw_user_meta_data->>'full_name', '')) = 0
-        then btrim(u.raw_user_meta_data->>'full_name')
-      when char_length(btrim(coalesce(u.raw_user_meta_data->>'name', ''))) >= 2
-        and position('@' in coalesce(u.raw_user_meta_data->>'name', '')) = 0
-        then btrim(u.raw_user_meta_data->>'name')
       else 'Vecino ' || right(replace(u.id::text, '-', ''), 4)
     end
   , 40)

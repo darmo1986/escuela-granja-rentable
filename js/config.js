@@ -34,6 +34,18 @@ window.GR = {
   refDays: 30,
   /* Tipo de cambio de referencia (14 oct 2026) solo para mostrar dólares. El cargo real es el de la tienda. */
   fx: { fecha: "14 de octubre de 2026", MXN: 18.361368, PEN: 3.440436, EUR: 0.893421 },
+  /* Un solo bloque comunidad. Lo comparten la cuenta, el reto y el concurso.
+     No crees otro: en JavaScript la segunda clave comunidad pisa a la primera.
+     supabaseAnonKey es la clave publicable y va en el navegador. Nunca pongas la service_role.
+     concursoPublicado sigue en false hasta correr supabase/migrations/20261018140200_concurso.sql.
+     El PR del concurso lo pasa a true en este mismo objeto.
+     El apodo público es uno: perfiles.nombre, de 2 a 40 letras, sin @ ni correo.
+     El reto y el concurso reutilizan ese nombre. */
+  comunidad: {
+    supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
+    supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
+    concursoPublicado: false
+  },
   redes: {
     adsterra: {
       /* PEGAR AQUÍ la clave del banner pequeño (320×50). Esta ya estaba en el repo.
@@ -42,18 +54,6 @@ window.GR = {
       w: 320,
       h: 50
     }
-  },
-  /* Cuenta y reto. Proyecto gratis ya creado.
-     supabaseAnonKey es la clave publicable: va en el navegador y no es un secreto.
-     Nunca pongas aquí la service_role ni otra clave secreta.
-     Si esta URL o la clave se vacían, la demo del navegador sigue valiendo. */
-  comunidad: {
-    supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
-    supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
-    /* Premio del ranking mensual, en euros. Entre 20 y 30. El pago es manual. */
-    premioEuros: 25,
-    diasReclamo: 15,
-    segundos: 30
   }
 };
 

@@ -14,13 +14,18 @@ create extension if not exists pgcrypto;
 
 create table if not exists public.perfiles (
   id uuid primary key references auth.users (id) on delete cascade,
-  nombre text not null check (char_length(nombre) between 2 and 40),
+  nombre text not null check (char_length(nombre) between 2 and 40 and position('@' in nombre) = 0),
   es_admin boolean not null default false,
   dispositivo text not null default '',
   creado timestamptz not null default now()
 );
 
 alter table public.perfiles add column if not exists dispositivo text not null default '';
+
+alter table public.perfiles drop constraint if exists perfiles_nombre_sin_arroba;
+alter table public.perfiles
+  add constraint perfiles_nombre_sin_arroba
+  check (position('@' in nombre) = 0);
 
 create table if not exists public.quiz_preguntas (
   id uuid primary key default gen_random_uuid(),
@@ -154,11 +159,7 @@ as $$
 declare
   candidato text;
 begin
-  candidato := coalesce(
-    nullif(btrim(new.raw_user_meta_data->>'nombre'), ''),
-    nullif(btrim(new.raw_user_meta_data->>'full_name'), ''),
-    nullif(btrim(new.raw_user_meta_data->>'name'), '')
-  );
+  candidato := nullif(btrim(new.raw_user_meta_data->>'nombre'), '');
   if candidato is null or char_length(candidato) < 2 or position('@' in candidato) > 0 then
     candidato := 'Vecino ' || right(replace(new.id::text, '-', ''), 4);
   end if;

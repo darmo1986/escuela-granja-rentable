@@ -1,12 +1,14 @@
 # Guía de enfermedades
 
-Las fichas se escriben en `articulos.json`. Luego:
+Las fichas se escriben en `_fuentes/enfermedades/articulos.json`. Luego:
 
 ```bash
-node enfermedades/construir.js
+node _fuentes/enfermedades/construir.js
 ```
 
 Eso regenera la portada `enfermedades.html`, la página de cada categoría en `enfermedades/categoria/`, cada ficha `enfermedades/<id>.html`, el atajo `enfermedades/index.html` y las URLs del sitemap. No publica el sitio.
+
+Esta carpeta no se publica. GitHub Pages usa Jekyll y no copia lo que empieza por `_`. Las notas `todo` se quedan aquí. El HTML generado sí se publica, y las categorías sin fichas salen con `noindex` y fuera del sitemap.
 
 La portada es la entrada de la zona: buscador por síntoma y las ocho categorías. Dentro, el menú lateral repite esas categorías. En el móvil ese menú se pliega.
 

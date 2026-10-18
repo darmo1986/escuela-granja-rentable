@@ -41,12 +41,13 @@
     s = String(s || "").trim();
     if (s.length < 2 || s.length > 40) return "";
     if (s.indexOf("@") !== -1) return "";
+    if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(s)) return "";
     return s;
   }
 
   function apodoPublico(meta, id) {
     meta = meta || {};
-    var s = apodoValido(meta.nombre) || apodoValido(meta.full_name) || apodoValido(meta.name);
+    var s = apodoValido(meta.nombre);
     if (s) return s;
     var digits = String(id || "").replace(/[^0-9a-f]/gi, "").slice(-4) || "0000";
     return ("Vecino " + digits).slice(0, 40);
@@ -97,6 +98,7 @@
     pintarCuenta();
     pintarFicha();
     pintarAviso();
+    quizasPedirApodo();
   }
 
   function poner(usuario) {
@@ -122,12 +124,14 @@
   function usuarioDesdeSupabase(user) {
     if (!user) return null;
     var meta = user.user_metadata || {};
+    var escrito = apodoValido(meta.nombre);
     return {
       id: user.id,
-      nombre: apodoPublico(meta, user.id),
+      nombre: escrito || apodoPublico(meta, user.id),
       correo: user.email || "",
       avatar: meta.avatar_url || meta.picture || "",
       demo: false,
+      pideApodo: !escrito,
       confirmado: !!user.email_confirmed_at || !!user.confirmed_at
     };
   }
@@ -248,18 +252,19 @@
       entrar: "Entrar",
       registro: "Crear cuenta",
       reset: "Nueva contraseña",
-      magico: "Enlace al correo"
+      magico: "Enlace al correo",
+      apodo: "Elige tu apodo"
     };
     if (titulo) titulo.textContent = titulos[modo] || "Entrar";
     var nombre = caja.querySelector("[name=nombre]");
     var pass = caja.querySelector("[name=clave]");
-    if (nombre) nombre.required = modo === "registro";
+    if (nombre) nombre.required = modo === "registro" || modo === "apodo";
     if (pass) {
       pass.required = modo === "entrar" || modo === "registro";
       pass.minLength = pass.required ? 8 : 0;
     }
     var submit = document.getElementById("auth-submit");
-    var etiquetas = { entrar: "Entrar", registro: "Crear cuenta", reset: "Enviar enlace", magico: "Enviar enlace" };
+    var etiquetas = { entrar: "Entrar", registro: "Crear cuenta", reset: "Enviar enlace", magico: "Enviar enlace", apodo: "Guardar apodo" };
     if (submit) submit.textContent = etiquetas[modo] || "Entrar";
     mensaje("");
   }
@@ -272,7 +277,7 @@
     prepararNube().catch(function () {
       mensaje("No se pudo conectar. Inténtalo más tarde.", true);
     });
-    var foco = fondo.querySelector(modo === "registro" ? "[name=nombre]" : "[name=correo]");
+    var foco = fondo.querySelector(modo === "registro" || modo === "apodo" ? "[name=nombre]" : "[name=correo]");
     if (foco) foco.focus();
   }
 
@@ -299,10 +304,50 @@
     return "No se pudo guardar. " + (m || "Inténtalo más tarde.");
   }
 
+  function guardarApodo(apodo) {
+    if (!cliente || !usuarioActual) return Promise.reject(new Error("No se pudo conectar. Inténtalo más tarde."));
+    return cliente.auth.updateUser({ data: { nombre: apodo } }).then(function (resUser) {
+      if (resUser.error) throw new Error(resUser.error.message);
+      return cliente.from("perfiles").update({ nombre: apodo }).eq("id", usuarioActual.id);
+    }).then(function (resPerfil) {
+      var fallo = textoGuardado(resPerfil);
+      if (fallo) throw new Error(fallo);
+      usuarioActual.nombre = apodo;
+      usuarioActual.pideApodo = false;
+      ultimoError = "";
+      avisar();
+    });
+  }
+
+  var apodoOfrecido = false;
+  function quizasPedirApodo() {
+    if (!usuarioActual || !usuarioActual.pideApodo || apodoOfrecido) return;
+    apodoOfrecido = true;
+    abrir("apodo");
+    mensaje("Elige un apodo para el ranking. No uses el nombre de Google ni un correo.", false);
+  }
+
   function enviar(ev) {
     ev.preventDefault();
     var form = ev.target;
     var modo = document.getElementById("auth-caja").getAttribute("data-modo");
+    if (modo === "apodo") {
+      var elegido = apodoValido(form.nombre.value);
+      var botonApodo = form.querySelector("[type=submit]");
+      if (!elegido) {
+        mensaje("El apodo necesita de 2 a 40 letras, sin @ y sin correo.", true);
+        return;
+      }
+      botonApodo.disabled = true;
+      guardarApodo(elegido).then(function () {
+        botonApodo.disabled = false;
+        cerrar();
+      }).catch(function (e) {
+        botonApodo.disabled = false;
+        mensaje(falloDeRed(e) ? "No se pudo conectar. Inténtalo más tarde." : textoError(e), true);
+      });
+      return;
+    }
     var correo = form.correo.value;
     var clave = form.clave.value;
     var nombre = form.nombre.value;
@@ -318,12 +363,12 @@
       if (modo === "registro") {
         if (!correoValido(correo)) throw new Error("Escribe un correo válido.");
         var apodo = apodoValido(nombre);
-        if (!apodo) throw new Error("Escribe un apodo de 2 a 40 letras. No uses el correo: ese nombre es el que sale en el ranking.");
+        if (!apodo) throw new Error("Escribe un apodo de 2 a 40 letras, sin @ y sin correo. Ese nombre es el que sale en el ranking.");
         if (String(clave).length < 8) throw new Error("La contraseña necesita 8 caracteres o más.");
         return cliente.auth.signUp({
           email: String(correo).trim(),
           password: clave,
-          options: { emailRedirectTo: vuelta, data: { nombre: apodo, full_name: apodo } }
+          options: { emailRedirectTo: vuelta, data: { nombre: apodo } }
         }).then(function (res) {
           if (res.error) throw new Error(res.error.message);
           if (!res.data.session) return "Revisa el correo para confirmar la cuenta. Hasta entonces no queda la sesión.";
@@ -633,7 +678,7 @@
       ev.preventDefault();
       var apodo = apodoValido(ev.target.apodo.value);
       if (!apodo) {
-        ultimoError = "El apodo necesita de 2 a 40 letras y no puede ser un correo.";
+        ultimoError = "El apodo necesita de 2 a 40 letras, sin @ y sin correo.";
         pintarCuenta();
         return;
       }
@@ -642,20 +687,7 @@
         pintarCuenta();
         return;
       }
-      cliente.auth.updateUser({ data: { nombre: apodo, full_name: apodo } }).then(function (resUser) {
-        if (resUser.error) throw new Error(resUser.error.message);
-        return cliente.from("perfiles").update({ nombre: apodo }).eq("id", usuarioActual.id);
-      }).then(function (resPerfil) {
-        var fallo = textoGuardado(resPerfil);
-        if (fallo) {
-          ultimoError = fallo;
-          pintarCuenta();
-          return;
-        }
-        ultimoError = "";
-        usuarioActual.nombre = apodo;
-        avisar();
-      }).catch(function (e) {
+      guardarApodo(apodo).catch(function (e) {
         ultimoError = falloDeRed(e) ? "No se pudo conectar. Inténtalo más tarde." : textoError(e);
         pintarCuenta();
       });

@@ -8,7 +8,7 @@ El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub P
 
 La portada abre con el curso y la tienda. Si no hay un precio confirmado para el país, la ficha dice «Precio próximamente».
 
-La calculadora de rentabilidad está en el menú (Calcular), en una tarjeta del inicio y en `/calculadora`. `/preguntas` dice «Próximamente», no está en el menú ni en el sitemap, y no llama a la base. La cuenta es una para todo el sitio: el botón Entrar está en la cabecera y la página es `/cuenta` (noindex). El apodo se escribe al registrarse y es el nombre público. La guía de enfermedades está en el menú (Enfermedades) y en `/enfermedades`: las fichas se escriben en `enfermedades/articulos.json` y solo se indexan las que están en estado completo. La FAQ fija sigue en `faq.html`. Espacio, alimento y fecha de nacimiento siguen en Calculadoras, en el pie y en «También en el sitio», junto con líneas de aves, lista y guías. Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
+La calculadora de rentabilidad está en el menú Herramientas, en una tarjeta del inicio y en `/calculadora`. `/preguntas` dice «Próximamente», no está en el menú ni en el sitemap, y no llama a la base. La cuenta es una para todo el sitio: el botón Entrar está en la cabecera y la página es `/cuenta` (noindex). El apodo se escribe al registrarse, es `perfiles.nombre` y es el único nombre público del reto y del concurso. No se enseña el nombre de Google. La guía de enfermedades está en el menú Herramientas y en `/enfermedades`: las fichas se escriben en `_fuentes/enfermedades/articulos.json` (esa carpeta no se publica) y solo se indexan las que están en estado completo. La FAQ fija sigue en `faq.html`. Espacio, alimento y fecha de nacimiento siguen en Calculadoras, en el pie y en «También en el sitio», junto con líneas de aves, lista y guías. Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
 
 ## Qué convierte en este tipo de sitio
 
@@ -27,7 +27,7 @@ Precios de la incubadora copiados de la tienda el 14 de octubre de 2026, con el 
 
 ## Catálogo (todos los productos que se pudieron leer)
 
-La fuente de la tienda de incubación es `config` de https://granjarentable-incubadora.netlify.app/ (14 de octubre de 2026). Las fotos están en `img/productos/`. Cada ficha está en `producto/`. El menú Tienda abre Incubadoras, Complementos y Salud avícola.
+La fuente de la tienda de incubación es `config` de https://granjarentable-incubadora.netlify.app/ (14 de octubre de 2026). Las fotos están en `img/productos/`. Cada ficha está en `producto/`. El menú Tienda abre Incubadoras y Complementos.
 
 | Producto | En esta tienda | Origen |
 | --- | --- | --- |

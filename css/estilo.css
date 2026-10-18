@@ -122,7 +122,7 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
   .nav-row > a, .nav > a, .nav-redes {
     justify-content: center; min-height: 62px; white-space: nowrap; border-radius: 16px; width: 100%; min-width: 0;
   }
-  .nav-shop .nav-label::after, .nav-redes .nav-label::after { content: " ▾"; font-size: .85em; }
+  .nav-shop .nav-label::after, .nav-redes .nav-label::after, .nav-tools .nav-label::after { content: " ▾"; font-size: .85em; }
   .nav-parent, .nav a.nav-extra { display: none; }
   .nav-label { font-size: 1.05rem; }
   .nav-ico, .nav-ico svg { width: 28px; height: 28px; }
@@ -207,7 +207,11 @@ html[data-tema="claro"] .auth-yo { border-color: #1F5E2E; color: #1F5E2E; backgr
 .auth-caja[data-modo="reset"] .auth-solo-registro,
 .auth-caja[data-modo="magico"] .auth-solo-registro,
 .auth-caja[data-modo="reset"] .auth-con-clave,
-.auth-caja[data-modo="magico"] .auth-con-clave { display: none; }
+.auth-caja[data-modo="magico"] .auth-con-clave,
+.auth-caja[data-modo="apodo"] .auth-campo:not(.auth-solo-registro),
+.auth-caja[data-modo="apodo"] .auth-google,
+.auth-caja[data-modo="apodo"] .auth-links,
+.auth-caja[data-modo="apodo"] #auth-demo-nota { display: none; }
 .auth-aviso {
   position: fixed; left: 12px; right: 12px; bottom: 84px; z-index: 40; max-width: 520px; margin: 0 auto;
   background: #fff; color: var(--ink); border-radius: 14px; border-top: 4px solid var(--g);

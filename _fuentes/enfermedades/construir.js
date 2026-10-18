@@ -1,12 +1,14 @@
 /* Genera enfermedades.html y enfermedades/<id>.html desde articulos.json.
-   node enfermedades/construir.js
-   No publica nada: solo escribe HTML estático. */
+   node _fuentes/enfermedades/construir.js
+   No publica nada: solo escribe HTML estático.
+   La fuente vive en _fuentes para que GitHub Pages no sirva las notas internas. */
 var fs = require("fs");
 var path = require("path");
 
-var DIR = __dirname;
-var ROOT = path.join(DIR, "..");
-var data = JSON.parse(fs.readFileSync(path.join(DIR, "articulos.json"), "utf8"));
+var SRC = __dirname;
+var ROOT = path.join(SRC, "..", "..");
+var DIR = path.join(ROOT, "enfermedades");
+var data = JSON.parse(fs.readFileSync(path.join(SRC, "articulos.json"), "utf8"));
 var calc = fs.readFileSync(path.join(ROOT, "calculadora.html"), "utf8");
 var SITIO = "https://granjarentable.com";
 var CREDITO = data.creditoImagen;
@@ -93,8 +95,21 @@ function figuras(art, root) {
   }).join("");
 }
 
-function avisoOficial() {
-  return '<aside class="enf-oficial"><p><strong>Declaración obligatoria.</strong> La gripe aviar es una zoonosis: puede pasar a las personas. No toques aves muertas sin guantes y no te las lleves a casa. Avisa hoy a los servicios oficiales. En España, el MAPA o la oficina de sanidad animal de tu comunidad. En México, SENASICA. En Colombia, el ICA. En Perú, SENASA. No des remedios caseros, no muevas las aves a otra granja y no esperes a confirmarlo en casa. Ante un ave enferma, llama al veterinario.</p></aside>\n';
+function textoOficial() {
+  return "Avisa hoy a los servicios oficiales. En España, el MAPA o la oficina de sanidad animal de tu comunidad. En México, SENASICA. En Colombia, el ICA. En Perú, SENASA. No des remedios caseros, no muevas las aves a otra granja y no esperes a confirmarlo en casa. Ante un ave enferma, llama al veterinario.";
+}
+
+function avisoGripe() {
+  return '<aside class="enf-oficial"><p><strong>Declaración obligatoria. Gripe aviar.</strong> La gripe aviar es una zoonosis: puede pasar a las personas. No toques aves muertas sin guantes y no te las lleves a casa. ' + textoOficial() + "</p></aside>\n";
+}
+
+function avisoNewcastle() {
+  return '<aside class="enf-oficial"><p><strong>Declaración obligatoria. Newcastle.</strong> Puede causar conjuntivitis en las personas que la manipulan. No toques aves muertas sin guantes y no te las lleves a casa. ' + textoOficial() + "</p></aside>\n";
+}
+
+function avisoOficial(art) {
+  if (art && art.id === "newcastle") return avisoNewcastle();
+  return avisoGripe();
 }
 
 function validar() {
@@ -255,7 +270,7 @@ function ficha(art) {
   if (art.estado !== "completo") {
     var corto = "<h1>" + esc(art.titulo) + "</h1>\n" +
       '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n" +
-      (art.declaracion ? avisoOficial() : "") +
+      (art.declaracion ? avisoOficial(art) : "") +
       "<p><strong>Próximamente.</strong> Esta ficha todavía no está publicada.</p>\n";
     var mainCorto = migas([
       { href: root + "index.html", texto: "Inicio" },
@@ -276,7 +291,7 @@ function ficha(art) {
   var cuerpo = "";
   cuerpo += "<h1>" + esc(art.titulo) + "</h1>\n";
   cuerpo += '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n";
-  if (art.declaracion) cuerpo += avisoOficial();
+  if (art.declaracion) cuerpo += avisoOficial(art);
   cuerpo += "<p>" + esc(art.resumen) + "</p>\n";
   cuerpo += '<p class="enf-meta">Lectura: ' + mins + " min · " + esc(art.actualizado) + "</p>\n";
   if (tags) cuerpo += '<ul class="badges">' + tags + "</ul>\n";
@@ -286,7 +301,7 @@ function ficha(art) {
   cuerpo += "<h2>Cómo se contagia</h2>\n" + lista(art.contagio);
   cuerpo += "<h2>Cómo prevenirla</h2>\n" + lista(art.prevenir);
   if (art.declaracion) {
-    cuerpo += "<h2>Sin remedios caseros</h2>\n" + avisoOficial();
+    cuerpo += "<h2>Sin remedios caseros</h2>\n" + avisoOficial(art);
     cuerpo += "<p>Esta ficha no trae soluciones naturales ni tratamientos de casa. En una enfermedad de declaración obligatoria eso se omite a propósito.</p>\n";
   } else if ((art.natural || []).length) {
     cuerpo += '<h2>Soluciones naturales de apoyo</h2>\n<aside class="enf-natural"><p><strong>Apoyo, no una cura.</strong> Lo de abajo no sustituye al veterinario y no promete curar.</p></aside>\n' + lista(art.natural);
@@ -385,7 +400,7 @@ function paginaCategoria(cat) {
   cuerpo += "<h1>" + esc(cat.nombre) + "</h1>\n";
   cuerpo += "<p>" + esc(cat.nota) + "</p>\n";
   cuerpo += '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n";
-  if (cat.id === "viricas") cuerpo += avisoOficial();
+  if (cat.id === "viricas") cuerpo += avisoGripe() + avisoNewcastle();
   if (!listas.length) cuerpo += "<p><strong>Próximamente.</strong> Las fichas de esta categoría todavía no están publicadas.</p>\n";
   cuerpo += '<div class="enf-grid">\n' + lista.map(function (art) {
     return tarjeta(art, "../" + art.id + ".html");
@@ -409,6 +424,7 @@ function paginaCategoria(cat) {
       url: SITIO + "/enfermedades/categoria/" + cat.id + ".html",
       isPartOf: { "@type": "WebSite", name: "Granja Rentable", url: SITIO + "/" }
     }, null, 2),
+    robots: listas.length ? "index,follow" : "noindex,follow",
     main: main,
     extra: '<script src="../../js/enfermedades.js"></script>\n'
   });
@@ -420,7 +436,9 @@ function sitemap() {
   xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc><\/url>/g, "");
   xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc><\/url>/g, "");
   var urls = ['<url><loc>https://granjarentable.com/enfermedades.html</loc></url>']
-    .concat(data.categorias.map(function (c) {
+    .concat(data.categorias.filter(function (c) {
+      return deCategoria(c.id).some(function (a) { return a.estado === "completo"; });
+    }).map(function (c) {
       return "<url><loc>https://granjarentable.com/enfermedades/categoria/" + c.id + ".html</loc></url>";
     }))
     .concat(publicados().map(function (a) {
