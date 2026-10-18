@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de rentabilidad | Granja Rentable</title>
+<meta name="description" content="Calcula si un lote de gallinas o pollos deja beneficio. 50 razas, pienso por etapa y calcio a libre disposición. La cuenta se hace en tu navegador.">
+<link rel="canonical" href="https://granjarentable.com/calculadora.html">
+<meta property="og:url" content="https://granjarentable.com/calculadora.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de rentabilidad | Granja Rentable">
+<meta property="og:description" content="Calcula si un lote de gallinas o pollos deja beneficio. 50 razas, pienso por etapa y calcio a libre disposición. La cuenta se hace en tu navegador.">
+<meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
+<meta property="og:locale" content="es_419">
+<meta property="og:image:alt" content="Logo de Granja Rentable">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de rentabilidad | Granja Rentable">
+<meta name="twitter:description" content="Calcula si un lote de gallinas o pollos deja beneficio. 50 razas, pienso por etapa y calcio a libre disposición. La cuenta se hace en tu navegador.">
+<meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
+<meta name="theme-color" content="#1F5E2E">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
+<link rel="stylesheet" href="css/estilo.css">
+<script src="js/boot.js"></script>
+</head>
+<body data-root="">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top">
+<div class="bar wrap">
+<a class="brand" href="index.html"><span class="brand-mark"><img class="logo-for-dark" src="img/logo-claro.svg" alt="" width="44" height="44"><img class="logo-for-light" src="img/logo-oscuro.svg" alt="" width="44" height="44"></span><span class="brand-name">Granja Rentable</span></a>
+<div class="top-actions">
+<a class="btn head-link" href="afiliados.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M11 14.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8zm10.2.4a2.8 2.8 0 1 0 0-5.6 2.8 2.8 0 0 0 0 5.6zM4.8 25.2c.4-3.6 3.2-5.6 6.2-5.6s5.8 2 6.2 5.6H4.8zm10.2-.2c-.2-2.2.4-4.2 1.8-5.4 1.2-.4 2.6-.6 4-.2 2.4.6 3.8 2.4 4.2 5.6h-10z"/></svg></span><span>Afiliados</span></a>
+<a class="btn head-link" href="registro.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 15.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4zM7.2 25.4c.6-4.2 4-6.6 8.8-6.6s8.2 2.4 8.8 6.6H7.2z"/></svg></span><span>Regístrate</span></a>
+<a class="btn gold js-comprar" data-checkout href="https://granjarentable-incubadora.netlify.app/?pais=MX">Comprar</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menú</button>
+</div>
+<label class="pais-bar"><span class="sr">País</span>
+<select class="js-pais" aria-label="Tu país">
+<optgroup label="Donde más nos ven">
+<option value="MX" selected>México</option>
+<option value="US">Estados Unidos</option>
+<option value="CO">Colombia</option>
+<option value="PE">Perú</option>
+<option value="ES">España</option>
+<option value="AR">Argentina</option>
+<option value="VE">Venezuela</option>
+<option value="EC">Ecuador</option>
+<option value="DO">República Dominicana</option>
+<option value="CL">Chile</option>
+</optgroup>
+<optgroup label="También">
+<option value="PY">Paraguay</option>
+<option value="UY">Uruguay</option>
+<option value="BO">Bolivia</option>
+<option value="GT">Guatemala</option>
+<option value="HN">Honduras</option>
+<option value="SV">El Salvador</option>
+<option value="NI">Nicaragua</option>
+<option value="CR">Costa Rica</option>
+<option value="PA">Panamá</option>
+</optgroup>
+</select></label>
+<nav id="site-nav" class="nav" aria-label="Principal">
+<div class="nav-drop">
+<div class="nav-row">
+<a class="nav-shop" href="tienda.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M5 13.2 16 5l11 8.2V27H5V13.2zm2.2 1.6V24.8h6.2v-5.6h5.2v5.6h6.2V14.8L16 8.1 7.2 14.8z"/></svg></span><span class="nav-label">Tienda</span></a>
+<button class="nav-parent" type="button" aria-expanded="false" aria-controls="nav-tienda" aria-label="Categorías de la tienda"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+</div>
+<div class="nav-sub" id="nav-tienda">
+<a href="tienda.html#incubadoras"><span class="nav-label">Incubadoras</span></a>
+<a href="tienda.html#complementos"><span class="nav-label">Complementos</span></a>
+<a href="tienda.html#salud"><span class="nav-label">Salud avícola</span></a>
+</div>
+</div>
+<a class="" href="curso.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><ellipse cx="24.2" cy="9.2" rx="2.5" ry="5.2" transform="rotate(-38 24.2 9.2)"/><ellipse cx="26.4" cy="12.6" rx="2.2" ry="4.8" transform="rotate(-12 26.4 12.6)"/><ellipse cx="25.2" cy="16" rx="2.1" ry="4.4" transform="rotate(18 25.2 16)"/><ellipse cx="15.8" cy="16.2" rx="6.3" ry="4.5"/><path d="M12.4 14.4c-.2-2.8-1.6-4.6-4.2-5.4 2.4.6 3.8 2.4 4.2 5.4z"/><circle cx="8.4" cy="10.2" r="3.15"/><circle cx="7.1" cy="6.7" r="1.35"/><circle cx="9.3" cy="6.2" r="1.35"/><circle cx="11.1" cy="7.1" r="1.2"/><path d="M5.6 10.4 2.5 11.6l3.1 1z"/><path d="M3.2 24.2 14.5 22.4v7.3L3.2 31.2z"/><path d="M17.5 22.4 28.8 24.2v7L17.5 29.7z"/><path d="M14.5 22.4h3v7.3h-3z"/></g></svg></span><span class="nav-label">Curso gratis</span></a>
+<a class="" href="juegos.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span></a>
+<a class="" href="app.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M11 3h10a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1.8 2.6v17.2h6.4V5.6h-6.4zM14.6 24.8h2.8V26.6h-2.8z"/></svg></span><span class="nav-label">App</span></a>
+<div class="nav-drop">
+<div class="nav-row">
+<button class="nav-redes" type="button" aria-expanded="false" aria-controls="nav-redes"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="16" r="3.3" fill="currentColor"/><circle cx="23" cy="7.5" r="3.3" fill="currentColor"/><circle cx="23" cy="24.5" r="3.3" fill="currentColor"/><path d="M11.1 14.6 20 8.8M11.1 17.4 20 23.2" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></span><span class="nav-label">Redes</span></button>
+<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-redes" aria-label="YouTube y Facebook"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+</div>
+<div class="nav-sub" id="nav-redes">
+<a data-social="youtube" href="https://www.youtube.com/@GranjaRentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M12 9.2v13.6L24 16z"/></svg></span><span class="nav-label">YouTube</span></a>
+<a data-social="facebook" href="https://www.facebook.com/GranjaRentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M18.2 7.2h3.2V3.4h-3.2c-3.4 0-5.6 2.1-5.6 5.5v2.6H9.2V15h3.4V28h4.4V15h3.5l.6-3.5h-4.1v-2.4c0-1.1.4-1.9 1.2-1.9z"/></svg></span><span class="nav-label">Facebook</span></a>
+</div>
+</div>
+<a class="nav-wa" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 4.2a10.6 10.6 0 0 0-9.1 16L5.4 26.6l6.6-1.6A10.6 10.6 0 1 0 16 4.2zm5.8 14.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.2l-.7.8c-.1.2-.3.2-.5.1a7 7 0 0 1-3.4-3c-.2-.4.2-.4.7-1.2 0-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1 2.6c.2.2 1.7 2.6 4.1 3.6 1.5.6 2 .7 2.8.5.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1l-.4-.2z"/></svg></span><span class="nav-label">WhatsApp</span></a>
+<a class="nav-extra" href="afiliados.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M11 14.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8zm10.2.4a2.8 2.8 0 1 0 0-5.6 2.8 2.8 0 0 0 0 5.6zM4.8 25.2c.4-3.6 3.2-5.6 6.2-5.6s5.8 2 6.2 5.6H4.8zm10.2-.2c-.2-2.2.4-4.2 1.8-5.4 1.2-.4 2.6-.6 4-.2 2.4.6 3.8 2.4 4.2 5.6h-10z"/></svg></span><span class="nav-label">Afiliados</span></a>
+<a class="nav-extra nav-cta" href="registro.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 15.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4zM7.2 25.4c.6-4.2 4-6.6 8.8-6.6s8.2 2.4 8.8 6.6H7.2z"/></svg></span><span class="nav-label">Regístrate</span></a>
+</nav>
+</div>
+</header>
+<p id="ref-note" class="ref-note" hidden></p>
+<main id="contenido">
+<section class="page-hero">
+<p class="kicker">Gratis</p>
+<h1>Calculadora de rentabilidad</h1>
+<p>Huevos, carne o las dos cosas. Eliges la raza y la cuenta usa su pienso orientativo. No sale de tu navegador: no hay envío ni registro.</p>
+<p>Los huevos al año de esta página son rangos para la cuenta, no la ficha de catálogo del curso. Si la lección da otra cifra, manda la ficha de <a href="razas.html">líneas de aves</a>.</p>
+<p class="split"><button class="btn gold" type="button" id="btn-ejemplo">Cargar ejemplo: 100 Isa Brown</button> <a class="btn sec" href="calculadoras.html">Espacio, alimento y fechas</a></p>
+</section>
+<aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
+
+<div class="rent-layout">
+<form id="calc-form" class="panel calc" novalidate>
+<h2>Tu lote</h2>
+<label>Raza
+<select id="c-raza" data-save></select></label>
+<p id="nota-raza" class="hint"></p>
+<fieldset class="seg-set">
+<legend>Objetivo</legend>
+<div class="seg">
+<label><input type="radio" name="objetivo" value="huevo" data-save checked><span>Huevo</span></label>
+<label><input type="radio" name="objetivo" value="carne" data-save><span>Carne</span></label>
+<label><input type="radio" name="objetivo" value="doble" data-save><span>Doble propósito</span></label>
+</div>
+</fieldset>
+<fieldset class="seg-set" id="grp-inicio">
+<legend>Con qué aves empiezas</legend>
+<div class="seg">
+<label><input type="radio" name="inicio" value="pollita" data-save checked><span>Pollitas cerca de poner</span></label>
+<label><input type="radio" name="inicio" value="pollito" data-save><span>Pollitos de un día</span></label>
+</div>
+</fieldset>
+<p id="nota-plan" class="hint"></p>
+<div class="row-2">
+<label>Número de aves<input id="c-aves" data-save inputmode="numeric" value="10"></label>
+<label>Mortalidad %<input id="c-mortalidad" data-save inputmode="decimal" value="5"></label>
+</div>
+<div class="row-2">
+<label>Duración del ciclo, meses<input id="c-meses" data-save inputmode="decimal" value="12"></label>
+<label>Precio de la pollita o el pollito<input id="c-precio-ave" data-save inputmode="decimal" value="0"></label>
+</div>
+<h2>Pienso</h2>
+<label>Precio del pienso por kg<input id="c-precio-pienso" data-save inputmode="decimal" value="0"></label>
+<details class="extra-precios">
+<summary>Precio distinto por etapa (opcional)</summary>
+<p class="hint">Si lo dejas vacío, se usa el precio general. Orientativo.</p>
+<div class="row-2">
+<label>Arranque, precio/kg<input id="c-p-arranque" data-save inputmode="decimal" value=""></label>
+<label>Crecimiento, precio/kg<input id="c-p-recria" data-save inputmode="decimal" value=""></label>
+<label>Postura, precio/kg<input id="c-p-puesta" data-save inputmode="decimal" value=""></label>
+<label>Engorde inicio, precio/kg<input id="c-p-einicio" data-save inputmode="decimal" value=""></label>
+<label>Engorde final, precio/kg<input id="c-p-efinal" data-save inputmode="decimal" value=""></label>
+</div>
+</details>
+<div id="grp-arranque" hidden>
+<label>Arranque, g/ave/día<input id="c-g-arranque" data-save inputmode="decimal" value="32,5"></label>
+<p class="hint" id="hint-arranque"></p>
+</div>
+<div id="grp-recria" hidden>
+<label>Crecimiento, g/ave/día<input id="c-g-recria" data-save inputmode="decimal" value="75"></label>
+<p class="hint" id="hint-recria"></p>
+</div>
+<div id="grp-puesta">
+<label>Postura, g/ave/día<input id="c-g-puesta" data-save inputmode="decimal" value="117,5"></label>
+<p class="hint" id="hint-puesta"></p>
+</div>
+<div id="grp-einicio" hidden>
+<label>Engorde inicio, g/ave/día<input id="c-g-einicio" data-save inputmode="decimal" value="40"></label>
+<p class="hint" id="hint-engordeInicio"></p>
+</div>
+<div id="grp-efinal" hidden>
+<label>Engorde final, g/ave/día<input id="c-g-efinal" data-save inputmode="decimal" value="160"></label>
+<p class="hint" id="hint-engordeFinal"></p>
+</div>
+<div id="grp-huevos">
+<label>Huevos por ave y año<input id="c-huevos" data-save inputmode="decimal" value="300"></label>
+<p class="hint" id="hint-huevos"></p>
+</div>
+<h2>Instalaciones y trabajo</h2>
+<div class="row-2">
+<label>Inversión en instalaciones<input id="c-instalacion" data-save inputmode="decimal" value="0"></label>
+<label>Años para amortizar<input id="c-anios" data-save inputmode="decimal" value="5"></label>
+</div>
+<fieldset class="seg-set">
+<legend>Mano de obra</legend>
+<div class="seg">
+<label><input type="radio" name="mano" value="mes" data-save checked><span>Importe al mes</span></label>
+<label><input type="radio" name="mano" value="horas" data-save><span>Horas al día</span></label>
+</div>
+</fieldset>
+<div id="grp-mano-mes">
+<label>Mano de obra al mes<input id="c-mano-mes" data-save inputmode="decimal" value="0"></label>
+</div>
+<div id="grp-horas" class="row-2" hidden>
+<label>Horas al día<input id="c-horas" data-save inputmode="decimal" value="0"></label>
+<label>Precio por hora<input id="c-precio-hora" data-save inputmode="decimal" value="0"></label>
+</div>
+<label>Otros costes al mes (vacunas, cama, luz, agua)<input id="c-otros" data-save inputmode="decimal" value="0"></label>
+<h2>Ventas</h2>
+<div id="grp-precio-huevo">
+<fieldset class="seg-set">
+<legend>Precio del huevo</legend>
+<div class="seg">
+<label><input type="radio" name="huevo-modo" value="docena" data-save checked><span>Por docena</span></label>
+<label><input type="radio" name="huevo-modo" value="unidad" data-save><span>Por unidad</span></label>
+</div>
+</fieldset>
+<label>Precio de venta del huevo<input id="c-precio-huevo" data-save inputmode="decimal" value="0"></label>
+</div>
+<div id="grp-vendibles">
+<label>% de huevos vendibles<input id="c-vendibles" data-save inputmode="decimal" value="95"></label>
+</div>
+<fieldset class="seg-set">
+<legend>Venta del pollo o la gallina</legend>
+<div class="seg">
+<label><input type="radio" name="venta-modo" value="unidad" data-save checked><span>Por ave</span></label>
+<label><input type="radio" name="venta-modo" value="kg" data-save><span>Por kg</span></label>
+</div>
+</fieldset>
+<label id="lbl-venta"><span id="lbl-venta-txt">Precio de la gallina de desvieje</span><input id="c-precio-venta" data-save inputmode="decimal" value="0"></label>
+<div id="grp-peso" hidden>
+<label>Peso por ave, kg<input id="c-peso" data-save inputmode="decimal" value="0"></label>
+</div>
+<label>Moneda
+<select id="c-moneda" data-save>
+<option value="€" selected>Euro (€)</option>
+<option value="$">Dólar o peso ($)</option>
+<option value="otra">Otro símbolo</option>
+</select></label>
+<div id="grp-custom" hidden>
+<label>Símbolo<input id="c-moneda-custom" data-save maxlength="4" value=""></label>
+</div>
+<p class="hint">El calcio a libre disposición no entra en el kilo de pienso. Si lo pagas aparte, ponlo en otros costes. Todo es orientativo.</p>
+</form>
+
+<section class="panel rent-out" id="rent-out" aria-live="polite">
+<h2>Resultado</h2>
+<p id="semaforo" class="semaforo" role="status">Escribe los datos de tu lote.</p>
+<p id="out-resumen" class="rent-lead"></p>
+<canvas id="calc-chart" class="rent-chart" width="640" height="180" aria-label="Gráfica de costes e ingresos"></canvas>
+<dl id="out-desglose" class="rent-dl"></dl>
+<div class="rent-actions no-print">
+<button class="btn gold" type="button" id="btn-print">Imprimir o guardar PDF</button>
+<button class="btn sec" type="button" id="btn-reset">Borrar datos guardados</button>
+</div>
+</section>
+</div>
+
+<section class="panel calc" id="comederos">
+<h2>¿Cuánto pienso pongo en los comederos?</h2>
+<p>Elige la raza, la etapa y las aves. Los gramos salen del tamaño de esa raza. Orientativo: ajusta según la etiqueta de tu pienso.</p>
+<div class="row-2">
+<label>Raza<select id="f-raza" data-save></select></label>
+<label>Etapa
+<select id="f-etapa" data-save>
+<option value="arranque">Pollita / arranque (0–6 sem)</option>
+<option value="recria">Crecimiento / recría (7–18 sem)</option>
+<option value="puesta" selected>Postura</option>
+<option value="muda">Muda</option>
+<option value="engorde-inicio">Engorde inicio</option>
+<option value="engorde-final">Engorde final</option>
+</select></label>
+</div>
+<label>Número de aves<input id="f-aves" data-save inputmode="numeric" value="10"></label>
+<div id="f-out" class="racion" aria-live="polite"></div>
+</section>
+
+<section class="block" id="tabla">
+<h2>Tabla de razas</h2>
+<p>50 razas. El tamaño fija el pienso orientativo de cada etapa. Los huevos al año son un rango, no una promesa. Cobb y Ross no se crían para huevo.</p>
+<div class="tabla">
+<table>
+<thead>
+<tr><th scope="col">Raza</th><th scope="col">Origen</th><th scope="col">Huevos al año</th><th scope="col">Carácter</th><th scope="col">Para empezar</th><th scope="col">Tamaño</th><th scope="col">Pienso en postura</th></tr>
+</thead>
+<tbody id="tabla-razas"></tbody>
+</table>
+</div>
+</section>
+<aside class="ad-inline" data-ad-size="rect"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="rect" data-ad-size="rect"></div></aside>
+</main>
+<footer class="foot">
+<div class="wrap foot-grid">
+<div>
+<p class="foot-brand">Granja Rentable</p>
+<p>Juan Pablo González García<br>NIF 78701119H<br>Calle Juan Rumeu García 6 bajo<br>38008 Santa Cruz de Tenerife, España</p>
+<p><a href="mailto:dahanitrading@gmail.com">dahanitrading@gmail.com</a></p>
+</div>
+<div>
+<p class="foot-brand">Sitio</p>
+<ul>
+<li><a href="tienda.html">Tienda</a></li>
+<li><a href="curso.html">Curso</a></li>
+<li><a href="juegos.html">Juegos</a></li>
+<li><a href="app.html">Registro de pollos</a></li>
+<li><a href="afiliados.html">Afiliados</a></li>
+<li><a href="registro.html">Regístrate</a></li>
+</ul>
+</div>
+<div>
+<p class="foot-brand">Ayuda y legal</p>
+<ul>
+<li><a data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable">WhatsApp +34 656 267 726</a></li>
+<li><a data-social="youtube" href="https://www.youtube.com/@GranjaRentable">YouTube</a></li>
+<li><a data-social="facebook" href="https://www.facebook.com/GranjaRentable">Facebook</a></li>
+<li><a href="aviso-legal.html">Aviso legal</a></li>
+<li><a href="privacidad.html">Privacidad</a></li>
+<li><a href="cookies.html">Cookies</a></li>
+<li><a href="afiliados-condiciones.html">Condiciones de afiliados</a></li>
+<li><a href="#" data-cookie-config>Configurar cookies</a></li>
+</ul>
+</div>
+</div>
+<p class="copy wrap">© 2026 Granja Rentable. La página secundaria de eBay puede llevar un enlace de afiliado: si compras allí, eBay puede pagarnos una comisión, sin costo extra para ti.</p>
+</footer>
+<a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/catalogo.js"></script>
+<script src="js/calculadora.js"></script>
+<script src="js/site.js"></script>
+</body></html>

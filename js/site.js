@@ -706,11 +706,26 @@
     refBox.textContent = (GR.siteUrl || "https://granjarentable.com") + "/?ref=TUCODIGO";
   }
 
+  (function addCalcNav() {
+    var calcHref = root + "calculadora.html";
+    var nav = document.getElementById("site-nav");
+    if (!nav || nav.querySelector('a[href="' + calcHref + '"]')) return;
+    var calcLink = document.createElement("a");
+    calcLink.href = calcHref;
+    calcLink.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calcular</span>';
+    var appLink = nav.querySelector('a[href$="app.html"]');
+    if (appLink && appLink.nextSibling) nav.insertBefore(calcLink, appLink.nextSibling);
+    else nav.appendChild(calcLink);
+    var path = location.pathname || "";
+    if (/\/calculadora(?:\.html)?\/?$/.test(path)) calcLink.setAttribute("aria-current", "page");
+  })();
+
   document.querySelectorAll(".foot-brand").forEach(function (p) {
     if ((p.textContent || "").trim() !== "Sitio") return;
     var ul = p.parentElement && p.parentElement.querySelector("ul");
     if (!ul) return;
     [
+      ["calculadora.html", "Calculadora de rentabilidad"],
       ["calculadoras.html", "Calculadoras"],
       ["razas.html", "Líneas de aves"],
       ["lista.html", "Lista y calendario"],

@@ -506,3 +506,64 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
   }
   html.ad-ok .ad-rail.ad-rail-off { visibility: hidden; }
 }
+
+.calc-teaser {
+  display: block; margin: 0 0 14px; padding: 12px 14px; background: #fff;
+  border: 2px solid var(--gl); border-radius: 16px; text-decoration: none; color: inherit;
+  box-shadow: var(--shadow);
+}
+.calc-teaser .kicker { margin: 0; }
+.calc-teaser-title { margin: 2px 0 0; color: var(--gd); font-weight: 800; font-size: 1.05rem; }
+.calc-teaser p:last-child { margin: 2px 0 0; color: var(--muted); font-size: .95rem; }
+.rent-layout { display: grid; gap: 14px; align-items: start; }
+@media (min-width: 980px) {
+  .rent-layout { grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); }
+  .rent-out { position: sticky; top: 148px; }
+}
+.calc fieldset.seg-set { border: 0; padding: 0; margin: 12px 0; }
+.calc legend { font-weight: 750; padding: 0; }
+.calc .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.calc .seg label { flex: 1 1 8rem; flex-direction: row; margin: 0; position: relative; }
+.calc .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.calc .seg span {
+  display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px;
+  border: 2px solid var(--line); border-radius: 12px; padding: 8px 10px; text-align: center; background: #fff;
+}
+.calc .seg input:checked + span { border-color: var(--g); background: var(--gl); color: var(--gd); }
+.calc .seg input:focus-visible + span { outline: 3px solid var(--gold); outline-offset: 2px; }
+.extra-precios { margin: 8px 0 12px; }
+.extra-precios summary { cursor: pointer; font-weight: 750; min-height: 44px; display: flex; align-items: center; }
+.rent-lead { font-weight: 750; }
+.rent-dl { display: grid; gap: 8px; margin: 12px 0; }
+.rent-dl div { display: grid; gap: 2px; background: var(--gl); border-radius: 12px; padding: 8px 10px; }
+.rent-dl dt { font-size: .82rem; color: var(--muted); font-weight: 700; }
+.rent-dl dd { margin: 0; font-weight: 800; color: var(--gd); }
+.semaforo { border-radius: 12px; padding: 10px 12px; font-weight: 800; background: var(--gl); }
+.semaforo.verde { background: #E7F3EA; color: #0F3D1C; }
+.semaforo.ambar { background: #fff6d8; color: #2B2205; }
+.semaforo.rojo { background: #fdecea; color: #8C2F2F; }
+.rent-chart { width: 100%; height: 180px; display: block; margin: 8px 0; }
+#rent-out, #comederos { scroll-margin-top: 96px; }
+.rent-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.rent-actions .btn { flex: 1; }
+.racion-head { display: grid; gap: 10px; }
+@media (min-width: 700px) { .racion-head { grid-template-columns: .8fr 1.2fr; align-items: stretch; } }
+.racion-g, .tomas, .calcio {
+  background: var(--gl); border-radius: 12px; padding: 10px 12px; margin: 0;
+}
+.racion-g { font-size: 1.05rem; }
+.racion-meta { margin: 10px 0; padding-left: 1.1rem; }
+.calcio { margin-top: 10px; }
+.calcio-no { background: #fff6d8; }
+.racion-aviso { background: #fff6d8; border-radius: 12px; padding: 10px 12px; font-weight: 750; }
+.tabla td:first-child, .tabla th:first-child { position: sticky; left: 0; }
+.tabla td:first-child { background: #fff; }
+@media (min-width: 1040px) {
+  #site-nav > a, #site-nav > .nav-drop { min-width: 0; }
+}
+@media print {
+  .top, .foot, .wa-float, .ad-inline, #cookie-banner, .no-print { display: none !important; }
+  body { background: #fff; }
+  main { width: auto; max-width: none !important; margin: 0 !important; }
+  .rent-out { position: static !important; }
+}

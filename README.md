@@ -8,7 +8,7 @@ El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub P
 
 La portada abre con el curso y la tienda. Si no hay un precio confirmado para el país, la ficha dice «Precio próximamente».
 
-Calculadoras, líneas de aves, preguntas, lista y guías están fuera del menú fijo, en el pie y en «También en el sitio». Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
+La calculadora de rentabilidad está en el menú (Calcular), en una tarjeta del inicio y en `/calculadora`. Espacio, alimento y fecha de nacimiento siguen en Calculadoras, en el pie y en «También en el sitio», junto con líneas de aves, preguntas, lista y guías. Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
 
 ## Qué convierte en este tipo de sitio
 
