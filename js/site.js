@@ -683,7 +683,7 @@
         if (tipo === "afiliado") {
           say("Listo. Te anotamos en la lista de espera. Cuando el seguimiento del cobro esté activo, te escribimos. Hoy una compra todavía no genera comisión.");
         } else if (tipo === "beta") {
-          say("Listo. Anotamos tu Gmail para la prueba de Google Play. Si hay plaza, te escribimos.");
+          say("Listo. Anotamos tu Gmail para avisarte cuando la prueba de Google Play esté abierta. Si hay plaza, te escribimos. La versión 1.0.10 ya se descarga en esta página.");
         } else if (tipo === "lead") {
           var iso = "";
           var fechaEl = form.querySelector("[name=fecha_inicio]");
