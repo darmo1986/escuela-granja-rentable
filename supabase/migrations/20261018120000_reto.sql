@@ -120,6 +120,7 @@ grant update (nombre, dispositivo) on public.perfiles to authenticated;
 revoke all on public.quiz_preguntas, public.quiz_opciones, public.quiz_abiertas, public.quiz_intentos from anon, authenticated;
 grant select, insert on public.quiz_sugerencias to authenticated;
 grant select on public.quiz_premios to authenticated;
+revoke insert, update, delete on public.quiz_premios from public, anon, authenticated;
 
 alter table public.perfiles enable row level security;
 alter table public.quiz_preguntas enable row level security;

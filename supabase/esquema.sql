@@ -117,6 +117,7 @@ grant update (nombre, dispositivo) on public.perfiles to authenticated;
 revoke all on public.quiz_preguntas, public.quiz_opciones, public.quiz_abiertas, public.quiz_intentos from anon, authenticated;
 grant select, insert on public.quiz_sugerencias to authenticated;
 grant select on public.quiz_premios to authenticated;
+revoke insert, update, delete on public.quiz_premios from public, anon, authenticated;
 
 alter table public.perfiles enable row level security;
 alter table public.quiz_preguntas enable row level security;
@@ -632,7 +633,8 @@ where p.id = u.id
 -- Reglas del apodo de la cuenta. El premio del concurso va al final de este archivo.
 -- Se ejecuta después de 20261018130000_apodo.sql.
 -- No se ha corrido desde el repositorio: lo pega quien administra el proyecto.
--- El concurso debe usar public.apodo_ok. Su filtro por raíces rechaza nombres válidos.
+-- El concurso debe usar public.apodo_ok. La raíz put se rechaza al principio o al final,
+-- salvo una lista de nombres reales. Un filtro suelto de raíces rechaza esos nombres.
 
 create or replace function public.apodo_ok(raw text)
 returns boolean
@@ -665,7 +667,18 @@ declare
     'viagra', 'casino', 'porno', 'cripto',
     'joder', 'culo', 'culos', 'imbecil', 'imbeciles',
     'bitch', 'bitches',
-    'hijodeputa', 'hijaputa', 'putamadre', 'hijueputa'
+    'hijodeputa', 'hijaputa', 'putamadre', 'hijueputa',
+    'subnormal', 'subnormales', 'perra', 'perras', 'shit', 'carajo', 'carajos'
+  ];
+  permitidos text[] := array[
+    'putumayo',
+    'diputado', 'diputada', 'diputados', 'diputadas',
+    'disputa', 'disputas', 'disputar',
+    'disputado', 'disputada', 'disputados', 'disputadas',
+    'computadora', 'computadoras', 'computador', 'computadores',
+    'computo', 'computos', 'computacion',
+    'reputacion', 'reputado', 'reputada', 'reputados', 'reputadas',
+    'amputar', 'amputado', 'amputada', 'amputados', 'amputadas', 'amputacion'
   ];
 begin
   if raw is null then
@@ -706,15 +719,39 @@ begin
   letras := replace(letras, U&'\0153', 'oe');
   letras := replace(letras, U&'\00DF', 'ss');
   letras := translate(letras, '013457v', 'oieastu');
+  letras := regexp_replace(letras, U&'[\02B0-\02FF]', ' ', 'g');
   if exists (
     select 1
-    from regexp_split_to_table(letras, '[^a-z]+') as w
-    where w <> '' and w = any (malas)
+    from regexp_split_to_table(letras, '[^a-z]+') as palabra(w)
+    where palabra.w <> ''
+      and (
+        palabra.w = any (malas)
+        or (
+          palabra.w <> all (permitidos)
+          and (
+            palabra.w like 'put%'
+            or palabra.w like '%putas'
+            or palabra.w like '%putos'
+            or palabra.w like '%puta'
+            or palabra.w like '%puto'
+          )
+        )
+      )
   ) then
     return false;
   end if;
   junto := regexp_replace(letras, '[^a-z]+', '', 'g');
-  if junto = any (malas) then
+  if junto = any (malas)
+     or (
+       junto <> all (permitidos)
+       and (
+         junto like 'put%'
+         or junto like '%putas'
+         or junto like '%putos'
+         or junto like '%puta'
+         or junto like '%puto'
+       )
+     ) then
     return false;
   end if;
   return true;
@@ -777,7 +814,7 @@ as $$
 $$;
 
 comment on function public.premio_euros() is
-  'Única cifra del premio. Es del concurso: 10 preguntas, más aciertos y, si empatan, menos tiempo. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
+  'Única cifra del premio. Es del concurso: 10 preguntas, 4 respuestas y 30 s. El desempate lo dicen las bases: es por sorteo. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
 
 revoke all on function public.premio_euros() from public;
 grant execute on function public.premio_euros() to anon, authenticated;
@@ -802,8 +839,9 @@ comment on table public.reto_premios is
 
 alter table public.reto_premios enable row level security;
 
-revoke all on public.reto_premios from anon, authenticated;
+revoke all on public.reto_premios from public, anon, authenticated;
 grant select on public.reto_premios to authenticated;
+revoke insert, update, delete on public.reto_premios from public, anon, authenticated;
 
 drop policy if exists reto_premio_leer on public.reto_premios;
 create policy reto_premio_leer on public.reto_premios
@@ -829,8 +867,8 @@ on conflict (periodo) do nothing;
 
 delete from public.quiz_premios where origen = 'reto';
 
-alter table public.quiz_premios alter column origen set default 'concurso';
-update public.quiz_premios set origen = 'concurso' where origen is null;
+-- Sin valor por defecto: una fila sin origen no se convierte en premio del concurso.
+alter table public.quiz_premios alter column origen drop default;
 alter table public.quiz_premios alter column origen set not null;
 
 alter table public.quiz_premios drop constraint if exists quiz_premios_origen_check;
@@ -864,11 +902,16 @@ alter table public.quiz_premios
 create or replace function public.quiz_premios_guardar()
 returns trigger
 language plpgsql
-security definer
 set search_path = public
 as $$
 begin
-  if new.origen is null or new.origen = 'reto' then
+  if current_user not in ('postgres', 'service_role', 'supabase_admin') then
+    raise exception 'solo el administrador puede escribir un premio';
+  end if;
+  if new.origen is null or new.origen not in ('concurso', 'reto') then
+    raise exception 'el origen del premio es obligatorio';
+  end if;
+  if new.origen = 'reto' then
     insert into public.reto_premios (
       periodo, ganador, euros, estado, reclamo_nombre, reclamo_pais,
       metodo, paypal, dispositivo, ip, motivo, creado
@@ -892,7 +935,6 @@ begin
     where public.reto_premios.estado is distinct from 'pagado';
     return null;
   end if;
-  new.origen := 'concurso';
   if tg_op = 'UPDATE' and old.estado = 'pagado' then
     new.euros := old.euros;
   elsif new.estado is distinct from 'pagado' then
@@ -926,7 +968,9 @@ $$;
 comment on function public.concurso_historial() is
   'Historial público del concurso. No lee reto_premios.';
 
-create or replace function public.concurso_premio_pendiente(p_periodo text, p_usuario uuid)
+drop function if exists public.concurso_premio_pendiente(text, uuid);
+
+create or replace function public.concurso_premio_pendiente(p_periodo text)
 returns boolean
 language sql
 stable
@@ -937,17 +981,19 @@ as $$
     select 1
     from public.quiz_premios q
     where q.periodo = p_periodo
-      and q.ganador = p_usuario
+      and q.ganador = auth.uid()
       and q.origen = 'concurso'
       and q.estado = 'pendiente'
   );
 $$;
 
-comment on function public.concurso_premio_pendiente(text, uuid) is
-  'El formulario del concurso solo reclama si esto devuelve true. Un premio del reto no cuenta.';
+comment on function public.concurso_premio_pendiente(text) is
+  'El formulario del concurso solo reclama si esto devuelve true para la sesión actual. Un premio del reto no cuenta.';
 
-revoke all on function public.quiz_premios_guardar() from public;
+revoke all on function public.quiz_premios_guardar() from public, anon, authenticated;
 revoke all on function public.concurso_historial() from public;
-revoke all on function public.concurso_premio_pendiente(text, uuid) from public;
+revoke all on function public.concurso_premio_pendiente(text) from public, anon;
 grant execute on function public.concurso_historial() to anon, authenticated;
-grant execute on function public.concurso_premio_pendiente(text, uuid) to authenticated;
+grant execute on function public.concurso_premio_pendiente(text) to authenticated;
+revoke insert, update, delete on public.quiz_premios from public, anon, authenticated;
+revoke insert, update, delete on public.reto_premios from public, anon, authenticated;

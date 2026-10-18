@@ -1,7 +1,8 @@
 -- Reglas del apodo de la cuenta. El premio del concurso va en la migración siguiente.
 -- Se ejecuta después de 20261018130000_apodo.sql.
 -- No se ha corrido desde el repositorio: lo pega quien administra el proyecto.
--- El concurso debe usar public.apodo_ok. Su filtro por raíces rechaza nombres válidos.
+-- El concurso debe usar public.apodo_ok. La raíz put se rechaza al principio o al final,
+-- salvo una lista de nombres reales. Un filtro suelto de raíces rechaza esos nombres.
 
 create or replace function public.apodo_ok(raw text)
 returns boolean
@@ -34,7 +35,18 @@ declare
     'viagra', 'casino', 'porno', 'cripto',
     'joder', 'culo', 'culos', 'imbecil', 'imbeciles',
     'bitch', 'bitches',
-    'hijodeputa', 'hijaputa', 'putamadre', 'hijueputa'
+    'hijodeputa', 'hijaputa', 'putamadre', 'hijueputa',
+    'subnormal', 'subnormales', 'perra', 'perras', 'shit', 'carajo', 'carajos'
+  ];
+  permitidos text[] := array[
+    'putumayo',
+    'diputado', 'diputada', 'diputados', 'diputadas',
+    'disputa', 'disputas', 'disputar',
+    'disputado', 'disputada', 'disputados', 'disputadas',
+    'computadora', 'computadoras', 'computador', 'computadores',
+    'computo', 'computos', 'computacion',
+    'reputacion', 'reputado', 'reputada', 'reputados', 'reputadas',
+    'amputar', 'amputado', 'amputada', 'amputados', 'amputadas', 'amputacion'
   ];
 begin
   if raw is null then
@@ -75,15 +87,39 @@ begin
   letras := replace(letras, U&'\0153', 'oe');
   letras := replace(letras, U&'\00DF', 'ss');
   letras := translate(letras, '013457v', 'oieastu');
+  letras := regexp_replace(letras, U&'[\02B0-\02FF]', ' ', 'g');
   if exists (
     select 1
-    from regexp_split_to_table(letras, '[^a-z]+') as w
-    where w <> '' and w = any (malas)
+    from regexp_split_to_table(letras, '[^a-z]+') as palabra(w)
+    where palabra.w <> ''
+      and (
+        palabra.w = any (malas)
+        or (
+          palabra.w <> all (permitidos)
+          and (
+            palabra.w like 'put%'
+            or palabra.w like '%putas'
+            or palabra.w like '%putos'
+            or palabra.w like '%puta'
+            or palabra.w like '%puto'
+          )
+        )
+      )
   ) then
     return false;
   end if;
   junto := regexp_replace(letras, '[^a-z]+', '', 'g');
-  if junto = any (malas) then
+  if junto = any (malas)
+     or (
+       junto <> all (permitidos)
+       and (
+         junto like 'put%'
+         or junto like '%putas'
+         or junto like '%putos'
+         or junto like '%puta'
+         or junto like '%puto'
+       )
+     ) then
     return false;
   end if;
   return true;

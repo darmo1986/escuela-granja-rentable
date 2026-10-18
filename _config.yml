@@ -10,6 +10,7 @@ exclude:
   - "**/README.md"
   - "**/LEEME.md"
   - LEEME.md
+  - js/apodo-pruebas.js
   - vendor/bundle
   - vendor/cache
   - vendor/gems

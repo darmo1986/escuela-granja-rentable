@@ -15,7 +15,7 @@ as $$
 $$;
 
 comment on function public.premio_euros() is
-  'Única cifra del premio. Es del concurso: 10 preguntas, más aciertos y, si empatan, menos tiempo. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
+  'Única cifra del premio. Es del concurso: 10 preguntas, 4 respuestas y 30 s. El desempate lo dicen las bases: es por sorteo. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
 
 revoke all on function public.premio_euros() from public;
 grant execute on function public.premio_euros() to anon, authenticated;
@@ -40,8 +40,9 @@ comment on table public.reto_premios is
 
 alter table public.reto_premios enable row level security;
 
-revoke all on public.reto_premios from anon, authenticated;
+revoke all on public.reto_premios from public, anon, authenticated;
 grant select on public.reto_premios to authenticated;
+revoke insert, update, delete on public.reto_premios from public, anon, authenticated;
 
 drop policy if exists reto_premio_leer on public.reto_premios;
 create policy reto_premio_leer on public.reto_premios
@@ -67,8 +68,8 @@ on conflict (periodo) do nothing;
 
 delete from public.quiz_premios where origen = 'reto';
 
-alter table public.quiz_premios alter column origen set default 'concurso';
-update public.quiz_premios set origen = 'concurso' where origen is null;
+-- Sin valor por defecto: una fila sin origen no se convierte en premio del concurso.
+alter table public.quiz_premios alter column origen drop default;
 alter table public.quiz_premios alter column origen set not null;
 
 alter table public.quiz_premios drop constraint if exists quiz_premios_origen_check;
@@ -102,11 +103,16 @@ alter table public.quiz_premios
 create or replace function public.quiz_premios_guardar()
 returns trigger
 language plpgsql
-security definer
 set search_path = public
 as $$
 begin
-  if new.origen is null or new.origen = 'reto' then
+  if current_user not in ('postgres', 'service_role', 'supabase_admin') then
+    raise exception 'solo el administrador puede escribir un premio';
+  end if;
+  if new.origen is null or new.origen not in ('concurso', 'reto') then
+    raise exception 'el origen del premio es obligatorio';
+  end if;
+  if new.origen = 'reto' then
     insert into public.reto_premios (
       periodo, ganador, euros, estado, reclamo_nombre, reclamo_pais,
       metodo, paypal, dispositivo, ip, motivo, creado
@@ -130,7 +136,6 @@ begin
     where public.reto_premios.estado is distinct from 'pagado';
     return null;
   end if;
-  new.origen := 'concurso';
   if tg_op = 'UPDATE' and old.estado = 'pagado' then
     new.euros := old.euros;
   elsif new.estado is distinct from 'pagado' then
@@ -164,7 +169,9 @@ $$;
 comment on function public.concurso_historial() is
   'Historial público del concurso. No lee reto_premios.';
 
-create or replace function public.concurso_premio_pendiente(p_periodo text, p_usuario uuid)
+drop function if exists public.concurso_premio_pendiente(text, uuid);
+
+create or replace function public.concurso_premio_pendiente(p_periodo text)
 returns boolean
 language sql
 stable
@@ -175,17 +182,19 @@ as $$
     select 1
     from public.quiz_premios q
     where q.periodo = p_periodo
-      and q.ganador = p_usuario
+      and q.ganador = auth.uid()
       and q.origen = 'concurso'
       and q.estado = 'pendiente'
   );
 $$;
 
-comment on function public.concurso_premio_pendiente(text, uuid) is
-  'El formulario del concurso solo reclama si esto devuelve true. Un premio del reto no cuenta.';
+comment on function public.concurso_premio_pendiente(text) is
+  'El formulario del concurso solo reclama si esto devuelve true para la sesión actual. Un premio del reto no cuenta.';
 
-revoke all on function public.quiz_premios_guardar() from public;
+revoke all on function public.quiz_premios_guardar() from public, anon, authenticated;
 revoke all on function public.concurso_historial() from public;
-revoke all on function public.concurso_premio_pendiente(text, uuid) from public;
+revoke all on function public.concurso_premio_pendiente(text) from public, anon;
 grant execute on function public.concurso_historial() to anon, authenticated;
-grant execute on function public.concurso_premio_pendiente(text, uuid) to authenticated;
+grant execute on function public.concurso_premio_pendiente(text) to authenticated;
+revoke insert, update, delete on public.quiz_premios from public, anon, authenticated;
+revoke insert, update, delete on public.reto_premios from public, anon, authenticated;

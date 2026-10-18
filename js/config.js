@@ -39,14 +39,12 @@ window.GR = {
      supabaseAnonKey es la clave publicable y va en el navegador. Nunca pongas la service_role.
      concursoPublicado sigue en false hasta correr supabase/migrations/20261018140200_concurso.sql.
      El PR del concurso lo pasa a true en este mismo objeto.
-     El apodo de la cuenta es perfiles.nombre. El concurso guarda el suyo en concurso_partidas
-     y, si hay sesión, rellena el campo con ese nombre. La regla compartida es public.apodo_ok
-     y GRAuth.apodo: NFKC, lista blanca, sin invisibles ni cirílico, y palabrota por palabra
-     completa después de quitar acentos, marcas y las letras ı/ụ/v.
-     premioEuros es la única cifra del premio en el navegador. En la base es public.premio_euros().
-     El premio es del concurso (10 preguntas, más aciertos y, si empatan, menos tiempo; el mes
-     se cuenta en hora de Madrid y el ranking vuelve a cero). El reto de /preguntas no tiene premio. */
-  premioEuros: 20,
+     El apodo de la cuenta es perfiles.nombre. Si hay sesión, el concurso rellena el campo
+     con ese nombre. La regla compartida es public.apodo_ok y GRAuth.apodo.
+     La cifra del premio no va aquí: el navegador la lee de public.premio_euros().
+     El premio es del concurso (10 preguntas, 4 respuestas y 30 s). El desempate lo dicen
+     las bases del concurso. El mes se cuenta en hora de Madrid y el ranking vuelve a cero.
+     El reto de /preguntas no tiene premio. */
   comunidad: {
     supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",

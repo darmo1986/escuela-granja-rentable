@@ -60,7 +60,19 @@
     viagra: 1, casino: 1, porno: 1, cripto: 1,
     joder: 1, culo: 1, culos: 1, imbecil: 1, imbeciles: 1,
     bitch: 1, bitches: 1,
-    hijodeputa: 1, hijaputa: 1, putamadre: 1, hijueputa: 1
+    hijodeputa: 1, hijaputa: 1, putamadre: 1, hijueputa: 1,
+    subnormal: 1, subnormales: 1, perra: 1, perras: 1, shit: 1, carajo: 1, carajos: 1
+  };
+  /* Nombres reales que contienen la raíz put y no son un insulto. */
+  var APODO_RAIZ_OK = {
+    putumayo: 1,
+    diputado: 1, diputada: 1, diputados: 1, diputadas: 1,
+    disputa: 1, disputas: 1, disputar: 1,
+    disputado: 1, disputada: 1, disputados: 1, disputadas: 1,
+    computadora: 1, computadoras: 1, computador: 1, computadores: 1,
+    computo: 1, computos: 1, computacion: 1,
+    reputacion: 1, reputado: 1, reputada: 1, reputados: 1, reputadas: 1,
+    amputar: 1, amputado: 1, amputada: 1, amputados: 1, amputadas: 1, amputacion: 1
   };
 
   function apodoTexto(s) {
@@ -82,7 +94,16 @@
       .replace(/\u00f8/g, "o").replace(/\u0111/g, "d")
       .replace(/\u00e6/g, "ae").replace(/\u0153/g, "oe").replace(/\u00df/g, "ss")
       .replace(/0/g, "o").replace(/1/g, "i").replace(/3/g, "e").replace(/4/g, "a")
-      .replace(/5/g, "s").replace(/7/g, "t").replace(/v/g, "u");
+      .replace(/5/g, "s").replace(/7/g, "t").replace(/v/g, "u")
+      .replace(/\p{Lm}/gu, " ");
+  }
+
+  function apodoPorRaiz(w) {
+    if (!w || APODO_RAIZ_OK[w]) return false;
+    if (w.indexOf("put") === 0) return true;
+    if (w.length >= 4 && (w.slice(-4) === "puta" || w.slice(-4) === "puto")) return true;
+    if (w.length >= 5 && (w.slice(-5) === "putas" || w.slice(-5) === "putos")) return true;
+    return false;
   }
 
   function apodoPalabras(s) {
@@ -92,9 +113,11 @@
   function apodoInsulto(s) {
     var palabras = apodoPalabras(s);
     var i;
-    for (i = 0; i < palabras.length; i++) if (APODO_MALAS[palabras[i]]) return true;
+    for (i = 0; i < palabras.length; i++) {
+      if (APODO_MALAS[palabras[i]] || apodoPorRaiz(palabras[i])) return true;
+    }
     var junto = palabras.join("");
-    return !!APODO_MALAS[junto];
+    return !!APODO_MALAS[junto] || apodoPorRaiz(junto);
   }
 
   function apodoValido(s) {
@@ -368,6 +391,7 @@
     if (c === "PGRST205" || c === "42P01" || /schema cache|does not exist|relation/i.test(m)) {
       return "No se pudo guardar en la cuenta. Inténtalo más tarde.";
     }
+    if (/perfiles_nombre|apodo_ok/i.test(m)) return textoApodo();
     return "No se pudo guardar. " + (m || "Inténtalo más tarde.");
   }
 
@@ -485,6 +509,7 @@
     if (/email not confirmed/i.test(m)) return "Revisa el correo: falta confirmar la cuenta.";
     if (/already registered|already been registered/i.test(m)) return "Ese correo ya tiene cuenta. Entra o pide otra contraseña.";
     if (/provider.*not enabled|unsupported provider|validation_failed/i.test(m)) return "Google todavía no está activado. Entra con correo y contraseña.";
+    if (/perfiles_nombre|apodo_ok/i.test(m)) return textoApodo();
     return m || "No se pudo entrar.";
   }
 

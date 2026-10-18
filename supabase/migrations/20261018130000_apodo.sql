@@ -1,6 +1,6 @@
 -- Apodo público: solo perfiles.nombre.
 -- No usa el nombre de Google (full_name ni name). Si no hay apodo, o lleva @, queda «Vecino» y cuatro caracteres.
--- El concurso guarda el suyo en concurso_partidas y solo rellena el campo desde aquí.
+-- El concurso, si hay sesión, rellena su campo con este nombre. No guarda aquí su propio apodo.
 
 update public.perfiles
 set nombre = left('Vecino ' || right(replace(id::text, '-', ''), 4), 40)
