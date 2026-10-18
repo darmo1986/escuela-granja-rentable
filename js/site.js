@@ -807,7 +807,7 @@
     if (!juegos.querySelector(".nav-label")) {
       juegos.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span>';
     }
-    var appLink = barra.querySelector('a[href$="app.html"]');
+    var appLink = barra.querySelector('a[href$="app.html"], a[href$="pollos.html"]');
     if (appLink) barra.insertBefore(drop, appLink);
     else barra.appendChild(drop);
   })();
@@ -825,7 +825,8 @@
       ["enfermedades.html", "Enfermedades"],
       ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],
-      ["juegos.html", "Juegos"]
+      ["juegos.html", "Juegos"],
+      ["pollos.html", "Registro de pollos en el navegador"]
     ].forEach(function (pair) {
       var href = root + pair[0];
       if (ul.querySelector('a[href="' + href + '"]')) return;
@@ -833,6 +834,9 @@
       var a = document.createElement("a");
       a.href = href;
       a.textContent = pair[1];
+      if (pair[0] === "pollos.html" && /\/pollos(?:\.html)?\/?$/.test(location.pathname || "")) {
+        a.setAttribute("aria-current", "page");
+      }
       li.appendChild(a);
       ul.appendChild(li);
     });

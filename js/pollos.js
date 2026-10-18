@@ -39,20 +39,51 @@
   apagarAnuncios();
 
   function vacio() { return { version: 1, activo: null, lotes: [] }; }
+  var avisoCarga = "";
   function cargar() {
-    try {
-      var d = JSON.parse(localStorage.getItem(KEY) || "");
-      if (!d || d.version !== 1 || !Array.isArray(d.lotes)) return vacio();
-      return d;
-    } catch (e) { return vacio(); }
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) { return vacio(); }
+    if (!raw) return vacio();
+    var d;
+    try { d = JSON.parse(raw); }
+    catch (e) {
+      try { localStorage.setItem(KEY + "_corrupto", raw); } catch (e2) {}
+      avisoCarga = "Había una copia dañada. La apartamos en este navegador y empezamos de cero. Si tienes un JSON exportado, impórtalo.";
+      return vacio();
+    }
+    if (!d || !Array.isArray(d.lotes)) {
+      try { localStorage.setItem(KEY + "_corrupto", raw); } catch (e2) {}
+      avisoCarga = "Había una copia dañada. La apartamos en este navegador y empezamos de cero. Si tienes un JSON exportado, impórtalo.";
+      return vacio();
+    }
+    var lotes = [];
+    var mal = 0;
+    d.lotes.forEach(function (l) {
+      var s = sanearLote(l);
+      if (!s) { mal++; return; }
+      mal += s._malos || 0;
+      delete s._malos;
+      lotes.push(s);
+    });
+    if (mal) avisoCarga = "Había datos que no cuadraban y no se mostraron. Si tienes un JSON exportado, puedes compararlo.";
+    var activo = idOk(d.activo) && lotes.some(function (l) { return l.id === d.activo; }) ? d.activo : (lotes[0] ? lotes[0].id : null);
+    return { version: 1, activo: activo, lotes: lotes };
   }
   var store = cargar();
   var vista = "lista";
   var paso = 0;
   var borrador = {};
-  var error = "";
+  var error = avisoCarga;
 
-  function guardar() { localStorage.setItem(KEY, JSON.stringify(store)); }
+  function guardar() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(store));
+      return true;
+    } catch (e) {
+      error = "No se pudo guardar: el navegador no tiene espacio. Exporta una copia y borra lotes viejos.";
+      return false;
+    }
+  }
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -85,10 +116,83 @@
   }
   function leerNum(v) {
     if (v == null) return null;
-    var s = String(v).trim().replace(",", ".");
-    if (!s) return null;
+    var raw = String(v).trim().replace(/\s/g, "");
+    if (!raw) return null;
+    if (/[eE]/.test(raw)) return NaN;
+    var milesPunto = /^[-+]?\d{1,3}(?:\.\d{3})+(?:,\d+)?$/;
+    var milesComa = /^[-+]?\d{1,3}(?:,\d{3})+(?:\.\d+)?$/;
+    var simple = /^[-+]?\d+(?:[.,]\d+)?$/;
+    if (!milesPunto.test(raw) && !milesComa.test(raw) && !simple.test(raw)) return NaN;
+    var s = raw;
+    var ultimaComa = s.lastIndexOf(",");
+    var ultimoPunto = s.lastIndexOf(".");
+    if (ultimaComa >= 0 && ultimoPunto >= 0) {
+      if (ultimaComa > ultimoPunto) s = s.replace(/\./g, "").replace(",", ".");
+      else s = s.replace(/,/g, "");
+    } else if (ultimaComa >= 0) s = s.replace(",", ".");
     var n = Number(s);
     return isNaN(n) ? NaN : n;
+  }
+  function fechaOk(s) {
+    return /^\d{4}-\d{2}-\d{2}$/.test(String(s || "")) && !isNaN(parseISO(s));
+  }
+  function idOk(s) { return /^[\w-]{1,40}$/.test(String(s || "")); }
+  function sanearRegistro(r) {
+    if (!r || typeof r !== "object" || Array.isArray(r)) return null;
+    if (!idOk(r.id) || !fechaOk(r.fecha)) return null;
+    var dia = leerNum(r.dia);
+    if (dia == null || isNaN(dia) || dia !== Math.round(dia) || dia < 0 || dia > 400) return null;
+    var peso = r.pesoG == null || r.pesoG === "" ? null : leerNum(r.pesoG);
+    var pienso = r.piensoKg == null || r.piensoKg === "" ? null : leerNum(r.piensoKg);
+    var agua = r.aguaL == null || r.aguaL === "" ? null : leerNum(r.aguaL);
+    var bajas = r.bajas == null || r.bajas === "" ? 0 : leerNum(r.bajas);
+    if (peso != null && (isNaN(peso) || peso < 0)) return null;
+    if (pienso != null && (isNaN(pienso) || pienso < 0)) return null;
+    if (agua != null && (isNaN(agua) || agua < 0)) return null;
+    if (bajas == null || isNaN(bajas) || bajas < 0 || bajas !== Math.round(bajas)) return null;
+    return {
+      id: String(r.id),
+      tipo: r.tipo === "semana" ? "semana" : "dia",
+      dia: dia,
+      fecha: String(r.fecha),
+      pesoG: peso,
+      piensoKg: pienso,
+      aguaL: agua,
+      bajas: bajas
+    };
+  }
+  function sanearLote(l) {
+    if (!l || typeof l !== "object" || Array.isArray(l)) return null;
+    if (!idOk(l.id) || !fechaOk(l.entrada)) return null;
+    var aves = leerNum(l.aves);
+    if (aves == null || isNaN(aves) || aves !== Math.round(aves) || aves < 1 || aves > 200000) return null;
+    var tolvas = l.tolvas == null || l.tolvas === "" ? null : leerNum(l.tolvas);
+    var tolvaKg = l.tolvaKg == null || l.tolvaKg === "" ? null : leerNum(l.tolvaKg);
+    var m2 = l.m2 == null || l.m2 === "" ? null : leerNum(l.m2);
+    if (tolvas != null && (isNaN(tolvas) || tolvas < 0)) return null;
+    if (tolvaKg != null && (isNaN(tolvaKg) || tolvaKg < 0)) return null;
+    if (m2 != null && (isNaN(m2) || m2 < 0)) return null;
+    var registros = [];
+    var malos = 0;
+    (Array.isArray(l.registros) ? l.registros : []).forEach(function (r) {
+      var s = sanearRegistro(r);
+      if (s) registros.push(s); else malos++;
+    });
+    var nombre = String(l.nombre == null ? "" : l.nombre);
+    if (/^'[=+\-@]/.test(nombre)) nombre = nombre.slice(1);
+    nombre = nombre.slice(0, 60).trim();
+    return {
+      id: String(l.id),
+      nombre: nombre || "Lote",
+      entrada: String(l.entrada),
+      aves: aves,
+      raza: String(l.raza || "ross308").slice(0, 40),
+      tolvas: tolvas,
+      tolvaKg: tolvaKg,
+      m2: m2,
+      registros: registros,
+      _malos: malos
+    };
   }
   function idNuevo() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
   function nombreRaza(id) {
@@ -96,7 +200,9 @@
     return id || "Engorde";
   }
   function loteActivo() {
-    for (var i = 0; i < store.lotes.length; i++) if (store.lotes[i].id === store.activo) return store.lotes[i];
+    for (var i = 0; i < store.lotes.length; i++) {
+      if (store.lotes[i] && store.lotes[i].id === store.activo) return store.lotes[i];
+    }
     return null;
   }
   function guiaPeso(dia) {
@@ -125,7 +231,8 @@
     return "Acabado, del día 25 en adelante: 19,5 % de proteína, gránulo (Ross 308).";
   }
   function regs(lote) {
-    return (lote.registros || []).slice().sort(function (a, b) { return a.dia - b.dia; });
+    var lista = lote && Array.isArray(lote.registros) ? lote.registros : [];
+    return lista.slice().sort(function (a, b) { return a.dia - b.dia; });
   }
   function avesVivas(lote, antesDeDia) {
     var b = 0;
@@ -133,6 +240,37 @@
       if (antesDeDia == null || r.dia < antesDeDia) b += (+r.bajas || 0);
     });
     return Math.max(0, (+lote.aves || 0) - b);
+  }
+  function textoTolvas(n) {
+    n = +n;
+    return num(n) + (n === 1 ? " tolva" : " tolvas");
+  }
+  function gmdDe(lote, up) {
+    if (!up || up.pesoG == null) return null;
+    var prev = null;
+    regs(lote).forEach(function (r) {
+      if (r.dia < up.dia && r.pesoG != null) prev = r;
+    });
+    if (prev) {
+      var entre = up.dia - prev.dia;
+      if (entre <= 0) return null;
+      return (up.pesoG - prev.pesoG) / entre;
+    }
+    if (!(up.dia > 0)) return null;
+    return (up.pesoG - 44) / up.dia;
+  }
+  function icaDe(lote, up) {
+    if (!up || !(up.pesoG > 0)) return null;
+    var pienso = 0;
+    var hay = false;
+    regs(lote).forEach(function (r) {
+      if (r.piensoKg != null && !isNaN(r.piensoKg)) { pienso += +r.piensoKg; hay = true; }
+    });
+    if (!hay || !(pienso > 0)) return null;
+    var vivas = avesVivas(lote);
+    var ganado = vivas * (up.pesoG / 1000) - (+lote.aves || 0) * 0.044;
+    if (!(ganado > 0)) return null;
+    return pienso / ganado;
   }
   function ultimoPeso(lote) {
     var list = regs(lote);
@@ -181,7 +319,7 @@
     var h = barra() + cajaError() + "<h2>Tus lotes</h2>";
     if (!store.lotes.length) {
       h += '<p class="panel">Todavía no hay lotes. Crea el primero: fecha de entrada, cuántas aves y la raza.</p>';
-      return h;
+      return h + htmlCopia();
     }
     h += '<ul class="pollos-regs">';
     store.lotes.forEach(function (l) {
@@ -200,7 +338,7 @@
       h += '<label>Fecha de entrada<input id="f-fecha" type="date" required value="' + esc(borrador.entrada || hoyISO()) + '"></label>';
       h += '<p class="note">Sugerida: hoy. Si llegaron antes, cambia el día.</p>';
     } else if (paso === 1) {
-      h += '<label>Número de aves<input id="f-aves" type="number" inputmode="numeric" min="1" step="1" required value="' + esc(borrador.aves || "20") + '"></label>';
+      h += '<label>Número de aves<input id="f-aves" type="text" inputmode="numeric" autocomplete="off" required value="' + esc(borrador.aves || "20") + '"></label>';
       h += '<p class="note">Sugerido: 20, el ejemplo de un patio en la ficha de la app. Pon las que entraron de verdad.</p>';
     } else if (paso === 2) {
       h += '<label>Raza o estirpe<select id="f-raza">';
@@ -214,10 +352,10 @@
       var sug = aves > 0 ? Math.ceil(aves / 70) : "";
       if (!borrador.tolvas && sug) borrador.tolvas = String(sug);
       h += '<label>Nombre del lote<input id="f-nombre" maxlength="60" value="' + esc(borrador.nombre || "") + '" placeholder="Si lo dejas vacío, se arma con la fecha"></label>';
-      h += '<label>Tolvas<input id="f-tolvas" type="number" inputmode="numeric" min="1" step="1" value="' + esc(borrador.tolvas || "") + '"></label>';
+      h += '<label>Tolvas<input id="f-tolvas" type="text" inputmode="numeric" autocomplete="off" value="' + esc(borrador.tolvas || "") + '"></label>';
       h += '<p class="note">Sugeridas: ' + esc(sug || "—") + ". La lección L04A usa 70 pollos por tolva. Llénalas de un tercio a la mitad, nunca vacías.</p>";
-      h += '<label>Kilos que caben en una tolva<input id="f-tolva" type="number" inputmode="decimal" min="0" step="0.1" value="' + esc(borrador.tolvaKg || "") + '" placeholder="Opcional, para calcular la media carga"></label>';
-      h += '<label>Metros cuadrados del galpón<input id="f-m2" type="number" inputmode="decimal" min="0" step="0.1" value="' + esc(borrador.m2 || "") + '" placeholder="Opcional"></label>';
+      h += '<label>Kilos que caben en una tolva<input id="f-tolva" type="text" inputmode="decimal" autocomplete="off" value="' + esc(borrador.tolvaKg || "") + '" placeholder="Opcional, para calcular la media carga"></label>';
+      h += '<label>Metros cuadrados del galpón<input id="f-m2" type="text" inputmode="decimal" autocomplete="off" value="' + esc(borrador.m2 || "") + '" placeholder="Opcional"></label>';
       h += '<p class="note">Si anotas los m², se avisa al pasar de 33 kg/m² (Directiva 2007/43/CE y RD 692/2010).</p>';
     }
     h += cajaError();
@@ -230,40 +368,44 @@
     return h;
   }
 
-  function prepararSugerencias() {
-    var lote = loteActivo();
-    if (!lote) return;
+  function marcaGuia(n) {
+    if (n == null || isNaN(n)) return "";
+    return String(Math.round(n * 1000) / 1000).replace(".", ",");
+  }
+  function sugerencias(lote) {
+    var vacioSug = { dia: 0, peso: "", pienso: "", agua: "", kg: 0 };
+    if (!lote) return vacioSug;
     var dia = diasEntre(lote.entrada, borrador.fecha || hoyISO());
-    if (isNaN(dia) || dia < 0) return;
+    if (isNaN(dia) || dia < 0) return vacioSug;
     var vivas = avesVivas(lote, dia);
-    if (borrador.peso === "" || borrador.peso == null) {
-      var g = guiaPeso(dia);
-      if (g != null) borrador.peso = String(g);
-    }
+    var peso = "";
+    var g = guiaPeso(dia);
+    if (g != null) peso = String(g);
     var diasPeriodo = borrador.tipo === "semana" ? Math.min(7, dia + 1) : 1;
     var desde = borrador.tipo === "semana" ? Math.max(0, dia - diasPeriodo + 1) : dia;
-    if (borrador.pienso === "" || borrador.pienso == null) {
-      var suma = 0;
-      var ok = true;
-      for (var d = desde; d <= dia; d++) {
-        var c = guiaCons(d);
-        if (c == null) { ok = false; break; }
-        suma += c;
-      }
-      if (ok && vivas > 0 && suma > 0) borrador.pienso = String(Math.round(vivas * suma / 10) / 100);
+    var suma = 0;
+    var ok = true;
+    for (var d = desde; d <= dia; d++) {
+      var c = guiaCons(d);
+      if (c == null) { ok = false; break; }
+      suma += c;
     }
-    if (borrador.agua === "" || borrador.agua == null) {
-      var kg = leerNum(borrador.pienso);
-      if (kg > 0) borrador.agua = String(Math.round(kg * 1.7 * 10) / 10);
+    var kg = 0;
+    var pienso = "";
+    if (ok && vivas > 0 && suma > 0) {
+      kg = Math.round(vivas * suma / 10) / 100;
+      pienso = marcaGuia(kg);
     }
-    if (borrador.bajas === "" || borrador.bajas == null) borrador.bajas = "0";
+    var base = (borrador.pienso === "" || borrador.pienso == null) ? kg : leerNum(borrador.pienso);
+    var agua = base > 0 ? marcaGuia(Math.round(base * 1.7 * 10) / 10) : "";
+    return { dia: dia, peso: peso, pienso: pienso, agua: agua, kg: kg };
   }
 
   function htmlAnotar() {
     var lote = loteActivo();
-    var titulos = ["¿Qué día anotas?", "Peso medio", "Pienso", "Agua", "Bajas"];
-    prepararSugerencias();
-    var dia = lote ? diasEntre(lote.entrada, borrador.fecha || hoyISO()) : 0;
+    var titulos = ["¿Qué día anotas?", "Peso medio", "Alimento (pienso)", "Agua", "Bajas"];
+    var sug = sugerencias(lote);
+    var dia = sug.dia;
     var h = '<p class="fine">Paso ' + (paso + 1) + " de 5. " + esc(titulos[paso]) + "</p><div class=\"panel\">";
     if (paso === 0) {
       h += '<label>Periodo<select id="f-tipo"><option value="dia"' + (borrador.tipo !== "semana" ? " selected" : "") + '>Un día</option><option value="semana"' + (borrador.tipo === "semana" ? " selected" : "") + ">Una semana</option></select></label>";
@@ -271,16 +413,16 @@
       h += '<p class="note">La edad se cuenta desde la entrada (' + esc(lote ? fechaTexto(lote.entrada) : "") + ").</p>";
     } else if (paso === 1) {
       var gp = guiaPeso(dia);
-      h += '<label>Peso medio, en gramos<input id="f-peso" type="number" inputmode="decimal" min="1" step="1" required value="' + esc(borrador.peso || "") + '"></label>';
-      h += '<p class="note">Sugerido: ' + (gp == null ? "la guía Ross llega al día 56. A partir de ahí no hay cifra publicada." : num(gp) + " g, el objetivo Ross 308 as-hatched del día " + dia + ".") + "</p>";
+      h += '<label>Peso medio, en gramos<input id="f-peso" type="text" inputmode="decimal" autocomplete="off" required value="' + esc(borrador.peso || "") + '" placeholder="' + esc(sug.peso) + '"></label>';
+      h += '<p class="note">Sugerido: ' + (gp == null ? "la guía Ross llega al día 56. A partir de ahí no hay cifra publicada." : num(gp) + " g, el objetivo Ross 308 as-hatched del día " + dia + ". Es una guía: no se guarda si no la escribes.") + "</p>";
     } else if (paso === 2) {
-      h += '<label>Pienso del periodo, en kilos<input id="f-pienso" type="number" inputmode="decimal" min="0" step="0.01" value="' + esc(borrador.pienso || "") + '"></label>';
-      h += '<p class="note">Sugerido con el consumo diario de la guía Ross, por ave viva. Si no lo mediste, déjalo en blanco.</p>';
+      h += '<label>Alimento (pienso) del periodo, en kilos<input id="f-pienso" type="text" inputmode="decimal" autocomplete="off" value="' + esc(borrador.pienso || "") + '" placeholder="' + esc(sug.pienso) + '"></label>';
+      h += '<p class="note">Sugerido con el consumo diario de la guía Ross, por ave viva. Si no lo mediste, déjalo en blanco: el texto gris no se guarda.</p>';
     } else if (paso === 3) {
-      h += '<label>Agua del periodo, en litros<input id="f-agua" type="number" inputmode="decimal" min="0" step="0.1" value="' + esc(borrador.agua || "") + '"></label>';
-      h += '<p class="note">Sugerido: 1,7 L por kilo de pienso, el punto medio de 1,6–1,8 L/kg a 21 °C (L04A). Si no la mediste, déjala en blanco.</p>';
+      h += '<label>Agua del periodo, en litros<input id="f-agua" type="text" inputmode="decimal" autocomplete="off" value="' + esc(borrador.agua || "") + '" placeholder="' + esc(sug.agua) + '"></label>';
+      h += '<p class="note">Sugerido: 1,7 L por kilo de alimento (pienso), el punto medio de 1,6–1,8 L/kg a 21 °C (L04A). Si no la mediste, déjala en blanco.</p>';
     } else {
-      h += '<label>Bajas de este periodo<input id="f-bajas" type="number" inputmode="numeric" min="0" step="1" value="' + esc(borrador.bajas || "0") + '"></label>';
+      h += '<label>Bajas de este periodo<input id="f-bajas" type="text" inputmode="numeric" autocomplete="off" value="' + esc(borrador.bajas || "0") + '"></label>';
       h += '<p class="note">Sugerido: 0. No puede ser mayor que las aves que seguían vivas.</p>';
     }
     h += cajaError();
@@ -367,22 +509,39 @@
     }
     if (edad >= 7) {
       var d7 = null;
-      regs(lote).forEach(function (r) { if (r.dia === 7 && r.pesoG != null) d7 = r; });
+      regs(lote).forEach(function (r) {
+        if (r.dia >= 6 && r.dia <= 8 && r.pesoG != null) {
+          if (!d7 || Math.abs(r.dia - 7) < Math.abs(d7.dia - 7)) d7 = r;
+        }
+      });
       var meta = 4.5 * 44;
       if (!d7) {
         out.push({
           nivel: "ambar",
           titulo: "Falta el pesaje del día 7",
-          detalle: "La lección L04A pide un peso a los 7 días de al menos 4,5 veces el de llegada. En la guía Ross la llegada son 44 g, así que el suelo es " + num(meta) + " g.",
-          que: "Pesa hoy, aunque ya pasaron los 7 días, y anótalo con la fecha real. El arranque se juega con calor (30 °C el día 0), pienso cerca y agua."
+          detalle: "La lección L04A pide un peso a los 7 días de al menos 4,5 veces el de llegada. En la guía Ross la llegada son 44 g, así que el suelo es " + num(meta) + " g. Vale un pesaje del día 6, 7 u 8.",
+          que: "Pesa hoy, aunque ya pasaron los 7 días, y anótalo con la fecha real. El arranque se juega con calor (30 °C el día 0), alimento cerca y agua."
         });
       } else if (d7.pesoG < meta) {
         out.push({
           nivel: "ambar",
-          titulo: "El día 7 quedó bajo el 4,5",
+          titulo: "El peso del día " + d7.dia + " quedó por debajo de 4,5 veces el de llegada",
           detalle: "Anotaste " + num(d7.pesoG) + " g. 4,5 × 44 g de la guía Ross son " + num(meta) + " g.",
           que: "No recuperes a la fuerza con un cambio brusco. Revisa temperatura, tolva y agua, y coméntalo con el veterinario si el lote no reacciona."
         });
+      }
+      if (+lote.aves > 0) {
+        var bajas7 = 0;
+        regs(lote).forEach(function (r) { if (r.dia <= 8) bajas7 += (+r.bajas || 0); });
+        var pm = bajas7 / +lote.aves * 100;
+        if (pm > 1) {
+          out.push({
+            nivel: "ambar",
+            titulo: "Mortalidad por encima del 1 % en la primera semana",
+            detalle: "Hasta el día 8 se anotaron " + num(bajas7) + " bajas, el " + num(pm, 1) + " % de las " + num(lote.aves) + " de entrada. Cobb 2021, igual que la app, usa el 1 % a los 7 días como aviso.",
+            que: "Revisa calor, agua y si el arranque fue parejo. Si la mortalidad sigue, llama al veterinario. Esto no es un diagnóstico."
+          });
+        }
       }
     }
     var agua = null;
@@ -402,7 +561,7 @@
       out.push({
         nivel: "ambar",
         titulo: "Hay más de 70 aves por tolva",
-        detalle: num(vivas) + " aves vivas y " + num(lote.tolvas) + " tolvas: tocan " + num(vivas / lote.tolvas, 0) + " por tolva. L04A usa 70.",
+        detalle: num(vivas) + " aves vivas y " + textoTolvas(lote.tolvas) + ": tocan " + num(vivas / lote.tolvas, 0) + " por tolva. L04A usa 70.",
         que: "Añade comederos. Mientras tanto, no dejes la tolva vacía ni la llenes más de la mitad."
       });
     }
@@ -428,7 +587,7 @@
     h += "<p>Llena las tolvas solo hasta la mitad y no las dejes vacías. La lección L04A dice de un tercio a un medio, con el borde a la altura del lomo.</p>";
     var n = +lote.tolvas || 0;
     var kg = +lote.tolvaKg || 0;
-    if (n > 0) h += "<p>Para " + num(lote.aves) + " aves de entrada, 70 por tolva dan " + num(Math.ceil(lote.aves / 70)) + " tolvas. Anotaste " + num(n) + ".</p>";
+    if (n > 0) h += "<p>Para " + num(lote.aves) + " aves de entrada, 70 por tolva dan " + textoTolvas(Math.ceil(lote.aves / 70)) + ". Anotaste " + textoTolvas(n) + ".</p>";
     else h += "<p>Si anotas cuántas tolvas hay, se avisa al pasar de 70 aves por tolva.</p>";
     if (kg > 0 && n > 0 && vivas > 0 && g > 0) {
       var media = kg * n * 0.5;
@@ -440,8 +599,8 @@
     } else if (!(g > 0)) {
       h += "<p>La guía no publica consumo el día 0. Desde el día 1 son 12 g por ave.</p>";
     }
-    h += '<label>Kilos de una tolva<input id="f-tolva-kg" type="number" inputmode="decimal" min="0" step="0.1" value="' + esc(lote.tolvaKg || "") + '"></label>';
-    h += '<label>Número de tolvas<input id="f-tolvas-lote" type="number" inputmode="numeric" min="1" step="1" value="' + esc(lote.tolvas || "") + '"></label>';
+    h += '<label>Kilos de una tolva<input id="f-tolva-kg" type="text" inputmode="decimal" autocomplete="off" value="' + esc(lote.tolvaKg || "") + '"></label>';
+    h += '<label>Número de tolvas<input id="f-tolvas-lote" type="text" inputmode="numeric" autocomplete="off" value="' + esc(lote.tolvas || "") + '"></label>';
     h += '<div class="pollos-acciones"><button type="button" class="btn" id="btn-guardar-tolva">Guardar tolvas</button></div></section>';
     return h;
   }
@@ -455,18 +614,30 @@
     var niv = up && guia != null ? nivelPeso(up.pesoG, guia) : null;
     var h = barra() + cajaError();
     h += "<h2>" + esc(lote.nombre) + "</h2>";
-    h += '<p class="fine">Entrada ' + esc(fechaTexto(lote.entrada)) + " · " + num(lote.aves) + " aves al entrar · " + num(avesVivas(lote)) + " vivas · " + esc(nombreRaza(lote.raza)) + " · día " + (isNaN(edad) ? "—" : edad) + "</p>";
+    var bajasTot = 0;
+    regs(lote).forEach(function (r) { bajasTot += (+r.bajas || 0); });
+    var mort = +lote.aves > 0 ? bajasTot / +lote.aves * 100 : 0;
+    var gmd = gmdDe(lote, up);
+    var ica = icaDe(lote, up);
+    h += '<p class="fine">Entrada ' + esc(fechaTexto(lote.entrada)) + " · " + num(lote.aves) + " aves al entrar · " + num(avesVivas(lote)) + " vivas · mortalidad " + num(mort, 1) + " % · " + esc(nombreRaza(lote.raza)) + " · día " + (isNaN(edad) ? "—" : edad) + "</p>";
+    if (gmd != null || ica != null) {
+      h += '<p class="fine">';
+      if (gmd != null) h += "Ganancia diaria " + num(gmd, 1) + " g";
+      if (gmd != null && ica != null) h += " · ";
+      if (ica != null) h += "ICA " + num(ica, 2);
+      h += ". La ganancia sale del último pesaje. El ICA es el alimento (pienso) acumulado partido por el peso ganado desde los 44 g de llegada.</p>";
+    }
     if (lote.raza !== "ross308") {
       h += '<p class="note">La curva de la gráfica es Ross 308, Aviagen 2022, como orientación. No es la tabla de ' + esc(nombreRaza(lote.raza)) + ".</p>";
     }
     h += '<div class="pollos-acciones"><button type="button" class="btn gold" id="btn-anotar">Anotar peso y consumo</button></div>';
     h += '<div id="pollos-estado" class="pollos-estado pollos-' + (niv || "verde") + '">';
     if (!up) h += "<p>Aún no hay un pesaje. La línea dorada es la guía.</p>";
-    else if (guia == null) h += "<p>Pesaje del día " + up.dia + ": " + num(up.pesoG) + " g. La guía Ross publicada llega al día 56, así que este día no se compara.</p>";
+    else if (guia == null) h += "<p>Pesaje del día " + esc(up.dia) + ": " + num(up.pesoG) + " g. La guía Ross publicada llega al día 56, así que este día no se compara.</p>";
     else {
       var extra = up.pesoG > guia * 1.1 ? " Va por encima de la franja de +10 %." : "";
       h += "<p><strong>" + esc(textoNivel(niv)) + "</strong></p>";
-      h += "<p>Día " + up.dia + ": " + num(up.pesoG) + " g reales · guía Ross " + num(guia) + " g · " + Math.round(up.pesoG / guia * 100) + " % de la guía." + extra + "</p>";
+      h += "<p>Día " + esc(up.dia) + ": " + num(up.pesoG) + " g reales · guía Ross " + num(guia) + " g · " + Math.round(up.pesoG / guia * 100) + " % de la guía." + extra + "</p>";
     }
     h += "</div>";
     h += '<div class="pollos-leyenda"><span><i class="pollos-oro"></i>Guía Ross</span><span><i class="pollos-real"></i>Tu lote</span></div>';
@@ -492,9 +663,9 @@
     else {
       h += '<ul class="pollos-regs">';
       list.forEach(function (r) {
-        h += "<li><strong>" + esc(fechaTexto(r.fecha)) + "</strong> · día " + r.dia + " · " + (r.tipo === "semana" ? "semana" : "día");
+        h += "<li><strong>" + esc(fechaTexto(r.fecha)) + "</strong> · día " + esc(r.dia) + " · " + (r.tipo === "semana" ? "semana" : "día");
         h += "<br>Peso " + (r.pesoG == null ? "—" : num(r.pesoG) + " g");
-        h += " · pienso " + (r.piensoKg == null ? "—" : num(r.piensoKg, 2) + " kg");
+        h += " · alimento (pienso) " + (r.piensoKg == null ? "—" : num(r.piensoKg, 2) + " kg");
         h += " · agua " + (r.aguaL == null ? "—" : num(r.aguaL, 1) + " L");
         h += " · bajas " + num(r.bajas || 0);
         h += '<div class="pollos-acciones"><button type="button" class="btn sec" data-quitar="' + esc(r.id) + '">Quitar</button></div></li>';
@@ -644,7 +815,13 @@
     var lotes = document.getElementById("btn-lotes");
     if (lotes) lotes.onclick = function () { vista = "lista"; error = ""; pintar(); };
     document.querySelectorAll("[data-abrir]").forEach(function (b) {
-      b.onclick = function () { store.activo = b.getAttribute("data-abrir"); guardar(); vista = "lote"; pintar(); };
+      b.onclick = function () {
+        var prev = store.activo;
+        store.activo = b.getAttribute("data-abrir");
+        if (!guardar()) { store.activo = prev; pintar(); return; }
+        vista = "lote";
+        pintar();
+      };
     });
     var sig = document.getElementById("btn-siguiente");
     if (sig) sig.onclick = function () {
@@ -652,10 +829,12 @@
       error = vista === "nuevo" ? validarNuevoPaso() : validarAnotarPaso();
       if (error) { pintar(); return; }
       error = "";
-      paso += 1;
-      if (vista === "anotar" && paso > 0) {
-        /* Al avanzar, las sugerencias se calculan si el campo sigue vacío. */
+      if (vista === "anotar" && paso === 0) {
+        borrador.peso = "";
+        borrador.pienso = "";
+        borrador.agua = "";
       }
+      paso += 1;
       pintar();
     };
     var atras = document.getElementById("btn-atras");
@@ -697,7 +876,7 @@
     var ej = document.getElementById("btn-exportar-json");
     if (ej) ej.onclick = function () { descargar("registro-pollos.json", JSON.stringify(store, null, 2), "application/json"); };
     var ec = document.getElementById("btn-exportar-csv");
-    if (ec) ec.onclick = function () { descargar("registro-pollos.csv", aCSV(), "text/csv"); };
+    if (ec) ec.onclick = function () { descargar("registro-pollos.csv", "\uFEFF" + aCSV(), "text/csv"); };
     var fi = document.getElementById("file-importar");
     if (fi) fi.onchange = function () {
       var f = fi.files && fi.files[0];
@@ -724,9 +903,15 @@
       m2: borrador.m2 ? leerNum(borrador.m2) : null,
       registros: []
     };
+    var copia = JSON.parse(JSON.stringify(store));
     store.lotes.push(lote);
     store.activo = lote.id;
-    guardar();
+    if (!guardar()) {
+      store.lotes = copia.lotes;
+      store.activo = copia.activo;
+      pintar();
+      return;
+    }
     vista = "lote";
     error = "";
     pintar();
@@ -737,6 +922,7 @@
     error = revisarRegistro(lote, true);
     if (error) { pintar(); return; }
     var dia = diasEntre(lote.entrada, borrador.fecha);
+    var copiaReg = JSON.parse(JSON.stringify(store));
     lote.registros.push({
       id: idNuevo(),
       tipo: borrador.tipo === "semana" ? "semana" : "dia",
@@ -747,7 +933,12 @@
       aguaL: borrador.agua === "" || borrador.agua == null ? null : leerNum(borrador.agua),
       bajas: leerNum(borrador.bajas || "0") || 0
     });
-    guardar();
+    if (!guardar()) {
+      store.lotes = copiaReg.lotes;
+      store.activo = copiaReg.activo;
+      pintar();
+      return;
+    }
     vista = "lote";
     error = "";
     pintar();
@@ -759,25 +950,42 @@
     var n = val("f-tolvas-lote");
     if (kg && !(leerNum(kg) > 0)) { error = "Esos kilos no cuadran."; pintar(); return; }
     if (n && (!(leerNum(n) >= 1) || leerNum(n) !== Math.round(leerNum(n)))) { error = "El número de tolvas no cuadra."; pintar(); return; }
+    var copiaTolva = JSON.parse(JSON.stringify(store));
     lote.tolvaKg = kg ? leerNum(kg) : null;
     lote.tolvas = n ? leerNum(n) : null;
+    if (!guardar()) {
+      store.lotes = copiaTolva.lotes;
+      store.activo = copiaTolva.activo;
+      pintar();
+      return;
+    }
     error = "";
-    guardar();
     pintar();
   }
   function quitarRegistro(id) {
     var lote = loteActivo();
     if (!lote || !window.confirm("¿Quitas este registro?")) return;
+    var copiaQ = JSON.parse(JSON.stringify(store));
     lote.registros = (lote.registros || []).filter(function (r) { return r.id !== id; });
-    guardar();
+    if (!guardar()) {
+      store.lotes = copiaQ.lotes;
+      store.activo = copiaQ.activo;
+    }
     pintar();
   }
   function borrarLote() {
     var lote = loteActivo();
     if (!lote || !window.confirm("¿Borras este lote y sus registros de este navegador?")) return;
-    store.lotes = store.lotes.filter(function (l) { return l.id !== lote.id; });
-    store.activo = store.lotes.length ? store.lotes[0].id : null;
-    guardar();
+    var copiaB = JSON.parse(JSON.stringify(store));
+    var siguiente = store.lotes.filter(function (l) { return l.id !== lote.id; });
+    store.lotes = siguiente;
+    store.activo = siguiente.length ? siguiente[0].id : null;
+    if (!guardar()) {
+      store.lotes = copiaB.lotes;
+      store.activo = copiaB.activo;
+      pintar();
+      return;
+    }
     vista = store.activo ? "lote" : "lista";
     pintar();
   }
@@ -792,25 +1000,47 @@
     a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
   }
+  var SEP = ";";
+  function csvNum(v) {
+    if (v == null || v === "") return "";
+    return String(v).replace(".", ",");
+  }
   function csvCelda(v) {
     var s = v == null ? "" : String(v);
-    if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    if (/^[=+\-@]/.test(s)) s = "'" + s;
+    if (/[;"\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
     return s;
   }
   function aCSV() {
     var cols = ["lote_id","lote_nombre","entrada","aves","raza","tolvas","tolva_kg","m2","registro_id","tipo","dia","fecha","peso_g","pienso_kg","agua_l","bajas"];
-    var lineas = [cols.join(",")];
+    var lineas = [cols.join(SEP)];
     store.lotes.forEach(function (l) {
-      var base = [l.id, l.nombre, l.entrada, l.aves, l.raza, l.tolvas, l.tolvaKg, l.m2];
+      var base = [l.id, l.nombre, l.entrada, csvNum(l.aves), l.raza, csvNum(l.tolvas), csvNum(l.tolvaKg), csvNum(l.m2)];
       var rs = l.registros || [];
-      if (!rs.length) lineas.push(base.map(csvCelda).concat(["","","","","","",""]).join(","));
+      if (!rs.length) lineas.push(base.map(csvCelda).concat(["","","","","","",""]).join(SEP));
       rs.forEach(function (r) {
-        lineas.push(base.concat([r.id, r.tipo, r.dia, r.fecha, r.pesoG, r.piensoKg, r.aguaL, r.bajas]).map(csvCelda).join(","));
+        lineas.push(base.concat([
+          r.id, r.tipo, csvNum(r.dia), r.fecha, csvNum(r.pesoG), csvNum(r.piensoKg), csvNum(r.aguaL), csvNum(r.bajas)
+        ]).map(csvCelda).join(SEP));
       });
     });
-    return lineas.join("\n");
+    return lineas.join("\r\n");
+  }
+  function separadorCSV(texto) {
+    var linea = (texto.split(/\r?\n/)[0] || "");
+    var sc = 0;
+    var cc = 0;
+    var com = false;
+    for (var i = 0; i < linea.length; i++) {
+      var ch = linea.charAt(i);
+      if (ch === '"') com = !com;
+      else if (!com && ch === ";") sc++;
+      else if (!com && ch === ",") cc++;
+    }
+    return sc > cc ? ";" : ",";
   }
   function partirCSV(texto) {
+    var sep = separadorCSV(texto);
     var filas = [];
     var fila = [];
     var cel = "";
@@ -823,73 +1053,95 @@
           else com = false;
         } else cel += ch;
       } else if (ch === '"') com = true;
-      else if (ch === ",") { fila.push(cel); cel = ""; }
+      else if (ch === sep) { fila.push(cel); cel = ""; }
       else if (ch === "\n") { fila.push(cel); filas.push(fila); fila = []; cel = ""; }
       else if (ch !== "\r") cel += ch;
     }
     if (cel.length || fila.length) { fila.push(cel); filas.push(fila); }
     return filas;
   }
+  function meterLotes(lista, activo) {
+    var copia = JSON.parse(JSON.stringify(store));
+    var descartados = 0;
+    var ids = [];
+    lista.forEach(function (l) {
+      var s = sanearLote(l);
+      if (!s) { descartados++; return; }
+      descartados += s._malos || 0;
+      delete s._malos;
+      var i = store.lotes.findIndex(function (x) { return x.id === s.id; });
+      if (i >= 0) store.lotes[i] = s; else store.lotes.push(s);
+      ids.push(s.id);
+    });
+    if (!ids.length) {
+      store.lotes = copia.lotes;
+      store.activo = copia.activo;
+      error = "No se importó nada: los lotes no cuadran. Revisa el archivo.";
+      return false;
+    }
+    if (idOk(activo) && store.lotes.some(function (l) { return l.id === activo; })) store.activo = activo;
+    else store.activo = ids[ids.length - 1];
+    if (!guardar()) {
+      store.lotes = copia.lotes;
+      store.activo = copia.activo;
+      return false;
+    }
+    error = descartados
+      ? "Se importó la copia. Se dejaron fuera " + descartados + (descartados === 1 ? " lote o registro que no cuadraba." : " lotes o registros que no cuadraban.")
+      : "";
+    return true;
+  }
   function importar(texto, nombre) {
     try {
-      var limpio = texto.replace(/^\uFEFF/, "").trim();
-      if (limpio.charAt(0) === "{" || /\.json$/i.test(nombre)) {
+      var limpio = String(texto || "").replace(/^\uFEFF/, "").trim();
+      if (!limpio) throw new Error("vacío");
+      if (limpio.charAt(0) === "{" || limpio.charAt(0) === "[" || /\.json$/i.test(nombre || "")) {
         var data = JSON.parse(limpio);
-        var lotes = Array.isArray(data) ? data : data.lotes;
+        var lotes = Array.isArray(data) ? data : (data && data.lotes);
         if (!Array.isArray(lotes)) throw new Error("sin lotes");
-        lotes.forEach(function (l) {
-          if (!l || !l.id) l.id = idNuevo();
-          if (!Array.isArray(l.registros)) l.registros = [];
-          var i = store.lotes.findIndex(function (x) { return x.id === l.id; });
-          if (i >= 0) store.lotes[i] = l; else store.lotes.push(l);
-        });
-        if (data && data.activo) store.activo = data.activo;
+        if (!meterLotes(lotes, data && data.activo)) { pintar(); return; }
       } else {
         var filas = partirCSV(limpio);
-        if (!filas.length) throw new Error("vacío");
-        var head = filas[0].map(function (x) { return x.trim(); });
+        if (filas.length < 2) throw new Error("vacío");
+        var head = filas[0].map(function (x) { return String(x || "").trim(); });
         var idx = {};
         head.forEach(function (c, i) { idx[c] = i; });
         if (idx.lote_id == null) throw new Error("csv");
         var mapa = {};
+        var orden = [];
         for (var r = 1; r < filas.length; r++) {
           var f = filas[r];
-          if (!f.length || !f[idx.lote_id]) continue;
-          var id = f[idx.lote_id];
+          if (!f || !f.length || !f[idx.lote_id]) continue;
+          var id = String(f[idx.lote_id]).trim();
           if (!mapa[id]) {
             mapa[id] = {
               id: id,
               nombre: f[idx.lote_nombre] || "Lote",
               entrada: f[idx.entrada],
-              aves: leerNum(f[idx.aves]) || 0,
+              aves: f[idx.aves],
               raza: f[idx.raza] || "ross308",
-              tolvas: leerNum(f[idx.tolvas]),
-              tolvaKg: leerNum(f[idx.tolva_kg]),
-              m2: leerNum(f[idx.m2]),
+              tolvas: f[idx.tolvas],
+              tolvaKg: f[idx.tolva_kg],
+              m2: f[idx.m2],
               registros: []
             };
+            orden.push(mapa[id]);
           }
           if (f[idx.registro_id]) {
             mapa[id].registros.push({
-              id: f[idx.registro_id],
+              id: String(f[idx.registro_id]).trim(),
               tipo: f[idx.tipo] === "semana" ? "semana" : "dia",
-              dia: leerNum(f[idx.dia]) || 0,
+              dia: f[idx.dia],
               fecha: f[idx.fecha],
-              pesoG: leerNum(f[idx.peso_g]),
-              piensoKg: leerNum(f[idx.pienso_kg]),
-              aguaL: leerNum(f[idx.agua_l]),
-              bajas: leerNum(f[idx.bajas]) || 0
+              pesoG: f[idx.peso_g],
+              piensoKg: f[idx.pienso_kg],
+              aguaL: f[idx.agua_l],
+              bajas: f[idx.bajas]
             });
           }
         }
-        Object.keys(mapa).forEach(function (id) {
-          var i = store.lotes.findIndex(function (x) { return x.id === id; });
-          if (i >= 0) store.lotes[i] = mapa[id]; else store.lotes.push(mapa[id]);
-          store.activo = id;
-        });
+        if (!meterLotes(orden, orden.length ? orden[orden.length - 1].id : null)) { pintar(); return; }
       }
-      guardar();
-      error = "";
       vista = loteActivo() ? "lote" : "lista";
       pintar();
     } catch (e) {
