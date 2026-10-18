@@ -11,22 +11,37 @@
 
   var pais = valid(document.documentElement.dataset.pais || "MX");
 
+  function esDemo(code) {
+    return String(code || "").trim().toUpperCase() === "DEMO";
+  }
+  function borrarRef() {
+    try { localStorage.removeItem("gr_ref"); } catch (e) {}
+    document.cookie = "gr_ref=; Max-Age=0; Path=/; SameSite=Lax";
+  }
   function readRef() {
+    var code = "";
     try {
       var raw = localStorage.getItem("gr_ref");
       if (raw) {
         var o = JSON.parse(raw);
-        if (o && o.exp > Date.now() && REF_RE.test(o.code)) return o.code;
+        if (o && o.exp > Date.now() && REF_RE.test(o.code)) code = o.code;
       }
     } catch (e) {}
-    var m = document.cookie.match(/(?:^|; )gr_ref=([^;]+)/);
-    if (m) {
-      try {
-        var c = decodeURIComponent(m[1]);
-        if (REF_RE.test(c)) return c;
-      } catch (e2) {}
+    if (!code) {
+      var m = document.cookie.match(/(?:^|; )gr_ref=([^;]+)/);
+      if (m) {
+        try {
+          var c = decodeURIComponent(m[1]);
+          if (REF_RE.test(c)) code = c;
+        } catch (e2) {}
+      }
     }
-    return "";
+    if (!code) return "";
+    if (esDemo(code)) {
+      borrarRef();
+      return "";
+    }
+    return code;
   }
 
   function saveRef(code) {
@@ -38,7 +53,12 @@
 
   (function captureRef() {
     var q = new URLSearchParams(location.search).get("ref");
-    if (q && REF_RE.test(q)) saveRef(q);
+    if (!q) return;
+    if (esDemo(q)) {
+      borrarRef();
+      return;
+    }
+    if (REF_RE.test(q)) saveRef(q);
   })();
 
   function usdOf(p) {
@@ -866,7 +886,7 @@
   (function cargarCuenta() {
     if (window.GRAuth) return;
     var s = document.createElement("script");
-    s.src = root + "js/auth.js";
+    s.src = root + "js/auth.js?v=202610185";
     document.body.appendChild(s);
   })();
 
@@ -912,29 +932,6 @@
       applyPais(pais, false);
     })
     .catch(function () {});
-  function askGeo() {
-    try {
-      if (!(window.ads && window.ads.activo === true)) return;
-      if (localStorage.getItem("gr_pais")) return;
-      if (localStorage.getItem("gr_consent") !== "si") return;
-      if (window.__grGeoAsked) return;
-      window.__grGeoAsked = 1;
-      fetch("https://get.geojs.io/v1/ip/country.json", { credentials: "omit" })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          var code = String((d && (d.country || d.country_code)) || "").toUpperCase();
-          if (!PAISES[code]) return;
-          try { localStorage.setItem("gr_pais_ip", code); } catch (e1) {}
-          if (code !== pais && !localStorage.getItem("gr_pais")) applyPais(code, false);
-        })
-        .catch(function () {});
-    } catch (eGeo) {}
-  }
-  askGeo();
-  document.addEventListener("click", function (ev) {
-    var t = ev.target && ev.target.closest ? ev.target.closest("[data-c]") : null;
-    if (t && t.getAttribute("data-c") === "si") askGeo();
-  });
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), tienda: (PAISES[pais] && PAISES[pais].envio) ? storeUrl() : "" };
   };

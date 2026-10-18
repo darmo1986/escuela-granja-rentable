@@ -147,37 +147,98 @@
     return RAZAS[0];
   }
   function medio(par) { return (par[0] + par[1]) / 2; }
+  /* La coma y el punto son decimales. «0.520» es 0,52 y «2,5» es 2,5.
+     Si hay coma y punto, el último es el decimal. Varios separadores iguales
+     y grupos de tres cifras son miles («1.234.567»). En un campo entero,
+     «1.000» y «1,000» también son miles. No se admite 1e21. */
+  function interpretarDecimal(s) {
+    var tienePunto = s.indexOf(".") !== -1;
+    var tieneComa = s.indexOf(",") !== -1;
+    if (tienePunto && tieneComa) {
+      if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
+      else s = s.replace(/,/g, "");
+    } else if (tieneComa) {
+      if (s.split(",").length > 2) {
+        if (!/^\d{1,3}(,\d{3})+$/.test(s)) return null;
+        s = s.replace(/,/g, "");
+      } else s = s.replace(",", ".");
+    } else if (tienePunto && s.split(".").length > 2) {
+      if (!/^\d{1,3}(\.\d{3})+$/.test(s)) return null;
+      s = s.replace(/\./g, "");
+    }
+    if (!/^\d+(\.\d+)?$/.test(s)) return null;
+    var n = Number(s);
+    return isFinite(n) ? n : null;
+  }
+  function textoTope(n) {
+    var s = String(n);
+    var p = s.split(".");
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return p.length > 1 ? p[0] + "," + p[1] : p[0];
+  }
+  function avisoMiles(original, decimal, miles) {
+    var mostrado = String(decimal);
+    if (/e/i.test(mostrado)) mostrado = decimal.toFixed(10).replace(/0+$/, "").replace(/\.$/, "");
+    mostrado = mostrado.replace(".", ",");
+    return "¿" + original + " es " + mostrado + " o " + miles + "? Para miles escribe " + miles + " sin punto ni coma.";
+  }
+  function leerNumero(raw, opts) {
+    opts = opts || {};
+    if (typeof raw === "number") {
+      if (!isFinite(raw)) return { ok: false, error: "Escribe un número." };
+      raw = String(raw);
+    }
+    var s = String(raw == null ? "" : raw).replace(/\u2212/g, "-").replace(/\u00a0/g, " ").trim();
+    if (!s) {
+      if (opts.opcional) return { ok: true, value: 0, vacio: true };
+      return { ok: false, error: "Escribe un número." };
+    }
+    if (/\s/.test(s)) {
+      var compacto = s.replace(/\s+/g, " ");
+      if (/^[+-]?\d{1,3}(?: \d{3})+$/.test(compacto)) s = compacto.replace(/ /g, "");
+      else return { ok: false, error: "Escribe el número sin espacios, o en grupos de tres: 1 000." };
+    }
+    if (/[eE]/.test(s)) return { ok: false, error: "Escribe un número, sin notación científica." };
+    if (/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(s)) return { ok: false, error: "Escribe un número, sin letras." };
+    if (s.charAt(0) === "-") return { ok: false, error: "Escribe un número positivo." };
+    if (s.charAt(0) === "+") s = s.slice(1);
+    if (/[^0-9.,]/.test(s)) return { ok: false, error: "Escribe un número, sin letras." };
+    var aviso = "";
+    if (opts.entero && /^\d{1,3}[.,]\d{3}$/.test(s)) {
+      s = s.replace(/[.,]/, "");
+    } else if (!opts.entero && /^(\d+)[.,](\d{3})$/.test(s)) {
+      var partes = s.match(/^(\d+)[.,](\d{3})$/);
+      if (partes && Number(partes[1]) !== 0) {
+        var comoDecimal = interpretarDecimal(s);
+        if (comoDecimal != null) aviso = avisoMiles(s, comoDecimal, String(Number(partes[1] + partes[2])));
+      }
+    }
+    var n = interpretarDecimal(s);
+    if (n == null) return { ok: false, error: "Escribe un número." };
+    if (opts.entero && Math.abs(n - Math.round(n)) > 1e-9) {
+      return { ok: false, error: opts.enteroMsg || "Escribe un número entero." };
+    }
+    if (opts.entero) n = Math.round(n);
+    if (opts.min != null && n < opts.min - 1e-9) return { ok: false, error: "El mínimo es " + textoTope(opts.min) + "." };
+    if (opts.max != null && n > opts.max + 1e-9) return { ok: false, error: "El máximo es " + textoTope(opts.max) + "." };
+    var out = { ok: true, value: n };
+    if (aviso) out.aviso = aviso;
+    return out;
+  }
   function num(v, entero) {
     if (typeof v === "number") return isFinite(v) ? v : 0;
-    var s = String(v == null ? "" : v).trim().replace(/\s/g, "");
-    if (!s) return 0;
-    if (entero) {
-      if (s.indexOf(".") !== -1 && s.indexOf(",") !== -1) {
-        if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
-        else s = s.replace(/,/g, "");
-      } else s = s.replace(/\./g, "").replace(",", ".");
-      var ni = parseFloat(s);
-      return isFinite(ni) ? Math.round(ni) : 0;
-    }
-    else {
-      var punto = s.indexOf(".") !== -1;
-      var coma = s.indexOf(",") !== -1;
-      if (punto && coma) {
-        if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
-        else s = s.replace(/,/g, "");
-      } else if (coma) s = s.replace(",", ".");
-      else if (punto && /^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
-    }
-    var n = parseFloat(s);
-    return isFinite(n) ? n : 0;
+    var leido = leerNumero(v, { entero: !!entero, opcional: true });
+    if (!leido.ok) return NaN;
+    return leido.value;
   }
   function numOrNull(v) {
     if (v == null) return null;
-    if (typeof v === "string" && v.trim() === "") return null;
-    return num(v);
+    if (typeof v === "string" && String(v).trim() === "") return null;
+    var n = num(v);
+    return isFinite(n) ? n : NaN;
   }
   function fmt(n, dec) {
-    if (!isFinite(n)) return "—";
+    if (!isFinite(n) || Math.abs(n) >= 1e15) return "—";
     var sign = n < 0 ? "−" : "";
     var s = Math.abs(n).toFixed(dec);
     var p = s.split(".");
@@ -185,7 +246,7 @@
     return sign + (dec ? p[0] + "," + p[1] : p[0]);
   }
   function fmtR(n) {
-    if (!isFinite(n)) return "—";
+    if (!isFinite(n) || Math.abs(n) >= 1e15) return "—";
     var sign = n < 0 ? "−" : "";
     var s = (Math.round(Math.abs(n) * 100) / 100).toFixed(2).replace(".", ",");
     s = s.replace(/,00$/, "").replace(/,(\d)0$/, ",$1");
@@ -333,7 +394,75 @@
     return propio == null ? num(state.precioPienso) : propio;
   }
 
+  var GRAMOS_ID = {
+    arranque: "c-g-arranque",
+    recria: "c-g-recria",
+    puesta: "c-g-puesta",
+    engordeInicio: "c-g-einicio",
+    engordeFinal: "c-g-efinal"
+  };
+  var PRECIO_ID = {
+    arranque: "c-p-arranque",
+    recria: "c-p-recria",
+    puesta: "c-p-puesta",
+    engordeInicio: "c-p-einicio",
+    engordeFinal: "c-p-efinal"
+  };
+
+  function validarEstado(state) {
+    var errores = {};
+    var avisos = {};
+    function tomar(id, raw, opts) {
+      var leido = leerNumero(raw, opts);
+      if (!leido.ok) errores[id] = leido.error;
+      else if (leido.aviso) avisos[id] = leido.aviso;
+      return leido;
+    }
+    tomar("c-aves", state.aves, { min: 1, max: 100000, entero: true, enteroMsg: "Escribe un número entero de aves." });
+    tomar("c-mortalidad", state.mortalidad, { min: 0, max: 100 });
+    tomar("c-meses", state.meses, { min: 0.01, max: 120 });
+    tomar("c-vacio", state.vacio, { min: 0, max: 365, entero: true, enteroMsg: "Escribe un número entero de días." });
+    tomar("c-precio-ave", state.precioAve, { min: 0, max: 1000000 });
+    tomar("c-precio-pienso", state.precioPienso, { min: 0, max: 1000000 });
+    tomar("c-instalacion", state.instalacion, { min: 0, max: 100000000 });
+    tomar("c-anios", state.anios, { min: 0, max: 50 });
+    tomar("c-otros", state.otrosMes, { min: 0, max: 10000000 });
+    if (state.manoModo === "horas") {
+      tomar("c-horas", state.horasDia, { min: 0, max: 24 });
+      tomar("c-precio-hora", state.precioHora, { min: 0, max: 1000000 });
+    } else {
+      tomar("c-mano-mes", state.manoMes, { min: 0, max: 10000000 });
+    }
+    Object.keys(PRECIO_ID).forEach(function (id) {
+      var raw = state.precioEtapa ? state.precioEtapa[id] : "";
+      if (raw == null || String(raw).trim() === "") return;
+      tomar(PRECIO_ID[id], raw, { min: 0, max: 1000000 });
+    });
+    var pl = plan(state);
+    var usados = {};
+    (pl.segs || []).forEach(function (seg) { usados[seg.id] = true; });
+    Object.keys(GRAMOS_ID).forEach(function (id) {
+      if (!usados[id]) return;
+      tomar(GRAMOS_ID[id], state.gramos && state.gramos[id], { min: 1, max: 500 });
+    });
+    if (pl.huevos) {
+      tomar("c-huevos", state.huevosAnio, { min: 0, max: 400 });
+      tomar("c-precio-huevo", state.precioHuevo, { min: 0, max: 100000 });
+      tomar("c-vendibles", state.vendibles, { min: 0, max: 100 });
+    }
+    var venta = state.precioVenta;
+    if (venta != null && String(venta).trim() !== "") tomar("c-precio-venta", venta, { min: 0, max: 10000000 });
+    var peso = state.pesoKg;
+    if (state.ventaModo === "kg") tomar("c-peso", peso, { min: 0.01, max: 30 });
+    else if (peso != null && String(peso).trim() !== "") tomar("c-peso", peso, { min: 0, max: 30 });
+    return { ok: Object.keys(errores).length === 0, errores: errores, avisos: avisos };
+  }
+
   function calcular(state) {
+    var chequeo = validarEstado(state);
+    if (!chequeo.ok) {
+      return { ok: false, error: "Revisa los campos marcados.", errores: chequeo.errores, avisos: chequeo.avisos, luz: "" };
+    }
     var avesPedidas = Math.max(0, num(state.aves, true));
     var aves = avesPedidas;
     var tope = "";
@@ -345,7 +474,7 @@
     var meses = Math.max(0, num(state.meses));
     var pl = plan(state);
     if (!(aves > 0) || !(meses > 0)) {
-      return { ok: false, error: "Escribe el número de aves y los meses del ciclo.", luz: "" };
+      return { ok: false, error: "Escribe el número de aves y los meses del ciclo.", errores: chequeo.errores, avisos: chequeo.avisos, luz: "" };
     }
     var etapas = [];
     var kg = 0;
@@ -375,7 +504,7 @@
       ? !(num(state.horasDia) > 0 && num(state.precioHora) > 0)
       : !(num(state.manoMes) > 0);
     var raro = aves === 1 && num(state.otrosMes) >= 100
-      ? "Revisa la cifra: 1 ave con otros costes muy altos. Si querías miles, 1.000 se lee como mil."
+      ? "Revisa la cifra: 1 ave con otros costes muy altos. El punto es decimal: si querías mil, escribe 1000."
       : "";
     var costes = costePienso + costeAves + costeInst + costeMano + costeOtros;
     var huevosProd = 0;
@@ -403,13 +532,13 @@
     if (ingresos > 0) margen = beneficio / ingresos * 100;
     else if (costes > 0) margen = -100;
     var netoHuevo = costes - ingresoAves;
-    var costeHuevo = huevosVend > 0 ? netoHuevo / huevosVend : null;
+    var costeHuevo = huevosVend > 0 ? Math.max(0, netoHuevo) / huevosVend : null;
     var costeDocena = costeHuevo == null ? null : costeHuevo * 12;
     var minDocena = costeDocena;
     var minAve = vivos > 0 ? (costes - ingresoHuevos) / vivos : null;
     var hayPrecio = num(state.precioPienso) > 0 || num(state.precioHuevo) > 0 || num(state.precioVenta) > 0 || num(state.precioAve) > 0;
     if (!hayPrecio) {
-      return { ok: false, vacio: true, error: "Escribe los precios", luz: "" };
+      return { ok: false, vacio: true, error: "Escribe los precios", avisos: chequeo.avisos, luz: "" };
     }
     var luz = "";
     var faltan = "";
@@ -445,8 +574,10 @@
       ingresos: ingresos,
       beneficio: beneficio,
       margen: margen,
+      netoHuevo: netoHuevo,
       costeHuevo: costeHuevo,
       costeDocena: costeDocena,
+      avisos: chequeo.avisos,
       minDocena: minDocena,
       minAve: minAve,
       vivos: Math.round(vivos),
@@ -460,6 +591,8 @@
     plantillas: PLANTILLAS,
     racion: racion,
     calcular: calcular,
+    leerNumero: leerNumero,
+    validarEstado: validarEstado,
     plan: plan,
     porId: porId,
     fmt: fmt,
@@ -729,8 +862,15 @@
     html += fila("Beneficio neto", dinero(res.beneficio));
     html += fila("Margen", res.margen == null ? "—" : esc(res.margen < -100 ? "< −100 %" : fmt(res.margen, 1) + " %"));
     if (res.costeHuevo != null) {
-      html += fila("Coste por huevo", esc(cifra(res.costeHuevo, 3)));
-      html += fila("Coste por docena", dinero(res.costeDocena));
+      if (res.netoHuevo <= 0) {
+        html += fila("Coste por huevo", esc("0 (las aves ya cubren el coste)"));
+        html += fila("Coste por docena", esc("0 (las aves ya cubren el coste)"));
+      } else {
+        var decHuevo = 3;
+        if (res.costeHuevo !== 0 && Math.abs(Math.round(res.costeHuevo * 1000) / 1000) === 0) decHuevo = 4;
+        html += fila("Coste por huevo", esc(cifra(res.costeHuevo, decHuevo)));
+        html += fila("Coste por docena", dinero(res.costeDocena));
+      }
       html += fila("Precio mínimo de la docena", res.minDocena <= 0 ? esc(cifra(0)) + " (las aves ya cubren el coste)" : dinero(res.minDocena));
     }
     if (!res.huevos && res.minAve != null) html += fila("Precio mínimo por ave", dinero(res.minAve));
@@ -783,9 +923,21 @@
   function pintarComedero() {
     var item = porId($("f-raza").value);
     var etapa = $("f-etapa").value;
-    var aves = num($("f-aves").value);
-    var r = racion(item, etapa, aves);
+    var campoAves = $("f-aves");
+    var leido = leerNumero(campoAves ? campoAves.value : "", {
+      min: 1,
+      max: 100000,
+      entero: true,
+      enteroMsg: "Escribe un número entero de aves."
+    });
+    avisoCampo(campoAves, leido.ok ? "" : leido.error);
     var out = $("f-out");
+    if (!leido.ok) {
+      if (out) out.innerHTML = "<p class=\"racion-aviso\">" + esc(leido.error) + "</p>";
+      return;
+    }
+    var aves = leido.value;
+    var r = racion(item, etapa, aves);
     if (!r.aplica) {
       out.innerHTML = "<p class=\"racion-aviso\">" + esc(r.aviso) + "</p>" + bloqueCalcio("no", r);
       return;
@@ -910,10 +1062,58 @@
     if (destino && destino.scrollIntoView) destino.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function avisoCampo(el, texto) {
+    if (!el) return;
+    var id = el.id || el.getAttribute("name") || "";
+    var msg = el.parentNode && el.parentNode.querySelector(".field-error[data-for='" + id + "']");
+    if (!texto) {
+      el.classList.remove("is-invalid");
+      el.removeAttribute("aria-invalid");
+      if (msg) msg.remove();
+      return;
+    }
+    el.classList.add("is-invalid");
+    el.setAttribute("aria-invalid", "true");
+    if (!msg) {
+      msg = document.createElement("p");
+      msg.className = "field-error";
+      msg.setAttribute("data-for", id);
+      msg.setAttribute("role", "alert");
+      el.insertAdjacentElement("afterend", msg);
+    }
+    msg.textContent = texto;
+  }
+  function pistaCampo(el, texto) {
+    if (!el) return;
+    var id = el.id || el.getAttribute("name") || "";
+    var msg = el.parentNode && el.parentNode.querySelector(".field-hint[data-for='" + id + "']");
+    if (!texto) {
+      if (msg) msg.remove();
+      return;
+    }
+    if (!msg) {
+      msg = document.createElement("p");
+      msg.className = "field-hint";
+      msg.setAttribute("data-for", id);
+      el.insertAdjacentElement("afterend", msg);
+    }
+    msg.textContent = texto;
+  }
+  function pintarAvisos(errores, avisos) {
+    errores = errores || {};
+    avisos = avisos || {};
+    document.querySelectorAll("#calc-form input").forEach(function (el) {
+      if (!el.id) return;
+      avisoCampo(el, errores[el.id] || "");
+      pistaCampo(el, errores[el.id] ? "" : (avisos[el.id] || ""));
+    });
+  }
   function refrescar() {
     var st = estado();
     syncCampos(st);
-    pintar(calcular(st));
+    var res = calcular(st);
+    pintarAvisos(res.errores, res.avisos);
+    pintar(res);
     pintarComedero();
     guardar();
   }

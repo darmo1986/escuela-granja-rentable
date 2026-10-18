@@ -310,8 +310,10 @@
       try { localStorage.setItem("gr_progreso", JSON.stringify(junto)); } catch (e) {}
       bloque.curso = junto;
       guardarDatos(id, bloque);
+      guardarCurso(junto);
       pintarCuenta();
       pintarFicha();
+      avisar();
     }).catch(function () {});
   }
 
@@ -321,6 +323,7 @@
     Object.keys(a || {}).forEach(function (k) { keys[k] = 1; });
     Object.keys(b || {}).forEach(function (k) { keys[k] = 1; });
     Object.keys(keys).forEach(function (k) {
+      if (k === "certificado") return;
       var x = (a && a[k]) || {};
       var y = (b && b[k]) || {};
       if (typeof x !== "object" && typeof y !== "object") return;
@@ -330,6 +333,17 @@
         fecha: x.fecha || y.fecha || ""
       };
     });
+    var ca = a && a.certificado;
+    var cb = b && b.certificado;
+    if ((ca && ca.fecha) || (cb && cb.fecha)) {
+      var fa = (ca && ca.fecha) || "";
+      var fb = (cb && cb.fecha) || "";
+      out.certificado = {
+        fecha: fa && fb ? (fa < fb ? fa : fb) : (fa || fb),
+        nombre: (ca && ca.nombre) || (cb && cb.nombre) || "",
+        guardado: !!((ca && ca.guardado) || (cb && cb.guardado))
+      };
+    }
     return out;
   }
 
@@ -422,7 +436,7 @@
     if (!usuarioActual || !usuarioActual.pideApodo || apodoOfrecido) return;
     apodoOfrecido = true;
     abrir("apodo");
-    mensaje("Elige un apodo para el ranking. No uses el nombre de Google, un correo ni un insulto.", false);
+    mensaje("Elige un apodo. No uses el nombre de Google, un correo ni un insulto.", false);
   }
 
   function enviar(ev) {
@@ -742,16 +756,18 @@
   }
 
   function leccionesAprobadas(curso) {
-    return Object.keys(curso || {}).filter(function (k) { return curso[k] && curso[k].aprobado; }).length;
+    return Object.keys(curso || {}).filter(function (k) {
+      return k !== "certificado" && curso[k] && curso[k].aprobado;
+    }).length;
   }
 
   function pintarCuenta() {
     var caja = document.getElementById("cuenta-cuerpo");
     if (!caja) return;
     if (!usuarioActual) {
-      caja.innerHTML = '<p>No has entrado. El curso, las fichas y la calculadora se usan igual. La cuenta sirve para guardar el avance, los cálculos y las fichas.</p>' +
+      caja.innerHTML = '<p>No has entrado. El curso, las fichas y la calculadora se usan igual, y siguen siendo gratis. Crea tu cuenta gratis para guardar tu progreso.</p>' +
         '<p><button type="button" class="btn gold" id="cuenta-entrar">Entrar / Registrarse</button></p>' +
-        '<h2>El curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta.</p>' +
+        '<h2>El curso</h2><p>Las lecciones están abiertas. Los tests y el examen final sirven para el certificado. La cuenta lo guarda.</p>' +
         (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "");
       document.getElementById("cuenta-entrar").addEventListener("click", function () { abrir("entrar"); });
       return;
@@ -767,9 +783,10 @@
       (usuarioActual.avatar ? '<img class="auth-avatar" src="' + esc(usuarioActual.avatar) + '" alt="">' : '<span class="auth-avatar">' + esc(iniciales(usuarioActual.nombre)) + "</span>") +
       "<span><strong>" + esc(usuarioActual.nombre) + "</strong><br><span class=\"fine\">" + esc(usuarioActual.correo) + "</span></span></p>" +
       (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "") +
-      '<form id="cuenta-apodo"><label>Apodo del ranking<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
+      '<form id="cuenta-apodo"><label>Apodo<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
       '<p><button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
-      "<h2>Curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas.</p>" +
+      "<h2>Curso</h2><p>El curso es gratis. Tu progreso está en la cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas." +
+      ((bloque.curso && bloque.curso.certificado && bloque.curso.certificado.fecha) ? " El certificado está guardado." : " El certificado se guarda aquí cuando apruebes los tests y el examen final.") + "</p>" +
       "<h2>Cálculos</h2>" + (calcs ? "<ul>" + calcs + "</ul>" : "<p>Todavía no guardaste ninguno. En la calculadora, el botón «Guardar en mi cuenta».</p>") +
       "<h2>Fichas guardadas</h2>" + (favs ? "<ul>" + favs + "</ul>" : "<p>En una ficha de enfermedades, «Guardar ficha».</p>");
     document.getElementById("cuenta-salir").addEventListener("click", salir);
@@ -811,7 +828,7 @@
       '<p class="fine" id="auth-demo-nota"></p>' +
       '<button type="button" class="btn sec auth-google" id="auth-google">Continuar con Google</button>' +
       '<form id="auth-form">' +
-      '<label class="auth-campo auth-solo-registro">Apodo del ranking<input name="nombre" maxlength="40" autocomplete="nickname"></label>' +
+      '<label class="auth-campo auth-solo-registro">Apodo<input name="nombre" maxlength="40" autocomplete="nickname"></label>' +
       '<label class="auth-campo">Correo<input name="correo" type="email" maxlength="80" autocomplete="email" required></label>' +
       '<label class="auth-campo auth-con-clave">Contraseña<input name="clave" type="password" minlength="8" autocomplete="current-password"></label>' +
       '<button class="btn gold" type="submit" id="auth-submit">Entrar</button>' +
@@ -840,8 +857,8 @@
     var n = document.getElementById("auth-demo-nota");
     if (!n) return;
     if (!nube()) n.textContent = "El acceso no está disponible. Inténtalo más tarde.";
-    else if (googleApagado) n.textContent = "Entra con correo y contraseña. Google se activará cuando esté configurado. El apodo es el nombre del ranking, nunca el correo.";
-    else n.textContent = "Puedes entrar con Google o con correo. El apodo es el nombre del ranking, nunca el correo.";
+    else if (googleApagado) n.textContent = "Entra con correo y contraseña. Google se activará cuando esté configurado. El apodo es tu nombre en el sitio, nunca el correo.";
+    else n.textContent = "Puedes entrar con Google o con correo. El apodo es tu nombre en el sitio, nunca el correo.";
   }
 
   function haceFaltaNube() {

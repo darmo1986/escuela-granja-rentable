@@ -120,5 +120,5 @@
    "enlace": ""
   }
  ],
- "enlaceNota": "Cada lección usa solo el campo enlace. Vacío = Próximamente. Vale videos/archivo.mp4 si el archivo ya está en el repositorio, un https que termine en .mp4, o un enlace de YouTube. No pongas una dirección inventada."
+ "enlaceNota": "Cada lección usa el campo enlace y, si está vacío, el campo video. Vacío en los dos = Próximamente. Vale videos/archivo.mp4 si el archivo ya está en el repositorio, un https que termine en .mp4, un enlace de YouTube o un ID de YouTube de 11 caracteres (también no listado; se puede escribir yt:ID). El ID se incrusta en youtube-nocookie.com, con carga diferida y solo cuando la persona pulsa Ver el video. No pongas una dirección inventada."
 }

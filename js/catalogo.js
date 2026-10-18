@@ -323,12 +323,12 @@ window.GR_CATALOGO = [
   {
     "id": "alfombrilla",
     "nombre": "Alfombrilla antideslizante",
-    "alt": "Alfombrilla o tapete antideslizante para la criadora",
+    "alt": "Alfombrilla antideslizante para la criadora",
     "categoria": "complementos",
     "imagen": "img/productos/alfombrilla.webp",
-    "resumen": "Base de goma absorbente para el suelo de la criadora. En Perú, México y España se llama tapete antideslizante.",
+    "resumen": "Alfombrilla antideslizante para el suelo de la criadora. Impermeable y lavable.",
     "parrafos": [
-      "En Estados Unidos es una base de goma absorbente para el suelo de la criadora. En Perú, México y España la tienda la llama tapete antideslizante: impermeable y lavable, para poner debajo del comedero y el bebedero."
+      "Alfombrilla antideslizante, impermeable y lavable, para poner debajo del comedero y el bebedero."
     ],
     "incluye": [],
     "capacidad": "",
@@ -340,21 +340,21 @@ window.GR_CATALOGO = [
     },
     "offers": {
       "PE": {
-        "nombre": "Tapete antideslizante",
+        "nombre": "Alfombrilla antideslizante",
         "moneda": "PEN",
         "precio": 34.9,
         "texto": "S/ 34.90",
         "entrega": "Llega aparte desde China: 3–6 semanas."
       },
       "MX": {
-        "nombre": "Tapete antideslizante",
+        "nombre": "Alfombrilla antideslizante",
         "moneda": "MXN",
         "precio": 179,
         "texto": "$179 MXN",
         "entrega": "Llega aparte desde China: 3–6 semanas."
       },
       "ES": {
-        "nombre": "Tapete antideslizante",
+        "nombre": "Alfombrilla antideslizante",
         "moneda": "EUR",
         "precio": 13.99,
         "texto": "13,99 €",
