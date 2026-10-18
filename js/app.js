@@ -183,12 +183,18 @@ function crearHueco(nombre,slot){
   box.appendChild(ins);
   return box;
 }
-function puntoEntreBloques(texto){
-  const h2=[...texto.children].filter(n=>n.tagName==='H2');
-  if(h2.length>=2)return h2[1];
-  const bloques=[...texto.children].filter(n=>/^(P|UL|OL|H2|H3|DIV|TABLE)$/.test(n.tagName));
-  if(bloques.length>=2)return bloques[1];
-  return null;
+/* antes = nodo delante del cual va el anuncio. null = al final del texto,
+   detrás del primer bloque, nunca entre un título y su único párrafo. */
+function destinoLeccion(texto){
+  const hijos=[...texto.children];
+  const h2=hijos.filter(n=>n.tagName==='H2');
+  if(h2.length>=2)return {antes:h2[1]};
+  const titulo=hijos.find(n=>n.tagName==='H2'||n.tagName==='H3');
+  if(!titulo)return null;
+  let bloque=titulo.nextElementSibling;
+  while(bloque&&!/^(P|UL|OL|DIV|TABLE|BLOCKQUOTE)$/.test(bloque.tagName))bloque=bloque.nextElementSibling;
+  if(!bloque)return null;
+  return {antes:bloque.nextElementSibling};
 }
 function montarCabecera(slot){
   if(document.querySelector('.adsense-cabecera'))return false;
@@ -203,11 +209,13 @@ function montarLeccion(slot){
   document.querySelectorAll('article.lesson-page').forEach(art=>{
     if(art.querySelector('.adsense-leccion'))return;
     const texto=art.querySelector('section.texto');
-    const antes=texto&&puntoEntreBloques(texto);
-    if(!antes||antes.closest('.quiz')||antes.closest('.video'))return;
+    const dest=texto&&destinoLeccion(texto);
+    if(!dest)return;
+    if(dest.antes&&(dest.antes.closest('.quiz')||dest.antes.closest('.video')))return;
     const box=crearHueco('leccion',slot);
     if(!box)return;
-    antes.parentNode.insertBefore(box,antes);
+    if(dest.antes)dest.antes.parentNode.insertBefore(box,dest.antes);
+    else texto.appendChild(box);
     n++;
   });
   return n>0;
@@ -224,10 +232,12 @@ function montarLateral(slot){
   if(document.querySelector('.adsense-lateral'))return false;
   const mq=window.matchMedia('(min-width:1100px)');
   const poner=()=>{
-    if(!mq.matches||document.querySelector('.adsense-lateral'))return;
+    if(!adsOn()||!mq.matches||document.querySelector('.adsense-lateral'))return;
     const box=crearHueco('lateral',slot);
     if(!box)return;
     document.body.appendChild(box);
+    document.documentElement.classList.add('ad-on');
+    pedirAdsbygoogle();
     empujarNuevos();
   };
   poner();
@@ -256,9 +266,12 @@ function empujarNuevos(){
   });
 }
 function pedirAdsbygoogle(){
+  if(!adsOn())return;
   if(document.querySelector('script[data-adsense="1"]'))return;
   const client=clienteAdsense();
   if(!client)return;
+  const listo=document.querySelector('.adsense-slot ins.adsbygoogle[data-ad-slot]');
+  if(!listo||!/^[0-9]+$/.test(listo.getAttribute('data-ad-slot')||''))return;
   const s=document.createElement('script');
   s.async=true;
   s.crossOrigin='anonymous';
@@ -270,15 +283,18 @@ function colocarAnuncioLeccion(){
   if(!adsOn()||esPremiumLocal()||paginaSinAnuncios()||adsterraHasKey()||!window.__adsLoaded)return;
   const id=adsenseSlot('leccion');
   if(!id)return;
-  if(montarLeccion(id))empujarNuevos();
+  if(!montarLeccion(id))return;
+  document.documentElement.classList.add('ad-on');
+  pedirAdsbygoogle();
+  empujarNuevos();
 }
 window.GR_montarAnuncioLeccion=colocarAnuncioLeccion;
 function loadAdsense(){
   if(!adsOn())return false;
   if(esPremiumLocal()||paginaSinAnuncios())return false;
   if(!clienteAdsense())return false;
-  /* AdSense va en la página, nunca en un iframe sandbox. El sandbox se queda en Adsterra. */
-  document.documentElement.classList.add('ad-on');
+  /* AdSense va en la página, nunca en un iframe sandbox. El sandbox se queda en Adsterra.
+     Sin un bloque con id numérico ya pintado, no se pide adsbygoogle.js. */
   const cab=adsenseSlot('cabecera');
   const lec=adsenseSlot('leccion');
   const lat=adsenseSlot('lateral');
@@ -287,9 +303,20 @@ function loadAdsense(){
   if(lec)montarLeccion(lec);
   if(lat)montarLateral(lat);
   if(pie)montarPie(pie);
+  if(!document.querySelector('.adsense-slot ins.adsbygoogle[data-ad-slot]'))return false;
+  document.documentElement.classList.add('ad-on');
   pedirAdsbygoogle();
   empujarNuevos();
   return true;
+}
+function usarCmpGoogle(){
+  return window.ADSENSE_CMP===true && adsOn() && !adsterraHasKey() && !!clienteAdsense();
+}
+function ocultarAvisoPropio(){
+  const b=document.getElementById('cookie-banner');
+  if(b)b.remove();
+  const n=document.getElementById('cookie-note');
+  if(n)n.remove();
 }
 /* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
    gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
@@ -330,17 +357,20 @@ function loadAds(){
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
-  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios())return;
+  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios() || usarCmpGoogle())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  const quien=adsterraHasKey()
+    ?'Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis.'
+    :'Usamos cookies de publicidad de Google AdSense para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Adsterra está apagada y no se carga.';
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">'+quien+' Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
 /* Fuera de la UE el aviso va en el flujo de la página: no tapa el contenido. */
 function notaLibre(){
-  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios() || !adsConfigured() || document.getElementById('cookie-note'))return;
+  if(!adsOn() || esPremiumLocal() || paginaSinAnuncios() || usarCmpGoogle() || !adsConfigured() || document.getElementById('cookie-note'))return;
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
@@ -361,11 +391,19 @@ function notaLibre(){
 }
 function abrirAviso(){
   if(!adsOn() || esPremiumLocal() || paginaSinAnuncios()){ quitarAnuncios(); return; }
+  if(usarCmpGoogle()){ ocultarAvisoPropio(); loadAds(); return; }
   if(consentimientoEstricto())banner();
   else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
 }
 function decidirAnuncios(){
   if(!adsOn() || esPremiumLocal() || paginaSinAnuncios()){ quitarAnuncios(); return; }
+  if(usarCmpGoogle()){
+    window.__adsLoaded = 0;
+    document.documentElement.classList.remove('ad-off');
+    ocultarAvisoPropio();
+    loadAds();
+    return;
+  }
   window.__adsLoaded = 0;
   document.documentElement.classList.remove('ad-off');
   var c = null;
@@ -424,6 +462,7 @@ document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener(
   e.preventDefault();
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
   if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
+  if(usarCmpGoogle()){alert('El aviso de Google gestiona estas cookies. El de esta web está oculto para no pedirlo dos veces.');return;}
   localStorage.removeItem(CK);
   document.documentElement.classList.remove('ad-ok');
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}

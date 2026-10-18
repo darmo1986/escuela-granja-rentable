@@ -4,6 +4,11 @@ window.ADSENSE_CLIENT = "ca-pub-5311145772953700";
 /* Ids de bloque de AdSense (solo dígitos). Vacío = ese hueco no se pinta y no ocupa sitio.
    Nunca pongas un texto como "banner": data-ad-slot tiene que ser el número del panel. */
 window.ADSENSE_SLOTS = { cabecera: "", leccion: "", lateral: "", pie: "" };
+/* false = solo el aviso de cookies de esta web.
+   true = con AdSense activo se oculta ese aviso y el CMP de Google es el único,
+   para no pedir el permiso dos veces en la UE. Pásalo a true al activar el
+   mensaje GDPR en el panel de AdSense, no antes. */
+window.ADSENSE_CMP = false;
 window.ADSTERRA = {
   /* Parada. Aunque window.ads.activo sea true, Adsterra no gana ni carga. */
   activo: false,
