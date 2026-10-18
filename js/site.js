@@ -406,13 +406,6 @@
     });
     document.querySelectorAll(".js-pais-nombre").forEach(function (el) { el.textContent = p.nombre; });
 
-    document.querySelectorAll(".js-red-nota").forEach(function (el) {
-      var sitio = ebayFor(pais);
-      el.textContent = "Página secundaria. En " + p.nombre + " la búsqueda abre " + sitio.label + ". El precio está en eBay. La incubadora se compra en nuestra tienda.";
-    });
-    paintEpnGap();
-
-    buildRecLinks();
     var ref = readRef();
     var note = document.getElementById("ref-note");
     if (note) {
@@ -423,90 +416,6 @@
           : "Llegaste con la recomendación " + ref + ". La guardamos 30 días para poder pagarle a esa persona si compras en nuestra tienda.";
       } else note.hidden = true;
     }
-  }
-
-  function ebayFor(code) {
-    var all = (GR.redes && GR.redes.ebay) || {};
-    var es = code === "ES";
-    var cfg = es ? (all.es || {}) : (all.com || {});
-    return {
-      label: es ? "ebay.es" : "ebay.com",
-      lang: code === "US" ? "en" : "es",
-      host: cfg.host || (es ? "https://www.ebay.es/sch/i.html" : "https://www.ebay.com/sch/i.html"),
-      siteid: cfg.siteid || (es ? "186" : "0"),
-      mkrid: cfg.mkrid || "",
-      campid: String(cfg.campid || "").trim(),
-      key: es ? "es" : "com"
-    };
-  }
-
-  function paintEpnGap() {
-    var sitio = ebayFor(pais);
-    document.querySelectorAll("[data-epn-gap]").forEach(function (el) {
-      el.hidden = false;
-      if (sitio.campid) {
-        el.textContent = "Enlace de eBay Partner Network activo para " + sitio.label + ".";
-        el.classList.remove("is-missing");
-      } else {
-        el.textContent = "Falta el ID de campaña (campid) de eBay Partner Network para " + sitio.label + ". El hueco está en js/config.js → redes.ebay." + sitio.key + ".campid. Mientras siga vacío, el botón abre la búsqueda y no hay comisión.";
-        el.classList.add("is-missing");
-      }
-    });
-  }
-
-  function buildRecLinks() {
-    var sitio = ebayFor(pais);
-    document.querySelectorAll("[data-product]").forEach(function (card) {
-      var stores = (card.getAttribute("data-tiendas") || "").split(/\s+/);
-      card.querySelectorAll("[data-net]").forEach(function (a) {
-        var net = a.getAttribute("data-net");
-        var allowed = stores.indexOf(net) !== -1;
-        a.classList.toggle("is-off", !allowed);
-        if (!allowed) return;
-        if (net === "tienda") {
-          var sku = card.getAttribute("data-sku");
-          var item = catalogMap()[sku];
-          var offer = item && item.offers && item.offers[pais];
-          if (!item || item.soon || !offer) {
-            a.classList.add("is-off");
-            return;
-          }
-          a.classList.remove("is-off");
-          a.href = productHref(sku);
-        } else if (net === "ebay") {
-          var q = sitio.lang === "en"
-            ? (a.getAttribute("data-q-en") || a.getAttribute("data-q") || "")
-            : (a.getAttribute("data-q-es") || a.getAttribute("data-q") || "");
-          var u2 = new URL(sitio.host);
-          u2.searchParams.set("_nkw", q);
-          if (sitio.campid) {
-            u2.searchParams.set("mkcid", "1");
-            if (sitio.mkrid) u2.searchParams.set("mkrid", sitio.mkrid);
-            u2.searchParams.set("siteid", sitio.siteid);
-            u2.searchParams.set("campid", sitio.campid);
-            u2.searchParams.set("toolid", "10001");
-            u2.searchParams.set("mkevt", "1");
-          }
-          a.href = u2.toString();
-          var mark = a.parentNode && a.parentNode.querySelector(".epn-miss");
-          if (!sitio.campid) {
-            if (!mark && a.parentNode) {
-              mark = document.createElement("span");
-              mark.className = "epn-miss";
-              a.insertAdjacentElement("afterend", mark);
-            }
-            if (mark) mark.textContent = "Sin campid";
-          } else if (mark) mark.remove();
-        }
-      });
-      var primary = true;
-      card.querySelectorAll("[data-net]").forEach(function (a) {
-        var on = !a.classList.contains("is-off");
-        a.classList.toggle("gold", on && primary);
-        a.classList.toggle("sec", !on || !primary);
-        if (on && primary) primary = false;
-      });
-    });
   }
 
   document.querySelectorAll(".js-pais").forEach(function (sel) {
@@ -753,8 +662,7 @@
       ["lista.html", "Lista y calendario"],
       ["faq.html", "Preguntas"],
       ["guias.html", "Guías"],
-      ["juegos.html", "Juegos"],
-      ["recomendados.html", "Equipo en eBay"]
+      ["juegos.html", "Juegos"]
     ].forEach(function (pair) {
       var href = root + pair[0];
       if (ul.querySelector('a[href="' + href + '"]')) return;

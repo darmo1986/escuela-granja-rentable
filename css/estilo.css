@@ -207,7 +207,7 @@ html[data-tema="claro"] .nav a[aria-current="page"] { outline-color: #1F5E2E; }
   .grid-2 { grid-template-columns: 1.15fr .85fr; align-items: start; }
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
 }
-.panel, .rec-card, .quote, .form-card, .lesson-card {
+.panel, .quote, .form-card, .lesson-card {
   background: #fff; border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow);
 }
 .panel-shop { border: 2px solid var(--gold); }
@@ -219,9 +219,6 @@ html[data-tema="claro"] .nav a[aria-current="page"] { outline-color: #1F5E2E; }
   background: var(--gl); color: var(--gd); font-weight: 750; font-size: .82rem;
 }
 .badge[hidden], .js-sku-badge:empty { display: none !important; }
-.badge-ebay { background: #F3F0E6; color: var(--muted); }
-html[data-pais="ES"] .badge-ml,
-html[data-pais="US"] .badge-ml,
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -238,11 +235,6 @@ html[data-tema="claro"] .top .head-link { background: #fff; color: #1F5E2E; bord
 .btn.sec { background: #fff; color: var(--gd); border: 2px solid var(--g); }
 .btn.dis, .btn[aria-disabled="true"] { background: #cfcabb; color: #3d3a32; cursor: not-allowed; }
 .product-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-.is-off { display: none !important; }
-.rec-card { border: 1px solid var(--line); box-shadow: none; }
-.rec-card h3 { font-size: 1.05rem; }
-.section-secondary { background: transparent; }
-.section-secondary .kicker { color: var(--muted); }
 
 .quotes { display: grid; gap: 12px; }
 @media (min-width: 840px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
@@ -476,10 +468,6 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
 .path-card h2 { margin: 0; }
 .path-card .btn { align-self: flex-start; margin-top: 6px; }
 .tester-strip, .geo-note { margin: 0 0 12px; }
-.ebay-quiet { font-size: .9rem; margin: 10px 0 0; }
-.epn-gap { border-radius: 12px; padding: 10px 12px; font-weight: 700; }
-.epn-gap.is-missing { background: #fff6d8; border: 2px dashed var(--gold); }
-.epn-miss { display: inline-block; margin-left: 8px; font-size: .78rem; font-weight: 800; color: #6d5a16; }
 .tester-strip { background: var(--gl); border-radius: 14px; padding: 10px 14px; }
 .geo-note { color: var(--muted); font-size: .95rem; }
 .mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 560px; min-height: 164px; }
