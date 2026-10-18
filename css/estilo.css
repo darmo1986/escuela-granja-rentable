@@ -449,6 +449,7 @@ html.ad-ok .ad-gap { margin: 0; height: 50px; display: flex; align-items: center
 .tabla th, .tabla td { border: 1px solid #e5e0d4; padding: 6px 8px; text-align: left; vertical-align: top; }
 .tabla th { background: var(--gl); color: var(--g); }
 code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92rem; }
+code { overflow-wrap: anywhere; }
 .codebox { display: block; background: var(--gd); color: #fff; border-radius: 12px; padding: 12px; overflow-x: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -774,6 +775,54 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
   .enf-sub { position: sticky; top: 148px; }
   .enf-sub summary { display: none; }
   .enf-sub .enf-sub-lista { display: flex !important; margin-top: 0; }
+}
+.app-icon { width: 72px; height: 72px; border-radius: 18px; display: block; margin: 0 0 10px; }
+.app-dl { margin: 12px 0 4px; }
+.app-dl .btn { width: 100%; }
+.app-dl-meta { margin: 0 0 8px; font-weight: 800; color: var(--gd); }
+.app-funs { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.app-funs li { background: #fff; border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow); }
+.app-funs h3 { margin: 0 0 .25em; font-size: 1.05rem; }
+.app-funs p { margin: 0; color: var(--muted); }
+.app-galeria-pista { margin: 0 0 8px; }
+.app-galeria {
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 2px 2px 14px; margin: 0 -2px; -webkit-overflow-scrolling: touch;
+}
+.app-galeria figure {
+  flex: 0 0 78%; max-width: 260px; margin: 0; scroll-snap-align: start;
+  background: #fff; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow);
+}
+.app-galeria a { display: block; background: #f3f1ea; }
+.app-galeria img { width: 100%; height: auto; display: block; }
+.app-galeria figcaption { padding: 8px 10px 12px; font-size: .9rem; font-weight: 800; color: var(--gd); }
+.app-hash {
+  display: block; margin-top: 6px; word-break: break-all; font-size: .82rem;
+  background: #fff; color: var(--gd); border-radius: 8px; padding: 8px;
+}
+.app-vet { margin-top: 16px; }
+.app-teaser {
+  display: grid; gap: 0; margin: 0 0 16px; background: #fff; border-radius: 20px;
+  overflow: hidden; box-shadow: var(--shadow); border: 2px solid var(--gold);
+}
+.app-teaser-media { display: flex; justify-content: center; background: var(--gl); padding: 14px 14px 0; }
+.app-teaser-media img { width: min(200px, 62%); height: auto; border-radius: 18px 18px 0 0; }
+.app-teaser-copy { padding: 14px 16px 18px; }
+.app-teaser-copy h2 { margin: 0 0 .35em; }
+.app-teaser-copy p { margin-top: 0; }
+.app-teaser .btn { width: 100%; }
+@media (min-width: 640px) {
+  .app-dl .btn, .app-teaser .btn { width: auto; }
+}
+@media (min-width: 800px) {
+  .app-funs { grid-template-columns: 1fr 1fr; }
+  .app-galeria { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; }
+  .app-galeria figure { flex: none; max-width: none; }
+  .app-galeria-pista { display: none; }
+  .app-teaser { grid-template-columns: 240px minmax(0, 1fr); align-items: center; }
+  .app-teaser-media { padding: 16px; }
+  .app-teaser-media img { width: 200px; border-radius: 18px; }
+  .app-teaser-copy { padding: 22px 26px 22px 8px; }
 }
 @media (min-width: 800px) { .enf-grid { grid-template-columns: 1fr 1fr; } }
 @media print {

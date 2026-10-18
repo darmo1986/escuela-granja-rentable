@@ -527,19 +527,19 @@ window.GR_CATALOGO = [
   },
   {
     "id": "app-pollos-engorde",
-    "nombre": "App de pollos de engorde",
+    "nombre": "Registro de pollos",
     "alt": "",
     "categoria": "app",
     "imagen": "",
-    "resumen": "App Android para anotar la crianza. Todavía no tiene precio. Hay una prueba para testers.",
+    "resumen": "App gratis para Android. Peso, tareas, avisos, pienso, bajas y coste del lote.",
     "parrafos": [
-      "La app todavía no está en Google Play. Puedes pedir la prueba con un correo de Gmail.",
-      "Todavía no tiene precio de venta."
+      "Se descarga gratis en la página de la app. Android 8 o superior.",
+      "Si más adelante la instalas desde Google Play, desinstala antes esta copia. Van firmadas con claves distintas y una no actualiza a la otra."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "app",
-    "pendiente": true,
+    "pendiente": false,
     "fichaNueva": true,
     "offers": {},
     "etiqueta": "App"

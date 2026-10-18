@@ -285,7 +285,7 @@
     list.textContent = "";
     var pending = [];
     (window.GR_CATALOGO || []).forEach(function (item) {
-      if (!item || item.gratis || item.checkout === "curso") return;
+      if (!item || item.gratis || item.checkout === "curso" || item.checkout === "app") return;
       if (chargedOffer(item)) return;
       pending.push(item);
     });
@@ -325,6 +325,17 @@
       if (item.gratis || item.checkout === "curso") {
         paintGratis(card, item);
         if (inGrid) card.hidden = true;
+        return;
+      }
+      if (item.checkout === "app") {
+        if (inGrid) card.hidden = true;
+        if (nameEl) nameEl.textContent = item.nombre;
+        paintSku(card, "Gratis", "4 MB · Android 8 o superior · gratis", "", item.resumen || "", "", {
+          text: "Descargar para Android",
+          href: root + "app.html",
+          buy: true,
+          store: false
+        });
         return;
       }
       var offer = chargedOffer(item);
@@ -588,11 +599,18 @@
     var url = (GR.appUrl || "").trim();
     if (!url) {
       a.setAttribute("aria-disabled", "true");
+      a.removeAttribute("download");
       a.addEventListener("click", function (e) { e.preventDefault(); });
     } else {
       a.href = url;
       a.removeAttribute("aria-disabled");
       a.textContent = "Descargar para Android";
+      if (/\.apk(?:$|\?)/i.test(url)) {
+        var nombre = url.split("/").pop().split("?")[0] || "registro-pollos.apk";
+        a.setAttribute("download", nombre);
+      } else {
+        a.removeAttribute("download");
+      }
     }
   });
 
@@ -675,7 +693,7 @@
         if (tipo === "afiliado") {
           say("Listo. Te anotamos en la lista de espera. Cuando el seguimiento del cobro esté activo, te escribimos. Hoy una compra todavía no genera comisión.");
         } else if (tipo === "beta") {
-          say("Listo. Anotamos tu Gmail para la prueba de Google Play. Si hay plaza, te escribimos.");
+          say("Listo. Anotamos tu Gmail para avisarte cuando la prueba de Google Play esté abierta. Si hay plaza, te escribimos. La versión 1.0.10 ya se descarga en esta página.");
         } else if (tipo === "lead") {
           var iso = "";
           var fechaEl = form.querySelector("[name=fecha_inicio]");
