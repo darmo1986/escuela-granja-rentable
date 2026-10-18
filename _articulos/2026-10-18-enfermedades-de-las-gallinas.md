@@ -88,7 +88,7 @@ En pollos de engorde el arranque del lote, la cama y el agua están en [cómo cr
 
 ## Newcastle
 
-La OMSA la define como la enfermedad causada por cepas virulentas de paramixovirus aviar tipo 1. Hay cepas lentogénicas, muy extendidas y que casi no enferman, y formas mesogénicas y velogénicas. La forma muy virulenta es la de declaración obligatoria.
+La guía larga, con los plazos y las mortalidades de cada página sin promediar, está en [Newcastle en gallinas](newcastle-en-gallinas.html). La OMSA la define como la enfermedad causada por cepas virulentas de paramixovirus aviar tipo 1. Hay cepas lentogénicas, muy extendidas y que casi no enferman, y formas mesogénicas y velogénicas. La forma muy virulenta es la de declaración obligatoria.
 
 ### Signos
 
