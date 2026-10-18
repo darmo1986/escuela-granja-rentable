@@ -39,7 +39,7 @@ No va en el huevo al pollito. Merck, Maryland y Hy-Line coinciden. El pollito de
 | Qué anota | Merck, 2024 | Maryland, FS-1131, 2020 | Hy-Line, actualización técnica |
 | --- | --- | --- | --- |
 | Incubación | 1 a 3 días | Signos rápidos; no da otro número | Signos en 1 a 3 días |
-| Cuánto dura | 2 a 3 semanas; más si hay micoplasma | 2 a 3 semanas; más si hay micoplasma, bronquitis o mal alojamiento, y puede oler mal | No fija las semanas del signo; el predio de varias edades la arrastra |
+| Cuánto dura | 2 a 3 semanas; más si hay micoplasma | 2 a 3 semanas; más si hay micoplasma, [bronquitis](bronquitis-infecciosa-en-gallinas.html) o mal alojamiento, y puede oler mal | No fija las semanas del signo; el predio de varias edades la arrastra |
 | Muerte | No publica un porcentaje | Variable; puede llegar al 48 % en lotes viejos | Habla de pérdidas de producción y de mortalidad comunicada, sin un techo único |
 | Puesta | Se atrasa en pollitas; baja mucho en las que ya ponen | Caída del 10 % al 40 % | Baja de producción y pérdidas económicas |
 | Fuera del ave | No da horas | Pocos días; 45–55 °C durante 10 minutos la mata (113–131 °F en la hoja) | Más de 4 horas en calor seco; más de 24 horas en frío húmedo |
