@@ -250,8 +250,10 @@ begin
     set apodo = new.nombre
     where usuario = new.id;
     update public.quiz_premios
-    set apodo = new.nombre
+    set apodo = new.nombre,
+        origen = 'concurso'
     where ganador = new.id
+      and origen = 'concurso'
       and estado is distinct from 'pagado';
   end if;
   return new;
@@ -477,6 +479,7 @@ begin
     if siguiente is null then
       update public.quiz_premios q
       set estado = 'anulado',
+          origen = 'concurso',
           ganador = null,
           metodo = null,
           paypal = null,
@@ -499,6 +502,7 @@ begin
       update public.quiz_premios q
       set ganador = siguiente,
           apodo = nom,
+          origen = 'concurso',
           estado = 'pendiente_verificar',
           metodo = null,
           paypal = null,
@@ -540,6 +544,7 @@ begin
 
   update public.quiz_premios
   set estado = 'anulado',
+      origen = 'concurso',
       motivo = 'plazo de 14 días'
   where origen = 'concurso'
     and estado = 'pendiente'
@@ -996,6 +1001,7 @@ begin
 
   update public.quiz_premios q
   set estado = 'reclamado',
+      origen = 'concurso',
       metodo = m_pago,
       paypal = d_pago
   where q.periodo = p_periodo
