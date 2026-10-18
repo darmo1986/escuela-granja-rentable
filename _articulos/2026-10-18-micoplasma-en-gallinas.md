@@ -16,6 +16,7 @@ red: ""
 guia: espacio
 fuentes:
   - "[Mycoplasma gallisepticum infection in poultry, Merck Veterinary Manual, revisión de septiembre de 2025](https://www.merckvetmanual.com/poultry/mycoplasmosis/mycoplasma-gallisepticum-infection-in-poultry)"
+  - "[Código Terrestre, capítulo 1.3, lista de enfermedades, Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/fileadmin/Home/eng/Health_standards/tahc/current/en_chapitre_oie_listed_disease.htm)"
 ---
 
 El lote tose, el seno se hincha y a las pocas semanas «ya se les pasó». Puede seguir dentro. *Mycoplasma gallisepticum* es el micoplasma aviar más patógeno, según el manual Merck (septiembre de 2025). En pollos de engorde entra en la enfermedad respiratoria crónica. En el pavo, el nombre de calle es sinusitis infecciosa. En la gallina de postura a menudo no se ve, y sí baja el huevo a lo largo del ciclo. Esta guía no le pone un porcentaje que esa página no publica. No es coriza: la cara hinchada de la coriza está en [coriza infecciosa](coriza-infecciosa-en-gallinas.html). El cuadro para no bautizarla a ojo está en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
@@ -28,7 +29,7 @@ En pollos de engorde es frecuente en ese cuadro mixto y sube los decomisos en la
 
 Afecta gallinas y pavos en el mundo. Las pérdidas más notables, dice Merck, están en las operaciones grandes, y también es común en lotes no comerciales. Además: faisán, perdiz chukar, pavo real, paloma, codorniz, pato, ganso y psitácidas. Los pájaros cantores en general resisten, salvo el pinzón doméstico silvestre de América del Norte (y algunas especies parecidas), donde causa conjuntivitis y muerte. No conviertas esa frase del pinzón en «todos los pájaros del jardín la traen».
 
-Estas páginas de Merck no la presentan como enfermedad de declaración ante la Organización Mundial de Sanidad Animal. Si el cuadro puede ser Newcastle o influenza aviar de alta patogenicidad, eso sí se notifica. En México, SENASICA. En Perú, SENASA. En el resto, el servicio oficial. Las guías están en [Newcastle](newcastle-en-gallinas.html) y en [influenza aviar](influenza-aviar-en-gallinas.html).
+Merck no habla del aviso a la autoridad. El Código Terrestre de la Organización Mundial de Sanidad Animal (OMSA), capítulo 1.3, sí incluye la infección por *Mycoplasma gallisepticum* en la lista de enfermedades de las aves. No es el cuadro de muerte súbita de Newcastle ni el de la influenza aviar de alta patogenicidad: si el lote se ve como esas dos, se avisa por ese parecido. Y, por estar en la lista, el micoplasma también se comunica al servicio oficial. En México, SENASICA. En Perú, SENASA. En el resto, el servicio oficial. Las guías están en [Newcastle](newcastle-en-gallinas.html) y en [influenza aviar](influenza-aviar-en-gallinas.html).
 
 ## Cómo entra y por qué no se va
 

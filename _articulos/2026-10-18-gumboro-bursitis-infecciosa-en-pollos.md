@@ -21,6 +21,7 @@ fuentes:
   - "[Recognizing Immunosuppressive Diseases in Commercial Poultry, University of Florida IFAS, VM274](https://ask.ifas.ufl.edu/publication/VM274)"
   - "[Infectious bursal disease (Gumboro disease), Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/en/disease/infectious-bursal-disease-gumboro-disease/)"
   - "[Manual Terrestre, capítulo 3.3.12, bursitis infecciosa, Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/fileadmin/Home/eng/Health_standards/tahm/3.03.12_IBD.pdf)"
+  - "[Código Terrestre, capítulo 1.3, lista de enfermedades, Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/fileadmin/Home/eng/Health_standards/tahc/current/en_chapitre_oie_listed_disease.htm)"
 ---
 
 A las tres o cuatro semanas el lote se echa, mancha la cloaca y al día siguiente hay bajas. O no se ve nada, y más tarde las vacunas «no agarran» y cualquier cosa los tumba. Las dos cosas pueden ser Gumboro: la bursitis infecciosa, un birnavirus de pollos jóvenes. Merck, Florida y la Organización Mundial de Sanidad Animal (OMSA) coinciden en que no hay tratamiento y en que la bolsa de Fabricio es el órgano que mira el diagnóstico. No coinciden en una sola mortalidad. Esta guía no la inventa. El pollito de esas semanas está en [cómo criar pollitos de un día](como-criar-pollitos-de-un-dia.html). Otras causas de un lote caído están en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
@@ -88,7 +89,7 @@ PS044: hay vacuna comercial. No da el día. Y avisa que antibióticos, sulfonami
 - No subas tetraciclina «por si acaso». PS044 la contraindica en niveles altos por el raquitismo.
 - Guarda cadáveres fuera del lote. PS044 pide incinerarlos como fuente de virus.
 - Después del lote, no confíes en un solo lavado. Merck: éxito limitado, virus estable. VM024: a veces hace falta ver 3 o 4 lotes para notar la bioseguridad.
-- Si la mortandad viene con signos de Newcastle o de influenza aviar de alta patogenicidad, se notifica. En México, SENASICA. En Perú, SENASA. En el resto, el servicio oficial. Estas páginas de Gumboro no la presentan como esa alerta.
+- Si la mortandad viene con signos de Newcastle o de influenza aviar de alta patogenicidad, se notifica por ese parecido. El Código Terrestre, capítulo 1.3, además incluye la bursitis infecciosa (Gumboro) en la lista de enfermedades de las aves. En México, SENASICA. En Perú, SENASA. En el resto, el servicio oficial.
 
 ## Errores típicos
 
@@ -120,6 +121,6 @@ Merck sitúa ahí la ventana más susceptible. En la Leghorn ha visto infeccione
 
 ### ¿Esto se declara como Newcastle?
 
-No está presentado así en estas fuentes. Si el cuadro puede ser Newcastle o influenza aviar de alta patogenicidad, sí se avisa. Una bolsa hemorrágica no se diagnostica desde el patio.
+El cuadro clínico no es el de Newcastle. Si puede serlo, o ser influenza aviar de alta patogenicidad, se avisa por ese parecido. Aparte, el Código Terrestre, capítulo 1.3, incluye la bursitis infecciosa en la lista de enfermedades de las aves, así que también se comunica al servicio oficial. Una bolsa hemorrágica no se diagnostica desde el patio.
 
 La L04B sigue bioseguridad y vacunas. El lote que «siempre sale flojo» se mira en la bolsa y en el laboratorio antes de cambiar solo el saco.
