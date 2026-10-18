@@ -897,8 +897,14 @@
   function askGeo() {
     try {
       if (!(window.ads && window.ads.activo === true)) return;
+      if (typeof window.GR_esPremium === "function" && window.GR_esPremium()) return;
+      if (document.body && document.body.hasAttribute("data-sin-anuncios")) return;
+      var archivo = ((location.pathname || "").split("/").pop() || "").replace(/\.html$/i, "");
+      if (archivo === "cuenta" || archivo === "premium" || archivo === "condiciones-premium" || archivo === "afiliados-condiciones" || archivo === "afiliados") return;
       if (localStorage.getItem("gr_pais")) return;
+      if (localStorage.getItem("gr_pais_ip")) return;
       if (localStorage.getItem("gr_consent") !== "si") return;
+      if (localStorage.getItem("gr_geo_ok") !== "1") return;
       if (window.__grGeoAsked) return;
       window.__grGeoAsked = 1;
       fetch("https://get.geojs.io/v1/ip/country.json", { credentials: "omit" })
@@ -915,7 +921,10 @@
   askGeo();
   document.addEventListener("click", function (ev) {
     var t = ev.target && ev.target.closest ? ev.target.closest("[data-c]") : null;
-    if (t && t.getAttribute("data-c") === "si") askGeo();
+    if (t && t.getAttribute("data-c") === "si") {
+      try { localStorage.setItem("gr_geo_ok", "1"); } catch (eOk) {}
+      askGeo();
+    }
   });
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), tienda: (PAISES[pais] && PAISES[pais].envio) ? storeUrl() : "" };

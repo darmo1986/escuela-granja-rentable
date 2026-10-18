@@ -19,8 +19,8 @@ window.ADSTERRA = {
   }
 };
 
-/* Interruptor de publicidad. false = no se inyecta ningún script ni iframe de anuncios. */
-window.ads = { activo: false };
+/* Interruptor de publicidad. true = banners de Adsterra en iframe con sandbox. */
+window.ads = { activo: true };
 
 /* Sitio unificado. La tienda propia y el curso van primero. */
 window.GR = {

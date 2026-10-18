@@ -21,8 +21,8 @@
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="css/estilo.css?v=202610183">
-<script src="js/boot.js?v=202610183"></script>
+<link rel="stylesheet" href="css/estilo.css?v=20261019z">
+<script src="js/boot.js?v=20261019z"></script>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -100,6 +100,7 @@
 <li><strong>gr_progreso</strong> (localStorage): lecciones y notas del curso. Solo en tu dispositivo.</li>
 <li><strong>gr_pais</strong> (localStorage): el país que elegiste para ver precios y enlaces.</li>
 <li><strong>gr_consent</strong> (localStorage): si aceptaste o rechazaste los anuncios. La zona horaria del navegador, leída en tu aparato y sin enviarla, decide el aviso: en la UE, el EEE, Reino Unido, Suiza, Brasil o si no se sabe el país, hace falta Aceptar. Lo mismo si el navegador envía la señal de control global de privacidad (GPC). En el resto puedes rechazar.</li>
+<li><strong>gr_geo_ok</strong> (localStorage): se guarda solo al pulsar Aceptar. Con esa marca, y solo si los anuncios están activos, esta página sí lleva anuncios y todavía no hay país guardado (<code>gr_pais</code> ni <code>gr_pais_ip</code>), pedimos una vez el código de país a get.geojs.io. Ellos ven la IP para contestar. Esa llamada no decide el aviso. Si rechazas, si el interruptor de anuncios está apagado o si el país ya está guardado, no se hace.</li>
 <li><strong>gr_ref</strong> (cookie y localStorage, 30 días): el código de afiliado si entraste con <code>?ref=</code>. Sirve para pagar el 10 % de una compra en nuestra tienda. No es una cookie de anuncios. Puedes borrarla en el navegador.</li>
 <li><strong>Cuenta</strong> (<code>gr-auth</code>): la sesión de Supabase, para no pedirte la contraseña en cada página. La contraseña no se guarda en el navegador. <code>gr_cuenta_datos</code> guarda en este aparato una copia de los cálculos, las fichas y el avance del curso después de leerlos de tu cuenta. No son cookies de anuncios. Rechazar la publicidad no cierra la sesión. El correo de confirmación y el de nueva contraseña los envía Supabase.</li>
 </ul>
@@ -145,8 +146,8 @@
 <p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 <a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
-<script src="js/config.js?v=202610183"></script>
-<script src="js/app.js?v=202610183"></script>
+<script src="js/config.js?v=20261019z"></script>
+<script src="js/app.js?v=20261019z"></script>
 <script src="js/catalogo.js"></script>
-<script src="js/site.js?v=202610183"></script>
+<script src="js/site.js?v=20261019z"></script>
 </body></html>

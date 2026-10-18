@@ -52,8 +52,11 @@
   try {
     var consent = localStorage.getItem("gr_consent");
     var adsActivos = !!(window.ads && window.ads.activo === true);
-    if (adsActivos && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
-    if (premiumVigente()) document.documentElement.classList.add("ad-off");
+    var archivo = "";
+    try { archivo = ((location.pathname || "").split("/").pop() || "").replace(/\.html$/i, ""); } catch (eF) {}
+    var sinAnuncios = archivo === "cuenta" || archivo === "premium" || archivo === "condiciones-premium" || archivo === "afiliados-condiciones" || archivo === "afiliados";
+    if (adsActivos && !sinAnuncios && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
+    if (premiumVigente() || sinAnuncios) document.documentElement.classList.add("ad-off");
   } catch (e0) {}
   var map = {
     "America/Mexico_City": "MX",
