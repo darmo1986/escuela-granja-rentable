@@ -163,6 +163,7 @@
     if (!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)) return null;
     if (/tu-proyecto/i.test(url)) return null;
     if (!key || /tu_clave|placeholder|ejemplo/i.test(key)) return null;
+    if (!/^sb_publishable_[A-Za-z0-9_-]+$/.test(key) && !/^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(key)) return null;
     return { url: url, key: key };
   }
 
@@ -280,11 +281,12 @@
   }
 
   var cfgNube = null;
+  var demoForzada = false;
   var estado = null;
   var reloj = null;
   var ocupado = false;
 
-  function modoDemo() { return !cfgNube; }
+  function modoDemo() { return demoForzada || !cfgNube; }
 
   function buscar(lista, id) {
     var i;
@@ -1207,23 +1209,43 @@
     });
   }
 
+  function notaReto(texto) {
+    var demo = document.getElementById("qa-demo");
+    if (!demo) return;
+    demo.hidden = false;
+    demo.textContent = texto;
+  }
+
   function iniciar() {
     preparar();
     cfgNube = configNube();
-    if (!cfgNube) {
-      estado = cargar();
-      var cerradas = fallarAbiertas("recarga");
-      try { document.getElementById("qa-admin").checked = localStorage.getItem(CLAVE_ADMIN) === "1"; } catch (e) {}
-      if (cerradas) aviso("Se cerró o se recargó una pregunta a medio hacer. Cuenta como fallo: 0 puntos y el intento usado.", false);
-      aplicarCuenta();
-      pintar();
-      if (reloj) clearInterval(reloj);
-      reloj = setInterval(tick, 250);
-      return;
-    }
-    estado = normalizar({ v: 5, premioEuros: eurosIniciales(), usuarios: [], sesion: null, preguntas: [], sugerencias: [], intentos: [], abiertas: [], premios: [], ritmo: { intento: [], sugerencia: [] } });
-    aviso("Con una clave real, el acierto lo dice la función del SQL, no esta página. Hasta pegarlo, aquí no hay preguntas.", true);
+    /* El acierto de verdad lo dirá responder cuando las migraciones estén
+       ejecutadas y esta página las llame. Hasta entonces se juega la demo. */
+    demoForzada = true;
+    estado = cargar();
+    var cerradas = fallarAbiertas("recarga");
+    try { document.getElementById("qa-admin").checked = localStorage.getItem(CLAVE_ADMIN) === "1"; } catch (e) {}
+    if (cerradas) aviso("Se cerró o se recargó una pregunta a medio hacer. Cuenta como fallo: 0 puntos y el intento usado.", false);
+    aplicarCuenta();
+    if (cfgNube) notaReto("La cuenta usa Supabase. El reto sigue en demo en este navegador mientras no estén ejecutadas las migraciones.");
     pintar();
+    if (reloj) clearInterval(reloj);
+    reloj = setInterval(tick, 250);
+    if (!cfgNube) return;
+    fetch(cfgNube.url + "/rest/v1/rpc/preguntas_publicas", {
+      method: "POST",
+      headers: {
+        apikey: cfgNube.key,
+        Authorization: "Bearer " + cfgNube.key,
+        "Content-Type": "application/json"
+      },
+      body: "{}"
+    }).then(function (r) {
+      if (!r.ok) throw new Error("sin sql");
+      notaReto("Supabase ya tiene la función del reto. Esta página sigue en demo: todavía no envía el intento al servidor.");
+    }).catch(function () {
+      notaReto("La cuenta usa Supabase. El reto sigue en demo: faltan las migraciones de supabase/migrations.");
+    });
   }
 
   return {

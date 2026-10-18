@@ -1,6 +1,6 @@
-/* Una cuenta para todo el sitio. Con las claves de ejemplo no llama a internet.
-   La sesión de la demo queda en localStorage (gr_sesion). Con Supabase, la guarda
-   la librería en gr-auth. No crea proyectos ni pide claves reales. */
+/* Una cuenta para todo el sitio. Con la URL y la clave publicable de js/config.js
+   el correo y la contraseña van a Supabase. La demo (Ana Ruiz) queda de reserva
+   si el servidor no responde. Google solo redirige cuando el proyecto lo tiene activo. */
 (function () {
   var SESION = "gr_sesion";
   var CUENTAS = "gr_cuentas";
@@ -18,17 +18,29 @@
   var listoNube = null;
   var usuarioActual = leerLocal();
   var cursoTimer = 0;
+  var googleApagado = false;
+  var reservaDemo = false;
 
   function nube() {
     var c = (window.GR && GR.comunidad) || {};
     var url = String(c.supabaseUrl || "").replace(/\/$/, "");
     var key = String(c.supabaseAnonKey || "").trim();
     if (!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)) return null;
-    if (!key || key === "TU_CLAVE_ANON_PUBLICA") return null;
+    if (!key || key === "TU_CLAVE_ANON_PUBLICA" || /tu_clave|placeholder/i.test(key)) return null;
+    if (!/^sb_publishable_[A-Za-z0-9_-]+$/.test(key) && !/^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(key)) return null;
     return { url: url, key: key };
   }
 
-  function modoDemo() { return !nube(); }
+  function modoDemo() { return reservaDemo || !nube(); }
+
+  function falloDeRed(e) {
+    var m = String(e && (e.message || e) || "");
+    return /failed to fetch|network|load failed|no se pudo cargar|timeout|authretryable|failed to fetch/i.test(m);
+  }
+
+  function mensajeGoogle() {
+    mensaje("Google todavía no está activado. Entra con correo y contraseña, o prueba como Ana Ruiz.", true);
+  }
 
   function leerJson(clave, vacio) {
     try {
@@ -146,7 +158,14 @@
         poner(u);
         if (u) traerNube(u.id);
       });
-      return cliente.auth.getSession().then(function (res) {
+      return fetch(cfg.url + "/auth/v1/settings", {
+        headers: { apikey: cfg.key, Authorization: "Bearer " + cfg.key }
+      }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(function (ajustes) {
+        var ext = ajustes && ajustes.external;
+        googleApagado = !(ext && ext.google);
+        notaDemo();
+        return cliente.auth.getSession();
+      }).then(function (res) {
         var session = res.data && res.data.session;
         var u = session && session.user ? usuarioDesdeSupabase(session.user) : null;
         if (u) {
@@ -366,24 +385,56 @@
       else cerrar();
     }).catch(function (e) {
       boton.disabled = false;
-      mensaje(e && e.message ? e.message : "No se pudo entrar.", true);
+      if (!modoDemo() && falloDeRed(e) && (modo === "entrar" || modo === "registro")) {
+        reservaDemo = true;
+        try {
+          var avisoLocal = entrarLocal(correo, clave, nombre, modo === "registro");
+          mensaje(avisoLocal || "Supabase no respondió. Quedó la demo de este navegador.", !avisoLocal);
+          if (!avisoLocal) cerrar();
+        } catch (local) {
+          mensaje("Supabase no respondió. " + (local && local.message ? local.message : "Puedes probar como Ana Ruiz."), true);
+        }
+        return;
+      }
+      if (!modoDemo() && falloDeRed(e)) {
+        mensaje("Supabase no respondió. Prueba otra vez en un momento, o entra con la demo.", true);
+        return;
+      }
+      mensaje(textoError(e), true);
     });
   }
 
+  function textoError(e) {
+    var m = String(e && e.message || "");
+    if (/invalid login credentials/i.test(m)) return "Ese correo o esa contraseña no coinciden.";
+    if (/email not confirmed/i.test(m)) return "Revisa el correo: falta confirmar la cuenta.";
+    if (/already registered|already been registered/i.test(m)) return "Ese correo ya tiene cuenta. Entra o pide otra contraseña.";
+    if (/provider.*not enabled|unsupported provider|validation_failed/i.test(m)) return "Google todavía no está activado. Entra con correo y contraseña, o prueba como Ana Ruiz.";
+    return m || "No se pudo entrar.";
+  }
+
   function google() {
-    if (modoDemo()) {
-      mensaje("Google se enciende al pegar la clave de Supabase. Mientras, puedes probar como Ana Ruiz.", true);
+    if (modoDemo() || googleApagado) {
+      mensajeGoogle();
       return;
     }
     prepararNube().then(function () {
+      if (googleApagado) {
+        mensajeGoogle();
+        return null;
+      }
       return cliente.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: urlDe("cuenta.html") }
+        options: { redirectTo: urlDe("cuenta.html"), skipBrowserRedirect: false }
       });
     }).then(function (res) {
-      if (res && res.error) mensaje(res.error.message, true);
+      if (res && res.error) {
+        if (/provider|not enabled|unsupported/i.test(res.error.message || "")) googleApagado = true;
+        mensaje(textoError(res.error), true);
+      }
     }).catch(function (e) {
-      mensaje(e && e.message ? e.message : "Google no está disponible.", true);
+      if (falloDeRed(e)) reservaDemo = true;
+      mensajeGoogle();
     });
   }
 
@@ -606,7 +657,7 @@
       '<button type="button" class="auth-cerrar" aria-label="Cerrar">×</button>' +
       '<h2 id="auth-titulo">Entrar</h2>' +
       '<p id="auth-msg" class="auth-msg" role="status"></p>' +
-      (modoDemo() ? '<p class="fine">Demo. No hay servidor. Puedes probar con una usuaria de ejemplo.</p><p><button type="button" class="btn gold" id="auth-ana">Probar como Ana Ruiz</button></p>' : "") +
+      '<p class="fine" id="auth-demo-nota"></p><p><button type="button" class="btn sec" id="auth-ana">Probar como Ana Ruiz</button></p>' +
       '<button type="button" class="btn sec auth-google" id="auth-google">Continuar con Google</button>' +
       '<form id="auth-form">' +
       '<label class="auth-campo auth-solo-registro">Nombre<input name="nombre" maxlength="40" autocomplete="nickname"></label>' +
@@ -633,6 +684,15 @@
     document.addEventListener("keydown", function (ev) {
       if (ev.key === "Escape" && !fondo.hidden) cerrar();
     });
+    notaDemo();
+  }
+
+  function notaDemo() {
+    var n = document.getElementById("auth-demo-nota");
+    if (!n) return;
+    if (!nube() || reservaDemo) n.textContent = "Demo de reserva: Ana Ruiz se queda en este navegador y no se envía nada.";
+    else if (googleApagado) n.textContent = "El correo y la contraseña usan Supabase. Google se activará cuando esté configurado. Ana Ruiz sigue como demo.";
+    else n.textContent = "Puedes entrar con Google o con correo. Ana Ruiz sigue como demo si hace falta.";
   }
 
   function observarCookies() {

@@ -1,4 +1,6 @@
 -- Reto del mes de Granja Rentable.
+-- Para ejecutarlo, usa en orden los archivos de supabase/migrations/.
+-- Este archivo es la misma copia junta, por si se pega de una vez.
 -- Sustituye el borrador de respuestas abiertas. En un proyecto nuevo, pégalo entero.
 -- No crea usuarios ni pone claves. El admin se marca a mano, al final.
 -- La demo del sitio no usa este archivo: vive en el navegador.

@@ -2,24 +2,24 @@
 
 Propuesta para `/preguntas`. Sigue en borrador: no está publicada ni conectada a un proyecto real. Sustituye el borrador de respuestas abiertas: las preguntas son de cuatro opciones.
 
-Mientras `comunidad.supabaseUrl` en `js/config.js` diga `https://TU-PROYECTO.supabase.co`, la página no llama a internet. Los ejemplos y lo que contestes se quedan en `localStorage` (`gr_preguntas_v1`, versión 3). En esa demo la clave está en `js/preguntas.js` para poder jugar sin servidor. El HTML no marca cuál es la correcta ni enseña la explicación hasta después. Con Supabase, el navegador no puede leer esas columnas: las devuelve `responder` al guardar el intento.
+`js/config.js` ya apunta al proyecto `https://apdcgizpgguhmbgzsymx.supabase.co` con la clave publicable. No hay clave secreta en el repositorio. El correo y la contraseña usan ese proyecto. Si Supabase no responde, la demo del navegador sigue valiendo (Ana Ruiz). Google todavía no está activado: el botón lo dice y no redirige. El reto se juega en demo hasta que se ejecuten las migraciones, porque `preguntas_publicas` aún no está en el proyecto. El HTML no marca cuál es la correcta ni enseña la explicación hasta después.
 
 ## Cuenta del sitio
 
-La misma clave sirve para el curso, la calculadora, las fichas y el reto. Mientras la URL siga siendo `https://TU-PROYECTO.supabase.co`, el botón Entrar abre una demo y se puede probar como Ana Ruiz. No se crea ningún proyecto desde el repositorio.
+La misma clave sirve para el curso, la calculadora, las fichas y el reto. El proyecto gratis ya está creado y la clave publicable está en `js/config.js`. No se ejecuta el SQL desde aquí. Ana Ruiz sigue como demo de reserva.
 
 El curso de este sitio es gratis. No hay Stripe ni un precio de 2,99 €. Entrar no lo cierra: solo copia el avance a la cuenta.
 
 ### Proyecto de Supabase
 
-1. Entra en [supabase.com](https://supabase.com) y crea un proyecto en el plan gratis. Anota la URL (`https://xxxx.supabase.co`) y la clave **anon public**. No subas la `service_role`.
+1. El proyecto gratis ya existe: `https://apdcgizpgguhmbgzsymx.supabase.co`. La clave publicable ya está en `js/config.js`. No subas la `service_role`.
 2. Authentication → URL configuration. Site URL: `https://granjarentable.com`. En Redirect URLs añade:
    - `https://granjarentable.com/cuenta.html`
    - `http://127.0.0.1:8765/cuenta.html` (para probar en el ordenador)
 3. Authentication → Providers → Email: deja el correo activo, con «Confirm email» encendido. Así el alta pide verificación y existe «olvidé la contraseña». El enlace mágico usa el mismo correo.
 4. Authentication → Emails. El correo incluido en el plan gratis es para probar y va muy limitado (unas pocas piezas por hora). Para el sitio de verdad, abre SMTP y pon un servidor propio (host, puerto, usuario, contraseña y el correo que verá la gente, por ejemplo `no-reply@granjarentable.com`). Revisa las plantillas de confirmar cuenta, enlace mágico y nueva contraseña, y que el enlace vuelva a `https://granjarentable.com/cuenta.html`.
-5. Pega `supabase/esquema.sql` en el editor SQL. Crea el perfil al registrarse y las tablas de avance, cálculos y fichas guardadas, cada una con seguridad por fila: solo el dueño.
-6. En `js/config.js`, en `comunidad`, sustituye `supabaseUrl` y `supabaseAnonKey`.
+5. En el editor SQL, ejecuta en orden `supabase/migrations/20261018120000_reto.sql` y `supabase/migrations/20261018120100_cuenta.sql`. Cada tabla queda con RLS. No se han ejecutado desde el repositorio.
+6. La URL y la clave publicable ya están en `js/config.js`. No las sustituyas por un secreto.
 
 ### Google
 
@@ -27,7 +27,7 @@ El curso de este sitio es gratis. No hay Stripe ni un precio de 2,99 €. Entrar
 2. APIs y servicios → Pantalla de consentimiento de OAuth. Tipo externo. Nombre: Granja Rentable. Correo de asistencia: el tuyo. Dominio autorizado: `granjarentable.com`. Guarda los alcances por defecto (email, perfil, openid).
 3. Credenciales → Crear credencial → ID de cliente de OAuth → Aplicación web.
    - Orígenes de JavaScript autorizados: `https://granjarentable.com`
-   - URI de redirección autorizada: `https://TU-PROYECTO.supabase.co/auth/v1/callback`
+   - URI de redirección autorizada: `https://apdcgizpgguhmbgzsymx.supabase.co/auth/v1/callback`
 4. Copia el ID y el secreto a Supabase → Authentication → Providers → Google, y actívalo.
 5. Cuando quieras que entre cualquiera, publica la pantalla de consentimiento. Hasta entonces solo entran las cuentas de prueba que añadas en Google Cloud.
 
@@ -36,7 +36,7 @@ El curso de este sitio es gratis. No hay Stripe ni un precio de 2,99 €. Entrar
 1. Crear un proyecto gratis en [supabase.com](https://supabase.com). No subas la clave al repositorio.
 2. En Authentication → URL configuration, pon la dirección del sitio `https://granjarentable.com` y permite `https://granjarentable.com/preguntas.html`. Para probar en el ordenador, añade también `http://127.0.0.1:8765/preguntas.html`.
 3. Activa el proveedor Google (hace falta un cliente OAuth de Google Cloud, con tu cuenta) y deja activo el enlace por correo. En el plan gratis el correo sale con la marca de Supabase. El SMTP propio está incluido si más adelante quieres quitarla; quitar la marca del sobre ya es de pago.
-4. Abre el editor SQL y pega `supabase/esquema.sql`. Si en ese proyecto ya estaba el SQL del foro abierto, no lo uses: este archivo es el del reto.
+4. Abre el editor SQL y ejecuta, en orden, `supabase/migrations/20261018120000_reto.sql` y `supabase/migrations/20261018120100_cuenta.sql`. Si en ese proyecto ya estaba el SQL del foro abierto, no lo uses: estos archivos son los del reto y de la cuenta. `supabase/esquema.sql` es la misma copia junta.
 5. Entra una vez en la página (enlace al correo o Google) para que se cree tu ficha. En Authentication → Users copia tu uuid y ejecuta:
 
    `update public.perfiles set es_admin = true where id = 'UUID-DE-PABLO';`

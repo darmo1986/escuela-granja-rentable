@@ -43,12 +43,13 @@ window.GR = {
       h: 50
     }
   },
-  /* Foro en /preguntas. Con estos textos de ejemplo la página no llama a Supabase:
-     los datos se quedan en el navegador. Para encenderlo, supabase/LEEME.md.
-     Pega solo la clave anon public. Nunca la service_role. */
+  /* Cuenta y reto. Proyecto gratis ya creado.
+     supabaseAnonKey es la clave publicable: va en el navegador y no es un secreto.
+     Nunca pongas aquí la service_role ni otra clave secreta.
+     Si esta URL o la clave se vacían, la demo del navegador sigue valiendo. */
   comunidad: {
-    supabaseUrl: "https://TU-PROYECTO.supabase.co",
-    supabaseAnonKey: "TU_CLAVE_ANON_PUBLICA",
+    supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
+    supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
     /* Premio del ranking mensual, en euros. Entre 20 y 30. El pago es manual. */
     premioEuros: 25,
     diasReclamo: 15,
