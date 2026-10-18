@@ -34,8 +34,10 @@ window.GR = {
   /* URL /exec de la aplicación web de Google Apps Script (gratis). Vacío = no se envía nada.
      Un solo valor para registro, prueba de la app y afiliados. Ver apps-script/Codigo.gs */
   formEndpoint: "https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec",
-  /* Enlace de Google Play cuando exista. Vacío = el botón queda en «próximamente». */
-  appUrl: "",
+  /* APK de descarga directa (Registro de pollos 1.0.10).
+     Vacío = el botón queda en «próximamente».
+     Cuando la ficha de Google Play esté publicada, cambia esta URL. */
+  appUrl: "/descargas/registro-pollos-1.0.10.apk",
   refDays: 30,
   /* Tipo de cambio de referencia (14 oct 2026) solo para mostrar dólares. El cargo real es el de la tienda. */
   fx: { fecha: "14 de octubre de 2026", MXN: 18.361368, PEN: 3.440436, EUR: 0.893421 },

@@ -2,7 +2,13 @@
 # Con .nojekyll serviría _fuentes/enfermedades/articulos.json, y ahí están
 # las notas internas de redacción. Jekyll no copia las carpetas que empiezan
 # por _ y, además, esta lista deja fuera el resto que no es una página del sitio.
-# El HTML, el CSS, el JS y las imágenes se copian tal cual.
+# El HTML, el CSS, el JS, las imágenes y descargas/ se copian tal cual.
+# descargas/ no está en exclude: ahí va el APK de Registro de pollos.
+# Jekyll lo trata como archivo estático (no empieza por ---) y lo copia en binario.
+# GitHub Pages sirve .apk con Content-Type application/vnd.android.package-archive
+# (mime-db, el listado que usa Pages para los tipos de archivo).
+include:
+  - descargas
 exclude:
   - _fuentes
   - supabase
