@@ -6,7 +6,7 @@ Sitio único para [granjarentable.com](https://granjarentable.com). Se publica d
 
 El archivo `CNAME` no está en `main`. El primer despliegue lo tenía y GitHub Pages redirigió `darmo1986.github.io/escuela-granja-rentable` a `http://granjarentable.com`, que todavía no resuelve. Con el curso en el aire, el dominio propio se activa después del DNS: en el repositorio, Settings → Pages → Custom domain, escribe `granjarentable.com` y guarda. Eso vuelve a crear el archivo `CNAME`. Hasta entonces no lo subas a mano.
 
-La portada abre con el curso y la tienda. eBay queda en una página secundaria del pie, sin otros marketplaces. Si no hay un precio confirmado para el país, la ficha dice «Precio próximamente».
+La portada abre con el curso y la tienda. Si no hay un precio confirmado para el país, la ficha dice «Precio próximamente».
 
 Calculadoras, líneas de aves, preguntas, lista y guías están fuera del menú fijo, en el pie y en «También en el sitio». Las cifras salen de las lecciones publicadas. El canal `@GranjaRentable` se carga al pulsar. `curso.html` lleva datos de Course, cada ficha de producto lleva Product con el precio del país elegido, y `faq.html` lleva FAQPage con el mismo texto que se ve.
 
@@ -17,7 +17,7 @@ Calculadoras, líneas de aves, preguntas, lista y guías están fuera del menú 
 - El botón dice qué pasa después: «Comprar la incubadora», no «saber más».
 - La garantía, Stripe y el WhatsApp están junto al precio.
 - En el celular el botón es grande, la página no carga fuentes externas y el nombre de la marca cabe junto a Menú. El botón flotante de WhatsApp (56 px) se ve en todas las pantallas; el pie deja espacio debajo para que no tape el texto.
-- Se repite la compra después del precio y de la garantía. Recomendados no compite con la incubadora.
+- Se repite la compra después del precio y de la garantía.
 
 ## Audiencia
 
@@ -65,7 +65,6 @@ El dueño aprobó publicar en GitHub Pages. El DNS de Namecheap sigue pendiente.
 - [ ] **Dominio propio en Pages.** El archivo `CNAME` se quitó de `main` para que el curso siga en GitHub Pages. Cuando el DNS de abajo ya responda, en Settings → Pages → Custom domain guarda `granjarentable.com`. Eso crea el `CNAME`. Después, activa «Enforce HTTPS».
 - [ ] **DNS en Namecheap.** Todavía no se aplica. Quitar el aparcamiento y cualquier redirección. No usar un comodín (`*`). Registros del dominio raíz (`@`): A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. IPv6 opcional: AAAA `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`. `www`: CNAME `darmo1986.github.io` (el usuario de GitHub, sin el nombre del repositorio). Cuando resuelva, en GitHub Pages activar «Enforce HTTPS».
 - [x] **Apps Script.** `window.GR.formEndpoint` en `js/config.js` ya apunta a `https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec`. Si se vuelve a publicar el script y cambia la URL, hay que pegarla otra vez.
-- [ ] **Identificador de eBay.** Sigue vacío a propósito (`redes.ebay.es` y `.com`: `campid` y `mkrid`). El enlace abre la búsqueda igual, sin comisión.
 - [x] **URLs canónicas.** Cada página lleva `link rel=canonical` a `https://granjarentable.com/` (inicio) o `https://granjarentable.com/<ruta>`. Hasta que el dominio apunte a GitHub Pages, el sitio también puede servirse en `https://darmo1986.github.io/escuela-granja-rentable/`; las canónicas no cambian.
 - [x] **Claves de Adsterra.** El sitio aprobado es `darmo1986.github.io` (id 6120999). Cada página lleva un banner (728×90 en escritorio, 320×50 en el celular). Las páginas largas añaden un 300×250 dentro del contenido. Una pieza de cada tamaño por página, en línea, con el alto reservado, y el anuncio se pide al acercarse. Sin tema ni palabras clave. Solo si se aceptan las cookies. AdSense sigue vacío.
 - [ ] **Fotos que faltan.** El suplemento (próximamente, sin precio) y las tabletas de 30 g no tienen foto en el archivo. El pedido de las tabletas va por WhatsApp.
@@ -98,7 +97,6 @@ No cambies el `src` de `lecciones/l01.html` (ni L02, L03, L04A, L04B) ni enlaces
 
 - `window.GR.formEndpoint` en `js/config.js` apunta a la aplicación web de Apps Script. Regístrate, la prueba de la app y Afiliados envían ahí.
 - Los videos de las lecciones siguen en `videos/` (unos 250 MB). No hay identificadores de YouTube en el repo ni en `data/curso-web.json`, así que no se cambiaron a un embed. Cuando existan, se pueden poner como `youtube` en cada lección y cargar el reproductor al hacer clic.
-- Identificadores de eBay (`redes.ebay.es` y `.com`: `campid` y `mkrid`) vacíos. El enlace abre la búsqueda igual.
 - `window.GR.appUrl` vacío: el botón de Android dice «próximamente».
 - Facebook: confirma `window.GR.facebookUrl` (`https://www.facebook.com/GranjaRentable`).
 - 14 testers con Gmail: el cupo se cuenta en la hoja, no hay un número en vivo.
@@ -134,7 +132,7 @@ El alta cae en la misma hoja. Cuando apruebes a alguien, inventa un código cort
 
 `https://granjarentable.com/?ref=CODIGO`
 
-Eso se guarda en la cookie `gr_ref` y en el navegador 30 días, y el botón de compra de la incubadora lleva `?ref=`. Para liquidar el 10 % sin pagar otra herramienta: cuando entre un pedido, anota el `ref` en la hoja y paga por PayPal al pasar US$ 20 y los 14 días de devolución. eBay no entra en ese 10 %. Hay una prueba sin comisión en `afiliados.html?ref=DEMO`.
+Eso se guarda en la cookie `gr_ref` y en el navegador 30 días, y el botón de compra de la incubadora lleva `?ref=`. Para liquidar el 10 % sin pagar otra herramienta: cuando entre un pedido, anota el `ref` en la hoja y paga por PayPal al pasar US$ 20 y los 14 días de devolución. Hay una prueba sin comisión en `afiliados.html?ref=DEMO`.
 
 ## DNS en Namecheap
 
