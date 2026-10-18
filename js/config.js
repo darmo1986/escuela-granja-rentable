@@ -1,6 +1,6 @@
 /* Publicidad. Sitio aprobado en Adsterra: granjarentable.com (id 6132524).
    El cartelito usa redes.adsterra.bannerKey (320×50). Solo banners en iframe. */
-window.ADSENSE_CLIENT = "";
+window.ADSENSE_CLIENT = "ca-pub-5311145772953700";
 window.ADSTERRA = {
   /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así.
      www.highperformanceformat.com también sirve el mismo script: se usa este
