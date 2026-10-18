@@ -1,6 +1,14 @@
 /* Lista y calendario que se arman en el navegador. No llama a la red. */
 (function (root) {
+  var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
   function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function fechaLarga(iso) {
+    var p = String(iso || "").split("-");
+    if (p.length !== 3) return "";
+    var d = +p[2], m = +p[1];
+    if (!d || m < 1 || m > 12) return "";
+    return d + " de " + MESES[m - 1] + " de " + p[0];
+  }
   function addDays(iso, days) {
     var p = String(iso || "").split("-");
     if (p.length !== 3) return "";
@@ -28,7 +36,7 @@
       "- Codorniz: 17 días. Pato: 28. Pavo: 28 (L03, MSU)."
     ];
     if (iso && addDays(iso, 21)) {
-      lines.push("", "Huevos de gallina puestos el " + iso + ".", "Fecha orientativa de nacimiento: " + addDays(iso, 21) + ".");
+      lines.push("", "Huevos de gallina puestos el " + fechaLarga(iso) + ".", "Fecha orientativa de nacimiento: " + fechaLarga(addDays(iso, 21)) + ".");
     }
     return lines.join("\n") + "\n";
   }
@@ -59,5 +67,5 @@
       ""
     ].join("\r\n");
   }
-  root.GR_lista = { addDays: addDays, texto: texto, ics: ics };
+  root.GR_lista = { addDays: addDays, fechaLarga: fechaLarga, texto: texto, ics: ics };
 })(typeof window !== "undefined" ? window : globalThis);

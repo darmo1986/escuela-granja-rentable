@@ -7,7 +7,9 @@
   }
   function money(n) {
     if (!isFinite(n)) return "—";
-    return n.toLocaleString("es-419", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    var pais = (document.documentElement.getAttribute("data-pais") || "MX").toUpperCase();
+    var loc = pais === "ES" ? "es-ES" : "es-MX";
+    return n.toLocaleString(loc, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
   }
   function espacio(tipo, aves, kg) {
     if (!aves || aves < 1) return { error: "Escribe cuántas aves son." };
@@ -46,7 +48,8 @@
     var fin = window.GR_lista.addDays(iso, d);
     if (!fin) return { error: "Elige el día en que pones los huevos." };
     var nombres = { gallina: "Gallina", codorniz: "Codorniz", pato: "Pato", pavo: "Pavo" };
-    return { text: nombres[especie] + ": " + d + " días. Si empiezas el " + iso + ", la fecha orientativa es " + fin + "." };
+    var larga = window.GR_lista.fechaLarga || function (s) { return s; };
+    return { text: nombres[especie] + ": " + d + " días. Si empiezas el " + larga(iso) + ", la fecha orientativa es " + larga(fin) + "." };
   }
   window.GR_calc = { espacio: espacio, alimento: alimento, eclosion: eclosion };
 

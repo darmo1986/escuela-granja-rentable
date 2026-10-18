@@ -94,7 +94,9 @@
     fillText(card.querySelector(".js-sku-usd"), usd);
     fillText(card.querySelector(".js-sku-local"), local);
     fillText(card.querySelector(".js-sku-meta"), meta);
-    fillText(card.querySelector(".js-sku-nota"), nota);
+    var notaEl = card.querySelector(".js-sku-nota");
+    fillText(notaEl, nota);
+    if (notaEl) notaEl.hidden = !nota;
     var badge = card.querySelector(".js-sku-badge");
     if (badge) {
       badge.hidden = !badgeText;
@@ -102,7 +104,7 @@
     }
     var usdEl = card.querySelector(".js-sku-usd");
     if (usdEl) {
-      var priceLike = /^(Unos |US\$|\$|S\/)/.test(usd || "") || /\d/.test(String(usd || "").slice(0, 8));
+      var priceLike = /^(Unos |US\$|\$|S\/|Precio |Gratis)/.test(usd || "") || /\d/.test(String(usd || "").slice(0, 8));
       usdEl.classList.toggle("is-note", !!(usd && !priceLike));
     }
     var cta = card.querySelector(".js-sku-cta");
@@ -198,7 +200,7 @@
       href = root + "app.html";
       text = "Quiero ser tester";
     }
-    paintSku(card, "Precio próximamente", detalle || "Pablo todavía no confirma el precio de este país.", "", "Sin precio publicado y sin stock anunciado.", "Pendiente", {
+    paintSku(card, "Precio próximamente", detalle || "Te avisamos cuando haya precio para tu país.", "", "", "Próximamente", {
       text: text,
       href: href,
       buy: false,
@@ -217,33 +219,100 @@
     });
   }
 
-  function renderPendientes() {
-    document.querySelectorAll("#grid-pendientes").forEach(function (grid) {
-      if (grid.dataset.filled === "1") return;
-      grid.dataset.filled = "1";
-      (window.GR_CATALOGO || []).forEach(function (item) {
-        if (!item.fichaNueva) return;
-        var art = document.createElement("article");
-        art.className = "pcard";
-        art.setAttribute("data-sku", item.id);
-        var href = productHref(item.id);
-        var media = item.imagen
-          ? '<a class="pcard-media" href="' + href + '"><img src="' + root + item.imagen + '" alt="' + (item.alt || item.nombre) + '" width="800" height="800" loading="lazy"></a>'
-          : '<a class="pcard-media" href="' + href + '"><div class="ph">Sin foto hasta que Pablo la confirme</div></a>';
-        art.innerHTML = media +
-          '<div class="pcard-body"><p class="pcard-cat">' + (item.categoria || "") + '</p>' +
-          '<p class="badge sku-badge js-sku-badge" hidden></p>' +
-          '<h3><a href="' + href + '"><span class="js-sku-name"></span></a></h3>' +
-          '<p class="pcard-usd js-sku-usd"></p><p class="pcard-local js-sku-local"></p>' +
-          '<p class="pcard-meta js-sku-meta"></p><p class="note js-sku-nota"></p>' +
-          '<a class="btn sec js-sku-cta" href="' + href + '">Ver ficha</a></div>';
-        grid.appendChild(art);
-      });
+  var CAT_LABEL = {
+    incubadoras: "Incubadoras",
+    complementos: "Complementos",
+    salud: "Salud avícola",
+    calefaccion: "Calefacción",
+    guias: "Guías",
+    app: "App",
+    curso: "Curso"
+  };
+
+  function catLabel(item) {
+    return (item && (item.etiqueta || CAT_LABEL[item.categoria])) || "";
+  }
+
+  function mergePaisOffers() {
+    (window.GR_CATALOGO || []).forEach(function (item) {
+      var row = paisRow(item.id);
+      if (!(row && row.estado === "confirmado" && row.texto && row.precio > 0)) return;
+      item.offers = item.offers || {};
+      var prev = item.offers[pais] || {};
+      item.offers[pais] = {
+        moneda: row.moneda || prev.moneda,
+        precio: row.precio,
+        texto: row.texto,
+        nota: row.nota || prev.nota || "",
+        entrega: row.entrega || prev.entrega || "",
+        voltaje: prev.voltaje || "",
+        antes: prev.antes || "",
+        nombre: prev.nombre || ""
+      };
+    });
+  }
+
+  function chargedOffer(item) {
+    if (!item || item.gratis || item.checkout === "curso" || item.checkout === "whatsapp") return null;
+    var offer = item.offers && item.offers[pais];
+    if (!offer || !(offer.precio > 0) || !offer.texto) return null;
+    if (/próximamente/i.test(offer.texto)) return null;
+    return offer;
+  }
+
+  function priceLines(item, offer, p) {
+    var big = offer.texto;
+    var ref = "";
+    if (offer.moneda !== "USD") {
+      var usd = usdLabel(offer.moneda, offer.precio, offer.texto);
+      if (usd) ref = usd + " de referencia.";
+    }
+    var small = "";
+    if (item.categoria === "incubadoras") {
+      small = offer.moneda === "USD"
+        ? "Precio con envío a " + p.nombre + "."
+        : "Envío incluido a " + p.nombre + (ref ? ". " + ref : ".");
+    } else {
+      small = ref;
+    }
+    if (offer.antes) small = (small ? small + " " : "") + "Antes " + offer.antes + ".";
+    return { big: big, small: small };
+  }
+
+  function renderSoon(map) {
+    var list = document.getElementById("soon-list");
+    var sec = document.getElementById("proximamente");
+    if (!list || !sec) return;
+    list.textContent = "";
+    var pending = [];
+    (window.GR_CATALOGO || []).forEach(function (item) {
+      if (!item || item.gratis || item.checkout === "curso") return;
+      if (chargedOffer(item)) return;
+      pending.push(item);
+    });
+    if (!pending.length) {
+      sec.hidden = true;
+      return;
+    }
+    sec.hidden = false;
+    pending.forEach(function (item) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = productHref(item.id);
+      a.textContent = item.nombre;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    document.querySelectorAll(".pcard-cat").forEach(function (el) {
+      var card = el.closest("[data-sku]");
+      var item = card && map[card.getAttribute("data-sku")];
+      var label = catLabel(item);
+      if (label) el.textContent = label;
     });
   }
 
   function applySkus() {
-    renderPendientes();
+    mergePaisOffers();
     var map = catalogMap();
     var p = PAISES[pais];
     var fecha = (GR.fx && GR.fx.fecha) || "";
@@ -253,39 +322,22 @@
       if (!item) return;
       try {
       var nameEl = card.querySelector(".js-sku-name");
+      var inGrid = card.classList.contains("pcard");
       if (item.gratis || item.checkout === "curso") {
         paintGratis(card, item);
+        if (inGrid) card.hidden = true;
         return;
       }
-      var row = paisRow(item.id);
-      if (row && row.estado === "confirmado" && row.texto) {
-        item.offers = item.offers || {};
-        var prev = item.offers[pais] || {};
-        item.offers[pais] = {
-          moneda: row.moneda || prev.moneda,
-          precio: row.precio != null ? row.precio : prev.precio,
-          texto: row.texto,
-          nota: row.nota || prev.nota || "",
-          entrega: row.entrega || prev.entrega || "",
-          voltaje: prev.voltaje || "",
-          antes: prev.antes || "",
-          nombre: prev.nombre || ""
-        };
-      }
-      if ((item.soon || item.pendiente || item.checkout === "pendiente" || item.checkout === "app") && !(item.offers && item.offers[pais] && item.offers[pais].texto)) {
-        paintProximamente(card, item, item.resumen);
-        return;
-      }
-      if (item.checkout === "store" && !p.envio && !(item.offers && item.offers[pais])) {
-        paintProximamente(card, item, "Todavía no hay un precio publicado para " + p.nombre + ".");
-        return;
-      }
-      var offer = item.offers && item.offers[pais];
+      var offer = chargedOffer(item);
       if (!offer) {
+        if (inGrid) {
+          card.hidden = true;
+          return;
+        }
         var alt = item.altPais && item.altPais[pais];
-        var msg = (item.ausente && item.ausente[pais]) || ("Hoy no enviamos este producto a " + p.nombre + ".");
         if (nameEl) nameEl.textContent = item.nombre;
         if (alt && map[alt]) {
+          var msg = (item.ausente && item.ausente[pais]) || ("Hoy no enviamos este producto a " + p.nombre + ".");
           paintSku(card, msg, "En " + p.nombre + " está a la venta: " + map[alt].nombre + ".", "", "", "Otro modelo", {
             text: "Ver el modelo de tu país",
             href: productHref(alt),
@@ -293,33 +345,21 @@
             store: false
           });
         } else {
-          paintProximamente(card, item, "Todavía no hay un precio publicado para " + p.nombre + ".");
+          paintProximamente(card, item, item.resumen);
         }
         return;
       }
+      if (inGrid) card.hidden = false;
       var nombre = offer.nombre || item.nombre;
       if (nameEl) nameEl.textContent = nombre;
-      var usdTxt = usdLabel(offer.moneda, offer.precio, offer.texto);
-      var localTxt = "Pagas " + offer.texto + ".";
-      if (offer.antes) localTxt += " Antes " + offer.antes + ".";
-      if (item.categoria === "incubadoras" && offer.moneda !== "USD") localTxt = "Pagas " + offer.texto + ", envío incluido a " + p.nombre + ".";
-      if (item.categoria === "incubadoras" && offer.moneda === "USD") localTxt = "Precio con envío a " + p.nombre + ".";
+      var lines = priceLines(item, offer, p);
       var meta = [offer.voltaje || "", offer.entrega || "", item.capacidad || ""].filter(Boolean).join(" · ");
       var nota = offer.nota || "";
       if (offer.moneda !== "USD" && fecha && item.checkout === "store") {
         nota += (nota ? " " : "") + "El dólar es una referencia del " + fecha + ". El cargo es en " + offer.moneda + ".";
       }
-      if (item.checkout === "whatsapp") {
-        paintSku(card, usdTxt, localTxt, meta, nota, item.badge || "Tienda anterior", {
-          text: "Pedir por WhatsApp",
-          href: waProduct(nombre),
-          buy: true,
-          store: false
-        });
-        return;
-      }
       var hash = item.categoria === "complementos" ? "complementos" : "";
-      paintSku(card, usdTxt, localTxt, meta, nota, "", {
+      paintSku(card, lines.big, lines.small, meta, nota, "", {
         text: "Comprar",
         href: storeUrl(hash),
         buy: true,
@@ -328,6 +368,29 @@
       });
       } finally { ensureAsk(card); }
     });
+    document.querySelectorAll("section.block").forEach(function (sec) {
+      var cards = sec.querySelectorAll(".pcard");
+      if (!cards.length) return;
+      var visible = false;
+      cards.forEach(function (c) { if (!c.hidden) visible = true; });
+      sec.hidden = !visible;
+    });
+    var hero = document.querySelector(".shop-hero");
+    if (hero) {
+      var copy = hero.querySelector("[data-sku]");
+      var hItem = copy && map[copy.getAttribute("data-sku")];
+      hero.hidden = !(hItem && chargedOffer(hItem));
+    }
+    var vacio = document.getElementById("sin-envio");
+    if (vacio) {
+      if (hero) vacio.hidden = !hero.hidden;
+      else {
+        var any = false;
+        document.querySelectorAll(".pcard[data-sku]").forEach(function (c) { if (!c.hidden) any = true; });
+        vacio.hidden = any;
+      }
+    }
+    renderSoon(map);
     var buy = document.querySelector(".js-comprar");
     if (buy) {
       if (!p.envio) {
@@ -375,8 +438,8 @@
         fillText(usdEl, "US$ " + p.precio);
         fillText(localEl, "Ese es el precio, con envío incluido a " + p.nombre + ".");
       } else {
-        fillText(usdEl, usd != null ? ("Unos US$ " + usd) : p.texto);
-        fillText(localEl, "Pagas " + p.texto + ", envío incluido a " + p.nombre + ".");
+        fillText(usdEl, p.texto);
+        fillText(localEl, (usd != null ? "Unos US$ " + usd + " de referencia. " : "") + "Envío incluido a " + p.nombre + ".");
       }
       fillText(metaEl, [p.voltaje, "llega en " + p.entrega, "capacidad real: unos 16–18 huevos de gallina"].filter(Boolean).join(" · "));
       var nota = p.impuesto || "";
@@ -396,6 +459,7 @@
 
     applyFeatured();
     applySkus();
+    writeProductJsonLd();
 
     document.querySelectorAll("[data-checkout]").forEach(function (a) {
       a.href = storeUrl(a.getAttribute("data-checkout-hash") || "");
@@ -541,7 +605,7 @@
         if (interesLead) interesLead.value = "checklist " + fecha.value;
       }
       if (!endpoint) {
-        say("El formulario está listo, pero todavía no envía datos: falta la URL de Google Apps Script en js/config.js. No salió nada de este navegador. Si te urge, escríbenos por WhatsApp.");
+        say("Ahora mismo el formulario no puede enviar los datos. No salió nada de este navegador. Si te urge, escríbenos por WhatsApp.");
         return;
       }
       var data = {};
@@ -557,17 +621,7 @@
       if (btn) btn.disabled = true;
       postToSheet(endpoint, data).then(function () {
         if (tipo === "afiliado") {
-          var code = emailVal.toLowerCase();
-          var link = (GR.siteUrl || "https://granjarentable.com").replace(/\/$/, "") + "/?ref=" + encodeURIComponent(code);
-          if (msg) {
-            msg.textContent = "";
-            msg.appendChild(document.createTextNode("Listo. Tu enlace personal es "));
-            var a = document.createElement("a");
-            a.href = link;
-            a.textContent = link;
-            msg.appendChild(a);
-            msg.appendChild(document.createTextNode(". Si alguien compra con ese enlace, te corresponde el 10 %."));
-          }
+          say("Listo. Te anotamos en la lista de espera. Cuando el seguimiento del cobro esté activo, te escribimos. Hoy una compra todavía no genera comisión.");
         } else if (tipo === "beta") {
           say("Listo. Anotamos tu Gmail para la prueba de Google Play. Si hay plaza, te escribimos.");
         } else if (tipo === "lead") {
@@ -690,37 +744,38 @@
     });
   });
 
-  (function productJsonLd() {
+  function writeProductJsonLd() {
+    var prev = document.getElementById("product-jsonld");
+    if (prev) prev.remove();
     var box = document.querySelector(".pdp-buy[data-sku]");
     if (!box) return;
     var item = catalogMap()[box.getAttribute("data-sku")];
-    if (!item) return;
+    var offer = chargedOffer(item);
+    if (!offer || !offer.moneda) return;
     var site = (GR.siteUrl || "https://granjarentable.com").replace(/\/$/, "");
     var data = {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": item.nombre,
+      "name": (offer.nombre || item.nombre),
       "description": item.resumen || "",
       "sku": item.id,
       "url": site + "/producto/" + item.id + ".html",
-      "seller": { "@type": "Organization", "name": "Granja Rentable", "url": site + "/" }
-    };
-    if (item.imagen) data.image = site + "/" + String(item.imagen).replace(/^\//, "");
-    var offer = item.offers && item.offers[pais];
-    if (offer && offer.precio > 0 && offer.moneda) {
-      data.offers = {
+      "seller": { "@type": "Organization", "name": "Granja Rentable", "url": site + "/" },
+      "offers": {
         "@type": "Offer",
         "price": String(offer.precio),
         "priceCurrency": offer.moneda,
-        "url": data.url,
-        "availability": item.checkout === "whatsapp" ? "https://schema.org/LimitedAvailability" : "https://schema.org/InStock"
-      };
-    }
+        "url": site + "/producto/" + item.id + ".html",
+        "availability": "https://schema.org/InStock"
+      }
+    };
+    if (item.imagen) data.image = site + "/" + String(item.imagen).replace(/^\//, "");
     var s = document.createElement("script");
+    s.id = "product-jsonld";
     s.type = "application/ld+json";
     s.textContent = JSON.stringify(data);
     document.head.appendChild(s);
-  })();
+  }
 
   applyPais(pais, false);
   fetch(root + "data/catalogo-paises.json", { credentials: "omit" })

@@ -1,4 +1,4 @@
-/* Catálogo embebido. Precios por país, editables: data/catalogo-paises.json. */
+/* Catálogo de la tienda. La fuente editable es data/catalogo.json. */
 window.GR_CATALOGO = [
   {
     "id": "incubadora-24egg-dual",
@@ -23,7 +23,6 @@ window.GR_CATALOGO = [
     ],
     "capacidad": "unos 16–18 huevos de gallina",
     "checkout": "store",
-    "origen": "Tienda de la incubadora (granjarentable-incubadora.netlify.app), producto incubadora-24egg-dual",
     "altPais": {
       "US": "incubadora-wonegg-48"
     },
@@ -71,7 +70,8 @@ window.GR_CATALOGO = [
         "entrega": "3–6 semanas",
         "nota": "El cobro es en dólares. Puede haber tasas de aduana o del courier al recibir, y las paga quien recibe."
       }
-    }
+    },
+    "etiqueta": "Incubadoras"
   },
   {
     "id": "incubadora-wonegg-48",
@@ -94,7 +94,6 @@ window.GR_CATALOGO = [
     ],
     "capacidad": "unos 40 huevos de gallina",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, producto de Estados Unidos incubadora-wonegg-48",
     "altPais": {
       "MX": "incubadora-24egg-dual",
       "PE": "incubadora-24egg-dual",
@@ -118,7 +117,8 @@ window.GR_CATALOGO = [
         "entrega": "3–8 días",
         "nota": "Sale de un almacén en Estados Unidos: sin trámite de aduana. El cargo es en dólares."
       }
-    }
+    },
+    "etiqueta": "Incubadoras"
   },
   {
     "id": "corralito",
@@ -133,7 +133,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento corralito",
     "base": {
       "moneda": "USD",
       "precio": 77.99,
@@ -146,7 +145,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 77.99",
         "entrega": "Se añade al pedido. Llega en un paquete aparte."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "bombilla",
@@ -161,7 +161,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento bombilla",
     "base": {
       "moneda": "USD",
       "precio": 49.99,
@@ -174,7 +173,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 49.99",
         "entrega": "Se añade al pedido. Llega en un paquete aparte."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "termohigrometro",
@@ -189,7 +189,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento termohigrometro",
     "base": {
       "moneda": "USD",
       "precio": 6.99,
@@ -220,7 +219,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 6.99",
         "entrega": "Se añade al pedido."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "bascula",
@@ -235,7 +235,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento bascula",
     "base": {
       "moneda": "USD",
       "precio": 14.99,
@@ -266,7 +265,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 14.99",
         "entrega": "Se añade al pedido."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "medidorph",
@@ -281,7 +281,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento medidorph",
     "base": {
       "moneda": "USD",
       "precio": 23.99,
@@ -318,7 +317,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 23.99",
         "entrega": "Se añade al pedido."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "alfombrilla",
@@ -333,7 +333,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento alfombrilla",
     "base": {
       "moneda": "USD",
       "precio": 9.99,
@@ -367,7 +366,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 9.99",
         "entrega": "Se añade al pedido."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "comedero",
@@ -382,7 +382,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento comedero",
     "base": {
       "moneda": "USD",
       "precio": 34.99,
@@ -401,7 +400,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 34.99",
         "entrega": "Llega aparte desde China: 7–14 días."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "anillas",
@@ -416,7 +416,6 @@ window.GR_CATALOGO = [
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
-    "origen": "Tienda de la incubadora, complemento anillas",
     "base": {
       "moneda": "USD",
       "precio": 14.99,
@@ -429,7 +428,8 @@ window.GR_CATALOGO = [
         "texto": "US$ 14.99",
         "entrega": "Llega aparte desde China: 7–14 días."
       }
-    }
+    },
+    "etiqueta": "Complementos"
   },
   {
     "id": "suplemento",
@@ -437,175 +437,17 @@ window.GR_CATALOGO = [
     "alt": "",
     "categoria": "complementos",
     "imagen": "",
-    "resumen": "Estamos buscando un proveedor que lo envíe desde Estados Unidos.",
+    "resumen": "Vitaminas y electrolitos en polvo para los primeros días. Precio próximamente.",
     "parrafos": [
-      "En la tienda de Estados Unidos este complemento figura como próximamente. El texto de origen dice que buscan un proveedor que lo envíe desde Estados Unidos.",
-      "No tiene precio ni foto en el catálogo. No lo quitamos de la lista: sigue en el catálogo anterior como producto por llegar."
+      "Vitaminas y electrolitos en polvo para pollitos.",
+      "Todavía no tiene precio publicado. Te avisamos cuando se pueda comprar."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "store",
     "soon": true,
-    "origen": "Tienda de la incubadora, complemento suplemento (soon, solo en la lista de Estados Unidos)",
-    "offers": {}
-  },
-  {
-    "id": "tabletas-30g-fiebre-resfriado",
-    "nombre": "Tabletas 30 g para fiebre y resfriado en gallinas",
-    "alt": "Tabletas avícolas de 30 g para fiebre y resfriado en gallinas",
-    "categoria": "salud",
-    "imagen": "",
-    "resumen": "Ficha de la tienda anterior para fiebre, resfriado, tos, estornudos, jadeo y diarrea en gallinas. Presentación de 30 g.",
-    "parrafos": [
-      "Las tabletas de 30 g están descritas en la tienda anterior para ayudar con fiebre, resfriado, tos, estornudos, jadeo y diarrea en aves de corral. Se pueden dar directamente o disueltas en agua.",
-      "Modo de uso publicado en esa ficha: según el peso, dos veces al día (mañana y tarde) durante 2 a 3 días. En casos especiales, triturar la tableta, mezclar con agua, dejar reposar 5 minutos, agitar y ofrecer a libre consumo.",
-      "Esa tienda anunciaba envío a España, Estados Unidos y América Latina, y devolución en 30 días si el producto no se usó y sigue en su empaque. El pago de Shopify no está conectado a este sitio: el pedido se confirma por WhatsApp. No es un consejo veterinario nuevo; es el texto de la ficha que pudimos leer."
-    ],
-    "incluye": [
-      "Presentación publicada: 30 g",
-      "Precio publicado: 18,99 € (antes 24,99 €)"
-    ],
-    "capacidad": "",
-    "checkout": "whatsapp",
-    "badge": "Tienda anterior",
-    "origen": "Tienda Shopify granjarentable.com, ficha pública tabletas-30g-para-fiebre-y-resfriado-en-gallinas-tratamiento-avicola. Precio leído en el índice público el 14 de octubre de 2026. La página ya no se pudo descargar (el dominio no abre).",
-    "offers": {
-      "MX": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "entrega": "Plazo de la ficha anterior: 3–5 días hábiles tras 1–2 días de preparación.",
-        "nota": "Precio publicado en la tienda anterior, en euros. Unos US$ 21 con el cambio del 14 de octubre de 2026. Envío gratis anunciado en pedidos de más de 50 € o 59 €, según el texto de esa página. Confirmamos el pedido por WhatsApp."
-      },
-      "US": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "entrega": "La ficha decía entrega a España, Estados Unidos y América Latina.",
-        "nota": "Precio publicado en euros. El pago de Shopify no está conectado. Confirmamos el pedido por WhatsApp."
-      },
-      "CO": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "PE": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "ES": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en la tienda anterior, con impuestos no detallados en la ficha. Confirmamos el pedido por WhatsApp."
-      },
-      "AR": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "VE": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "EC": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "DO": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "CL": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "PY": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "UY": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "BO": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "GT": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "HN": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "SV": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "NI": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "CR": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      },
-      "PA": {
-        "moneda": "EUR",
-        "precio": 18.99,
-        "texto": "18,99 €",
-        "antes": "24,99 €",
-        "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-      }
-    }
+    "offers": {},
+    "etiqueta": "Complementos"
   },
   {
     "id": "bebedero-campana",
@@ -613,18 +455,18 @@ window.GR_CATALOGO = [
     "alt": "",
     "categoria": "complementos",
     "imagen": "",
-    "resumen": "Bebedero colgante para gallinas. En el repositorio no hay precio, foto ni stock.",
+    "resumen": "Bebedero colgante para gallinas. Precio próximamente.",
     "parrafos": [
-      "Ficha aparte del juego de comedero 3 kg y bebedero 3 L, que sí tiene precio en España y Estados Unidos.",
-      "No hay un precio publicado para ningún país. Hasta que Pablo lo confirme, verás Precio próximamente."
+      "Bebedero colgante para gallinas, distinto del juego de comedero y bebedero que ya está en la tienda.",
+      "El precio se publicará cuando esté confirmado para tu país."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "pendiente",
     "pendiente": true,
     "fichaNueva": true,
-    "origen": "Ficha nueva. Sin precio, foto ni stock en el repositorio. Pendiente de que Pablo lo confirme.",
-    "offers": {}
+    "offers": {},
+    "etiqueta": "Complementos"
   },
   {
     "id": "comedero-tolva",
@@ -632,18 +474,18 @@ window.GR_CATALOGO = [
     "alt": "",
     "categoria": "complementos",
     "imagen": "",
-    "resumen": "Comedero de tolva para gallinas. En el repositorio no hay precio, foto ni stock.",
+    "resumen": "Comedero de tolva para gallinas. Precio próximamente.",
     "parrafos": [
-      "Ficha aparte del juego de comedero y bebedero que ya se vende en España y Estados Unidos.",
-      "No hay capacidad, marca ni precio confirmados. La ficha no inventa un número."
+      "Comedero de tolva para gallinas.",
+      "El precio se publicará cuando esté confirmado para tu país."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "pendiente",
     "pendiente": true,
     "fichaNueva": true,
-    "origen": "Ficha nueva. Sin precio, foto ni stock en el repositorio. Pendiente de que Pablo lo confirme.",
-    "offers": {}
+    "offers": {},
+    "etiqueta": "Complementos"
   },
   {
     "id": "criadora-calor",
@@ -651,18 +493,18 @@ window.GR_CATALOGO = [
     "alt": "",
     "categoria": "calefaccion",
     "imagen": "",
-    "resumen": "Calor para los primeros días. No es la bombilla suelta que ya tiene precio en Estados Unidos.",
+    "resumen": "Criadora para dar calor a los pollitos los primeros días. Precio próximamente.",
     "parrafos": [
-      "La bombilla infrarroja sí tiene precio en Estados Unidos (US$ 49.99) y es solo la bombilla.",
-      "Esta ficha es una criadora o lámpara completa. No hay precio, foto ni ficha de proveedor en el repositorio."
+      "Da calor a los pollitos en los primeros días. No es la bombilla suelta.",
+      "El precio se publicará cuando esté confirmado para tu país."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "pendiente",
     "pendiente": true,
     "fichaNueva": true,
-    "origen": "Ficha nueva. Sin precio, foto ni stock en el repositorio. Pendiente de que Pablo lo confirme.",
-    "offers": {}
+    "offers": {},
+    "etiqueta": "Calefacción"
   },
   {
     "id": "ebook-guia-avicultura",
@@ -670,18 +512,18 @@ window.GR_CATALOGO = [
     "alt": "",
     "categoria": "guias",
     "imagen": "",
-    "resumen": "Guía descargable. El curso en vídeo de este sitio es gratis y no es este ebook.",
+    "resumen": "Guía descargable. El curso en video de este sitio es gratis.",
     "parrafos": [
-      "El curso publicado (L01 a L06) es gratis y se ve en la web.",
-      "Este ebook sería un producto distinto. No hay archivo, precio ni número de páginas en el repositorio."
+      "El curso publicado es gratis y se ve en la web.",
+      "Esta guía descargable todavía no está a la venta."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "pendiente",
     "pendiente": true,
     "fichaNueva": true,
-    "origen": "Ficha nueva. Sin precio ni archivo en el repositorio. Pendiente de que Pablo lo confirme.",
-    "offers": {}
+    "offers": {},
+    "etiqueta": "Guías"
   },
   {
     "id": "app-pollos-engorde",
@@ -689,18 +531,18 @@ window.GR_CATALOGO = [
     "alt": "",
     "categoria": "app",
     "imagen": "",
-    "resumen": "App Android para anotar la crianza. No hay precio de venta. Hay una prueba para testers.",
+    "resumen": "App Android para anotar la crianza. Todavía no tiene precio. Hay una prueba para testers.",
     "parrafos": [
-      "La app todavía no está en Google Play. La prueba pide un Gmail y se anota en la misma hoja de los formularios.",
-      "No hay un precio publicado. Hasta que Pablo lo ponga, la ficha dice Precio próximamente."
+      "La app todavía no está en Google Play. Puedes pedir la prueba con un correo de Gmail.",
+      "Todavía no tiene precio de venta."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "app",
     "pendiente": true,
     "fichaNueva": true,
-    "origen": "La app se menciona en el sitio como prueba cerrada. Sin precio de venta en el repositorio.",
-    "offers": {}
+    "offers": {},
+    "etiqueta": "App"
   },
   {
     "id": "curso-avicultura",
@@ -708,17 +550,17 @@ window.GR_CATALOGO = [
     "alt": "",
     "categoria": "curso",
     "imagen": "",
-    "resumen": "El curso de este sitio es gratis. L01 a L04B ya tienen vídeo. L05 y L06 tienen página y el vídeo está por publicar.",
+    "resumen": "El curso de este sitio es gratis. Hay 5 lecciones con video. Ponedoras y genética están en preparación.",
     "parrafos": [
-      "Carne, huevos, incubación y el manejo que ya está escrito en las lecciones.",
-      "No es un ebook de pago. El precio publicado en el sitio es cero: es gratis."
+      "Carne, huevos e incubación, con las lecciones que ya tienen video.",
+      "Es gratis."
     ],
     "incluye": [],
     "capacidad": "",
     "checkout": "curso",
     "gratis": true,
     "fichaNueva": true,
-    "origen": "El propio sitio publica el curso como gratis.",
-    "offers": {}
+    "offers": {},
+    "etiqueta": "Curso"
   }
 ];

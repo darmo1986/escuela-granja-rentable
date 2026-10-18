@@ -32,7 +32,7 @@ function markBannerGap(el){
   el.dataset.adFilled='gap';
   const p=document.createElement('p');
   p.className='ad-gap';
-  p.textContent='Falta la clave: js/config.js → redes.adsterra.bannerKey';
+  p.textContent='Publicidad no disponible.';
   el.appendChild(p);
 }
 /* Cada pieza va en su propio iframe para que atOptions no se pise.
@@ -265,11 +265,11 @@ function paintLessonSlot(slot,enlace){
     const b=document.createElement('button');
     b.type='button';
     b.className='yt-facade';
-    b.textContent='Ver el vídeo';
+    b.textContent='Ver el video';
     b.addEventListener('click',function(){
       const f=document.createElement('iframe');
       f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(media.id)+'?rel=0';
-      f.title='Vídeo de la lección';
+      f.title='Video de la lección';
       f.allow='accelerometer; encrypted-media; picture-in-picture';
       f.allowFullscreen=true;
       f.loading='lazy';
@@ -350,7 +350,7 @@ async function mountFinalVideos(){
     const L=by[slot.getAttribute('data-id')]||{};
     const name=String(L.videoFinal||'').trim();
     if(!VIDEO_RE.test(name)){
-      slot.innerHTML='<p>Vídeo final pendiente de aprobación. No hay archivo ni dirección.</p>';
+      slot.innerHTML='<p>Video final pendiente de aprobación. No hay archivo ni dirección.</p>';
       return;
     }
     slot.innerHTML='<video controls preload="metadata" playsinline poster="'+esc(root+'img/logo.jpg')+'" src="'+esc(root+base+name)+'"></video>';

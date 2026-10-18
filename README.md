@@ -42,7 +42,6 @@ La fuente de la tienda de incubación es `config` de https://granjarentable-incu
 | Comedero 3 kg + bebedero 3 L | Sí. España (47,99 €) y Estados Unidos (US$ 34.99). | Complemento `comedero` |
 | Anillas identificadoras (50 uds.) | Sí. Solo Estados Unidos, US$ 14.99. | Complemento `anillas` |
 | Vitaminas y electrolitos en polvo para pollitos | Sí, como próximamente, sin precio ni foto. Así estaba en el origen. | Complemento `suplemento` (`soon`) |
-| Tabletas 30 g para fiebre y resfriado en gallinas | Sí. Precio publicado 18,99 € (antes 24,99 €). Sin foto. El pedido va por WhatsApp. | Ficha pública de granjarentable.com |
 
 Argentina y Paraguay no tenían complementos en esa tienda: aquí se ven, con el aviso de que no entran en el pedido.
 
@@ -54,7 +53,6 @@ El catálogo completo de granjarentable.com no se pudo listar:
 - `https://granjarentable.com` llega a una IP de Shopify y corta el TLS (`sslv3 alert handshake failure` / `ERR_SSL_VERSION_OR_CIPHER_MISMATCH`). `products.json`, el sitemap y las colecciones no abren.
 - `granjarentable.myshopify.com` responde «Store unavailable» y `products.json` da 404.
 - Internet Archive no tiene capturas de `/products/`.
-- El índice público solo devolvió una ficha: las tabletas de 30 g. No apareció otra URL de producto.
 
 Si el dueño pega el export de Shopify (`products.json` o la lista de fichas), se agregan aquí. No inventamos el resto.
 
@@ -67,7 +65,7 @@ El dueño aprobó publicar en GitHub Pages. El DNS de Namecheap sigue pendiente.
 - [x] **Apps Script.** `window.GR.formEndpoint` en `js/config.js` ya apunta a `https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec`. Si se vuelve a publicar el script y cambia la URL, hay que pegarla otra vez.
 - [x] **URLs canónicas.** Cada página lleva `link rel=canonical` a `https://granjarentable.com/` (inicio) o `https://granjarentable.com/<ruta>`. Hasta que el dominio apunte a GitHub Pages, el sitio también puede servirse en `https://darmo1986.github.io/escuela-granja-rentable/`; las canónicas no cambian.
 - [x] **Claves de Adsterra.** El sitio aprobado es `darmo1986.github.io` (id 6120999). Cada página lleva un banner (728×90 en escritorio, 320×50 en el celular). Las páginas largas añaden un 300×250 dentro del contenido. Una pieza de cada tamaño por página, en línea, con el alto reservado, y el anuncio se pide al acercarse. Sin tema ni palabras clave. Solo si se aceptan las cookies. AdSense sigue vacío.
-- [ ] **Fotos que faltan.** El suplemento (próximamente, sin precio) y las tabletas de 30 g no tienen foto en el archivo. El pedido de las tabletas va por WhatsApp.
+- [ ] **Fotos que faltan.** El suplemento y otras fichas sin precio no tienen foto. Esas fichas no muestran un recuadro de «sin foto» y no están en el sitemap.
 - [ ] **Videos L05A–L06C.** El temario está; los mp4 no. Cómo publicarlos, abajo.
 
 ## Cómo publicar un video de L05A a L06C
@@ -81,17 +79,9 @@ La ficha ya está en `data/curso-web.json`, la fila ya está en `curso.html` y l
 
 `leccion.html?id=l05a` lee el JSON y reproduce `videos/` + el nombre del archivo. L01–L04B siguen en `lecciones/`, con su texto y su test.
 
-## Hueco del vídeo final de L01 a L04B
+## Hueco del video final de L01 a L04B
 
-`videos-finales.html` es un borrador. No está en `curso.html`, ni en el menú, ni en el sitemap, y lleva `noindex`. Cada ficha L01–L04B de `data/curso-web.json` tiene `"videoFinal": ""`.
-
-Cuando el Supervisor apruebe el corte:
-
-1. Copia el mp4 a `videos/` con un nombre como `l01-final.mp4` (solo letras minúsculas, números, guion o guion bajo, y `.mp4`).
-2. En esa ficha pon `"videoFinal": "l01-final.mp4"`.
-3. Abre `videos-finales.html`: el hueco reproduce ese archivo. Si el campo sigue vacío, el hueco dice que no hay archivo y no inventa una dirección.
-
-No cambies el `src` de `lecciones/l01.html` (ni L02, L03, L04A, L04B) ni enlaces esta página desde `curso.html` hasta que el Supervisor lo diga. El curso publicado sigue con `videos/l01.mp4` y los demás archivos actuales.
+`videos-finales.html` se quitó del sitio publicado. Cada ficha L01–L04B de `data/curso-web.json` sigue con `"videoFinal": ""`. El curso publicado usa los mp4 actuales de `videos/`. No cambies el `src` de `lecciones/l01.html` (ni L02, L03, L04A, L04B) hasta que el corte final esté aprobado.
 
 ## Pendiente
 
