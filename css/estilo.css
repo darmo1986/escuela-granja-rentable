@@ -758,7 +758,7 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
   .enf-sub .enf-sub-lista { display: flex !important; margin-top: 0; }
 }
 .app-icon { width: 72px; height: 72px; border-radius: 18px; display: block; margin: 0 0 10px; }
-.app-dl { margin: 12px 0 4px; }
+.app-dl { margin: 12px 0 4px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .app-dl .btn { width: 100%; }
 .app-dl-meta { margin: 0 0 8px; font-weight: 800; color: var(--gd); }
 .app-funs { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
@@ -806,6 +806,48 @@ code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mon
   .app-teaser-copy { padding: 22px 26px 22px 8px; }
 }
 @media (min-width: 800px) { .enf-grid { grid-template-columns: 1fr 1fr; } }
+.pollos-acciones { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.pollos-acciones .btn { min-height: 48px; }
+.pollos-card { margin: 12px 0; }
+.pollos-card h2, .pollos-card h3 { margin-top: 0; }
+.pollos-estado, .pollos-alerta {
+  border-radius: 14px; padding: 12px 14px; font-weight: 750; margin: 10px 0;
+}
+.pollos-estado p, .pollos-alerta p { margin: .2em 0; }
+.pollos-verde { background: #e7f3ea; color: #0f3d1c; border-left: 6px solid #1f5e2e; }
+.pollos-ambar { background: #fff6d8; color: #2b2205; border-left: 6px solid #c4a035; }
+.pollos-rojo { background: #fdecea; color: #8c2f2f; border-left: 6px solid #8c2f2f; }
+.pollos-error { color: #8c2f2f; font-weight: 750; min-height: 1.2em; }
+.pollos-lienzo { width: 100%; overflow: hidden; }
+.pollos-lienzo canvas { display: block; width: 100%; height: auto; background: #fff; border-radius: 16px; }
+.pollos-leyenda { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: .92rem; font-weight: 750; margin: 8px 0; }
+.pollos-leyenda i { display: inline-block; width: 18px; height: 4px; margin-right: 6px; vertical-align: middle; border-radius: 2px; }
+.pollos-oro { background: #c4a035; }
+.pollos-real { background: #1f5e2e; }
+.pollos-regs { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.pollos-regs li { background: #fff; border-radius: 14px; padding: 10px 12px; box-shadow: var(--shadow); }
+.pollos-dlg { border: 0; border-radius: 18px; padding: 18px; max-width: min(560px, calc(100% - 24px)); color: var(--ink); }
+.pollos-dlg::backdrop { background: rgba(15, 30, 20, .45); }
+.pollos-dlg h2 { margin-top: 0; }
+@media (max-width: 639px) {
+  .pollos-acciones .btn { width: 100%; }
+}
+body.pollos-oscuro { background: #121814; color: #f3f6f2; }
+body.pollos-oscuro h1, body.pollos-oscuro h2, body.pollos-oscuro h3 { color: #d7efdf; }
+body.pollos-oscuro .panel,
+body.pollos-oscuro .form-card,
+body.pollos-oscuro .pollos-card,
+body.pollos-oscuro .pollos-regs li,
+body.pollos-oscuro .pollos-lienzo canvas { background: #1c2620; color: #f3f6f2; }
+body.pollos-oscuro .note { background: #24352b; color: #f3f6f2; }
+body.pollos-oscuro .fine { color: #c5d0c8; }
+body.pollos-oscuro input, body.pollos-oscuro select, body.pollos-oscuro textarea {
+  background: #121814; color: #f3f6f2; border-color: #3d5246;
+}
+body.pollos-oscuro .btn.sec { background: transparent; color: #f3f6f2; border-color: #d7efdf; }
+body.pollos-oscuro .pollos-verde { background: #1a3324; color: #d7efdf; }
+body.pollos-oscuro .pollos-ambar { background: #3a3214; color: #ffe7a3; }
+body.pollos-oscuro .pollos-rojo { background: #3a1c1c; color: #ffd0d0; }
 @media print {
   .top, .foot, .wa-float, .ad-inline, #cookie-banner, .no-print { display: none !important; }
   body { background: #fff; }
