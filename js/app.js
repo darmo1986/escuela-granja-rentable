@@ -2,7 +2,7 @@
 const root=document.body.dataset.root||'';
 const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
-const save=p=>localStorage.setItem(PK,JSON.stringify(p));
+const save=p=>{localStorage.setItem(PK,JSON.stringify(p));if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);};
 /* ── Consentimiento + publicidad (Adsterra o AdSense; nada sin key y sin «Aceptar») ── */
 function smallBannerCfg(){
   const g=(window.GR&&window.GR.redes&&window.GR.redes.adsterra)||{};
@@ -130,7 +130,7 @@ function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
