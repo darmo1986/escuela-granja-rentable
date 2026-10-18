@@ -6,7 +6,9 @@ Las fichas se escriben en `articulos.json`. Luego:
 node enfermedades/construir.js
 ```
 
-Eso regenera `enfermedades.html`, cada `enfermedades/<id>.html`, el atajo `enfermedades/index.html` y las URLs del sitemap. No publica el sitio.
+Eso regenera la portada `enfermedades.html`, la página de cada categoría en `enfermedades/categoria/`, cada ficha `enfermedades/<id>.html`, el atajo `enfermedades/index.html` y las URLs del sitemap. No publica el sitio.
+
+La portada es la entrada de la zona: buscador por síntoma y las ocho categorías. Dentro, el menú lateral repite esas categorías. En el móvil ese menú se pliega.
 
 ## Forma de una ficha
 

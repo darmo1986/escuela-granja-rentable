@@ -2,14 +2,14 @@
   "aviso": "Información orientativa para aprender. No es un diagnóstico ni un tratamiento. Si un ave está enferma, consulta a un veterinario. El dueño tiene que revisar este texto antes de darlo por bueno.",
   "creditoImagen": "Pendiente. El equipo pondrá una imagen con licencia o generada. No se enlaza ni se copia una foto de otro sitio.",
   "categorias": [
-    { "id": "respiratorias", "nombre": "Respiratorias", "nota": "Coriza, micoplasma y bronquitis se parecen. Hace falta el veterinario para distinguirlas." },
-    { "id": "viricas", "nombre": "Víricas graves de declaración obligatoria", "nota": "Gripe aviar y Newcastle se comunican a sanidad animal. No hay remedio casero. Marek va en este grupo porque es vírica y grave; la ficha está por revisar y no afirma, por ahora, que sea de declaración obligatoria." },
-    { "id": "parasitarias", "nombre": "Parasitarias", "nota": "Coccidiosis, piojos, ácaros (incluido el ácaro rojo) y lombrices." },
-    { "id": "digestivas", "nombre": "Digestivas", "nota": "Diarrea, buche o ave que no come. Muchas causas distintas." },
-    { "id": "carencias", "nombre": "Carencias nutricionales", "nota": "La ración importa. Aquí no hay dosis de vitaminas ni de minerales." },
-    { "id": "puesta", "nombre": "Problemas de puesta", "nota": "Huevo retenido y prolapso pueden ser urgentes." },
-    { "id": "patas", "nombre": "Patas y piel", "nota": "Pododermatitis y sarna de las patas." },
-    { "id": "pollitos", "nombre": "Pollitos", "nota": "Frío, ombligo y pollitos pegados. Si hay sangre en las heces, mira también la coccidiosis." }
+    { "id": "respiratorias", "menu": "Respiratorias", "nombre": "Respiratorias", "nota": "Coriza, micoplasma y bronquitis se parecen. Hace falta el veterinario para distinguirlas." },
+    { "id": "viricas", "menu": "Víricas graves", "nombre": "Víricas graves de declaración obligatoria", "nota": "Gripe aviar y Newcastle se comunican a sanidad animal. No hay remedio casero. Marek va en este grupo porque es vírica y grave; la ficha está por revisar y no afirma, por ahora, que sea de declaración obligatoria." },
+    { "id": "parasitarias", "menu": "Parásitos", "nombre": "Parásitos", "nota": "Coccidiosis, piojos, ácaros (incluido el ácaro rojo) y lombrices." },
+    { "id": "digestivas", "menu": "Digestivas", "nombre": "Digestivas", "nota": "Diarrea, buche o ave que no come. Muchas causas distintas." },
+    { "id": "carencias", "menu": "Carencias", "nombre": "Carencias nutricionales", "nota": "La ración importa. Aquí no hay dosis de vitaminas ni de minerales." },
+    { "id": "puesta", "menu": "Problemas de puesta", "nombre": "Problemas de puesta", "nota": "Huevo retenido y prolapso pueden ser urgentes." },
+    { "id": "patas", "menu": "Patas y piel", "nombre": "Patas y piel", "nota": "Pododermatitis y sarna de las patas." },
+    { "id": "pollitos", "menu": "Pollitos", "nombre": "Pollitos", "nota": "Frío, ombligo y pollitos pegados. Si hay sangre en las heces, mira también la coccidiosis." }
   ],
   "etiquetas": [
     { "id": "sintomas", "nombre": "Síntomas" },
