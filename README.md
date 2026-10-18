@@ -156,6 +156,12 @@ IPv6, opcional:
 
 El CNAME apunta al usuario de GitHub, sin el nombre del repositorio. Cuando resuelva, en GitHub Pages activa «Enforce HTTPS». Antes, en el repositorio, verifica el dominio para que nadie lo ocupe.
 
+## Artículos (el blog)
+
+Los textos viven en `_articulos/`, un Markdown por artículo. `python3 blog/generar.py` arma `/blog/`, el filtro por bloque, el enlace **Artículos** del menú, el sitemap y el `?v=` de los recursos. Cómo añadir el siguiente artículo, las categorías y la foto opcional está en `blog/README.md`.
+
+Un bloque con menos de 3 artículos publicados lleva `noindex` y no entra en el sitemap. El artículo suelto sí se indexa. Los anuncios del blog siguen `window.ads.activo` (`false` = sin hueco).
+
 ## Cómo se ve en local
 
 ```bash

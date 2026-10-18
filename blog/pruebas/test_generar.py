@@ -115,13 +115,14 @@ class Generador(unittest.TestCase):
         self.assertNotIn(">Artículos<", menu)
         self.assertNotIn('href="blog/"', menu)
         self.assertIn(">Calculadoras<", menu)
-        self.assertIn("css/estilo.css?v=202610183", indice)
-        self.assertIn("js/boot.js?v=202610183", indice)
-        self.assertIn("css/blog.css?v=202610183", indice)
-        self.assertIn("js/blog.js?v=202610183", indice)
-        self.assertIn("js/config.js?v=202610183", indice)
-        self.assertIn("js/app.js?v=202610183", indice)
-        self.assertIn("js/site.js?v=202610183", indice)
+        self.assertIn("css/estilo.css?v=202610192", indice)
+        self.assertIn("js/boot.js?v=202610192", indice)
+        self.assertIn("css/blog.css?v=202610192", indice)
+        self.assertIn("js/blog.js?v=202610192", indice)
+        self.assertIn("js/config.js?v=202610192", indice)
+        self.assertIn("js/app.js?v=202610192", indice)
+        self.assertIn("js/site.js?v=202610192", indice)
+        self.assertIn("js/catalogo.js?v=202610192", indice)
         self.assertIn("<!-- menu:inicio -->", menu)
         self.assertIn('id="nav-herramientas"', menu)
         self.assertIn(">Herramientas<", menu)
@@ -139,15 +140,30 @@ class Generador(unittest.TestCase):
         self.assertEqual(generar.generar(self.tmp), [])
         self.assertFalse((self.tmp / "blog" / "sin-clave.html").exists())
 
-    def test_sin_imagen_no_escribe(self):
-        post(self.tmp, "2026-11-02-sin-foto.md", imagen="", imagen_og="", borrador="false")
-        (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
-        antes = (self.tmp / "_articulos" / "2026-11-02-sin-foto.md").read_text(encoding="utf-8")
+    def test_sin_imagen_se_publica_sin_hueco_roto(self):
+        post(self.tmp, "2026-11-02-sin-foto.md", imagen="", imagen_og="", imagen_alt="",
+             borrador="false", ia="true", producto="", leccion="")
         errores = generar.generar(self.tmp)
-        self.assertTrue(errores)
-        self.assertIn("sin imagen", errores[0].lower())
-        self.assertEqual((self.tmp / "blog" / "index.html").read_text(encoding="utf-8"), "NO-TOCAR")
-        self.assertEqual((self.tmp / "_articulos" / "2026-11-02-sin-foto.md").read_text(encoding="utf-8"), antes)
+        self.assertEqual(errores, [])
+        html = (self.tmp / "blog" / "sin-foto.html").read_text(encoding="utf-8")
+        self.assertNotIn("post-foto", html)
+        self.assertNotIn("Imagen pendiente", html)
+        self.assertNotIn('class="ph"', html)
+        self.assertNotIn("img/blog/", html)
+        self.assertIn("🤖 Generado con IA.", html)
+        self.assertIn('"@type":"Article"', html.replace(" ", ""))
+        self.assertIn("https://granjarentable.com/img/logo.jpg", html)
+        self.assertIn("Esta app te enseña a criar pollos como un profesional.", html)
+        self.assertIn('href="../app.html"', html)
+        self.assertIn('href="../curso.html"', html)
+        self.assertIn("https://granjarentable.com/blog/sin-foto.html",
+                      (self.tmp / "sitemap.xml").read_text(encoding="utf-8"))
+        indice = (self.tmp / "blog" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('id="filtro"', indice)
+        self.assertIn("Blog de avicultura", indice)
+        post(self.tmp, "2026-11-02-solo-og.md", imagen="", borrador="false")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(any("imagen_og" in e and "imagen" in e for e in errores))
 
     def test_medida_mala_y_html_y_enlace(self):
         post(self.tmp, "2026-11-02-malo.md", borrador="false",
@@ -203,6 +219,14 @@ class Generador(unittest.TestCase):
              _cuerpo="Los pollos de carne comen mucho.")
         errores = generar.generar(self.tmp)
         self.assertTrue(any("pollos de engorde" in e for e in errores))
+        (self.tmp / "_articulos" / "2026-11-02-amazon.md").unlink()
+        post(
+            self.tmp, "2026-10-18-guia-pdf.md", borrador="false", producto="", leccion="",
+            imagen="", imagen_og="",
+            fuentes=["[Guía de manejo](https://www.example.com/Broiler-Guide.pdf)"],
+            _cuerpo="El lote es de pollos de engorde. La cifra sale del PDF enlazado.",
+        )
+        self.assertEqual(generar.generar(self.tmp), [])
 
     def test_markdown_roto_no_toca_el_html(self):
         (self.tmp / "_articulos" / "roto.md").write_text("sin datos\n", encoding="utf-8")
@@ -342,11 +366,11 @@ class Generador(unittest.TestCase):
         self.assertNotIn("WhatsApp", html)
         self.assertNotIn("wa.me", html)
         self.assertNotIn("wa-float", html)
-        self.assertIn("css/estilo.css?v=202610183", html)
-        self.assertIn("js/boot.js?v=202610183", html)
-        self.assertIn("js/config.js?v=202610183", html)
-        self.assertIn("js/app.js?v=202610183", html)
-        self.assertIn("js/site.js?v=202610183", html)
+        self.assertIn("css/estilo.css?v=202610192", html)
+        self.assertIn("js/boot.js?v=202610192", html)
+        self.assertIn("js/config.js?v=202610192", html)
+        self.assertIn("js/app.js?v=202610192", html)
+        self.assertIn("js/site.js?v=202610192", html)
         self.assertNotIn("js/app.js?v=1", html)
 
     def test_herramientas_marca_la_pagina_activa(self):
