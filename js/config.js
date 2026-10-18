@@ -61,9 +61,12 @@ window.GR = {
      Los precios son secretos de Supabase (STRIPE_PRECIO_MENSUAL y STRIPE_PRECIO_ANUAL).
      No pongas aquí sk_, rk_, whsec_ ni price_. Si el servidor no tiene precios, el botón dice «Próximamente».
      Messenger de la Página está PENDIENTE: falta el usuario m.me/…. No inventes la URL.
+     activo pasa a true el día que los precios estén en Supabase. Hasta entonces el botón dice «Próximamente».
+     El interruptor de anuncios es window.ads.activo (PR de apagar Adsterra). Este archivo no lo enciende.
      El concurso (PR #15) no usa este bloque: el suyo es comunidad.concursoPublicado. */
   premium: {
-    messenger: "PENDIENTE"
+    messenger: "PENDIENTE",
+    activo: false
   },
   redes: {
     adsterra: {

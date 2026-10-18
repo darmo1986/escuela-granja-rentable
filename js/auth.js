@@ -863,17 +863,31 @@
     pintarCuenta();
   }
 
+  var pasoDesistir = false;
+
   function desistir() {
     if (!cliente || !usuarioActual) {
       notaCuenta("Entra en tu cuenta para desistir.");
       return;
     }
-    if (!window.confirm("¿Desistir del contrato? Si no han pasado 14 días, se cancela la suscripción y se pide la devolución del cobro.")) return;
+    pasoDesistir = true;
+    ultimoError = "";
+    pintarCuenta();
+  }
+
+  function enviarDesistimiento(ev) {
+    ev.preventDefault();
+    if (!cliente || !usuarioActual) {
+      notaCuenta("Entra en tu cuenta para desistir.");
+      return;
+    }
+    pasoDesistir = true;
     notaCuenta("");
-    cliente.functions.invoke("desistir", { body: {} }).then(function (res) {
+    cliente.functions.invoke("desistir", { body: { confirmado: true } }).then(function (res) {
       var mensaje = res.data && (res.data.mensaje || res.data.error);
       if (res.data && res.data.ok) {
-        notaCuenta(mensaje || "Desististe. La suscripción queda cancelada.");
+        pasoDesistir = false;
+        notaCuenta(mensaje || "Desististe. La suscripción queda cancelada. El acuse está en tu correo.");
         marcarPremium(usuarioActual.id);
         return;
       }
@@ -931,8 +945,16 @@
         : '<p>No tienes Premium. El curso, las guías y la calculadora básica siguen gratis. <a href="' + esc(root + "premium.html") + '">Ver Premium</a>.</p>' +
           (textoSuscripcion() ? "<p>" + esc(textoSuscripcion()) + "</p>" : "")) +
       '<p><button type="button" class="btn sec" id="cuenta-portal">Gestionar suscripción</button></p>' +
-      '<p><button type="button" class="btn sec" id="cuenta-desistir">Desistir del contrato</button></p>' +
-      '<p class="fine">Botón de desistimiento. La Directiva (UE) 2023/2673 se aplica desde el 19 de junio de 2026. Si no han pasado más de 14 días desde el contrato, cancelamos la suscripción y pedimos a Stripe la devolución del primer cobro.</p>' +
+      (pasoDesistir
+        ? '<form id="cuenta-desistir-form">' +
+          '<p>Confirma el desistimiento. El acuse llega al correo de la cuenta, con el contenido, la fecha y la hora.</p>' +
+          '<label>Apodo<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname" readonly></label>' +
+          '<label>Correo de respuesta<input name="correo" type="email" value="' + esc(usuarioActual.correo) + '" autocomplete="email" readonly></label>' +
+          '<label>Suscripción<input name="suscripcion" value="' + esc(textoSuscripcion() || "Premium") + '" readonly></label>' +
+          '<p><button type="submit" class="btn sec">Confirmar desistimiento</button> ' +
+          '<button type="button" class="btn sec" id="cuenta-desistir-volver">Volver</button></p></form>'
+        : '<p><button type="button" class="btn sec" id="cuenta-desistir">Desistir del contrato</button></p>') +
+      '<p class="fine">Botón de desistimiento. La Directiva (UE) 2023/2673 se aplica desde el 19 de junio de 2026. Si no han pasado más de 14 días naturales desde el primer cobro, cancelamos la suscripción y pedimos a Stripe la devolución de ese cobro. Si todavía no hubo cobro, el botón cancela la prueba. El acuse llega por correo.</p>' +
       '<p><button type="button" class="btn sec" id="cuenta-cerrar">Cerrar cuenta</button></p>' +
       '<p class="fine">Cerrar la cuenta cancela la suscripción en Stripe y luego borra la cuenta. El cobro no sigue. Si quieres la devolución de los 14 días, pulsa antes Desistir del contrato.</p>' +
       '<p><button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
@@ -941,7 +963,16 @@
       "<h2>Fichas guardadas</h2>" + (favs ? "<ul>" + favs + "</ul>" : "<p>En una ficha de enfermedades, «Guardar ficha».</p>");
     document.getElementById("cuenta-salir").addEventListener("click", salir);
     document.getElementById("cuenta-portal").addEventListener("click", function () { abrirPortal(); });
-    document.getElementById("cuenta-desistir").addEventListener("click", desistir);
+    var btnDesistir = document.getElementById("cuenta-desistir");
+    if (btnDesistir) btnDesistir.addEventListener("click", desistir);
+    var formDesistir = document.getElementById("cuenta-desistir-form");
+    if (formDesistir) formDesistir.addEventListener("submit", enviarDesistimiento);
+    var volverDesistir = document.getElementById("cuenta-desistir-volver");
+    if (volverDesistir) volverDesistir.addEventListener("click", function () {
+      pasoDesistir = false;
+      ultimoError = "";
+      pintarCuenta();
+    });
     document.getElementById("cuenta-cerrar").addEventListener("click", cerrarCuenta);
     document.getElementById("cuenta-apodo").addEventListener("submit", function (ev) {
       ev.preventDefault();
@@ -1071,13 +1102,15 @@
         if (res.error) throw res.error;
       });
     },
-    iniciarPago: function (plan) {
+    iniciarPago: function (plan, acepto) {
       if (!cliente || !usuarioActual) return Promise.reject(new Error("Entra en tu cuenta."));
+      if (acepto !== true) return Promise.reject(new Error("Acepta las condiciones para continuar."));
       return cliente.functions.invoke("crear-checkout", {
         body: {
           plan: plan === "mensual" ? "mensual" : "anual",
           exito: urlDe("cuenta.html"),
-          cancel: urlDe("premium.html")
+          cancel: urlDe("premium.html"),
+          acepto: true
         }
       });
     },

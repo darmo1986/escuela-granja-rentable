@@ -47,7 +47,7 @@ Deno.serve(async (req: Request) => {
   if (sesion.error || !sesion.usuario) return json(req, { error: sesion.error || "Entra en tu cuenta." }, sesion.status || 401);
   if (!esUuid(sesion.usuario.id)) return json(req, { error: "La sesión no vale. Vuelve a entrar." }, 401);
 
-  let cuerpo: { plan?: string; exito?: string; cancel?: string } = {};
+  let cuerpo: { plan?: string; exito?: string; cancel?: string; acepto?: boolean } = {};
   try {
     cuerpo = await req.json();
   } catch {
@@ -58,15 +58,48 @@ Deno.serve(async (req: Request) => {
   const precio = precioDe(plan);
   if (!precio) return json(req, { error: "Próximamente. El pago todavía no está conectado." }, 503);
 
+  if (cuerpo.acepto !== true) {
+    return json(req, { error: "Acepta las condiciones para continuar." }, 400);
+  }
+
+  const filasRes = await fetch(
+    sesion.base + "/rest/v1/suscripciones?select=estado,vence&user_id=eq." + encodeURIComponent(sesion.usuario.id),
+    { headers: { apikey: sesion.servicio, Authorization: "Bearer " + sesion.servicio } }
+  );
+  if (!filasRes.ok) return json(req, { error: "No se pudieron leer las suscripciones." }, 500);
+  const filas = await filasRes.json() as Array<{ estado?: string; vence?: string }>;
+  const viva = function (estado: string | undefined, vence: string | undefined) {
+    if (estado !== "active" && estado !== "trialing" && estado !== "past_due") return false;
+    const t = vence ? Date.parse(vence) : NaN;
+    return Number.isFinite(t) && t > Date.now();
+  };
+  if (filas.some(function (f) { return viva(f.estado, f.vence); })) {
+    return json(req, { error: "Ya tienes Premium. Cambia de plan en Gestionar suscripción." }, 409);
+  }
+  let yaProbo = filas.length > 0;
+
   const email = String(sesion.usuario.email || "");
   const customer = await clienteDe(sesion.usuario.id, email, clave, sesion.base, sesion.servicio);
   if (!customer) return json(req, { error: "Stripe no abrió la ficha del cliente." }, 502);
 
+  const remotas = await stripeGet(
+    "subscriptions?customer=" + encodeURIComponent(customer) + "&status=all&limit=10",
+    clave
+  );
+  if (!remotas.ok) return json(req, { error: "Stripe no confirmó si este cliente ya tuvo una prueba." }, 502);
+  const otras = ((remotas.data as { data?: Array<{ status?: string }> }).data) || [];
+  if (otras.length) yaProbo = true;
+  if (otras.some(function (s) { return s.status === "active" || s.status === "trialing" || s.status === "past_due"; })) {
+    return json(req, { error: "Ya tienes Premium. Cambia de plan en Gestionar suscripción." }, 409);
+  }
+
   const exito = vueltaSegura(cuerpo.exito, "https://granjarentable.com/cuenta.html");
   const cancel = vueltaSegura(cuerpo.cancel, "https://granjarentable.com/premium.html");
   const exitoConSesion = exito + (exito.indexOf("?") === -1 ? "?" : "&") + "premium=ok&session_id={CHECKOUT_SESSION_ID}";
+  const aceptoEn = new Date().toISOString();
+  const avisoCasilla = "Pido que el contenido empiece durante la prueba y sé que, al acceder, pierdo el desistimiento. Aun así, en 14 días desde el primer cobro devolvemos ese cobro.";
 
-  const alta = await stripeForm("checkout/sessions", clave, codificarForma([
+  const pares: Array<[string, string] | [string, string, string]> = [
     ["mode", "subscription"],
     ["customer", customer],
     ["client_reference_id", sesion.usuario.id],
@@ -77,10 +110,16 @@ Deno.serve(async (req: Request) => {
     ["billing_address_collection", "required"],
     ["automatic_tax[enabled]", "true"],
     ["customer_update[address]", "auto"],
-    ["subscription_data[trial_period_days]", DIAS_PRUEBA],
+    ["consent_collection[terms_of_service]", "required"],
+    ["custom_text[terms_of_service_acceptance][message]", avisoCasilla],
     ["subscription_data[metadata][user_id]", sesion.usuario.id],
-    ["metadata[user_id]", sesion.usuario.id]
-  ]));
+    ["subscription_data[metadata][acepto]", aceptoEn],
+    ["metadata[user_id]", sesion.usuario.id],
+    ["metadata[acepto]", aceptoEn]
+  ];
+  if (!yaProbo) pares.push(["subscription_data[trial_period_days]", DIAS_PRUEBA]);
+
+  const alta = await stripeForm("checkout/sessions", clave, codificarForma(pares));
   const url = alta.ok && alta.data && (alta.data as { url?: string }).url;
   if (!url) return json(req, { error: "Stripe no abrió el pago. Revisa los precios y Stripe Tax." }, 502);
   return json(req, { url });

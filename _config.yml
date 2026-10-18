@@ -12,6 +12,7 @@ exclude:
   - _fuentes
   - supabase
   - README.md
+  - README_PREMIUM.md
   - "**/README.md"
   - "**/LEEME.md"
   - LEEME.md

@@ -27,6 +27,7 @@ body {
 }
 img { max-width: 100%; height: auto; }
 a { color: var(--gm); }
+.pendiente { color: inherit; text-decoration: none; cursor: default; }
 h1, h2, h3 { line-height: 1.2; color: var(--gd); }
 h1 { font-size: clamp(1.7rem, 4vw, 2.55rem); margin: .2em 0 .4em; }
 h2 { font-size: clamp(1.35rem, 2.5vw, 1.8rem); margin: 0 0 .4em; }

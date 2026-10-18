@@ -2,7 +2,7 @@
 
 La web ya tiene la página, el menú y el programa que escucha a Stripe. **Todavía no cobra.** El botón de `/premium` dice «Próximamente» hasta que los precios estén en Supabase. No hace falta pegar enlaces en `js/config.js`: el pago lo abre el servidor con la sesión de quien ha entrado.
 
-No fusiones este cambio antes del PR #12 (cuentas). Premium se apoya en la tabla `perfiles`. El PR #15 (concurso) va después; al final de esta nota está cómo encajarlos sin romper el menú Herramientas.
+El PR #12 (cuentas) ya está en `main`. Premium se apoya en la tabla `perfiles`. El PR #15 (concurso) va después; al final de esta nota está cómo encajarlos sin romper el menú Herramientas.
 
 Trabaja siempre con el interruptor de Stripe en **modo prueba** (Test mode). La tarjeta de prueba no cobra dinero de verdad.
 
@@ -16,8 +16,12 @@ Estas cosas se pegan solo en Supabase → Project Settings → Edge Functions �
 | Clave restringida de prueba | Empieza por `rk_test_` | `STRIPE_SECRET_KEY` |
 | Precio mensual | Empieza por `price_` | `STRIPE_PRECIO_MENSUAL` |
 | Precio anual | Empieza por `price_` | `STRIPE_PRECIO_ANUAL` |
+| Acuse de desistimiento | Empieza por `re_` | `RESEND_API_KEY` |
+| Remitente de ese acuse | Un correo verificado en Resend | `CORREO_DESDE` |
 
 La clave anon de Supabase (`SUPABASE_ANON_KEY`) la pone el propio Supabase en las funciones. Si faltara, pega la clave **publicable**, la misma de `js/config.js`. Nunca pongas la `service_role` en ese hueco.
+
+`RESEND_API_KEY` y `CORREO_DESDE` no van en el repositorio. Sin los dos, el botón de desistimiento responde error y **no cancela**: el acuse por correo es obligatorio. `ENTORNO=local` solo en tu máquina, si quieres probar la vuelta del pago en `http://localhost`. En producción ese secreto no existe: localhost no entra en CORS ni como URL de vuelta.
 
 No pongas `STRIPE_PERMITIR_REAL` todavía. Mientras no exista, un aviso de modo real se ignora y nadie queda Premium por un cobro real accidental.
 
@@ -29,7 +33,7 @@ Estás en Santa Cruz de Tenerife. En Canarias el impuesto indirecto es el **IGIC
 
 1. Entra en [dashboard.stripe.com](https://dashboard.stripe.com). Arriba a la derecha, el interruptor tiene que decir que estás en **modo de prueba**. Si dice «real» o «live», cámbialo antes de seguir.
 2. Catálogo de productos → Añadir producto. Nombre: **Granja Rentable Premium**.
-3. Crea **dos** precios, los dos recurrentes, en euros. En cada precio abre las opciones de moneda y añade dólares (USD) con el importe de la tabla. No actives la prueba en el precio: los 7 días los pone el servidor al abrir el pago.
+3. Crea **dos** precios, los dos recurrentes, en euros. En cada precio, **Incluir impuestos en el precio: Sí** (tax behavior *inclusive*), también en la opción de moneda en USD. Si el precio queda *exclusive*, Stripe suma el impuesto encima: 4,99 € + 21 % = 6,04 €, y la web no dice eso. En cada precio abre las opciones de moneda y añade dólares (USD) con el importe de la tabla, también con el impuesto incluido. No actives la prueba en el precio: los 7 días los pone el servidor al abrir el pago, y solo si esa cuenta y ese cliente de Stripe no tuvieron ya una prueba.
 
 | Precio | Cada | EUR | USD (opción de moneda) |
 |---|---|---|---|
@@ -37,9 +41,10 @@ Estás en Santa Cruz de Tenerife. En Canarias el impuesto indirecto es el **IGIC
 | Anual | año | 39 | 39 |
 
 4. Copia el identificador de cada precio (empieza por `price_`). El mensual va al secreto `STRIPE_PRECIO_MENSUAL`. El anual, a `STRIPE_PRECIO_ANUAL`. No los pegues en `js/config.js`.
-5. Ajustes → Tax (Stripe Tax). Actívalo y pon la dirección del negocio. Sin esto, el botón de pago responde que no pudo abrir Stripe.
+5. Ajustes → Tax (Stripe Tax). Actívalo y pon la dirección del negocio. Comportamiento fiscal predeterminado: **Inclusivo**. Sin esto, el botón de pago responde que no pudo abrir Stripe.
 6. Ajustes → Portal de clientes (Customer portal). Actívalo. Permite cancelar. La cancelación tiene que ser **al final del periodo**, no en el acto: así quien cancela sigue hasta el día que ya pagó.
-7. Ajustes → Correos de clientes. Activa el recibo y el aviso antes de que se renueve la suscripción. Ese correo es también la confirmación del contrato.
+7. Ajustes → Correos de clientes. Activa el recibo y el aviso antes de que se renueve la suscripción. El aviso de la prueba, aparte, está en Billing → Subscriptions and emails → Manage free trial messaging → **Send a reminder email before a free trial ends**. Ese es el correo que prometen las condiciones antes del primer cobro. El recibo de Stripe es también la confirmación del contrato.
+8. Ajustes → Público. Pon la URL de las condiciones (`https://granjarentable.com/condiciones-premium.html`). El pago pide aceptarlas y guarda la fecha en `metadata[acepto]`. Sin esa URL, Stripe no abre la sesión.
 
 No crees enlaces de pago (`buy.stripe.com`). Esos enlaces dejan que el navegador elija la cuenta, y con eso se podía quitar el Premium a otra persona. El botón de la web llama a la función `crear-checkout`.
 
@@ -76,6 +81,7 @@ Permisos:
 - Checkout Sessions: Write
 - Billing portal sessions: Write
 - Invoices: Read
+- InvoicePayments: Read (si el panel lo pide aparte de Invoices; hace falta para devolver con la API basil)
 - Refunds: Write
 - Events: Read
 
@@ -153,14 +159,14 @@ En el panel de Supabase, «Enforce JWT» queda **apagado** solo en `stripe-webho
 6. Vuelves a Mi cuenta. Tiene que decir que Premium está en vigor y, junto al apodo, la insignia. En esa primera página no se piden anuncios. El apodo es el que escribiste al registrarte, no el correo.
 7. En Premium, entra a la lección de ejemplo y pulsa la descarga. El enlace caduca a los dos minutos, también durante la prueba. Si cierras sesión, la lección desaparece: la base no la entrega.
 8. Mi cuenta → Gestionar suscripción. Se abre Stripe. Cancela al final del periodo. Sigues Premium hasta ese día. Si tienes otra suscripción viva, cancelar una no apaga la otra.
-9. Mi cuenta → Desistir del contrato. Dentro de los 14 días cancela en el acto y pide la devolución. Pasados los 14 días, el botón te manda al portal.
+9. Mi cuenta → Desistir del contrato → Confirmar desistimiento. El plazo es de 14 días naturales desde el primer cobro (si todavía no hubo cobro, 14 días desde el alta). Cancela en el acto, pide la devolución del PaymentIntent de `invoice.payments` y envía el acuse al correo de la cuenta. Si el acuse o la devolución fallan, la suscripción sigue activa. Pasados los 14 días, el botón responde que ya pasó el plazo.
 10. Mi cuenta → Cerrar cuenta. Primero cancela la suscripción en Stripe y después borra la cuenta. Stripe no sigue cobrando.
 11. Para no esperar 7 días: en Stripe, abre esa suscripción de prueba y termina la prueba (End trial). Mira el webhook: tiene que aparecer en verde. Luego mira Mi cuenta. `premium_hasta` no puede quedar vacío si la cuenta es Premium.
 12. Para un fallo de pago: otra suscripción de prueba con la tarjeta `4000 0000 0000 0341` (se acepta y falla al cobrar), o reenvía desde Stripe el evento `invoice.payment_failed`. Si no queda ninguna suscripción viva, la cuenta deja de ser Premium.
 
 Si pagas y no se activa: en Stripe → Webhooks mira el envío. Una respuesta `Firma` significa que el `whsec_` no es el de este destino. Una respuesta `sin usuario` significa que el alta no pasó por el botón de la web.
 
-El soporte de Premium es por Messenger de la Página o por el formulario de la web, en un máximo de 2 días hábiles. El usuario de la Página (m.me/…) está **PENDIENTE**: cuando lo tengas, se cambia el enlace `#PENDIENTE` de `premium.html` y de las condiciones. Información general: no sustituye al veterinario; ante urgencias, acude hoy a tu veterinario. No damos dosis de medicamentos.
+El soporte de Premium es por Messenger de la Página o por el formulario de la web, en un máximo de 2 días hábiles. El usuario de la Página (m.me/…) está **PENDIENTE**: hoy es un texto, no un enlace. Cuando lo tengas, sustituye el `<span class="pendiente">` de `premium.html` y de las condiciones, y quita el aviso «(PENDIENTE…)» antes de cobrar de verdad. Información general: no sustituye al veterinario; ante urgencias, acude hoy a tu veterinario. No damos dosis de medicamentos.
 
 ## 9. Antes de cobrar dinero de verdad
 
@@ -181,7 +187,7 @@ Cuando el gestor dé el visto bueno:
 - `supabase/functions/stripe-webhook` — comprueba la firma, relee el aviso en Stripe, guarda el id del aviso y escribe una fila por suscripción. Premium sale de todas las que sigan vivas, y siempre con fecha de fin.
 - `supabase/functions/stripe-portal` — abre la página de Stripe para cancelar o cambiar la tarjeta. Exige haber entrado.
 - `supabase/functions/premium-archivo` — firma la descarga a 120 segundos si la cuenta es Premium.
-- `supabase/functions/desistir` — botón de desistimiento. Dentro de 14 días cancela y pide la devolución.
+- `supabase/functions/desistir` — botón de desistimiento. Exige confirmación, acuse por correo (`RESEND_API_KEY` y `CORREO_DESDE`) y la devolución del pago basil. Si algo de eso falla, no cancela. El plazo cuenta desde el primer cobro.
 - `supabase/functions/cerrar-cuenta` — cancela en Stripe y después borra la cuenta.
 - `supabase/migrations/20261018150000_premium.sql` — tablas, reglas y dos ejemplos.
 
@@ -212,7 +218,7 @@ Al juntar las dos ramas van a chocar estos archivos. Se queda así:
 
 | Archivo | Qué conservar |
 |---|---|
-| `js/config.js` | Un solo objeto `comunidad` (el de las cuentas, con `concursoPublicado`). Y el objeto `premium` de esta rama (`messenger: "PENDIENTE"`). No crees un segundo `comunidad`: el de abajo pisa al de arriba. |
+| `js/config.js` | Un solo objeto `comunidad` (el de las cuentas, con `concursoPublicado`). Y el objeto `premium` de esta rama (`messenger: "PENDIENTE"`, `activo: false`). `activo` pasa a `true` el día de los secretos. No crees `window.ads`: lo apaga el PR de anuncios con `window.ads.activo === false`, y esta web ya lo respeta. No crees un segundo `comunidad`: el de abajo pisa al de arriba. |
 | `js/site.js` | El concurso se mete **dentro** de `#nav-herramientas`, después de Juegos. Premium se queda **fuera**, antes de Redes. En el pie, las dos líneas: Concurso y Premium. |
 | `privacidad.html` y `cookies.html` | El párrafo del concurso y el de Premium. No borres uno para dejar el otro. |
 | `sitemap.xml` | Las tres direcciones: concurso, premium y condiciones. |

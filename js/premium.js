@@ -10,13 +10,13 @@
     usd: {
       cifra: "US$ 39",
       periodo: "/ año",
-      nota: "Precio anunciado en dólares. Si la dirección de facturación está en la Unión Europea, Stripe suma el IVA: el país del menú no lo quita.",
+      nota: "Precio anunciado en dólares, con el impuesto incluido en el precio de Stripe. Si la dirección de facturación está en la Unión Europea, ese impuesto es el del país. El menú no lo quita.",
       ahorro: "Ahorras un 35 % frente al mensual"
     },
     eur: {
       cifra: "39 €",
       periodo: "/ año",
-      nota: "Unión Europea: precio en euros, IVA según el país de facturación. Si no sabemos el país, mostramos euros.",
+      nota: "Unión Europea: precio en euros con el impuesto incluido. En la península es IVA; en Canarias es IGIC. Si no sabemos el país, mostramos euros.",
       ahorro: "Ahorras un 35 % frente al mensual"
     }
   };
@@ -24,13 +24,13 @@
     usd: {
       cifra: "US$ 4,99",
       periodo: "/ mes",
-      nota: "Precio anunciado en dólares. Si la dirección de facturación está en la Unión Europea, Stripe suma el IVA: el país del menú no lo quita.",
+      nota: "Precio anunciado en dólares, con el impuesto incluido en el precio de Stripe. Si la dirección de facturación está en la Unión Europea, ese impuesto es el del país. El menú no lo quita.",
       ahorro: ""
     },
     eur: {
       cifra: "4,99 €",
       periodo: "/ mes",
-      nota: "Unión Europea: precio en euros, IVA según el país de facturación. Si no sabemos el país, mostramos euros.",
+      nota: "Unión Europea: precio en euros con el impuesto incluido. En la península es IVA; en Canarias es IGIC. Si no sabemos el país, mostramos euros.",
       ahorro: ""
     }
   };
@@ -42,17 +42,31 @@
     return document.documentElement.dataset.pais || "";
   }
 
-  function monedaAnunciada(code, origen, geo) {
+  function monedaAnunciada(code, origen, geo, ads) {
     code = String(code || "").toUpperCase();
     if (UE[code]) return "eur";
     if (origen === "elegido") return "usd";
+    if (origen === "inferido" && ads === "libre") return "usd";
     if (geo === "ok" && (origen === "inferido" || origen === "geo")) return "usd";
     return "eur";
   }
 
+  function senalAds() {
+    var html = document.documentElement;
+    if (html.dataset.ads === "libre") return "libre";
+    var origen = html.dataset.paisOrigen || "";
+    var code = String(pais() || html.dataset.pais || "").toUpperCase();
+    var consent = "";
+    try { consent = localStorage.getItem("gr_consent") || ""; } catch (e) {}
+    if (consent !== "si" && origen === "inferido" && (code === "MX" || code === "CO")) {
+      return "libre";
+    }
+    return html.dataset.ads || "";
+  }
+
   function moneda() {
     var html = document.documentElement;
-    return monedaAnunciada(pais(), html.dataset.paisOrigen || "", html.dataset.geo || "");
+    return monedaAnunciada(pais(), html.dataset.paisOrigen || "", html.dataset.geo || "", senalAds());
   }
 
   function plan() {
@@ -84,6 +98,12 @@
     var acepto = document.getElementById("premium-acepto");
     if (!boton) return;
     var u = usuario();
+    if (!(window.GR && GR.premium && GR.premium.activo) && !(u && u.premium)) {
+      boton.disabled = true;
+      boton.textContent = "Próximamente";
+      if (aviso) aviso.textContent = "Próximamente. El pago todavía no está conectado.";
+      return;
+    }
     if (u && u.premium) {
       boton.disabled = false;
       boton.textContent = "Ir a mi cuenta";
@@ -135,7 +155,7 @@
       return;
     }
     if (boton) { boton.disabled = true; boton.textContent = "Abriendo el pago…"; }
-    GRAuth.iniciarPago(plan()).then(function (res) {
+    GRAuth.iniciarPago(plan(), true).then(function (res) {
       var url = res && res.data && res.data.url;
       if (url) {
         location.href = url;

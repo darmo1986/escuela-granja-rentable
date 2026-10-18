@@ -113,7 +113,7 @@ async function guardarFila(userId: string, fila: {
     user_id?: string;
   } : null;
   if (previa && previa.user_id && previa.user_id !== userId) return;
-  if (previa && previa.evento_en && fila.eventoEn && previa.evento_en > fila.eventoEn) return;
+  if (previa && previa.evento_en && fila.eventoEn && Date.parse(previa.evento_en) > Date.parse(fila.eventoEn)) return;
 
   const cuerpo = {
     stripe_subscription_id: fila.subId,
@@ -172,7 +172,10 @@ async function aplicarSuscripcion(sub: Record<string, unknown>, eventoEn: string
   if (!userId) {
     const estado = String(real.status || "");
     if (estado === "canceled" || estado === "incomplete_expired") return;
-    throw new Error("sin usuario");
+    // Un Payment Link antiguo o una suscripción creada a mano no trae user_id
+    // y no está en la tabla. 200: Stripe no la reintenta tres días.
+    console.warn("suscripcion sin usuario y sin fila: " + subId);
+    return;
   }
   if (!(await perfilExiste(userId))) return;
   const dueno = await buscarUsuario("", subId);

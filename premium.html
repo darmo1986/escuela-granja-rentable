@@ -101,7 +101,7 @@
 <ul class="hero-points">
 <li>Curso avanzado completo, con vídeo y examen</li>
 <li>Plantillas de costos, lotes e incubación</li>
-<li>Sin anuncios en toda la web</li>
+<li>Sin anuncios, aunque el sitio vuelva a tenerlos</li>
 <li>Cancelas cuando quieras, en dos clics</li>
 </ul>
 </div>
@@ -112,11 +112,12 @@
 <button type="button" class="plan-opt" id="plan-mensual" aria-pressed="false">Mensual</button>
 </div>
 <p class="price-usd" id="precio-linea">39 € <small>/ año</small></p>
-<p class="fine" id="precio-nota">Unión Europea: precio en euros, IVA según el país de facturación. Si no sabemos el país, mostramos euros.</p>
+<p class="fine" id="precio-nota">Unión Europea: precio en euros con el impuesto incluido. En la península es IVA; en Canarias es IGIC. Si no sabemos el país, mostramos euros.</p>
+<p class="fine" id="precio-igic">Canarias: el impuesto indirecto es el IGIC, no el IVA. El precio de Stripe lleva el impuesto incluido. El gestor confirma el tipo antes del cobro real.</p>
 <p class="badge" id="precio-ahorro">Ahorras un 35 % frente al mensual</p>
 <button type="button" class="btn gold" id="premium-cta" disabled>Próximamente</button>
-<label class="premium-acepto"><input type="checkbox" id="premium-acepto"> <span>Acepto las <a href="condiciones-premium.html">condiciones de Premium</a>. Pido que el contenido digital empiece durante la prueba y sé que, si accedo a él, puedo perder el desistimiento de 14 días. Aun así, si lo pides en esos 14 días, devolvemos el primer cobro.</span></label>
-<p class="fine" id="premium-aviso">Mensual: US$ 4,99 o 4,99 €. Pago seguro con Stripe. Necesitas una cuenta de Granja Rentable.</p>
+<label class="premium-acepto"><input type="checkbox" id="premium-acepto"> <span>Acepto las <a href="condiciones-premium.html">condiciones de Premium</a>. Pido que el contenido digital empiece durante la prueba y sé que, si accedo a él, puedo perder el desistimiento. Aun así, en los 14 días naturales siguientes al primer cobro devolvemos ese cobro.</span></label>
+<p class="fine" id="premium-aviso">Próximamente. El pago todavía no está conectado.</p>
 </div>
 </section>
 
@@ -135,7 +136,7 @@
 <tr><td>Calculadora avanzada: varios lotes, guardar y comparar</td><td>—</td><td>✔</td></tr>
 <tr><td>Soporte prioritario por Messenger de la Página o formulario de la web (máximo 2 días hábiles)</td><td>—</td><td>✔</td></tr>
 <tr><td>Certificado de finalización del curso avanzado</td><td>—</td><td>✔</td></tr>
-<tr><td>Sin anuncios</td><td>—</td><td>✔</td></tr>
+<tr><td>Sin anuncios, aunque el sitio vuelva a tenerlos</td><td>—</td><td>✔</td></tr>
 </tbody>
 </table>
 </div>
@@ -156,16 +157,16 @@
 <article class="panel panel-shop">
 <p class="kicker">Para tus dudas</p>
 <h3>Soporte prioritario</h3>
-<p>Soporte prioritario por <a href="#PENDIENTE" id="soporte-messenger">Messenger de la Página</a> (PENDIENTE: usuario de la Página, m.me/…) o <a href="registro.html">formulario de la web</a>, respuesta en un máximo de 2 días hábiles. Información general: no sustituye al veterinario; ante urgencias, acude hoy a tu veterinario. No damos dosis de medicamentos.</p>
+<p>Soporte prioritario por <span class="pendiente" id="soporte-messenger">Messenger de la Página</span> (PENDIENTE: usuario de la Página, m.me/…) o <a href="registro.html">formulario de la web</a>, respuesta en un máximo de 2 días hábiles. Información general: no sustituye al veterinario; ante urgencias, acude hoy a tu veterinario. No damos dosis de medicamentos.</p>
 </article>
 </section>
 
 <section class="block">
 <h2>Preguntas</h2>
 <div class="faq-item"><h2>¿Tengo que pagar para seguir viendo el curso gratis?</h2><p>No. El curso básico, las guías, la calculadora básica, los juegos y el concurso siguen gratis.</p></div>
-<div class="faq-item"><h2>¿Cómo funciona la prueba de 7 días?</h2><p>Pones tu tarjeta y no se cobra nada durante 7 días. Si cancelas antes, no pagas. Te avisamos por correo antes del primer cobro.</p></div>
+<div class="faq-item"><h2>¿Cómo funciona la prueba de 7 días?</h2><p>Pones tu tarjeta y no se cobra nada durante 7 días. Una prueba gratis por cuenta: si ya tuviste una, la siguiente suscripción se cobra desde el primer día. Si cancelas antes del primer cobro, no pagas. Te avisamos por correo antes de ese cobro.</p></div>
 <div class="faq-item"><h2>¿Cómo cancelo?</h2><p>Desde «Mi cuenta» → «Gestionar suscripción». Se abre la página segura de Stripe y cancelas en dos clics. Mantienes el acceso hasta el final del periodo pagado.</p></div>
-<div class="faq-item"><h2>¿Desde qué países puedo pagar?</h2><p>Con tarjeta desde Latinoamérica, la Unión Europea y Estados Unidos. En la Unión Europea el precio se anuncia en euros y el IVA sale de la dirección de facturación. Si no sabemos tu país, también mostramos euros. Elegir otro país en el menú cambia el precio anunciado y no quita ese IVA. Tu banco puede sumar una comisión por moneda extranjera.</p></div>
+<div class="faq-item"><h2>¿Desde qué países puedo pagar?</h2><p>Con tarjeta desde Latinoamérica, la Unión Europea y Estados Unidos. El precio de Stripe lleva el impuesto incluido. En la Unión Europea se anuncia en euros: en la península es IVA y en Canarias es IGIC, según la dirección de facturación. Si no sabemos tu país, también mostramos euros. Elegir otro país en el menú cambia el precio anunciado y no quita ese impuesto. Tu banco puede sumar una comisión por moneda extranjera.</p></div>
 <div class="faq-item"><h2>¿Qué pasa con los anuncios y con el ranking?</h2><p>Con Premium la web deja de cargar los anuncios. En el ranking se ve tu apodo, el mismo de la cuenta, y al lado una insignia. No se publica el correo.</p></div>
 </section>
 

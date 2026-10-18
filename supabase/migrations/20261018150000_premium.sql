@@ -18,6 +18,9 @@ comment on column public.perfiles.premium is
 comment on column public.perfiles.premium_hasta is
   'Fin de la suscripción viva que acaba más tarde. Si premium es true, esta fecha no puede ser null.';
 
+-- La v1 podía dejar premium=true sin fecha. Si no se apaga, el CHECK aborta todo el script.
+update public.perfiles set premium = false where premium and premium_hasta is null;
+
 alter table public.perfiles drop constraint if exists premium_con_fecha;
 alter table public.perfiles add constraint premium_con_fecha
   check (not premium or premium_hasta is not null);
@@ -106,6 +109,20 @@ create table if not exists public.stripe_eventos (
 alter table public.stripe_eventos enable row level security;
 revoke all on public.stripe_eventos from public, anon, authenticated;
 grant select, insert, delete on public.stripe_eventos to service_role;
+
+-- Acuse del botón de desistimiento. Solo lo escribe el servidor. anon no lo lee.
+create table if not exists public.desistimientos (
+  id bigint generated always as identity primary key,
+  user_id uuid not null references public.perfiles (id) on delete cascade,
+  stripe_subscription_id text not null,
+  pedido_en timestamptz not null default now(),
+  ip text,
+  correo text
+);
+
+alter table public.desistimientos enable row level security;
+revoke all on public.desistimientos from public, anon, authenticated;
+grant select, insert on public.desistimientos to service_role;
 
 -- 4) ¿Sigue en vigor alguna suscripción de quien pregunta?
 --    premium_hasta null no cuenta, aunque premium estuviera en true.

@@ -3,15 +3,21 @@ import assert from "node:assert/strict";
 import {
   anuncioPermitido,
   decidirAcceso,
+  dentroDePlazo,
+  devolucionYaHecha,
   esUuid,
   eventoNuevo,
+  facturaExigeDevolucion,
   finPeriodo,
+  intencionesDePago,
   monedaAnunciada,
+  primerCobroMs,
   resumirPremium,
   suscripcionDeFactura,
   usuarioAutorizado,
   usuariosCompatibles
 } from "./premium_estado.mjs";
+import { textoAcuse } from "./acuse.mjs";
 import { firmaValida } from "./firma_stripe.mjs";
 
 const AHORA = Date.parse("2026-10-18T12:00:00Z");
@@ -119,6 +125,64 @@ test("si falla el país, el precio anunciado es en euros", function () {
   assert.equal(monedaAnunciada("MX", "elegido", "ok"), "usd");
   assert.equal(monedaAnunciada("MX", "geo", "ok"), "usd");
   assert.equal(monedaAnunciada("US", "inferido", "ok"), "usd");
+  assert.equal(monedaAnunciada("MX", "inferido", "", "libre"), "usd");
+  assert.equal(monedaAnunciada("CO", "inferido", "", "libre"), "usd");
+  assert.equal(monedaAnunciada("MX", "inferido", "fallo", "libre"), "usd");
+  assert.equal(monedaAnunciada("ES", "inferido", "", "libre"), "eur");
+  assert.equal(monedaAnunciada("MX", "defecto", "", "libre"), "eur");
+  assert.equal(monedaAnunciada("MX", "inferido", ""), "eur");
+});
+
+test("la factura basil devuelve el payment intent, no el campo antiguo", function () {
+  var factura = {
+    amount_paid: 499,
+    status_transitions: { paid_at: 100 },
+    payments: {
+      data: [
+        { status: "paid", payment: { type: "payment_intent", payment_intent: "pi_1" } },
+        { status: "paid", payment: { type: "payment_intent", payment_intent: { id: "pi_2" } } },
+        { status: "open", payment: { type: "payment_intent", payment_intent: "pi_no" } },
+        { status: "paid", payment: { type: "charge", charge: "ch_1" } }
+      ]
+    }
+  };
+  assert.deepEqual(intencionesDePago(factura), ["pi_1", "pi_2"]);
+  assert.equal(facturaExigeDevolucion(factura), true);
+  assert.equal(facturaExigeDevolucion({ amount_paid: 0, payments: { data: [] } }), false);
+  assert.equal(intencionesDePago({ amount_paid: 499 }).length, 0);
+  assert.equal(devolucionYaHecha(400, { error: { message: "Charge has already been refunded" } }), true);
+  assert.equal(devolucionYaHecha(400, { error: { code: "charge_already_refunded", message: "otra cosa" } }), true);
+  assert.equal(devolucionYaHecha(400, { error: { message: "No such payment_intent" } }), false);
+  assert.equal(devolucionYaHecha(402, { error: { message: "already been refunded" } }), false);
+});
+
+test("los 14 días cuentan desde el primer cobro y no se acortan", function () {
+  var dia = 86400;
+  var alta = 1700000000;
+  var cobro = [{ amount_paid: 499, status_transitions: { paid_at: alta + 7 * dia } }];
+  assert.equal(primerCobroMs(cobro), (alta + 7 * dia) * 1000);
+  assert.equal(dentroDePlazo(alta, cobro, (alta + 17 * dia) * 1000), true);
+  assert.equal(dentroDePlazo(alta, cobro, (alta + 21 * dia) * 1000), true);
+  assert.equal(dentroDePlazo(alta, cobro, (alta + 22 * dia) * 1000), false);
+  assert.equal(dentroDePlazo(alta, [], (alta + 10 * dia) * 1000), true);
+  assert.equal(dentroDePlazo(alta, [], (alta + 16 * dia) * 1000), false);
+  assert.equal(dentroDePlazo(alta, [{ amount_paid: 0, status_transitions: { paid_at: alta + dia } }], (alta + 16 * dia) * 1000), false);
+});
+
+test("el acuse lleva el contenido, la fecha y la hora", function () {
+  var cuando = new Date("2026-10-18T12:00:00Z");
+  var texto = textoAcuse({
+    cuando: cuando,
+    apodo: "Pablo",
+    correo: "pablo@example.com",
+    suscripciones: ["sub_1"]
+  });
+  assert.match(texto, /desistimiento del contrato de suscripción/);
+  assert.match(texto, /sub_1/);
+  assert.match(texto, /Pablo/);
+  assert.match(texto, /pablo@example.com/);
+  assert.match(texto, /2026-10-18T12:00:00.000Z/);
+  assert.match(texto, /hora de recepción/);
 });
 
 test("con la sesión abierta no hay anuncios hasta saber si es Premium", function () {

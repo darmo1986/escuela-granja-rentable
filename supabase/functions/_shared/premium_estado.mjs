@@ -121,12 +121,67 @@ export function esUuid(s) {
  * Si la geolocalización falla, o el país es solo el de México por defecto, euros con IVA.
  * Una elección explícita de otro país cambia el anuncio, no el impuesto del cobro.
  */
-export function monedaAnunciada(pais, origen, geo) {
+export function monedaAnunciada(pais, origen, geo, ads) {
   var code = String(pais || "").toUpperCase();
   if (UE[code]) return "eur";
   if (origen === "elegido") return "usd";
+  // Zona «libre» (Latinoamérica inferida, también antes de aceptar cookies).
+  // La zona desconocida y un geo fallido, sin esta señal, siguen en euros.
+  if (origen === "inferido" && ads === "libre") return "usd";
   if (geo === "ok" && (origen === "inferido" || origen === "geo")) return "usd";
   return "eur";
+}
+
+var CATORCE_DIAS_MS = 14 * 24 * 60 * 60 * 1000;
+
+/** Instante del primer cobro (amount_paid > 0). paid_at de basil, o created si falta. */
+export function primerCobroMs(facturas) {
+  var mejor = null;
+  (facturas || []).forEach(function (f) {
+    if (Number(f && f.amount_paid || 0) <= 0) return;
+    var seg = f.status_transitions && f.status_transitions.paid_at;
+    var ms = Number(seg) > 0 ? Number(seg) * 1000 : Number(f.created) * 1000;
+    if (!Number.isFinite(ms) || ms <= 0) return;
+    if (mejor === null || ms < mejor) mejor = ms;
+  });
+  return mejor;
+}
+
+/**
+ * El botón llega hasta el día 14 desde el alta y, si hubo cobro, hasta 14 días
+ * después de ese primer cobro. No acorta la promesa de las condiciones.
+ */
+export function dentroDePlazo(creadaSeg, facturas, ahoraMs) {
+  var creada = Number(creadaSeg) * 1000;
+  if (!Number.isFinite(creada) || creada <= 0) return false;
+  var limite = creada + CATORCE_DIAS_MS;
+  var primero = primerCobroMs(facturas);
+  if (primero) limite = Math.max(limite, primero + CATORCE_DIAS_MS);
+  return Number(ahoraMs) <= limite;
+}
+
+/** PaymentIntent cobrados en invoice.payments (API basil). */
+export function intencionesDePago(factura) {
+  var pagos = factura && factura.payments && factura.payments.data;
+  if (!Array.isArray(pagos)) return [];
+  var ids = [];
+  pagos.forEach(function (p) {
+    if (!p || p.status !== "paid" || !p.payment || p.payment.type !== "payment_intent") return;
+    var pi = p.payment.payment_intent;
+    var id = typeof pi === "string" ? pi : (pi && pi.id) || "";
+    if (id && ids.indexOf(id) === -1) ids.push(id);
+  });
+  return ids;
+}
+
+export function facturaExigeDevolucion(factura) {
+  return Number(factura && factura.amount_paid || 0) > 0;
+}
+
+/** Un 400 solo cuenta como hecho si Stripe dice que ese cobro ya estaba devuelto. */
+export function devolucionYaHecha(status, data) {
+  if (status !== 400) return false;
+  return /already been refunded|charge_already_refunded/i.test(JSON.stringify(data || ""));
 }
 
 /** Con sesión abierta no se piden anuncios hasta saber si esa cuenta es Premium. */
