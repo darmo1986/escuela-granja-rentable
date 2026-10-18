@@ -11,7 +11,7 @@
   box-shadow: var(--shadow);
   margin: 12px 0;
 }
-.concurso-card h2, #paso-juego { scroll-margin-top: 96px; }
+.concurso-card h2, #paso-juego, .concurso-paso { scroll-margin-top: 150px; }
 .concurso-form label {
   display: flex;
   flex-direction: column;
@@ -52,12 +52,33 @@
 .concurso-reloj.urgente { background: #fdecea; color: var(--danger); }
 .concurso-reloj.urgente .concurso-reloj-barra { background: var(--danger); }
 .concurso-opciones { display: grid; gap: 8px; margin: 10px 0; }
-.concurso-opcion { width: 100%; text-align: left; white-space: normal; }
-.concurso-opcion.is-ok { background: var(--gl); color: var(--gd); border: 2px solid var(--gm); }
-.concurso-opcion.is-bad { background: #fdecea; color: var(--danger); border: 2px solid var(--danger); }
+.concurso-opcion {
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+.concurso-opcion.is-ok,
+.concurso-opcion.is-ok:disabled,
+.concurso-opcion.is-ok:focus {
+  background: var(--gl) !important;
+  color: var(--gd) !important;
+  border: 2px solid var(--gm) !important;
+  opacity: 1;
+}
+.concurso-opcion.is-bad,
+.concurso-opcion.is-bad:disabled,
+.concurso-opcion.is-bad:focus {
+  background: #fdecea !important;
+  color: var(--danger) !important;
+  border: 2px solid var(--danger) !important;
+  opacity: 1;
+}
 .concurso-opcion:disabled { cursor: default; }
 .concurso-mark { font-weight: 800; }
 .concurso-explica { background: var(--gl); border-radius: 12px; padding: 10px 12px; font-weight: 750; }
+.concurso-explica.is-ok { background: var(--gl); color: var(--gd); }
+.concurso-explica.is-bad { background: #fdecea; color: var(--danger); }
 .concurso-score {
   font-size: clamp(2.4rem, 8vw, 3.4rem);
   font-weight: 850;
