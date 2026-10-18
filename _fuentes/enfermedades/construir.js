@@ -160,7 +160,7 @@ function head(opts) {
 }
 
 function scripts(root, extra) {
-  return '<script src="' + root + 'js/config.js"></script>\n<script src="' + root + 'js/app.js"></script>\n<script src="' + root + 'js/catalogo.js"></script>\n<script src="' + root + 'js/site.js"></script>\n' + (extra || "");
+  return '<script src="' + root + 'js/config.js"></script>\n<script src="' + root + 'js/app.js"></script>\n<script src="' + root + 'js/catalogo.js"></script>\n<script src="' + root + 'js/site.js"></script>\n<script src="' + root + 'js/ads-config.js?v=202610185"></script>\n' + (extra || "");
 }
 
 function anuncio(tipo) {
