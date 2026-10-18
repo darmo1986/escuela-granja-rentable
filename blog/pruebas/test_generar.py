@@ -119,6 +119,9 @@ class Generador(unittest.TestCase):
         self.assertIn("js/boot.js?v=20261018", indice)
         self.assertIn("css/blog.css?v=20261018", indice)
         self.assertIn("js/blog.js?v=20261018", indice)
+        self.assertIn("js/config.js?v=20261018", indice)
+        self.assertIn("js/app.js?v=20261018", indice)
+        self.assertIn("js/site.js?v=20261018", indice)
         self.assertIn("<!-- menu:inicio -->", menu)
         self.assertIn('id="nav-herramientas"', menu)
         self.assertIn(">Herramientas<", menu)
@@ -322,6 +325,9 @@ class Generador(unittest.TestCase):
         (self.tmp / "premium.html").write_text(
             '<link rel="stylesheet" href="css/estilo.css">\n'
             '<script src="js/boot.js"></script>\n'
+            '<script src="js/config.js"></script>\n'
+            '<script src="js/app.js?v=1"></script>\n'
+            '<script src="js/site.js"></script>\n'
             '<nav id="site-nav" class="nav" aria-label="Principal">\n'
             '<a data-social="messenger" href="https://m.me/PENDIENTE"><span class="nav-label">Messenger</span></a>\n'
             '</nav>\n'
@@ -338,6 +344,10 @@ class Generador(unittest.TestCase):
         self.assertNotIn("wa-float", html)
         self.assertIn("css/estilo.css?v=20261018", html)
         self.assertIn("js/boot.js?v=20261018", html)
+        self.assertIn("js/config.js?v=20261018", html)
+        self.assertIn("js/app.js?v=20261018", html)
+        self.assertIn("js/site.js?v=20261018", html)
+        self.assertNotIn("js/app.js?v=1", html)
 
     def test_herramientas_marca_la_pagina_activa(self):
         (self.tmp / "calculadora.html").write_text(

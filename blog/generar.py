@@ -644,7 +644,9 @@ def limpiar_whatsapp(html):
 
 
 def poner_version(html):
-    for nombre in ("css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js"):
+    for nombre in (
+            "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
+            "js/site.js", "js/app.js", "js/config.js"):
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=\d+)?"',
             rf'\1?v={VERSION_ACTIVOS}"',
