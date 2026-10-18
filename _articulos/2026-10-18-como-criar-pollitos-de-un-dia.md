@@ -69,7 +69,7 @@ El pH del cartel, para pollos de engorde, es 6,0–6,8. El 5–7 de Hy-Line es d
 
 Minnesota: iniciador de 22–24 % de proteína, o cerca, al menos la primera semana y hasta la semana 4. Las dos primeras horas no se inventan con maíz. Ross: inicio en migaja al menos 10 días. Cobb: migaja de buena calidad. El saco de postura no entra. Alabama y Maine lo explican en [pienso casero para pollos de engorde](pienso-casero-para-pollos-de-engorde.html).
 
-Si el alimento no lleva medicación, Minnesota pide pedir los pollitos ya vacunados en la planta contra coccidiosis. No lo decidas el día que aparece sangre. Está en [coccidiosis en pollos](coccidiosis-en-pollos.html).
+Si el alimento no lleva medicación, Minnesota pide pedir los pollitos ya vacunados en la planta contra coccidiosis. No lo decidas el día que aparece sangre. Está en [coccidiosis en pollos](coccidiosis-en-pollos.html). La vacuna de Marek, si la planta o el veterinario la ponen, va antes de que el pollito respire la caspa del lote viejo. El plazo, y lo que la vacuna no impide, están en [enfermedad de Marek](enfermedad-de-marek-en-pollos.html).
 
 Minnesota también escribe, para su clima, alimento a libre disposición la primera semana y luego quitarlo de noche tres semanas para prevenir el «flip». Y dice que no es raro perder 1–2 % por eso. Es una página. No la copies a un galpón caliente de noche sin leer el caso: la misma extensión, en las últimas semanas y por encima de 85–90 °F, pide otra cosa, retirar el alimento en la hora más caliente. El pollito de un día no está en esa frase.
 
