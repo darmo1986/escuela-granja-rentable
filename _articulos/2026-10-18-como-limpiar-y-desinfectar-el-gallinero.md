@@ -38,7 +38,7 @@ La cama del día a día está en [cómo criar pollos de engorde en casa](como-cr
 
 APHIS dice que mantener casas, gallineros y otros encierros limpios es de las mejores formas de frenar gérmenes entre lotes. Alberta lo concreta: una limpieza y desinfección eficaces entre parvadas reducen la probabilidad de pasarle la enfermedad al lote nuevo. Ninguna de las dos fuentes promete un local estéril.
 
-Hay agentes que esta rutina no borra. Merck y Extension.org coinciden en que los ooquistes de la coccidiosis resisten desinfectantes corrientes de granja. El manual Merck describe el virus de Gumboro como muy estable en el ambiente y difícil de erradicar del predio aunque se desinfecte después de vaciar. La limpieza baja la carga y corta el ciclo de lo que sí depende de la costra y del charco. No es un tratamiento de las aves que ya están enfermas.
+Hay agentes que esta rutina no borra. Merck y Extension.org coinciden en que los ooquistes de la coccidiosis resisten desinfectantes corrientes de granja. El manual Merck describe el virus de [Gumboro](gumboro-bursitis-infecciosa-en-pollos.html) como muy estable en el ambiente y difícil de erradicar del predio aunque se desinfecte después de vaciar. La limpieza baja la carga y corta el ciclo de lo que sí depende de la costra y del charco. No es un tratamiento de las aves que ya están enfermas.
 
 Si hay varias muertes, cresta morada, cuello torcido o una caída brusca de la puesta, el balde va después de la llamada. Influenza aviar y Newcastle se notifican al servicio oficial. En México el organismo es SENASICA; en Perú, SENASA; en el resto, el servicio de sanidad animal de tu país. La guía de signos está en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
 
