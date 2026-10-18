@@ -19,7 +19,7 @@
    "videoFinal": "",
    "examen": "l01.json",
    "descripcion": "Antes de comprar pollitos, elige un solo camino: carne, huevos o genética. El alimento suele ser el 60–80 % del costo.",
-   "enlace": "videos/l01.mp4"
+   "enlace": "https://github.com/darmo1986/escuela-granja-rentable/releases/download/videos-1080p-v1/l01.mp4"
   },
   {
    "id": "l02",
@@ -30,7 +30,7 @@
    "videoFinal": "",
    "examen": "l02.json",
    "descripcion": "Antes de comprar aves, decide dónde van a vivir. El espacio, la luz y la cama seca son la base.",
-   "enlace": "videos/l02.mp4"
+   "enlace": "https://github.com/darmo1986/escuela-granja-rentable/releases/download/videos-1080p-v1/l02.mp4"
   },
   {
    "id": "l03",
@@ -41,7 +41,7 @@
    "videoFinal": "",
    "examen": "l03.json",
    "descripcion": "Sin huevos fértiles, la mejor máquina no saca pollitos. Elige la capacidad de la tanda que harás de verdad.",
-   "enlace": "videos/l03.mp4"
+   "enlace": "https://github.com/darmo1986/escuela-granja-rentable/releases/download/videos-1080p-v1/l03.mp4"
   },
   {
    "id": "l04a",
@@ -52,7 +52,7 @@
    "videoFinal": "",
    "examen": "l04a.json",
    "descripcion": "Pollos de engorde, parte 1: cómo preparar la nave, la temperatura de arranque, el alimento por fases y el manejo diario del lote.",
-   "enlace": "videos/l04a.mp4"
+   "enlace": "https://github.com/darmo1986/escuela-granja-rentable/releases/download/videos-1080p-v1/l04a.mp4"
   },
   {
    "id": "l04b",
@@ -63,7 +63,7 @@
    "videoFinal": "",
    "examen": "l04b.json",
    "descripcion": "Pollos de engorde, parte 2: controla el amoníaco, aplica bioseguridad, protege el lote de depredadores y conoce enfermedades y vacunas.",
-   "enlace": "videos/l04b.mp4"
+   "enlace": "https://github.com/darmo1986/escuela-granja-rentable/releases/download/videos-1080p-v1/l04b.mp4"
   },
   {
    "id": "l05a",

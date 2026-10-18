@@ -79,14 +79,20 @@ La ficha ya está en `data/curso-web.json`, la fila ya está en `curso.html` y l
 
 `leccion.html?id=l05a` lee el JSON y reproduce `videos/` + el nombre del archivo. L01–L04B siguen en `lecciones/`, con su texto y su test.
 
-## Hueco del video final de L01 a L04B
+## Vídeos 1080p de L01 a L04B (Release de GitHub)
 
-`videos-finales.html` se quitó del sitio publicado. Cada ficha L01–L04B de `data/curso-web.json` sigue con `"videoFinal": ""`. El curso publicado usa los mp4 actuales de `videos/`. No cambies el `src` de `lecciones/l01.html` (ni L02, L03, L04A, L04B) hasta que el corte final esté aprobado.
+Los mp4 1080p de L01, L02, L03, L04A y L04B pesan entre 200 y 450 MB, y GitHub Pages no admite archivos de más de 100 MB. Por eso están adjuntos a la Release `videos-1080p-v1` del repositorio (gratis, hasta 2 GB por archivo) y el campo `enlace` de cada ficha en `data/curso-web.json` apunta a `https://github.com/darmo1986/escuela-granja-rentable/releases/download/videos-1080p-v1/<id>.mp4`.
+
+- No borres esa Release ni sus archivos: la web los enlaza directamente.
+- Para cambiar un vídeo, sube el nuevo mp4 a una Release nueva (por ejemplo `videos-1080p-v2`) y cambia el `enlace`. No reemplaces el archivo de la Release publicada.
+- Codificación: H.264 High 1080p30, CRF 23 con tope de 2,5 Mbps, AAC 128 kbps, `-movflags +faststart`.
+- GitHub sirve estos archivos con `application/octet-stream` y una redirección a una URL firmada que caduca. `js/app.js` vuelve a pedir el enlace y sigue en el mismo punto si la reproducción falla.
+- Los mp4 viejos de 540p siguen en `videos/` como copia; se pueden borrar cuando se confirme que la Release funciona en Android y iPhone.
 
 ## Pendiente
 
 - `window.GR.formEndpoint` en `js/config.js` apunta a la aplicación web de Apps Script. Regístrate, la prueba de la app y Afiliados envían ahí.
-- Los videos de las lecciones siguen en `videos/` (unos 250 MB). No hay identificadores de YouTube en el repo ni en `data/curso-web.json`, así que no se cambiaron a un embed. Cuando existan, se pueden poner como `youtube` en cada lección y cargar el reproductor al hacer clic.
+- Los videos de L01–L04B están en la Release `videos-1080p-v1` (ver arriba); los mp4 viejos de `videos/` (unos 250 MB) quedan como copia. No hay identificadores de YouTube en el repo ni en `data/curso-web.json`, así que no se cambiaron a un embed. Cuando existan, se pueden poner como `youtube` en cada lección y cargar el reproductor al hacer clic.
 - `window.GR.appUrl` vacío: el botón de Android dice «próximamente».
 - Facebook: confirma `window.GR.facebookUrl` (`https://www.facebook.com/GranjaRentable`).
 - 14 testers con Gmail: el cupo se cuenta en la hoja, no hay un número en vivo.

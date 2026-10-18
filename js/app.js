@@ -293,6 +293,23 @@ function paintLessonSlot(slot,enlace){
   v.preload='none';
   v.poster=root+'img/logo.jpg';
   v.src=media.src;
+  /* Los mp4 grandes viven en una Release de GitHub: el enlace redirige a una URL firmada que caduca.
+     Si falla la red o caduca la firma, se vuelve a pedir el enlace original y se sigue en el mismo punto. */
+  let tries=0,last=0;
+  v.addEventListener('timeupdate',function(){if(v.currentTime>0)last=v.currentTime;});
+  v.addEventListener('playing',function(){tries=0;});
+  v.addEventListener('error',function(){
+    if(tries>=3)return;
+    tries++;
+    const at=last,wasPlaying=!v.paused||at>0;
+    v.src=media.src;
+    v.load();
+    v.addEventListener('loadedmetadata',function once(){
+      v.removeEventListener('loadedmetadata',once);
+      if(at>0)v.currentTime=at;
+      if(wasPlaying){const p=v.play();if(p&&p.catch)p.catch(function(){});}
+    });
+  });
   slot.replaceChildren(v);
 }
 async function promoteFromJson(){
