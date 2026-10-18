@@ -2,7 +2,9 @@
    El cartelito usa redes.adsterra.bannerKey (320×50). Solo banners en iframe. */
 window.ADSENSE_CLIENT = "";
 window.ADSTERRA = {
-  /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así. */
+  /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así.
+     www.highperformanceformat.com también sirve el mismo script: se usa este
+     host aquí y como respaldo en app.js para que los dos no diverjan. */
   host: "https://www.highrevenueformat.com",
   banner: {
     key: "054847add79800fd21407ef878aef225",

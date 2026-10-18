@@ -1,6 +1,6 @@
 /* Artículos: el video carga al pulsar.
    Los anuncios los decide app.js, después de window.ads.activo y de Premium
-   (GR_esPremium / esPremiumLocal). Con activo en false no se pide ningún anuncio.
+   (GR_esPremium / esPremiumLocal). Solo con activo === true se puede pedir un anuncio.
    Si el hueco existe, no se borra aquí: el alto reservado evita el salto. */
 (function () {
   function premium() {
@@ -9,7 +9,7 @@
     return false;
   }
   function anunciosApagados() {
-    return premium() || !!(window.ads && window.ads.activo === false);
+    return premium() || !(window.ads && window.ads.activo === true);
   }
   if (anunciosApagados()) {
     if (typeof window.GR_quitarAnuncios === "function") window.GR_quitarAnuncios();

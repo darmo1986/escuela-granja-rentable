@@ -896,6 +896,7 @@
     .catch(function () {});
   function askGeo() {
     try {
+      if (!(window.ads && window.ads.activo === true)) return;
       if (localStorage.getItem("gr_pais")) return;
       if (localStorage.getItem("gr_consent") !== "si") return;
       if (window.__grGeoAsked) return;
