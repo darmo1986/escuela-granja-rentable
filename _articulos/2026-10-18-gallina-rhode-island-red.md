@@ -122,4 +122,4 @@ Esta ficha no da metros. Da un cuerpo largo y rectangular, más pesado que una L
 
 Esta página no publica ese cruce ni un número de huevos del mestizo. La criolla de campo es otro sistema. El rango 150–200 es de la Red descrita aquí.
 
-La L06A sigue el gallo y la fertilidad. Un macho agresivo de esta raza se maneja en esa lección, no con un remedio del nido.
+Si el rojo de la feria ya está lavado, no lo compres como reproductora sin ver a la madre a la sombra. Oklahoma State separa el desteñido del sol y el rojo ladrillo de origen. La L06A sigue el gallo y la fertilidad. Un macho agresivo de esta raza se maneja en esa lección, no con un remedio del nido.
