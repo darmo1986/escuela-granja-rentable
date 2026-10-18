@@ -310,7 +310,9 @@ function loadAdsense(){
   return true;
 }
 function usarCmpGoogle(){
-  return window.ADSENSE_CMP===true && adsOn() && !adsterraHasKey() && !!clienteAdsense();
+  /* Solo el EEE, el Reino Unido y Suiza, y solo si no hay señal de privacidad global.
+     boot.js marca esa zona como data-ads="cmp". */
+  return window.ADSENSE_CMP===true && adsOn() && !adsterraHasKey() && !!clienteAdsense() && document.documentElement.dataset.ads==='cmp';
 }
 function ocultarAvisoPropio(){
   const b=document.getElementById('cookie-banner');
@@ -397,17 +399,21 @@ function abrirAviso(){
 }
 function decidirAnuncios(){
   if(!adsOn() || esPremiumLocal() || paginaSinAnuncios()){ quitarAnuncios(); return; }
-  if(usarCmpGoogle()){
-    window.__adsLoaded = 0;
-    document.documentElement.classList.remove('ad-off');
-    ocultarAvisoPropio();
-    loadAds();
-    return;
-  }
   window.__adsLoaded = 0;
   document.documentElement.classList.remove('ad-off');
   var c = null;
   try { c = localStorage.getItem(CK); } catch (e) {}
+  /* Un Rechazar guardado manda en todas las zonas, también con el CMP de Google. */
+  if(c==='no' && !pedirDeNuevo()){
+    document.documentElement.classList.remove('ad-ok');
+    ocultarAvisoPropio();
+    return;
+  }
+  if(usarCmpGoogle()){
+    ocultarAvisoPropio();
+    loadAds();
+    return;
+  }
   if(pedirDeNuevo()){ banner(); }
   else if(consentimientoEstricto()){
     if(c==='si'){ document.documentElement.classList.add('ad-ok'); loadAds(); }
@@ -462,7 +468,13 @@ document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener(
   e.preventDefault();
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
   if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
-  if(usarCmpGoogle()){alert('El aviso de Google gestiona estas cookies. El de esta web está oculto para no pedirlo dos veces.');return;}
+  if(usarCmpGoogle()){
+    localStorage.removeItem(CK);
+    document.documentElement.classList.remove('ad-ok');
+    try { sessionStorage.removeItem('gr_pedir_cookies'); } catch(err){}
+    location.reload();
+    return;
+  }
   localStorage.removeItem(CK);
   document.documentElement.classList.remove('ad-ok');
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}

@@ -4,10 +4,12 @@ window.ADSENSE_CLIENT = "ca-pub-5311145772953700";
 /* Ids de bloque de AdSense (solo dígitos). Vacío = ese hueco no se pinta y no ocupa sitio.
    Nunca pongas un texto como "banner": data-ad-slot tiene que ser el número del panel. */
 window.ADSENSE_SLOTS = { cabecera: "", leccion: "", lateral: "", pie: "" };
-/* false = solo el aviso de cookies de esta web.
-   true = con AdSense activo se oculta ese aviso y el CMP de Google es el único,
-   para no pedir el permiso dos veces en la UE. Pásalo a true al activar el
-   mensaje GDPR en el panel de AdSense, no antes. */
+/* El día de encender AdSense, este valor va en true junto con window.ads.activo,
+   y el panel de Google ya tiene publicado el CMP certificado (TCF) para el EEE,
+   el Reino Unido y Suiza. Hoy sigue en false: los anuncios están apagados.
+   En true, ese CMP sustituye al aviso propio solo en esas zonas. Brasil, la
+   señal de privacidad global y una zona desconocida siguen con el aviso propio
+   y sin anuncios hasta que haya Aceptar. Un Rechazar guardado no se ignora. */
 window.ADSENSE_CMP = false;
 window.ADSTERRA = {
   /* Parada. Aunque window.ads.activo sea true, Adsterra no gana ni carga. */
