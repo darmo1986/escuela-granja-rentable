@@ -63,13 +63,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en la tienda anterior, con impuestos no detallados en la ficha. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -156,13 +149,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en la tienda anterior, en euros. Unos US$ 21 con el cambio del 14 de octubre de 2026. Envío gratis anunciado en pedidos de más de 50 € o 59 €, según el texto de esa página. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -236,13 +222,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -321,13 +300,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -401,13 +373,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -494,13 +459,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -595,13 +553,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. El pago de Shopify no está conectado. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -675,13 +626,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -757,13 +701,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -837,13 +774,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -922,13 +852,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -1002,13 +925,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -1084,13 +1000,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -1164,13 +1073,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -1246,13 +1148,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -1326,13 +1221,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -1408,13 +1296,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -1488,13 +1369,6 @@
         "suplemento": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
         },
         "bebedero-campana": {
           "estado": "pendiente",
@@ -1570,13 +1444,6 @@
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },
-        "tabletas-30g-fiebre-resfriado": {
-          "estado": "confirmado",
-          "texto": "18,99 €",
-          "moneda": "EUR",
-          "precio": 18.99,
-          "nota": "Precio publicado en euros. Confirmamos el pedido por WhatsApp."
-        },
         "bebedero-campana": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
@@ -1648,10 +1515,6 @@
           "texto": "Precio próximamente"
         },
         "suplemento": {
-          "estado": "pendiente",
-          "texto": "Precio próximamente"
-        },
-        "tabletas-30g-fiebre-resfriado": {
           "estado": "pendiente",
           "texto": "Precio próximamente"
         },

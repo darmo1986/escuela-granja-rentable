@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Página no encontrada | Granja Rentable</title>
+<meta name="robots" content="noindex">
+<base href="/">
+<script>
+(function () {
+  var marker = "/escuela-granja-rentable/";
+  var at = location.pathname.indexOf(marker);
+  if (at >= 0) document.querySelector("base").href = location.pathname.slice(0, at + marker.length);
+})();
+</script>
+<meta name="theme-color" content="#1F5E2E">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
+<link rel="stylesheet" href="css/estilo.css">
+<script src="js/boot.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top">
+<div class="bar wrap">
+<a class="brand" href="index.html"><span class="brand-mark"><img class="logo-for-dark" src="img/logo-claro.svg" alt="" width="44" height="44"><img class="logo-for-light" src="img/logo-oscuro.svg" alt="" width="44" height="44"></span><span class="brand-name">Granja Rentable</span></a>
+</div>
+</header>
+<main id="contenido">
+<section class="hero home-hero">
+<p class="eyebrow">Error 404</p>
+<h1>Esta página no está en Granja Rentable</h1>
+<p class="lead">El enlace no existe o cambió. Puedes seguir con el curso gratis, ver la tienda o escribirnos por WhatsApp.</p>
+<p class="split"><a class="btn gold" href="curso.html">Curso gratis</a> <a class="btn sec" href="tienda.html">Tienda</a> <a class="btn sec" href="https://wa.me/34656267726">WhatsApp</a></p>
+</section>
+</main>
+</body>
+</html>
