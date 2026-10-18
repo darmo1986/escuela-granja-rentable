@@ -2,15 +2,16 @@
    Orden: ?pais= → elección guardada → zona horaria → idioma (solo si el
    código de país está en la lista) → México. Un inglés genérico no
    se convierte en Estados Unidos.
-   El aviso de anuncios mira solo la zona horaria, sin llamar a nadie:
-   UE, EEE, Reino Unido, Suiza, Brasil o zona desconocida piden Aceptar. */
+   El aviso de anuncios mira la zona horaria, sin llamar a nadie:
+   UE, EEE, Reino Unido, Suiza, Brasil, zona desconocida o GPC piden Aceptar. */
 (function () {
   function zonaEstricta(tz) {
     if (!tz || tz === "UTC" || tz.indexOf("Etc/") === 0) return true;
     if (tz.indexOf("Europe/") === 0) return true;
     var extra = {
       "Atlantic/Azores": 1, "Atlantic/Madeira": 1, "Atlantic/Canary": 1,
-      "Atlantic/Reykjavik": 1, "Atlantic/Faroe": 1, "Arctic/Longyearbyen": 1,
+      "Atlantic/Reykjavik": 1, "Atlantic/Faroe": 1, "Atlantic/Faeroe": 1,
+      "Atlantic/Jan_Mayen": 1, "Arctic/Longyearbyen": 1,
       "Africa/Ceuta": 1, "Asia/Nicosia": 1, "Asia/Famagusta": 1,
       "Indian/Reunion": 1, "Indian/Mayotte": 1,
       "America/Cayenne": 1, "America/Guadeloupe": 1, "America/Martinique": 1,
@@ -19,8 +20,8 @@
       "America/Recife": 1, "America/Araguaina": 1, "America/Maceio": 1,
       "America/Bahia": 1, "America/Sao_Paulo": 1, "America/Campo_Grande": 1,
       "America/Cuiaba": 1, "America/Santarem": 1, "America/Porto_Velho": 1,
-      "America/Boa_Vista": 1, "America/Manaus": 1, "America/Eirunepe": 1,
-      "America/Rio_Branco": 1
+      "America/Boa_Vista": 1, "America/Manaus": 1,       "America/Eirunepe": 1,
+      "America/Rio_Branco": 1, "America/Porto_Acre": 1
     };
     if (extra[tz]) return true;
     if (!/^(Africa|America|Asia|Atlantic|Australia|Indian|Pacific)\//.test(tz)) return true;
@@ -29,10 +30,13 @@
   var tz = "";
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (eTz) {}
   var estricto = zonaEstricta(tz);
+  try { if (navigator.globalPrivacyControl === true) estricto = true; } catch (eG) {}
   document.documentElement.dataset.ads = estricto ? "ue" : "libre";
+  var pedir = false;
+  try { pedir = sessionStorage.getItem("gr_pedir_cookies") === "1"; } catch (eP) {}
   try {
     var consent = localStorage.getItem("gr_consent");
-    if (consent === "si" || (!estricto && consent !== "no")) document.documentElement.classList.add("ad-ok");
+    if (!pedir && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
   } catch (e0) {}
   var map = {
     "America/Mexico_City": "MX",
