@@ -167,6 +167,7 @@ function loadAds(){
   if(adsterraHasKey()){loadAdsterra();return;}
   loadAdsense();
 }
+function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
@@ -175,8 +176,32 @@ function banner(){
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
-const c=localStorage.getItem(CK); if(c==='si')loadAds(); else if(!c)banner();
-document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();localStorage.removeItem(CK);document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded){location.reload();return;}if(!adsConfigured())alert('Ahora mismo este sitio no usa cookies publicitarias.');banner();}));
+/* Fuera de la UE el aviso va en el flujo de la página: no tapa el contenido. */
+function notaLibre(){
+  if(!adsConfigured()||document.getElementById('cookie-note'))return;
+  const n=document.createElement('aside');
+  n.id='cookie-note';
+  n.setAttribute('role','note');
+  n.innerHTML='<span>Mostramos anuncios de Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
+  n.addEventListener('click',e=>{
+    if(e.target.dataset.c!=='no')return;
+    localStorage.setItem(CK,'no');
+    n.remove();
+    document.documentElement.classList.remove('ad-ok');
+    if(window.__adsLoaded)location.reload();
+  });
+  const main=document.querySelector('main');
+  if(main)main.prepend(n); else document.body.prepend(n);
+}
+function abrirAviso(){
+  if(consentimientoEstricto())banner();
+  else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
+}
+const c=localStorage.getItem(CK);
+if(consentimientoEstricto()){ if(c==='si')loadAds(); else if(!c)banner(); }
+else if(c==='si')loadAds();
+else if(c!=='no')abrirAviso();
+document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();localStorage.removeItem(CK);document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded){location.reload();return;}if(!adsConfigured())alert('Ahora mismo este sitio no usa cookies publicitarias.');abrirAviso();}));
 /* ── Progreso, lecciones nuevas (L05A–L06C) y tests ── */
 const passed=id=>!!(prog()[id]&&prog()[id].aprobado);
 const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};

@@ -1,10 +1,38 @@
 /* País antes del primer pintado.
    Orden: ?pais= → elección guardada → zona horaria → idioma (solo si el
    código de país está en la lista) → México. Un inglés genérico no
-   se convierte en Estados Unidos. */
+   se convierte en Estados Unidos.
+   El aviso de anuncios mira solo la zona horaria, sin llamar a nadie:
+   UE, EEE, Reino Unido, Suiza, Brasil o zona desconocida piden Aceptar. */
 (function () {
+  function zonaEstricta(tz) {
+    if (!tz || tz === "UTC" || tz.indexOf("Etc/") === 0) return true;
+    if (tz.indexOf("Europe/") === 0) return true;
+    var extra = {
+      "Atlantic/Azores": 1, "Atlantic/Madeira": 1, "Atlantic/Canary": 1,
+      "Atlantic/Reykjavik": 1, "Atlantic/Faroe": 1, "Arctic/Longyearbyen": 1,
+      "Africa/Ceuta": 1, "Asia/Nicosia": 1, "Asia/Famagusta": 1,
+      "Indian/Reunion": 1, "Indian/Mayotte": 1,
+      "America/Cayenne": 1, "America/Guadeloupe": 1, "America/Martinique": 1,
+      "America/Marigot": 1, "America/St_Barthelemy": 1,
+      "America/Noronha": 1, "America/Belem": 1, "America/Fortaleza": 1,
+      "America/Recife": 1, "America/Araguaina": 1, "America/Maceio": 1,
+      "America/Bahia": 1, "America/Sao_Paulo": 1, "America/Campo_Grande": 1,
+      "America/Cuiaba": 1, "America/Santarem": 1, "America/Porto_Velho": 1,
+      "America/Boa_Vista": 1, "America/Manaus": 1, "America/Eirunepe": 1,
+      "America/Rio_Branco": 1
+    };
+    if (extra[tz]) return true;
+    if (!/^(Africa|America|Asia|Atlantic|Australia|Indian|Pacific)\//.test(tz)) return true;
+    return false;
+  }
+  var tz = "";
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (eTz) {}
+  var estricto = zonaEstricta(tz);
+  document.documentElement.dataset.ads = estricto ? "ue" : "libre";
   try {
-    if (localStorage.getItem("gr_consent") === "si") document.documentElement.classList.add("ad-ok");
+    var consent = localStorage.getItem("gr_consent");
+    if (consent === "si" || (!estricto && consent !== "no")) document.documentElement.classList.add("ad-ok");
   } catch (e0) {}
   var map = {
     "America/Mexico_City": "MX",
@@ -67,11 +95,7 @@
     }
     if (!p) p = localStorage.getItem("gr_pais") || "";
     if (!p) p = localStorage.getItem("gr_pais_ip") || "";
-    if (!p) {
-      var tz = "";
-      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
-      p = map[tz] || "";
-    }
+    if (!p) p = map[tz] || "";
     if (!p) {
       var known = { MX:1, US:1, CO:1, PE:1, ES:1, AR:1, VE:1, EC:1, DO:1, CL:1, PY:1, UY:1, BO:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1 };
       var langs = navigator.languages || [navigator.language || ""];

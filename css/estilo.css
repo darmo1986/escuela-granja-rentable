@@ -359,6 +359,12 @@ label.check input { width: 22px; height: 22px; min-height: 22px; margin-top: 2px
 #cookie-banner .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 #cookie-banner .btn.sec { background: #eee; color: #222; border: 0; }
 body:has(#cookie-banner) main { padding-bottom: 120px; }
+#cookie-note {
+  position: static; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+  margin: 0 0 12px; padding: 8px 12px; max-width: 100%;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; font-size: .9rem;
+}
+#cookie-note .btn { min-height: 40px; padding: 6px 14px; font-size: .92rem; }
 
 .progress .bar { height: 10px; background: var(--gl); border-radius: 9px; overflow: hidden; }
 .progress .bar span { display: block; height: 100%; width: 0; background: var(--gold); }
