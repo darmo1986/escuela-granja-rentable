@@ -91,7 +91,7 @@ MAX_DESCRIPCION = 150
 SUFIJO_TITULO = " | Granja Rentable"
 VERSION_ACTIVOS = "202610185"
 # Solo las páginas del blog. El 202610185 ya lo usa otro PR en el resto del sitio.
-VERSION_BLOG = "202610189"
+VERSION_BLOG = "202610191"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
 CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}
