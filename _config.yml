@@ -9,6 +9,9 @@
 # en esta lista, igual que las plantillas y el generador, para que el
 # Markdown y el código no se puedan descargar.
 exclude:
+  - tools
+  - SEO_PASOS_PABLO.md
+  - SEO_PALABRAS_CLAVE.md
   - _fuentes
   - supabase
   - README.md
@@ -26,3 +29,8 @@ exclude:
   - vendor/cache
   - vendor/gems
   - vendor/ruby
+
+# Verificación de buscadores. Pega solo el valor del atributo content.
+# Vacío = la portada no publica la meta. No hace falta tocar el DNS.
+google_site_verification: ""
+bing_site_verification: ""
