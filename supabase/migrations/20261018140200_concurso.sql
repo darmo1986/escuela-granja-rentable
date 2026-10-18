@@ -12,8 +12,11 @@
 -- La cifra del premio es public.premio_euros(). No se repite aquí.
 -- Gana quien más acierta. Si empatan, un sorteo del servidor queda guardado
 -- en concurso_sorteos y no se vuelve a tirar. El mes es Europe/Madrid.
--- El premio entra como pendiente_verificar. El administrador lo pasa a
--- pendiente para que se pueda cobrar. Hay 14 días para reclamar.
+-- El premio entra como pendiente_verificar. Cerrar el mes no lo concede.
+-- El administrador lo aprueba a mano (estado pendiente) o lo anula.
+-- Si lo anula, concurso_cerrar_meses pasa al siguiente, otra vez en
+-- pendiente_verificar. El historial y el cobro esperan la aprobación.
+-- Hay 14 días para reclamar desde que se aprueba.
 -- anon y authenticated no pueden leer el banco ni las llaves del sorteo.
 
 drop table if exists public.concurso_partidas cascade;

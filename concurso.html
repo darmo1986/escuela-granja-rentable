@@ -97,7 +97,7 @@
 <section class="page-hero" id="concurso-hero">
 <p class="kicker">Concurso</p>
 <h1>10 preguntas de avicultura</h1>
-<p>Cuatro opciones y 30 segundos por pregunta, solo de pollos de engorde. Cada ronda elige 10 al azar. Un acierto cuenta si pasa al menos 1 segundo. El premio no se decide por la rapidez: manda el número de aciertos y, si empatan, un sorteo del servidor que queda guardado.</p>
+<p>Cuatro opciones y 30 segundos por pregunta, solo de pollos de engorde. Cada ronda elige 10 al azar. Un acierto cuenta si pasa al menos 1 segundo. El premio no se decide por la rapidez: manda el número de aciertos y, si empatan, un sorteo del servidor que queda guardado. Cerrar el mes no concede el premio: queda pendiente de verificar hasta que el administrador lo apruebe.</p>
 <p class="concurso-premio" id="concurso-premio">Premio de este mes</p>
 <p id="concurso-cuenta">El ranking vuelve a cero al empezar el mes siguiente.</p>
 </section>
@@ -114,10 +114,10 @@
 <p id="concurso-error" class="concurso-error" role="alert"></p>
 <button type="submit" class="btn gold" id="concurso-empezar">Entrar para jugar</button>
 </form>
-<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Si respondes a tiempo, verás la explicación antes de seguir. Si se acaba el tiempo, no se muestra la respuesta. No hace falta comprar nada. El apodo del ganador se publica.</p>
+<p class="fine">Puedes responder con el teclado: tabula hasta la opción y pulsa Entrar. Si respondes a tiempo, verás la explicación antes de seguir. Si se acaba el tiempo, no se muestra la respuesta. No hace falta comprar nada. El apodo solo se publica como ganador cuando el administrador aprueba el mes.</p>
 </section>
 <section id="concurso-reclamo" class="concurso-card" hidden>
-<h2>Tu premio</h2>
+<h2 id="reclamo-titulo">Tu premio</h2>
 <p id="reclamo-txt"></p>
 <form id="reclamo-form" class="concurso-form" hidden>
 <label for="reclamo-metodo">Cómo quieres cobrar</label>
@@ -159,6 +159,7 @@
 </section>
 <section id="ranking" class="concurso-card concurso-rank" aria-labelledby="ranking-titulo">
 <h2 id="ranking-titulo">Ranking de este mes</h2>
+<p class="fine">Esta lista no reparte el premio. Quien va primero no es ganador hasta que cierre el mes y el administrador lo apruebe.</p>
 <div id="ranking-lista"></div>
 </section>
 <section id="concurso-ganadores" class="concurso-card concurso-rank" aria-labelledby="ganadores-titulo">
@@ -171,9 +172,11 @@
 <li>Organiza Juan Pablo González García (Granja Rentable). El contacto está en el pie de esta página.</li>
 <li>Puede jugar quien tenga 18 años o más y una cuenta gratis. No hay obligación de compra. Una persona, una cuenta. El territorio es el de la lista del formulario: México, Estados Unidos, Colombia, Perú, España, Argentina, Venezuela, Ecuador, República Dominicana, Chile, Paraguay, Uruguay, Bolivia, Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panamá.</li>
 <li>Cada edición es un mes natural en hora de Madrid: empieza a las 00:00 del día 1 y cierra al terminar el último día. Al empezar el mes siguiente el ranking público vuelve a cero. La primera edición arranca cuando esta página se publique.</li>
-<li>Son 10 preguntas de pollos de engorde, cuatro opciones y 30 segundos. Gana quien más acierta en su mejor ronda. Hace falta al menos 1 segundo para que un acierto cuente. Si empatan en aciertos, el desempate es un sorteo del servidor entre los empatados, y queda guardado. La rapidez no desempata.</li>
-<li>El premio de este mes es <span id="base-importe">el publicado arriba</span>. Queda pendiente de verificar hasta que el administrador lo marque. Después, el ganador tiene 14 días para reclamar. Si no responde, el premio se anula y pasa a la siguiente marca válida. Si no queda nadie, ese mes no tiene ganador.</li>
-<li>Para verificar, el administrador revisa la cuenta y puede escribir al correo de esa cuenta. El apodo del ganador se publica. El correo no se publica.</li>
+<li>Son 10 preguntas de pollos de engorde, cuatro opciones y 30 segundos. Cuenta la mejor ronda por aciertos. Hace falta al menos 1 segundo para que un acierto cuente. Si empatan en aciertos, el desempate es un sorteo del servidor entre los empatados, y queda guardado. La rapidez no desempata.</li>
+<li>Cerrar el mes no concede el premio. La marca elegida queda en «pendiente de verificar». El administrador la revisa, también por si hubo trampas, y decide a mano: la aprueba o la anula. Hasta esa aprobación no hay ganador: no sale en el ranking ni en el historial, y no se puede reclamar.</li>
+<li>Si la anula, el premio pasa a la siguiente marca válida y esa también queda pendiente de verificar. Si no queda nadie, ese mes no tiene ganador.</li>
+<li>Si la aprueba, el premio de este mes es <span id="base-importe">el publicado arriba</span>. Entonces se publica el apodo y el ganador tiene 14 días para reclamar. Si no responde, el premio se anula y pasa a la siguiente marca válida.</li>
+<li>Para verificar, el administrador revisa la cuenta y puede escribir al correo de esa cuenta. El correo no se publica.</li>
 <li>El cobro es por PayPal. Bizum solo si el país indicado al jugar es España. Esos datos se piden solo al ganador y no se publican. El organizador paga en un plazo de 30 días desde que recibe el cobro ya verificado, y paga la comisión: no se descuenta del premio.</li>
 <li>El premio puede estar sujeto a impuestos en el país de quien gana. El organizador solo retiene si la ley lo obliga.</li>
 <li>Es trampa usar más de una cuenta, un programa o un script, compartir o usar un banco de respuestas, automatizar las jugadas o jugar con la cuenta de otra persona. Esa cuenta queda descalificada y el premio pasa a la siguiente marca válida.</li>
