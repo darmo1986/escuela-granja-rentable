@@ -4,8 +4,10 @@
 # por _ y, además, esta lista deja fuera el resto que no es una página del sitio.
 # El HTML, el CSS, el JS y las imágenes se copian tal cual.
 #
-# Artículos: sin estas rutas, Jekyll publicaría el Markdown de blog/posts
-# (tiene frontmatter) y las plantillas del generador.
+# Artículos: la Action corre el generador antes de Jekyll y deploy-pages
+# publica solo _site/. _articulos/ empieza por _ y Jekyll no la copia; está
+# en esta lista, igual que las plantillas y el generador, para que el
+# Markdown y el código no se puedan descargar.
 exclude:
   - _fuentes
   - supabase
@@ -14,7 +16,7 @@ exclude:
   - "**/LEEME.md"
   - LEEME.md
   - js/apodo-pruebas.js
-  - blog/posts
+  - _articulos
   - blog/plantillas
   - blog/pruebas
   - blog/generar.py

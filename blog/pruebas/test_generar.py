@@ -23,7 +23,7 @@ def webp(ruta, ancho, alto):
 def base(tmp):
     tmp = Path(tmp)
     shutil.copytree(RAIZ / "blog" / "plantillas", tmp / "blog" / "plantillas")
-    (tmp / "blog" / "posts").mkdir(parents=True)
+    (tmp / "_articulos").mkdir(parents=True)
     (tmp / "data").mkdir()
     (tmp / "data" / "catalogo.json").write_text(json.dumps([{
         "id": "incubadora-24egg-dual",
@@ -84,7 +84,7 @@ def post(tmp, nombre, **cambios):
     lineas.append("---")
     lineas.append("")
     lineas.append(cuerpo)
-    (tmp / "blog" / "posts" / nombre).write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    (tmp / "_articulos" / nombre).write_text("\n".join(lineas) + "\n", encoding="utf-8")
 
 
 class Generador(unittest.TestCase):
@@ -113,25 +113,26 @@ class Generador(unittest.TestCase):
         menu = (self.tmp / "index.html").read_text(encoding="utf-8")
         self.assertIn(">Artículos<", menu)
         self.assertIn('href="blog/"', menu)
+        self.assertIn(">Calculadoras<", menu)
         self.assertIn("<!-- menu:inicio -->", menu)
 
     def test_sin_borrador_cuenta_como_borrador(self):
         post(self.tmp, "2026-11-02-sin-clave.md")
-        texto = (self.tmp / "blog" / "posts" / "2026-11-02-sin-clave.md").read_text(encoding="utf-8")
+        texto = (self.tmp / "_articulos" / "2026-11-02-sin-clave.md").read_text(encoding="utf-8")
         texto = "\n".join(linea for linea in texto.splitlines() if not linea.startswith("borrador:"))
-        (self.tmp / "blog" / "posts" / "2026-11-02-sin-clave.md").write_text(texto, encoding="utf-8")
+        (self.tmp / "_articulos" / "2026-11-02-sin-clave.md").write_text(texto, encoding="utf-8")
         self.assertEqual(generar.generar(self.tmp), [])
         self.assertFalse((self.tmp / "blog" / "sin-clave.html").exists())
 
     def test_sin_imagen_no_escribe(self):
         post(self.tmp, "2026-11-02-sin-foto.md", imagen="", imagen_og="", borrador="false")
         (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
-        antes = (self.tmp / "blog" / "posts" / "2026-11-02-sin-foto.md").read_text(encoding="utf-8")
+        antes = (self.tmp / "_articulos" / "2026-11-02-sin-foto.md").read_text(encoding="utf-8")
         errores = generar.generar(self.tmp)
         self.assertTrue(errores)
         self.assertIn("sin imagen", errores[0].lower())
         self.assertEqual((self.tmp / "blog" / "index.html").read_text(encoding="utf-8"), "NO-TOCAR")
-        self.assertEqual((self.tmp / "blog" / "posts" / "2026-11-02-sin-foto.md").read_text(encoding="utf-8"), antes)
+        self.assertEqual((self.tmp / "_articulos" / "2026-11-02-sin-foto.md").read_text(encoding="utf-8"), antes)
 
     def test_medida_mala_y_html_y_enlace(self):
         post(self.tmp, "2026-11-02-malo.md", borrador="false",
@@ -182,7 +183,7 @@ class Generador(unittest.TestCase):
         self.assertTrue(any("pollos de engorde" in e for e in errores))
 
     def test_markdown_roto_no_toca_el_html(self):
-        (self.tmp / "blog" / "posts" / "roto.md").write_text("sin datos\n", encoding="utf-8")
+        (self.tmp / "_articulos" / "roto.md").write_text("sin datos\n", encoding="utf-8")
         (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
         errores = generar.generar(self.tmp)
         self.assertTrue(errores)
@@ -190,12 +191,74 @@ class Generador(unittest.TestCase):
 
     def test_no_escribe_en_posts(self):
         post(self.tmp, "2026-11-02-ok.md", borrador="false")
-        antes = {p.name: p.read_text(encoding="utf-8") for p in (self.tmp / "blog" / "posts").glob("*.md")}
+        antes = {p.name: p.read_text(encoding="utf-8") for p in (self.tmp / "_articulos").glob("*.md")}
         self.assertEqual(generar.generar(self.tmp), [])
-        despues = {p.name: p.read_text(encoding="utf-8") for p in (self.tmp / "blog" / "posts").glob("*.md")}
+        despues = {p.name: p.read_text(encoding="utf-8") for p in (self.tmp / "_articulos").glob("*.md")}
         self.assertEqual(antes, despues)
         self.assertTrue((self.tmp / "blog" / "ok.html").is_file())
-        self.assertNotIn("blog/posts", (self.tmp / "blog" / "ok.html").read_text(encoding="utf-8"))
+        self.assertNotIn("_articulos", (self.tmp / "blog" / "ok.html").read_text(encoding="utf-8"))
+
+    def test_nojekyll_no_escribe(self):
+        (self.tmp / ".nojekyll").write_text("", encoding="utf-8")
+        (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
+        post(self.tmp, "2026-11-02-ok.md", borrador="false")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(errores)
+        self.assertIn(".nojekyll", errores[0])
+        self.assertEqual((self.tmp / "blog" / "index.html").read_text(encoding="utf-8"), "NO-TOCAR")
+
+    def test_titulo_y_descripcion_largos(self):
+        post(self.tmp, "2026-11-02-largo.md", borrador="false",
+             titulo="T" * 61,
+             descripcion="Una frase de prueba para el generador de artículos.")
+        (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(errores)
+        self.assertIn("61 caracteres", errores[0])
+        self.assertIn("60", errores[0])
+        self.assertNotIn("T" * 61, errores[0])
+        self.assertNotIn("Traceback", errores[0])
+        self.assertEqual((self.tmp / "blog" / "index.html").read_text(encoding="utf-8"), "NO-TOCAR")
+        post(self.tmp, "2026-11-02-largo.md", borrador="false",
+             descripcion="D" * 151)
+        errores = generar.generar(self.tmp)
+        self.assertTrue(any("151 caracteres" in e and "150" in e for e in errores))
+        self.assertTrue(all("D" * 20 not in e for e in errores))
+
+    def test_marcas_y_enlaces_raros_no_dejan_rastro(self):
+        post(self.tmp, "2026-11-02-marca.md", borrador="false",
+             titulo_seo="@@RAIZ@@ secreto-unico")
+        (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
+        errores = generar.generar(self.tmp)
+        aviso = " ".join(errores)
+        self.assertIn("marca reservada", aviso)
+        self.assertNotIn("@@", aviso)
+        self.assertNotIn("secreto-unico", aviso)
+        self.assertNotIn("Traceback", aviso)
+        self.assertEqual((self.tmp / "blog" / "index.html").read_text(encoding="utf-8"), "NO-TOCAR")
+        post(self.tmp, "2026-11-02-marca.md", borrador="false",
+             _cuerpo="Mira [raro](\\\\evil.test) y [otro](http:evil.test/x).")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(any("no es válido" in e for e in errores))
+        self.assertFalse(any("\\\\evil" in e or "http:evil" in e for e in errores))
+        self.assertFalse((self.tmp / "blog" / "marca.html").exists())
+
+    def test_tiendas_sin_punto_en_campos(self):
+        (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
+        post(self.tmp, "2026-11-02-tienda.md", borrador="false",
+             titulo_seo="Oferta Amazon de la semana")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(any("Amazon" in e for e in errores))
+        self.assertFalse(any("Oferta" in e for e in errores))
+        post(self.tmp, "2026-11-02-tienda.md", borrador="false",
+             imagen_alt="Foto de un huevo y un anuncio de eBay al fondo")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(any("imagen_alt" in e for e in errores))
+        post(self.tmp, "2026-11-02-tienda.md", borrador="false",
+             fuentes=["nota interna campid 99"])
+        errores = generar.generar(self.tmp)
+        self.assertTrue(any("fuentes" in e for e in errores))
+        self.assertEqual((self.tmp / "blog" / "index.html").read_text(encoding="utf-8"), "NO-TOCAR")
 
 
 if __name__ == "__main__":

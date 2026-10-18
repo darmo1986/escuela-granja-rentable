@@ -161,20 +161,26 @@ function loadAdsense(){
   });
   return true;
 }
-/* Gancho Premium (PR #17). auth.js de esa rama guarda localStorage gr_premium = "1"
-   y deja el usuario en GRAuth.usuarioActual.premium. Hasta que se fusione, esta
-   misma comprobación apaga los anuncios. GR_quitarAnuncios es el nombre que usa el #17. */
+/* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
+   gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
+   html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
 function esPremiumLocal(){
-  try { if (localStorage.getItem('gr_premium') === '1') return true; } catch (e) {}
+  if (typeof window.GR_esPremium === 'function' && window.GR_esPremium()) return true;
   var u = window.GRAuth && window.GRAuth.usuarioActual;
-  return !!(u && u.premium);
+  if (u && u.premium) {
+    var fh = u.premiumHasta || u.premium_hasta;
+    if (fh && Date.parse(fh) > Date.now()) return true;
+  }
+  return false;
 }
+window.esPremiumLocal = esPremiumLocal;
 function quitarAnuncios(){
   document.documentElement.classList.add('ad-off');
   document.documentElement.classList.remove('ad-ok');
   var b = document.getElementById('cookie-banner');
   if (b) b.remove();
-  document.querySelectorAll('.ad-inline').forEach(function (n) { n.remove(); });
+  var nota = document.getElementById('cookie-note');
+  if (nota) nota.remove();
   window.__adsLoaded = 1;
 }
 window.GR_quitarAnuncios = quitarAnuncios;
@@ -194,7 +200,7 @@ function loadAds(){
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
-  if(esPremiumLocal())return;
+  if(!adsOn() || esPremiumLocal())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
@@ -202,8 +208,99 @@ function banner(){
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
-if(esPremiumLocal())quitarAnuncios(); else { const c=localStorage.getItem(CK); if(!adsOn())ocultarHuecos(); else if(c==='si')loadAds(); else if(!c)banner(); }
-document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();localStorage.removeItem(CK);document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded){location.reload();return;}if(!adsOn()||!adsConfigured())alert('Ahora mismo este sitio no usa cookies publicitarias.');else banner();}));
+function notaLibre(){
+  if(!adsOn() || esPremiumLocal() || !adsConfigured() || document.getElementById('cookie-note'))return;
+  const n=document.createElement('aside');
+  n.id='cookie-note';
+  n.setAttribute('role','note');
+  n.innerHTML='<span>Mostramos anuncios de Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
+  n.addEventListener('click',e=>{
+    if(e.target.dataset.c!=='no')return;
+    localStorage.setItem(CK,'no');
+    cerrarPregunta();
+    n.remove();
+    document.documentElement.classList.remove('ad-ok');
+    if(window.__adsLoaded)location.reload();
+  });
+  const main=document.querySelector('main');
+  if(main)main.prepend(n); else document.body.prepend(n);
+}
+function abrirAviso(){
+  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  if(consentimientoEstricto())banner();
+  else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
+}
+function decidirAnuncios(){
+  if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
+  if(pedirDeNuevo()){ banner(); return; }
+  window.__adsLoaded = 0;
+  document.documentElement.classList.remove('ad-off');
+  var c = null;
+  try { c = localStorage.getItem(CK); } catch (e) {}
+  if(consentimientoEstricto()){
+    if(c==='si'){ document.documentElement.classList.add('ad-ok'); loadAds(); }
+    else if(!c) banner();
+  } else if(c==='si'){
+    document.documentElement.classList.add('ad-ok');
+    loadAds();
+  } else if(c!=='no') abrirAviso();
+}
+function sesionAbierta(){
+  try { return !!localStorage.getItem('gr-auth'); } catch (e) { return false; }
+}
+function premiumConocido(){
+  try { return localStorage.getItem('gr_premium_listo') === '1'; } catch (e) { return false; }
+}
+function esperaPago(){
+  try {
+    if (/[?&]premium=ok(?:&|$)/.test(location.search)) sessionStorage.setItem('gr_premium_espera', String(Date.now()));
+    var t = Number(sessionStorage.getItem('gr_premium_espera') || 0);
+    return t > 0 && Date.now() - t < 120000;
+  } catch (e) { return false; }
+}
+function arrancarAnuncios(){
+  if(!adsOn() || esPremiumLocal() || esperaPago()){ quitarAnuncios(); return; }
+  var sesion = sesionAbierta();
+  if (sesion && !premiumConocido()) quitarAnuncios();
+  if (!sesion) { decidirAnuncios(); return; }
+  if (premiumConocido()) { decidirAnuncios(); return; }
+  var listo = false;
+  function seguir(){
+    if (!adsOn() || esPremiumLocal() || esperaPago()) { quitarAnuncios(); listo = true; return; }
+    if (!premiumConocido() || listo) return;
+    listo = true;
+    decidirAnuncios();
+  }
+  window.addEventListener('gr-premium', seguir);
+  setTimeout(function () {
+    if (listo || esPremiumLocal() || esperaPago() || !adsOn()) return;
+    listo = true;
+    decidirAnuncios();
+  }, 1500);
+  setTimeout(function () {
+    if (listo) return;
+    listo = true;
+    window.removeEventListener('gr-premium', seguir);
+    if (!adsOn() || esPremiumLocal()) quitarAnuncios();
+    else decidirAnuncios();
+  }, 12000);
+}
+arrancarAnuncios();
+document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
+  if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
+  localStorage.removeItem(CK);
+  document.documentElement.classList.remove('ad-ok');
+  try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
+  if(window.__adsLoaded){location.reload();return;}
+  if(!adsConfigured()){ alert('Ahora mismo este sitio no usa cookies publicitarias.'); return; }
+  const prev=document.getElementById('cookie-banner');
+  if(prev) prev.remove();
+  const note=document.getElementById('cookie-note');
+  if(note) note.remove();
+  banner();
+}));
 /* ── Progreso, lecciones nuevas (L05A–L06C) y tests ── */
 const passed=id=>!!(prog()[id]&&prog()[id].aprobado);
 const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};

@@ -1,0 +1,55 @@
+name: Publicar la web
+
+# Publica solo _site/. No hace commit a main, así que no hay carrera con otro push.
+# Se dispara con cada push a main y, a mano, con workflow_dispatch desde main.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bajar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Generar Artículos y el menú
+        run: python3 blog/generar.py
+
+      - name: Preparar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Compilar con Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Subir el sitio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  publicar:
+    if: github.ref == 'refs/heads/main'
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: despliegue
+        uses: actions/deploy-pages@v4

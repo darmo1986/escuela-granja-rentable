@@ -27,17 +27,30 @@
     if (!/^(Africa|America|Asia|Atlantic|Australia|Indian|Pacific)\//.test(tz)) return true;
     return false;
   }
+  /* Premium caduca. Sin fecha futura, gr_premium = "1" no vale.
+     No se marca ad-ok aquí: app.js lo hace después de esta comprobación,
+     del interruptor GR.anunciosActivos y del consentimiento. */
+  function premiumVigente() {
+    try {
+      var marca = localStorage.getItem("gr_premium");
+      var hasta = localStorage.getItem("gr_premium_hasta");
+      var fin = hasta ? Date.parse(hasta) : NaN;
+      if (marca === "1" && fin > Date.now()) return true;
+      if (marca || hasta) {
+        localStorage.removeItem("gr_premium");
+        localStorage.removeItem("gr_premium_hasta");
+      }
+    } catch (eP) {}
+    return false;
+  }
+  window.GR_esPremium = premiumVigente;
   var tz = "";
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (eTz) {}
   var estricto = zonaEstricta(tz);
   try { if (navigator.globalPrivacyControl === true) estricto = true; } catch (eG) {}
   document.documentElement.dataset.ads = estricto ? "ue" : "libre";
-  var pedir = false;
-  try { pedir = sessionStorage.getItem("gr_pedir_cookies") === "1"; } catch (eP) {}
   try {
-    var consent = localStorage.getItem("gr_consent");
-    var adsActivos = !!(window.ads && window.ads.activo === true);
-    if (adsActivos && !pedir && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
+    if (premiumVigente()) document.documentElement.classList.add("ad-off");
   } catch (e0) {}
   var map = {
     "America/Mexico_City": "MX",

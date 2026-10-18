@@ -2,11 +2,12 @@
 """Genera el HTML de Artículos y escribe el menú desde blog/plantillas/.
 
 No publica borradores ni un post sin foto. Si un Markdown está mal, sale
-con error y no toca ningún HTML: la Action no hace commit.
+con error y no toca ningún HTML. La Action no guarda esa salida en main:
+compila _site/ y publica solo eso.
 
-Salida (carpetas que Jekyll sí copia): blog/*.html, sitemap.xml y el menú
-de las páginas que ya existen. No escribe en blog/posts/, blog/plantillas/,
-blog/pruebas/ ni en carpetas que empiezan por _.
+Los textos viven en _articulos/. Esa carpeta empieza por _ y Jekyll no la
+copia. El generador tampoco escribe ahí, ni en blog/plantillas/, ni en
+blog/pruebas/. Si existe .nojekyll, se niega a correr.
 """
 from __future__ import annotations
 
@@ -65,9 +66,17 @@ MESES = (
     "enero", "febrero", "marzo", "abril", "mayo", "junio",
     "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
 )
-TIENDAS_AJENAS = ("ebay.", "amazon.", "amzn.", "mercadolibre.", "mercadolivre.")
+# Sin exigir el punto: «Amazon», «eBay» y «campid» también cuentan.
+PROHIBIDO = re.compile(
+    r"(?<![a-z0-9])(?:amazon|ebay|amzn|campid)(?![a-z0-9])"
+    r"|mercadolibre|mercadolivre|mercado\s+libre|mercado\s+livre",
+    re.I,
+)
 VOCABULARIO = re.compile(r"pollos?\s+de\s+carne|broilers?", re.I)
 RESERVADOS = SLUGS_CAT | {"index", "pagina"}
+CARPETA_POSTS = "_articulos"
+MAX_TITULO = 60
+MAX_DESCRIPCION = 150
 
 
 class Fallo(Exception):
@@ -79,7 +88,8 @@ def esc(texto):
             .replace("&", "&amp;")
             .replace("<", "&lt;")
             .replace(">", "&gt;")
-            .replace('"', "&quot;"))
+            .replace('"', "&quot;")
+            .replace("@@", "&#64;&#64;"))
 
 
 def raiz_de(rel):
@@ -218,11 +228,12 @@ def parsear_frontmatter(texto, origen):
     return datos, cuerpo
 
 
-def tienda_ajena(url):
-    bajo = url.lower()
-    if any(trozo in bajo for trozo in TIENDAS_AJENAS):
-        return True
-    return "mercado libre" in bajo or "mercado livre" in bajo
+def texto_prohibido(texto):
+    return bool(PROHIBIDO.search(str(texto)))
+
+
+def marca_reservada(texto):
+    return "@@" in str(texto)
 
 
 def host_de(url):
@@ -232,14 +243,25 @@ def host_de(url):
         return ""
 
 
+def enlace_rechazado(url):
+    bajo = url.lower()
+    if "\\" in url or "@@" in url:
+        return True
+    if bajo.startswith(("javascript:", "data:", "//")):
+        return True
+    # http:host o https:host, sin las dos barras, no es una ruta del sitio.
+    if re.match(r"^https?:(?!//)", bajo):
+        return True
+    return False
+
+
 def enlace(texto, url, origen, errores):
     url = url.strip()
-    if tienda_ajena(url):
-        errores.append(f"{origen}: no enlaces eBay, Amazon ni Mercado Libre ({url}). Solo la tienda propia y el curso.")
+    if texto_prohibido(url) or texto_prohibido(texto):
+        errores.append(f"{origen}: no enlaces Amazon, eBay, Mercado Libre ni campid. Solo la tienda propia y el curso.")
         return esc(texto)
-    bajo = url.lower()
-    if bajo.startswith(("javascript:", "data:", "//")):
-        errores.append(f"{origen}: el enlace no es válido ({url}).")
+    if enlace_rechazado(url):
+        errores.append(f"{origen}: el enlace no es válido. Usa https:// con dos barras, o una ruta del sitio.")
         return esc(texto)
     if url.startswith(("http://", "https://")):
         host = host_de(url)
@@ -275,10 +297,12 @@ def celdas_de(linea):
 
 
 def markdown_a_html(texto, origen, errores):
+    if marca_reservada(texto):
+        errores.append(f"{origen}: el texto lleva una marca reservada. Quitale las arrobas dobles.")
     if VOCABULARIO.search(texto):
         errores.append(f"{origen}: escribe «pollos de engorde», no «pollo de carne» ni «broiler».")
-    if tienda_ajena(texto):
-        errores.append(f"{origen}: el texto nombra eBay, Amazon o Mercado Libre. Solo se enlaza la tienda propia y el curso.")
+    if texto_prohibido(texto):
+        errores.append(f"{origen}: el texto nombra Amazon, eBay, Mercado Libre o campid. Solo se enlaza la tienda propia y el curso.")
     lineas = texto.replace("\r\n", "\n").replace("\r", "\n").split("\n")
     html = []
     i = 0
@@ -367,7 +391,7 @@ def revisar_imagen(raiz, rel, ancho, alto, origen, etiqueta):
 
 
 def cargar_posts(raiz, incluir_borradores):
-    carpeta = raiz / "blog" / "posts"
+    carpeta = raiz / CARPETA_POSTS
     errores = []
     posts = []
     if not carpeta.is_dir():
@@ -375,7 +399,7 @@ def cargar_posts(raiz, incluir_borradores):
     catalogo = cargar_catalogo(raiz)
     vistos = set()
     for ruta in sorted(carpeta.glob("*.md")):
-        origen = f"blog/posts/{ruta.name}"
+        origen = f"{CARPETA_POSTS}/{ruta.name}"
         try:
             datos, cuerpo = parsear_frontmatter(ruta.read_text(encoding="utf-8"), origen)
         except Fallo as exc:
@@ -404,6 +428,22 @@ def campo(datos, clave):
     return str(valor).strip()
 
 
+def exigir_largo(texto, maximo, origen, nombre):
+    if len(texto) > maximo:
+        raise Fallo(f"{origen}: {nombre} tiene {len(texto)} caracteres. El máximo es {maximo}.")
+
+
+def exigir_limpio(texto, origen, nombre):
+    if not str(texto).strip():
+        return
+    if marca_reservada(texto):
+        raise Fallo(f"{origen}: {nombre} lleva una marca reservada. Quitale las arrobas dobles.")
+    if texto_prohibido(texto):
+        raise Fallo(f"{origen}: {nombre} nombra Amazon, eBay, Mercado Libre o campid. No se publica.")
+    if VOCABULARIO.search(str(texto)):
+        raise Fallo(f"{origen}: escribe «pollos de engorde», no «pollo de carne» ni «broiler».")
+
+
 def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
     nombre = ruta.stem
     coincidencia = re.fullmatch(r"(\d{4}-\d{2}-\d{2})-(.+)", nombre)
@@ -413,11 +453,16 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
     titulo = campo(datos, "titulo")
     if not titulo:
         raise Fallo(f"{origen}: falta el titulo.")
+    titulo_seo = campo(datos, "titulo_seo") or titulo
     descripcion = campo(datos, "descripcion")
     if not descripcion:
         raise Fallo(f"{origen}: falta la descripcion.")
-    if VOCABULARIO.search(titulo) or VOCABULARIO.search(descripcion):
-        raise Fallo(f"{origen}: escribe «pollos de engorde», no «pollo de carne» ni «broiler».")
+    exigir_largo(titulo, MAX_TITULO, origen, "el titulo")
+    exigir_largo(titulo_seo, MAX_TITULO, origen, "el titulo")
+    exigir_largo(descripcion, MAX_DESCRIPCION, origen, "la descripcion")
+    exigir_limpio(titulo, origen, "el titulo")
+    exigir_limpio(titulo_seo, origen, "el titulo")
+    exigir_limpio(descripcion, origen, "la descripcion")
     cat = campo(datos, "categoria")
     if cat not in CATS:
         raise Fallo(f"{origen}: categoria tiene que ser ponedoras, engorde, incubacion, salud o alimentacion.")
@@ -445,18 +490,20 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         raise Fallo(f"{origen}: video tiene que ser el id de YouTube, sin la dirección completa.")
     red = campo(datos, "red")
     if red:
-        if tienda_ajena(red) or not red.startswith("https://") or host_de(red) in ("",):
+        exigir_limpio(red, origen, "red")
+        if enlace_rechazado(red) or not red.startswith("https://") or host_de(red) in ("",):
             raise Fallo(f"{origen}: red tiene que ser un enlace https (o dejarse vacío).")
-        if tienda_ajena(red):
-            raise Fallo(f"{origen}: red no puede ir a eBay, Amazon ni Mercado Libre.")
     fuentes = datos.get("fuentes", "")
     if fuentes == "":
         fuentes = []
     if not isinstance(fuentes, list) or not all(isinstance(x, str) and x.strip() for x in fuentes):
         raise Fallo(f"{origen}: fuentes es una lista de textos.")
+    for fuente in fuentes:
+        exigir_limpio(fuente, origen, "fuentes")
     imagen = campo(datos, "imagen")
     imagen_og = campo(datos, "imagen_og")
     imagen_alt = campo(datos, "imagen_alt")
+    exigir_limpio(imagen_alt, origen, "imagen_alt")
     se_publica = (not borrador) or incluir_borradores
     if imagen or se_publica:
         if not imagen:
@@ -475,7 +522,7 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         "origen": origen,
         "slug": slug,
         "titulo": titulo,
-        "titulo_seo": campo(datos, "titulo_seo") or titulo,
+        "titulo_seo": titulo_seo,
         "descripcion": descripcion,
         "categoria": cat,
         "fecha": fecha,
@@ -771,7 +818,9 @@ def ld_categoria(meta):
 def paginas_html(raiz):
     for ruta in raiz.rglob("*.html"):
         rel = ruta.relative_to(raiz).as_posix()
-        if rel.startswith(("blog/plantillas/", "blog/pruebas/", "blog/posts/")):
+        if rel.startswith(("_", "blog/plantillas/", "blog/pruebas/", "blog/posts/", f"{CARPETA_POSTS}/")):
+            continue
+        if "/_" in rel:
             continue
         if rel.startswith("blog/") and ruta.name.endswith(".html"):
             continue
@@ -794,6 +843,8 @@ def actualizar_sitemap(texto, entradas):
 
 def planificar(raiz, incluir_borradores=False):
     raiz = Path(raiz)
+    if (raiz / ".nojekyll").exists():
+        return ["Hay un .nojekyll en la raíz. Quítalo: si sigue ahí, Pages puede copiar las fuentes. La web sale solo de la Action, con _site/."], {}, []
     errores = []
     posts, errores_posts = cargar_posts(raiz, incluir_borradores)
     errores.extend(errores_posts)
@@ -903,7 +954,7 @@ def planificar(raiz, incluir_borradores=False):
                 if MARCA_PAGINA in texto:
                     borrar.append(rel)
     for rel in list(archivos):
-        if rel.startswith(("blog/posts/", "blog/plantillas/", "blog/pruebas/", "_")) or "/_" in rel:
+        if rel.startswith(("blog/posts/", "blog/plantillas/", "blog/pruebas/", f"{CARPETA_POSTS}/", "_")) or "/_" in rel:
             errores.append(f"El generador iba a escribir en una carpeta excluida: {rel}")
     return errores, archivos, borrar
 

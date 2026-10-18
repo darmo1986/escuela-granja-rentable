@@ -2,7 +2,9 @@
 
 Se hace desde la web de GitHub. No hace falta tocar código ni abrir el generador.
 
-El artículo **no sale** mientras ponga `borrador: true`. Así queda al crearlo. Para publicarlo, cambia esa línea a `borrador: false` y guarda. Si el archivo está mal, la acción de GitHub falla y **no publica nada** (ni ese artículo ni el resto).
+El artículo **no sale** mientras ponga `borrador: true`. Así queda al crearlo. Para publicarlo, cambia esa línea a `borrador: false` y guarda. Si el archivo está mal, la acción de GitHub falla y **deja la web como estaba** (no publica ese artículo ni el resto).
+
+El título (`titulo` y `titulo_seo`) puede tener como mucho **60 caracteres**. La descripción, **150**. Si te pasas, la acción falla y dice cuántos hay.
 
 ## 1. La foto
 
@@ -19,7 +21,7 @@ En el repositorio: **Add file → Upload files**. Elige la carpeta `img/blog`. E
 
 **Add file → Create new file.** La ruta es:
 
-`blog/posts/2026-11-02-ovoscopia-huevos-incubadora.md`
+`_articulos/2026-11-02-ovoscopia-huevos-incubadora.md`
 
 La fecha va delante. Lo de después es la dirección del artículo (`/blog/ovoscopia-huevos-incubadora.html`). Copia este bloque, cambia los datos y escribe debajo:
 
@@ -62,13 +64,14 @@ Di siempre **pollos de engorde**. No uses «pollo de carne» ni «broiler».
 
 Abajo, en **Commit changes**, escribe una frase («Artículo de ovoscopia») y pulsa **Commit changes** directo a `main`.
 
-La acción genera la portada, la categoría, el artículo y el sitemap, y lo guarda en `main`. GitHub Pages lo publica solo. Un borrador no genera página y no entra en el sitemap.
+Ese commit solo guarda el Markdown. La acción de GitHub genera el HTML, lo compila y publica la web. No vuelve a guardar nada en `main`. Un borrador no genera página y no entra en el sitemap.
 
-Si la acción sale en rojo, abre el detalle: el mensaje dice qué línea falla. Corrige el Markdown y vuelve a guardar. Lo ya publicado no se toca en ese intento.
+Si la acción sale en rojo, abre el detalle: el mensaje dice qué falló, sin pegar el texto del artículo. Corrige el Markdown y vuelve a guardar. La web sigue mostrando la versión anterior.
 
 ## Lo que no hay que poner
 
-- Enlaces a eBay, Amazon o Mercado Libre. Solo la tienda propia y el curso.
+- Enlaces o menciones a eBay, Amazon, Mercado Libre o `campid`, aunque no lleven punto. Solo la tienda propia y el curso.
+- Marcas con dos arrobas (`@@`). El generador las usa por dentro.
 - Otro WhatsApp. El del pie y el botón verde son los de la web.
 - HTML. Si pegas una etiqueta, se muestra como texto: no se ejecuta.
 - Un precio. Sale en la ficha, según el país.
