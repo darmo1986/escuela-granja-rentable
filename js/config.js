@@ -48,7 +48,9 @@ window.GR = {
      Pega solo la clave anon public. Nunca la service_role. */
   comunidad: {
     supabaseUrl: "https://TU-PROYECTO.supabase.co",
-    supabaseAnonKey: "TU_CLAVE_ANON_PUBLICA"
+    supabaseAnonKey: "TU_CLAVE_ANON_PUBLICA",
+    /* Hueco. Cámbialo cuando elijas el premio real del mes. */
+    premioNombre: "Premio del mes (lo decides tú)"
   }
 };
 

@@ -26,6 +26,7 @@ Supabase encaja mejor que Firebase: son tablas (pregunta, respuesta, voto, repor
 - Reportar lo hace quien entró. Los reportes los lee esa persona y el admin.
 - Ocultar o volver a mostrar lo hace quien tenga `es_admin`. Ese campo solo se cambia con el SQL de arriba.
 - El filtro de palabras y el tope de envíos están en el SQL (3 preguntas / 10 min, 8 respuestas / 10 min, 10 reportes / hora). La demo aprieta un poco más en el navegador para que se note al probar.
+- El premio no lo gana la primera respuesta en llegar. Lo gana la primera que el autor de la pregunta o un admin marque con `marcar_valida`. Hacen falta 80 letras, no vale la propia pregunta, hay 7 días entre premios y 2 al mes. Si se pasa del tope, la respuesta puede quedar válida y el premio en `sin_premio`. Reclamar pide nombre, el correo de la cuenta y el país. El admin aprueba o anula. `marcar_valida` guarda el aparato del perfil y, si llega en la cabecera, la IP: es un aviso, no una prueba. El nombre del premio está en `premioNombre` de `js/config.js` y hoy es un hueco. Las bases de la página son un borrador: hay que revisarlas antes de encender nada.
 
 ## Plan gratis
 

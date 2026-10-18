@@ -112,6 +112,57 @@
     });
   }
 
+  var PREMIO = { minLetras: 80, topeMes: 2, esperaMs: 7 * 86400000 };
+
+  function textoPremio() {
+    var c = (typeof window !== "undefined" && window.GR && window.GR.comunidad) || {};
+    var nombre = String(c.premioNombre || "").trim();
+    if (!nombre || /lo decides|placeholder|tu_premio/i.test(nombre)) return "Premio del mes (lo decides tú)";
+    return nombre;
+  }
+
+  function puedeOptar(respuesta, pregunta) {
+    if (!respuesta || !pregunta) return { ok: false, motivo: "falta" };
+    if (respuesta.oculto) return { ok: false, motivo: "oculta" };
+    if (respuesta.autor === pregunta.autor) return { ok: false, motivo: "propia" };
+    if (String(respuesta.cuerpo || "").trim().length < PREMIO.minLetras) return { ok: false, motivo: "corta" };
+    return { ok: true, motivo: "" };
+  }
+
+  function cupoPremio(premios, usuarioId, ahora) {
+    var vivos = (premios || []).filter(function (p) {
+      return p.ganador === usuarioId && p.estado !== "anulado" && p.estado !== "sin_premio";
+    });
+    var d = new Date(ahora);
+    var inicio = new Date(d.getFullYear(), d.getMonth(), 1).getTime();
+    var enMes = 0;
+    var ultimo = 0;
+    var i;
+    for (i = 0; i < vivos.length; i++) {
+      if (vivos[i].creado >= inicio) enMes++;
+      if (vivos[i].creado > ultimo) ultimo = vivos[i].creado;
+    }
+    if (enMes >= PREMIO.topeMes) return { ok: false, motivo: "mes" };
+    if (ultimo && ahora - ultimo < PREMIO.esperaMs) return { ok: false, motivo: "espera", espera: PREMIO.esperaMs - (ahora - ultimo) };
+    return { ok: true, motivo: "" };
+  }
+
+  function premioActivo(premios, preguntaId) {
+    var i;
+    var lista = premios || [];
+    for (i = lista.length - 1; i >= 0; i--) {
+      if (lista[i].pregunta === preguntaId && lista[i].estado !== "anulado") return lista[i];
+    }
+    return null;
+  }
+
+  function senalCompartida(usuarios, dispositivo, ganadorId) {
+    if (!dispositivo) return [];
+    return (usuarios || []).filter(function (u) {
+      return u.id !== ganadorId && u.dispositivo && u.dispositivo === dispositivo;
+    });
+  }
+
   function ids(pref, n) {
     var a = [];
     var i;
@@ -124,19 +175,20 @@
     var ahora = Date.now();
     function hace(horas) { return ahora - horas * H; }
     return {
-      v: 1,
+      v: 2,
       usuarios: [
-        { id: "u-marta", nombre: "Marta López", correo: "marta@ejemplo.test" },
-        { id: "u-luis", nombre: "Luis Herrera", correo: "luis@ejemplo.test" },
-        { id: "u-ana", nombre: "Ana Ruiz", correo: "ana@ejemplo.test" },
-        { id: "u-pedro", nombre: "Pedro Díaz", correo: "pedro@ejemplo.test" },
-        { id: "u-carmen", nombre: "Carmen Soto", correo: "carmen@ejemplo.test" },
-        { id: "u-anuncio", nombre: "Anuncio raro", correo: "anuncio@ejemplo.test" }
+        { id: "u-marta", nombre: "Marta López", correo: "marta@ejemplo.test", dispositivo: "dev-marta" },
+        { id: "u-luis", nombre: "Luis Herrera", correo: "luis@ejemplo.test", dispositivo: "dev-compartido" },
+        { id: "u-ana", nombre: "Ana Ruiz", correo: "ana@ejemplo.test", dispositivo: "dev-ana" },
+        { id: "u-pedro", nombre: "Pedro Díaz", correo: "pedro@ejemplo.test", dispositivo: "dev-pedro" },
+        { id: "u-carmen", nombre: "Carmen Soto", correo: "carmen@ejemplo.test", dispositivo: "dev-carmen" },
+        { id: "u-anuncio", nombre: "Anuncio raro", correo: "anuncio@ejemplo.test", dispositivo: "dev-anuncio" },
+        { id: "u-sombra", nombre: "Cuenta repetida", correo: "sombra@ejemplo.test", dispositivo: "dev-compartido" }
       ],
       sesion: null,
       preguntas: [
-        { id: "q-calcio", autor: "u-ana", titulo: "¿Cuánto calcio dejo a libre disposición en postura?", cuerpo: "Tengo 30 gallinas ponedoras y no sé si mezclar la concha con el pienso o dejarla aparte.", creado: hace(90), oculto: false, votos: ["u-marta", "u-luis", "u-pedro", "u-carmen", "v-cal"] },
-        { id: "q-temp", autor: "u-carmen", titulo: "¿A qué temperatura dejo los pollitos la primera semana?", cuerpo: "Acaban de nacer en la incubadora y los pasé a la criadora. No quiero ni asarlos ni dejarlos tiritar.", creado: hace(6), oculto: false, votos: ["u-marta"] },
+        { id: "q-calcio", autor: "u-ana", titulo: "¿Cuánto calcio dejo a libre disposición en postura?", cuerpo: "Tengo 30 gallinas ponedoras y no sé si mezclar la concha con el pienso o dejarla aparte.", creado: hace(90), oculto: false, votos: ["u-marta", "u-luis", "u-pedro", "u-carmen", "v-cal"], valida: "a1" },
+        { id: "q-temp", autor: "u-carmen", titulo: "¿A qué temperatura dejo los pollitos la primera semana?", cuerpo: "Acaban de nacer en la incubadora y los pasé a la criadora. No quiero ni asarlos ni dejarlos tiritar.", creado: hace(6), oculto: false, votos: ["u-marta"], valida: "a7" },
         { id: "q-isa", autor: "u-pedro", titulo: "Mi Isa Brown dejó de poner a los 8 meses", cuerpo: "Comen y beben normal. El día ya es más corto. ¿Puede ser la luz o se vienen a la muda?", creado: hace(30), oculto: false, votos: ["u-carmen"] },
         { id: "q-cobb", autor: "u-luis", titulo: "Cobb 500 a las 7 semanas, ¿sigo o los preparo para carne?", cuerpo: "Están grandes y comen mucho. No busco huevos con esta línea.", creado: hace(50), oculto: false, votos: [] },
         { id: "q-amon", autor: "u-marta", titulo: "Huele a amoníaco al entrar al gallinero", cuerpo: "La cama lleva tres semanas. ¿La cambio toda o solo la parte húmeda?", creado: hace(12), oculto: false, votos: ["u-luis", "u-ana"] }
@@ -148,7 +200,7 @@
         { id: "a4", pregunta: "q-calcio", autor: "u-marta", cuerpo: "No lo mezcles con el pienso: si pueden elegir, lo pican cuando lo necesitan.", creado: hace(60), oculto: false, utiles: [] },
         { id: "a5", pregunta: "q-calcio", autor: "u-marta", cuerpo: "Si el huevo sale blando, revisa también el agua y que no estén enfermas. El calcio no lo arregla todo.", creado: hace(55), oculto: false, utiles: [] },
         { id: "a6", pregunta: "q-temp", autor: "u-marta", cuerpo: "La primera semana muchos dejan la criadora cerca de 32–35 °C y van bajando. Si se amontonan, tienen frío. Si se apartan de la lámpara, tienen calor. Orientativo.", creado: hace(5), oculto: false, utiles: ids("te", 4) },
-        { id: "a7", pregunta: "q-temp", autor: "u-luis", cuerpo: "En mi criadora miro el corro: juntos es frío, en los bordes es calor.", creado: hace(4), oculto: false, utiles: ids("lu2", 2) },
+        { id: "a7", pregunta: "q-temp", autor: "u-luis", cuerpo: "En mi criadora miro el corro: juntos es frío, en los bordes es calor. Así ajusto la lámpara sin un número fijo.", creado: hace(4), oculto: false, utiles: ids("lu2", 2) },
         { id: "a8", pregunta: "q-temp", autor: "u-pedro", cuerpo: "¿La lámpara va todo el día la primera semana o solo de noche?", creado: hace(3), oculto: false, utiles: [] },
         { id: "a9", pregunta: "q-temp", autor: "u-marta", cuerpo: "Un termómetro a la altura de los pollitos vale más que adivinar. No es una receta única.", creado: hace(2.5), oculto: false, utiles: [] },
         { id: "a10", pregunta: "q-temp", autor: "u-marta", cuerpo: "Deja también una zona más fresca para que ellos elijan dónde ponerse.", creado: hace(2), oculto: false, utiles: [] },
@@ -160,11 +212,16 @@
         { id: "a16", pregunta: "q-cobb", autor: "u-marta", cuerpo: "Cobb y Ross se crían para carne, no para huevo. Hacia las 6–8 semanas ya suelen estar en peso de faena, según el manejo.", creado: hace(48), oculto: false, utiles: [] },
         { id: "a17", pregunta: "q-cobb", autor: "u-luis", cuerpo: "Los míos a las 7 semanas ya no crecían igual y comían de más. Los destinamos a carne.", creado: hace(46), oculto: false, utiles: [] },
         { id: "a18", pregunta: "q-cobb", autor: "u-marta", cuerpo: "Si sigues más semanas, el pienso se come el margen. Míralo en la calculadora antes de decidir.", creado: hace(44), oculto: false, utiles: [] },
+        { id: "a19", pregunta: "q-cobb", autor: "u-pedro", cuerpo: "Yo los faené.", creado: hace(40), oculto: false, utiles: [] },
         { id: "a-oculto", pregunta: "q-isa", autor: "u-anuncio", cuerpo: "Escríbeme para venderte un lote milagroso que pone el doble.", creado: hace(20), oculto: true, utiles: [] }
       ],
       reportes: [
         { id: "r1", tipo: "pregunta", objetivo: "q-isa", usuario: "u-luis", motivo: "Creo que está repetida", creado: hace(10) },
         { id: "r2", tipo: "respuesta", objetivo: "a-oculto", usuario: "u-ana", motivo: "Spam o publicidad", creado: hace(18) }
+      ],
+      premios: [
+        { id: "prem-calcio", pregunta: "q-calcio", respuesta: "a1", ganador: "u-marta", marcadoPor: "u-ana", estado: "pendiente", motivo: "", reclamo: null, dispositivo: "dev-marta", creado: hace(80) },
+        { id: "prem-temp", pregunta: "q-temp", respuesta: "a7", ganador: "u-luis", marcadoPor: "u-carmen", estado: "reclamado", motivo: "", reclamo: { nombre: "Luis Herrera", pais: "México" }, dispositivo: "dev-compartido", creado: hace(3) }
       ],
       ritmo: { pregunta: [], respuesta: [], reporte: [], voto: [] }
     };
@@ -629,6 +686,111 @@
     });
   }
 
+  function dispositivo() {
+    var clave = "gr_preguntas_dispositivo";
+    try {
+      var id = localStorage.getItem(clave);
+      if (!id) {
+        id = nid("disp-");
+        localStorage.setItem(clave, id);
+      }
+      return id;
+    } catch (e) { return ""; }
+  }
+
+  function buscar(lista, id) {
+    var i;
+    for (i = 0; i < (lista || []).length; i++) if (lista[i].id === id) return lista[i];
+    return null;
+  }
+
+  function usuarioDe(id) {
+    return buscar(estado.usuarios, id);
+  }
+
+  function marcarValida(respuestaId) {
+    if (!exigirSesion()) return false;
+    if (!modoDemo()) { aviso("El premio en el servidor se enciende con el SQL. Esta vista es la demo.", true); return false; }
+    var respuesta = buscar(estado.respuestas, respuestaId);
+    var pregunta = respuesta && buscar(estado.preguntas, respuesta.pregunta);
+    if (!respuesta || !pregunta) return false;
+    var puede = esAdmin() || estado.sesion.id === pregunta.autor;
+    if (!puede) { aviso("Solo quien preguntó, o un admin, marca la respuesta válida.", true); return false; }
+    if (premioActivo(estado.premios, pregunta.id)) { aviso("Esta pregunta ya tiene una respuesta válida.", true); return false; }
+    var opta = puedeOptar(respuesta, pregunta);
+    if (!opta.ok && opta.motivo === "propia") { aviso("Responder la propia pregunta no opta al premio.", true); return false; }
+    if (!opta.ok && opta.motivo === "corta") { aviso("Para el premio hacen falta al menos 80 letras. Un «ok» no gana.", true); return false; }
+    if (!opta.ok) { aviso("Esa respuesta no puede llevarse el premio.", true); return false; }
+    var ganador = usuarioDe(respuesta.autor);
+    var cup = cupoPremio(estado.premios, respuesta.autor, Date.now());
+    var estadoPremio = cup.ok ? "pendiente" : "sin_premio";
+    var motivo = "";
+    if (!cup.ok && cup.motivo === "espera") motivo = "Aún no pasan 7 días desde su premio anterior.";
+    if (!cup.ok && cup.motivo === "mes") motivo = "Ya tiene 2 premios este mes.";
+    pregunta.valida = respuesta.id;
+    estado.premios.push({
+      id: nid("prem-"),
+      pregunta: pregunta.id,
+      respuesta: respuesta.id,
+      ganador: respuesta.autor,
+      marcadoPor: estado.sesion.id,
+      estado: estadoPremio,
+      motivo: motivo,
+      reclamo: null,
+      dispositivo: (ganador && ganador.dispositivo) || "",
+      creado: Date.now()
+    });
+    guardarDemo();
+    aviso(cup.ok
+      ? "Quedó como primera respuesta válida. Puede reclamar el premio."
+      : "Quedó como respuesta válida. Sin premio: " + motivo, false);
+    return true;
+  }
+
+  function reclamar(premioId, nombre, pais, acepta) {
+    if (!modoDemo()) { aviso("El premio en el servidor se enciende con el SQL. Esta vista es la demo.", true); return false; }
+    var premio = buscar(estado.premios, premioId);
+    if (!premio || !estado.sesion || premio.ganador !== estado.sesion.id) { aviso("Solo quien ganó puede reclamar.", true); return false; }
+    if (premio.estado !== "pendiente") { aviso("Esta reclamación ya está enviada.", false); return false; }
+    if (!acepta) { aviso("Hay que aceptar las bases para reclamar.", true); return false; }
+    nombre = String(nombre || "").trim();
+    pais = String(pais || "").trim();
+    if (!nombreValido(nombre)) { aviso("El nombre necesita entre 2 y 40 letras.", true); return false; }
+    if (pais.length < 2) { aviso("Elige el país. Solo hace falta para saber cómo entregar.", true); return false; }
+    premio.estado = "reclamado";
+    premio.reclamo = { nombre: nombre, pais: pais };
+    premio.dispositivo = dispositivo();
+    var usuario = usuarioDe(estado.sesion.id);
+    if (usuario) usuario.dispositivo = premio.dispositivo;
+    guardarDemo();
+    aviso("Reclamación enviada. Un admin la aprueba antes de entregar nada. En la demo no se envía.", false);
+    return true;
+  }
+
+  function resolverPremio(premioId, accion, motivo) {
+    if (!esAdmin()) return false;
+    if (!modoDemo()) { aviso("El premio en el servidor se enciende con el SQL. Esta vista es la demo.", true); return false; }
+    var premio = buscar(estado.premios, premioId);
+    if (!premio || premio.estado === "anulado") return false;
+    if (accion === "aprobar") {
+      if (premio.estado !== "reclamado") { aviso("Primero tiene que reclamarlo.", true); return false; }
+      premio.estado = "aprobado";
+      guardarDemo();
+      aviso("Aprobado en la demo. No se entrega nada: el premio concreto lo decides tú.", false);
+      return true;
+    }
+    if (accion === "anular") {
+      premio.estado = "anulado";
+      premio.motivo = String(motivo || "Anulado por el admin").trim();
+      var pregunta = buscar(estado.preguntas, premio.pregunta);
+      if (pregunta && pregunta.valida === premio.respuesta) pregunta.valida = "";
+      guardarDemo();
+      aviso("Premio anulado. La pregunta puede volver a tener una respuesta válida.", false);
+      return true;
+    }
+    return false;
+  }
+
   function entrarDemo(nombre, correo) {
     nombre = String(nombre || "").trim();
     correo = String(correo || "").trim().toLowerCase();
@@ -643,6 +805,7 @@
       user = { id: nid("u-"), nombre: nombre, correo: correo };
       estado.usuarios.push(user);
     }
+    user.dispositivo = dispositivo();
     estado.sesion = { id: user.id, nombre: user.nombre, correo: user.correo };
     guardarDemo();
     aviso("Entraste en la demo. Nada salió de este navegador.", false);
@@ -735,8 +898,10 @@
     return box;
   }
 
-  function pintaRespuesta(r, admin) {
-    var art = el("div", "qa-respuesta" + (r.oculto ? " qa-oculto" : ""));
+  function pintaRespuesta(r, pregunta, admin) {
+    var premio = premioActivo(estado.premios, pregunta && pregunta.id);
+    var esValida = premio && premio.respuesta === r.id;
+    var art = el("div", "qa-respuesta" + (r.oculto ? " qa-oculto" : "") + (esValida ? " qa-valida" : ""));
     var cabeza = el("p", "qa-meta");
     cabeza.appendChild(el("strong", "", nombreDe(r.autor)));
     var badge = statsDe(r.autor);
@@ -744,6 +909,10 @@
     cabeza.appendChild(el("span", "badge " + badge.clave, badge.nombre));
     cabeza.appendChild(document.createTextNode(" · " + haceTexto(r.creado)));
     if (r.oculto) cabeza.appendChild(document.createTextNode(" · oculto"));
+    if (esValida) {
+      cabeza.appendChild(document.createTextNode(" "));
+      cabeza.appendChild(el("span", "badge valida", "Respuesta válida"));
+    }
     art.appendChild(cabeza);
     art.appendChild(el("p", "", r.cuerpo));
     var actions = el("div", "qa-actions");
@@ -758,8 +927,65 @@
     det.appendChild(el("summary", "", "Reportar"));
     det.appendChild(bloqueReporte("respuesta", r.id));
     actions.appendChild(det);
+    var puedeMarcar = estado.sesion && pregunta && (admin || estado.sesion.id === pregunta.autor) && !premio;
+    if (puedeMarcar && !r.oculto) {
+      var opta = puedeOptar(r, pregunta);
+      if (!opta.ok && opta.motivo === "propia") actions.appendChild(el("span", "fine", "Tu respuesta no opta al premio."));
+      else if (!opta.ok && opta.motivo === "corta") actions.appendChild(el("span", "fine", "Menos de 80 letras: no opta al premio."));
+      else if (opta.ok) actions.appendChild(boton("gold", "valida", r.id, "Es la respuesta válida"));
+    }
     art.appendChild(actions);
+    if (esValida && premio.estado === "sin_premio") art.appendChild(el("p", "fine", "Respuesta válida. Sin premio: " + (premio.motivo || "tope del mes.")));
+    if (esValida && estado.sesion && estado.sesion.id === premio.ganador && premio.estado === "pendiente") art.appendChild(formularioReclamo(premio));
+    if (esValida && estado.sesion && estado.sesion.id === premio.ganador && premio.estado === "reclamado") art.appendChild(el("p", "fine", "Reclamación enviada. Un admin la aprueba antes de entregar nada."));
+    if (esValida && estado.sesion && estado.sesion.id === premio.ganador && premio.estado === "aprobado") art.appendChild(el("p", "fine", "Aprobado. El premio concreto lo anuncia quien organiza. En la demo no se envía."));
     return art;
+  }
+
+  function formularioReclamo(premio) {
+    var form = el("form", "qa-reclamo qa");
+    form.setAttribute("data-id", premio.id);
+    form.appendChild(el("p", "", "Reclamar: " + textoPremio()));
+    form.appendChild(el("p", "fine", "Solo el nombre, el correo de tu cuenta y el país. El correo no se cambia aquí."));
+    var nom = el("label", "", "Nombre");
+    var nomIn = el("input");
+    nomIn.name = "nombre";
+    nomIn.maxLength = 40;
+    nomIn.required = true;
+    nomIn.value = estado.sesion.nombre || "";
+    nom.appendChild(nomIn);
+    form.appendChild(nom);
+    var cor = el("label", "", "Correo de la cuenta");
+    var corIn = el("input");
+    corIn.name = "correo";
+    corIn.type = "email";
+    corIn.readOnly = true;
+    corIn.value = estado.sesion.correo || "";
+    cor.appendChild(corIn);
+    form.appendChild(cor);
+    var pais = el("label", "", "País");
+    var sel = el("select");
+    sel.name = "pais";
+    sel.required = true;
+    ["", "México", "España", "Colombia", "Perú", "Argentina", "Estados Unidos", "Otro"].forEach(function (op) {
+      var o = el("option", "", op || "Elige");
+      o.value = op;
+      sel.appendChild(o);
+    });
+    pais.appendChild(sel);
+    form.appendChild(pais);
+    var ok = el("label", "check");
+    var box = el("input");
+    box.type = "checkbox";
+    box.name = "bases";
+    box.required = true;
+    ok.appendChild(box);
+    ok.appendChild(document.createTextNode(" Acepto las bases, que aún son un borrador."));
+    form.appendChild(ok);
+    var go = el("button", "btn gold", "Enviar reclamación");
+    go.type = "submit";
+    form.appendChild(go);
+    return form;
   }
 
   function pintaPregunta(p, admin) {
@@ -782,6 +1008,7 @@
     var nv = visibles.length;
     meta.appendChild(document.createTextNode(nv === 0 ? " · sin respuestas" : " · " + nv + (nv === 1 ? " respuesta" : " respuestas")));
     if (p.oculto) meta.appendChild(document.createTextNode(" · oculto"));
+    if (p.valida && premioActivo(estado.premios, p.id)) meta.appendChild(document.createTextNode(" · con respuesta válida"));
     art.appendChild(meta);
     art.appendChild(el("p", "", p.cuerpo));
     var actions = el("div", "qa-actions");
@@ -799,11 +1026,11 @@
     art.appendChild(actions);
 
     var mostrar = abiertas[p.id] ? visibles : visibles.slice(0, 2);
-    mostrar.forEach(function (r) { art.appendChild(pintaRespuesta(r, admin)); });
+    mostrar.forEach(function (r) { art.appendChild(pintaRespuesta(r, p, admin)); });
     if (!abiertas[p.id] && visibles.length > 2) {
       art.appendChild(boton("sec qa-mas", "mas", p.id, "Ver las otras " + (visibles.length - 2) + " respuestas"));
     }
-    if (admin) ocultas.forEach(function (r) { art.appendChild(pintaRespuesta(r, admin)); });
+    if (admin) ocultas.forEach(function (r) { art.appendChild(pintaRespuesta(r, p, admin)); });
 
     if (estado.sesion && !p.oculto) {
       var form = el("form", "qa-responder");
@@ -817,6 +1044,7 @@
       ta.rows = 3;
       lab.appendChild(ta);
       form.appendChild(lab);
+      form.appendChild(el("p", "fine", "Para el premio hacen falta al menos 80 letras. Responder tu propia pregunta no cuenta."));
       var go = el("button", "btn", "Publicar respuesta");
       go.type = "submit";
       form.appendChild(go);
@@ -869,6 +1097,11 @@
 
     var ol = document.getElementById("qa-ranking");
     ol.textContent = "";
+    var nombrePremio = document.getElementById("qa-premio-nombre");
+    if (nombrePremio) nombrePremio.textContent = textoPremio();
+    pintarBanda();
+    pintarCola(admin);
+
     ranking(estado.usuarios, estado.respuestas).forEach(function (r, i) {
       var li = el("li");
       li.appendChild(el("span", "qa-pos", String(i + 1)));
@@ -884,11 +1117,89 @@
     });
   }
 
+  function estadoPremio(clave) {
+    if (clave === "pendiente") return "Sin reclamar";
+    if (clave === "reclamado") return "Reclamado, por aprobar";
+    if (clave === "aprobado") return "Aprobado, sin entregar";
+    if (clave === "sin_premio") return "Válida, sin premio";
+    if (clave === "anulado") return "Anulado";
+    return clave;
+  }
+
+  function pintarBanda() {
+    var box = document.getElementById("qa-premio-banda");
+    if (!box) return;
+    box.textContent = "";
+    if (!estado.sesion) { box.hidden = true; return; }
+    var mios = (estado.premios || []).filter(function (p) {
+      return p.ganador === estado.sesion.id && p.estado !== "anulado" && p.estado !== "sin_premio";
+    });
+    if (!mios.length) { box.hidden = true; return; }
+    box.hidden = false;
+    mios.forEach(function (p) {
+      var pregunta = buscar(estado.preguntas, p.pregunta);
+      var titulo = pregunta ? pregunta.titulo : "una pregunta";
+      if (p.estado === "pendiente") {
+        box.appendChild(el("p", "", "Tu respuesta en «" + titulo + "» es la primera válida. Puedes reclamar el premio."));
+        box.appendChild(boton("gold", "ir", p.pregunta, "Ir a reclamar"));
+      } else if (p.estado === "reclamado") {
+        box.appendChild(el("p", "", "Reclamaste el premio de «" + titulo + "». Falta que un admin lo apruebe."));
+      } else if (p.estado === "aprobado") {
+        box.appendChild(el("p", "", "El premio de «" + titulo + "» está aprobado. En la demo no se envía."));
+      }
+    });
+  }
+
+  function pintarCola(admin) {
+    var box = document.getElementById("qa-cola");
+    var lista = document.getElementById("qa-cola-lista");
+    if (!box || !lista) return;
+    box.hidden = !admin;
+    lista.textContent = "";
+    if (!admin) return;
+    var filas = estado.premios || [];
+    if (!filas.length) {
+      lista.appendChild(el("p", "", "No hay premios en la cola."));
+      return;
+    }
+    filas.forEach(function (p) {
+      var pregunta = buscar(estado.preguntas, p.pregunta);
+      var item = el("article", "qa-cola-item");
+      item.appendChild(el("h3", "", (pregunta && pregunta.titulo) || "Pregunta"));
+      var meta = el("p", "qa-meta");
+      meta.appendChild(document.createTextNode(nombreDe(p.ganador) + " · " + estadoPremio(p.estado)));
+      if (p.reclamo && p.reclamo.pais) meta.appendChild(document.createTextNode(" · " + p.reclamo.pais));
+      item.appendChild(meta);
+      if (p.motivo) item.appendChild(el("p", "fine", p.motivo));
+      var otras = senalCompartida(estado.usuarios, p.dispositivo, p.ganador);
+      if (otras.length) {
+        item.appendChild(el("p", "qa-senal", "Señal suave: el mismo aparato que " + otras.map(function (u) { return u.nombre; }).join(", ") + ". No basta para anular; míralo antes de aprobar."));
+      }
+      item.appendChild(el("p", "fine", "La IP no se lee en la demo. Con Supabase se guarda la de la petición, solo para esta cola."));
+      if (p.estado !== "anulado") {
+        var actions = el("div", "qa-actions");
+        if (p.estado === "reclamado") actions.appendChild(boton("gold", "aprobar", p.id, "Aprobar"));
+        var sel = el("select");
+        sel.className = "qa-anular-motivo";
+        ["Abuso o spam", "Cuenta repetida", "La respuesta no servía", "Otro"].forEach(function (op) {
+          var o = el("option", "", op);
+          o.value = op;
+          sel.appendChild(o);
+        });
+        actions.appendChild(sel);
+        actions.appendChild(boton("sec", "anular", p.id, "Anular premio"));
+        item.appendChild(actions);
+      }
+      lista.appendChild(item);
+    });
+  }
+
   function normalizar(o) {
     o.usuarios = o.usuarios || [];
     o.preguntas = o.preguntas || [];
     o.respuestas = o.respuestas || [];
     o.reportes = o.reportes || [];
+    o.premios = o.premios || [];
     o.ritmo = o.ritmo || ritmoVacio();
     ["pregunta", "respuesta", "reporte", "voto"].forEach(function (k) {
       if (!o.ritmo[k]) o.ritmo[k] = [];
@@ -901,7 +1212,7 @@
       var raw = localStorage.getItem(CLAVE);
       if (raw) {
         var o = JSON.parse(raw);
-        if (o && o.v === 1 && Array.isArray(o.preguntas)) return normalizar(o);
+        if (o && o.v === 2 && Array.isArray(o.preguntas) && Array.isArray(o.premios)) return normalizar(o);
       }
     } catch (e) {}
     return semilla();
@@ -923,6 +1234,36 @@
       if (acc === "voto") { lanzar(function () { return alternarVoto(b.getAttribute("data-tipo"), id); }); return; }
       if (acc === "ocultar") {
         lanzar(function () { return ponerOculto(b.getAttribute("data-tipo"), id, b.getAttribute("data-oculto") === "1"); });
+        return;
+      }
+      if (acc === "valida") { lanzar(function () { return marcarValida(id); }); return; }
+      if (acc === "ir") {
+        abiertas[id] = true;
+        pintar();
+        var destino = document.getElementById("p-" + id);
+        if (destino) destino.scrollIntoView({ block: "start" });
+      }
+    });
+    var banda = document.getElementById("qa-premio-banda");
+    if (banda) banda.addEventListener("click", function (ev) {
+      var b = ev.target.closest("[data-acc=ir]");
+      if (!b) return;
+      var id = b.getAttribute("data-id");
+      abiertas[id] = true;
+      pintar();
+      var destino = document.getElementById("p-" + id);
+      if (destino) destino.scrollIntoView({ block: "start" });
+    });
+    var cola = document.getElementById("qa-cola");
+    if (cola) cola.addEventListener("click", function (ev) {
+      var b = ev.target.closest("[data-acc]");
+      if (!b) return;
+      var id = b.getAttribute("data-id");
+      if (b.getAttribute("data-acc") === "aprobar") lanzar(function () { return resolverPremio(id, "aprobar"); });
+      if (b.getAttribute("data-acc") === "anular") {
+        var item = b.closest(".qa-cola-item");
+        var sel = item && item.querySelector("select");
+        lanzar(function () { return resolverPremio(id, "anular", sel ? sel.value : ""); });
       }
     });
     document.getElementById("qa-lista").addEventListener("submit", function (ev) {
@@ -938,6 +1279,12 @@
         ev.preventDefault();
         var sel = form.querySelector("select");
         lanzar(function () { return enviarReporte(form.getAttribute("data-tipo"), form.getAttribute("data-id"), sel.value); });
+      }
+      if (form.classList.contains("qa-reclamo")) {
+        ev.preventDefault();
+        var datos = new FormData(form);
+        var acepta = !!form.querySelector("[name=bases]").checked;
+        lanzar(function () { return reclamar(form.getAttribute("data-id"), datos.get("nombre"), datos.get("pais"), acepta); });
       }
     });
     document.getElementById("qa-entrar").addEventListener("submit", function (ev) {
@@ -1020,6 +1367,11 @@
     cupo: cupo,
     ordenarPreguntas: ordenarPreguntas,
     ranking: ranking,
+    PREMIO: PREMIO,
+    puedeOptar: puedeOptar,
+    cupoPremio: cupoPremio,
+    premioActivo: premioActivo,
+    senalCompartida: senalCompartida,
     semilla: semilla,
     configNube: configNube,
     iniciar: iniciar

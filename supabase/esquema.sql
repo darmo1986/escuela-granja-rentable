@@ -9,8 +9,11 @@ create table if not exists public.perfiles (
   id uuid primary key references auth.users (id) on delete cascade,
   nombre text not null check (char_length(nombre) between 2 and 40),
   es_admin boolean not null default false,
+  dispositivo text not null default '',
   creado timestamptz not null default now()
 );
+
+alter table public.perfiles add column if not exists dispositivo text not null default '';
 
 create table if not exists public.preguntas (
   id uuid primary key default gen_random_uuid(),
@@ -57,7 +60,7 @@ create index if not exists reportes_objetivo on public.reportes (tipo, objetivo)
 revoke all on public.perfiles from anon, authenticated;
 grant select (id, nombre) on public.perfiles to anon, authenticated;
 grant select (es_admin) on public.perfiles to authenticated;
-grant update (nombre) on public.perfiles to authenticated;
+grant update (nombre, dispositivo) on public.perfiles to authenticated;
 
 grant select on public.preguntas, public.respuestas, public.votos to anon, authenticated;
 grant insert on public.preguntas, public.respuestas, public.votos to authenticated;
@@ -340,6 +343,172 @@ where exists (
 );
 
 grant select on public.ranking to anon, authenticated;
+
+-- Premio: la primera respuesta que el autor o un admin marca como válida.
+-- No es la primera en llegar. El texto del premio vive en js/config.js.
+
+alter table public.preguntas add column if not exists valida uuid;
+
+create table if not exists public.premios (
+  id uuid primary key default gen_random_uuid(),
+  pregunta uuid not null references public.preguntas (id) on delete cascade,
+  respuesta uuid not null references public.respuestas (id) on delete cascade,
+  ganador uuid not null references public.perfiles (id) on delete cascade,
+  marcado_por uuid not null references public.perfiles (id),
+  estado text not null check (estado in ('pendiente', 'reclamado', 'aprobado', 'sin_premio', 'anulado')),
+  motivo text not null default '',
+  reclamo_nombre text,
+  reclamo_pais text,
+  dispositivo text not null default '',
+  ip text not null default '',
+  creado timestamptz not null default now()
+);
+
+create unique index if not exists premios_una_valida
+  on public.premios (pregunta)
+  where estado <> 'anulado';
+
+alter table public.premios enable row level security;
+
+grant select on public.premios to authenticated;
+grant update (reclamo_nombre, reclamo_pais, dispositivo, estado) on public.premios to authenticated;
+
+drop policy if exists premios_leer on public.premios;
+create policy premios_leer on public.premios
+  for select to authenticated
+  using (
+    ganador = auth.uid()
+    or exists (select 1 from public.perfiles p where p.id = auth.uid() and p.es_admin)
+  );
+
+-- Quien ganó rellena nombre y país. No cambia el correo: es el de la cuenta.
+drop policy if exists premios_reclamar on public.premios;
+create policy premios_reclamar on public.premios
+  for update to authenticated
+  using (ganador = auth.uid() and estado = 'pendiente')
+  with check (ganador = auth.uid() and estado = 'reclamado');
+
+drop policy if exists premios_admin on public.premios;
+create policy premios_admin on public.premios
+  for update to authenticated
+  using (exists (select 1 from public.perfiles p where p.id = auth.uid() and p.es_admin))
+  with check (exists (select 1 from public.perfiles p where p.id = auth.uid() and p.es_admin));
+
+-- La IP de la petición, si el proxy la deja en la cabecera. Vacía si no llega.
+-- Es un aviso de cuentas repetidas, no una prueba.
+create or replace function public.ip_peticion()
+returns text
+language plpgsql
+stable
+as $$
+declare
+  cabeceras json;
+  ip text;
+begin
+  begin
+    cabeceras := current_setting('request.headers', true)::json;
+  exception when others then
+    return '';
+  end;
+  if cabeceras is null then
+    return '';
+  end if;
+  ip := coalesce(cabeceras->>'cf-connecting-ip', cabeceras->>'x-forwarded-for', '');
+  ip := btrim(split_part(ip, ',', 1));
+  return left(ip, 64);
+end;
+$$;
+
+revoke all on function public.ip_peticion() from public;
+
+create or replace function public.marcar_valida(respuesta_id uuid)
+returns uuid
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  r public.respuestas;
+  q public.preguntas;
+  soy_admin boolean;
+  letras int;
+  en_mes int;
+  ultimo timestamptz;
+  nuevo uuid;
+  estado_premio text;
+  motivo_premio text := '';
+begin
+  if auth.uid() is null then
+    raise exception 'Entra con el correo o con Google.';
+  end if;
+  select * into r from public.respuestas where id = respuesta_id;
+  if not found or r.oculto then
+    raise exception 'Esa respuesta no puede llevarse el premio.';
+  end if;
+  select * into q from public.preguntas where id = r.pregunta;
+  select exists (select 1 from public.perfiles p where p.id = auth.uid() and p.es_admin) into soy_admin;
+  if auth.uid() is distinct from q.autor and not soy_admin then
+    raise exception 'Solo quien preguntó, o un admin, marca la respuesta válida.';
+  end if;
+  if exists (select 1 from public.premios where pregunta = q.id and estado <> 'anulado') then
+    raise exception 'Esta pregunta ya tiene una respuesta válida.';
+  end if;
+  if r.autor = q.autor then
+    raise exception 'Responder la propia pregunta no opta al premio.';
+  end if;
+  letras := char_length(btrim(r.cuerpo));
+  if letras < 80 then
+    raise exception 'Para el premio hacen falta al menos 80 letras.';
+  end if;
+  select count(*) into en_mes from public.premios
+    where ganador = r.autor
+      and estado in ('pendiente', 'reclamado', 'aprobado')
+      and creado >= date_trunc('month', now());
+  select max(creado) into ultimo from public.premios
+    where ganador = r.autor and estado in ('pendiente', 'reclamado', 'aprobado');
+  if en_mes >= 2 then
+    estado_premio := 'sin_premio';
+    motivo_premio := 'Ya tiene 2 premios este mes.';
+  elsif ultimo is not null and ultimo > now() - interval '7 days' then
+    estado_premio := 'sin_premio';
+    motivo_premio := 'Aún no pasan 7 días desde su premio anterior.';
+  else
+    estado_premio := 'pendiente';
+  end if;
+  insert into public.premios (pregunta, respuesta, ganador, marcado_por, estado, motivo, dispositivo, ip)
+  values (
+    q.id, r.id, r.autor, auth.uid(), estado_premio, motivo_premio,
+    coalesce((select dispositivo from public.perfiles where id = r.autor), ''),
+    public.ip_peticion()
+  )
+  returning id into nuevo;
+  update public.preguntas set valida = r.id where id = q.id;
+  return nuevo;
+end;
+$$;
+
+revoke all on function public.marcar_valida(uuid) from public;
+grant execute on function public.marcar_valida(uuid) to authenticated;
+
+create or replace function public.anular_libera_valida()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if new.estado = 'anulado' and old.estado is distinct from 'anulado' then
+    update public.preguntas set valida = null
+      where id = new.pregunta and valida = new.respuesta;
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists premios_anular on public.premios;
+create trigger premios_anular
+  after update of estado on public.premios
+  for each row execute function public.anular_libera_valida();
 
 -- Cuando entres la primera vez, copia tu uuid en Authentication → Users y ejecuta:
 -- update public.perfiles set es_admin = true where id = 'UUID-DE-PABLO';

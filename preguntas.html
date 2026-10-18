@@ -99,10 +99,17 @@
 <h1>Preguntas de avicultura</h1>
 <p>Pregunta por gallinas, pollos o huevos. Quien sepa responde. Arriba, en el celular, y al lado en el ordenador, está quién más ayuda.</p>
 <p>Las respuestas fijas del sitio siguen en <a href="faq.html">Preguntas frecuentes</a>. Esto es otra cosa: lo escribe la gente.</p>
+<p>La primera respuesta que el autor o un admin marque como válida puede llevarse un premio. No gana quien escribe antes. El premio de este mes es un hueco: lo decides tú.</p>
 </section>
 <aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
 <p class="qa-demo" id="qa-demo">Modo demo. No hay base de datos: lo que escribas se queda en este navegador.</p>
 <p id="qa-aviso" class="qa-aviso" role="status"></p>
+<div id="qa-premio-banda" class="qa-premio-banda" hidden></div>
+<section id="qa-cola" class="panel qa" hidden>
+<h2>Cola de premios</h2>
+<p class="fine">Nada se entrega hasta que lo apruebes. Puedes anular. Una misma señal de aparato es un aviso, no una prueba.</p>
+<div id="qa-cola-lista"></div>
+</section>
 <div id="qa-sesion" class="qa-sesion" hidden>
 <p id="qa-hola"></p>
 <button type="button" class="btn sec" id="qa-salir">Salir</button>
@@ -135,6 +142,17 @@
 <div id="qa-lista"></div>
 </div>
 <aside class="qa-rank panel" aria-labelledby="qa-rank-titulo">
+<div class="qa-premio-caja">
+<p class="kicker">Premio</p>
+<h2 id="qa-premio-nombre">Premio del mes (lo decides tú)</h2>
+<ul class="qa-ideas">
+<li>Un mes de curso o de la app, cuando deje de ser gratis</li>
+<li>Un código de descuento en la tienda</li>
+<li>Una insignia en el foro</li>
+<li>Un puesto en el sorteo mensual de quien más responde</li>
+</ul>
+<p class="fine">Ninguno está activo. Elige uno y cambia el nombre en la configuración.</p>
+</div>
 <h2 id="qa-rank-titulo">Quién más responde</h2>
 <p class="fine">El puesto suma las respuestas visibles y los votos de «útil».</p>
 <ol id="qa-ranking"></ol>
@@ -144,9 +162,22 @@
 <button type="button" class="btn sec" id="qa-reset">Volver a los datos de ejemplo</button>
 </aside>
 </div>
+<section class="panel qa" id="bases-premio">
+<h2>Bases del premio (borrador)</h2>
+<p><strong>Borrador para que lo revise quien organiza.</strong> No es un texto legal cerrado ni un consejo. El público está en España y en Latinoamérica. El responsable está en España y, antes de encender el premio, tiene que leerlo y adaptarlo.</p>
+<details>
+<summary>Leer las bases</summary>
+<p>Organiza Juan Pablo González García, Calle Juan Rumeu García 6 bajo, 38008 Santa Cruz de Tenerife, España. Correo: <a href="mailto:pablopersonal86@gmail.com">pablopersonal86@gmail.com</a>.</p>
+<p>Participar es gratis. No hace falta comprar. Quien participe desde otro país acepta estas bases y conserva la protección de consumo de su ley.</p>
+<p>Gana la primera respuesta que el autor de la pregunta o un administrador marque como válida. No gana la primera en publicarse. Hacen falta al menos 80 letras. No cuenta responder la propia pregunta. Una cuenta por persona, con el correo comprobado (enlace) o con Google. Como mucho 2 premios por persona y mes, y al menos 7 días entre uno y otro.</p>
+<p>El premio concreto lo anuncia el responsable antes de cada mes. Mientras diga «lo decides tú», no hay nada que entregar. Puede ser, si él lo elige, un mes de un curso de pago, un código de descuento, una insignia o un puesto en un sorteo entre quien más responde.</p>
+<p>Para reclamar bastan el nombre, el correo de la cuenta y el país. El administrador aprueba antes de entregar y puede anular si ve abuso, cuentas repetidas o una respuesta que no servía. Una misma señal de aparato o de IP es un aviso, no una prueba por sí sola.</p>
+<p>Esos datos se usan para decidir y entregar. No se venden. Los derechos se piden al correo de privacidad. El responsable puede pausar el premio. Si lo enciende, la ley del organizador es la de España.</p>
+</details>
+</section>
 <section class="panel qa" id="privacidad-foro">
 <h2>Privacidad</h2>
-<p>Para preguntar hace falta un nombre, que ven los demás, y un correo, que no se publica. En esta demo no salen de tu navegador. Cuando se conecte Supabase, el correo solo sirve para entrar (Google o un enlace) y para moderar. No se vende. Puedes pedir el borrado en la <a href="privacidad.html">política de privacidad</a>.</p>
+<p>Para preguntar hace falta un nombre, que ven los demás, y un correo, que no se publica. Si reclamas un premio, también el país, solo para entregarlo, y una señal del aparato como aviso de cuentas repetidas. En esta demo no salen de tu navegador. Cuando se conecte Supabase, el correo solo sirve para entrar (Google o un enlace), moderar y el premio. No se vende. Puedes pedir el borrado en la <a href="privacidad.html">política de privacidad</a>.</p>
 </section>
 <aside class="ad-inline" data-ad-size="rect"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="rect" data-ad-size="rect"></div></aside>
 <noscript><p>Para ver el foro hace falta JavaScript. En la demo la pregunta no sale de tu navegador.</p></noscript>
