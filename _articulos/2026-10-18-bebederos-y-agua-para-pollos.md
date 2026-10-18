@@ -3,7 +3,7 @@ titulo: "Bebederos y agua para pollos y gallinas"
 titulo_seo: "Bebederos y agua para pollos y gallinas"
 descripcion: "Campana o tetina, aves por bebedero, temperatura del agua y qué mirar cada día para que el lote no deje de beber."
 categoria: otros
-fecha: 2026-10-14
+fecha: 2026-10-18
 borrador: false
 ia: true
 leccion: l04a
@@ -16,9 +16,9 @@ red: ""
 guia: espacio
 fuentes:
   - "[Calidad del agua, nota técnica de Aviagen en español](https://aviagen.com/assets/Tech_Center/BB_Foreign_Language_Docs/Spanish_TechDocs/SPRossTechNoteWaterQuality.pdf)"
-  - "[Guías de la línea Ross, Aviagen](https://aviagen.com/brands/ross/)"
+  - "[Guía de bolsillo Ross, Aviagen](https://aviagen.com/assets/Tech_Center/Ross_Broiler/Aviagen-ROSS-Broiler-PocketGuide-EN.pdf)"
+  - "[Guía de manejo Cobb, 2021](https://www.cobbgenetics.com/assets/Cobb-Files/Broiler-Guide_English-2021-min.pdf)"
   - "[Cartel de bebederos de tetina, Cobb 2026](https://www.cobbgenetics.com/assets/Cobb-Files/2026-Nipple-Drinker-Poster-Digital-v2.pdf)"
-  - "[Cobb Genetics](https://www.cobbgenetics.com/)"
   - "[Guía de manejo Lohmann Brown-Classic en jaula](https://lohmann-breeders.com/files/downloads/MG/Cage/LB_MG_Cage_LB-Classic_EN.pdf)"
   - "[Guía de rendimiento Hy-Line Brown, sistemas convencionales](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
   - "[Anticoccidials and vaccines, Extension.org](https://poultry.extension.org/articles/feeds-and-feeding-of-poultry/feed-additives-for-poultry/use-of-anticoccidial-medications-and-vaccines-in-poultry-production/)"
@@ -30,7 +30,7 @@ Este texto es para pollos de engorde y para gallinas. Las cifras de aves por pic
 
 ## Cuánta agua sale a cuenta
 
-A unos 21 °C, Cobb dice que las aves beben, en volumen, entre 1,6 y 2,0 veces el peso del alimento del día. Si el agua pasa de 2 veces el alimento, Cobb mira dos causas: calor de más de 30 °C, o un error de fórmula, o bebederos que gotean. La nota de Aviagen en español da, para bebedero de campana a 21 °C, una relación cercana a 1,8 a 1, y cita un aumento del 6 al 7 % por cada grado por encima de 21 °C (NRC, 1994). La guía de bolsillo de Ross resume la zona de trabajo, a esa misma temperatura, entre 1,6 y 1,8, y recuerda que los primeros días y el calor se salen de ahí. El agua medida en el contador incluye lo que se derrama: no todo llegó al pico.
+A unos 21 °C, Cobb dice que las aves beben, en volumen, entre 1,6 y 2,0 veces el peso del alimento del día. Si el agua pasa de 2 veces el alimento, el cartel de Cobb señala tres causas: calor de más de 30 °C, un error de fórmula, o bebederos que gotean. La nota de Aviagen en español da, para bebedero de campana a 21 °C, una relación cercana a 1,8 a 1, y cita un aumento del 6 al 7 % por cada grado por encima de 21 °C (NRC, 1994). La guía de bolsillo de Ross resume la zona de trabajo, a esa misma temperatura, entre 1,6 y 1,8, y recuerda que los primeros días y el calor se salen de ahí. El agua medida en el contador incluye lo que se derrama: no todo llegó al pico.
 
 No hace falta memorizar mililitros por ave si todavía no tienes contador. Sí hace falta anotar, a la misma hora, si hoy beben menos que ayer. Cobb toma la lectura antes de repartir alimento. Una bajada que no explica el clima es motivo para revisar picos tapados, presión, cama y aves enfermas. El cuadro clínico está en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
 
@@ -78,17 +78,18 @@ Mide el pico más lejos del regulador, no el primero. Si no tienes probeta, al m
 
 Aquí las guías no dicen un solo número. Conviene dejarlos separados:
 
+- Cartel de tetinas de Cobb (2026), para pollos de engorde: temperatura ideal del agua entre 10 y 14 °C. No debe pasar de 25 °C. Si pasa, hay que purgar la línea al menos 3 veces al día.
 - Guía de bolsillo de Ross: temperatura de trabajo 18–21 °C. Por encima de 30 °C baja el consumo. Por encima de 44 °C las aves pueden negarse a beber.
 - Nota de Aviagen en español: si el agua suele pasar de 24 °C, hay que enfriarla o renovarla. Cita un estudio (Beker y Teeter, 1994) en el que las aves prefirieron agua cerca de 10 °C y el consumo bajó de forma clara desde 26,7 °C.
 - Lohmann Brown-Classic, en pollitas de arranque: mantener el agua entre 20 y 25 °C, purgando la línea o renovando los bebederos de apoyo.
 
-Lo que las tres comparten: el agua caliente, olvidada en un tanque al sol, se bebe peor. En calor, purga las líneas para que no salga tibia. Para vacunar por agua, la nota de Aviagen pide menos de 20 °C y, si hace falta hielo en el tanque, que esté derretido del todo antes de echar la vacuna. La dosis y el tiempo de sed los marca el laboratorio de la vacuna, no este artículo.
+Lo que estas guías comparten: el agua caliente, olvidada en un tanque al sol, se bebe peor. En calor, purga las líneas para que no salga tibia. Para vacunar por agua, la nota de Aviagen pide menos de 20 °C y, si hace falta hielo en el tanque, que esté derretido del todo antes de echar la vacuna. La dosis y el tiempo de sed los marca el laboratorio de la vacuna, no este artículo.
 
 ## Calidad: qué pedir en un análisis
 
 No hace falta un laboratorio cada semana. Sí hace falta uno cuando el lote bebe mal, la cama está líquida sin calor que lo explique, o el pozo cambió de sabor.
 
-La nota de Aviagen marca el pH así: por debajo de 6, deficiente (corrosión y peor resultado); 6,0–6,4, con problemas posibles; 6,5–8,5, satisfactorio; por encima de 8,6, inadecuado. Hy-Line, en la guía de la Brown, da otro intervalo de trabajo, de 5 a 7, y avisa de menos consumo por debajo de 5 o por encima de 8. No promedies 5 y 8,5 para «inventar» un pH ideal. Si tu análisis cae fuera del intervalo de la guía que sigues, no eches vinagre ni cloro a ojo. Pide a quien hizo el análisis, o al veterinario, qué corregir y con qué equipo.
+Para pollos de engorde, el cartel de tetinas de Cobb (2026) marca un pH ideal de 6,0 a 6,8. Hy-Line, en la guía de la Brown, da otro intervalo, de 5 a 7, y avisa de menos consumo por debajo de 5 o por encima de 8. Ese 5–7 es de ponedoras Hy-Line, no el objetivo del lote de engorde. La nota de Aviagen en español usa otra escala: por debajo de 6, deficiente (corrosión y peor resultado); 6,0–6,4, con problemas posibles; 6,5–8,5, satisfactorio; por encima de 8,6, inadecuado. No promedies esas bandas para inventar un pH único. Si tu análisis cae fuera del intervalo de la guía que sigues, no eches vinagre ni cloro a ojo. Pide a quien hizo el análisis, o al veterinario, qué corregir y con qué equipo.
 
 Aviagen pone como meta 0 unidades formadoras de colonias de coliformes por mililitro. Por encima de cero, hay contaminación fecal. Hy-Line trata un recuento bacteriano alto como agua sucia. Un bebedero de campana con heces entra en ese grupo aunque el pozo esté limpio: la suciedad se la pusiste tú.
 

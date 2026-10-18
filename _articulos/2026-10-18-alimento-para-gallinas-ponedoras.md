@@ -3,7 +3,7 @@ titulo: "Alimento para gallinas ponedoras"
 titulo_seo: "Alimento para gallinas ponedoras"
 descripcion: "Inicio, crecimiento y postura: cuándo cambiar el saco, por qué el de postura no va a los pollitos y cómo va el calcio."
 categoria: alimentacion
-fecha: 2026-10-15
+fecha: 2026-10-18
 borrador: false
 ia: true
 leccion: l05a
@@ -47,7 +47,7 @@ Hy-Line, en la guía de la Brown para sistemas convencionales, tiene una fase de
 
 ## Calcio cuando ya hay huevo
 
-La cáscara se lleva calcio todos los días. Alabama y Maine piden que el alimento de postura traiga al menos 2,5–3,5 % de calcio, y ofrecen concha de ostra, calcita o piedra caliza a libre acceso, sobre todo si el saco no llega. Oregon habla de 3–4 % en el alimento y de concha de ostra aparte si la cáscara sale fina, áspera o se rompe con facilidad. El comedero de la concha va separado, para que la gallina coma si lo necesita.
+La cáscara se lleva calcio todos los días. Maine pide que el alimento de postura traiga al menos 2,5–3,5 % de calcio, y ofrece concha de ostra, calcita o piedra caliza a libre acceso, sobre todo si el saco no llega. Oregon habla de 3–4 % en el alimento y de concha de ostra aparte si la cáscara sale fina, áspera o se rompe con facilidad. El comedero de la concha va separado, para que la gallina coma si lo necesita.
 
 No mezcles la concha con el maíz del suelo. Si va revuelta con grano, no sabes cuánto calcio comió cada una. Maryland también deja el calcio (concha o piedra) a libre acceso para la calidad de la cáscara.
 

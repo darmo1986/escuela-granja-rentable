@@ -82,12 +82,16 @@ PROHIBIDO = re.compile(
     re.I,
 )
 VOCABULARIO = re.compile(r"pollos?\s+de\s+carne|broilers?", re.I)
+# El nombre oficial de varias guías lleva «Broiler» en la URL. Eso no es el texto que lee el granjero.
+URL_EN_TEXTO = re.compile(r"https?://[^\s)]+")
 RESERVADOS = SLUGS_CAT | {"index", "pagina"}
 CARPETA_POSTS = "_articulos"
 MAX_TITULO = 60
 MAX_DESCRIPCION = 150
 SUFIJO_TITULO = " | Granja Rentable"
 VERSION_ACTIVOS = "202610185"
+# Solo las páginas del blog. El 202610185 ya lo usa otro PR en el resto del sitio.
+VERSION_BLOG = "202610189"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
 CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}
@@ -314,10 +318,14 @@ def celdas_de(linea):
     return [c.strip() for c in linea.strip().strip("|").split("|")]
 
 
+def texto_visible(texto):
+    return URL_EN_TEXTO.sub(" ", str(texto))
+
+
 def markdown_a_html(texto, origen, errores):
     if marca_reservada(texto):
         errores.append(f"{origen}: el texto lleva una marca reservada. Quítale las arrobas dobles.")
-    if VOCABULARIO.search(texto):
+    if VOCABULARIO.search(texto_visible(texto)):
         errores.append(f"{origen}: escribe «pollos de engorde», no «pollo de carne» ni «broiler».")
     if texto_prohibido(texto):
         errores.append(f"{origen}: el texto nombra Amazon, eBay, Mercado Libre o campid. Solo se enlaza la tienda propia y el curso.")
@@ -458,7 +466,7 @@ def exigir_limpio(texto, origen, nombre):
         raise Fallo(f"{origen}: {nombre} lleva una marca reservada. Quítale las arrobas dobles.")
     if texto_prohibido(texto):
         raise Fallo(f"{origen}: {nombre} nombra Amazon, eBay, Mercado Libre o campid. No se publica.")
-    if VOCABULARIO.search(str(texto)):
+    if VOCABULARIO.search(texto_visible(texto)):
         raise Fallo(f"{origen}: escribe «pollos de engorde», no «pollo de carne» ni «broiler».")
 
 
@@ -663,13 +671,14 @@ def limpiar_whatsapp(html):
     return html
 
 
-def poner_version(html):
+def poner_version(html, version=None):
+    version = version or VERSION_ACTIVOS
     for nombre in (
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
             "js/site.js", "js/app.js", "js/config.js"):
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=\d+)?"',
-            rf'\1?v={VERSION_ACTIVOS}"',
+            rf'\1?v={version}"',
             html)
     return html
 
@@ -893,7 +902,7 @@ def envolver(shell, rel, titulo, descripcion, canonical, robots, og_type, og_ima
     pagina = pagina.replace("{{", "&#123;&#123;").replace("{%", "&#123;%")
     if "Imagen pendiente" in pagina or 'class="ph"' in pagina:
         raise Fallo("La página salió con un hueco de imagen. No se publica.")
-    return poner_version(pagina)
+    return poner_version(pagina, VERSION_BLOG)
 
 
 def ld_blog():

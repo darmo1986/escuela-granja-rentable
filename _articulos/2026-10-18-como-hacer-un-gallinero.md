@@ -3,7 +3,7 @@ titulo: "Cómo hacer un gallinero sencillo"
 titulo_seo: "Cómo hacer un gallinero sencillo"
 descripcion: "Refugio básico, gallinero mediano y nave de manejo fino: nidos, perchas, piso seco y la densidad que publica la FAO."
 categoria: construccion
-fecha: 2026-10-13
+fecha: 2026-10-18
 borrador: false
 ia: true
 leccion: l02
@@ -17,8 +17,8 @@ guia: espacio
 fuentes:
   - "[Alojamiento en producción avícola a pequeña escala, FAO](https://www.fao.org/4/y5169e/y5169e05.htm)"
   - "[Housing backyard chickens, University of California ANR](https://ucanr.edu/sites/default/files/2014-03/186892.pdf)"
-  - "[Cobb Genetics](https://www.cobbgenetics.com/)"
-  - "[Guías de la línea Ross, Aviagen](https://aviagen.com/brands/ross/)"
+  - "[Guía de manejo Cobb, 2021](https://www.cobbgenetics.com/assets/Cobb-Files/Broiler-Guide_English-2021-min.pdf)"
+  - "[Manejo ambiental en galpones abiertos, Aviagen](https://aviagen.com/assets/Tech_Center/Broiler_Breeder_Tech_Articles/English/AVIA_EnvMgtOpenSidedHseBroiler-EN-2016.pdf)"
   - "[Guía de espacio del curso](../guia-espacio.html)"
 ---
 
@@ -63,7 +63,7 @@ En este escalón suma:
 - Luz de día suficiente para moverse y poner. La FAO indica que la puesta baja si la intensidad cae por debajo de 5 lux a la altura del ojo. No hace falta un luxómetro para entender el extremo: un cuarto oscuro todo el día no es un gallinero de puesta.
 - Piso levantado o con drenaje si llueve fuerte. El bambú o la tierra apisonada que cita la FAO sirven donde ese material es el que hay. El hormigón solo vale si no queda helado y húmedo.
 
-La limpieza por etapas (seco, lavado, descanso) la desarrolla el curso en las lecciones de engorde y de ponedoras. Cuando haya un artículo solo de limpieza, irá al bloque de limpieza de gallineros. Mientras, el orden de L04A y de L05B es el que ya está publicado.
+La limpieza por etapas (seco, lavado, descanso) la desarrolla el curso en las lecciones de engorde y de ponedoras. El orden completo, con el local vacío, está en [cómo limpiar y desinfectar el gallinero](como-limpiar-y-desinfectar-el-gallinero.html). Las lecciones L04A y L05B siguen el mismo criterio.
 
 ## Experto: la nave donde se miden calor y aire
 

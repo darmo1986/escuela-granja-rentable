@@ -3,7 +3,7 @@ titulo: "Cómo criar pollos de engorde en casa"
 titulo_seo: "Cómo criar pollos de engorde en casa"
 descripcion: "Calor, cama, agua y alimento por etapas para un lote en casa, con las cifras de Cobb, Ross y la extensión."
 categoria: engorde
-fecha: 2026-10-17
+fecha: 2026-10-18
 borrador: false
 ia: true
 leccion: l04a
@@ -15,12 +15,13 @@ video: ""
 red: ""
 guia: espacio
 fuentes:
-  - "[Guías de la línea Ross, Aviagen](https://aviagen.com/brands/ross/)"
+  - "[Guía de bolsillo Ross, Aviagen](https://aviagen.com/assets/Tech_Center/Ross_Broiler/Aviagen-ROSS-Broiler-PocketGuide-EN.pdf)"
+  - "[Manejo ambiental en galpones abiertos, Aviagen](https://aviagen.com/assets/Tech_Center/Broiler_Breeder_Tech_Articles/English/AVIA_EnvMgtOpenSidedHseBroiler-EN-2016.pdf)"
   - "[Calidad del agua, nota técnica de Aviagen en español](https://aviagen.com/assets/Tech_Center/BB_Foreign_Language_Docs/Spanish_TechDocs/SPRossTechNoteWaterQuality.pdf)"
-  - "[Cobb Genetics](https://www.cobbgenetics.com/)"
+  - "[Guía de manejo Cobb, 2021](https://www.cobbgenetics.com/assets/Cobb-Files/Broiler-Guide_English-2021-min.pdf)"
   - "[Cartel de bebederos de tetina, Cobb 2026](https://www.cobbgenetics.com/assets/Cobb-Files/2026-Nipple-Drinker-Poster-Digital-v2.pdf)"
   - "[Criar pollos para carne, Extensión de la Universidad de Minnesota](https://es.extension.umn.edu/small-scale-poultry/raising-chickens-meat)"
-  - "[Guía de manejo en galpones abiertos, Aviagen, resumen en el centro técnico](https://aviagen.com/brands/ross/)"
+  - "[Conversiones, manual de producción avícola a pequeña escala, FAO](https://www.fao.org/4/y5169e/y5169e0c.htm)"
 ---
 
 Criar pollos de engorde en casa cabe en un cuarto limpio, un galpón abierto o un corral con techo. Lo que no cabe es tratarlos como gallinas de patio que «se arreglan solas». Las líneas de crecimiento rápido comen, beben y sueltan calor a otro ritmo. Este texto junta lo que Cobb, Aviagen (Ross) y la Extensión de la Universidad de Minnesota publican para el arranque y el día a día. Las cifras de la lección del curso están en [L04A](../lecciones/l04a.html).
@@ -31,7 +32,7 @@ No prometo un peso en 30 o en 45 días. Esa pregunta sale mucho en el buscador. 
 
 ### Limpio, seco y vacío
 
-Cobb pide tiempo de descanso entre lotes para que la limpieza sirva. No da un número único de días para todo el mundo: el vacío lo marca también la norma de tu país y lo que te diga el veterinario. En la lección L04A el curso cita, para España, el real decreto de ordenación. Si estás en otro país, no copies ese plazo: pregunta el que te aplica.
+La guía de manejo de Cobb de 2021 sí publica días de vacío. Si la granja y los galpones se vacían y se limpian por completo, el mínimo absoluto es de 3 días desde la última desinfección hasta el primer pollito. Si se reutiliza la cama, el vacío mínimo es de 14 días, y la misma guía repite esos 14 días para conservar la calidad de la cama y frenar bacterias y hongos. En un programa sin antibióticos pone como ejemplo 18 días o más. La norma de tu país y el veterinario pueden pedir más. En la lección L04A el curso cita, para España, el real decreto de ordenación. Si estás en otro país, no copies ese plazo: pregunta el que te aplica y no bajes de los días que Cobb fija para tu forma de limpiar.
 
 La cama va seca y pareja. La guía de bolsillo de Ross pide esparcirla de forma uniforme. La guía de Aviagen para galpones abiertos habla de 5–10 cm en piso sólido. Cobb, en la misma lección del curso, se cita con una capa más alta sobre tierra. No mezclo esas dos cifras en una sola: son casas y pisos distintos. Lo común es que el pollito no pise cemento helado ni barro.
 

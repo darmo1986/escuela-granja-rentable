@@ -3,7 +3,7 @@ titulo: "Cómo limpiar y desinfectar el gallinero"
 titulo_seo: "Cómo limpiar y desinfectar el gallinero"
 descripcion: "Vacía, raspa, lava y desinfecta solo sobre superficie limpia. Secado, piso de tierra y qué no resuelve el balde."
 categoria: limpieza
-fecha: 2026-11-15
+fecha: 2026-10-18
 borrador: false
 ia: true
 leccion: l05b
@@ -32,7 +32,7 @@ Limpiar el gallinero no es echar un producto encima de la gallinaza. El desinfec
 
 Hay dos trabajos distintos y la gente los mezcla. Uno es el mantenimiento de cada día: sacar la cama empapada bajo el bebedero, recoger el huevo roto, barrer el nido. El otro es la limpieza de fondo, la que solo se hace bien cuando las aves no están dentro. El primero no sustituye al segundo. El segundo, hecho a medias, tampoco «desinfecta».
 
-La cama del día a día y el estiércol como abono están en [cama y gallinaza](cama-y-gallinaza.html). Piojos y ácaros, que no se van con un balde de olor fuerte, están en [piojos y ácaros](piojos-y-acaros-en-gallinas.html). El plano del local está en [cómo hacer un gallinero](como-hacer-un-gallinero.html).
+La cama del día a día está en [cómo criar pollos de engorde en casa](como-criar-pollos-de-engorde.html). Piojos y ácaros, que no se van con un balde de olor fuerte, están en [piojos y ácaros](piojos-y-acaros-en-gallinas.html). El plano del local está en [cómo hacer un gallinero](como-hacer-un-gallinero.html).
 
 ## Qué problema resuelve y cuál no
 
@@ -48,7 +48,7 @@ APHIS separa dos casos. En una nave, se espera a que la casa esté vacía. En un
 
 Alberta plantea el trabajo entre lote y lote. Si tus gallinas no salen nunca del mismo dormidero, igual hace falta un día en que ese dormidero quede vacío. Perchas, nidos y bebederos no se lavan bien con las aves encima. Un corralito provisional, seco y con agua, alcanza para esas horas. No hace falta una segunda granja.
 
-En pollos de engorde el vacío entra en el ciclo: sale el lote entero y entra el siguiente después de secar. Ese sistema está en [nave para pollos de engorde](nave-para-pollos-de-engorde.html). En ponedoras que viven años en el mismo sitio, el vacío total es más incómodo y por eso se pospone hasta que la costra ya no sale con pala. Esa espera es el error, no una tradición.
+En pollos de engorde el vacío entra en el ciclo: sale el lote entero y entra el siguiente después de secar. Ese sistema está en [cómo criar pollos de engorde en casa](como-criar-pollos-de-engorde.html). En ponedoras que viven años en el mismo sitio, el vacío total es más incómodo y por eso se pospone hasta que la costra ya no sale con pala. Esa espera es el error, no una tradición.
 
 ## Antes de mojar nada
 
@@ -179,7 +179,7 @@ Alberta: retira los 3 cm de arriba y deséchalos con la gallinaza. No esperes qu
 
 ### ¿La limpieza cura la coccidiosis?
 
-No. Merck y Extension.org explican que los ooquistes aguantan desinfectantes habituales. Lo que sí baja el riesgo diario es la cama seca y el bebedero que no gotea. El cuadro clínico lo ve el veterinario. Está desarrollado en [coccidiosis en pollos](coccidiosis-en-pollos.html).
+No. Merck y Extension.org explican que los ooquistes aguantan desinfectantes habituales. Lo que sí baja el riesgo diario es la cama seca y el bebedero que no gotea. El cuadro clínico lo ve el veterinario. Está desarrollado en [enfermedades de las gallinas](enfermedades-de-las-gallinas.html).
 
 ### ¿Cada cuánto se hace?
 

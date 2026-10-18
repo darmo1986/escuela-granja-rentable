@@ -3,7 +3,7 @@ titulo: "Razas de gallinas y cómo elegir"
 titulo_seo: "Razas de gallinas y cómo elegir"
 descripcion: "Cómo elegir entre ponedoras comerciales, aves locales y líneas de engorde, con los objetivos de Hy-Line y Lohmann."
 categoria: razas
-fecha: 2026-10-16
+fecha: 2026-10-18
 borrador: false
 ia: true
 leccion: l01
@@ -20,6 +20,7 @@ fuentes:
   - "[Guía de rendimiento Hy-Line Brown, sistemas convencionales](https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf)"
   - "[Guía de manejo Lohmann Brown-Classic en jaula](https://lohmann-breeders.com/files/downloads/MG/Cage/LB_MG_Cage_LB-Classic_EN.pdf)"
   - "[Líneas de aves del curso](../razas.html)"
+  - "[Criar pollos para carne, Extensión de la Universidad de Minnesota](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-chickens-for-meat)"
 ---
 
 No existe «la mejor raza». Existe el ave que encaja con lo que vas a vender, con el calor de tu zona y con el alimento que de verdad puedes comprar. La FAO cuenta más de 1.600 razas de gallina en el mundo, en dos páginas distintas de su portal avícola: la ficha de la gallina y la de mejora genética. Nadie elige leyendo las 1.600. Se elige el trabajo: huevo, carne o las dos cosas. Esa decisión es la lección [L01](../lecciones/l01.html).

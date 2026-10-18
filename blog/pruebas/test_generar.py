@@ -115,13 +115,13 @@ class Generador(unittest.TestCase):
         self.assertNotIn(">Artículos<", menu)
         self.assertNotIn('href="blog/"', menu)
         self.assertIn(">Calculadoras<", menu)
-        self.assertIn("css/estilo.css?v=202610185", indice)
-        self.assertIn("js/boot.js?v=202610185", indice)
-        self.assertIn("css/blog.css?v=202610185", indice)
-        self.assertIn("js/blog.js?v=202610185", indice)
-        self.assertIn("js/config.js?v=202610185", indice)
-        self.assertIn("js/app.js?v=202610185", indice)
-        self.assertIn("js/site.js?v=202610185", indice)
+        self.assertIn("css/estilo.css?v=202610189", indice)
+        self.assertIn("js/boot.js?v=202610189", indice)
+        self.assertIn("css/blog.css?v=202610189", indice)
+        self.assertIn("js/blog.js?v=202610189", indice)
+        self.assertIn("js/config.js?v=202610189", indice)
+        self.assertIn("js/app.js?v=202610189", indice)
+        self.assertIn("js/site.js?v=202610189", indice)
         self.assertIn("<!-- menu:inicio -->", menu)
         self.assertIn('id="nav-herramientas"', menu)
         self.assertIn(">Herramientas<", menu)
@@ -218,6 +218,14 @@ class Generador(unittest.TestCase):
              _cuerpo="Los pollos de carne comen mucho.")
         errores = generar.generar(self.tmp)
         self.assertTrue(any("pollos de engorde" in e for e in errores))
+        (self.tmp / "_articulos" / "2026-11-02-amazon.md").unlink()
+        post(
+            self.tmp, "2026-10-18-guia-pdf.md", borrador="false", producto="", leccion="",
+            imagen="", imagen_og="",
+            fuentes=["[Guía de manejo](https://www.example.com/Broiler-Guide.pdf)"],
+            _cuerpo="El lote es de pollos de engorde. La cifra sale del PDF enlazado.",
+        )
+        self.assertEqual(generar.generar(self.tmp), [])
 
     def test_markdown_roto_no_toca_el_html(self):
         (self.tmp / "_articulos" / "roto.md").write_text("sin datos\n", encoding="utf-8")

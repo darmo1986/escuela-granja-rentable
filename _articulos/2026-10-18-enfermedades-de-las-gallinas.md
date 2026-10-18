@@ -15,7 +15,7 @@ video: ""
 red: ""
 guia: espacio
 fuentes:
-  - "[Newcastle disease, OMSA/WOAH](https://www.woah.org/en/disease/newcastle-disease/)"
+  - "[Newcastle, Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/en/disease/newcastle-disease/)"
   - "[Newcastle disease in poultry, Merck Veterinary Manual](https://www.merckvetmanual.com/poultry/newcastle-disease-and-other-avian-paramyxovirus-infections/newcastle-disease-in-poultry)"
   - "[Avian influenza in poultry and wild birds, Merck Veterinary Manual](https://www.merckvetmanual.com/poultry/avian-influenza-in-poultry-and-wild-birds/avian-influenza-in-poultry-and-wild-birds)"
   - "[Signs of illness, USDA APHIS Defend the Flock](https://www.aphis.usda.gov/livestock-poultry-disease/avian/defend-the-flock/signs-illness)"
@@ -35,15 +35,15 @@ No hay dosis en esta página. El producto, la cantidad y los días los pone el v
 
 Recorre el gallinero con calma y anota cuántas aves están mal, desde cuándo y si comen y beben. Una sola ave caída no se lee igual que diez en un día.
 
-La OMSA (WOAH) describe la enfermedad de Newcastle como un cuadro que puede ser respiratorio, nervioso o digestivo, con caída de la puesta y mortalidad variable, a veces muy alta. El manual Merck dice que no hay un signo que, por sí solo, confirme Newcastle: el inicio en aves sin protección puede ser rápido y a veces la primera señal es la muerte súbita.
+La Organización Mundial de Sanidad Animal (OMSA) describe la enfermedad de Newcastle como un cuadro que puede ser respiratorio, nervioso o digestivo, con caída de la puesta y mortalidad variable, a veces muy alta. El manual Merck dice que no hay un signo que, por sí solo, confirme Newcastle: el inicio en aves sin protección puede ser rápido y a veces la primera señal es la muerte súbita.
 
-El servicio de sanidad animal de Estados Unidos (USDA APHIS) lista, para la influenza aviar de alta patogenicidad, diarrea, incoordinación, mocos, tos, estornudos, cresta y patas moradas, hinchazón de cabeza, cresta, párpados y barbillas, menos huevos o huevos deformes, decaimiento y muerte súbita. La OMSA advierte que Newcastle y la influenza aviar pueden verse parecidas, así que el laboratorio es el que separa una de otra.
+El servicio de sanidad animal de Estados Unidos (USDA APHIS) lista, para la influenza aviar de alta patogenicidad, diarrea, incoordinación, mocos, estornudos, cresta y patas moradas, hinchazón de cabeza, cresta, párpados y barbillas, menos huevos o huevos deformes, decaimiento y muerte súbita. La OMSA advierte que Newcastle y la influenza aviar pueden verse parecidas, así que el laboratorio es el que separa una de otra.
 
 Señales para no dejar pasar la noche:
 
 - Varias aves muertas sin un golpe, un depredador o un fallo claro de la criadora.
 - Cresta o barbillas hinchadas, moradas o muy oscuras.
-- Respiración con el pico abierto, tos o mocos en más de un ave.
+- Respiración con el pico abierto o mocos en más de un ave.
 - Cuello torcido, temblores, aves que dan vueltas o que no se tienen en pie.
 - Caída fuerte de la puesta en pocos días, o huevos sin cáscara, deformes o con clara aguada.
 - Heces con sangre, sobre todo en pollitos y en aves jóvenes.
