@@ -2,7 +2,7 @@
 
 Sigue en borrador. La página dice que no está abierto mientras `comunidad.concursoPublicado` sea `false`. Así no llama a Supabase.
 
-El premio es uno solo y es del concurso. La cifra está en `public.premio_euros()` y, en el navegador, en `premioEuros` de `js/config.js`. El concurso no repite la cantidad. El reto de `/preguntas` no tiene premio.
+El premio es uno solo y es del concurso. La cifra está solo en `public.premio_euros()`. El navegador la lee de esa función y no guarda otra copia. El reto de `/preguntas` no tiene premio.
 
 Gana quien más acierta. Si empatan, el servidor sortea entre los empatados y guarda la llave en `concurso_sorteos`. No se usa el tiempo ni los milisegundos. Esa llave no se enseña.
 
@@ -38,7 +38,7 @@ where periodo = 'AAAA-MM' and estado = 'pendiente_verificar';
 
 Ese cambio abre 14 días para reclamar. Si nadie reclama, el mantenimiento anula el premio y pasa a la siguiente marca válida. Un premio ya pagado no se mueve.
 
-El historial público muestra el periodo y el apodo guardado en `quiz_premios`, no el correo. `ganador` puede quedar vacío si se borra la cuenta (`on delete set null`); el apodo se conserva. No se publica mientras sigue pendiente de verificar o anulado.
+El historial público se lee con `concurso_historial()`. El apodo sale de `perfiles.nombre`. Si se borra la cuenta, `ganador` queda vacío (`on delete set null`) y se conserva el apodo que ya estaba guardado. No se publica mientras sigue pendiente de verificar o anulado. El formulario solo reclama si `concurso_premio_pendiente(periodo)` devuelve true: usa `auth.uid()` y no recibe el usuario como parámetro.
 
 Para descalificar una marca: `oculto = true` en `concurso_marcas`. Si el premio todavía no se pagó, pasa a la siguiente marca válida y esa persona no vuelve a salir en ese mes.
 

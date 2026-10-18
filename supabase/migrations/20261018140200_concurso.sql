@@ -660,6 +660,8 @@ as $$
   from public.concurso_historial() h;
 $$;
 
+drop function if exists public.concurso_premio_pendiente(text, uuid);
+
 create or replace function public.concurso_historial()
 returns table (periodo text, apodo text)
 language sql
@@ -667,16 +669,17 @@ stable
 security definer
 set search_path = public
 as $$
-  select q.periodo, q.apodo
+  select q.periodo, coalesce(p.nombre, q.apodo)
   from public.quiz_premios q
+  left join public.perfiles p on p.id = q.ganador
   where q.origen = 'concurso'
     and q.estado in ('pendiente', 'reclamado', 'aprobado', 'pagado')
     and q.periodo < public.periodo_madrid(now())
-    and nullif(btrim(coalesce(q.apodo, '')), '') is not null
+    and nullif(btrim(coalesce(p.nombre, q.apodo, '')), '') is not null
   order by q.periodo desc;
 $$;
 
-create or replace function public.concurso_premio_pendiente(p_periodo text, p_usuario uuid)
+create or replace function public.concurso_premio_pendiente(p_periodo text)
 returns boolean
 language sql
 stable
@@ -687,8 +690,7 @@ as $$
     select 1
     from public.quiz_premios q
     where q.periodo = p_periodo
-      and p_usuario = auth.uid()
-      and q.ganador = p_usuario
+      and q.ganador = auth.uid()
       and q.origen = 'concurso'
       and q.estado = 'pendiente'
       and (q.reclamable_hasta is null or q.reclamable_hasta >= clock_timestamp())
@@ -968,7 +970,7 @@ begin
   if p_periodo is null or p_periodo !~ '^[0-9]{4}-[0-9]{2}$' then
     raise exception 'Ese mes no vale.';
   end if;
-  if not public.concurso_premio_pendiente(p_periodo, auth.uid()) then
+  if not public.concurso_premio_pendiente(p_periodo) then
     raise exception 'No hay un premio pendiente a tu nombre en ese mes.';
   end if;
   m_pago := lower(btrim(coalesce(p_metodo, '')));
@@ -1023,7 +1025,7 @@ revoke all on function public.quiz_premios_plazo() from public, anon, authentica
 revoke all on function public.concurso_estado() from public;
 revoke all on function public.concurso_ganadores() from public;
 revoke all on function public.concurso_historial() from public;
-revoke all on function public.concurso_premio_pendiente(text, uuid) from public;
+revoke all on function public.concurso_premio_pendiente(text) from public, anon;
 revoke all on function public.concurso_empezar(text, boolean, text) from public;
 revoke all on function public.concurso_abrir(uuid) from public;
 revoke all on function public.concurso_responder(uuid, int) from public;
@@ -1032,7 +1034,7 @@ revoke all on function public.concurso_reclamar(text, text, text) from public;
 grant execute on function public.concurso_estado() to anon, authenticated;
 grant execute on function public.concurso_ganadores() to anon, authenticated;
 grant execute on function public.concurso_historial() to anon, authenticated;
-grant execute on function public.concurso_premio_pendiente(text, uuid) to authenticated;
+grant execute on function public.concurso_premio_pendiente(text) to authenticated;
 grant execute on function public.concurso_empezar(text, boolean, text) to authenticated;
 grant execute on function public.concurso_abrir(uuid) to authenticated;
 grant execute on function public.concurso_responder(uuid, int) to authenticated;

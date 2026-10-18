@@ -1,7 +1,7 @@
 /* Concurso mensual. La página no lleva las respuestas.
    Con concursoPublicado en false no llama a Supabase y no hay modo local.
    El apodo es perfiles.nombre y se valida con GRAuth.apodo.
-   El premio mostrado sale de GR.premioEuros y de premio_euros(). */
+   El premio mostrado sale de public.premio_euros(). No hay otra cifra en el navegador. */
 (function () {
   var LIMITE_MS = 30000;
   var PAISES = [
@@ -58,9 +58,7 @@
   }
 
   function euros() {
-    if (premioVisto > 0) return premioVisto;
-    var n = window.GR && Number(GR.premioEuros);
-    return isFinite(n) && n > 0 ? n : 0;
+    return premioVisto > 0 ? premioVisto : 0;
   }
 
   function verPremio(n) {
@@ -351,14 +349,19 @@
   }
 
   function puedeReclamar(periodo) {
-    var u = usuario();
-    if (!u || !periodo) return Promise.resolve(false);
+    if (!periodo || !usuario()) return Promise.resolve(false);
     return pedir("/rest/v1/rpc/concurso_premio_pendiente", {
       method: "POST",
       auth: true,
-      body: { p_periodo: periodo, p_usuario: u.id }
+      body: { p_periodo: periodo }
     }).then(function (res) {
       return !!(res.ok && res.data === true);
+    });
+  }
+
+  function cargarPremio() {
+    return pedir("/rest/v1/rpc/premio_euros", { method: "POST", body: {} }).then(function (res) {
+      if (res.ok) verPremio(res.data);
     });
   }
 
@@ -373,15 +376,19 @@
       return Promise.resolve();
     }
     return pedir("/rest/v1/rpc/concurso_estado", { method: "POST", body: {}, auth: true }).then(function (res) {
-      if (!res.ok || !res.data) {
-        abierta = false;
-        if (modo) modo.textContent = textoError(res);
-        pintarRanking([]);
-        return cargarHistorial().then(pintarGanadores);
-      }
-      return cargarHistorial().then(function (filas) {
-        res.data.ganadores = filas;
-        aplicarEstado(res.data);
+      return cargarPremio().then(function () {
+        if (!res.ok || !res.data) {
+          abierta = false;
+          if (modo) modo.textContent = textoError(res);
+          pintarRanking([]);
+          pintarPremio();
+          return cargarHistorial().then(pintarGanadores);
+        }
+        if (res.data.premio_euros) verPremio(res.data.premio_euros);
+        return cargarHistorial().then(function (filas) {
+          res.data.ganadores = filas;
+          aplicarEstado(res.data);
+        });
       });
     });
   }
