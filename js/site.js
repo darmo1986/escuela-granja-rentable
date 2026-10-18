@@ -537,16 +537,29 @@
     }
     function soltarDesplegable(ev) {
       var drop = ev.target.closest && ev.target.closest(".nav-drop");
-      if (drop && nav.contains(drop)) drop.classList.remove("is-dismissed");
+      if (!drop || !nav.contains(drop)) return;
+      if (ev.type === "focusin" && ev.target.closest(".nav-redes, .nav-parent")) return;
+      drop.classList.remove("is-dismissed");
+    }
+    function botonVisible(drop) {
+      var botones = drop.querySelectorAll(".nav-redes, .nav-parent");
+      var i;
+      for (i = 0; i < botones.length; i++) {
+        if (botones[i].getClientRects().length) return botones[i];
+      }
+      return botones[0] || null;
     }
     nav.addEventListener("mouseover", soltarDesplegable);
     nav.addEventListener("focusin", soltarDesplegable);
     document.addEventListener("keydown", function (ev) {
       if (ev.key !== "Escape") return;
       var activo = document.activeElement;
-      var dentro = activo && nav.contains(activo);
+      var drop = activo && activo.closest && activo.closest(".nav-drop");
+      if (!drop || !nav.contains(drop)) drop = nav.querySelector(".nav-drop.is-open");
+      var devolver = !!(drop && nav.contains(drop) && (drop.classList.contains("is-open") || (activo && drop.contains(activo))));
+      var boton = devolver ? botonVisible(drop) : null;
       cerrarDesplegables(true);
-      if (dentro && activo.blur) activo.blur();
+      if (boton) boton.focus();
     });
     document.addEventListener("click", function (ev) {
       if (nav.contains(ev.target)) return;

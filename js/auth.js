@@ -57,7 +57,10 @@
     pelotudo: 1, pelotuda: 1, pelotudos: 1, pelotudas: 1,
     huevon: 1, huevona: 1, huevones: 1, huevonas: 1,
     cojudo: 1, cojuda: 1, cojudos: 1, cojudas: 1,
-    viagra: 1, casino: 1, porno: 1, cripto: 1
+    viagra: 1, casino: 1, porno: 1, cripto: 1,
+    joder: 1, culo: 1, culos: 1, imbecil: 1, imbeciles: 1,
+    bitch: 1, bitches: 1,
+    hijodeputa: 1, hijaputa: 1, putamadre: 1, hijueputa: 1
   };
 
   function apodoTexto(s) {
@@ -71,11 +74,15 @@
   }
 
   function apodoLetras(s) {
-    return String(s || "").toLowerCase()
-      .replace(/[áàäâã]/g, "a").replace(/[éèëê]/g, "e").replace(/[íìïî]/g, "i")
-      .replace(/[óòöôõ]/g, "o").replace(/[úùüû]/g, "u").replace(/ñ/g, "n").replace(/ç/g, "c")
+    var t = String(s || "").toLowerCase();
+    try { t = t.normalize("NFD"); } catch (e) {}
+    t = t.replace(/\p{M}/gu, "");
+    return t
+      .replace(/\u0131/g, "i").replace(/\u0142/g, "l")
+      .replace(/\u00f8/g, "o").replace(/\u0111/g, "d")
+      .replace(/\u00e6/g, "ae").replace(/\u0153/g, "oe").replace(/\u00df/g, "ss")
       .replace(/0/g, "o").replace(/1/g, "i").replace(/3/g, "e").replace(/4/g, "a")
-      .replace(/5/g, "s").replace(/7/g, "t");
+      .replace(/5/g, "s").replace(/7/g, "t").replace(/v/g, "u");
   }
 
   function apodoPalabras(s) {

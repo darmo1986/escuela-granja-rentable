@@ -40,9 +40,13 @@ window.GR = {
      concursoPublicado sigue en false hasta correr supabase/migrations/20261018140200_concurso.sql.
      El PR del concurso lo pasa a true en este mismo objeto.
      El apodo de la cuenta es perfiles.nombre. El concurso guarda el suyo en concurso_partidas
-     y, si hay sesión, rellena el campo con ese nombre. La cuenta valida con NFKC, lista blanca,
-     sin invisibles ni cirílico y palabrotas por palabra completa (GRAuth.apodo y apodo_ok).
-     El concurso tiene que usar esa misma regla, no una lista de raíces. */
+     y, si hay sesión, rellena el campo con ese nombre. La regla compartida es public.apodo_ok
+     y GRAuth.apodo: NFKC, lista blanca, sin invisibles ni cirílico, y palabrota por palabra
+     completa después de quitar acentos, marcas y las letras ı/ụ/v.
+     premioEuros es la única cifra del premio en el navegador. En la base es public.premio_euros().
+     El premio es del concurso (10 preguntas, más aciertos y, si empatan, menos tiempo; el mes
+     se cuenta en hora de Madrid y el ranking vuelve a cero). El reto de /preguntas no tiene premio. */
+  premioEuros: 20,
   comunidad: {
     supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",

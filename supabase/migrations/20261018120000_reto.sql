@@ -100,7 +100,7 @@ create table if not exists public.quiz_sugerencias (
 create table if not exists public.quiz_premios (
   periodo text primary key check (periodo ~ '^[0-9]{4}-[0-9]{2}$'),
   ganador uuid not null references public.perfiles (id),
-  euros int not null default 20 check (euros = 20),
+  euros int not null,
   estado text not null check (estado in ('pendiente', 'reclamado', 'aprobado', 'pagado', 'anulado')),
   reclamo_nombre text,
   reclamo_pais text,

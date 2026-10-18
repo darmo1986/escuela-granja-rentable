@@ -1,4 +1,4 @@
--- Reglas del apodo de la cuenta, y premio del reto fijado en 20 €.
+-- Reglas del apodo de la cuenta. El premio del concurso va en la migración siguiente.
 -- Se ejecuta después de 20261018130000_apodo.sql.
 -- No se ha corrido desde el repositorio: lo pega quien administra el proyecto.
 -- El concurso debe usar public.apodo_ok. Su filtro por raíces rechaza nombres válidos.
@@ -31,7 +31,10 @@ declare
     'pelotudo', 'pelotuda', 'pelotudos', 'pelotudas',
     'huevon', 'huevona', 'huevones', 'huevonas',
     'cojudo', 'cojuda', 'cojudos', 'cojudas',
-    'viagra', 'casino', 'porno', 'cripto'
+    'viagra', 'casino', 'porno', 'cripto',
+    'joder', 'culo', 'culos', 'imbecil', 'imbeciles',
+    'bitch', 'bitches',
+    'hijodeputa', 'hijaputa', 'putamadre', 'hijueputa'
   ];
 begin
   if raw is null then
@@ -61,10 +64,17 @@ begin
   if s ~ '[0-9]{8,}' then
     return false;
   end if;
-  letras := translate(lower(s),
-    'áàäâãéèëêíìïîóòöôõúùüûñç',
-    'aaaaaeeeeiiiiooooouuuunc');
-  letras := translate(letras, '013457', 'oieast');
+  letras := lower(s);
+  letras := normalize(letras, NFD);
+  letras := regexp_replace(letras, U&'[\0300-\036F\1AB0-\1AFF\1DC0-\1DFF\20D0-\20FF\FE20-\FE2F]', '', 'g');
+  letras := replace(letras, U&'\0131', 'i');
+  letras := replace(letras, U&'\0142', 'l');
+  letras := replace(letras, U&'\00F8', 'o');
+  letras := replace(letras, U&'\0111', 'd');
+  letras := replace(letras, U&'\00E6', 'ae');
+  letras := replace(letras, U&'\0153', 'oe');
+  letras := replace(letras, U&'\00DF', 'ss');
+  letras := translate(letras, '013457v', 'oieastu');
   if exists (
     select 1
     from regexp_split_to_table(letras, '[^a-z]+') as w
@@ -117,26 +127,3 @@ begin
   return new;
 end;
 $$;
-
--- El primero de cada mes gana 20 €. El ranking ya se reinicia: periodo es AAAA-MM.
-update public.quiz_premios set euros = 20 where euros is distinct from 20;
-alter table public.quiz_premios alter column euros set default 20;
-
-do $$
-declare
-  r record;
-begin
-  for r in
-    select con.conname
-    from pg_constraint con
-    where con.conrelid = 'public.quiz_premios'::regclass
-      and con.contype = 'c'
-      and pg_get_constraintdef(con.oid) ilike '%euros%'
-  loop
-    execute format('alter table public.quiz_premios drop constraint %I', r.conname);
-  end loop;
-end $$;
-
-alter table public.quiz_premios
-  add constraint quiz_premios_euros_check
-  check (euros = 20);

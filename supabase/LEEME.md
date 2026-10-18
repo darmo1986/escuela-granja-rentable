@@ -8,7 +8,7 @@ La biblioteca de acceso está en `js/vendor/supabase.js` (copia de `@supabase/su
 
 ## Cuenta
 
-El curso de este sitio es gratis. Entrar no lo cierra: copia el avance a la cuenta. El apodo público de la cuenta es `perfiles.nombre`. No sale del correo ni del nombre de Google (`full_name` o `name`). En Mi cuenta se puede cambiar. Si alguien entra sin apodo, la página se lo pide y, hasta entonces, el ranking enseña «Vecino» y cuatro caracteres. El concurso guarda su apodo en `concurso_partidas` y, si hay sesión, rellena el campo con `perfiles.nombre`. La cuenta ya aplica estas reglas, en el navegador y en `apodo_ok`: NFKC, lista blanca de letras latinas, números, espacio, apóstrofo y guion, sin caracteres invisibles ni cirílicos, y palabrota solo si es la palabra entera. Así pasan Putumayo, Maricarmen, Conchita, Cabrera y Diputado, y no pasan coño, polla, zorra, pinche, idiota, fuck ni pvta. El concurso de la otra rama tiene que usar `apodo_ok` (o `GRAuth.apodo`): hoy todavía recorta por raíces.
+El curso de este sitio es gratis. Entrar no lo cierra: copia el avance a la cuenta. El apodo público de la cuenta es `perfiles.nombre`. No sale del correo ni del nombre de Google (`full_name` o `name`). En Mi cuenta se puede cambiar. Si alguien entra sin apodo, la página se lo pide y, hasta entonces, el ranking enseña «Vecino» y cuatro caracteres. El concurso guarda su apodo en `concurso_partidas` y, si hay sesión, rellena el campo con `perfiles.nombre`. La regla compartida es `public.apodo_ok` (en el navegador, `GRAuth.apodo`): NFKC, lista blanca de letras latinas, números, espacio, apóstrofo y guion, sin caracteres invisibles ni cirílicos. Antes de comparar quita acentos y marcas, y trata ı como i, ụ como u y v como u. La palabrota solo cuenta si es la palabra entera. Así pasan Putumayo, Maricarmen, Conchita, Cabrera, Diputado, Gonçalo, O'Brien y Łukasz, y no pasan coño, polla, zorra, pinche, idiota, fuck, pvta, pụta, ıdiota, pvto, hijodeputa, putamadre, joder, culo, imbécil ni bitch. El concurso tiene que llamar a `apodo_ok`, no a una lista de raíces.
 
 ### Proyecto
 
@@ -16,7 +16,13 @@ El curso de este sitio es gratis. Entrar no lo cierra: copia el avance a la cuen
 2. Authentication → URL configuration. Site URL: `https://granjarentable.com`. En Redirect URLs añade `https://granjarentable.com/cuenta.html` y, para probar, `http://127.0.0.1:8765/cuenta.html`.
 3. Authentication → Providers → Email: deja el correo activo, con «Confirm email» encendido.
 4. El correo incluido en el plan gratis va muy limitado. Para el sitio de verdad, abre SMTP y pon un servidor propio.
-5. En el editor SQL, ejecuta en orden `supabase/migrations/20261018120000_reto.sql`, `20261018120100_cuenta.sql`, `20261018130000_apodo.sql` y `20261018140000_apodo_reglas.sql`. Cada tabla queda con RLS. La segunda migración rellena `perfiles` para quien ya existiera en `auth.users`. La última fija las reglas del apodo y deja el premio del reto en 20 €. No se han ejecutado desde el repositorio.
+5. En el editor SQL, ejecuta en este orden. Cada tabla queda con RLS. No se han ejecutado desde el repositorio.
+   1. `supabase/migrations/20261018120000_reto.sql`
+   2. `supabase/migrations/20261018120100_cuenta.sql` (rellena `perfiles` si ya había usuarios)
+   3. `supabase/migrations/20261018130000_apodo.sql`
+   4. `supabase/migrations/20261018140000_apodo_reglas.sql` (`apodo_ok`)
+   5. `supabase/migrations/20261018140100_premio.sql` (`premio_euros`)
+   6. La del concurso, cuando se rebase: tiene que usar `apodo_ok` y `premio_euros()`.
 6. Mientras las tablas no existan, guardar un cálculo muestra el error. No digas al visitante que faltan migraciones.
 
 ### Google
@@ -27,20 +33,25 @@ El curso de este sitio es gratis. Entrar no lo cierra: copia el avance a la cuen
 
 ## Reto
 
-`/preguntas` no está en el menú ni en el sitemap. La página pública solo dice que todavía no está abierto. No anuncia el premio ni muestra un ranking de ejemplo.
+`/preguntas` no está en el menú ni en el sitemap. La página pública solo dice que todavía no está abierto. No anuncia un premio ni muestra un ranking de ejemplo. El reto no tiene premio.
 
 El esquema (preguntas de cuatro opciones, 30 segundos, ranking por `perfiles.nombre`) se deja limpio por si otra página lo reutiliza. No cambies los nombres de tablas ni de funciones sin avisar.
 
-El ranking es de cada mes: `periodo` es `AAAA-MM` y `ranking_mes` solo lee ese mes. Al cambiar el mes, la tabla de puestos vuelve a empezar.
+El ranking del reto es de cada mes: `periodo` es `AAAA-MM` y `ranking_mes` solo lee ese mes. Al cambiar el mes, la tabla de puestos vuelve a empezar. Eso no reparte dinero.
 
-Pablo ha fijado el premio del reto: el primero de cada mes gana 20 €. Esa cifra está en `quiz_premios.euros` (solo 20). No es el premio del concurso de la otra rama: ese concurso, hoy, no tiene premio. La página pública sigue sin anunciarlo hasta que se cierren las bases (ámbito por país, menores, fiscalidad).
+## Premio del concurso
 
-Cuando se encienda:
+El premio es del concurso, no del reto. Son 10 preguntas. Gana quien más acierta y, si empatan, quien menos tiempo ha tardado. El mes se cuenta en hora de Madrid (`Europe/Madrid`): al empezar el mes siguiente el ranking público vuelve a cero y la marca del mes cerrado queda para el premio.
+
+La cifra está en un solo sitio de la base, `public.premio_euros()`, y en un solo sitio del navegador, `premioEuros` dentro de `js/config.js`. El concurso tiene que leer esas dos y no repetir la cantidad. El pago sigue siendo manual. `/preguntas` no lo anuncia. Falta cerrar el ámbito por país, los menores y la fiscalidad antes de publicarlo en la página.
+
+`quiz_premios` guarda solo premios del concurso (`origen = 'concurso'`). El historial público es `concurso_historial()` y el formulario solo debe reclamar si `concurso_premio_pendiente(periodo, usuario)` devuelve true. Una fila del reto no entra en esa tabla: si llega con `origen = 'reto'`, el trigger la guarda en `reto_premios` y no la inserta en `quiz_premios`. Las filas que ya estuvieran, incluidas las pagadas, se copian a `reto_premios` sin cambiar el importe.
+
+Cuando se encienda el reto:
 
 - `preguntas_publicas` no devuelve la opción correcta.
 - `responder` y `cerrar_abiertas` guardan IP y aparato en cada intento.
 - El admin se marca a mano: `update public.perfiles set es_admin = true where id = 'UUID';`
-- El premio se anota en `quiz_premios` con 20 €. El pago sigue siendo manual.
 
 Si se escribe una pregunta sobre el calcio de la puesta, la explicación tiene que ser esta, sin cifra que parezca una dosis: «El pienso de postura ya lleva calcio. Además, deja concha o grit a libre disposición: la gallina toma lo que le falta.»
 

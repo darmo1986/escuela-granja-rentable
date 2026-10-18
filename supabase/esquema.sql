@@ -97,7 +97,7 @@ create table if not exists public.quiz_sugerencias (
 create table if not exists public.quiz_premios (
   periodo text primary key check (periodo ~ '^[0-9]{4}-[0-9]{2}$'),
   ganador uuid not null references public.perfiles (id),
-  euros int not null default 20 check (euros = 20),
+  euros int not null,
   estado text not null check (estado in ('pendiente', 'reclamado', 'aprobado', 'pagado', 'anulado')),
   reclamo_nombre text,
   reclamo_pais text,
@@ -629,7 +629,7 @@ where p.id = u.id
   ));
 
 -- Migración 20261018140000_apodo_reglas.sql
--- Reglas del apodo de la cuenta, y premio del reto fijado en 20 €.
+-- Reglas del apodo de la cuenta. El premio del concurso va al final de este archivo.
 -- Se ejecuta después de 20261018130000_apodo.sql.
 -- No se ha corrido desde el repositorio: lo pega quien administra el proyecto.
 -- El concurso debe usar public.apodo_ok. Su filtro por raíces rechaza nombres válidos.
@@ -662,7 +662,10 @@ declare
     'pelotudo', 'pelotuda', 'pelotudos', 'pelotudas',
     'huevon', 'huevona', 'huevones', 'huevonas',
     'cojudo', 'cojuda', 'cojudos', 'cojudas',
-    'viagra', 'casino', 'porno', 'cripto'
+    'viagra', 'casino', 'porno', 'cripto',
+    'joder', 'culo', 'culos', 'imbecil', 'imbeciles',
+    'bitch', 'bitches',
+    'hijodeputa', 'hijaputa', 'putamadre', 'hijueputa'
   ];
 begin
   if raw is null then
@@ -692,10 +695,17 @@ begin
   if s ~ '[0-9]{8,}' then
     return false;
   end if;
-  letras := translate(lower(s),
-    'áàäâãéèëêíìïîóòöôõúùüûñç',
-    'aaaaaeeeeiiiiooooouuuunc');
-  letras := translate(letras, '013457', 'oieast');
+  letras := lower(s);
+  letras := normalize(letras, NFD);
+  letras := regexp_replace(letras, U&'[\0300-\036F\1AB0-\1AFF\1DC0-\1DFF\20D0-\20FF\FE20-\FE2F]', '', 'g');
+  letras := replace(letras, U&'\0131', 'i');
+  letras := replace(letras, U&'\0142', 'l');
+  letras := replace(letras, U&'\00F8', 'o');
+  letras := replace(letras, U&'\0111', 'd');
+  letras := replace(letras, U&'\00E6', 'ae');
+  letras := replace(letras, U&'\0153', 'oe');
+  letras := replace(letras, U&'\00DF', 'ss');
+  letras := translate(letras, '013457v', 'oieastu');
   if exists (
     select 1
     from regexp_split_to_table(letras, '[^a-z]+') as w
@@ -749,9 +759,86 @@ begin
 end;
 $$;
 
--- El primero de cada mes gana 20 €. El ranking ya se reinicia: periodo es AAAA-MM.
-update public.quiz_premios set euros = 20 where euros is distinct from 20;
-alter table public.quiz_premios alter column euros set default 20;
+-- Migración 20261018140100_premio.sql
+-- Premio único del concurso. La cifra 20 está solo en public.premio_euros().
+-- El reto de /preguntas no tiene premio. Sus filas viejas pasan a reto_premios
+-- sin cambiar el importe, tampoco si ya están pagadas.
+-- quiz_premios queda solo para el concurso: el historial público y el formulario
+-- de reclamación leen esa tabla, así que un premio del reto no sale ni se reclama.
+-- No se ha corrido desde el repositorio.
+
+create or replace function public.premio_euros()
+returns integer
+language sql
+immutable
+parallel safe
+as $$
+  select 20;
+$$;
+
+comment on function public.premio_euros() is
+  'Única cifra del premio. Es del concurso: 10 preguntas, más aciertos y, si empatan, menos tiempo. El mes es Europe/Madrid y el ranking vuelve a cero. El reto no tiene premio.';
+
+revoke all on function public.premio_euros() from public;
+grant execute on function public.premio_euros() to anon, authenticated;
+
+create table if not exists public.reto_premios (
+  periodo text primary key check (periodo ~ '^[0-9]{4}-[0-9]{2}$'),
+  ganador uuid not null references public.perfiles (id),
+  euros int not null,
+  estado text not null check (estado in ('pendiente', 'reclamado', 'aprobado', 'pagado', 'anulado')),
+  reclamo_nombre text,
+  reclamo_pais text,
+  metodo text,
+  paypal text,
+  dispositivo text not null default '',
+  ip text not null default '',
+  motivo text not null default '',
+  creado timestamptz not null default now()
+);
+
+comment on table public.reto_premios is
+  'Premios viejos del reto. No los lee el historial del concurso ni su formulario.';
+
+alter table public.reto_premios enable row level security;
+
+revoke all on public.reto_premios from anon, authenticated;
+grant select on public.reto_premios to authenticated;
+
+drop policy if exists reto_premio_leer on public.reto_premios;
+create policy reto_premio_leer on public.reto_premios
+  for select to authenticated
+  using (
+    ganador = auth.uid()
+    or exists (select 1 from public.perfiles p where p.id = auth.uid() and p.es_admin)
+  );
+
+alter table public.quiz_premios add column if not exists origen text;
+update public.quiz_premios set origen = 'reto' where origen is null;
+
+insert into public.reto_premios (
+  periodo, ganador, euros, estado, reclamo_nombre, reclamo_pais,
+  metodo, paypal, dispositivo, ip, motivo, creado
+)
+select
+  periodo, ganador, euros, estado, reclamo_nombre, reclamo_pais,
+  metodo, paypal, dispositivo, ip, motivo, creado
+from public.quiz_premios
+where origen = 'reto'
+on conflict (periodo) do nothing;
+
+delete from public.quiz_premios where origen = 'reto';
+
+alter table public.quiz_premios alter column origen set default 'concurso';
+update public.quiz_premios set origen = 'concurso' where origen is null;
+alter table public.quiz_premios alter column origen set not null;
+
+alter table public.quiz_premios drop constraint if exists quiz_premios_origen_check;
+alter table public.quiz_premios
+  add constraint quiz_premios_origen_check
+  check (origen = 'concurso');
+
+alter table public.quiz_premios alter column euros set default public.premio_euros();
 
 do $$
 declare
@@ -763,11 +850,104 @@ begin
     where con.conrelid = 'public.quiz_premios'::regclass
       and con.contype = 'c'
       and pg_get_constraintdef(con.oid) ilike '%euros%'
+      and con.conname <> 'quiz_premios_euros_check'
   loop
     execute format('alter table public.quiz_premios drop constraint %I', r.conname);
   end loop;
 end $$;
 
+alter table public.quiz_premios drop constraint if exists quiz_premios_euros_check;
 alter table public.quiz_premios
   add constraint quiz_premios_euros_check
-  check (euros = 20);
+  check (estado = 'pagado' or euros = public.premio_euros());
+
+create or replace function public.quiz_premios_guardar()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if new.origen is null or new.origen = 'reto' then
+    insert into public.reto_premios (
+      periodo, ganador, euros, estado, reclamo_nombre, reclamo_pais,
+      metodo, paypal, dispositivo, ip, motivo, creado
+    )
+    values (
+      new.periodo, new.ganador, new.euros, new.estado, new.reclamo_nombre, new.reclamo_pais,
+      new.metodo, new.paypal, coalesce(new.dispositivo, ''), coalesce(new.ip, ''),
+      coalesce(new.motivo, ''), coalesce(new.creado, now())
+    )
+    on conflict (periodo) do update
+    set ganador = excluded.ganador,
+        euros = excluded.euros,
+        estado = excluded.estado,
+        reclamo_nombre = excluded.reclamo_nombre,
+        reclamo_pais = excluded.reclamo_pais,
+        metodo = excluded.metodo,
+        paypal = excluded.paypal,
+        dispositivo = excluded.dispositivo,
+        ip = excluded.ip,
+        motivo = excluded.motivo
+    where public.reto_premios.estado is distinct from 'pagado';
+    return null;
+  end if;
+  new.origen := 'concurso';
+  if tg_op = 'UPDATE' and old.estado = 'pagado' then
+    new.euros := old.euros;
+  elsif new.estado is distinct from 'pagado' then
+    new.euros := public.premio_euros();
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists quiz_premios_guardar on public.quiz_premios;
+create trigger quiz_premios_guardar
+  before insert or update on public.quiz_premios
+  for each row execute function public.quiz_premios_guardar();
+
+create or replace function public.concurso_historial()
+returns table (periodo text, apodo text)
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select q.periodo, p.nombre
+  from public.quiz_premios q
+  join public.perfiles p on p.id = q.ganador
+  where q.origen = 'concurso'
+    and q.estado <> 'anulado'
+    and q.periodo < public.periodo_madrid(now())
+  order by q.periodo desc;
+$$;
+
+comment on function public.concurso_historial() is
+  'Historial público del concurso. No lee reto_premios.';
+
+create or replace function public.concurso_premio_pendiente(p_periodo text, p_usuario uuid)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1
+    from public.quiz_premios q
+    where q.periodo = p_periodo
+      and q.ganador = p_usuario
+      and q.origen = 'concurso'
+      and q.estado = 'pendiente'
+  );
+$$;
+
+comment on function public.concurso_premio_pendiente(text, uuid) is
+  'El formulario del concurso solo reclama si esto devuelve true. Un premio del reto no cuenta.';
+
+revoke all on function public.quiz_premios_guardar() from public;
+revoke all on function public.concurso_historial() from public;
+revoke all on function public.concurso_premio_pendiente(text, uuid) from public;
+grant execute on function public.concurso_historial() to anon, authenticated;
+grant execute on function public.concurso_premio_pendiente(text, uuid) to authenticated;
