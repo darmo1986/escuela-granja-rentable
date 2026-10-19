@@ -2,11 +2,11 @@
 titulo: "Cómo construir un gallinero casero paso a paso"
 titulo_seo: "Cómo construir un gallinero casero paso a paso"
 descripcion: "Construye tu gallinero casero paso a paso: medidas, materiales, ventilación, nidos y perchas para gallinas sanas y felices."
-categoria: instalaciones
+categoria: engorde
 fecha: 2026-10-25
 borrador: false
-imagen: "/img/blog/construir-gallinero-casero.webp"
-imagen_og: "/img/blog/construir-gallinero-casero-og.webp"
+imagen: "img/blog/construir-gallinero-casero.webp"
+imagen_og: "img/blog/construir-gallinero-casero-og.webp"
 imagen_alt: "Gallinero de madera en construcción en patio de granja"
 ---
 
