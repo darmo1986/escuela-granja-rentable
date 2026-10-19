@@ -5,6 +5,9 @@ descripcion: "Coriza, coccidiosis, viruela aviar y más: síntomas, tratamiento 
 categoria: salud
 fecha: 2026-10-24
 borrador: false
+imagen: "/img/blog/enfermedades-comunes-gallinas.webp"
+imagen_og: "/img/blog/enfermedades-comunes-gallinas-og.webp"
+imagen_alt: "Veterinario revisando gallina enferma en granja"
 ---
 
 ## 5 enfermedades comunes en gallinas y cómo prevenirlas
