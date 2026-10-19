@@ -24,6 +24,7 @@
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
 <link rel="stylesheet" href="css/estilo.css?v=202610184">
 <script src="js/boot.js?v=202610184"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -111,6 +112,39 @@
 <p>Una sola cuenta para el curso, la calculadora, las fichas de enfermedades y el reto. Puedes leer el curso y las fichas sin entrar.</p>
 <aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
 <div id="cuenta-cuerpo"><p>Cargando…</p></div>
+<script>
+/* === Supabase Auth — Mi cuenta — RELLENA TUS DATOS ABAJO === */
+var SUPABASE_URL = "https://apdcgizpgguhmbgzsymx.supabase.co";
+var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwZGNnaXpwZ2d1aG1iZ3pzeW14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzMTUyMDEsImV4cCI6MjEwNzg5MTIwMX0.GGYSN6hlUojhmF4qB59aWH1wdh7lHNezPHlfD1KkQCE";
+(function(){
+  var cuerpo = document.getElementById("cuenta-cuerpo");
+  function html(s){ var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+  if (SUPABASE_URL.indexOf("PEGAR_AQUI") === 0) {
+    cuerpo.innerHTML = "<p>Falta configurar Supabase en este archivo (ver SETUP.md).</p><p><a class='btn gold' href='registro.html'>Ir al registro</a></p>";
+    return;
+  }
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  sb.auth.getSession().then(function(r){
+    var session = r.data.session;
+    if (!session) { location.href = "registro.html"; return; }
+    var user = session.user;
+    var nombre = (user.user_metadata && user.user_metadata.nombre) || "";
+    var proveedor = (user.app_metadata && user.app_metadata.provider) || "correo";
+    cuerpo.innerHTML =
+      "<p>Hola, <strong>" + html(nombre || user.email) + "</strong>.</p>" +
+      "<p class='fine'>Correo: " + html(user.email) + " · Entraste con: " + html(proveedor) + "</p>" +
+      "<p><button class='btn gold' id='btn-salir' type='button'>Cerrar sesión</button></p>" +
+      "<p class='fine'><a href='curso.html'>Ir al curso</a> · <a href='calculadora.html'>Ir a la calculadora</a></p>";
+    document.getElementById("btn-salir").addEventListener("click", function(){
+      sb.auth.signOut().then(function(){ location.href = "registro.html"; });
+    });
+  });
+  /* Refresca la vista si la sesión cambia (p. ej. vuelta del login con Google) */
+  sb.auth.onAuthStateChange(function(ev, session){
+    if (ev === "SIGNED_OUT") location.href = "registro.html";
+  });
+})();
+</script>
 <aside class="ad-inline" data-ad-size="rect"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="rect" data-ad-size="rect"></div></aside>
 </article>
 </main>
