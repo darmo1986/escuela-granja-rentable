@@ -5,8 +5,8 @@ descripcion: "La alimentación ideal para gallinas ponedoras: pienso, calcio, pr
 categoria: alimentacion
 fecha: 2026-10-23
 borrador: false
-imagen: "/img/blog/alimentacion-gallinas-ponedoras.webp"
-imagen_og: "/img/blog/alimentacion-gallinas-ponedoras-og.webp"
+imagen: "img/blog/alimentacion-gallinas-ponedoras.webp"
+imagen_og: "img/blog/alimentacion-gallinas-ponedoras-og.webp"
 imagen_alt: "Gallinas ponedoras comiendo pienso en granja avícola"
 ---
 
