@@ -2,11 +2,11 @@
 titulo: "7 errores que matan a tus pollitos al nacer"
 titulo_seo: "7 errores que matan a tus pollitos al nacer"
 descripcion: "Los 7 errores más comunes que matan pollitos en sus primeros días: agua fría, suelo pelado, amontonamiento y cómo evitarlos."
-categoria: crianza
+categoria: engorde
 fecha: 2026-10-21
 borrador: false
-imagen: "/img/blog/errores-pollitos-al-nacer.webp"
-imagen_og: "/img/blog/errores-pollitos-al-nacer-og.webp"
+imagen: "img/blog/errores-pollitos-al-nacer.webp"
+imagen_og: "img/blog/errores-pollitos-al-nacer-og.webp"
 imagen_alt: "Pollitos recién nacidos débiles en criadora, errores comunes al nacer"
 ---
 
