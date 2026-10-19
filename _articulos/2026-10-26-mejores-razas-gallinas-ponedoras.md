@@ -5,6 +5,9 @@ descripcion: "Leghorn, Rhode Island, Sussex y más: las 5 mejores razas de galli
 categoria: razas
 fecha: 2026-10-26
 borrador: false
+imagen: "/img/blog/mejores-razas-gallinas-ponedoras.webp"
+imagen_og: "/img/blog/mejores-razas-gallinas-ponedoras-og.webp"
+imagen_alt: "Diferentes razas de gallinas ponedoras: Rhode Island, Leghorn y Sussex"
 ---
 
 ## Las 5 mejores razas de gallinas ponedoras
