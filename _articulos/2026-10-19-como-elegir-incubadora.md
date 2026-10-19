@@ -6,8 +6,8 @@ categoria: incubacion
 fecha: 2026-10-19
 borrador: false
 producto: incubadora-24egg-dual
-imagen: "/img/blog/como-elegir-incubadora.webp"
-imagen_og: "/img/blog/como-elegir-incubadora-og.webp"
+imagen: "img/blog/como-elegir-incubadora.webp"
+imagen_og: "img/blog/como-elegir-incubadora-og.webp"
 imagen_alt: "Incubadora moderna con display digital y huevos de gallina en su interior"
 ---
 
