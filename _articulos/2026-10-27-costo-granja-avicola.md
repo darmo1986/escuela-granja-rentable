@@ -2,12 +2,12 @@
 titulo: "Cuánto cuesta montar una granja avícola en 2026"
 titulo_seo: "Cuánto cuesta montar una granja avícola en 2026"
 descripcion: "Presupuesto real para montar una granja avícola pequeña en 2026: gallinero, incubadora, gallinas, pienso y cuándo recuperas la inversión."
-categoria: negocio
+categoria: engorde
 fecha: 2026-10-27
 borrador: false
 producto: incubadora-24egg-dual
-imagen: "/img/blog/costo-granja-avicola.webp"
-imagen_og: "/img/blog/costo-granja-avicola-og.webp"
+imagen: "img/blog/costo-granja-avicola.webp"
+imagen_og: "img/blog/costo-granja-avicola-og.webp"
 imagen_alt: "Calculadora y monedas junto a granja avícola pequeña, concepto de costos"
 ---
 
