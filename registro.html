@@ -24,6 +24,7 @@
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
 <link rel="stylesheet" href="css/estilo.css?v=202610184">
 <script src="js/boot.js?v=202610184"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -113,18 +114,81 @@
 </section>
 <aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
 <div class="form-card">
-<form data-gr-form="registro" method="post" action="https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec">
-<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-<input type="hidden" name="tipo" value="registro">
-<input type="hidden" name="interes" value="">
-<label>Nombre<input name="nombre" required autocomplete="name" maxlength="80"></label>
-<label>Correo<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
-<label class="check"><input type="checkbox" name="quiero_app" value="si"><span>Quiero probar la app Registro de pollos (hace falta una cuenta de Gmail).</span></label>
-<label class="check"><input type="checkbox" name="consentimiento" value="si" required><span>Leí la <a href="privacidad.html">política de privacidad</a> y acepto que traten mi nombre y mi correo para enviarme novedades. Puedo pedir que los borren cuando quiera.</span></label>
-<button class="btn gold" type="submit">Regístrate</button>
-<p class="form-msg" role="status"></p>
+<button id="btn-google" class="btn gold" type="button" style="width:100%;margin-bottom:1rem">
+<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="vertical-align:-3px;margin-right:.5rem"><path fill="#fff" d="M21.35 11.1H12v2.9h5.35c-.5 2.4-2.55 3.6-5.35 3.6a5.9 5.9 0 1 1 0-11.8c1.5 0 2.85.55 3.9 1.45l2.1-2.1A8.9 8.9 0 1 0 12 20.9c4.45 0 8.35-3.05 8.35-8.9 0-.3-.05-.6-.1-.9z"/></svg>
+Entrar con Google</button>
+<p class="fine" style="text-align:center;margin-bottom:1rem">o con tu correo</p>
+<form id="form-auth" data-gr-form="registro" method="post" action="#">
+<label>Nombre<input id="auth-nombre" name="nombre" required autocomplete="name" maxlength="80"></label>
+<label>Correo<input id="auth-email" name="email" type="email" required autocomplete="email" maxlength="120"></label>
+<label>Contraseña<input id="auth-pass" name="password" type="password" required autocomplete="new-password" minlength="6" maxlength="72"></label>
+<label class="check"><input type="checkbox" name="consentimiento" value="si" required><span>Leí la <a href="privacidad.html">política de privacidad</a> y acepto que traten mis datos para gestionar mi cuenta. Puedo pedir que los borren cuando quiera.</span></label>
+<button class="btn gold" type="submit" id="btn-submit">Crear mi cuenta</button>
+<p class="form-msg" role="status" id="auth-msg"></p>
 </form>
-<p class="fine">Al enviar, tu nombre y tu correo se guardan en nuestra hoja. Si ya quieres escribirnos, <a data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable">WhatsApp</a>.</p>
+<p class="fine" style="text-align:center;margin-top:.75rem">¿Ya tienes cuenta? <a href="#" id="link-login">Entrar</a></p>
+<script>
+/* === Supabase Auth — RELLENA TUS DATOS ABAJO === */
+var SUPABASE_URL = "https://apdcgizpgguhmbgzsymx.supabase.co";
+var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwZGNnaXpwZ2d1aG1iZ3pzeW14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzMTUyMDEsImV4cCI6MjEwNzg5MTIwMX0.GGYSN6hlUojhmF4qB59aWH1wdh7lHNezPHlfD1KkQCE";
+(function(){
+  var modo = "signup"; /* signup | login */
+  var msg = document.getElementById("auth-msg");
+  var form = document.getElementById("form-auth");
+  var btnSubmit = document.getElementById("btn-submit");
+  var linkLogin = document.getElementById("link-login");
+  function decir(t){ msg.textContent = t; }
+  if (SUPABASE_URL.indexOf("PEGAR_AQUI") === 0) {
+    decir("Falta configurar Supabase: edita este archivo y pega tu SUPABASE_URL y SUPABASE_ANON_KEY (ver SETUP.md).");
+  }
+  var sb = null;
+  try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch(e){}
+  /* Si ya hay sesión, ir a Mi cuenta */
+  if (sb) { sb.auth.getSession().then(function(r){ if (r.data.session) location.href = "cuenta.html"; }); }
+  /* Botón Google */
+  document.getElementById("btn-google").addEventListener("click", function(){
+    if (!sb) { decir("Configura primero Supabase (ver SETUP.md)."); return; }
+    decir("Abriendo Google…");
+    sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: location.origin + "/cuenta.html" } })
+      .then(function(r){ if (r.error) decir("Error: " + r.error.message); });
+  });
+  /* Cambiar entre crear cuenta / entrar */
+  linkLogin.addEventListener("click", function(e){
+    e.preventDefault();
+    modo = (modo === "signup") ? "login" : "signup";
+    btnSubmit.textContent = (modo === "signup") ? "Crear mi cuenta" : "Entrar";
+    document.getElementById("auth-nombre").closest("label").style.display = (modo === "signup") ? "" : "none";
+    linkLogin.textContent = (modo === "signup") ? "Entrar" : "Crear cuenta";
+    decir("");
+  });
+  /* Envío del formulario */
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!sb) { decir("Configura primero Supabase (ver SETUP.md)."); return; }
+    var email = document.getElementById("auth-email").value.trim();
+    var pass = document.getElementById("auth-pass").value;
+    var nombre = document.getElementById("auth-nombre").value.trim();
+    decir("Un momento…");
+    btnSubmit.disabled = true;
+    var promesa;
+    if (modo === "signup") {
+      promesa = sb.auth.signUp({ email: email, password: pass, options: { data: { nombre: nombre } } });
+    } else {
+      promesa = sb.auth.signInWithPassword({ email: email, password: pass });
+    }
+    promesa.then(function(r){
+      btnSubmit.disabled = false;
+      if (r.error) { decir("Error: " + r.error.message); return; }
+      if (modo === "signup" && r.data.user && !r.data.session) {
+        decir("¡Listo! Revisa tu correo para confirmar la cuenta y luego entra.");
+        return;
+      }
+      location.href = "cuenta.html";
+    });
+  });
+})();
+</script>
+<p class="fine">Al crear tu cuenta aceptas la <a href="privacidad.html">política de privacidad</a>. Si ya quieres escribirnos, <a data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable">WhatsApp</a>.</p>
 </div>
 <script>
 (function(){ if (new URLSearchParams(location.search).get("interes")==="envio") { var i=document.querySelector("[name=interes]"); if(i) i.value="envio"; } })();
