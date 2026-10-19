@@ -5,6 +5,9 @@ descripcion: "Los 7 errores más comunes que matan pollitos en sus primeros día
 categoria: crianza
 fecha: 2026-10-21
 borrador: false
+imagen: "/img/blog/errores-pollitos-al-nacer.webp"
+imagen_og: "/img/blog/errores-pollitos-al-nacer-og.webp"
+imagen_alt: "Pollitos recién nacidos débiles en criadora, errores comunes al nacer"
 ---
 
 ## 7 errores que matan a tus pollitos al nacer (y cómo evitarlos)
