@@ -2,11 +2,11 @@
 titulo: "Cómo criar pollitos: guía de los primeros 30 días"
 titulo_seo: "Cómo criar pollitos: guía de los primeros 30 días"
 descripcion: "Todo lo que necesita un pollito recién nacido: temperatura, cama, agua, comida y vacunas durante sus primeros 30 días de vida."
-categoria: crianza
+categoria: engorde
 fecha: 2026-10-22
 borrador: false
-imagen: "/img/blog/criar-pollitos-30-dias.webp"
-imagen_og: "/img/blog/criar-pollitos-30-dias-og.webp"
+imagen: "img/blog/criar-pollitos-30-dias.webp"
+imagen_og: "img/blog/criar-pollitos-30-dias-og.webp"
 imagen_alt: "Pollitos sanos de 30 días creciendo en criadora de granja"
 ---
 
