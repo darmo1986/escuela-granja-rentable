@@ -6,6 +6,9 @@ categoria: incubacion
 fecha: 2026-10-20
 borrador: false
 producto: incubadora-24egg-dual
+imagen: "img/blog/ovoscopia-ejemplo.webp"
+imagen_og: "img/blog/ovoscopia-ejemplo-og.webp"
+imagen_alt: "Ovoscopia de huevos fertilizados en incubadora, embrión visible a contraluz"
 ---
 
 ## Ovoscopia: cómo saber si un huevo está fertilizado
