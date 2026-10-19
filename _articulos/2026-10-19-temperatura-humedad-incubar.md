@@ -6,6 +6,9 @@ categoria: incubacion
 fecha: 2026-10-19
 borrador: false
 producto: incubadora-24egg-dual
+imagen: "/img/blog/temperatura-humedad-incubar.webp"
+imagen_og: "/img/blog/temperatura-humedad-incubar-og.webp"
+imagen_alt: "Termómetro e higrómetro dentro de incubadora mostrando temperatura y humedad"
 ---
 
 ## Temperatura y humedad ideal para incubar huevos de gallina
