@@ -5,6 +5,9 @@ descripcion: "Todo lo que necesita un pollito recién nacido: temperatura, cama,
 categoria: crianza
 fecha: 2026-10-22
 borrador: false
+imagen: "/img/blog/criar-pollitos-30-dias.webp"
+imagen_og: "/img/blog/criar-pollitos-30-dias-og.webp"
+imagen_alt: "Pollitos sanos de 30 días creciendo en criadora de granja"
 ---
 
 ## Cómo criar pollitos recién nacidos: guía de los primeros 30 días
