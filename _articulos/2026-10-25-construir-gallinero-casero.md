@@ -5,6 +5,9 @@ descripcion: "Construye tu gallinero casero paso a paso: medidas, materiales, ve
 categoria: instalaciones
 fecha: 2026-10-25
 borrador: false
+imagen: "/img/blog/construir-gallinero-casero.webp"
+imagen_og: "/img/blog/construir-gallinero-casero-og.webp"
+imagen_alt: "Gallinero de madera en construcción en patio de granja"
 ---
 
 ## Cómo construir un gallinero casero paso a paso
