@@ -5,6 +5,9 @@ descripcion: "El calendario completo de vacunas para gallinas: qué vacuna poner
 categoria: salud
 fecha: 2026-10-28
 borrador: false
+imagen: "/img/blog/calendario-vacunacion-gallinas.webp"
+imagen_og: "/img/blog/calendario-vacunacion-gallinas-og.webp"
+imagen_alt: "Veterinario vacunando gallinas con jeringa en granja"
 ---
 
 ## Calendario de vacunación para gallinas ponedoras
