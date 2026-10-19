@@ -6,6 +6,9 @@ categoria: negocio
 fecha: 2026-10-27
 borrador: false
 producto: incubadora-24egg-dual
+imagen: "/img/blog/costo-granja-avicola.webp"
+imagen_og: "/img/blog/costo-granja-avicola-og.webp"
+imagen_alt: "Calculadora y monedas junto a granja avícola pequeña, concepto de costos"
 ---
 
 ## Cuánto cuesta montar una granja avícola pequeña en 2026
