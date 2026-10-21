@@ -163,3 +163,15 @@ python3 -m http.server 8765
 ```
 
 Abre `http://127.0.0.1:8765/?pais=MX`.
+
+## Cómo encender Infolinks
+
+Hoy está apagado. `js/ads-config.js` tiene `INFOLINKS_ENABLED` en `false` y el PID y el WSID vacíos, así que ninguna página pide `resources.infolinks.com`. Adsterra no se toca y sigue apagada (`window.ads.activo` sigue en `false`). El aviso de cookies es el que ya usa el sitio (`gr_consent`). En el Espacio Económico Europeo, el Reino Unido y Suiza —y en las demás zonas donde esta web ya pide Aceptar— el script no se descarga hasta aceptar las cookies de publicidad.
+
+Los formatos que se pueden dejar son **InFold** e **InText**, y solo si quedan discretos. InText se limita en el panel (el tope público es de 1 a 12 por página) y, en un trozo de texto, con los comentarios que documenta Infolinks: `<!--INFOLINKS_OFF-->` y `<!--INFOLINKS_ON-->`. InScreen, intersticiales y ventanas emergentes no. Infolinks no publica una variable de JavaScript para apagar InScreen: hay que dejarlo apagado en el panel. InScreen no sale en Customize hasta que soporte lo active; no lo pidas. En ese mismo panel apaga también InTag, InFrame e InArticle.
+
+No se carga en las lecciones, en `curso.html`, en `leccion.html`, en el examen final, en el reto de `preguntas.html`, en una página de certificado ni en Premium (la página `premium.html` y quien tenga la suscripción en vigor).
+
+1. En el panel de Infolinks, con el sitio granjarentable.com, deja solo InFold e InText y apaga InScreen, intersticiales, pop-ups y el resto de formatos.
+2. Pega el PID y el WSID en `js/ads-config.js` (`INFOLINKS_PID` e `INFOLINKS_WSID`).
+3. En ese mismo archivo pon `INFOLINKS_ENABLED` en `true`.
