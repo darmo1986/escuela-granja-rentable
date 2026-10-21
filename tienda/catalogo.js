@@ -1021,6 +1021,294 @@ window.GR_TIENDA_CATALOGO = {
           "nota": "Envío internacional con seguimiento."
         }
       }
+    },
+{
+  "slug": "bebedero-campana-finca-casarejo",
+  "nombre": "Bebedero de campana automático Finca Casarejo",
+  "categoria": "bebederos",
+  "descripcion_corta": "El bebedero de campana de toda la vida, de una marca avícola española: nivel constante, se cuelga y se olvida de rellenar cada día.",
+  "descripcion": "El bebedero de campana se conecta a un depósito o a la red y mantiene siempre el mismo nivel de agua en el plato gracias a su válvula automática. Se cuelga a la altura del lomo de las aves, así el agua queda lejos de la cama, no se vuelca y no se llena de viruta. Es el sistema que usan las granjas de verdad para lotes medianos: un solo bebedero da de beber a decenas de gallinas sin que tengas que cargar cubos cada mañana. Finca Casarejo es una marca española especializada en avicultura, con recambios y soporte en España.",
+  "incluye": [
+    "1 bebedero de campana automático",
+    "Válvula de nivel incorporada"
+  ],
+  "utilidades": [
+    "Lotes de ponedoras en suelo o en parque",
+    "Pollos de engorde en la fase final",
+    "Sustituir bebederos de plato que se vuelcan y ensucian el agua"
+  ],
+  "como_se_usa": [
+    "Cuélgalo a la altura del lomo de tus aves y nivélalo",
+    "Conecta la manguera al depósito elevado o a la red con reductor",
+    "Regula la válvula para dejar unos 2 cm de agua en el plato",
+    "Enjuaga el plato un par de veces por semana"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/bebedero-campana.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 35.0,
+  "precio_base_nota": "Precio en la ficha de AliExpress España (Finca Casarejo): 31,25 € IVA incluido.",
+  "rating": 5.0,
+  "pedidos": "7",
+  "vendedor": {
+    "nombre": "Finca_Casarejo Store",
+    "positivo_pct": 94.9,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005007663926484.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días, envío gratis. Marca avícola española conocida. Volumen bajo (7 vendidos, 1 reseña de 5 estrellas): entra por almacén local y marca, no por volumen.",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 39.95,
+      "precio_confirmado": false,
+      "dias_envio": "2–4 días",
+      "origen_envio": "España",
+      "nota": "Envío desde almacén en España, sin gastos de importación."
     }
+  }
+},
+{
+  "slug": "tolva-happy-chickens-finca-casarejo",
+  "nombre": "Comedero tolva Happy Chickens 2 kg Finca Casarejo",
+  "categoria": "comederos",
+  "descripcion_corta": "Tolva con patas y sistema antidespilfarro: el pienso baja por gravedad y las gallinas no lo tiran a la cama.",
+  "descripcion": "La tolva Happy Chickens de Finca Casarejo guarda 2 kg de pienso y lo va sirviendo por gravedad en la bandeja, con un diseño antidespilfarro que impide que las gallinas escarben y tiren el alimento al suelo. Va sobre patas, así el pienso queda elevado, seco y lejos de la humedad de la cama. Menos pienso desperdiciado significa menos coste por huevo: en una tolva abierta normal se puede perder hasta un tercio del alimento entre lo que tiran y lo que se moja. Marca avícola española, con envío desde España.",
+  "incluye": [
+    "1 comedero tolva Happy Chickens de 2 kg con patas"
+  ],
+  "utilidades": [
+    "Gallineros caseros de 4 a 10 ponedoras",
+    "Reducir el despilfarro de pienso frente a comederos abiertos",
+    "Dejar comida para varios días si te vas un fin de semana"
+  ],
+  "como_se_usa": [
+    "Móntala sobre sus patas en una zona cubierta del gallinero o el parque",
+    "Llénala por arriba y deja que el pienso baje solo a la bandeja",
+    "Revisa el nivel cada pocos días y limpia la bandeja una vez por semana"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/tolva-happy-chickens.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 12.04,
+  "precio_base_nota": "Precio en la ficha de AliExpress España (Finca Casarejo), variante 2 kg: 10,75 € IVA incluido. Hay variantes de 4, 8, 12 y 16 kg.",
+  "rating": 4.6,
+  "pedidos": "44",
+  "vendedor": {
+    "nombre": "Finca_Casarejo Store",
+    "positivo_pct": 94.9,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005007663840696.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días. 4,6 estrellas con 5 reseñas y 44 vendidos. Entra por almacén local y marca española.",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 16.95,
+      "precio_confirmado": false,
+      "dias_envio": "2–4 días",
+      "origen_envio": "España",
+      "nota": "Envío desde almacén en España, sin gastos de importación."
+    }
+  }
+},
+{
+  "slug": "huevos-falsos-finca-casarejo",
+  "nombre": "Huevos falsos macizos Finca Casarejo (pack de 6)",
+  "categoria": "incubacion",
+  "descripcion_corta": "Huevos macizos para enseñar a las gallinas dónde poner y animar los nidos: peso y tacto de huevo de verdad.",
+  "descripcion": "Los huevos falsos macizos se colocan en los nidos para enseñar a las ponedoras jóvenes dónde tienen que poner y para estimular a las que están a punto de empezar. Al ser macizos tienen el peso y la consistencia de un huevo real, no como los huecos de plástico ligero que las gallinas acaban sacando del nido. También se usan para frenar el picaje de huevos: la gallina que pica un huevo falso aprende que picar no da comida. Pack de 6 de Finca Casarejo, marca avícola española.",
+  "incluye": [
+    "6 huevos falsos macizos"
+  ],
+  "utilidades": [
+    "Enseñar a las pollitas jóvenes a poner en el nido y no en el suelo",
+    "Estimular el inicio de la puesta",
+    "Corregir el hábito de picar y comer los huevos"
+  ],
+  "como_se_usa": [
+    "Deja uno o dos huevos falsos en cada nido de forma permanente",
+    "Marca los falsos con un punto para no confundirlos al recoger",
+    "Lávalos si se ensucian y vuelve a colocarlos"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/huevos-falsos.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 13.33,
+  "precio_base_nota": "Precio en la ficha de AliExpress España (Finca Casarejo), pack de 6: 11,90 € IVA incluido. Packs de 12 y 24 también disponibles.",
+  "rating": 5.0,
+  "pedidos": "9",
+  "vendedor": {
+    "nombre": "Finca_Casarejo Store",
+    "positivo_pct": 94.9,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005007663893590.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días, envío gratis. 5,0 estrellas con 5 reseñas. Volumen bajo: entra por almacén local y marca española.",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 17.95,
+      "precio_confirmado": false,
+      "dias_envio": "2–4 días",
+      "origen_envio": "España",
+      "nota": "Envío desde almacén en España, sin gastos de importación."
+    }
+  }
+},
+{
+  "slug": "bascula-precision-500g",
+  "nombre": "Báscula de precisión 500 g / 0,01 g SODANY",
+  "categoria": "gallinero",
+  "descripcion_corta": "Pesa al pollito, el huevo y las dosis con precisión de 0,01 g: la báscula pequeña que toda granja termina necesitando.",
+  "descripcion": "Una báscula de bolsillo con precisión de centésima de gramo sirve para mucho más que para la cocina: pesar pollitos al nacer y en los controles semanales, clasificar huevos por peso antes de meterlos en la incubadora (los de peso medio eclosionan mejor) y dosificar con exactitud suplementos y medicamentos que van por gramo. Pantalla LCD con tara y pilas incluidas. Se vende desde almacén en España con entrega en pocos días.",
+  "incluye": [
+    "1 báscula digital 500 g / 0,01 g",
+    "Pilas incluidas"
+  ],
+  "utilidades": [
+    "Controles de peso de pollitos en las primeras semanas",
+    "Selección de huevos para incubar por peso",
+    "Dosificación precisa de suplementos y tratamientos"
+  ],
+  "como_se_usa": [
+    "Enciéndela sobre una superficie plana y espera a que marque cero",
+    "Usa la tara con el recipiente encima antes de pesar",
+    "Guárdala sin peso encima para no descalibrar el sensor"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/bascula-precision.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 10.02,
+  "precio_base_nota": "Precio en la ficha de AliExpress España (SODANY): 8,95 € IVA incluido.",
+  "rating": 4.7,
+  "pedidos": "72",
+  "vendedor": {
+    "nombre": "Tienda Bazar Madrid Online",
+    "positivo_pct": 93.7,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005010488549160.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días. 4,7 estrellas con 12 reseñas y 72 vendidos. Vendedor con 93,7 % de positivos (por debajo del 95 % ideal): entra por almacén local confirmado y bajo riesgo del producto.",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 14.95,
+      "precio_confirmado": false,
+      "dias_envio": "2–4 días",
+      "origen_envio": "España",
+      "nota": "Envío desde almacén en España, sin gastos de importación."
+    }
+  }
+},
+{
+  "slug": "termostato-w1209",
+  "nombre": "Termostato digital W1209 con sonda sumergible",
+  "categoria": "incubacion",
+  "descripcion_corta": "El cerebro barato de las incubadoras caseras: controla la temperatura de −50 a 110 °C con relé incorporado.",
+  "descripcion": "El W1209 es el termostato que monta media comunidad de incubadoras caseras: sonda sumergible, pantalla digital y un relé que enciende y apaga la resistencia o la bombilla para mantener la temperatura que le marques, entre −50 y 110 °C. Funciona a 12 V, así que es seguro para experimentar, y cuesta tan poco que conviene tener uno de repuesto. También vale para criadoras, terrarios y fermentadores. Lo vende SATKIT, tienda española de electrónica, con envío desde España en unos 2 días.",
+  "incluye": [
+    "1 termostato W1209 con pantalla",
+    "Sonda de temperatura sumergible"
+  ],
+  "utilidades": [
+    "Incubadoras caseras de poliestireno o nevera reciclada",
+    "Control de la lámpara de calor de la criadora",
+    "Repuesto económico para incubadoras con el termostato averiado"
+  ],
+  "como_se_usa": [
+    "Aliméntalo a 12 V y conecta la carga al relé según el esquema de la placa",
+    "Programa la temperatura objetivo y la histéresis (0,5 °C va bien para incubar)",
+    "Deja la sonda a la altura de los huevos, sin tocar la resistencia"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/termostato-w1209.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 9.69,
+  "precio_base_nota": "Precio en la ficha de AliExpress España (SATKIT Store): 8,65 € IVA incluido.",
+  "rating": null,
+  "pedidos": "1",
+  "vendedor": {
+    "nombre": "SATKIT Store",
+    "positivo_pct": 95.7,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005003920493321.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega más rápida en 2 días, envío gratis. La ficha no muestra reseñas del producto; la tienda SATKIT tiene 4,8 de valoración y 95,7 % de positivos con más de 5.000 vendidos en total. Entra por almacén local y vendedor solvente; volumen del anuncio bajo.",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 14.95,
+      "precio_confirmado": false,
+      "dias_envio": "2 días",
+      "origen_envio": "España",
+      "nota": "Envío desde almacén en España, sin gastos de importación."
+    }
+  }
+},
+{
+  "slug": "puerta-automatica-solar-gallinero",
+  "nombre": "Puerta automática solar para gallinero",
+  "categoria": "gallinero",
+  "descripcion_corta": "Abre al amanecer y cierra al anochecer sola, con panel solar y mando: tus gallinas, a salvo del zorro sin que madrugues tú.",
+  "descripcion": "La puerta automática de aluminio se alimenta con su panel solar (y por USB como respaldo) y funciona en tres modos: temporizador, sensor de luz o mando a distancia. Abre el gallinero por la mañana y lo cierra al caer el sol, que es justo cuando el zorro y la garduña hacen su ronda. Lleva sistema antipinzamiento para no atrapar a ninguna rezagada. Es, probablemente, el producto que más tranquilidad compra en una granja pequeña: dormir fuera un fin de semana deja de ser un problema. Se envía desde España con la entrega más rápida de todo el catálogo.",
+  "incluye": [
+    "1 puerta automática de aluminio con panel solar",
+    "Mando a distancia",
+    "Cable USB de respaldo"
+  ],
+  "utilidades": [
+    "Cerrar el gallinero cada noche sin estar presente",
+    "Fines de semana y vacaciones sin depender de nadie",
+    "Zonas con zorros, garduñas o perros sueltos"
+  ],
+  "como_se_usa": [
+    "Atornilla la puerta sobre la trampilla del gallinero y orienta el panel al sol",
+    "Elige el modo: luz, temporizador o manual con el mando",
+    "Prueba el antipinzamiento con la mano antes de dejarla sola"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/puerta-automatica-solar.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 41.94,
+  "precio_base_nota": "Precio en la ficha de AliExpress España: 37,45 € IVA incluido.",
+  "rating": 5.0,
+  "pedidos": "29",
+  "vendedor": {
+    "nombre": "Tienda BricoPatio",
+    "positivo_pct": null,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005013100843629.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», «entrega más rápida: mañana», envío gratis. 5,0 estrellas (1 reseña en este vendedor; 29 ventas totales del producto). Entra por almacén local y entrega inmediata; volumen bajo.",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 54.95,
+      "precio_confirmado": false,
+      "dias_envio": "1–3 días",
+      "origen_envio": "España",
+      "nota": "Envío desde almacén en España, sin gastos de importación."
+    }
+  }
+}
   ]
 };
