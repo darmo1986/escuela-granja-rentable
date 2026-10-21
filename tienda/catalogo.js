@@ -1309,6 +1309,53 @@ window.GR_TIENDA_CATALOGO = {
       "nota": "Envío desde almacén en España, sin gastos de importación."
     }
   }
+},
+{
+  "slug": "lampara-calor-infrarroja-250w",
+  "nombre": "Bombilla infrarroja de calor E27 para criadora (hasta 250 W)",
+  "categoria": "incubacion",
+  "descripcion_corta": "La bombilla de calor de las criadoras: luz infrarroja, casquillo E27 y calor de sobra para que ningún pollito pase frío.",
+  "descripcion": "Si crías pollitos, esta es la bombilla que se funde siempre en el peor momento: infrarroja, con casquillo estándar E27, pensada para lámparas de calor de criadora. La ficha ofrece 100, 150, 200 y 250 W; el precio de esta tienda corresponde a la de 250 W, la de máxima potencia, ideal para criadoras grandes o naves frías. Conviene tener siempre una de repuesto en el cajón: un pollito sin calor en sus primeros días lo pasa muy mal, y con calor de más tampoco — por eso se regula con la altura de la lámpara o con un termostato como el W1209 de esta misma tienda. Es, de largo, el producto más pedido por la comunidad.",
+  "incluye": [
+    "1 bombilla infrarroja E27 de 250 W"
+  ],
+  "utilidades": [
+    "Calentar la criadora durante las primeras semanas de vida",
+    "Repuesto imprescindible de la lámpara de calor (se funden sin avisar)",
+    "Apoyo térmico puntual en nidadas débiles o en la enfermería"
+  ],
+  "como_se_usa": [
+    "Enróscala solo en portabombillas cerámicos E27 resistentes al calor, nunca de plástico",
+    "Cuelga la lámpara a unos 45–50 cm del suelo de la criadora y ajusta la altura según el comportamiento de los pollitos",
+    "Mide la temperatura a la altura de los pollitos (32–35 °C la primera semana) y deja siempre una zona más fresca a la que puedan apartarse"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/lampara-calor.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 8.45,
+  "precio_base_nota": "Precio en la ficha de AliExpress España: 7,19 € IVA incluido (opción 250 W).",
+  "rating": 4.6,
+  "pedidos": "1000+",
+  "vendedor": {
+    "nombre": "Usun Farm Store",
+    "positivo_pct": 92.7,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005009810105985.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 21-oct-2026: 4,6 estrellas (124 valoraciones) y más de 1.000 vendidos; entrega estimada 26-oct–2-nov con mensajería local (Ecoscooting/Correos/CTT/GLS). La ficha NO afirma literalmente «Envío desde España» (plazo compatible con almacén europeo/Choice); entra en el catálogo porque pablo lo aprobó el 21-oct por la demanda directa en Facebook (una seguidora preguntando dónde comprar una lámpara de calor).",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 16.95,
+      "precio_confirmado": false,
+      "dias_envio": "5–8 días",
+      "origen_envio": "Europa",
+      "nota": "Entrega con mensajería local en un plazo estimado de 5 a 8 días."
+    }
+  }
 }
   ]
 };
