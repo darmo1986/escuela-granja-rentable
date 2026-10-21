@@ -354,8 +354,10 @@
     };
     if (titulo) titulo.textContent = titulos[modo] || "Entrar";
     var nombre = caja.querySelector("[name=nombre]");
+    var correo = caja.querySelector("[name=correo]");
     var pass = caja.querySelector("[name=clave]");
     if (nombre) nombre.required = modo === "registro" || modo === "apodo";
+    if (correo) correo.required = modo !== "apodo";
     if (pass) {
       pass.required = modo === "entrar" || modo === "registro";
       pass.minLength = pass.required ? 8 : 0;
