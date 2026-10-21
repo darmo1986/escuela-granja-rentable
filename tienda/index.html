@@ -1,16 +1,131 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" data-root="../">
 <head>
 <meta charset="utf-8">
 <meta name="google-adsense-account" content="ca-pub-5311145772953700">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tienda Granja Rentable | Granja Rentable</title>
-<link rel="canonical" href="https://granjarentable.com/tienda">
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url=../tienda.html">
-<script>location.replace("../tienda.html"+location.search+location.hash);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/boot.js"></script>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/estilo.css">
+<link rel="stylesheet" href="tienda.css">
+<title>Tienda de Granja Rentable · Equipamiento avícola seleccionado</title>
+<meta name="description" content="Equipamiento avícola seleccionado a mano por Granja Rentable: bebederos automáticos, comederos y material de incubación con nota alta y cientos de pedidos reales. Precio y plazo según tu país.">
+<link rel="canonical" href="https://granjarentable.com/tienda/">
+<meta property="og:title" content="Tienda de Granja Rentable">
+<meta property="og:description" content="Equipamiento avícola curado producto a producto, con precio y envío para tu país.">
+<meta property="og:type" content="website">
 </head>
 <body>
-<p><a href="../tienda.html">Tienda Granja Rentable</a></p>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="../index.html"><img class="brand-logo" src="../img/logo-granja-rentable.png" alt="Granja Rentable" width="46" height="46"><span class="brand-txt">Granja<em>Rentable</em></span></a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="../index.html">Inicio</a>
+      <a href="./" aria-current="page">Tienda</a>
+      <a href="../curso.html">Curso</a>
+      <a href="../blog/">Blog</a>
+      <a href="../guias.html">Guías</a>
+      <a href="../razas.html">Líneas de aves</a>
+      <a href="../calculadoras.html">Calculadoras</a>
+      <a href="../cuenta.html">Mi cuenta</a>
+    </nav>
+  </div>
+</header>
+<div class="t-banda">
+  <div class="wrap t-banda-in">
+    <span>Selección verificada producto a producto</span>
+    <span>Envío con seguimiento</span>
+    <span>Devolución en 14 días gestionada por Granja Rentable</span>
+  </div>
+</div>
+<main class="wrap">
+  <section class="page-hero">
+    <span class="chip">Equipamiento seleccionado a mano</span>
+    <h1>Tienda de Granja Rentable</h1>
+    <p>Solo entra en esta tienda lo que supera nuestro filtro: nota de 4,5 o más, cientos de pedidos reales y un proveedor con historial. Ves el precio y el plazo de envío <strong>para tu país</strong>, sin sorpresas.</p>
+    <p><span class="t-pais-chip" id="tienda-pais">Detectando tu país…</span></p>
+  </section>
+
+  <div class="t-confianza">
+    <div class="mini"><strong>Curaduría real</strong><p>Cada producto se revisa uno a uno: nota, pedidos, vendedor y fotos de compradores. El que no pasa, no se vende.</p></div>
+    <div class="mini"><strong>Envío con seguimiento</strong><p>El proveedor prepara tu pedido y lo envía con número de seguimiento. El plazo que ves ya es el de tu país.</p></div>
+    <div class="mini"><strong>Devolución en 14 días</strong><p>Si el producto no es el de la ficha o llega defectuoso, escríbenos y gestionamos la devolución o el reembolso.</p></div>
+  </div>
+
+  <section id="tienda-llegando" class="t-llegando" hidden>
+    <h2 id="llegando-titulo">Estamos llegando a tu país</h2>
+    <p>Estamos abriendo la tienda país a país, en este orden: México, España y Estados Unidos primero, y después el resto de países donde más nos veis. En tu país todavía no vendemos, pero por WhatsApp te contamos alternativas y te avisamos en cuanto esté activo.</p>
+    <p><a class="btn gold" id="llegando-wa" target="_blank" rel="noopener" href="https://wa.me/34656267726">Escríbenos por WhatsApp</a>
+    <a class="btn sec" href="../curso.html">Mientras, mira el curso</a></p>
+  </section>
+
+  <div id="tienda-filtros" class="t-filtros" hidden>
+    <div class="t-chips" id="tienda-chips" role="group" aria-label="Filtrar por categoría"></div>
+    <label class="t-buscar">
+      <span class="t-buscar-etq">Buscar en la tienda de tu país</span>
+      <input type="search" id="tienda-buscar" placeholder="Busca un producto…" autocomplete="off">
+    </label>
+  </div>
+
+  <section id="tienda-catalogo" aria-live="polite">
+    <p class="note">Cargando el catálogo de tu país…</p>
+  </section>
+
+  <section id="tienda-como" class="t-como" hidden>
+    <h2>Cómo funciona tu pedido</h2>
+    <p>No tenemos un almacén gigante: seleccionamos proveedores verificados que envían directamente. Así funciona, sin letra pequeña:</p>
+    <div class="t-pasos">
+      <div class="mini"><strong><span class="t-paso-n">1</span> Pides desde la ficha</strong><p>Pides por WhatsApp y te confirmamos el precio final y el plazo de envío de tu país antes de pagar nada.</p></div>
+      <div class="mini"><strong><span class="t-paso-n">2</span> El proveedor lo envía</strong><p>El proveedor verificado prepara tu paquete y lo envía con número de seguimiento. Te pasamos el código para que lo sigas.</p></div>
+      <div class="mini"><strong><span class="t-paso-n">3</span> Lo recibes en casa</strong><p>Si el producto no es el de la ficha o llega defectuoso, tienes 14 días: escríbenos y Granja Rentable gestiona la devolución o el reembolso contigo.</p></div>
+    </div>
+  </section>
+
+  <aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
+</main>
+<footer class="foot">
+<div class="wrap foot-grid">
+<div>
+<p class="foot-brand">Granja Rentable</p>
+<p>Juan Pablo González García<br>NIF 78701119H<br>Calle Juan Rumeu García 6 bajo<br>38008 Santa Cruz de Tenerife, España</p>
+<p><a href="mailto:dahanitrading@gmail.com">dahanitrading@gmail.com</a></p>
+</div>
+<div>
+<p class="foot-brand">Sitio</p>
+<ul>
+<li><a href="./">Tienda</a></li>
+<li><a href="../curso.html">Curso</a></li>
+<li><a href="../calculadora.html">Calculadora de rentabilidad</a></li>
+<li><a href="../calculadoras.html">Calculadoras</a></li>
+<li><a href="../razas.html">Líneas de aves</a></li>
+<li><a href="../lista.html">Lista y calendario</a></li>
+<li><a href="../cuenta.html">Mi cuenta</a></li>
+<li><a href="../enfermedades.html">Enfermedades</a></li>
+<li><a href="../faq.html">Preguntas frecuentes</a></li>
+<li><a href="../guias.html">Guías</a></li>
+<li><a href="../juegos.html">Juegos</a></li>
+<li><a href="../app.html">Registro de pollos</a></li>
+<li><a href="../afiliados.html">Afiliados</a></li>
+<li><a href="../registro.html">Regístrate</a></li>
+</ul>
+</div>
+<div>
+<p class="foot-brand">Ayuda y legal</p>
+<ul>
+<li><a href="https://wa.me/34656267726" target="_blank" rel="noopener">Contacto por WhatsApp</a></li>
+<li><a href="../faq.html">Preguntas frecuentes</a></li>
+<li><a href="../aviso-legal.html">Aviso legal</a></li>
+<li><a href="../privacidad.html">Privacidad</a></li>
+<li><a href="../cookies.html">Cookies</a></li>
+</ul>
+</div>
+</div>
+<p class="foot-note">© 2026 Granja Rentable · Equipamiento avícola y formación práctica para criar con cabeza.</p>
+</footer>
+<script src="../js/config.js"></script>
+<script src="catalogo.js"></script>
+<script src="tienda.js"></script>
+<script src="../js/site.js"></script>
 </body>
 </html>

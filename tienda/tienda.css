@@ -1,0 +1,113 @@
+/* Tienda nueva de Granja Rentable: estilos propios sobre css/estilo.css.
+   Reutiliza la parrilla .pgrid/.pcard del sitio y añade lo específico:
+   precios, notas de envío, valoración, estado «llegando» y ficha. */
+.t-cat{ margin:26px 0 4px; font-size:1.35rem; color:var(--gd); }
+.t-desc{ color:var(--muted); font-size:.95rem; }
+.t-stars{ color:var(--gold); letter-spacing:1px; }
+.t-rating{ font-size:.9rem; color:var(--muted); margin:2px 0; }
+.t-precio{ font-size:1.35rem; font-weight:800; color:var(--gd); margin:8px 0 2px; }
+.t-precio-grande{ font-size:2rem; margin-top:0; }
+.t-envio{ font-size:.92rem; color:var(--g); font-weight:600; margin:2px 0 10px; }
+.t-nota-pais,.t-nota-foto{ font-size:.85rem; color:var(--muted); }
+.t-sin-foto{
+  display:flex; align-items:center; justify-content:center;
+  aspect-ratio:4/3; background:var(--gl); color:var(--muted);
+  font-weight:700; font-size:.95rem; text-align:center; padding:12px;
+}
+.t-sin-foto-grande{ font-size:1.1rem; }
+.t-rating-ficha{ font-size:1rem; margin-bottom:14px; }
+.t-garantia{
+  margin-top:14px; font-size:.88rem; color:var(--muted);
+  background:var(--paper); border:1px solid var(--line);
+  border-radius:10px; padding:10px 12px;
+}
+.t-pais-chip{
+  display:inline-block; margin-top:8px; padding:4px 12px;
+  border:1px solid var(--line); border-radius:999px;
+  background:#fff; font-size:.88rem; font-weight:700; color:var(--gd);
+}
+.t-llegando{
+  background:#fff; border:1px solid var(--line); border-radius:14px;
+  padding:28px 22px; text-align:center; margin:22px 0;
+}
+.t-llegando h2{ margin-top:0; color:var(--gd); }
+.t-llegando p{ color:var(--muted); max-width:560px; margin:0 auto 14px; }
+.t-confianza{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px; margin:18px 0 6px;
+}
+.t-confianza .mini{
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  padding:14px;
+}
+.t-confianza .mini strong{ display:block; color:var(--gd); margin-bottom:4px; }
+.t-confianza .mini p{ margin:0; color:var(--muted); font-size:.92rem; }
+
+/* Banda de confianza bajo la cabecera */
+.t-banda{ background:var(--gl); border-bottom:1px solid var(--line); }
+.t-banda-in{
+  display:flex; flex-wrap:wrap; gap:6px 22px; justify-content:center;
+  padding-top:9px; padding-bottom:9px;
+  font-size:.9rem; font-weight:700; color:var(--gd); text-align:center;
+}
+.t-banda-in span::before{ content:"✓ "; color:var(--gm); font-weight:800; }
+
+/* Filtros: chips de categoría + buscador */
+.t-filtros{ margin:20px 0 4px; display:flex; flex-direction:column; gap:12px; }
+.t-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.t-chip{
+  appearance:none; cursor:pointer; min-height:42px;
+  border:1px solid var(--line); border-radius:999px; background:#fff;
+  padding:9px 15px; font:inherit; font-size:.92rem; font-weight:700; color:var(--gd);
+}
+.t-chip:hover{ border-color:var(--gm); }
+.t-chip[aria-pressed="true"]{ background:var(--g); border-color:var(--g); color:#fff; }
+.t-buscar{ display:block; }
+.t-buscar-etq{
+  display:block; font-size:.85rem; font-weight:700; color:var(--gd); margin-bottom:5px;
+}
+.t-buscar input{
+  width:100%; min-height:46px; padding:11px 13px;
+  border:1px solid var(--line); border-radius:10px; background:#fff;
+  font:inherit; font-size:1rem; color:var(--ink);
+}
+.t-buscar input:focus{ outline:2px solid var(--gm); outline-offset:1px; border-color:var(--gm); }
+.t-resultados{ color:var(--muted); font-size:.95rem; margin:14px 0 2px; }
+.t-vacio{
+  background:#fff; border:1px dashed var(--line); border-radius:14px;
+  padding:24px 20px; text-align:center; margin:18px 0;
+}
+.t-vacio p{ color:var(--muted); margin:0 auto 10px; max-width:480px; }
+.t-vacio strong{ color:var(--gd); }
+
+/* Ficha de producto: parrilla media/compra (misma pauta que .pdp del sitio) */
+.pdp-grid{ display:grid; gap:16px; align-items:start; }
+@media (min-width: 840px){ .pdp-grid{ grid-template-columns:1.05fr .95fr; } }
+
+/* Insignia «Más vendido» en la tarjeta */
+.pcard-media{ position:relative; }
+.t-badge{
+  position:absolute; top:8px; left:8px; z-index:1;
+  background:var(--gold); color:var(--gold-ink);
+  font-size:.78rem; font-weight:800; letter-spacing:.02em;
+  padding:4px 10px; border-radius:999px; box-shadow:0 2px 8px rgba(15,61,28,.18);
+}
+
+/* Cómo funciona tu pedido */
+.t-como{ margin:30px 0 8px; }
+.t-como h2{ color:var(--gd); margin-bottom:6px; }
+.t-como > p{ color:var(--muted); max-width:640px; }
+.t-pasos{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px; margin-top:14px;
+}
+.t-pasos .mini{
+  background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px;
+}
+.t-pasos .mini strong{ display:block; color:var(--gd); margin-bottom:4px; }
+.t-pasos .mini p{ margin:0; color:var(--muted); font-size:.92rem; }
+.t-paso-n{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:1.5em; height:1.5em; margin-right:6px; border-radius:50%;
+  background:var(--g); color:#fff; font-size:.85em; vertical-align:baseline;
+}
