@@ -90,6 +90,16 @@
       localStorage.setItem("gr_pais_ip", p); /* coherencia con js/site.js */
     } catch (e) {}
   }
+  /* País elegido a mano en el selector: manda sobre la detección por IP */
+  function paisManual() {
+    try {
+      var p = localStorage.getItem("gr_tienda_pais_manual");
+      return p && CAT.paises[p] ? p : null;
+    } catch (e) { return null; }
+  }
+  function guardarManual(p) {
+    try { localStorage.setItem("gr_tienda_pais_manual", p); } catch (e) {}
+  }
   function fetchConTimeout(url, ms) {
     return new Promise(function (resolve, reject) {
       var ok = false;
@@ -103,6 +113,8 @@
     if (preview) { guardarPreview(preview); return Promise.resolve(preview); }
     preview = leerPreview();
     if (preview) return Promise.resolve(preview);
+    var manual = paisManual();
+    if (manual) return Promise.resolve(manual);
     var cache = paisCache();
     if (cache) return Promise.resolve(cache);
     return fetchConTimeout("https://ipapi.co/country/", 3500)
@@ -268,6 +280,8 @@
     var nombrePais = (CAT.paises[pais] && CAT.paises[pais].nombre) || pais;
     var etiqueta = $("#tienda-pais");
     if (etiqueta) etiqueta.textContent = "Envíos a: " + nombrePais;
+    var selPais = $("#tienda-pais-select");
+    if (selPais) selPais.value = pais;
     var zona = $("#tienda-catalogo");
     var llegando = $("#tienda-llegando");
     var cajaFiltros = $("#tienda-filtros");
@@ -355,6 +369,11 @@
 
   /* ---------- Arranque ---------- */
   document.addEventListener("DOMContentLoaded", function () {
+    var sel = $("#tienda-pais-select");
+    if (sel) sel.addEventListener("change", function () {
+      var v = sel.value;
+      if (v && CAT.paises[v]) { guardarManual(v); guardarCache(v); pintarPortada(v); }
+    });
     detectarPais().then(function (pais) {
       pintarPortada(pais);
       pintarFicha(pais);
