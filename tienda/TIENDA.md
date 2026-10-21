@@ -160,6 +160,34 @@ identificación). Mismas reglas que el lote 1: precios derivados con
 > confirmar en la app: si allí no sostiene ≥4,5 y volumen, sale del
 > catálogo.
 
+## Lote 3 — categoría nueva «Mallas y huerto» (aceptados el 21-oct-2026)
+
+Primera ampliación fuera del gallinero, desde el dossier
+`ampliacion-granja-2026-10-21.md` (qué material general de granja
+venden los competidores: palas, mallas, herramientas). La categoría
+reina del sector es mallas y cercados (categoría propia en Finca
+Casarejo, producto con nombre en Omlet y KERBL), pero su núcleo
+duro —malla metálica en rollo y red eléctrica— no pasa el filtro
+por AliExpress retail (solo B2B con pedidos mínimos). Entra la
+versión ligera, con la misma puerta previa de siempre: filtros 1 y
+2 verificados en tarjeta retail; filtros 3–6 y almacén pendientes
+de confirmar en la app antes de publicar, como los lotes 1 y 2.
+Ninguno de los dos tiene almacén local confirmado: despachan
+internacional, segunda clase según la política de almacén local.
+
+| Producto | Nota | Vendidos | Base US$ | MX | ES | US | Estado |
+|---|---|---|---|---|---|---|---|
+| Red antipájaros en rollo (10/20 m) | 4,6 | 4,000+ | 2,33 | 189 MXN · 10–15 d | 7,99 € · 7–12 d | 9,99 $ · 8–12 d | ✅ nota+volumen |
+| Bolsas de red para proteger fruta (pack) | 4,8 | 900+ (pack) | 6,41 | 349 MXN · 10–15 d | 15,99 € · 7–12 d | 17,99 $ · 8–12 d | ✅ nota+volumen |
+
+> La variante exacta de cada uno se fija en la app antes de
+> publicar: en la red, la longitud del rollo (10 o 20 m); en las
+> bolsas, el número de bolsas y el tamaño del pack (la bolsa suelta
+> del mismo tipo muestra 4,8 estrellas y más de 5.000 vendidos a
+> 0,99 US$/ud). La categoría se declara en `tienda.js` (`CATS` y
+> `ORDEN_CATS`, clave `mallas`): su chip sale en la portada con los
+> dos productos.
+
 ## Productos RECHAZADOS (y por qué) — no bajar el listón
 
 | Candidato | Motivo del rechazo |

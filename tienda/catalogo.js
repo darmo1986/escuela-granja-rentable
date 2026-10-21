@@ -886,6 +886,141 @@ window.GR_TIENDA_CATALOGO = {
           "nota": "Envío internacional con seguimiento."
         }
       }
+    },
+    {
+      "slug": "red-antipajaros-rollo",
+      "nombre": "Red antipájaros en rollo (10/20 m) para gallinero y frutales",
+      "categoria": "mallas",
+      "descripcion_corta": "La barrera que no se negocia: cubre el parque, los comederos o los frutales y los pájaros silvestres se quedan fuera, sin dañarlos.",
+      "descripcion": "Los pájaros silvestres le salen caros a cualquier granja: gorriones, palomas y estorninos se comen el pienso de los comederos exteriores, ensucian los bebederos, picotean la fruta en el árbol y son una vía de entrada de enfermedades al gallinero. La red antipájaros lo corta con una barrera física sencilla: un rollo de red de polietileno ligera que se extiende sobre el parque o el voladero, sobre los comederos o sobre los frutales, y deja pasar la luz y el aire pero no a las aves. Se corta a medida con unas tijeras, no se oxida ni se pudre como la metálica y, bien guardada, dura varias temporadas. Es la misma solución que venden las tiendas de avicultura como categoría propia, en su versión ligera y de bolsillo.",
+      "incluye": [
+        "1 rollo de red antipájaros de polietileno (10 o 20 m según la variante elegida al pedir)"
+      ],
+      "utilidades": [
+        "Cubrir el parque o el voladero: las aves silvestres fuera del pienso y del agua de tus gallinas",
+        "Proteger los frutales: higos, uvas, cerezas y manzanas sin picotazos",
+        "Techar comederos y bebederos exteriores para que no los contaminen los gorriones",
+        "Proteger siembras, fresas y hortalizas recién plantadas en el huerto",
+        "Cerrar por arriba los corrales de pollitos y codornices frente a pájaros y gatos"
+      ],
+      "como_se_usa": [
+        "Mide la zona a cubrir y corta la red a medida con unas tijeras",
+        "Extiéndela sobre postes o sobre la estructura, sin tensarla en exceso para que no se deforme",
+        "Fíjala con bridas, alambre o grapas cada 40-50 cm y remata bien los bordes",
+        "Tras la temporada de fruta, retírala, sacúdela y guárdala enrollada a la sombra"
+      ],
+      "imagenes": [],
+      "imagen_local": "",
+      "imagen_local_nota": "",
+      "precio_base_usd": 2.33,
+      "precio_base_nota": "Precio de tarjeta del anuncio marcado «Top selling on AliExpress», según la variante de 10 o 20 m.",
+      "rating": 4.6,
+      "pedidos": "4,000+",
+      "vendedor": {
+        "nombre": null,
+        "positivo_pct": null,
+        "anos": null
+      },
+      "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-anti-bird-netting.html",
+      "link_pago": "",
+      "activo": true,
+      "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio «20/10M Anti Bird Protection Net Mesh Garden Plant Netting Protect Plants and Fruit Trees from Birds Deer Poultry Best Fencing», marcado «Top selling on AliExpress», con 4,6 estrellas y más de 4.000 vendidos a 2,33 US$ según variante. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda, fotos de compradores y almacén/plazo exacto por país. Confirmar esos datos en la app antes de publicar, fijando la variante exacta (10 o 20 m); si aparece una alternativa con almacén local que supere todos los filtros, tiene prioridad (política de almacén local).",
+      "paises": {
+        "MX": {
+          "disponible": true,
+          "moneda": "MXN",
+          "precio": 189,
+          "precio_confirmado": false,
+          "dias_envio": "10–15 días",
+          "origen_envio": "internacional",
+          "nota": "Envío internacional con seguimiento. La aduana puede cobrar una tasa al recibir."
+        },
+        "ES": {
+          "disponible": true,
+          "moneda": "EUR",
+          "precio": 7.99,
+          "precio_confirmado": false,
+          "dias_envio": "7–12 días",
+          "origen_envio": "internacional",
+          "nota": "Envío internacional con seguimiento (programa Choice)."
+        },
+        "US": {
+          "disponible": true,
+          "moneda": "USD",
+          "precio": 9.99,
+          "precio_confirmado": false,
+          "dias_envio": "8–12 días",
+          "origen_envio": "internacional",
+          "nota": "Envío internacional con seguimiento."
+        }
+      }
+    },
+    {
+      "slug": "bolsas-red-proteger-fruta",
+      "nombre": "Bolsas de red para proteger fruta (pack)",
+      "categoria": "mallas",
+      "descripcion_corta": "Cada fruto en su propia bolsa: la red deja pasar la luz y el aire, y pájaros, avispas y mosca de la fruta se quedan sin banquete.",
+      "descripcion": "Embolsar la fruta en el árbol es la técnica de los fruticultores de toda la vida, y esta bolsa de red de nailon la hace cómoda: metes el fruto o el racimo dentro, cierras el cordón sobre el tallo y la cosecha queda a salvo del picoteo de los pájaros, de las avispas y de la mosca de la fruta, que es justo lo que arruina la uva, los higos y la fruta de hueso en las granjas caseras. La malla deja pasar la luz y el aire, así que la fruta madura con normalidad y se ve su color a través de la red para recoger en el punto justo, sin el plástico cerrado que cuece y condensa. Se lavan en un momento y se reutilizan temporada tras temporada.",
+      "incluye": [
+        "Bolsas de red de nailon con cordón de cierre (pack; el número de bolsas y el tamaño se confirman al pedir)"
+      ],
+      "utilidades": [
+        "Racimos de uva de mesa: sin picoteo de pájaros ni avispas sobre la parra",
+        "Higos, melocotones, manzanas y peras en los frutales caseros de la granja",
+        "Fresas y tomates del huerto, los primeros que prueban los mirlos",
+        "Proteger la fruta que dejas en el árbol para recoger semilla"
+      ],
+      "como_se_usa": [
+        "Embolsa cuando el fruto ya está formado y aún verde, antes de que empiece a colorear",
+        "Mete el fruto o el racimo en la bolsa y cierra el cordón sobre el tallo, sin estrangularlo",
+        "Deja la bolsa puesta hasta la cosecha: la fruta madura dentro, a la vista",
+        "Al recoger, vacía las bolsas, lávalas y guárdalas secas para la temporada siguiente"
+      ],
+      "imagenes": [],
+      "imagen_local": "",
+      "imagen_local_nota": "",
+      "precio_base_usd": 6.41,
+      "precio_base_nota": "Precio del pack en el anuncio retail de AliExpress. La bolsa suelta del mismo tipo se anuncia a 0,99 US$/ud. La composición exacta del pack (número de bolsas y tamaño) se fija en la app antes de publicar el precio.",
+      "rating": 4.8,
+      "pedidos": "900+",
+      "vendedor": {
+        "nombre": null,
+        "positivo_pct": null,
+        "anos": null
+      },
+      "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-fruit-protection-bags.html",
+      "link_pago": "",
+      "activo": true,
+      "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio pack «10-200Pcs Fruit Protection Netting Bags» con 4,8 estrellas y más de 900 vendidos a 6,41 US$ el pack, con entrega mostrada en tarjeta de unos 5 días; la bolsa suelta del mismo tipo («Nylon Plant Protection Netting Mesh Bag Cover for Fruit…») muestra 4,8 estrellas y más de 5.000 vendidos a 0,99 US$/ud. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda, fotos de compradores y almacén. Confirmar esos datos en la app antes de publicar, incluida la composición exacta del pack (número de bolsas y tamaño); si aparece una alternativa con almacén local que supere todos los filtros, tiene prioridad (política de almacén local).",
+      "paises": {
+        "MX": {
+          "disponible": true,
+          "moneda": "MXN",
+          "precio": 349,
+          "precio_confirmado": false,
+          "dias_envio": "10–15 días",
+          "origen_envio": "internacional",
+          "nota": "Envío internacional con seguimiento. La aduana puede cobrar una tasa al recibir."
+        },
+        "ES": {
+          "disponible": true,
+          "moneda": "EUR",
+          "precio": 15.99,
+          "precio_confirmado": false,
+          "dias_envio": "7–12 días",
+          "origen_envio": "internacional",
+          "nota": "Envío internacional con seguimiento (programa Choice)."
+        },
+        "US": {
+          "disponible": true,
+          "moneda": "USD",
+          "precio": 17.99,
+          "precio_confirmado": false,
+          "dias_envio": "8–12 días",
+          "origen_envio": "internacional",
+          "nota": "Envío internacional con seguimiento."
+        }
+      }
     }
   ]
 };

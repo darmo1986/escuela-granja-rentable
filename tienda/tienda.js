@@ -18,9 +18,10 @@
     comederos: "Comederos",
     incubacion: "Incubación",
     crianza: "Crianza y calor",
-    gallinero: "Gallinero y cercas"
+    gallinero: "Gallinero y cercas",
+    mallas: "Mallas y huerto"
   };
-  var ORDEN_CATS = ["bebederos", "comederos", "incubacion", "crianza", "gallinero"];
+  var ORDEN_CATS = ["bebederos", "comederos", "incubacion", "crianza", "gallinero", "mallas"];
 
   function $(s, c) { return (c || document).querySelector(s); }
   function esc(s) {
