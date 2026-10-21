@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel privado | Granja Rentable</title>
+<meta name="description" content="Panel privado del administrador: tráfico de granjarentable.com e intenciones de compra.">
+<meta name="theme-color" content="#1F5E2E">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
+<link rel="stylesheet" href="css/estilo.css?v=202610184">
+<script src="js/boot.js?v=202610184"></script>
+<script src="js/config.js?v=202610184"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  .panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:16px 0}
+  .panel-card{border:1px solid rgba(127,127,127,.35);border-radius:14px;padding:16px 18px;background:rgba(127,127,127,.04);box-shadow:0 4px 14px rgba(15,61,28,.05)}
+  .panel-card .num{font-size:2.2rem;font-weight:800;line-height:1.05;color:#0F3D1C;font-variant-numeric:tabular-nums}
+  .panel-card .etq{opacity:.75;font-size:.82rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+  .panel-card-aviso{border:2px solid #C4A035;background:rgba(196,160,53,.10)}
+  .panel-card-aviso .num{color:#8C6D1F}
+  .panel-alarma{border:2px solid #b3261e;border-left:8px solid #b3261e;background:linear-gradient(180deg,rgba(179,38,30,.12),rgba(179,38,30,.06));border-radius:12px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:1.05rem;box-shadow:0 6px 18px rgba(179,38,30,.12)}
+  .panel-ok{border:1px solid rgba(127,127,127,.35);border-radius:12px;padding:14px 16px;margin:16px 0}
+  .panel-vacio{border:2px dashed rgba(127,127,127,.45);border-radius:14px;padding:26px 20px;margin:16px 0;text-align:center;font-size:1.02rem;background:rgba(127,127,127,.03)}
+  .panel-vacio strong{display:block;font-size:1.15rem;margin-bottom:6px;color:#0F3D1C}
+  table.panel-tabla{border-collapse:collapse;width:100%;margin:8px 0 16px}
+  table.panel-tabla th,table.panel-tabla td{border-bottom:1px solid rgba(127,127,127,.3);padding:8px;text-align:left;vertical-align:top}
+  table.panel-tabla th{font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.75}
+  table.panel-tabla tbody tr:hover,table.panel-tabla tr:hover{background:rgba(127,127,127,.05)}
+  .panel-canal{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.8rem;font-weight:700;border:1px solid rgba(127,127,127,.4)}
+  .panel-canal.wa{background:rgba(18,140,126,.12);border-color:rgba(18,140,126,.5);color:#0B5A50}
+  .panel-canal.tienda{background:rgba(31,94,46,.10);border-color:rgba(31,94,46,.45);color:#1F5E2E}
+  .panel-estado{font-weight:700}
+  .panel-estado.pendiente{color:#b26a00}
+  .panel-estado.activo{color:#1F5E2E}
+  @media (max-width:560px){
+    .panel-card .num{font-size:1.8rem}
+    table.panel-tabla{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    table.panel-tabla th,table.panel-tabla td{padding:6px 6px;white-space:nowrap}
+    table.panel-tabla td:nth-child(2){white-space:normal;min-width:130px}
+  }
+</style>
+</head>
+<body data-root="">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top">
+<div class="bar wrap">
+<a class="brand" href="index.html"><span class="brand-mark"><img class="logo-for-dark" src="img/logo-claro.svg" alt="" width="44" height="44"><img class="logo-for-light" src="img/logo-oscuro.svg" alt="" width="44" height="44"></span><span class="brand-name">Granja Rentable</span></a>
+</div>
+</header>
+<main id="contenido">
+<article class="legal">
+<h1>Panel privado</h1>
+<p class="fine">Tráfico de la web e intenciones de compra. Solo entra el administrador con su cuenta. Sin cookies de terceros: el registro es propio (Supabase) y no guarda IP ni datos personales de los visitantes.</p>
+
+<div id="panel-cuerpo"><p>Cargando…</p></div>
+
+</article>
+</main>
+<footer class="foot">
+<div class="wrap">
+<p class="fine">Panel interno de Granja Rentable. Una <strong>intención de compra</strong> es el clic en «Comprar» o en un WhatsApp de producto: todavía no es una venta. La venta confirmada la registra la tienda (Stripe).</p>
+</div>
+</footer>
+
+<script>
+(function () {
+  var cuerpo = document.getElementById("panel-cuerpo");
+  var GR = window.GR || {};
+  var com = GR.comunidad || {};
+  var SB_URL = com.supabaseUrl || "";
+  var SB_KEY = com.supabaseAnonKey || "";
+
+  function esc(s) {
+    var d = document.createElement("div");
+    d.textContent = s == null ? "" : String(s);
+    return d.innerHTML;
+  }
+  function fechaHora(iso) {
+    try {
+      return new Date(iso).toLocaleString("es-ES", { timeZone: "Europe/Madrid", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+    } catch (e) { return esc(iso); }
+  }
+
+  function estadoLogin() {
+    cuerpo.innerHTML =
+      "<div class='panel-ok'><p><strong>Hay que entrar con tu cuenta.</strong></p>" +
+      "<p>Este panel solo lo ve el administrador. Entra y vuelve aquí.</p>" +
+      "<p><a class='btn gold' href='registro.html'>Entrar</a> · <a href='cuenta.html'>Mi cuenta</a></p></div>";
+  }
+
+  function estadoNoAdmin(correo) {
+    cuerpo.innerHTML =
+      "<div class='panel-ok'><p><strong>Esta cuenta no es la del administrador.</strong></p>" +
+      "<p>Has entrado como " + esc(correo || "") + ". El panel solo se abre a la cuenta marcada como administradora en Supabase (perfiles.es_admin).</p>" +
+      "<p><a href='cuenta.html'>Ir a Mi cuenta</a></p></div>";
+  }
+
+  function estadoPendiente() {
+    cuerpo.innerHTML =
+      "<div class='panel-ok'><p><strong>El panel está en la web, pero la base de datos aún no está encendida.</strong></p>" +
+      "<p>Falta ejecutar en Supabase, en el editor SQL y en orden, las migraciones de <code>supabase/migrations/</code> (la última es <code>20261020193000_panel.sql</code>) y marcar tu cuenta como administradora. Los pasos exactos están en <code>supabase/PANEL.md</code> del repositorio.</p>" +
+      "<p>Mientras tanto no se pierde nada: la web sigue igual y el registro empieza a contar desde que se encienda.</p></div>" +
+      integraciones(false);
+  }
+
+  function integraciones(datosOk) {
+    var cfOk = !!(GR.analitica && GR.analitica.cfToken);
+    return "<h2>Estado de los avisos</h2>" +
+      "<table class='panel-tabla'>" +
+      "<tr><th>Registro de visitas e intenciones (Supabase)</th><td>" +
+        (datosOk ? "<span class='panel-estado activo'>Activo</span>" : "<span class='panel-estado pendiente'>Pendiente</span> — falta correr la migración del panel.") + "</td></tr>" +
+      "<tr><th>Cloudflare Web Analytics (estadísticas sin cookies)</th><td>" +
+        (cfOk ? "<span class='panel-estado activo'>Activo</span> — token puesto en js/config.js." : "<span class='panel-estado pendiente'>Pendiente</span> — falta crear el sitio en Cloudflare → Analytics → Web Analytics y pegar el token en js/config.js (GR.analitica.cfToken).") + "</td></tr>" +
+      "<tr><th>Aviso por correo al pulsar Comprar</th><td><span class='panel-estado pendiente'>Pendiente</span> — hay que pegar el Codigo.gs actualizado en Apps Script y redesplegar la aplicación web. Hasta entonces, las intenciones se ven aquí y en la revisión diaria.</td></tr>" +
+      "<tr><th>Venta confirmada (pago en Stripe, tienda en Netlify)</th><td>El aviso de venta de verdad lo manda Stripe: en su panel, Ajustes → Correos, activa el aviso de pago correcto. Esta web no ve los pagos.</td></tr>" +
+      "</table>";
+  }
+
+  function pintar(d) {
+    var html = "";
+    if ((d.intenciones_hoy || 0) > 0) {
+      html += "<div class='panel-alarma'>🛒 Hoy hay " + d.intenciones_hoy +
+        " intención(es) de compra. Mira la lista de abajo: alguien ha pulsado Comprar o un WhatsApp de producto.</div>";
+    }
+    var sinDatos = !(d.visitas_30d || 0) && !(d.intenciones_7d || 0) &&
+      !(d.top_rutas_7d && d.top_rutas_7d.length) &&
+      !(d.ultimas_intenciones && d.ultimas_intenciones.length);
+    if (sinDatos) {
+      html += "<div class='panel-vacio'><strong>Todavía sin datos</strong>" +
+        "Se empezarán a recoger cuando el panel esté activado y la web reciba visitas. " +
+        "En cuanto entre la primera visita o la primera intención de compra, aparecerá aquí.</div>";
+    }
+    html += "<h2>Visitas</h2><div class='panel-grid'>" +
+      "<div class='panel-card'><div class='num'>" + (d.visitas_hoy || 0) + "</div><div class='etq'>hoy</div></div>" +
+      "<div class='panel-card'><div class='num'>" + (d.visitas_7d || 0) + "</div><div class='etq'>últimos 7 días</div></div>" +
+      "<div class='panel-card'><div class='num'>" + (d.visitas_30d || 0) + "</div><div class='etq'>últimos 30 días</div></div>" +
+      "</div>";
+
+    html += "<h3>Páginas más vistas (7 días)</h3>";
+    if (d.top_rutas_7d && d.top_rutas_7d.length) {
+      html += "<table class='panel-tabla'><tr><th>Página</th><th>Visitas</th></tr>";
+      d.top_rutas_7d.forEach(function (r) {
+        html += "<tr><td>" + esc(r.ruta) + "</td><td>" + r.n + "</td></tr>";
+      });
+      html += "</table>";
+    } else {
+      html += "<p>Todavía no hay visitas registradas.</p>";
+    }
+
+    html += "<h2>Intenciones de compra</h2><div class='panel-grid'>" +
+      "<div class='panel-card" + ((d.intenciones_hoy || 0) > 0 ? " panel-card-aviso" : "") + "'><div class='num'>" + (d.intenciones_hoy || 0) + "</div><div class='etq'>hoy</div></div>" +
+      "<div class='panel-card'><div class='num'>" + (d.intenciones_7d || 0) + "</div><div class='etq'>últimos 7 días</div></div>" +
+      "</div>";
+    if (d.ultimas_intenciones && d.ultimas_intenciones.length) {
+      html += "<table class='panel-tabla'><tr><th>Cuándo</th><th>Producto</th><th>País</th><th>Canal</th></tr>";
+      d.ultimas_intenciones.forEach(function (i) {
+        var esWa = i.canal === "whatsapp";
+        html += "<tr><td>" + fechaHora(i.creado) + "</td><td>" + esc(i.producto) + "</td><td>" +
+          (i.pais ? esc(i.pais) : "—") + "</td><td>" +
+          "<span class='panel-canal " + (esWa ? "wa" : "tienda") + "'>" +
+          (esWa ? "WhatsApp" : "Tienda") + "</span></td></tr>";
+      });
+      html += "</table>";
+    } else {
+      html += "<p>Todavía no hay intenciones registradas.</p>";
+    }
+
+    html += integraciones(true);
+    html += "<p class='fine'>Datos desde que se encendió el registro. Actualizado: " + fechaHora(d.generado_en) +
+      " (hora de Madrid). <button class='btn' id='panel-recargar' type='button'>Actualizar</button></p>";
+    cuerpo.innerHTML = html;
+    document.getElementById("panel-recargar").addEventListener("click", cargar);
+  }
+
+  var sb = null;
+  function cargar() {
+    cuerpo.innerHTML = "<p>Cargando…</p>";
+    sb.rpc("panel_resumen").then(function (r) {
+      if (r.error) {
+        var msg = (r.error.message || "") + " " + (r.error.code || "");
+        if (msg.indexOf("solo administrador") > -1) {
+          sb.auth.getSession().then(function (s) {
+            estadoNoAdmin(s.data.session && s.data.session.user.email);
+          });
+        } else {
+          estadoPendiente();
+        }
+        return;
+      }
+      pintar(r.data);
+    });
+  }
+
+  if (!SB_URL || !SB_KEY || !window.supabase) {
+    cuerpo.innerHTML = "<p>No se pudo cargar la configuración del panel.</p>";
+    return;
+  }
+  sb = window.supabase.createClient(SB_URL, SB_KEY);
+  sb.auth.getSession().then(function (r) {
+    if (!r.data.session) { estadoLogin(); return; }
+    cargar();
+  });
+})();
+</script>
+</body>
+</html>
