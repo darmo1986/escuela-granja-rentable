@@ -25,6 +25,21 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Granja Rentable","url":"https://granjarentable.com/","logo":"https://granjarentable.com/img/logo.jpg","email":"dahanitrading@gmail.com","sameAs":["https://www.youtube.com/@GranjaRentable","https://www.facebook.com/GranjaRentable"]},{"@type":"WebSite","name":"Granja Rentable","url":"https://granjarentable.com/","inLanguage":"es-419","description":"Curso gratis de avicultura y tienda de equipo para pollos y gallinas."}]}</script>
 <link rel="stylesheet" href="css/estilo.css?v=202610184">
 <script src="js/boot.js?v=202610184"></script>
+<style>
+.home-duo{display:grid;gap:16px;margin:22px 0}
+@media(min-width:820px){.home-duo{grid-template-columns:1fr 1fr}}
+.duo-card{border-radius:22px;padding:26px 24px;box-shadow:0 14px 34px rgba(15,61,28,.16);display:flex;flex-direction:column;gap:8px}
+.duo-tienda{background:radial-gradient(480px 200px at 15% -10%,rgba(196,160,53,.30),transparent 60%),linear-gradient(150deg,var(--gd),var(--g) 70%,var(--gm));color:#fff}
+.duo-tienda p{color:#DDEEDF}
+.duo-curso{background:linear-gradient(150deg,#F7ECD2,#EFDBA0);color:var(--gold-ink);border:1.5px solid var(--gold)}
+.duo-curso p{color:#5A4A14}
+.duo-logo{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.duo-kicker{margin:0;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.duo-card h2{margin:0;font-size:1.55rem;line-height:1.15;letter-spacing:-.01em}
+.duo-card p{margin:0;line-height:1.5}
+.duo-btn{margin-top:14px;min-height:56px;font-size:1.08rem;display:inline-flex;align-items:center;justify-content:center;border-radius:14px}
+.duo-curso .duo-btn{background:var(--gd);color:#fff}
+</style>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -113,6 +128,21 @@
 <p class="lead">Cinco lecciones con video, unos 111 minutos, de la primera decisión al engorde. Ponedoras y genética se publican después.</p>
 <p class="split"><a class="btn gold" href="lecciones/l01.html">Empezar el curso gratis</a> <a class="btn sec" data-social="youtube" href="https://www.youtube.com/@GranjaRentable">Ver el canal de YouTube</a></p>
 </section>
+<section class="home-duo" aria-label="Tienda y curso de Granja Rentable">
+<article class="duo-card duo-tienda">
+<img class="duo-logo" src="img/logo.jpg" alt="Logotipo de Granja Rentable" width="84" height="84">
+<p class="duo-kicker">Tienda</p>
+<h2>Equipamiento avícola seleccionado</h2>
+<p>Incubadoras, bebederos, comederos y más, revisados producto a producto. Precio y plazo de envío para tu país, sin sorpresas.</p>
+<a class="btn gold duo-btn" href="tienda/">Entrar en la tienda</a>
+</article>
+<article class="duo-card duo-curso">
+<p class="duo-kicker">Curso gratis</p>
+<h2>Aprende a criar pollos y gallinas rentables</h2>
+<p>Cinco lecciones con vídeo, en español y a tu ritmo: de la primera decisión al engorde. Ponedoras y genética, después.</p>
+<a class="btn duo-btn" href="lecciones/l01.html">Empezar el curso gratis</a>
+</article>
+</section>
 <section class="app-teaser" aria-labelledby="app-teaser-titulo">
 <a class="app-teaser-media" href="app.html"><img src="img/app/02-grafica-peso.webp" alt="Peso del lote frente a la guía de la raza en Registro de pollos" width="720" height="1280" loading="lazy" decoding="async"></a>
 <div class="app-teaser-copy">
@@ -122,180 +152,7 @@
 <a class="btn gold" href="app.html">Ver la app</a>
 </div>
 </section>
-<p class="geo-note">Precios para <strong class="js-pais-nombre">tu país</strong>. Si no coincide, cámbialo en el selector de arriba.</p>
-<section class="panel" id="sin-envio" hidden>
-<h2>Todavía no hay envío a <span class="js-pais-nombre">tu país</span></h2>
-<p>Cuando publiquemos un precio para tu país, la tienda lo muestra aquí. Déjanos tu correo y te avisamos.</p>
-<p><a class="btn gold" href="registro.html?interes=envio">Avísame</a></p>
-</section>
 <a class="calc-teaser" href="calculadora.html"><p class="kicker">Gratis</p><p class="calc-teaser-title">Calculadora de rentabilidad</p><p>50 razas. Huevos, carne o las dos. La cuenta se queda en tu navegador.</p></a>
-<section class="shop-hero" data-featured>
-<a class="shop-hero-media js-feat-link" href="producto/incubadora-24egg-dual.html"><img class="js-feat-img" src="img/productos/incubadora-24egg-dual.webp" alt="Incubadora automática 24Egg Dual" width="800" height="800" fetchpriority="high"></a>
-<div class="shop-hero-copy" data-sku="incubadora-24egg-dual">
-<p class="kicker">Tienda Granja Rentable</p>
-<h2 class="js-feat-name">Incubadora automática 24Egg Dual</h2>
-<p class="js-feat-resumen">Voltea los huevos sola y mantiene la temperatura y la humedad. Con huevo de gallina de tamaño normal caben unos 16 a 18, no siempre 24.</p>
-<p class="pcard-usd js-sku-usd">$2,799 MXN</p>
-<p class="pcard-local js-sku-local">Unos US$ 152 de referencia. Envío incluido a México.</p>
-<p class="pcard-meta js-sku-meta">110V · 3–6 semanas · unos 16–18 huevos de gallina</p>
-<p class="note js-sku-nota">En México la paquetería llega del extranjero y la aduana puede cobrar una tasa global al recibir (hasta 33,5 % del valor declarado). Ese pago no está en nuestro precio. El dólar es una referencia del 14 de octubre de 2026. El cargo es en MXN.</p>
-<p class="js-sku-badge" hidden></p>
-<a class="btn gold js-sku-cta" data-checkout href="https://granjarentable-incubadora.netlify.app/?pais=MX">Comprar</a>
-<a class="btn sec js-feat-more" href="producto/incubadora-24egg-dual.html">Ver ficha</a>
-</div>
-</section>
-<p class="aff-banner">¿Quieres recomendar la tienda? Apúntate a la lista de espera de afiliados. <a href="afiliados.html">Ver cómo funciona</a>.</p>
-<aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
-<ul class="trust">
-<li><strong>Titular</strong><span>Juan Pablo González</span></li>
-<li><strong>Pago con Stripe</strong><span>No vemos el número de tu tarjeta</span></li>
-<li><strong>14 días</strong><span>para devolver la incubadora</span></li>
-<li><strong>YouTube</strong><span>Canal @GranjaRentable</span></li>
-</ul>
-<p class="tester-strip">Registro de pollos ya se descarga gratis para Android. <a href="app.html">Ver la app</a>. También por <a data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable">WhatsApp +34 656 267 726</a>.</p>
-<nav class="cats" aria-label="Categorías de la tienda"><a href="tienda.html#incubadoras">Incubadoras</a><a href="tienda.html#complementos">Complementos</a></nav>
-<section class="block" id="incubadoras"><h2>Incubadoras</h2>
-<div class="pgrid">
-<article class="pcard" data-sku="incubadora-24egg-dual" id="incubadora-24egg-dual">
-<a class="pcard-media" href="producto/incubadora-24egg-dual.html"><img src="img/productos/incubadora-24egg-dual.webp" alt="Incubadora automática 24Egg Dual con volteo, pantalla y ovoscopio" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Incubadoras</p>
-<p class="badge sku-badge js-sku-badge" hidden></p>
-<h3><a href="producto/incubadora-24egg-dual.html"><span class="js-sku-name">Incubadora automática 24Egg Dual</span></a></h3>
-<p class="pcard-usd js-sku-usd">$2,799 MXN</p>
-<p class="pcard-local js-sku-local">Unos US$ 152 de referencia. Envío incluido a México.</p>
-<p class="pcard-meta js-sku-meta">110V · 3–6 semanas · unos 16–18 huevos de gallina</p>
-<p class="note js-sku-nota">En México la paquetería llega del extranjero y la aduana puede cobrar una tasa global al recibir (hasta 33,5 % del valor declarado). Ese pago no está en nuestro precio. El dólar es una referencia del 14 de octubre de 2026. El cargo es en MXN.</p>
-<a class="btn gold js-sku-cta" data-checkout href="https://granjarentable-incubadora.netlify.app/?pais=MX">Comprar</a>
-</div>
-</article>
-<article class="pcard" data-sku="incubadora-wonegg-48" hidden id="incubadora-wonegg-48">
-<a class="pcard-media" href="producto/incubadora-wonegg-48.html"><img src="img/productos/incubadora-wonegg-48.webp" alt="Incubadora automática WONEGG de 48 huevos con pantalla digital y tapa transparente" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Incubadoras</p>
-<p class="badge sku-badge js-sku-badge">Otro modelo</p>
-<h3><a href="producto/incubadora-wonegg-48.html"><span class="js-sku-name">Incubadora automática WONEGG 48 huevos</span></a></h3>
-<p class="pcard-usd js-sku-usd">Esta máquina se envía a Estados Unidos. En México enviamos la 24Egg Dual.</p>
-<p class="pcard-local js-sku-local">En México está a la venta: Incubadora automática 24Egg Dual.</p>
-<p class="pcard-meta js-sku-meta"></p>
-<p class="note js-sku-nota" hidden></p>
-<a class="btn sec js-sku-cta" href="producto/incubadora-24egg-dual.html">Ver el modelo de tu país</a>
-</div>
-</article>
-</div></section>
-<section class="block" id="complementos"><h2>Complementos</h2>
-<div class="pgrid">
-<article class="pcard" data-sku="corralito" hidden id="corralito">
-<a class="pcard-media" href="producto/corralito.html"><img src="img/productos/corralito.webp" alt="Corralito plegable de seis paneles para pollitos" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge">No disponible aquí</p>
-<h3><a href="producto/corralito.html"><span class="js-sku-name">Corralito plegable para pollitos</span></a></h3>
-<p class="pcard-usd js-sku-usd">Hoy no enviamos este producto a México.</p>
-<p class="pcard-local js-sku-local">Referencia de catálogo: US$ 77.99. No es el precio de México.</p>
-<p class="pcard-meta js-sku-meta"></p>
-<p class="note js-sku-nota" hidden></p>
-<a class="btn sec js-sku-cta" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable.%20Me%20interesa%3A%20Corralito%20plegable%20para%20pollitos">Preguntar por WhatsApp</a>
-</div>
-</article>
-<article class="pcard" data-sku="bombilla" hidden id="bombilla">
-<a class="pcard-media" href="producto/bombilla.html"><img src="img/productos/bombilla.webp" alt="Bombilla infrarroja para dar calor a los pollitos" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge">No disponible aquí</p>
-<h3><a href="producto/bombilla.html"><span class="js-sku-name">Bombilla infrarroja para criadora</span></a></h3>
-<p class="pcard-usd js-sku-usd">Hoy no enviamos este producto a México.</p>
-<p class="pcard-local js-sku-local">Referencia de catálogo: US$ 49.99. No es el precio de México.</p>
-<p class="pcard-meta js-sku-meta"></p>
-<p class="note js-sku-nota" hidden></p>
-<a class="btn sec js-sku-cta" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable.%20Me%20interesa%3A%20Bombilla%20infrarroja%20para%20criadora">Preguntar por WhatsApp</a>
-</div>
-</article>
-<article class="pcard" data-sku="termohigrometro" id="termohigrometro">
-<a class="pcard-media" href="producto/termohigrometro.html"><img src="img/productos/termohigrometro.webp" alt="Termohigrómetro de aguja para temperatura y humedad" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge" hidden></p>
-<h3><a href="producto/termohigrometro.html"><span class="js-sku-name">Termohigrómetro de aguja</span></a></h3>
-<p class="pcard-usd js-sku-usd">$99 MXN</p>
-<p class="pcard-local js-sku-local">Unos US$ 5 de referencia.</p>
-<p class="pcard-meta js-sku-meta">Llega en un paquete aparte: 3–6 semanas.</p>
-<p class="note js-sku-nota">El dólar es una referencia del 14 de octubre de 2026. El cargo es en MXN.</p>
-<a class="btn gold js-sku-cta" data-checkout href="https://granjarentable-incubadora.netlify.app/?pais=MX">Comprar</a>
-</div>
-</article>
-<article class="pcard" data-sku="bascula" id="bascula">
-<a class="pcard-media" href="producto/bascula.html"><img src="img/productos/bascula.webp" alt="Báscula de precisión de 0,01 g hasta 200 g" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge" hidden></p>
-<h3><a href="producto/bascula.html"><span class="js-sku-name">Báscula de precisión 0,01 g</span></a></h3>
-<p class="pcard-usd js-sku-usd">$249 MXN</p>
-<p class="pcard-local js-sku-local">Unos US$ 14 de referencia.</p>
-<p class="pcard-meta js-sku-meta">Llega en un paquete aparte: 3–6 semanas.</p>
-<p class="note js-sku-nota">El dólar es una referencia del 14 de octubre de 2026. El cargo es en MXN.</p>
-<a class="btn gold js-sku-cta" data-checkout href="https://granjarentable-incubadora.netlify.app/?pais=MX">Comprar</a>
-</div>
-</article>
-<article class="pcard" data-sku="medidorph" id="medidorph">
-<a class="pcard-media" href="producto/medidorph.html"><img src="img/productos/medidor-ph.webp" alt="Medidor digital de pH, sales y temperatura del agua" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge" hidden></p>
-<h3><a href="producto/medidorph.html"><span class="js-sku-name">Medidor digital de pH del agua</span></a></h3>
-<p class="pcard-usd js-sku-usd">$199 MXN</p>
-<p class="pcard-local js-sku-local">Unos US$ 11 de referencia.</p>
-<p class="pcard-meta js-sku-meta">Llega en un paquete aparte: 3–6 semanas.</p>
-<p class="note js-sku-nota">En México la ficha dice: bolígrafo digital para comprobar el pH del agua de bebida. El dólar es una referencia del 14 de octubre de 2026. El cargo es en MXN.</p>
-<a class="btn gold js-sku-cta" data-checkout href="https://granjarentable-incubadora.netlify.app/?pais=MX">Comprar</a>
-</div>
-</article>
-<article class="pcard" data-sku="alfombrilla" id="alfombrilla">
-<a class="pcard-media" href="producto/alfombrilla.html"><img src="img/productos/alfombrilla.webp" alt="Alfombrilla o tapete antideslizante para la criadora" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge" hidden></p>
-<h3><a href="producto/alfombrilla.html"><span class="js-sku-name">Tapete antideslizante</span></a></h3>
-<p class="pcard-usd js-sku-usd">$179 MXN</p>
-<p class="pcard-local js-sku-local">Unos US$ 10 de referencia.</p>
-<p class="pcard-meta js-sku-meta">Llega en un paquete aparte: 3–6 semanas.</p>
-<p class="note js-sku-nota">El dólar es una referencia del 14 de octubre de 2026. El cargo es en MXN.</p>
-<a class="btn gold js-sku-cta" data-checkout href="https://granjarentable-incubadora.netlify.app/?pais=MX">Comprar</a>
-</div>
-</article>
-<article class="pcard" data-sku="comedero" hidden id="comedero">
-<a class="pcard-media" href="producto/comedero.html"><img src="img/productos/comedero-bebedero.webp" alt="Juego de comedero de 3 kg y bebedero de 3 litros" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge">No disponible aquí</p>
-<h3><a href="producto/comedero.html"><span class="js-sku-name">Comedero 3 kg + bebedero 3 L</span></a></h3>
-<p class="pcard-usd js-sku-usd">Hoy no enviamos este producto a México.</p>
-<p class="pcard-local js-sku-local">Referencia de catálogo: US$ 34.99. No es el precio de México.</p>
-<p class="pcard-meta js-sku-meta"></p>
-<p class="note js-sku-nota" hidden></p>
-<a class="btn sec js-sku-cta" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable.%20Me%20interesa%3A%20Comedero%203%20kg%20%2B%20bebedero%203%20L">Preguntar por WhatsApp</a>
-</div>
-</article>
-<article class="pcard" data-sku="anillas" hidden id="anillas">
-<a class="pcard-media" href="producto/anillas.html"><img src="img/productos/anillas.webp" alt="Cincuenta anillas numeradas para marcar aves" width="800" height="800" loading="lazy"></a>
-<div class="pcard-body">
-<p class="pcard-cat">Complementos</p>
-<p class="badge sku-badge js-sku-badge">No disponible aquí</p>
-<h3><a href="producto/anillas.html"><span class="js-sku-name">Anillas identificadoras (50 uds.)</span></a></h3>
-<p class="pcard-usd js-sku-usd">Hoy no enviamos este producto a México.</p>
-<p class="pcard-local js-sku-local">Referencia de catálogo: US$ 14.99. No es el precio de México.</p>
-<p class="pcard-meta js-sku-meta"></p>
-<p class="note js-sku-nota" hidden></p>
-<a class="btn sec js-sku-cta" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable.%20Me%20interesa%3A%20Anillas%20identificadoras%20%2850%20uds.%29">Preguntar por WhatsApp</a>
-</div>
-</article>
-</div></section>
-<section class="block" id="proximamente" hidden>
-<h2>Próximamente</h2>
-<p>Estos productos todavía no se pueden comprar en tu país.</p>
-<ul class="soon-names" id="soon-list"></ul>
-<p><a class="btn sec" href="registro.html?interes=catalogo">Avísame cuando haya precio</a></p>
-</section>
 <section class="block" id="pablo">
 <p class="kicker">Quién publica</p>
 <h2>Juan Pablo González</h2>
