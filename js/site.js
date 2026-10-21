@@ -939,3 +939,119 @@
     return { pais: pais, ref: readRef(), tienda: (PAISES[pais] && PAISES[pais].envio) ? storeUrl() : "" };
   };
 })();
+
+/* === Panel: registro de visitas e intenciones de compra (sin cookies) ===
+   Una fila por página vista en public.visitas y una por clic en «Comprar»
+   (tienda) o en un WhatsApp de producto en public.intenciones_compra.
+   Sin IP, sin huella, sin datos personales: solo ruta, dominio de origen y país.
+   Si las tablas aún no existen (migración 20261020193000_panel.sql sin correr),
+   los envíos fallan en silencio y la web ni se entera.
+   También inyecta la baliza de Cloudflare Web Analytics si hay token en
+   js/config.js (GR.analitica.cfToken); sin token no carga nada. */
+(function () {
+  try {
+    var GR = window.GR || {};
+    var com = GR.comunidad || {};
+    var SB = (com.supabaseUrl || "").replace(/\/+$/, "");
+    var KEY = com.supabaseAnonKey || "";
+    var ruta = location.pathname || "/";
+
+    function pais() {
+      try {
+        var p = (localStorage.getItem("gr_pais") || "").toUpperCase();
+        return /^[A-Z]{2}$/.test(p) ? p : null;
+      } catch (e) { return null; }
+    }
+
+    function enviar(tabla, datos) {
+      if (!SB || !KEY) return;
+      try {
+        fetch(SB + "/rest/v1/" + tabla, {
+          method: "POST",
+          credentials: "omit",
+          keepalive: true,
+          headers: {
+            "apikey": KEY,
+            "Authorization": "Bearer " + KEY,
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(datos)
+        }).catch(function () {});
+      } catch (e) {}
+    }
+
+    /* Cloudflare Web Analytics: solo si pablo pegó el token en config.js. */
+    var cfToken = (GR.analitica && GR.analitica.cfToken) || "";
+    if (cfToken) {
+      var cf = document.createElement("script");
+      cf.defer = true;
+      cf.src = "https://static.cloudflareinsights.com/beacon.min.js";
+      cf.setAttribute("data-cf-beacon", JSON.stringify({ token: cfToken }));
+      (document.head || document.documentElement).appendChild(cf);
+    }
+
+    /* El panel no se cuenta a sí mismo. */
+    if (ruta === "/panel.html" || ruta === "/panel") return;
+
+    var refHost = "";
+    try { refHost = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e) {}
+    if (refHost === location.hostname) refHost = "";
+
+    function visita() {
+      enviar("visitas", { ruta: ruta, referer: refHost || null, pais: pais() });
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", visita);
+    } else {
+      visita();
+    }
+
+    /* Intención de compra: clic en Comprar o en WhatsApp de producto.
+       No se frena la navegación: el envío va con keepalive y en segundo plano. */
+    document.addEventListener("click", function (ev) {
+      var t = ev.target && ev.target.closest ? ev.target.closest("a") : null;
+      if (!t) return;
+      var href = t.href || "";
+      var esTienda = t.hasAttribute("data-checkout") || t.classList.contains("js-comprar");
+      var esWhats = href.indexOf("wa.me/") > -1;
+      if (!esTienda && !esWhats) return;
+
+      var producto = "";
+      var canal = "";
+      if (esTienda) {
+        canal = "tienda";
+        producto = t.getAttribute("data-producto") || "Incubadora 24Egg Dual";
+      } else {
+        canal = "whatsapp";
+        var m = /[?&]text=([^&]+)/.exec(href);
+        var texto = "";
+        try { texto = m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : ""; } catch (e) {}
+        var mi = /Me interesa:\s*(.+)$/.exec(texto);
+        producto = mi ? mi[1].trim() : "Consulta por WhatsApp";
+      }
+      producto = producto.slice(0, 140);
+      if (!producto) return;
+
+      enviar("intenciones_compra", {
+        producto: producto, canal: canal, ruta: ruta, pais: pais()
+      });
+
+      /* Aviso al correo vía la aplicación de formularios (Apps Script):
+         solo surte efecto con el Codigo.gs actualizado (tipo «compra»). */
+      var endpoint = (GR.formEndpoint || "").trim();
+      if (endpoint) {
+        try {
+          var cuerpo = new URLSearchParams({
+            tipo: "compra", interes: producto, origen: ruta
+          });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(endpoint, cuerpo);
+          } else {
+            fetch(endpoint, { method: "POST", body: cuerpo, keepalive: true, mode: "no-cors" }).catch(function () {});
+          }
+        } catch (e) {}
+      }
+    }, true);
+  } catch (e) {}
+})();

@@ -59,6 +59,15 @@ window.GR = {
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
     concursoPublicado: false
   },
+  /* Analítica propia y Cloudflare Web Analytics (sin cookies).
+     cfToken vacío = Cloudflare Web Analytics apagado. Para encenderlo:
+     panel de Cloudflare → Analytics → Web Analytics → añadir granjarentable.com
+     y pegar aquí el token del sitio. La baliza la inyecta js/site.js.
+     El registro propio de visitas va a Supabase (tabla public.visitas) y lo
+     muestra /panel.html; necesita la migración 20261020193000_panel.sql. */
+  analitica: {
+    cfToken: ""
+  },
   redes: {
     adsterra: {
       /* Clave del banner pequeño (320×50).
