@@ -25,13 +25,15 @@ window.ads = { activo: false };
 /* Sitio unificado. La tienda propia y el curso van primero. */
 window.GR = {
   siteUrl: "https://granjarentable.com",
-  /* Única URL de la tienda de pago. Hoy sigue en Netlify.
-     Para pasar a la tienda nueva, cambia solo esta línea a
-     "https://tienda.granjarentable.com/". Los botones Comprar la leen de aquí. */
-  tiendaBase: "https://granjarentable-incubadora.netlify.app/",
+  /* Única URL de la tienda. Desde el 21-oct-2026 es la tienda nueva en
+     granjarentable.com/tienda/ (la de Netlify quedó cerrada).
+     Los botones Comprar la leen de aquí. */
+  tiendaBase: "https://granjarentable.com/tienda/",
   youtubeUrl: "https://www.youtube.com/@GranjaRentable",
   /* Confirma la URL exacta de la página de Facebook. */
   facebookUrl: "https://www.facebook.com/GranjaRentable",
+  instagramUrl: "https://www.instagram.com/granjarentable",
+  xUrl: "https://x.com/juanpab10242455",
   whatsapp: "https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable",
   /* URL /exec de la aplicación web de Google Apps Script (gratis). Vacío = no se envía nada.
      Un solo valor para registro, prueba de la app y afiliados. Ver apps-script/Codigo.gs */

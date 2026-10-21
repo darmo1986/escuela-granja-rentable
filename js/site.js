@@ -593,6 +593,8 @@
     if (k === "youtube" && GR.youtubeUrl) a.href = GR.youtubeUrl;
     if (k === "facebook" && GR.facebookUrl) a.href = GR.facebookUrl;
     if (k === "whatsapp" && GR.whatsapp) a.href = GR.whatsapp;
+    if (k === "instagram" && GR.instagramUrl) a.href = GR.instagramUrl;
+    if (k === "x" && GR.xUrl) a.href = GR.xUrl;
   });
 
   document.querySelectorAll("[data-app-download]").forEach(function (a) {
