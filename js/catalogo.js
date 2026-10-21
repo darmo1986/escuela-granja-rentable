@@ -199,19 +199,19 @@ window.GR_CATALOGO = [
         "moneda": "PEN",
         "precio": 19.9,
         "texto": "S/ 19.90",
-        "entrega": "Llega aparte desde China: 3–6 semanas."
+        "entrega": "Llega en un paquete aparte: 3–6 semanas."
       },
       "MX": {
         "moneda": "MXN",
         "precio": 99,
         "texto": "$99 MXN",
-        "entrega": "Llega aparte desde China: 3–6 semanas."
+        "entrega": "Llega en un paquete aparte: 3–6 semanas."
       },
       "ES": {
         "moneda": "EUR",
         "precio": 8.99,
         "texto": "8,99 €",
-        "entrega": "Llega aparte desde China: hasta 30 días."
+        "entrega": "Llega en un paquete aparte: hasta 30 días."
       },
       "US": {
         "moneda": "USD",
@@ -245,19 +245,19 @@ window.GR_CATALOGO = [
         "moneda": "PEN",
         "precio": 49.9,
         "texto": "S/ 49.90",
-        "entrega": "Llega aparte desde China: 3–6 semanas."
+        "entrega": "Llega en un paquete aparte: 3–6 semanas."
       },
       "MX": {
         "moneda": "MXN",
         "precio": 249,
         "texto": "$249 MXN",
-        "entrega": "Llega aparte desde China: 3–6 semanas."
+        "entrega": "Llega en un paquete aparte: 3–6 semanas."
       },
       "ES": {
         "moneda": "EUR",
         "precio": 16.99,
         "texto": "16,99 €",
-        "entrega": "Llega aparte desde China: hasta 30 días."
+        "entrega": "Llega en un paquete aparte: hasta 30 días."
       },
       "US": {
         "moneda": "USD",
@@ -292,7 +292,7 @@ window.GR_CATALOGO = [
         "moneda": "PEN",
         "precio": 39.9,
         "texto": "S/ 39.90",
-        "entrega": "Llega aparte desde China: 3–6 semanas.",
+        "entrega": "Llega en un paquete aparte: 3–6 semanas.",
         "nota": "En Perú la ficha dice: bolígrafo digital para comprobar el pH del agua de bebida."
       },
       "MX": {
@@ -300,7 +300,7 @@ window.GR_CATALOGO = [
         "moneda": "MXN",
         "precio": 199,
         "texto": "$199 MXN",
-        "entrega": "Llega aparte desde China: 3–6 semanas.",
+        "entrega": "Llega en un paquete aparte: 3–6 semanas.",
         "nota": "En México la ficha dice: bolígrafo digital para comprobar el pH del agua de bebida."
       },
       "ES": {
@@ -308,7 +308,7 @@ window.GR_CATALOGO = [
         "moneda": "EUR",
         "precio": 14.99,
         "texto": "14,99 €",
-        "entrega": "Llega aparte desde China: hasta 30 días.",
+        "entrega": "Llega en un paquete aparte: hasta 30 días.",
         "nota": "En España la ficha dice: bolígrafo digital para comprobar el pH del agua de bebida."
       },
       "US": {
@@ -344,21 +344,21 @@ window.GR_CATALOGO = [
         "moneda": "PEN",
         "precio": 34.9,
         "texto": "S/ 34.90",
-        "entrega": "Llega aparte desde China: 3–6 semanas."
+        "entrega": "Llega en un paquete aparte: 3–6 semanas."
       },
       "MX": {
         "nombre": "Tapete antideslizante",
         "moneda": "MXN",
         "precio": 179,
         "texto": "$179 MXN",
-        "entrega": "Llega aparte desde China: 3–6 semanas."
+        "entrega": "Llega en un paquete aparte: 3–6 semanas."
       },
       "ES": {
         "nombre": "Tapete antideslizante",
         "moneda": "EUR",
         "precio": 13.99,
         "texto": "13,99 €",
-        "entrega": "Llega aparte desde China: hasta 30 días."
+        "entrega": "Llega en un paquete aparte: hasta 30 días."
       },
       "US": {
         "moneda": "USD",
@@ -375,7 +375,7 @@ window.GR_CATALOGO = [
     "alt": "Juego de comedero de 3 kg y bebedero de 3 litros",
     "categoria": "complementos",
     "imagen": "img/productos/comedero-bebedero.webp",
-    "resumen": "Juego de plástico con base, para pollitos y gallinas jóvenes. Llega aparte desde China.",
+    "resumen": "Juego de plástico con base, para pollitos y gallinas jóvenes. Llega en un paquete aparte.",
     "parrafos": [
       "Juego de plástico con base: comedero de 3 kg y bebedero de 3 L, para pollitos y gallinas jóvenes. Se ofrece en España y Estados Unidos. No está en el pedido de Perú, México, Argentina ni Paraguay."
     ],
@@ -392,13 +392,13 @@ window.GR_CATALOGO = [
         "moneda": "EUR",
         "precio": 47.99,
         "texto": "47,99 €",
-        "entrega": "Llega aparte desde China: hasta 30 días."
+        "entrega": "Llega en un paquete aparte: hasta 30 días."
       },
       "US": {
         "moneda": "USD",
         "precio": 34.99,
         "texto": "US$ 34.99",
-        "entrega": "Llega aparte desde China: 7–14 días."
+        "entrega": "Llega en un paquete aparte: 7–14 días."
       }
     },
     "etiqueta": "Complementos"
@@ -411,7 +411,7 @@ window.GR_CATALOGO = [
     "imagen": "img/productos/anillas.webp",
     "resumen": "Numeradas y ajustables, para marcar a cada ave. El color depende de lo que haya.",
     "parrafos": [
-      "Paquete de 50 anillas numeradas y ajustables para marcar a cada ave. El color depende de la disponibilidad. En la tienda se ofrece con el pedido de Estados Unidos y llega aparte desde China."
+      "Paquete de 50 anillas numeradas y ajustables para marcar a cada ave. El color depende de la disponibilidad. En la tienda se ofrece con el pedido de Estados Unidos y llega en un paquete aparte."
     ],
     "incluye": [],
     "capacidad": "",
@@ -426,7 +426,7 @@ window.GR_CATALOGO = [
         "moneda": "USD",
         "precio": 14.99,
         "texto": "US$ 14.99",
-        "entrega": "Llega aparte desde China: 7–14 días."
+        "entrega": "Llega en un paquete aparte: 7–14 días."
       }
     },
     "etiqueta": "Complementos"
