@@ -187,6 +187,7 @@
       '<p class="t-precio">' + esc(formatoPrecio(d.precio, d.moneda)) + "</p>" +
       '<p class="t-envio">' + esc(textoEnvio(d)) + "</p>" +
       '<a class="btn sec" href="producto.html?p=' + esc(p.slug) + '">Ver ficha y pedir</a>' +
+      '<button type="button" class="btn cart-add" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
       "</div></article>";
   }
   function pintarChips() {
@@ -339,6 +340,7 @@
         '<p class="t-envio">' + esc(textoEnvio(d)) + "</p>" +
         (d.nota ? '<p class="t-nota-pais">' + esc(d.nota) + "</p>" : "") +
         botonCompra(p, pais, nombrePais) +
+        '<button type="button" class="btn cart-add cart-add-ficha" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
         '<p class="t-garantia">Selección curada por Granja Rentable: solo vendemos productos con nota alta y cientos de pedidos reales. El pedido lo prepara y envía el proveedor con número de seguimiento. Devolución en 14 días si el producto no es el de la ficha.</p>';
     } else if (!p.activo) {
       compra = '<div class="note"><p><strong>Producto no disponible ahora mismo.</strong> Lo hemos retirado de la venta mientras revisamos su stock con el proveedor. Escríbenos por WhatsApp y te avisamos en cuanto vuelva.</p>' +
@@ -372,11 +374,15 @@
     var sel = $("#tienda-pais-select");
     if (sel) sel.addEventListener("change", function () {
       var v = sel.value;
-      if (v && CAT.paises[v]) { guardarManual(v); guardarCache(v); pintarPortada(v); }
+      if (v && CAT.paises[v]) {
+        guardarManual(v); guardarCache(v); pintarPortada(v);
+        if (window.GRCart) window.GRCart.setPais(v);
+      }
     });
     detectarPais().then(function (pais) {
       pintarPortada(pais);
       pintarFicha(pais);
+      if (window.GRCart) window.GRCart.setPais(pais);
     });
   });
 })();
