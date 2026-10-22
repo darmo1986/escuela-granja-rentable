@@ -813,12 +813,16 @@
       '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="currentColor" d="M14.2 8.2h3.6v6h6v3.6h-6v6h-3.6v-6h-6v-3.6h6z"/></svg></span><span class="nav-label">Enfermedades</span>',
       /\/enfermedades(?:\.html|\/)/.test(ruta)
     );
-    /* Juegos queda el último de este desplegable.
-       El concurso, cuando exista su página, se inserta justo después de este enlace. */
+    /* El concurso va justo después de Juegos, como dejó previsto el diseño. */
     var juegos = enlace("juegos.html", "", /\/juegos(?:\.html)?\/?$/.test(ruta));
     if (!juegos.querySelector(".nav-label")) {
       juegos.innerHTML = '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span>';
     }
+    enlace(
+      "concurso.html",
+      '<span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M9 3h14v5.2A7 7 0 0 1 16 15a7 7 0 0 1-7-6.8V3zm-4.5 1.5h3V9a5.6 5.6 0 0 1-3-4.5zm23 0a5.6 5.6 0 0 1-3 4.5V4.5h3zM15 16.5h2V21h4.5v3h-11V21H15v-4.5z"/></svg></span><span class="nav-label">Concurso</span>',
+      /\/concurso(?:\.html)?\/?$/.test(ruta)
+    );
     var appLink = barra.querySelector('a[href$="app.html"]');
     if (appLink) barra.insertBefore(drop, appLink);
     else barra.appendChild(drop);
@@ -837,7 +841,8 @@
       ["enfermedades.html", "Enfermedades"],
       ["faq.html", "Preguntas frecuentes"],
       ["guias.html", "Guías"],
-      ["juegos.html", "Juegos"]
+      ["juegos.html", "Juegos"],
+      ["concurso.html", "Concurso mensual"]
     ].forEach(function (pair) {
       var href = root + pair[0];
       if (ul.querySelector('a[href="' + href + '"]')) return;

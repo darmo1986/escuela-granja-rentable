@@ -48,18 +48,20 @@ window.GR = {
   /* Un solo bloque comunidad. Lo comparten la cuenta, el reto y el concurso.
      No crees otro: en JavaScript la segunda clave comunidad pisa a la primera.
      supabaseAnonKey es la clave publicable y va en el navegador. Nunca pongas la service_role.
-     concursoPublicado sigue en false hasta correr supabase/migrations/20261018140200_concurso.sql.
-     El PR del concurso lo pasa a true en este mismo objeto.
-     El apodo de la cuenta es perfiles.nombre. Si hay sesión, el concurso rellena el campo
-     con ese nombre. La regla compartida es public.apodo_ok y GRAuth.apodo.
-     La cifra del premio no va aquí: el navegador la lee de public.premio_euros().
-     El premio es del concurso (10 preguntas, 4 respuestas y 30 s). El desempate lo dicen
-     las bases del concurso. El mes se cuenta en hora de Madrid y el ranking vuelve a cero.
+     concursoPublicado: true desde el 22-oct-2026. La página es /concurso.html
+     (100 preguntas, 4 respuestas y 30 s; desempate por tiempo medio de
+     respuesta) y el ranking vive en public.ranking_mensual, con la vista
+     pública public.ranking_mensual_top (mejor marca de cada usuario).
+     El premio es de 20 € al primer clasificado del mes. El mes se cuenta en
+     hora de Madrid y el ranking vuelve a cero.
+     El apodo de la cuenta es perfiles.nombre. Si hay sesión, el concurso
+     rellena el campo con ese nombre. La regla compartida es public.apodo_ok
+     y GRAuth.apodo.
      El reto de /preguntas no tiene premio. */
   comunidad: {
     supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
-    concursoPublicado: false
+    concursoPublicado: true
   },
   /* Analítica propia y Cloudflare Web Analytics (sin cookies).
      cfToken vacío = Cloudflare Web Analytics apagado. Para encenderlo:
