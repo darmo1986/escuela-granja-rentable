@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concurso mensual de avicultura · Granja Rentable</title>
+<meta name="description" content="El concurso mensual de Granja Rentable: 100 preguntas de avicultura, 30 segundos por pregunta. El mejor del mes gana 20 €.">
+<meta name="google-adsense-account" content="ca-pub-5311145772953700">
+<link rel="icon" href="img/favicon.svg">
+<style>
+  :root{
+    --verde:#2e7d32; --verde-osc:#1b5e20; --fondo:#f7f4ec; --tarjeta:#ffffff;
+    --texto:#263238; --gris:#78909c; --rojo:#c62828; --amarillo:#f9a825;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  body{margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+       background:var(--fondo); color:var(--texto); min-height:100vh;
+       display:flex; flex-direction:column; align-items:center;}
+  .wrap{width:100%; max-width:640px; padding:16px;}
+  .marca{display:flex; align-items:center; gap:10px; justify-content:center; padding-top:14px;}
+  .marca img{width:44px; height:44px; border-radius:50%; object-fit:cover;}
+  .marca a{color:var(--verde-osc); font-weight:800; font-size:1.15rem; text-decoration:none;}
+  header{text-align:center; padding:10px 0 6px;}
+  header h1{margin:0; font-size:1.5rem; color:var(--verde-osc);}
+  header p{margin:6px 0 0; color:var(--gris); font-size:.95rem;}
+  .card{background:var(--tarjeta); border-radius:14px; padding:20px; margin:14px 0;
+        box-shadow:0 2px 10px rgba(0,0,0,.07);}
+  .btn{display:block; width:100%; padding:14px; border:none; border-radius:10px;
+       background:var(--verde); color:#fff; font-size:1.05rem; font-weight:700;
+       cursor:pointer; margin-top:12px;}
+  .btn:active{transform:scale(.98);}
+  .btn.sec{background:#eceff1; color:var(--texto);}
+  .hud{display:flex; justify-content:space-between; align-items:center; font-size:.9rem;
+       color:var(--gris); margin-bottom:8px;}
+  .hud b{color:var(--texto);}
+  .timer{height:8px; background:#e0e0e0; border-radius:5px; overflow:hidden; margin:8px 0 16px;}
+  .timer div{height:100%; width:100%; background:var(--verde); transition:width .2s linear;}
+  .timer.poco div{background:var(--rojo);}
+  .pregunta{font-size:1.15rem; font-weight:600; margin:0 0 14px;}
+  .cat{display:inline-block; font-size:.75rem; text-transform:uppercase; letter-spacing:.06em;
+       background:#e8f5e9; color:var(--verde-osc); padding:3px 10px; border-radius:20px; margin-bottom:8px;}
+  .opcion{display:block; width:100%; text-align:left; padding:13px 14px; margin:8px 0;
+          border:2px solid #e0e0e0; border-radius:10px; background:#fff; font-size:1rem;
+          cursor:pointer;}
+  .opcion.ok{border-color:var(--verde); background:#e8f5e9;}
+  .opcion.ko{border-color:var(--rojo); background:#ffebee;}
+  .opcion:disabled{cursor:default; opacity:.95;}
+  .expl{background:#fff8e1; border-left:4px solid var(--amarillo); padding:10px 12px;
+        border-radius:0 8px 8px 0; font-size:.95rem; margin:12px 0 0;}
+  .resultado{font-size:2.6rem; font-weight:800; color:var(--verde-osc); text-align:center; margin:6px 0;}
+  .stats{display:flex; gap:10px; margin:14px 0;}
+  .stat{flex:1; background:#f1f8e9; border-radius:10px; padding:10px; text-align:center;}
+  .stat b{display:block; font-size:1.3rem; color:var(--verde-osc);}
+  .stat span{font-size:.8rem; color:var(--gris);}
+  table.ranking{width:100%; border-collapse:collapse; font-size:.92rem;}
+  table.ranking th, table.ranking td{padding:8px 6px; border-bottom:1px solid #eee; text-align:left;}
+  table.ranking th{color:var(--gris); font-weight:600; font-size:.8rem; text-transform:uppercase;}
+  .aviso{font-size:.85rem; color:var(--gris); text-align:center; margin-top:10px;}
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="marca">
+    <a href="index.html"><img src="img/logo.jpg" alt="Granja Rentable"></a>
+    <a href="index.html">Granja Rentable</a>
+  </div>
+  <header>
+    <h1>🏆 Concurso del mes</h1>
+    <p>100 preguntas de avicultura · 30 segundos por pregunta · El mejor gana <b>20&nbsp;€</b></p>
+  </header>
+
+  <!-- PANTALLA INICIO -->
+  <div id="pantalla-inicio" class="card">
+    <h2 style="margin-top:0">¿Cómo funciona?</h2>
+    <ul style="padding-left:20px; line-height:1.7">
+      <li>100 preguntas de nivel profesional (incubación, ponedoras, engorde, salud y alimentación).</li>
+      <li>Tienes <b>30 segundos</b> por pregunta. Si se acaba el tiempo, cuenta como fallo.</li>
+      <li>Tras responder verás la explicación de la respuesta correcta.</li>
+      <li>Gana quien más aciertos consiga. En caso de empate, decide el <b>tiempo medio de respuesta</b>: responde rápido y bien.</li>
+      <li>El ranking guarda tu <b>mejor marca</b> del mes: puedes jugar las veces que quieras.</li>
+    </ul>
+    <button class="btn" id="btn-empezar">Empezar el reto</button>
+    <p class="aviso" id="aviso-sesion">Necesitas haber iniciado sesión para que tu puntuación entre en el ranking mensual.</p>
+  </div>
+
+  <!-- PANTALLA JUEGO -->
+  <div id="pantalla-juego" class="card hidden">
+    <div class="hud">
+      <span>Pregunta <b id="hud-num">1</b>/100</span>
+      <span>Aciertos: <b id="hud-ok">0</b></span>
+      <span>⏱ <b id="hud-tiempo">30</b>s</span>
+    </div>
+    <div class="timer" id="timer"><div></div></div>
+    <span class="cat" id="cat"></span>
+    <p class="pregunta" id="pregunta"></p>
+    <div id="opciones"></div>
+    <div id="expl" class="expl hidden"></div>
+    <button class="btn hidden" id="btn-siguiente">Siguiente →</button>
+  </div>
+
+  <!-- PANTALLA FINAL -->
+  <div id="pantalla-final" class="card hidden">
+    <h2 style="margin-top:0; text-align:center">¡Reto completado!</h2>
+    <div class="resultado"><span id="final-ok">0</span>/100</div>
+    <div class="stats">
+      <div class="stat"><b id="final-pct">0%</b><span>precisión</span></div>
+      <div class="stat"><b id="final-tiempo">0s</b><span>tiempo medio</span></div>
+    </div>
+    <p id="final-msg" style="text-align:center"></p>
+    <p class="aviso" id="final-guardado"></p>
+    <button class="btn" id="btn-repetir">Jugar otra vez</button>
+  </div>
+
+  <!-- RANKING -->
+  <div class="card">
+    <h2 style="margin-top:0">🏆 Ranking de este mes</h2>
+    <div id="ranking"><p class="aviso">Cargando ranking…</p></div>
+    <p class="aviso">Bases: el premio de 20 € se entrega al primer clasificado al cerrar el mes (hora de Madrid) y el ranking vuelve a cero. Granja Rentable contactará con el ganador a través del correo de su cuenta en los 5 primeros días del mes siguiente. Las respuestas del banco están validadas por Granja Rentable.</p>
+  </div>
+</div>
+
+<script src="js/vendor/supabase.js"></script>
+<script>
+/* ============================================================
+   Concurso mensual de Granja Rentable (100 preguntas).
+   Mismas claves de Supabase que registro.html / cuenta.html y
+   misma clave de sesión que js/auth.js ("gr-auth").
+   Tabla: public.ranking_mensual · Vista pública del ranking:
+   public.ranking_mensual_top (mejor marca de cada usuario).
+   ============================================================ */
+var SUPABASE_URL = "https://apdcgizpgguhmbgzsymx.supabase.co";
+var SUPABASE_ANON_KEY = "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu";
+var JSON_URL = "concurso-preguntas.json"; // banco validado, 100 preguntas
+
+var TOTAL = 100, SEGUNDOS = 30;
+var banco = [], orden = [], idx = 0, aciertos = 0, tiempos = [];
+var t0 = 0, intervalo = null, respondida = false;
+var sb = null, sesion = null, apodo = "";
+
+try {
+  if (window.supabase && window.supabase.createClient) {
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { persistSession: true, storageKey: "gr-auth", detectSessionInUrl: true, flowType: "pkce" }
+    });
+  }
+} catch (e) { sb = null; }
+
+/* ---------- utilidades ---------- */
+function mezclar(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function mostrar(id){ ["pantalla-inicio","pantalla-juego","pantalla-final"].forEach(function(p){ document.getElementById(p).classList.toggle("hidden", p!==id); }); }
+
+/* ---------- sesión (para guardar en el ranking) ---------- */
+function prepararSesion(){
+  if(!sb) return;
+  sb.auth.getSession().then(function(res){
+    sesion = (res && res.data && res.data.session) || null;
+    var aviso = document.getElementById("aviso-sesion");
+    if(sesion && sesion.user){
+      if(aviso) aviso.textContent = "Sesión iniciada: tu puntuación entrará en el ranking mensual. ¡Suerte!";
+      sb.from("perfiles").select("nombre").eq("id", sesion.user.id).single()
+        .then(function(r){ if(r && r.data && r.data.nombre) apodo = r.data.nombre; })
+        .catch(function(){});
+    }
+  }).catch(function(){});
+}
+prepararSesion();
+
+/* ---------- inicio ---------- */
+document.getElementById("btn-empezar").onclick = function(){
+  fetch(JSON_URL).then(function(r){ return r.json(); }).then(function(d){
+    banco = d.preguntas.slice(0, TOTAL);
+    // orden de preguntas aleatorio en cada partida ("las preguntas van cambiando")
+    orden = mezclar(banco.map(function(_,i){ return i; }));
+    idx = 0; aciertos = 0; tiempos = [];
+    mostrar("pantalla-juego");
+    pintarPregunta();
+  }).catch(function(){
+    alert("No se pudo cargar el banco de preguntas. Revisa que concurso-preguntas.json esté junto a esta página.");
+  });
+};
+
+function pintarPregunta(){
+  respondida = false;
+  var p = banco[orden[idx]];
+  // mezclar opciones en cada partida y recalcular el índice correcto
+  var ops = p.opciones.map(function(txt,i){ return {txt:txt, ok:(i===p.respuesta)}; });
+  mezclar(ops);
+  document.getElementById("hud-num").textContent = idx+1;
+  document.getElementById("hud-ok").textContent = aciertos;
+  document.getElementById("cat").textContent = p.categoria;
+  document.getElementById("pregunta").textContent = p.pregunta;
+  var box = document.getElementById("opciones"); box.innerHTML = "";
+  document.getElementById("expl").classList.add("hidden");
+  document.getElementById("btn-siguiente").classList.add("hidden");
+  ops.forEach(function(o){
+    var b = document.createElement("button");
+    b.className = "opcion"; b.textContent = o.txt;
+    b.onclick = function(){ responder(o.ok, b, ops); };
+    box.appendChild(b);
+  });
+  // temporizador de 30 s
+  var restante = SEGUNDOS, barra = document.querySelector("#timer div"), timerEl = document.getElementById("timer");
+  timerEl.classList.remove("poco");
+  clearInterval(intervalo); t0 = Date.now();
+  document.getElementById("hud-tiempo").textContent = SEGUNDOS;
+  barra.style.width = "100%";
+  intervalo = setInterval(function(){
+    restante = SEGUNDOS - Math.floor((Date.now()-t0)/1000);
+    if(restante < 0) restante = 0;
+    document.getElementById("hud-tiempo").textContent = restante;
+    barra.style.width = (restante/SEGUNDOS*100) + "%";
+    if(restante <= 10) timerEl.classList.add("poco");
+    if(restante <= 0){ clearInterval(intervalo); responder(false, null, ops, true); }
+  }, 200);
+}
+
+function responder(ok, btn, ops, timeout){
+  if(respondida) return; respondida = true;
+  clearInterval(intervalo);
+  var seg = Math.min((Date.now()-t0)/1000, SEGUNDOS);
+  tiempos.push(timeout ? SEGUNDOS : seg);
+  var box = document.getElementById("opciones");
+  Array.prototype.forEach.call(box.children, function(b, i){
+    b.disabled = true;
+    if(ops[i].ok) b.classList.add("ok");
+  });
+  if(ok){ aciertos++; if(btn) btn.classList.add("ok"); }
+  else if(btn){ btn.classList.add("ko"); }
+  document.getElementById("hud-ok").textContent = aciertos;
+  var p = banco[orden[idx]];
+  var ex = document.getElementById("expl");
+  ex.innerHTML = (timeout ? "<b>⏱ Tiempo agotado.</b> " : "") + p.explicacion;
+  ex.classList.remove("hidden");
+  var sig = document.getElementById("btn-siguiente");
+  sig.textContent = (idx === TOTAL-1) ? "Ver mi resultado" : "Siguiente →";
+  sig.classList.remove("hidden");
+}
+
+document.getElementById("btn-siguiente").onclick = function(){
+  idx++;
+  if(idx >= TOTAL){ terminar(); } else { pintarPregunta(); }
+};
+
+function terminar(){
+  var media = tiempos.reduce(function(a,b){ return a+b; }, 0) / tiempos.length;
+  document.getElementById("final-ok").textContent = aciertos;
+  document.getElementById("final-pct").textContent = Math.round(aciertos/TOTAL*100) + "%";
+  document.getElementById("final-tiempo").textContent = media.toFixed(1) + "s";
+  var msg = document.getElementById("final-msg");
+  if(aciertos >= 90) msg.textContent = "Nivel profesional de verdad. 🏅";
+  else if(aciertos >= 70) msg.textContent = "Muy buen nivel, casi en el podio.";
+  else if(aciertos >= 50) msg.textContent = "Aprobado. Con el curso lo bordas.";
+  else msg.textContent = "El curso de avicultura te vendría de lujo. 😉";
+  mostrar("pantalla-final");
+  guardarResultado(aciertos, media);
+}
+document.getElementById("btn-repetir").onclick = function(){ mostrar("pantalla-inicio"); };
+
+/* ---------- ranking mensual ---------- */
+function mesActual(){
+  // El mes del concurso se cuenta en hora de Madrid.
+  var partes = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid", year: "numeric", month: "2-digit" }).format(new Date());
+  return partes.slice(0, 7);
+}
+
+function guardarResultado(ok, media){
+  var fila = { mes: mesActual(), aciertos: ok, tiempo_medio: Math.round(media*10)/10, fecha: new Date().toISOString() };
+  // mejor marca local
+  try{
+    var key = "reto_granja_record";
+    var rec = JSON.parse(localStorage.getItem(key) || "null");
+    if(!rec || ok > rec.aciertos || (ok === rec.aciertos && media < rec.tiempo_medio)){
+      localStorage.setItem(key, JSON.stringify({aciertos: ok, tiempo_medio: fila.tiempo_medio}));
+    }
+  }catch(e){}
+  var nota = document.getElementById("final-guardado");
+  if(!sb || !sesion || !sesion.user){
+    if(nota) nota.innerHTML = "Sin sesión no entras en el ranking: <a href='cuenta.html'>inicia sesión</a> y vuelve a jugar para que cuente.";
+    cargarRanking();
+    return;
+  }
+  var nombre = apodo || (sesion.user.email ? sesion.user.email.split("@")[0] : "Anónimo");
+  sb.from("ranking_mensual").insert({
+    mes: fila.mes, user_id: sesion.user.id, email: sesion.user.email || null,
+    nombre: nombre, aciertos: fila.aciertos, tiempo_medio: fila.tiempo_medio
+  }).then(function(res){
+    if(res && res.error){
+      if(nota) nota.textContent = "Tu marca se guardó en este dispositivo, pero no entró en el ranking (error de conexión).";
+    } else {
+      if(nota) nota.textContent = "✅ Marca guardada en el ranking mensual como " + nombre + ".";
+    }
+    cargarRanking();
+  }).catch(function(){
+    if(nota) nota.textContent = "Tu marca se guardó en este dispositivo, pero no entró en el ranking (error de conexión).";
+    cargarRanking();
+  });
+}
+
+function cargarRanking(){
+  var el = document.getElementById("ranking");
+  fetch(SUPABASE_URL + "/rest/v1/ranking_mensual_top?mes=eq." + mesActual() + "&select=nombre,aciertos,tiempo_medio&order=aciertos.desc,tiempo_medio.asc&limit=10",
+    { headers: { "apikey": SUPABASE_ANON_KEY } })
+    .then(function(r){ return r.json(); })
+    .then(function(rows){
+      if(!rows || !rows.length){ el.innerHTML = "<p class='aviso'>Aún no hay participantes este mes. ¡Sé el primero!</p>"; return; }
+      var h = "<table class='ranking'><tr><th>#</th><th>Nombre</th><th>Aciertos</th><th>Tiempo medio</th></tr>";
+      rows.forEach(function(r, i){
+        h += "<tr><td>" + (i+1) + "</td><td>" + (r.nombre || "Anónimo") + "</td><td>" + r.aciertos + "/100</td><td>" + r.tiempo_medio + "s</td></tr>";
+      });
+      el.innerHTML = h + "</table>";
+    })
+    .catch(function(){ el.innerHTML = "<p class='aviso'>No se pudo cargar el ranking ahora mismo.</p>"; });
+}
+cargarRanking();
+</script>
+</body>
+</html>

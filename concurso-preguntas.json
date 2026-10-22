@@ -1,0 +1,1313 @@
+{
+ "banco": "Concurso mensual Granja Rentable",
+ "version": "1.0",
+ "fecha": "2026-10-20",
+ "especificacion": {
+  "preguntas_por_partida": 100,
+  "opciones_por_pregunta": 4,
+  "tiempo_por_pregunta_segundos": 30,
+  "idioma": "es"
+ },
+ "preguntas": [
+  {
+   "id": 1,
+   "categoria": "incubacion",
+   "pregunta": "¿A qué temperatura debe mantenerse una incubadora de aire forzado para huevos de gallina?",
+   "opciones": [
+    "37,5 – 37,8 °C",
+    "35,0 – 35,5 °C",
+    "39,0 – 39,5 °C",
+    "36,0 – 36,2 °C"
+   ],
+   "respuesta": 0,
+   "explicacion": "El rango óptimo en incubadoras de aire forzado es 37,5–37,8 °C; por encima de 39 °C la mortalidad embrionaria se dispara."
+  },
+  {
+   "id": 2,
+   "categoria": "incubacion",
+   "pregunta": "¿Hasta qué día de la incubación hay que voltear los huevos de gallina?",
+   "opciones": [
+    "Hasta el día 21",
+    "Hasta el día 18",
+    "No hace falta voltearlos",
+    "Hasta el día 10"
+   ],
+   "respuesta": 1,
+   "explicacion": "El volteo se mantiene hasta el día 18; después se detiene y se sube la humedad para la eclosión."
+  },
+  {
+   "id": 3,
+   "categoria": "incubacion",
+   "pregunta": "¿Qué humedad relativa se recomienda los primeros 18 días de incubación?",
+   "opciones": [
+    "75 – 80 %",
+    "30 – 35 %",
+    "55 – 60 %",
+    "90 – 95 %"
+   ],
+   "respuesta": 2,
+   "explicacion": "55–60 % los primeros 18 días; en los últimos 3 días se sube a 65–70 % para ablandar la cáscara."
+  },
+  {
+   "id": 4,
+   "categoria": "incubacion",
+   "pregunta": "¿Cuántos días tarda de media la incubación del huevo de gallina?",
+   "opciones": [
+    "24 días",
+    "28 días",
+    "18 días",
+    "21 días"
+   ],
+   "respuesta": 3,
+   "explicacion": "La gallina incuba 21 días; el pato 28 y el pavo 28, pero la gallina son 21."
+  },
+  {
+   "id": 5,
+   "categoria": "incubacion",
+   "pregunta": "¿Qué es la ovoscopia?",
+   "opciones": [
+    "Desinfectar la cáscara con ozono",
+    "Medir el peso del huevo antes de incubar",
+    "Enfriar los huevos antes de meterlos",
+    "Mirar el interior del huevo con luz para ver el embrión"
+   ],
+   "respuesta": 3,
+   "explicacion": "La ovoscopia consiste en iluminar el huevo para comprobar fertilidad y desarrollo embrionario, típicamente los días 7 y 14."
+  },
+  {
+   "id": 6,
+   "categoria": "incubacion",
+   "pregunta": "¿En qué posición se colocan los huevos en la incubadora?",
+   "opciones": [
+    "Con la punta fina hacia arriba",
+    "Da igual la posición",
+    "Tumbados de lado siempre",
+    "Con la punta fina hacia abajo"
+   ],
+   "respuesta": 3,
+   "explicacion": "Punta fina hacia abajo: la cámara de aire queda arriba y el embrión se orienta bien para picar."
+  },
+  {
+   "id": 7,
+   "categoria": "incubacion",
+   "pregunta": "¿Cuántas veces al día como mínimo conviene voltear los huevos?",
+   "opciones": [
+    "Cada hora sin falta",
+    "10 veces",
+    "3 a 5 veces",
+    "1 vez"
+   ],
+   "respuesta": 2,
+   "explicacion": "De 3 a 5 volteos diarios evitan que el embrión se adhiera a la membrana; más volteos no aportan mejora clara."
+  },
+  {
+   "id": 8,
+   "categoria": "incubacion",
+   "pregunta": "Un huevo con la cáscara muy porosa o agrietada…",
+   "opciones": [
+    "Se incuba igual que los demás",
+    "Se incuba pero con más humedad",
+    "Se sella con cera y se incuba",
+    "No debe incubarse"
+   ],
+   "respuesta": 3,
+   "explicacion": "Las grietas y la porosidad excesiva dejan entrar bacterias y pierden humedad: se descartan para incubar."
+  },
+  {
+   "id": 9,
+   "categoria": "incubacion",
+   "pregunta": "¿Qué día se hace la primera ovoscopia útil?",
+   "opciones": [
+    "Día 7",
+    "Día 14 solo",
+    "Día 2",
+    "Día 20"
+   ],
+   "respuesta": 0,
+   "explicacion": "Al día 7 ya se distingue la red vascular del embrión; antes es difícil ver nada."
+  },
+  {
+   "id": 10,
+   "categoria": "incubacion",
+   "pregunta": "¿Qué pasa si la temperatura sube a 40 °C varias horas el día 5?",
+   "opciones": [
+    "Salen pollitos más grandes",
+    "Eclosionan antes y sanos",
+    "Muerte embrionaria masiva",
+    "No pasa nada"
+   ],
+   "respuesta": 2,
+   "explicacion": "El embrión es muy sensible al calor los primeros días: picos de 40 °C provocan mortalidad alta y malformaciones."
+  },
+  {
+   "id": 11,
+   "categoria": "incubacion",
+   "pregunta": "En los últimos 3 días (días 19–21) hay que…",
+   "opciones": [
+    "Abrir la incubadora a menudo",
+    "Bajar la temperatura a 35 °C",
+    "Voltear más y bajar la humedad",
+    "Dejar de voltear y subir la humedad"
+   ],
+   "respuesta": 3,
+   "explicacion": "Días 19–21: sin volteo, humedad 65–70 % y mínima apertura para no perder calor ni humedad."
+  },
+  {
+   "id": 12,
+   "categoria": "incubacion",
+   "pregunta": "¿Cuánto tiempo pueden almacenarse los huevos fértiles antes de incubar sin perder mucha eclosionabilidad?",
+   "opciones": [
+    "30 días en la nevera",
+    "No se pueden almacenar",
+    "2 días como máximo",
+    "Hasta 7 días a 12–15 °C"
+   ],
+   "respuesta": 3,
+   "explicacion": "Hasta 7 días a 12–15 °C y 75 % de humedad mantienen buena eclosionabilidad; a partir de ahí cae cada día."
+  },
+  {
+   "id": 13,
+   "categoria": "incubacion",
+   "pregunta": "¿Cómo se almacenan los huevos fértiles antes de incubar?",
+   "opciones": [
+    "En la nevera a 4 °C",
+    "Punta fina abajo, en lugar fresco",
+    "En agua con sal",
+    "Punta fina arriba, al sol"
+   ],
+   "respuesta": 1,
+   "explicacion": "Punta fina abajo, 12–15 °C; el frío de nevera (4 °C) mata el embrión."
+  },
+  {
+   "id": 14,
+   "categoria": "incubacion",
+   "pregunta": "¿Qué indica una cámara de aire muy grande en la ovoscopia del día 18?",
+   "opciones": [
+    "Embrión muerto seguro",
+    "Exceso de pérdida de humedad",
+    "Huevo perfectamente hidratado",
+    "Que es un huevo doble yema"
+   ],
+   "respuesta": 1,
+   "explicacion": "La cámara de aire crece al perder agua el huevo; si es excesiva, la humedad de incubación fue baja."
+  },
+  {
+   "id": 15,
+   "categoria": "incubacion",
+   "pregunta": "¿Se deben lavar los huevos antes de incubar?",
+   "opciones": [
+    "Sí, siempre con agua caliente",
+    "No, se daña la cutícula protectora",
+    "Solo los sucios, con agua fría",
+    "Sí, con lejía diluida"
+   ],
+   "respuesta": 1,
+   "explicacion": "Lavar elimina la cutícula que protege contra bacterias; los huevos muy sucios se descartan o se limpian en seco."
+  },
+  {
+   "id": 16,
+   "categoria": "incubacion",
+   "pregunta": "¿Qué es el 'picado' en la eclosión?",
+   "opciones": [
+    "El ruido de la incubadora al voltear",
+    "Cuando la gallina pica al pollito",
+    "La primera comida del pollito",
+    "Cuando el pollito rompe la cáscara con el diente de eclosión"
+   ],
+   "respuesta": 3,
+   "explicacion": "El picado es la rotura inicial de la cáscara con el diamante (diente córneo del pico), unas 12–24 h antes de salir."
+  },
+  {
+   "id": 17,
+   "categoria": "incubacion",
+   "pregunta": "Un pollito que tarda más de 24 horas en salir tras picar…",
+   "opciones": [
+    "Hay que sacarlo rompiendo la cáscara",
+    "Se le da agua con azúcar",
+    "Se sube la temperatura a 40 °C",
+    "Conviene no ayudarlo salvo casos extremos"
+   ],
+   "respuesta": 3,
+   "explicacion": "Ayudar suele causar hemorragias porque los vasos aún están activos; solo se interviene si el pollito está claramente atascado y seco."
+  },
+  {
+   "id": 18,
+   "categoria": "incubacion",
+   "pregunta": "¿Qué ventilación necesita la incubadora?",
+   "opciones": [
+    "Ninguna, debe ser hermética",
+    "Renovación de aire: el embrión consume oxígeno y expulsa CO₂",
+    "Solo al final de la incubación",
+    "Solo si hay más de 50 huevos"
+   ],
+   "respuesta": 1,
+   "explicacion": "El embrión respira: sin renovación de aire se acumula CO₂ y baja la eclosionabilidad, sobre todo al final."
+  },
+  {
+   "id": 19,
+   "categoria": "incubacion",
+   "pregunta": "¿Por qué se enfrían (cooling) los huevos unos minutos al día en algunas incubaciones?",
+   "opciones": [
+    "No sirve para nada",
+    "Para matar bacterias",
+    "Para que el embrión descanse",
+    "Imita a la gallina cuando sale a comer y beber"
+   ],
+   "respuesta": 3,
+   "explicacion": "La gallina abandona el nido a diario; el enfriamiento breve diario puede mejorar la eclosionabilidad en algunas especies."
+  },
+  {
+   "id": 20,
+   "categoria": "incubacion",
+   "pregunta": "Eclosionan pollitos con el ombligo mal cicatrizado y las patas débiles. Causa más probable:",
+   "opciones": [
+    "Temperatura demasiado baja el día 1",
+    "Humedad demasiado alta durante la incubación",
+    "Huevos demasiado grandes",
+    "Exceso de volteo"
+   ],
+   "respuesta": 1,
+   "explicacion": "La humedad alta impide la pérdida de agua necesaria: ombligos abiertos, pollitos blandos y débiles."
+  },
+  {
+   "id": 21,
+   "categoria": "ponedoras",
+   "pregunta": "¿Cuántas horas de luz necesita una gallina ponedora para mantener la puesta?",
+   "opciones": [
+    "Unas 16 horas diarias",
+    "24 horas diarias",
+    "La luz no influye",
+    "8 horas diarias"
+   ],
+   "respuesta": 0,
+   "explicacion": "Unas 16 h de luz estimulan la puesta; con menos de 14 h la producción cae."
+  },
+  {
+   "id": 22,
+   "categoria": "ponedoras",
+   "pregunta": "¿A qué edad empiezan a poner las gallinas ponedoras comerciales?",
+   "opciones": [
+    "12 meses",
+    "18 – 20 semanas",
+    "30 semanas",
+    "10 semanas"
+   ],
+   "respuesta": 1,
+   "explicacion": "Las líneas comerciales rompen postura entre las 18 y 20 semanas de vida."
+  },
+  {
+   "id": 23,
+   "categoria": "ponedoras",
+   "pregunta": "¿Qué porcentaje de calcio debe llevar un pienso de ponedoras?",
+   "opciones": [
+    "3,5 – 4 %",
+    "0,5 %",
+    "1 %",
+    "10 %"
+   ],
+   "respuesta": 0,
+   "explicacion": "La cáscara exige mucho calcio: el pienso de puesta lleva 3,5–4 % de calcio."
+  },
+  {
+   "id": 24,
+   "categoria": "ponedoras",
+   "pregunta": "Una gallina pone huevos con cáscara fina y blanda. Lo primero a revisar:",
+   "opciones": [
+    "El calcio y la vitamina D3 de la dieta",
+    "El color del plumaje",
+    "La temperatura del agua",
+    "La hora de la puesta"
+   ],
+   "respuesta": 0,
+   "explicacion": "Cáscara fina = falta de calcio o de vitamina D3 (que fija el calcio), o gallinas muy viejas."
+  },
+  {
+   "id": 25,
+   "categoria": "ponedoras",
+   "pregunta": "¿Qué es la muda en las gallinas?",
+   "opciones": [
+    "El cambio de pico",
+    "La pérdida de peso en verano",
+    "La renovación anual del plumaje, con parada de puesta",
+    "Una enfermedad del hígado"
+   ],
+   "respuesta": 2,
+   "explicacion": "Una vez al año renuevan el plumaje y paran de poner varias semanas; es fisiológico."
+  },
+  {
+   "id": 26,
+   "categoria": "ponedoras",
+   "pregunta": "¿Cuántos huevos pone al año una buena ponedora comercial?",
+   "opciones": [
+    "Unos 120",
+    "Unos 500",
+    "Unos 80",
+    "Unos 300"
+   ],
+   "respuesta": 3,
+   "explicacion": "Las líneas comerciales rondan los 300 huevos por ciclo de puesta (~72 semanas)."
+  },
+  {
+   "id": 27,
+   "categoria": "ponedoras",
+   "pregunta": "¿Para qué sirve la conchilla o grit de calcio en ponedoras?",
+   "opciones": [
+    "Es un desparasitante",
+    "Sustituye al pienso",
+    "Mejora el color de la yema",
+    "Aporta calcio de liberación lenta para la cáscara nocturna"
+   ],
+   "respuesta": 3,
+   "explicacion": "La conchilla se disuelve despacio y aporta calcio durante la noche, cuando se forma la cáscara."
+  },
+  {
+   "id": 28,
+   "categoria": "ponedoras",
+   "pregunta": "¿A qué hora del día se forma la cáscara del huevo?",
+   "opciones": [
+    "Al amanecer",
+    "Justo después de comer",
+    "Principalmente de noche",
+    "Al mediodía"
+   ],
+   "respuesta": 2,
+   "explicacion": "La cáscara se deposita sobre todo de noche; por eso el calcio debe estar disponible al anochecer."
+  },
+  {
+   "id": 29,
+   "categoria": "ponedoras",
+   "pregunta": "Huevo con dos yemas: causa más frecuente:",
+   "opciones": [
+    "Gallina enferma",
+    "Falta de luz",
+    "Exceso de calcio",
+    "Gallina joven al inicio de la puesta"
+   ],
+   "respuesta": 3,
+   "explicacion": "Al inicio de la puesta el ovario aún se regula y puede liberar dos óvulos a la vez."
+  },
+  {
+   "id": 30,
+   "categoria": "ponedoras",
+   "pregunta": "¿Qué pico de puesta (%) alcanza una buena manada comercial?",
+   "opciones": [
+    "90 – 95 %",
+    "60 %",
+    "100 % siempre",
+    "40 %"
+   ],
+   "respuesta": 0,
+   "explicacion": "El pico ronda el 90–95 % de puesta diaria; el 100 % sostenido no existe."
+  },
+  {
+   "id": 31,
+   "categoria": "ponedoras",
+   "pregunta": "¿Por qué se despican las ponedoras en algunas granjas?",
+   "opciones": [
+    "Por estética",
+    "Para reducir el picaje y el canibalismo",
+    "Para que pongan más",
+    "Para que coman más"
+   ],
+   "respuesta": 1,
+   "explicacion": "El despique (recorte del pico) reduce daños por picaje en sistemas intensivos; es polémico y regulado."
+  },
+  {
+   "id": 32,
+   "categoria": "ponedoras",
+   "pregunta": "¿Qué longitud de comedero se recomienda por ponedora?",
+   "opciones": [
+    "Unos 10 cm por ave",
+    "No importa",
+    "2 cm por ave",
+    "30 cm por ave"
+   ],
+   "respuesta": 0,
+   "explicacion": "Unos 10 cm de comedero por ave aseguran que todas coman a la vez sin peleas."
+  },
+  {
+   "id": 33,
+   "categoria": "ponedoras",
+   "pregunta": "Las gallinas dejan de poner de golpe en otoño. Causa más probable:",
+   "opciones": [
+    "La reducción de horas de luz",
+    "El frío por sí solo",
+    "Que ya son viejas",
+    "Falta de agua un día"
+   ],
+   "respuesta": 0,
+   "explicacion": "El fotoperiodo manda: al acortarse los días, la puesta cae. Se compensa con luz artificial."
+  },
+  {
+   "id": 34,
+   "categoria": "ponedoras",
+   "pregunta": "¿Qué es un huevo 'en fárfara'?",
+   "opciones": [
+    "Un huevo sin cáscara, solo con membrana",
+    "Un huevo fecundado",
+    "Un huevo muy grande",
+    "Un huevo de doble cáscara"
+   ],
+   "respuesta": 0,
+   "explicacion": "En fárfara = sin cáscara calcificada; suele deberse a estrés o a un susto durante la formación."
+  },
+  {
+   "id": 35,
+   "categoria": "ponedoras",
+   "pregunta": "¿Cuántos nidales se recomiendan para ponedoras?",
+   "opciones": [
+    "No hacen falta nidales",
+    "1 nidal por cada 20 gallinas",
+    "1 nidal por cada 4 – 5 gallinas",
+    "1 nidal por gallina"
+   ],
+   "respuesta": 2,
+   "explicacion": "Un nidal por cada 4–5 gallinas evita colas, huevos en el suelo y roturas."
+  },
+  {
+   "id": 36,
+   "categoria": "ponedoras",
+   "pregunta": "¿Qué vitamina es clave para fijar el calcio de la cáscara?",
+   "opciones": [
+    "Vitamina K",
+    "Vitamina B12",
+    "Vitamina C",
+    "Vitamina D3"
+   ],
+   "respuesta": 3,
+   "explicacion": "La D3 regula la absorción del calcio; sin ella, el calcio de la dieta no se aprovecha."
+  },
+  {
+   "id": 37,
+   "categoria": "ponedoras",
+   "pregunta": "Una ponedora come los huevos que pone. Medida más eficaz:",
+   "opciones": [
+    "Quitarle el pico entero",
+    "Dejarla sin comer un día",
+    "Recoger los huevos varias veces al día y revisar la dieta",
+    "Ponerle un huevo de madera"
+   ],
+   "respuesta": 2,
+   "explicacion": "Recogida frecuente + dieta equilibrada (proteína y calcio) cortan el vicio; el huevo falso ayuda como apoyo."
+  },
+  {
+   "id": 38,
+   "categoria": "ponedoras",
+   "pregunta": "¿Qué densidad se recomienda en gallinero para ponedoras en suelo?",
+   "opciones": [
+    "4 – 5 gallinas por m²",
+    "20 gallinas por m²",
+    "1 gallina por m²",
+    "12 gallinas por m²"
+   ],
+   "respuesta": 0,
+   "explicacion": "En suelo, 4–5 aves/m² es un manejo razonable; más densidad dispara el estrés y el picaje."
+  },
+  {
+   "id": 39,
+   "categoria": "ponedoras",
+   "pregunta": "¿Cuánto tarda en formarse un huevo dentro de la gallina?",
+   "opciones": [
+    "6 horas",
+    "3 días",
+    "Unas 24 – 26 horas",
+    "48 horas"
+   ],
+   "respuesta": 2,
+   "explicacion": "El ciclo completo (yema, clara, membranas y cáscara) dura 24–26 h; por eso ponen casi a diario."
+  },
+  {
+   "id": 40,
+   "categoria": "ponedoras",
+   "pregunta": "Manchas de sangre en la yema: ¿son peligrosas?",
+   "opciones": [
+    "Sí, indican salmonela",
+    "Sí, hay que tirar el huevo",
+    "No, son restos de vasos del ovario y se pueden comer",
+    "Solo si el huevo es marrón"
+   ],
+   "respuesta": 2,
+   "explicacion": "Son pequeñas roturas vasculares al liberar la yema; no tienen relación con enfermedades y el huevo es apto."
+  },
+  {
+   "id": 41,
+   "categoria": "engorde",
+   "pregunta": "¿Qué peso alcanza un Cobb 500 a los 42 días con buen manejo?",
+   "opciones": [
+    "Unos 2,9 kg",
+    "Unos 5 kg",
+    "Unos 1,2 kg",
+    "Unos 800 g"
+   ],
+   "respuesta": 0,
+   "explicacion": "El objetivo comercial del Cobb 500 ronda los 2,9 kg a los 42 días."
+  },
+  {
+   "id": 42,
+   "categoria": "engorde",
+   "pregunta": "¿Qué es el índice de conversión en engorde?",
+   "opciones": [
+    "Litros de agua por ave",
+    "Kilos de pienso por kilo de peso ganado",
+    "Kilos de peso por huevo puesto",
+    "Aves por metro cuadrado"
+   ],
+   "respuesta": 1,
+   "explicacion": "Conversión = pienso consumido / peso ganado; 1,65 significa 1,65 kg de pienso por cada kg de pollo."
+  },
+  {
+   "id": 43,
+   "categoria": "engorde",
+   "pregunta": "¿Qué conversión logra un buen lote de Cobb 500?",
+   "opciones": [
+    "Alrededor de 0,8",
+    "Alrededor de 1,65",
+    "Alrededor de 3,5",
+    "Alrededor de 5"
+   ],
+   "respuesta": 1,
+   "explicacion": "Las líneas modernas rondan 1,6–1,7 de conversión acumulada a 42 días."
+  },
+  {
+   "id": 44,
+   "categoria": "engorde",
+   "pregunta": "¿Qué temperatura necesitan los pollitos de un día?",
+   "opciones": [
+    "32 – 33 °C a su altura",
+    "25 °C",
+    "20 °C",
+    "38 °C"
+   ],
+   "respuesta": 0,
+   "explicacion": "32–33 °C la primera semana, bajando ~3 °C por semana hasta unos 21 °C."
+  },
+  {
+   "id": 45,
+   "categoria": "engorde",
+   "pregunta": "Los pollitos se amontonan bajo la criadora. Significa:",
+   "opciones": [
+    "Que tienen hambre",
+    "Que están contentos",
+    "Que tienen frío",
+    "Que tienen calor"
+   ],
+   "respuesta": 2,
+   "explicacion": "Amontonados bajo el foco = frío; repartidos y jadeando lejos del foco = calor."
+  },
+  {
+   "id": 46,
+   "categoria": "engorde",
+   "pregunta": "¿Qué densidad se recomienda para broilers en verano?",
+   "opciones": [
+    "30 aves por m²",
+    "3 aves por m²",
+    "50 aves por m²",
+    "Unos 10 aves por m²"
+   ],
+   "respuesta": 3,
+   "explicacion": "En calor se baja la densidad (~10/m²) para reducir el estrés térmico; en invierno se puede subir a ~12/m²."
+  },
+  {
+   "id": 47,
+   "categoria": "engorde",
+   "pregunta": "¿Qué porcentaje de proteína lleva un pienso de inicio para broilers?",
+   "opciones": [
+    "8 %",
+    "20 – 22 %",
+    "12 %",
+    "35 %"
+   ],
+   "respuesta": 1,
+   "explicacion": "El iniciador de broilers lleva 20–22 % de proteína para el arranque muscular."
+  },
+  {
+   "id": 48,
+   "categoria": "engorde",
+   "pregunta": "¿Qué es la ascitis en broilers?",
+   "opciones": [
+    "Falta de plumas",
+    "Una infección del pico",
+    "Un parásito intestinal",
+    "Acumulación de líquido en el abdomen por fallo cardíaco-pulmonar"
+   ],
+   "respuesta": 3,
+   "explicacion": "El crecimiento rápido exige mucho oxígeno; en altura o frío, el corazón falla y se acumula líquido abdominal."
+  },
+  {
+   "id": 49,
+   "categoria": "engorde",
+   "pregunta": "¿Cuántos días se cría un broiler hasta peso comercial?",
+   "opciones": [
+    "90 días",
+    "20 días",
+    "42 – 49 días según el peso objetivo",
+    "120 días"
+   ],
+   "respuesta": 2,
+   "explicacion": "El ciclo estándar es 42 días (~2,9 kg); para pesos mayores se alarga a 49+ días."
+  },
+  {
+   "id": 50,
+   "categoria": "engorde",
+   "pregunta": "¿Qué es el 'vaciado sanitario' entre lotes?",
+   "opciones": [
+    "Vender todos los pollos un día antes",
+    "Cambiar el pienso",
+    "Dejar la nave vacía y desinfectada antes del siguiente lote",
+    "Vacunar a todo el lote"
+   ],
+   "respuesta": 2,
+   "explicacion": "El vacío sanitario (10–14 días) con limpieza y desinfección corta los ciclos de enfermedad entre lotes."
+  },
+  {
+   "id": 51,
+   "categoria": "engorde",
+   "pregunta": "Pollos con las patas abiertas o débiles que no se sostienen. Causa frecuente:",
+   "opciones": [
+    "Crecimiento muy rápido y suelo resbaladizo",
+    "Exceso de luz",
+    "Pienso con mucha fibra",
+    "Falta de agua un día"
+   ],
+   "respuesta": 0,
+   "explicacion": "El peso ganado rápido sobre huesos inmaduros, agravado por suelos lisos, causa problemas locomotores."
+  },
+  {
+   "id": 52,
+   "categoria": "engorde",
+   "pregunta": "¿Para qué sirve el programa de luz en broilers?",
+   "opciones": [
+    "Regular el consumo de pienso y el descanso",
+    "Evitar que duerman",
+    "No sirve para nada",
+    "Que vean los colores"
+   ],
+   "respuesta": 0,
+   "explicacion": "Los programas de luz/oscuridad regulan ingesta, crecimiento y salud ósea; la oscuridad es necesaria para el descanso."
+  },
+  {
+   "id": 53,
+   "categoria": "engorde",
+   "pregunta": "¿Cuánta agua bebe un broiler respecto al pienso que come?",
+   "opciones": [
+    "La mitad",
+    "Casi no bebe",
+    "Aproximadamente el doble en peso",
+    "Diez veces más"
+   ],
+   "respuesta": 2,
+   "explicacion": "El consumo de agua ronda 1,7–2 veces el de pienso; si cae, es la primera alarma de enfermedad."
+  },
+  {
+   "id": 54,
+   "categoria": "engorde",
+   "pregunta": "Cama húmeda y apelmazada en la nave: principal riesgo:",
+   "opciones": [
+    "Mejor conversión",
+    "Pododermatitis y ampollas en la pechuga",
+    "Que crezcan más rápido",
+    "Ninguno"
+   ],
+   "respuesta": 1,
+   "explicacion": "La cama húmeda quema las plantas de los pies (pododermatitis) y la pechuga, y dispara el amoníaco."
+  },
+  {
+   "id": 55,
+   "categoria": "engorde",
+   "pregunta": "¿Qué grosor de cama se recomienda al recibir pollitos?",
+   "opciones": [
+    "Sin cama, suelo desnudo",
+    "30 cm",
+    "1 cm",
+    "5 – 10 cm de material seco"
+   ],
+   "respuesta": 3,
+   "explicacion": "5–10 cm de viruta o cascarilla seca aíslan del frío del suelo y absorben humedad."
+  },
+  {
+   "id": 56,
+   "categoria": "engorde",
+   "pregunta": "¿Qué es el 'ayuno' previo al sacrificio?",
+   "opciones": [
+    "Retirar el pienso unas 8–12 h antes para vaciar el digestivo",
+    "Dejarlos sin luz",
+    "No darles agua una semana",
+    "Un tipo de vacuna"
+   ],
+   "respuesta": 0,
+   "explicacion": "El ayuno de 8–12 h vacía el tracto digestivo y evita contaminar la canal en el procesado."
+  },
+  {
+   "id": 57,
+   "categoria": "engorde",
+   "pregunta": "En una ola de calor, lo primero que hay que hacer en la nave es:",
+   "opciones": [
+    "Subir la densidad",
+    "Apagar los ventiladores",
+    "Darles más pienso",
+    "Aumentar la ventilación y asegurar agua fresca"
+   ],
+   "respuesta": 3,
+   "explicacion": "Ventilación máxima + agua fresca y abundante; el golpe de calor mata en horas."
+  },
+  {
+   "id": 58,
+   "categoria": "engorde",
+   "pregunta": "¿Qué diferencia al Cobb 700 del Cobb 500?",
+   "opciones": [
+    "Mayor rendimiento de pechuga",
+    "Es una ponedora",
+    "No hay diferencia",
+    "Pone más huevos"
+   ],
+   "respuesta": 0,
+   "explicacion": "El Cobb 700 está seleccionado para mayor proporción de pechuga (~25 % frente a ~23 %)."
+  },
+  {
+   "id": 59,
+   "categoria": "engorde",
+   "pregunta": "Pollos que jadean con el pico abierto y las alas separadas:",
+   "opciones": [
+    "Sueño",
+    "Hambre",
+    "Estrés por calor",
+    "Estrés por frío"
+   ],
+   "respuesta": 2,
+   "explicacion": "Jadeo + alas separadas = intentan disipar calor; hay que ventilar y refrescar el agua."
+  },
+  {
+   "id": 60,
+   "categoria": "engorde",
+   "pregunta": "¿Por qué no conviene criar juntos pollitos de edades muy distintas?",
+   "opciones": [
+    "No pasa nada",
+    "Ponen antes",
+    "Crecen más rápido",
+    "Los grandes pisan y quitan comida a los pequeños, y se mezclan enfermedades"
+   ],
+   "respuesta": 3,
+   "explicacion": "La diferencia de tamaño causa aplastamientos y competencia; además se rompe el vacío sanitario."
+  },
+  {
+   "id": 61,
+   "categoria": "salud",
+   "pregunta": "¿Qué parásito causa la coccidiosis?",
+   "opciones": [
+    "La lombriz Ascaridia",
+    "El piojo Menopon",
+    "Una bacteria del agua",
+    "Eimeria, un protozoo intestinal"
+   ],
+   "respuesta": 3,
+   "explicacion": "La coccidiosis la provocan protozoos del género Eimeria que dañan el intestino; la sangre en heces es típica."
+  },
+  {
+   "id": 62,
+   "categoria": "salud",
+   "pregunta": "¿Para qué se usa el orégano en avicultura?",
+   "opciones": [
+    "Como apoyo natural frente a coccidiosis y bacterias intestinales",
+    "Como desparasitante externo",
+    "Para que pongan más",
+    "Como colorante de la yema"
+   ],
+   "respuesta": 0,
+   "explicacion": "El aceite esencial de orégano (carvacrol) tiene efecto anticoccidial y antibacteriano documentado."
+  },
+  {
+   "id": 63,
+   "categoria": "salud",
+   "pregunta": "¿Contra qué enfermedad se vacuna al pollito el primer día en planta de incubación?",
+   "opciones": [
+    "Gripe aviar siempre",
+    "Tuberculosis",
+    "Marek",
+    "Cólera"
+   ],
+   "respuesta": 2,
+   "explicacion": "La vacuna de Marek se aplica al día 1 (o in ovo el día 18); es la base del plan vacunal."
+  },
+  {
+   "id": 64,
+   "categoria": "salud",
+   "pregunta": "¿Qué es la enfermedad de Newcastle?",
+   "opciones": [
+    "Un problema de la cáscara",
+    "Un parásito de la piel",
+    "Una enfermedad vírica grave con síntomas respiratorios y nerviosos",
+    "Una carencia de vitaminas"
+   ],
+   "respuesta": 2,
+   "explicacion": "Newcastle es un virus de declaración obligatoria: tos, estornudos, tortícolis y alta mortalidad."
+  },
+  {
+   "id": 65,
+   "categoria": "salud",
+   "pregunta": "¿Qué es la bioseguridad en una granja?",
+   "opciones": [
+    "Un tipo de vacuna",
+    "La desinfección solo del agua",
+    "El control de la temperatura",
+    "El conjunto de medidas para evitar la entrada y salida de enfermedades"
+   ],
+   "respuesta": 3,
+   "explicacion": "Bioseguridad = barreras sanitarias: calzado, ropa, cuarentenas, control de visitas y vehículos."
+  },
+  {
+   "id": 66,
+   "categoria": "salud",
+   "pregunta": "Gallina con los ojos hinchados, espumosos y estornudos. Sospecha:",
+   "opciones": [
+    "Falta de calcio",
+    "Coccidiosis",
+    "Coriza o micoplasma (enfermedad respiratoria)",
+    "Muda"
+   ],
+   "respuesta": 2,
+   "explicacion": "Los signos respiratorios con ojos espumosos apuntan a coriza infecciosa o Mycoplasma."
+  },
+  {
+   "id": 67,
+   "categoria": "salud",
+   "pregunta": "¿Cada cuánto conviene desparasitar internamente a gallinas camperas?",
+   "opciones": [
+    "Cada semana",
+    "Una vez en la vida",
+    "Nunca",
+    "Cada 3 – 4 meses"
+   ],
+   "respuesta": 3,
+   "explicacion": "En pastoreo, desparasitar cada 3–4 meses controla Ascaridia y Capillaria; se rota el principio activo."
+  },
+  {
+   "id": 68,
+   "categoria": "salud",
+   "pregunta": "¿Qué son las 'viruelas' (pox) en gallinas?",
+   "opciones": [
+    "Parásitos del plumaje",
+    "Lesiones costrosas en cresta y barbillas transmitidas por mosquitos",
+    "Hongos de la cama",
+    "Manchas del huevo"
+   ],
+   "respuesta": 1,
+   "explicacion": "La viruela aviar produce nódulos en zonas sin pluma; los mosquitos la transmiten. Hay vacuna."
+  },
+  {
+   "id": 69,
+   "categoria": "salud",
+   "pregunta": "¿Qué indica una cresta pálida y caída en una gallina?",
+   "opciones": [
+    "Que tiene calor",
+    "Anemia o enfermedad (parásitos, infección)",
+    "Que va a poner un huevo grande",
+    "Nada, es normal"
+   ],
+   "respuesta": 1,
+   "explicacion": "La cresta debe estar roja y turgente; pálida indica anemia, parásitos o enfermedad sistémica."
+  },
+  {
+   "id": 70,
+   "categoria": "salud",
+   "pregunta": "¿Qué es la salmonela en avicultura?",
+   "opciones": [
+    "Una bacteria que puede contaminar huevos y carne",
+    "Un virus del pico",
+    "Un hongo de la cama",
+    "Un ácaro"
+   ],
+   "respuesta": 0,
+   "explicacion": "Salmonella Enteritidis/Typhimurium pueden colonizar el ovario y contaminar el huevo por dentro."
+  },
+  {
+   "id": 71,
+   "categoria": "salud",
+   "pregunta": "Medida básica para prevenir la salmonela en huevos de consumo:",
+   "opciones": [
+    "Dejarlos al sol",
+    "Romper los sucios en la cocina",
+    "Lavarlos con agua fría",
+    "Recoger los huevos a diario y refrigerarlos"
+   ],
+   "respuesta": 3,
+   "explicacion": "Recogida diaria + refrigeración frenan el crecimiento bacteriano; el lavado casero puede empeorarlo."
+  },
+  {
+   "id": 72,
+   "categoria": "salud",
+   "pregunta": "¿Qué es la cuarentena de aves nuevas?",
+   "opciones": [
+    "Bañarlas",
+    "Vacunarlas el mismo día",
+    "No darles de comer",
+    "Aislarlas 2 – 4 semanas antes de juntarlas con la manada"
+   ],
+   "respuesta": 3,
+   "explicacion": "Aislar 2–4 semanas permite detectar enfermedades antes de exponer a toda la manada."
+  },
+  {
+   "id": 73,
+   "categoria": "salud",
+   "pregunta": "Pollito con el cuello torcido hacia atrás (tortícolis). Causa posible:",
+   "opciones": [
+    "Frío",
+    "Newcastle o carencia de vitamina E/selenio",
+    "Cama dura",
+    "Exceso de proteína"
+   ],
+   "respuesta": 1,
+   "explicacion": "La tortícolis aparece en Newcastle y en encefalomalacia por falta de vitamina E."
+  },
+  {
+   "id": 74,
+   "categoria": "salud",
+   "pregunta": "¿Qué parásito externo más común afecta a las gallinas?",
+   "opciones": [
+    "El ácaro rojo (Dermanyssus gallinae)",
+    "La garrapata del perro",
+    "La pulga del gato",
+    "El mosquito tigre"
+   ],
+   "respuesta": 0,
+   "explicacion": "El ácaro rojo pica de noche, debilita y baja la puesta; se esconde en grietas del gallinero."
+  },
+  {
+   "id": 75,
+   "categoria": "salud",
+   "pregunta": "¿Cómo se detecta el ácaro rojo?",
+   "opciones": [
+    "Revisando de noche con linterna las perchas y grietas",
+    "Mirando los huevos",
+    "Pesando las gallinas",
+    "Oliendo la cama"
+   ],
+   "respuesta": 0,
+   "explicacion": "De día se esconde; de noche sale a picar: la revisión nocturna de perchas lo delata."
+  },
+  {
+   "id": 76,
+   "categoria": "salud",
+   "pregunta": "Heces blancas y acuosas en pollitos con alta mortalidad. Sospecha:",
+   "opciones": [
+    "Exceso de calcio",
+    "Pullorosis (Salmonella pullorum)",
+    "Frío",
+    "Coccidiosis"
+   ],
+   "respuesta": 1,
+   "explicacion": "La pulorosis da diarrea blanca en pollitos jóvenes con mortalidad alta; es de declaración obligatoria."
+  },
+  {
+   "id": 77,
+   "categoria": "salud",
+   "pregunta": "¿Se puede tratar una enfermedad vírica con antibióticos?",
+   "opciones": [
+    "Solo en pollitos",
+    "No, los antibióticos solo actúan contra bacterias",
+    "Sí, siempre funcionan",
+    "Solo si hay fiebre"
+   ],
+   "respuesta": 1,
+   "explicacion": "Los antibióticos no matan virus; solo se usan si hay infección bacteriana secundaria, con criterio veterinario."
+  },
+  {
+   "id": 78,
+   "categoria": "salud",
+   "pregunta": "¿Qué es un pediluvio?",
+   "opciones": [
+    "Un tipo de nidal",
+    "Un bebedero especial",
+    "Una vacuna en el pie",
+    "Una bandeja con desinfectante para el calzado a la entrada"
+   ],
+   "respuesta": 3,
+   "explicacion": "El pediluvio desinfecta el calzado al entrar/salir y es una barrera clásica de bioseguridad."
+  },
+  {
+   "id": 79,
+   "categoria": "salud",
+   "pregunta": "Gallinas que se pican las plumas entre ellas. Primera medida:",
+   "opciones": [
+    "Revisar densidad, luz, proteína y aburrimiento; añadir enriquecimiento",
+    "Separarlas para siempre",
+    "Oscuridad total permanente",
+    "Quitarles la comida"
+   ],
+   "respuesta": 0,
+   "explicacion": "El picaje suele deberse a estrés, hacinamiento o dieta: se corrige la causa y se añade paja o forraje."
+  },
+  {
+   "id": 80,
+   "categoria": "salud",
+   "pregunta": "¿Por qué es peligroso medicar por cuenta propia sin diagnóstico?",
+   "opciones": [
+    "No tiene riesgos",
+    "Es más barato a la larga",
+    "Genera resistencias y puede enmascarar la enfermedad real",
+    "Siempre cura"
+   ],
+   "respuesta": 2,
+   "explicacion": "El uso indebido de antibióticos crea resistencias y retrasa el tratamiento correcto; además deja residuos."
+  },
+  {
+   "id": 81,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué nutriente es el más importante en el pienso de inicio de pollitos?",
+   "opciones": [
+    "La sal",
+    "El azúcar",
+    "La fibra",
+    "La proteína (20 – 22 %)"
+   ],
+   "respuesta": 3,
+   "explicacion": "La proteína construye músculo y órganos; el iniciador lleva 20–22 %."
+  },
+  {
+   "id": 82,
+   "categoria": "alimentacion",
+   "pregunta": "¿Cuánta agua bebe una gallina ponedora al día?",
+   "opciones": [
+    "1 litro",
+    "2 litros",
+    "50 ml",
+    "Unos 200 – 300 ml"
+   ],
+   "respuesta": 3,
+   "explicacion": "Una ponedora bebe 200–300 ml/día; en calor puede duplicarlo."
+  },
+  {
+   "id": 83,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué pasa si a las ponedoras les falta agua un solo día?",
+   "opciones": [
+    "La puesta cae en picado durante días",
+    "No pasa nada",
+    "Mudan el plumaje",
+    "Ponen huevos más grandes"
+   ],
+   "respuesta": 0,
+   "explicacion": "El huevo es 65 % agua: un día sin agua desploma la puesta y tarda días en recuperarse."
+  },
+  {
+   "id": 84,
+   "categoria": "alimentacion",
+   "pregunta": "¿Para qué sirve el grit (piedrecillas) en las gallinas?",
+   "opciones": [
+    "Ayuda a moler el grano en la molleja",
+    "Es un medicamento",
+    "Aporta vitaminas",
+    "Endulza el pienso"
+   ],
+   "respuesta": 0,
+   "explicacion": "Las aves no tienen dientes: el grit en la molleja tritura el grano."
+  },
+  {
+   "id": 85,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué da el color naranja intenso a la yema?",
+   "opciones": [
+    "El color de la cáscara",
+    "La edad de la gallina",
+    "Los carotenoides del maíz, la alfalfa o el pasto",
+    "El tamaño del huevo"
+   ],
+   "respuesta": 2,
+   "explicacion": "Los carotenoides de la dieta (maíz, hierba, alfalfa) pigmentan la yema."
+  },
+  {
+   "id": 86,
+   "categoria": "alimentacion",
+   "pregunta": "¿Es bueno dar pan en exceso a las gallinas?",
+   "opciones": [
+    "No, es pobre en proteína y las engorda sin nutrir",
+    "Solo a los gallos",
+    "Solo si está duro",
+    "Sí, es el mejor alimento"
+   ],
+   "respuesta": 0,
+   "explicacion": "El pan aporta energía pero casi nada de proteína ni calcio: como extra ocasional vale, como base no."
+  },
+  {
+   "id": 87,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué alimento es TÓXICO para las gallinas?",
+   "opciones": [
+    "Trigo",
+    "Maíz",
+    "Aguacate (persina)",
+    "Zanahoria"
+   ],
+   "respuesta": 2,
+   "explicacion": "La persina del aguacate (hojas, piel, hueso) es tóxica para las aves."
+  },
+  {
+   "id": 88,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué porcentaje de proteína lleva un pienso de ponedoras?",
+   "opciones": [
+    "16 – 17 %",
+    "25 %",
+    "30 %",
+    "8 %"
+   ],
+   "respuesta": 0,
+   "explicacion": "El pienso de puesta lleva 16–17 % de proteína con 3,5–4 % de calcio."
+  },
+  {
+   "id": 89,
+   "categoria": "alimentacion",
+   "pregunta": "¿Por qué el pienso de ponedoras NO sirve para pollitos?",
+   "opciones": [
+    "Su exceso de calcio daña los riñones de los pollitos",
+    "No les gusta el sabor",
+    "Es muy caro",
+    "Tiene demasiada proteína"
+   ],
+   "respuesta": 0,
+   "explicacion": "El 3,5–4 % de calcio del pienso de puesta provoca daño renal en pollitos en crecimiento."
+  },
+  {
+   "id": 90,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué es la harina de pescado en avicultura?",
+   "opciones": [
+    "Una fuente concentrada de proteína y omega-3",
+    "Arena para la cama",
+    "Un desparasitante",
+    "Un condimento"
+   ],
+   "respuesta": 0,
+   "explicacion": "La harina de pescado aporta proteína de alta calidad y ácidos grasos omega-3."
+  },
+  {
+   "id": 91,
+   "categoria": "alimentacion",
+   "pregunta": "Las cáscaras de huevo trituradas para las gallinas sirven para:",
+   "opciones": [
+    "Darles proteína",
+    "Aportar calcio reciclado",
+    "Quitarles el hambre",
+    "Nada, es un mito"
+   ],
+   "respuesta": 1,
+   "explicacion": "Bien trituradas y tostadas son una buena fuente de calcio; hay que triturarlas para que no asocien con sus huevos."
+  },
+  {
+   "id": 92,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué efecto tiene el exceso de sal en la dieta?",
+   "opciones": [
+    "Aumenta el consumo de agua y las heces líquidas",
+    "Las hace más dóciles",
+    "Mejora la puesta",
+    "Ninguno"
+   ],
+   "respuesta": 0,
+   "explicacion": "El exceso de sodio dispara la sed y humedece la cama; en casos graves es tóxico."
+  },
+  {
+   "id": 93,
+   "categoria": "alimentacion",
+   "pregunta": "¿A qué hora conviene dar el pienso con más calcio a las ponedoras?",
+   "opciones": [
+    "A medianoche",
+    "Da igual",
+    "A primera hora",
+    "Por la tarde"
+   ],
+   "respuesta": 3,
+   "explicacion": "La cáscara se forma de noche: el calcio de la tarde queda disponible en el momento clave."
+  },
+  {
+   "id": 94,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué son los probióticos en avicultura?",
+   "opciones": [
+    "Hormonas",
+    "Microorganismos que mejoran la flora intestinal",
+    "Antibióticos fuertes",
+    "Vitaminas sintéticas"
+   ],
+   "respuesta": 1,
+   "explicacion": "Los probióticos equilibran la microbiota intestinal y mejoran la digestión y la inmunidad."
+  },
+  {
+   "id": 95,
+   "categoria": "alimentacion",
+   "pregunta": "¿Por qué se muele el grano para las aves?",
+   "opciones": [
+    "Mejora la digestibilidad y el aprovechamiento",
+    "Por estética",
+    "No se debe moler",
+    "Para que pese menos"
+   ],
+   "respuesta": 0,
+   "explicacion": "El grano molido (no en harina fina) se digiere mejor y se mezcla homogéneo con el resto del pienso."
+  },
+  {
+   "id": 96,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué planta forrajera es excelente para gallinas camperas?",
+   "opciones": [
+    "El tejo",
+    "La cicuta",
+    "La alfalfa",
+    "La adelfa"
+   ],
+   "respuesta": 2,
+   "explicacion": "La alfalfa aporta proteína y carotenoides; las otras tres son tóxicas."
+  },
+  {
+   "id": 97,
+   "categoria": "alimentacion",
+   "pregunta": "¿Cuánto pienso come al día una ponedora comercial?",
+   "opciones": [
+    "110 – 120 g",
+    "300 g",
+    "50 g",
+    "500 g"
+   ],
+   "respuesta": 0,
+   "explicacion": "Una ponedora come 110–120 g/día de pienso equilibrado."
+  },
+  {
+   "id": 98,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué pasa si el pienso se enmohece?",
+   "opciones": [
+    "Las micotoxinas dañan hígado y bajan la puesta",
+    "Aumenta la proteína",
+    "Mejora el sabor",
+    "No pasa nada"
+   ],
+   "respuesta": 0,
+   "explicacion": "Los hongos producen micotoxinas: bajan producción, dañan el hígado y pueden matar."
+  },
+  {
+   "id": 99,
+   "categoria": "alimentacion",
+   "pregunta": "¿Cómo se debe almacenar el pienso?",
+   "opciones": [
+    "Al sol en saco abierto",
+    "Mezclado con la cama",
+    "En el suelo del gallinero",
+    "En lugar fresco, seco y en envase cerrado"
+   ],
+   "respuesta": 3,
+   "explicacion": "Fresco, seco y cerrado: la humedad genera hongos y las ratas contaminan el saco abierto."
+  },
+  {
+   "id": 100,
+   "categoria": "alimentacion",
+   "pregunta": "¿Qué indica que las gallinas desperdician mucho pienso?",
+   "opciones": [
+    "Que están enfermas",
+    "Que tienen hambre",
+    "Que el pienso es malo",
+    "Comederos demasiado llenos o mal regulados"
+   ],
+   "respuesta": 3,
+   "explicacion": "El comedero lleno hasta el borde invita a escarbar y tirar; se llena a 1/3 y se regula la altura."
+  }
+ ]
+}
