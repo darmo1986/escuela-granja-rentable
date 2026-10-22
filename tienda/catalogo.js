@@ -1356,6 +1356,55 @@ window.GR_TIENDA_CATALOGO = {
       "nota": "Entrega con mensajería local en un plazo estimado de 5 a 8 días."
     }
   }
+},
+{
+  "slug": "incubadora-automatica-30-huevos",
+  "nombre": "Incubadora automática de 30 huevos con volteo y doble alimentación",
+  "categoria": "incubacion",
+  "descripcion_corta": "La incubadora para sacar tus propios pollitos en 21 días: volteo automático, temperatura controlada y agua que se repone sola. Tú solo pones los huevos.",
+  "descripcion": "La forma más sencilla de dejar de comprar pollitos: esta incubadora automática hace el trabajo por ti. Voltea los huevos sola, mantiene la temperatura estable y repone el agua automáticamente para sostener la humedad. Su doble alimentación (220 V y 12 V) es un seguro de vida para la nidada: si se va la luz, la conectas a una batería de 12 V y la incubación no se pierde. Le caben 30 huevos de gallina (hay quien la usa también con codorniz y pato) y es el tamaño perfecto para empezar en casa o para complementar una granja pequeña. En 21 días, con huevos fértiles frescos, ves nacer tu primer pollito: no hay nada como eso.",
+  "incluye": [
+    "1 incubadora automática de 30 huevos (versión Dual Power 12 V/220 V)",
+    "Cable de alimentación 220 V",
+    "Manual de instrucciones"
+  ],
+  "utilidades": [
+    "Sacar tus propios pollitos en casa en 21 días, sin depender de criaderos",
+    "Empezar tu lote de ponedoras o camperos desde el huevo",
+    "Incubar sin estar pendiente del volteo: lo hace sola cada día"
+  ],
+  "como_se_usa": [
+    "Enciéndela 24 horas antes y estabiliza la temperatura a 37,5 °C",
+    "Usa huevos fértiles frescos (menos de 7 días) y deja que el volteo automático trabaje hasta el día 18",
+    "Los últimos 3 días sube la humedad (65–70 %), deja de voltear y no abras la tapa: es el momento del nacimiento"
+  ],
+  "imagenes": [],
+  "imagen_local": "../img/productos/incubadora-30-huevos.webp",
+  "imagen_local_nota": "Foto del producto del proveedor.",
+  "precio_base_usd": 37.8,
+  "precio_base_nota": "Precio en la ficha de AliExpress España: 32,14 € IVA incluido, envío gratis (variante 30 huevos Dual Power).",
+  "rating": 4.6,
+  "pedidos": "193",
+  "vendedor": {
+    "nombre": "SkyBound Store",
+    "positivo_pct": 95.1,
+    "anos": null
+  },
+  "enlace_proveedor": "https://es.aliexpress.com/item/1005012485606785.html",
+  "link_pago": "",
+  "activo": true,
+  "verificacion": "Ficha verificada en vivo el 22-oct-2026: «Envío desde España» literal en la ficha, envío gratis y «entrega más rápida en 2 días»; 4,6 estrellas (24 valoraciones) y 193 vendidos; vendedor con 95,1 % de valoraciones positivas. Entra en el catálogo porque pablo pidió el 22-oct una incubadora para la tienda: los dos Shorts de la incubadora anuncian una a 129 € con envío incluido y la tienda no tenía ninguna.",
+  "paises": {
+    "ES": {
+      "disponible": true,
+      "moneda": "EUR",
+      "precio": 129.0,
+      "precio_confirmado": false,
+      "dias_envio": "2–5 días",
+      "origen_envio": "España",
+      "nota": "Envío gratis desde almacén en España, sin gastos de importación."
+    }
+  }
 }
   ]
 };
