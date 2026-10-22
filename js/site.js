@@ -50,7 +50,7 @@
   }
 
   function storeUrl(hash) {
-    var u = new URL(GR.tiendaBase || "https://granjarentable-incubadora.netlify.app/");
+    var u = new URL(GR.tiendaBase || "https://granjarentable.com/tienda/");
     /* Siempre el país elegido en el sitio. La tienda, si no recibe ?pais=, cae en Perú. */
     u.searchParams.set("pais", pais);
     var ref = readRef();
