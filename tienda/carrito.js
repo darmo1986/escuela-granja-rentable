@@ -7,18 +7,41 @@
      manda ese número; el catálogo actual no lo define (el stock se
      vigila con check_stock.py y el flag «activo»), así que el tope
      por defecto es 10 unidades por producto.
-   - «Comprar»/WhatsApp de cada ficha NO cambia: el carrito convive.
-   - Finalizar compra: ver checkout(), la función única de cierre. */
+   - Cierre de la compra (decisión de Pablo, 23-oct-2026): NADA de
+     WhatsApp para tramitar pedidos. «Finalizar compra» abre un
+     formulario (nombre, correo y dirección de envío) y el pedido se
+     registra con tipo «pedido» en el endpoint de formularios
+     (GR.formEndpoint): el Apps Script guarda la fila y envía el correo
+     de confirmación al cliente y el aviso con todos los datos a Pablo.
+     WhatsApp queda solo como canal de preguntas en la tienda.
+   - Protección Trustap (opcional, por pedido): casilla en el
+     formulario con la comisión calculada en vivo. La elección viaja
+     en el payload (proteccion_trustap / proteccion_importe) y se le
+     recuerda al cliente en la confirmación. La creación real de la
+     transacción Trustap queda comentada en checkout(): requiere el
+     alta de la cuenta de Pablo y sus claves API. */
 (function () {
   "use strict";
   var CAT = window.GR_TIENDA_CATALOGO;
   if (!CAT || !CAT.productos) return;
-  var WA = "34656267726";
   var CLAVE = "gr_carrito_v1";
   var TOPE_DEFECTO = 10;
 
+  /* Tarifas publicadas de Trustap que usa la explicación de la casilla.
+     EUR: 3 % + 0,40 € · USD: 4,4 % + 0,40 $. Para el resto de monedas
+     del catálogo (MXN, COP, PEN, CLP…) no hay tarifa en la tabla: se
+     aplica la de EUR como REFERENCIA y así se le dice al cliente. */
+  var TARIFAS_TRUSTAP = {
+    EUR: { pct: 0.03, fijo: 0.40 },
+    USD: { pct: 0.044, fijo: 0.40 }
+  };
+  var TARIFA_REFERENCIA = "EUR";
+
   var paisActual = null;
   var uiLista = false;
+  var vista = "carrito"; /* carrito | pedido | ok */
+  var enviando = false;
+  var ultimoProtegido = false;
 
   /* ---------- Utilidades (mismo criterio que tienda.js) ---------- */
   function $(s, c) { return (c || document).querySelector(s); }
@@ -58,6 +81,30 @@
   function textoEnvio(d) {
     if (d.origen_envio === "local") return "Envío desde almacén en tu país: " + d.dias_envio;
     return "Envío internacional con seguimiento: " + d.dias_envio;
+  }
+  function redondea2(n) { return Math.round(n * 100) / 100; }
+
+  /* ---------- Protección Trustap: comisión sobre el subtotal ---------- */
+  function comisionTrustap(subtotal, moneda) {
+    var directa = TARIFAS_TRUSTAP[moneda] || null;
+    var t = directa || TARIFAS_TRUSTAP[TARIFA_REFERENCIA];
+    return {
+      importe: redondea2(subtotal * t.pct + t.fijo),
+      pct: t.pct,
+      fijo: t.fijo,
+      monedaTarifa: directa ? moneda : TARIFA_REFERENCIA,
+      esReferencia: !directa
+    };
+  }
+  function textoComision(c, monedaPedido) {
+    var pctTxt = String(Math.round(c.pct * 1000) / 10).replace(".", ",") + " %";
+    var fijoTxt = formatoPrecio(c.fijo, c.monedaTarifa);
+    var importeTxt = formatoPrecio(c.importe, monedaPedido);
+    if (c.esReferencia) {
+      return "Coste de la protección: " + importeTxt + " (calculado con la tarifa de referencia en euros: " +
+        pctTxt + " + " + fijoTxt + ").";
+    }
+    return "Coste de la protección: " + importeTxt + " (" + pctTxt + " + " + fijoTxt + ").";
   }
 
   /* ---------- Estado ---------- */
@@ -124,8 +171,18 @@
     });
     return { subtotal: subtotal, total: subtotal, moneda: moneda, plazos: plazos };
   }
+  function lineasDisponibles() {
+    return lineas().filter(function (l) { return !!l.d; });
+  }
 
   /* ---------- Interfaz: botón de cabecera + panel lateral ---------- */
+  function opcionesPais() {
+    var orden = CAT.orden_paises && CAT.orden_paises.length ? CAT.orden_paises : Object.keys(CAT.paises);
+    return orden.map(function (code) {
+      var p = CAT.paises[code];
+      return p ? '<option value="' + esc(code) + '">' + esc(p.nombre) + "</option>" : "";
+    }).join("");
+  }
   function inyectarUI() {
     if (uiLista) return;
     uiLista = true;
@@ -138,17 +195,58 @@
         '</div>' +
         '<p class="cart-pais" id="gr-cart-pais"></p>' +
         '<div class="cart-items" id="gr-cart-items"></div>' +
+        '<section class="cart-pedido" id="gr-cart-pedido" hidden aria-label="Datos del pedido">' +
+          '<form id="gr-ped-form" novalidate>' +
+            '<h3 class="cart-form-t">Datos del pedido</h3>' +
+            '<p class="cart-form-resumen" id="gr-ped-resumen"></p>' +
+            '<label class="cart-campo">Nombre y apellidos' +
+              '<input type="text" id="gr-ped-nombre" autocomplete="name" required></label>' +
+            '<label class="cart-campo">Correo electrónico' +
+              '<input type="email" id="gr-ped-email" autocomplete="email" required></label>' +
+            '<label class="cart-campo">Dirección de envío (calle y número)' +
+              '<input type="text" id="gr-ped-calle" autocomplete="street-address" required></label>' +
+            '<div class="cart-fila">' +
+              '<label class="cart-campo">Ciudad' +
+                '<input type="text" id="gr-ped-ciudad" autocomplete="address-level2" required></label>' +
+              '<label class="cart-campo">Código postal' +
+                '<input type="text" id="gr-ped-cp" autocomplete="postal-code" required></label>' +
+            '</div>' +
+            '<label class="cart-campo">País de envío' +
+              '<select id="gr-ped-pais">' + opcionesPais() + "</select></label>" +
+            '<div class="cart-trustap">' +
+              '<label class="cart-trustap-lab">' +
+                '<input type="checkbox" id="gr-ped-trustap">' +
+                "<span><strong>Quiero compra protegida con Trustap</strong></span>" +
+              "</label>" +
+              '<p class="cart-trustap-txt" id="gr-ped-trustap-txt"></p>' +
+            "</div>" +
+            '<p class="cart-linea"><span>Subtotal</span><strong id="gr-ped-subtotal">—</strong></p>' +
+            '<p class="cart-linea" id="gr-ped-linea-trustap" hidden><span>Protección Trustap</span><strong id="gr-ped-trustap-imp">—</strong></p>' +
+            '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-ped-total">—</strong></p>' +
+            '<button type="submit" class="btn gold cart-checkout" id="gr-ped-enviar">Enviar pedido</button>' +
+            '<p class="cart-msg" id="gr-ped-msg" role="alert"></p>' +
+            '<button type="button" class="cart-vaciar" id="gr-ped-volver">← Volver al carrito</button>' +
+          "</form>" +
+        "</section>" +
+        '<section class="cart-ok-wrap" id="gr-cart-ok" hidden aria-label="Pedido recibido">' +
+          '<div class="cart-ok">' +
+            '<p class="cart-ok-t">✅ Pedido recibido</p>' +
+            "<p>Tu pedido se está procesando. Te hemos enviado un correo con los datos de tu pedido; cuando salga, te enviaremos también el seguimiento por correo.</p>" +
+            '<p class="cart-ok-trustap" id="gr-cart-ok-trustap" hidden>🛡️ Tu compra está protegida con Trustap: el pago solo se libera al proveedor cuando recibas tu pedido.</p>' +
+            '<p><button type="button" class="btn sec" id="gr-cart-ok-cerrar">Seguir viendo la tienda</button></p>' +
+          "</div>" +
+        "</section>" +
         '<div class="cart-foot" id="gr-cart-foot">' +
           '<div class="cart-confianza">' +
             '<p class="cart-confianza-t">🛡️ Compra protegida</p>' +
             '<p>Estamos activando el pago con depósito en garantía: un tercero neutral (Trustap) retiene tu dinero y solo lo libera al proveedor cuando recibes tu pedido. Si algo sale mal, recuperas tu dinero.</p>' +
-            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Devolución en 14 días gestionada por Granja Rentable<br>✓ Te confirmamos el pedido por WhatsApp antes de cobrar nada</p>' +
+            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Devolución en 14 días gestionada por Granja Rentable<br>✓ Te confirmamos el pedido por correo electrónico</p>' +
           '</div>' +
           '<p class="cart-linea"><span>Subtotal</span><strong id="gr-cart-subtotal">—</strong></p>' +
           '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-cart-total">—</strong></p>' +
           '<p class="cart-envio" id="gr-cart-envio"></p>' +
-          '<p class="cart-nota">El precio de cada producto ya incluye el envío a tu país. Al finalizar te abrimos WhatsApp con tu pedido listo: confirmamos contigo el total y el plazo antes de cobrar nada.</p>' +
-          '<button type="button" class="btn gold cart-checkout" id="gr-cart-checkout">Finalizar compra por WhatsApp</button>' +
+          '<p class="cart-nota">El precio de cada producto ya incluye el envío a tu país. Al finalizar la compra rellenas un formulario corto y tu pedido queda registrado: te enviamos un correo con los datos del pedido y, cuando salga, otro con el seguimiento.</p>' +
+          '<button type="button" class="btn gold cart-checkout" id="gr-cart-checkout">Finalizar compra</button>' +
           '<p class="cart-msg" id="gr-cart-msg" role="status"></p>' +
           '<button type="button" class="cart-vaciar" id="gr-cart-vaciar">Vaciar el carrito</button>' +
         '</div>' +
@@ -157,6 +255,14 @@
     var div = document.createElement("div");
     div.innerHTML = html;
     while (div.firstChild) document.body.appendChild(div.firstChild);
+    var form = $("#gr-ped-form");
+    if (form) form.addEventListener("submit", enviarPedido);
+    var chk = $("#gr-ped-trustap");
+    if (chk) chk.addEventListener("change", pintarForm);
+    var volver = $("#gr-ped-volver");
+    if (volver) volver.addEventListener("click", function () { vista = "carrito"; render(); });
+    var okCerrar = $("#gr-cart-ok-cerrar");
+    if (okCerrar) okCerrar.addEventListener("click", cerrar);
     asegurarBotonCabecera();
   }
   function asegurarBotonCabecera() {
@@ -181,6 +287,7 @@
   }
   function abrir() {
     inyectarUI();
+    if (vista === "ok") vista = "carrito"; /* la confirmación ya se vio */
     render();
     var d = $("#gr-cart"), o = $("#gr-cart-overlay");
     if (d) { d.classList.add("on"); d.setAttribute("aria-hidden", "false"); }
@@ -204,7 +311,23 @@
     toastTimer = setTimeout(function () { t.classList.remove("on"); }, 2800);
   }
 
-  /* ---------- Pintado del panel ---------- */
+  /* ---------- Vistas del panel: carrito / formulario / confirmación ---------- */
+  function pintarVista() {
+    var items = $("#gr-cart-items"), ped = $("#gr-cart-pedido"),
+        ok = $("#gr-cart-ok"), foot = $("#gr-cart-foot");
+    var hayLineas = lineas().length > 0;
+    if (items) items.hidden = vista !== "carrito";
+    if (ped) ped.hidden = vista !== "pedido";
+    if (ok) ok.hidden = vista !== "ok";
+    if (foot) foot.hidden = vista !== "carrito" || !hayLineas;
+    if (vista === "ok") {
+      var t = $("#gr-cart-ok-trustap");
+      if (t) t.hidden = !ultimoProtegido;
+    }
+    if (vista === "pedido") pintarForm();
+  }
+
+  /* ---------- Pintado del panel (vista carrito) ---------- */
   function render() {
     pintarContador();
     var zona = $("#gr-cart-items");
@@ -215,60 +338,252 @@
         ? "Precios y plazos para: " + nombrePais()
         : "Detectando tu país…";
     }
-    var foot = $("#gr-cart-foot");
     var ls = lineas();
     if (!ls.length) {
       zona.innerHTML = '<div class="cart-vacio"><p><strong>Tu carrito está vacío.</strong></p>' +
         "<p>Cuando veas algo que te sirva, pulsa «Añadir al carrito» y aparecerá aquí.</p>" +
         '<p><button type="button" class="btn sec" id="gr-cart-seguir">Seguir viendo la tienda</button></p></div>';
-      if (foot) foot.hidden = true;
       var seguir = $("#gr-cart-seguir");
       if (seguir) seguir.addEventListener("click", cerrar);
+    } else {
+      zona.innerHTML = ls.map(function (l) {
+        var img = imagenDe(l.p);
+        var media = img
+          ? '<img src="' + esc(img) + '" alt="" loading="lazy" width="64" height="64">'
+          : '<div class="cart-sin-foto">Sin foto</div>';
+        var detalle, controles;
+        if (l.d) {
+          detalle = '<p class="cart-precio">' + esc(formatoPrecio(l.d.precio, l.d.moneda)) + " ud.</p>" +
+            '<p class="cart-plazo">' + esc(textoEnvio(l.d)) + "</p>";
+          controles =
+            '<button type="button" data-cart-dec="' + esc(l.p.slug) + '" aria-label="Quitar una unidad">−</button>' +
+            '<span class="cart-cant" aria-label="Cantidad">' + l.cant + "</span>" +
+            '<button type="button" data-cart-inc="' + esc(l.p.slug) + '" aria-label="Añadir una unidad">+</button>' +
+            '<button type="button" class="cart-del" data-cart-del="' + esc(l.p.slug) + '">Quitar</button>' +
+            (l.cant >= topeDe(l.p) ? '<span class="cart-tope">Máximo por pedido: ' + topeDe(l.p) + "</span>" : "");
+        } else {
+          detalle = '<p class="cart-nodis">Este producto no está disponible en tu país ahora mismo. Quí­talo o cambia de país en la tienda.</p>';
+          controles = '<button type="button" class="cart-del" data-cart-del="' + esc(l.p.slug) + '">Quitar</button>';
+        }
+        return '<div class="cart-item">' +
+          '<div class="cart-thumb">' + media + "</div>" +
+          '<div class="cart-info">' +
+            '<p class="cart-nombre">' + esc(l.p.nombre) + "</p>" +
+            detalle +
+            '<div class="cart-controles">' + controles + "</div>" +
+          "</div>" +
+          '<p class="cart-linea-total">' + (l.d ? esc(formatoPrecio(l.subtotal, l.d.moneda)) : "—") + "</p>" +
+        "</div>";
+      }).join("");
+      var t = totales(ls);
+      var sub = $("#gr-cart-subtotal"), tot = $("#gr-cart-total"), env = $("#gr-cart-envio");
+      if (sub) sub.textContent = t.moneda ? formatoPrecio(t.subtotal, t.moneda) : "—";
+      if (tot) tot.textContent = t.moneda ? formatoPrecio(t.total, t.moneda) : "—";
+      if (env) {
+        env.textContent = !paisActual
+          ? "Detectando tu país para calcular precios y plazos…"
+          : t.plazos.length
+            ? "Plazo de envío estimado: " + t.plazos.join(" · ")
+            : "Sin productos disponibles en tu país: ajusta el carrito para continuar.";
+      }
+      var vaciarBtn = $("#gr-cart-vaciar");
+      if (vaciarBtn) vaciarBtn.hidden = false;
+    }
+    pintarVista();
+  }
+
+  /* ---------- Formulario de pedido ---------- */
+  function pintarForm() {
+    var ls = lineasDisponibles();
+    var t = totales(ls);
+    var resumen = $("#gr-ped-resumen");
+    if (resumen) {
+      var n = 0;
+      ls.forEach(function (l) { n += l.cant; });
+      resumen.textContent = n
+        ? n + (n === 1 ? " producto" : " productos") + " · Precios para " + nombrePais()
+        : "Sin productos disponibles en tu país.";
+    }
+    var chk = $("#gr-ped-trustap");
+    var comision = t.moneda ? comisionTrustap(t.subtotal, t.moneda) : null;
+    var txt = $("#gr-ped-trustap-txt");
+    if (txt) {
+      txt.textContent = "Un tercero neutral (Trustap) retiene el pago y solo lo libera al proveedor " +
+        "cuando recibes tu pedido. Si algo sale mal, te devuelven el dinero. " +
+        (comision ? textoComision(comision, t.moneda) : "");
+    }
+    var sub = $("#gr-ped-subtotal"), lin = $("#gr-ped-linea-trustap"),
+        imp = $("#gr-ped-trustap-imp"), tot = $("#gr-ped-total");
+    var conProteccion = !!(chk && chk.checked && comision);
+    if (sub) sub.textContent = t.moneda ? formatoPrecio(t.subtotal, t.moneda) : "—";
+    if (lin) lin.hidden = !conProteccion;
+    if (imp && comision) imp.textContent = formatoPrecio(comision.importe, t.moneda);
+    if (tot) {
+      tot.textContent = t.moneda
+        ? formatoPrecio(t.subtotal + (conProteccion ? comision.importe : 0), t.moneda)
+        : "—";
+    }
+  }
+  function mostrarFormulario() {
+    vista = "pedido";
+    var sel = $("#gr-ped-pais");
+    if (sel && paisActual && CAT.paises[paisActual]) sel.value = paisActual;
+    render();
+    var n = $("#gr-ped-nombre");
+    if (n) { try { n.focus({ preventScroll: true }); } catch (e) { n.focus(); } }
+  }
+  function leerForm() {
+    function v(id) { var el = $(id); return el ? String(el.value || "").trim() : ""; }
+    var sel = $("#gr-ped-pais");
+    var chk = $("#gr-ped-trustap");
+    return {
+      nombre: v("#gr-ped-nombre"),
+      email: v("#gr-ped-email"),
+      calle: v("#gr-ped-calle"),
+      ciudad: v("#gr-ped-ciudad"),
+      cp: v("#gr-ped-cp"),
+      paisEnvio: sel && sel.value ? sel.value : (paisActual || ""),
+      trustap: !!(chk && chk.checked)
+    };
+  }
+  function validarForm(f) {
+    if (f.nombre.length < 2) return "Escribe tu nombre y apellidos, por favor.";
+    if (!/^\S+@\S+\.\S+$/.test(f.email)) return "Escribe un correo electrónico válido: ahí te enviaremos los datos de tu pedido y el seguimiento.";
+    if (!f.calle || !f.ciudad || !f.cp) return "Completa la dirección de envío: calle y número, ciudad y código postal.";
+    if (!f.paisEnvio || !CAT.paises[f.paisEnvio]) return "Elige el país de envío.";
+    return "";
+  }
+
+  /* ---------- Construcción del pedido ---------- */
+  function construirPedido(f) {
+    var ls = lineasDisponibles();
+    var t = totales(ls);
+    var comision = f.trustap && t.moneda ? comisionTrustap(t.subtotal, t.moneda) : null;
+    var fee = comision ? comision.importe : 0;
+    var totalFinal = redondea2(t.subtotal + fee);
+    var paisEnvioNombre = (CAT.paises[f.paisEnvio] && CAT.paises[f.paisEnvio].nombre) || f.paisEnvio;
+    var direccion = f.calle + ", " + f.ciudad + ", " + f.cp + ", " + paisEnvioNombre;
+    /* Resumen COMPLETO del pedido: viaja en «interes» del tipo «pedido»
+       SIN el recorte de 140 caracteres de las intenciones «compra»
+       (el Apps Script lo guarda entero en la hoja y lo mete en los
+       dos correos: confirmación al cliente y aviso a Pablo). */
+    var resumen = "Pedido desde la tienda (carrito):\n" +
+      ls.map(function (l) {
+        return "• " + l.cant + " × " + l.p.nombre + " — " + formatoPrecio(l.subtotal, l.d.moneda);
+      }).join("\n") +
+      "\nSubtotal: " + formatoPrecio(t.subtotal, t.moneda) +
+      (comision ? "\nProtección Trustap: " + formatoPrecio(fee, t.moneda) : "") +
+      "\nTotal: " + formatoPrecio(totalFinal, t.moneda) + " (precios para " + nombrePais() + ")" +
+      (t.plazos.length ? "\nEnvío estimado: " + t.plazos.join(" / ") : "") +
+      "\n\nCliente: " + f.nombre +
+      "\nCorreo: " + f.email +
+      "\nDirección de envío: " + direccion;
+    return {
+      lineas: ls, subtotal: t.subtotal, moneda: t.moneda,
+      proteccion: comision, fee: fee, total: totalFinal,
+      resumen: resumen, datos: f, direccion: direccion,
+      paisEnvioNombre: paisEnvioNombre
+    };
+  }
+
+  /* ---------- Registro del pedido (endpoint de formularios) ---------- */
+  function registrarPedido(pedido) {
+    var GR = window.GR || {};
+    var endpoint = (GR.formEndpoint || "").trim();
+    if (!endpoint || !window.fetch) return Promise.resolve(false);
+    var cuerpo = new URLSearchParams({
+      tipo: "pedido",
+      nombre: pedido.datos.nombre,
+      email: pedido.datos.email,
+      pais: pedido.paisEnvioNombre,
+      direccion: pedido.direccion,
+      interes: pedido.resumen,
+      total: formatoPrecio(pedido.total, pedido.moneda),
+      proteccion_trustap: pedido.proteccion ? "si" : "no",
+      proteccion_importe: pedido.proteccion ? pedido.fee.toFixed(2) : "",
+      origen: (location.pathname || "") + " (carrito)",
+      consentimiento: "si"
+    });
+    return fetch(endpoint, { method: "POST", body: cuerpo, mode: "cors" })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { return !!(j && j.ok); })
+      .catch(function () { return false; });
+  }
+
+  /* ==================================================================
+     FUNCIÓN ÚNICA DE CIERRE DEL CARRITO. Todo el flujo llama aquí.
+     Hoy: registra el pedido con tipo «pedido» en el endpoint de
+     formularios y el Apps Script hace el resto (fila en la hoja,
+     correo de confirmación al cliente y aviso completo a Pablo).
+     Devuelve una promesa con true si el registro se confirmó: solo
+     entonces se vacía el carrito y se muestra la confirmación.
+
+     Métodos futuros, a enchufar en esta misma función:
+
+     → STRIPE CHECKOUT: crear la sesión de pago con pedido.lineas
+       (slug, cantidad, precio y moneda ya resueltos por país) y
+       redirigir a la URL de la sesión tras registrar el pedido.
+
+     → TRUSTAP «PAGO PROTEGIDO» (escrow): si el cliente marcó la
+       casilla, pedido.proteccion trae la comisión ya calculada y su
+       elección YA viaja en el payload (proteccion_trustap=si y
+       proteccion_importe). Punto de integración: tras el registro,
+       crear aquí la transacción en Trustap por pedido.total y
+       pedido.moneda y redirigir al enlace de pago que devuelva.
+       NO activar sin el alta de la cuenta de Pablo ni sus claves API.
+     ================================================================== */
+  function checkout(pedido) {
+    return registrarPedido(pedido);
+  }
+
+  function finalizarCompra() {
+    var msg = $("#gr-cart-msg");
+    function di(texto) { if (msg) msg.textContent = texto; }
+    if (!paisActual) {
+      di("Todavía estamos detectando tu país. Espera un segundo y vuelve a intentarlo.");
       return;
     }
-    if (foot) foot.hidden = false;
-    zona.innerHTML = ls.map(function (l) {
-      var img = imagenDe(l.p);
-      var media = img
-        ? '<img src="' + esc(img) + '" alt="" loading="lazy" width="64" height="64">'
-        : '<div class="cart-sin-foto">Sin foto</div>';
-      var detalle, controles;
-      if (l.d) {
-        detalle = '<p class="cart-precio">' + esc(formatoPrecio(l.d.precio, l.d.moneda)) + " ud.</p>" +
-          '<p class="cart-plazo">' + esc(textoEnvio(l.d)) + "</p>";
-        controles =
-          '<button type="button" data-cart-dec="' + esc(l.p.slug) + '" aria-label="Quitar una unidad">−</button>' +
-          '<span class="cart-cant" aria-label="Cantidad">' + l.cant + "</span>" +
-          '<button type="button" data-cart-inc="' + esc(l.p.slug) + '" aria-label="Añadir una unidad">+</button>' +
-          '<button type="button" class="cart-del" data-cart-del="' + esc(l.p.slug) + '">Quitar</button>' +
-          (l.cant >= topeDe(l.p) ? '<span class="cart-tope">Máximo por pedido: ' + topeDe(l.p) + "</span>" : "");
-      } else {
-        detalle = '<p class="cart-nodis">Este producto no está disponible en tu país ahora mismo. Quí­talo o cambia de país en la tienda.</p>';
-        controles = '<button type="button" class="cart-del" data-cart-del="' + esc(l.p.slug) + '">Quitar</button>';
-      }
-      return '<div class="cart-item">' +
-        '<div class="cart-thumb">' + media + "</div>" +
-        '<div class="cart-info">' +
-          '<p class="cart-nombre">' + esc(l.p.nombre) + "</p>" +
-          detalle +
-          '<div class="cart-controles">' + controles + "</div>" +
-        "</div>" +
-        '<p class="cart-linea-total">' + (l.d ? esc(formatoPrecio(l.subtotal, l.d.moneda)) : "—") + "</p>" +
-      "</div>";
-    }).join("");
-    var t = totales(ls);
-    var sub = $("#gr-cart-subtotal"), tot = $("#gr-cart-total"), env = $("#gr-cart-envio");
-    if (sub) sub.textContent = t.moneda ? formatoPrecio(t.subtotal, t.moneda) : "—";
-    if (tot) tot.textContent = t.moneda ? formatoPrecio(t.total, t.moneda) : "—";
-    if (env) {
-      env.textContent = !paisActual
-        ? "Detectando tu país para calcular precios y plazos…"
-        : t.plazos.length
-          ? "Plazo de envío estimado: " + t.plazos.join(" · ")
-          : "Sin productos disponibles en tu país: ajusta el carrito para continuar.";
+    if (!lineasDisponibles().length) {
+      di("Tu carrito está vacío o no tiene productos disponibles en tu país. Ajusta el carrito y vuelve a intentarlo.");
+      return;
     }
-    var vaciarBtn = $("#gr-cart-vaciar");
-    if (vaciarBtn) vaciarBtn.hidden = false;
+    di("");
+    mostrarFormulario();
+  }
+
+  function enviarPedido(ev) {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    if (enviando) return;
+    var msg = $("#gr-ped-msg");
+    function di(texto) { if (msg) msg.textContent = texto; }
+    if (!paisActual) {
+      di("Todavía estamos detectando tu país. Espera un segundo y vuelve a intentarlo.");
+      return;
+    }
+    var f = leerForm();
+    var error = validarForm(f);
+    if (error) { di(error); return; }
+    if (!lineasDisponibles().length) {
+      di("Tu carrito no tiene productos disponibles en tu país. Vuelve al carrito y ajústalo.");
+      return;
+    }
+    var pedido = construirPedido(f);
+    var btn = $("#gr-ped-enviar");
+    enviando = true;
+    if (btn) { btn.disabled = true; btn.textContent = "Enviando…"; }
+    di("");
+    checkout(pedido).then(function (ok) {
+      enviando = false;
+      if (btn) { btn.disabled = false; btn.textContent = "Enviar pedido"; }
+      if (ok) {
+        ultimoProtegido = !!pedido.proteccion;
+        guardar({ items: {} }); /* el carrito se vacía SOLO con el pedido registrado */
+        vista = "ok";
+        render();
+      } else {
+        di("No hemos podido registrar tu pedido (ha fallado la conexión). Tu carrito sigue intacto: inténtalo de nuevo en un momento.");
+      }
+    });
   }
 
   /* ---------- Operaciones ---------- */
@@ -281,6 +596,18 @@
     guardar(estado);
     render();
     toast("Añadido al carrito: " + p.nombre);
+  }
+  /* «Comprar ahora» (ficha): mete el producto y abre el formulario
+     de pedido directamente, sin pasar por WhatsApp. */
+  function comprarAhora(slug) {
+    var p = productoPorSlug(slug);
+    if (!p) return;
+    var estado = leer();
+    var cant = Math.min((parseInt(estado.items[slug], 10) || 0) + 1, topeDe(p));
+    estado.items[slug] = cant;
+    guardar(estado);
+    abrir();
+    finalizarCompra();
   }
   function fijarCantidad(slug, cant) {
     var p = productoPorSlug(slug);
@@ -298,113 +625,13 @@
     render();
   }
 
-  /* ---------- Registro de la intención (el mecanismo de la casa) ---------- */
-  function registrarIntencion(pedido) {
-    var resumen = String(pedido.resumen || "").slice(0, 140);
-    try {
-      var GR = window.GR || {};
-      /* 1) Aviso al correo vía Apps Script (tipo «compra»), como js/site.js. */
-      var endpoint = (GR.formEndpoint || "").trim();
-      if (endpoint) {
-        var cuerpo = new URLSearchParams({
-          tipo: "compra", interes: resumen, origen: (location.pathname || "") + " (carrito)"
-        });
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(endpoint, cuerpo);
-        } else if (window.fetch) {
-          fetch(endpoint, { method: "POST", body: cuerpo, keepalive: true, mode: "no-cors" }).catch(function () {});
-        }
-      }
-      /* 2) Fila en el panel (public.intenciones_compra), como js/site.js. */
-      var com = GR.comunidad || {};
-      var SB = (com.supabaseUrl || "").replace(/\/+$/, "");
-      var KEY = com.supabaseAnonKey || "";
-      if (SB && KEY && window.fetch) {
-        fetch(SB + "/rest/v1/intenciones_compra", {
-          method: "POST",
-          credentials: "omit",
-          keepalive: true,
-          headers: {
-            "apikey": KEY,
-            "Authorization": "Bearer " + KEY,
-            "Content-Type": "application/json",
-            "Prefer": "return=minimal"
-          },
-          body: JSON.stringify({
-            producto: resumen, canal: "carrito",
-            ruta: location.pathname || "", pais: paisActual
-          })
-        }).catch(function () {});
-      }
-    } catch (e) { /* el registro nunca frena la compra */ }
-  }
-
-  /* ---------- Finalizar compra ---------- */
-  function construirPedido() {
-    var ls = lineas().filter(function (l) { return !!l.d; });
-    var t = totales(ls);
-    var texto = "Hola, escribo desde la tienda de Granja Rentable. Quiero hacer un pedido:\n\n" +
-      ls.map(function (l) {
-        return "• " + l.cant + " × " + l.p.nombre + " — " + formatoPrecio(l.subtotal, l.d.moneda);
-      }).join("\n") +
-      "\n\nTotal: " + formatoPrecio(t.total, t.moneda) + " (" + nombrePais() + ")" +
-      (t.plazos.length ? "\nEnvío estimado: " + t.plazos.join(" / ") : "") +
-      "\n\nGracias.";
-    var resumen = "Pedido carrito: " +
-      ls.map(function (l) { return l.cant + "× " + l.p.slug; }).join(", ") +
-      " · Total " + formatoPrecio(t.total, t.moneda) + " · " + nombrePais();
-    return { lineas: ls, total: t.total, moneda: t.moneda, texto: texto, resumen: resumen };
-  }
-
-  /* ==================================================================
-     FUNCIÓN ÚNICA DE CIERRE DEL CARRITO. Todo el flujo llama aquí.
-     Hoy: registra la intención y abre WhatsApp con el pedido completo
-     (la venta se confirma en la conversación, como el resto de la
-     tienda). Los dos métodos de pago futuros se enchufan en esta
-     misma función, sin tocar el resto del carrito:
-
-     → STRIPE CHECKOUT: crear la sesión de pago con pedido.lineas
-       (slug, cantidad, precio y moneda ya resueltos por país) y
-       redirigir a la URL de la sesión en lugar de abrir WhatsApp.
-
-     → TRUSTAP «PAGO PROTEGIDO» (escrow, proveedor candidato): un
-       tercero neutral retiene el pago del cliente y solo lo libera
-       al proveedor cuando el cliente confirma que ha recibido el
-       pedido. Punto de integración: sustituir el cuerpo de esta
-       función por iniciarPagoProtegidoTrustap(pedido), que deberá
-       (1) crear la transacción en Trustap por pedido.total y
-       pedido.moneda, (2) registrar la intención con canal
-       «carrito-trustap» reutilizando registrarIntencion() y
-       (3) redirigir al enlace de pago que devuelva Trustap.
-       NO activar sin el alta de la cuenta ni las claves API.
-     ================================================================== */
-  function checkout(pedido) {
-    registrarIntencion(pedido);
-    var url = "https://wa.me/" + WA + "?text=" + encodeURIComponent(pedido.texto);
-    window.open(url, "_blank");
-  }
-
-  function finalizarCompra() {
-    var msg = $("#gr-cart-msg");
-    function di(texto) { if (msg) msg.textContent = texto; }
-    if (!paisActual) {
-      di("Todavía estamos detectando tu país. Espera un segundo y vuelve a intentarlo.");
-      return;
-    }
-    var pedido = construirPedido();
-    if (!pedido.lineas.length) {
-      di("Tu carrito está vacío o no tiene productos disponibles en tu país. Ajusta el carrito y vuelve a intentarlo.");
-      return;
-    }
-    checkout(pedido);
-    di("Te hemos abierto WhatsApp con tu pedido listo para enviar. Si no se abrió, escríbenos al +34 656 267 726 indicando tu pedido.");
-  }
-
   /* ---------- Eventos (delegación: vale para tarjetas y ficha,
-     que tienda.js repinta, sin tocar sus botones «Comprar») ---------- */
+     que tienda.js repinta) ---------- */
   document.addEventListener("click", function (ev) {
     var t = ev.target && ev.target.closest ? ev.target : null;
     if (!t) return;
+    var buy = t.closest ? t.closest("[data-cart-buy]") : null;
+    if (buy) { comprarAhora(buy.getAttribute("data-cart-buy")); return; }
     var add = t.closest ? t.closest("[data-cart-add]") : null;
     if (add) { anadir(add.getAttribute("data-cart-add")); return; }
     if (t.closest && t.closest("#gr-cart-open")) { abrir(); return; }
@@ -454,6 +681,7 @@
       if (p && CAT.paises[p]) { paisActual = p; render(); }
     },
     abrir: abrir,
-    anadir: anadir
+    anadir: anadir,
+    comprarAhora: comprarAhora
   };
 })();

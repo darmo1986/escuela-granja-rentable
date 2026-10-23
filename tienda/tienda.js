@@ -3,7 +3,8 @@
    país, detectado por IP. No hay selector de país en la interfaz.
    - Países activos, por orden de despliegue: MX, ES, US.
    - Si el país detectado aún no tiene catálogo activo, se muestra el
-     aviso «estamos llegando a tu país» con el contacto de WhatsApp.
+     aviso «estamos llegando a tu país» con el WhatsApp SOLO para
+     preguntas (los pedidos se tramitan en la web, nunca por WhatsApp).
    - Vista previa del dueño (no aparece en la interfaz): añadir
      ?pais=XX a la URL, por ejemplo /tienda/?pais=CO. Se guarda en la
      sesión para poder navegar a las fichas sin perder el país. */
@@ -153,19 +154,22 @@
     if (d.origen_envio === "local") return "Envío desde almacén en tu país: " + d.dias_envio;
     return "Envío internacional con seguimiento: " + d.dias_envio;
   }
+  /* WhatsApp es SOLO un canal de preguntas: nunca tramita pedidos.
+     El mensaje va redactado como una duda, no como un pedido. */
   function enlaceWhats(p, paisNombre) {
-    var msg = "Hola, escribo desde la tienda de Granja Rentable. Me interesa: " + p.nombre + " (" + paisNombre + ")";
+    var msg = "Hola, tengo una duda sobre un producto de la tienda de Granja Rentable: " + p.nombre + " (" + paisNombre + ")";
     return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
   }
-  function botonCompra(p, pais, paisNombre) {
+  /* «Comprar ahora»: mete el producto en el carrito y abre el
+     formulario de pedido de la web (carrito.js, data-cart-buy).
+     Ninguna compra abre WhatsApp. Los productos con «link_pago» de
+     Stripe también entran por este flujo desde el 23-oct-2026:
+     Pablo decidió que todo pedido se registra en la web y se
+     confirma por correo. */
+  function botonCompra(p, pais) {
     var d = datosPais(p, pais);
-    if (p.link_pago) {
-      return '<a class="btn gold js-comprar" data-checkout href="' + esc(p.link_pago) +
-        '" data-producto="' + esc(p.nombre) + '">Comprar · ' + esc(formatoPrecio(d.precio, d.moneda)) + "</a>";
-    }
-    return '<a class="btn gold" target="_blank" rel="noopener" href="' +
-      esc(enlaceWhats(p, paisNombre)) + '">Pedir por WhatsApp · ' +
-      esc(formatoPrecio(d.precio, d.moneda)) + "</a>";
+    return '<button type="button" class="btn gold" data-cart-buy="' + esc(p.slug) + '">Comprar ahora · ' +
+      esc(formatoPrecio(d.precio, d.moneda)) + "</button>";
   }
 
   /* ---------- Portada de la tienda ---------- */
@@ -186,7 +190,7 @@
       Number(p.rating).toFixed(1).replace(".", ",") + " · " + esc(p.pedidos) + " vendidos</p>" +
       '<p class="t-precio">' + esc(formatoPrecio(d.precio, d.moneda)) + "</p>" +
       '<p class="t-envio">' + esc(textoEnvio(d)) + "</p>" +
-      '<a class="btn sec" href="producto.html?p=' + esc(p.slug) + '">Ver ficha y pedir</a>' +
+      '<a class="btn sec" href="producto.html?p=' + esc(p.slug) + '">Ver ficha</a>' +
       '<button type="button" class="btn cart-add" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
       "</div></article>";
   }
@@ -301,7 +305,7 @@
         if (t) t.textContent = "Estamos llegando a " + nombrePais;
         var b = $("#llegando-wa");
         if (b) b.href = "https://wa.me/" + WA + "?text=" +
-          encodeURIComponent("Hola, escribo desde la tienda de Granja Rentable. Soy de " + nombrePais + " y quiero saber cuándo podré comprar.");
+          encodeURIComponent("Hola, escribo desde la tienda de Granja Rentable. Soy de " + nombrePais + " y quiero preguntar cuándo podré comprar y qué alternativas tengo.");
       }
       return;
     }
@@ -343,12 +347,12 @@
         '<button type="button" class="btn cart-add cart-add-ficha" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
         '<p class="t-garantia">Selección curada por Granja Rentable: solo vendemos productos con nota alta y cientos de pedidos reales. El pedido lo prepara y envía el proveedor con número de seguimiento. Devolución en 14 días si el producto no es el de la ficha.</p>';
     } else if (!p.activo) {
-      compra = '<div class="note"><p><strong>Producto no disponible ahora mismo.</strong> Lo hemos retirado de la venta mientras revisamos su stock con el proveedor. Escríbenos por WhatsApp y te avisamos en cuanto vuelva.</p>' +
-        '<a class="btn gold" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, nombrePais)) + '">Avisarme por WhatsApp</a></div>';
+      compra = '<div class="note"><p><strong>Producto no disponible ahora mismo.</strong> Lo hemos retirado de la venta mientras revisamos su stock con el proveedor.</p>' +
+        '<a class="btn gold" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, nombrePais)) + '">¿Dudas? Pregúntame por WhatsApp</a></div>';
     } else {
       compra = '<div class="note"><p><strong>Todavía no enviamos este producto a ' + esc(nombrePais) + ".</strong> " +
-        "Estamos abriendo países por orden y el tuyo está en la lista. Por WhatsApp te contamos alternativas y te avisamos cuando esté activo.</p>" +
-        '<a class="btn gold" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, nombrePais)) + '">Preguntar por WhatsApp</a></div>';
+        "Estamos abriendo países por orden y el tuyo está en la lista.</p>" +
+        '<a class="btn gold" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, nombrePais)) + '">¿Dudas? Pregúntame por WhatsApp</a></div>';
     }
     var incluye = (p.incluye || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
     var utilidades = (p.utilidades || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
