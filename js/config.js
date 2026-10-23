@@ -37,7 +37,7 @@ window.GR = {
   whatsapp: "https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable",
   /* URL /exec de la aplicación web de Google Apps Script (gratis). Vacío = no se envía nada.
      Un solo valor para registro, prueba de la app y afiliados. Ver apps-script/Codigo.gs */
-  formEndpoint: "https://script.google.com/macros/s/AKfycbzeq5Oi2e6quRnPmmoEdccLCxgAtZ59OoX3zvHMMIREWggrqMmQnZA6jHYw8p6tONcF/exec",
+  formEndpoint: "https://script.google.com/macros/s/AKfycbyeSZCE95DI1wdls0MiNoKdh92i8ve0GkkJHy4GAY3p4pWsBCRhs0hb3bmUMTV-Xw0Wzw/exec",
   /* APK de descarga directa (Registro de pollos 1.0.10).
      Vacío = el botón queda en «próximamente».
      Cuando la ficha de Google Play esté publicada, cambia esta URL. */
