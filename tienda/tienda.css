@@ -371,6 +371,21 @@ body.cart-abierto{ overflow:hidden; }
   flex:none; width:22px; height:22px; margin-top:1px; accent-color:var(--g); cursor:pointer;
 }
 .cart-trustap-txt{ margin:8px 0 0; font-size:.88rem; line-height:1.5; color:var(--ink); }
+.cart-pago{
+  background:#fff; border:1.5px solid var(--line); border-radius:14px;
+  padding:12px 14px; margin:2px 0 14px;
+}
+.cart-pago-t{ margin:0 0 6px; font-size:.95rem; color:var(--gd); }
+.cart-pago-lab{
+  display:flex; align-items:flex-start; gap:10px; cursor:pointer;
+  font-size:.92rem; line-height:1.4; color:var(--ink); margin:7px 0;
+}
+.cart-pago-lab input{
+  flex:none; width:20px; height:20px; margin-top:1px; accent-color:var(--g); cursor:pointer;
+}
+.cart-ok .cart-ok-paypal{ color:var(--ink); }
+.cart-ok-paypal .btn{ margin:8px 0 6px; }
+.cart-ok-paypal-nota{ font-size:.85rem; color:var(--muted); }
 #gr-ped-enviar[disabled]{ opacity:.65; cursor:wait; }
 .cart-ok{ text-align:center; padding:26px 6px; }
 .cart-ok-t{ margin:0 0 10px; font-size:1.25rem; font-weight:900; color:var(--gd); }

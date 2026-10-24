@@ -248,15 +248,34 @@ la app de AliExpress y confirmar nota, vendidos, vendedor y fotos.
    tarjeta muestra «Foto en preparación».
 4. Commit y despliegue como el resto del sitio.
 
-## Pago: `link_pago` (Stripe) y WhatsApp
+## Pago y pedidos: todo se tramita en la web (desde el 23-oct-2026)
 
-Cada producto lleva `link_pago: ""`. Mientras esté vacío, la ficha
-muestra el botón **«Pedir por WhatsApp»** (wa.me/34656267726 con el
-mensaje «Me interesa: <producto> (<país>)», que además alimenta el
-panel de avisos de compra). Cuando Pablo cree el enlace de pago en su
-Stripe para ese producto, se pega la URL en `link_pago` y la ficha
-muestra automáticamente el botón **«Comprar»** con ese enlace (el
-panel lo registra como intención de compra de la tienda).
+Decisión de Pablo: **ningún pedido se tramita por WhatsApp**. La ficha
+muestra **«Comprar ahora»**: mete el producto en el carrito y abre el
+formulario de pedido de la web (nombre, correo y dirección de envío).
+Al enviarlo, el carrito registra un `tipo=pedido` en el endpoint de
+formularios (`apps-script/Codigo.gs`), que guarda el pedido completo
+en la hoja y envía dos correos: la confirmación al cliente («Tu pedido
+en Granja Rentable se está procesando»; el seguimiento irá también por
+correo) y el aviso con todos los datos a Pablo para tramitarlo con el
+proveedor. WhatsApp queda **solo como canal de preguntas** («¿Dudas?
+Pregúntame por WhatsApp»).
+
+El formulario ofrece la **compra protegida con Trustap** como casilla
+opcional: la comisión se calcula en vivo (EUR 3 % + 0,40 €; USD
+4,4 % + 0,40; resto de monedas, la de EUR como referencia) y, si el
+cliente la marca, suma al total y viaja en el pedido
+(`proteccion_trustap=si`). La creación real de la transacción Trustap
+está comentada en `checkout()` de `tienda/carrito.js`: requiere el
+alta de la cuenta de Pablo y sus claves API.
+
+Cada producto lleva `link_pago: ""`. Históricamente, con `link_pago`
+vacío la ficha pedía por WhatsApp y con la URL de Stripe pegada
+mostraba «Comprar» directo; desde el 23-oct-2026 el `link_pago` ya no
+manda en la ficha: **todos** los productos entran por «Comprar ahora»
+y el formulario. Si algún día se reactiva el pago directo con Stripe
+Checkout, el punto de integración es la misma `checkout()` del
+carrito.
 
 ## Stock y desactivación automática
 
@@ -269,7 +288,7 @@ panel lo registra como intención de compra de la tienda).
   (¿anuncio muerto? ¿sin stock?) → `activo: false` + commit.
 - El stock real de AliExpress cambia por variante (pack, enchufe…):
   la comprobación fina sigue siendo manual en la app al recibir un
-  pedido por WhatsApp, hasta conectar la API de afiliados de
+  pedido desde la web, hasta conectar la API de afiliados de
   AliExpress en una fase posterior.
 
 ## Pendiente (fuera de este commit)

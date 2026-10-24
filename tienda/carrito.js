@@ -42,6 +42,7 @@
   var vista = "carrito"; /* carrito | pedido | ok */
   var enviando = false;
   var ultimoProtegido = false;
+  var ultimoPaypalUrl = "";
 
   /* ---------- Utilidades (mismo criterio que tienda.js) ---------- */
   function $(s, c) { return (c || document).querySelector(s); }
@@ -83,6 +84,24 @@
     return "Envío internacional con seguimiento: " + d.dias_envio;
   }
   function redondea2(n) { return Math.round(n * 100) / 100; }
+
+  /* ---------- PayPal.Me: enlace de pago con el total del pedido ----------
+     Sin API: la base sale de GR.paypalMe (js/config.js). PayPal.Me admite
+     importe y moneda en la propia URL (…/16.95EUR): se adjuntan solo en
+     las monedas habituales de PayPal.Me; en el resto va el enlace pelado
+     y el cliente escribe el total que ve en su pedido. */
+  function paypalBase() {
+    var GR = window.GR || {};
+    return String(GR.paypalMe || "").trim().replace(/\/+$/, "");
+  }
+  function paypalUrlPara(total, moneda) {
+    var base = paypalBase();
+    if (!base) return "";
+    if (["EUR", "USD", "MXN", "GBP"].indexOf(moneda) !== -1) {
+      return base + "/" + total.toFixed(2) + moneda;
+    }
+    return base;
+  }
 
   /* ---------- Protección Trustap: comisión sobre el subtotal ---------- */
   function comisionTrustap(subtotal, moneda) {
@@ -220,6 +239,19 @@
               "</label>" +
               '<p class="cart-trustap-txt" id="gr-ped-trustap-txt"></p>' +
             "</div>" +
+            (paypalBase()
+              ? '<div class="cart-pago">' +
+                  '<p class="cart-pago-t"><strong>¿Cómo quieres pagar?</strong></p>' +
+                  '<label class="cart-pago-lab">' +
+                    '<input type="radio" name="gr-ped-metodo" value="paypal" checked>' +
+                    "<span><strong>Pagar ahora con PayPal</strong> — con la Protección del comprador de PayPal.</span>" +
+                  "</label>" +
+                  '<label class="cart-pago-lab">' +
+                    '<input type="radio" name="gr-ped-metodo" value="correo">' +
+                    "<span><strong>Pagar después por correo</strong> — te escribimos para cerrar el pago.</span>" +
+                  "</label>" +
+                "</div>"
+              : "") +
             '<p class="cart-linea"><span>Subtotal</span><strong id="gr-ped-subtotal">—</strong></p>' +
             '<p class="cart-linea" id="gr-ped-linea-trustap" hidden><span>Protección Trustap</span><strong id="gr-ped-trustap-imp">—</strong></p>' +
             '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-ped-total">—</strong></p>' +
@@ -233,6 +265,9 @@
             '<p class="cart-ok-t">✅ Pedido recibido</p>' +
             "<p>Tu pedido se está procesando. Te hemos enviado un correo con los datos de tu pedido; cuando salga, te enviaremos también el seguimiento por correo.</p>" +
             '<p class="cart-ok-trustap" id="gr-cart-ok-trustap" hidden>🛡️ Tu compra está protegida con Trustap: el pago solo se libera al proveedor cuando recibas tu pedido.</p>' +
+            '<p class="cart-ok-paypal" id="gr-cart-ok-paypal" hidden>💳 <strong>Solo te falta pagar tu pedido:</strong><br>' +
+              '<a class="btn gold" id="gr-cart-ok-paypal-btn" href="#" target="_blank" rel="noopener">Pagar ahora con PayPal</a><br>' +
+              '<span class="cart-ok-paypal-nota">El importe ya va rellenado con el total de tu pedido. Cruzamos tu pago con el correo que nos has dado.</span></p>' +
             '<p><button type="button" class="btn sec" id="gr-cart-ok-cerrar">Seguir viendo la tienda</button></p>' +
           "</div>" +
         "</section>" +
@@ -323,6 +358,12 @@
     if (vista === "ok") {
       var t = $("#gr-cart-ok-trustap");
       if (t) t.hidden = !ultimoProtegido;
+      var pp = $("#gr-cart-ok-paypal");
+      if (pp) {
+        pp.hidden = !ultimoPaypalUrl;
+        var btn = $("#gr-cart-ok-paypal-btn");
+        if (btn && ultimoPaypalUrl) btn.href = ultimoPaypalUrl;
+      }
     }
     if (vista === "pedido") pintarForm();
   }
@@ -443,7 +484,11 @@
       ciudad: v("#gr-ped-ciudad"),
       cp: v("#gr-ped-cp"),
       paisEnvio: sel && sel.value ? sel.value : (paisActual || ""),
-      trustap: !!(chk && chk.checked)
+      trustap: !!(chk && chk.checked),
+      metodo: (function () {
+        var r = document.querySelector('input[name="gr-ped-metodo"]:checked');
+        return r ? r.value : (paypalBase() ? "paypal" : "correo");
+      })()
     };
   }
   function validarForm(f) {
@@ -463,6 +508,12 @@
     var totalFinal = redondea2(t.subtotal + fee);
     var paisEnvioNombre = (CAT.paises[f.paisEnvio] && CAT.paises[f.paisEnvio].nombre) || f.paisEnvio;
     var direccion = f.calle + ", " + f.ciudad + ", " + f.cp + ", " + paisEnvioNombre;
+    /* Método de pago efectivo: si el cliente marcó Trustap, la compra
+       protegida MANDA sobre PayPal (no se le ofrece pagar por PayPal.Me
+       un dinero que debe ir a la custodia). */
+    var metodoEfectivo = comision ? "trustap"
+      : (f.metodo === "paypal" && paypalBase() ? "paypal" : "correo");
+    var urlPaypal = metodoEfectivo === "paypal" ? paypalUrlPara(totalFinal, t.moneda) : "";
     /* Resumen COMPLETO del pedido: viaja en «interes» del tipo «pedido»
        SIN el recorte de 140 caracteres de las intenciones «compra»
        (el Apps Script lo guarda entero en la hoja y lo mete en los
@@ -474,6 +525,12 @@
       "\nSubtotal: " + formatoPrecio(t.subtotal, t.moneda) +
       (comision ? "\nProtección Trustap: " + formatoPrecio(fee, t.moneda) : "") +
       "\nTotal: " + formatoPrecio(totalFinal, t.moneda) + " (precios para " + nombrePais() + ")" +
+      "\nMétodo de pago: " + (metodoEfectivo === "paypal"
+        ? "PayPal (pago inmediato)"
+        : metodoEfectivo === "trustap"
+          ? "Compra protegida con Trustap"
+          : "A acordar por correo") +
+      (urlPaypal ? "\nEnlace de pago PayPal: " + urlPaypal : "") +
       (t.plazos.length ? "\nEnvío estimado: " + t.plazos.join(" / ") : "") +
       "\n\nCliente: " + f.nombre +
       "\nCorreo: " + f.email +
@@ -481,6 +538,7 @@
     return {
       lineas: ls, subtotal: t.subtotal, moneda: t.moneda,
       proteccion: comision, fee: fee, total: totalFinal,
+      metodo: metodoEfectivo, paypalUrl: urlPaypal,
       resumen: resumen, datos: f, direccion: direccion,
       paisEnvioNombre: paisEnvioNombre
     };
@@ -501,6 +559,8 @@
       total: formatoPrecio(pedido.total, pedido.moneda),
       proteccion_trustap: pedido.proteccion ? "si" : "no",
       proteccion_importe: pedido.proteccion ? pedido.fee.toFixed(2) : "",
+      metodo_pago: pedido.metodo || "correo",
+      paypal_link: pedido.paypalUrl || "",
       origen: (location.pathname || "") + " (carrito)",
       consentimiento: "si"
     });
@@ -523,6 +583,14 @@
      → STRIPE CHECKOUT: crear la sesión de pago con pedido.lineas
        (slug, cantidad, precio y moneda ya resueltos por país) y
        redirigir a la URL de la sesión tras registrar el pedido.
+
+     → PAYPAL (PayPal.Me): YA integrado sin API. Si el cliente eligió
+       PayPal y no marcó Trustap, pedido.paypalUrl lleva el enlace con
+       el total ya rellenado: se le muestra como botón en la pantalla
+       de confirmación y viaja en el payload (metodo_pago y
+       paypal_link) para que el Apps Script lo meta también en su
+       correo de confirmación. La base se configura en GR.paypalMe
+       (js/config.js); vacío = el método no se ofrece.
 
      → TRUSTAP «PAGO PROTEGIDO» (escrow): si el cliente marcó la
        casilla, pedido.proteccion trae la comisión ya calculada y su
@@ -577,6 +645,7 @@
       if (btn) { btn.disabled = false; btn.textContent = "Enviar pedido"; }
       if (ok) {
         ultimoProtegido = !!pedido.proteccion;
+        ultimoPaypalUrl = pedido.paypalUrl || "";
         guardar({ items: {} }); /* el carrito se vacía SOLO con el pedido registrado */
         vista = "ok";
         render();

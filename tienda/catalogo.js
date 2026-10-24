@@ -9,9 +9,10 @@
    - «activo: false» = el producto desaparece de la tienda al instante.
      El script check_stock.py vigila los enlaces y avisa; una persona
      cambia el flag (nunca un robot a ciegas).
-   - «link_pago» vacío = todavía no hay enlace de pago de Stripe y la
-     ficha ofrece pedir por WhatsApp. Cuando Pablo cree el enlace de
-     pago en Stripe para el producto, se pega aquí y aparece Comprar.
+   - «link_pago» vacío = todavía no hay enlace de pago de Stripe.
+     Desde el 23-oct-2026 la ficha ya no depende de este campo: todos
+     los productos se piden con «Comprar ahora» y el formulario de
+     pedido de la web (ver TIENDA.md, sección de pedidos).
    - «precio_confirmado: false» = precio derivado del coste en
      AliExpress + envío estimado + margen. NO es precio cerrado:
      Pablo lo confirma antes de publicar (convención del sitio).
