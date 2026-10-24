@@ -38,6 +38,11 @@ window.GR = {
   /* URL /exec de la aplicación web de Google Apps Script (gratis). Vacío = no se envía nada.
      Un solo valor para registro, prueba de la app y afiliados. Ver apps-script/Codigo.gs */
   formEndpoint: "https://script.google.com/macros/s/AKfycbyeSZCE95DI1wdls0MiNoKdh92i8ve0GkkJHy4GAY3p4pWsBCRhs0hb3bmUMTV-Xw0Wzw/exec",
+  /* Enlace de PayPal.Me de Pablo (https://www.paypal.com/paypalme/...).
+     Vacío = en el carrito no se ofrece pagar con PayPal (solo «pagar
+     después por correo»). Al rellenarlo, el cliente puede pagar el
+     total exacto con PayPal desde la confirmación y desde su correo. */
+  paypalMe: "",
   /* APK de descarga directa (Registro de pollos 1.0.10).
      Vacío = el botón queda en «próximamente».
      Cuando la ficha de Google Play esté publicada, cambia esta URL. */
