@@ -2,9 +2,18 @@
    REGLA DE LA CASA: cada visitante ve ÚNICAMENTE el catálogo de su
    país, detectado por IP. No hay selector de país en la interfaz.
    - Países activos, por orden de despliegue: MX, ES, US.
+   - PINTADO INSTANTÁNEO (26-oct-2026): la parrilla nunca espera a la
+     IP. Al cargar se pinta de inmediato el país ya conocido sin red
+     (URL, sesión, elección manual o caché) o, si no hay ninguno, MX,
+     primer país del despliegue. Cuando la IP se resuelve, el catálogo
+     se sustituye en una sola escritura, sin vaciar la parrilla entre
+     medias; si el país detectado es el mismo, no se repinta nada para
+     no parpadear. Si la IP falla, queda MX con una nota discreta.
    - Si el país detectado aún no tiene catálogo activo, se muestra el
-     aviso «estamos llegando a tu país» con el WhatsApp SOLO para
-     preguntas (los pedidos se tramitan en la web, nunca por WhatsApp).
+     aviso «estamos llegando a tu país» Y el catálogo en VISTA PREVIA:
+     los mismos productos activos SIN precios, SIN plazo y SIN ningún
+     botón de compra o carrito; solo «Ver ficha» y WhatsApp para
+     CONSULTAR (los pedidos se tramitan en la web, nunca por WhatsApp).
    - Vista previa del dueño (no aparece en la interfaz): añadir
      ?pais=XX a la URL, por ejemplo /tienda/?pais=CO. Se guarda en la
      sesión para poder navegar a las fichas sin perder el país. */
@@ -56,8 +65,13 @@
 
   /* ---------- Filtros de la portada (categoría + buscador) ---------- */
   var filtro = { cat: "todas", q: "" };
-  var portada = { pais: null, lista: [] };
+  /* modo: "activo" (precios y compra), "vistaPrevia" (sin precios ni
+     compra) o "llegando" (sin productos activos que enseñar). */
+  var portada = { pais: null, lista: [], modo: null, nombrePais: "", provisional: false };
   var filtrosListos = false;
+  /* true solo cuando la IP falló en los dos intentos (ipapi.co y
+     /cdn-cgi/trace) y hubo que quedarse con el MX de reserva. */
+  var deteccionIpFallida = false;
 
   /* ---------- Detección de país SOLO por IP ---------- */
   function paisDeUrl() {
@@ -101,6 +115,21 @@
   function guardarManual(p) {
     try { localStorage.setItem("gr_tienda_pais_manual", p); } catch (e) {}
   }
+  /* País ya conocido sin red (URL, sesión, elección manual o caché):
+     permite pintar la parrilla al instante, sin esperar a la IP. */
+  function paisSincrono() {
+    return paisDeUrl() || leerPreview() || paisManual() || paisCache();
+  }
+  function primerPaisActivo() {
+    return (CAT.paises_activos && CAT.paises_activos[0]) || "MX";
+  }
+  /* Vista previa: todos los productos activos del catálogo, sin
+     depender de datos por país (los países no activos no tienen
+     precio ni plazo en catalogo.js, así que no se puede usar
+     visible() ni tarjeta() con ellos). */
+  function listaVistaPrevia() {
+    return CAT.productos.filter(function (p) { return !!p.activo; });
+  }
   function fetchConTimeout(url, ms) {
     return new Promise(function (resolve, reject) {
       var ok = false;
@@ -132,9 +161,10 @@
           .then(function (txt) {
             var m = /loc=([A-Z]{2})/.exec(txt || "");
             if (m) { guardarCache(m[1]); return m[1]; }
-            return "MX"; /* sin señal: primer mercado del despliegue */
+            deteccionIpFallida = true;
+            return primerPaisActivo(); /* sin señal: primer mercado del despliegue */
           })
-          .catch(function () { return "MX"; });
+          .catch(function () { deteccionIpFallida = true; return primerPaisActivo(); });
       });
   }
 
@@ -194,6 +224,29 @@
       '<button type="button" class="btn cart-add" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
       "</div></article>";
   }
+  /* Vista previa (país aún no activo): las mismas tarjetas SIN precio,
+     SIN plazo de envío y SIN ningún botón de compra o carrito. Solo
+     «Ver ficha» (la ficha ya avisa de que aún no se envía allí, sin
+     precio) y WhatsApp para consultar, nunca para pedir. No se añade
+     ningún texto de origen. */
+  function tarjetaVistaPrevia(p, paisNombre) {
+    var img = imagenDe(p);
+    var media = img.src
+      ? '<img src="' + esc(img.src) + '" alt="' + esc(p.nombre) + '" loading="lazy" width="640" height="480">'
+      : '<div class="t-sin-foto">Foto en preparación</div>';
+    var badge = esMasVendido(p) ? '<span class="t-badge">Más vendido</span>' : "";
+    return '<article class="pcard pcard-previa">' +
+      '<a class="pcard-media" href="producto.html?p=' + esc(p.slug) + '" aria-label="' + esc(p.nombre) + '">' + media + badge + "</a>" +
+      '<div class="pcard-body">' +
+      '<span class="pcard-cat">' + esc(CATS[p.categoria] || p.categoria) + "</span>" +
+      '<h3><a href="producto.html?p=' + esc(p.slug) + '">' + esc(p.nombre) + "</a></h3>" +
+      '<p class="t-desc">' + esc(p.descripcion_corta) + "</p>" +
+      '<p class="t-rating"><span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " +
+      Number(p.rating).toFixed(1).replace(".", ",") + " · " + esc(p.pedidos) + " vendidos</p>" +
+      '<a class="btn sec" href="producto.html?p=' + esc(p.slug) + '">Ver ficha</a>' +
+      '<a class="btn gold t-consulta" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, paisNombre)) + '">Consultar por WhatsApp</a>' +
+      "</div></article>";
+  }
   function pintarChips() {
     var caja = $("#tienda-chips");
     if (!caja) return;
@@ -222,6 +275,15 @@
     var zona = $("#tienda-catalogo");
     if (!zona || !portada.pais) return;
     var pais = portada.pais;
+    /* En vista previa las tarjetas no llevan precio ni compra; en
+       modo activo son las de siempre. El mensaje de vacío de abajo
+       SOLO se usa aquí, con un filtro sin resultados: nunca para la
+       carga (la parrilla se pinta al instante) ni para un país sin
+       activar (que tiene su vista previa). */
+    var esPrevia = portada.modo === "vistaPrevia";
+    var dibujar = esPrevia
+      ? function (p) { return tarjetaVistaPrevia(p, portada.nombrePais); }
+      : function (p) { return tarjeta(p, pais); };
     var filtrando = filtro.cat !== "todas" || !!filtro.q;
     if (!filtrando) {
       var html = "";
@@ -229,12 +291,12 @@
         var grupo = portada.lista.filter(function (p) { return p.categoria === c; });
         if (!grupo.length) return;
         html += '<h2 class="t-cat">' + esc(CATS[c]) + '</h2><div class="pgrid">' +
-          grupo.map(function (p) { return tarjeta(p, pais); }).join("") + "</div>";
+          grupo.map(dibujar).join("") + "</div>";
       });
       var resto = portada.lista.filter(function (p) { return ORDEN_CATS.indexOf(p.categoria) === -1; });
       if (resto.length) {
         html += '<h2 class="t-cat">Más equipamiento</h2><div class="pgrid">' +
-          resto.map(function (p) { return tarjeta(p, pais); }).join("") + "</div>";
+          resto.map(dibujar).join("") + "</div>";
       }
       zona.innerHTML = html;
       return;
@@ -249,8 +311,8 @@
       return;
     }
     zona.innerHTML = '<p class="t-resultados">' + res.length + (res.length === 1 ? " producto" : " productos") +
-      ' para tu país</p><div class="pgrid">' +
-      res.map(function (p) { return tarjeta(p, pais); }).join("") + "</div>";
+      (esPrevia ? " en vista previa" : " para tu país") + '</p><div class="pgrid">' +
+      res.map(dibujar).join("") + "</div>";
   }
   function limpiarFiltros() {
     filtro.cat = "todas";
@@ -281,21 +343,63 @@
       pintarGrid();
     });
   }
-  function pintarPortada(pais) {
-    var nombrePais = (CAT.paises[pais] && CAT.paises[pais].nombre) || pais;
+  function etiquetaPais(nombrePais, provisional, modo) {
     var etiqueta = $("#tienda-pais");
-    if (etiqueta) etiqueta.textContent = "Envíos a: " + nombrePais;
+    if (!etiqueta) return;
+    if (modo === "vistaPrevia") {
+      etiqueta.textContent = "Vista previa para " + nombrePais;
+    } else if (provisional) {
+      etiqueta.textContent = "Catálogo de " + nombrePais + " · confirmando tu país…";
+    } else {
+      etiqueta.textContent = "Envíos a: " + nombrePais;
+    }
+  }
+  /* Avisos que dependen del modo y del origen del pintado. La nota de
+     IP fallida SOLO aparece cuando el pintado definitivo viene de la
+     detección y esta falló (MX de reserva): nunca en el pintado
+     provisional ni cuando el visitante eligió país a mano. */
+  function actualizarAvisos(pais, modo, opts) {
+    var nota = $("#tienda-nota-pais");
+    if (nota) nota.hidden = !(opts.origen === "deteccion" && deteccionIpFallida && pais === primerPaisActivo());
+    var previa = $("#tienda-vista-previa");
+    if (previa) previa.hidden = (modo !== "vistaPrevia");
+    var previaPais = $("#vista-previa-pais");
+    if (previaPais) previaPais.textContent = (CAT.paises[pais] && CAT.paises[pais].nombre) || pais;
+  }
+  function pintarPortada(pais, opts) {
+    opts = opts || {};
+    var nombrePais = (CAT.paises[pais] && CAT.paises[pais].nombre) || pais;
     var selPais = $("#tienda-pais-select");
     if (selPais) selPais.value = pais;
+    var activo = CAT.paises_activos.indexOf(pais) !== -1;
+    var listaActiva = activo ? CAT.productos.filter(function (p) { return visible(p, pais); }) : [];
+    var lista = activo ? listaActiva : listaVistaPrevia();
+    /* Sin productos que enseñar no hay vista previa ni parrilla: se
+       mantiene el aviso «estamos llegando» sin parrilla vacía. */
+    var modo = activo
+      ? (listaActiva.length ? "activo" : "llegando")
+      : (lista.length ? "vistaPrevia" : "llegando");
+    etiquetaPais(nombrePais, !!opts.provisional, modo);
+    actualizarAvisos(pais, modo, opts);
+    /* Mismo país y mismo modo que lo ya pintado (p. ej. MX provisional
+       → MX detectado): no se reconstruye la parrilla, para que no
+       parpadee ni se pierda el filtro que el visitante ya aplicó. La
+       sustitución de país, cuando la hay, es una sola escritura en
+       pintarGrid: la parrilla nunca pasa por vacía. */
+    if (portada.pais === pais && portada.modo === modo) {
+      portada.provisional = !!opts.provisional;
+      return;
+    }
+    portada.pais = pais;
+    portada.lista = lista;
+    portada.modo = modo;
+    portada.nombrePais = nombrePais;
+    portada.provisional = !!opts.provisional;
     var zona = $("#tienda-catalogo");
     var llegando = $("#tienda-llegando");
     var cajaFiltros = $("#tienda-filtros");
     var como = $("#tienda-como");
-    var activo = CAT.paises_activos.indexOf(pais) !== -1;
-    var lista = activo ? CAT.productos.filter(function (p) { return visible(p, pais); }) : [];
-    portada.pais = pais;
-    portada.lista = lista;
-    if (!lista.length) {
+    if (modo === "llegando") {
       if (zona) zona.innerHTML = "";
       if (cajaFiltros) cajaFiltros.hidden = true;
       if (como) como.hidden = true;
@@ -309,8 +413,19 @@
       }
       return;
     }
-    if (llegando) llegando.hidden = true;
-    if (como) como.hidden = false;
+    if (llegando) {
+      llegando.hidden = (modo !== "vistaPrevia");
+      if (modo === "vistaPrevia") {
+        var t2 = $("#llegando-titulo");
+        if (t2) t2.textContent = "Estamos llegando a " + nombrePais;
+        var b2 = $("#llegando-wa");
+        if (b2) b2.href = "https://wa.me/" + WA + "?text=" +
+          encodeURIComponent("Hola, escribo desde la tienda de Granja Rentable. Soy de " + nombrePais + " y quiero preguntar cuándo podré comprar y qué alternativas tengo.");
+      }
+    }
+    /* En vista previa no se puede pedir todavía: se oculta el bloque
+       «Cómo funciona tu pedido» para no prometer un pedido. */
+    if (como) como.hidden = (modo !== "activo");
     if (cajaFiltros) cajaFiltros.hidden = false;
     prepararFiltros();
     pintarChips();
@@ -379,12 +494,27 @@
     if (sel) sel.addEventListener("change", function () {
       var v = sel.value;
       if (v && CAT.paises[v]) {
-        guardarManual(v); guardarCache(v); pintarPortada(v);
+        guardarManual(v); guardarCache(v); pintarPortada(v, { origen: "manual" });
         if (window.GRCart) window.GRCart.setPais(v);
       }
     });
+    /* Pintado instantáneo: la parrilla nunca espera a la IP. Se pinta
+       de inmediato el país ya conocido (URL, sesión, manual o caché)
+       o, si no hay ninguno, MX, primer país del despliegue. El
+       carrito NO se toca en el pintado provisional: solo recibe el
+       país definitivo, para no cambiar precios a mitad de un pedido.
+       En la ficha (sin #tienda-catalogo) no hay pintado provisional:
+       la ficha sigue esperando a la detección, como antes. */
+    if ($("#tienda-catalogo")) {
+      var sincrono = paisSincrono();
+      pintarPortada(sincrono || primerPaisActivo(), { provisional: !sincrono, origen: "instantaneo" });
+    }
     detectarPais().then(function (pais) {
-      pintarPortada(pais);
+      /* Si el visitante eligió país a mano mientras se detectaba la
+         IP, su elección manda y la detección no la pisa. */
+      var manual = paisManual();
+      if (manual && portada.pais === manual) pais = manual;
+      pintarPortada(pais, { origen: "deteccion" });
       pintarFicha(pais);
       if (window.GRCart) window.GRCart.setPais(pais);
     });

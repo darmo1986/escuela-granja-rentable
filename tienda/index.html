@@ -71,6 +71,10 @@
     <a class="btn sec" href="../curso.html">Mientras, mira el curso</a></p>
   </section>
 
+  <div id="tienda-vista-previa" class="t-vista-previa" hidden>
+    <p><strong>Vista previa para <span id="vista-previa-pais"></span></strong> · Todavía no vendemos en tu país, por eso ves el catálogo sin precios. Si te interesa algún producto, consúltanos por WhatsApp desde su tarjeta.</p>
+  </div>
+
   <div id="tienda-filtros" class="t-filtros" hidden>
     <div class="t-chips" id="tienda-chips" role="group" aria-label="Filtrar por categoría"></div>
     <label class="t-buscar">
@@ -78,6 +82,8 @@
       <input type="search" id="tienda-buscar" placeholder="Busca un producto…" autocomplete="off">
     </label>
   </div>
+
+  <p id="tienda-nota-pais" class="t-nota-pais" hidden>No pudimos detectar tu país, así que te mostramos el catálogo de México. Si no es tu país, elígelo en el selector de arriba.</p>
 
   <section id="tienda-catalogo" aria-live="polite">
     <p class="note">Cargando el catálogo de tu país…</p>

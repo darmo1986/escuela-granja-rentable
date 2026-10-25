@@ -387,6 +387,24 @@ body.cart-abierto{ overflow:hidden; }
 .cart-ok-paypal .btn{ margin:8px 0 6px; }
 .cart-ok-paypal-nota{ font-size:.85rem; color:var(--muted); }
 #gr-ped-enviar[disabled]{ opacity:.65; cursor:wait; }
+/* ---------- Pintado instantáneo y vista previa (26-oct-2026) ---------- */
+/* Aviso compacto sobre la parrilla en vista previa: explica que no hay
+   precios todavía. No usa display, para que [hidden] siga ocultándolo. */
+.t-vista-previa{
+  background:var(--gl); border:1.5px solid var(--gm); border-radius:16px;
+  padding:14px 18px; margin:18px 0 4px; text-align:center;
+}
+.t-vista-previa p{ margin:0; color:var(--muted); font-size:.95rem; line-height:1.5; }
+.t-vista-previa strong{ color:var(--gd); }
+/* Nota discreta solo cuando la IP falló y quedó el MX de reserva. */
+.t-nota-pais{
+  text-align:center; color:var(--muted); font-size:.88rem;
+  margin:14px 0 0; line-height:1.5;
+}
+/* Tarjeta en vista previa: sin precio ni compra; la consulta por
+   WhatsApp es la llamada principal y ocupa todo el ancho. */
+.pcard-previa .t-consulta{ margin-top:8px; width:100%; text-align:center; }
+
 .cart-ok{ text-align:center; padding:26px 6px; }
 .cart-ok-t{ margin:0 0 10px; font-size:1.25rem; font-weight:900; color:var(--gd); }
 .cart-ok p{ margin:0 auto 12px; max-width:330px; line-height:1.55; color:var(--muted); }
