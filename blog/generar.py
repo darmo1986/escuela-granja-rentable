@@ -23,6 +23,8 @@ SITIO = "https://granjarentable.com"
 AUTOR = "Juan Pablo González García"
 EDITOR = "Granja Rentable"
 LOGO = SITIO + "/img/logo.jpg"
+OG_BLOG = SITIO + "/img/og/blog.jpg"
+OG_BLOG_ALT = "Artículos de avicultura de Granja Rentable"
 POR_PAGINA = 12
 MINIMO_CATEGORIA = 3
 ANCHO_FOTO = 1200
@@ -1006,7 +1008,7 @@ def planificar(raiz, incluir_borradores=False):
     titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
     descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
                         "sacados de las lecciones del curso gratis.")
-    og_portada = LOGO
+    og_portada = OG_BLOG
     paginas_indice = max(1, (len(publicados) + POR_PAGINA - 1) // POR_PAGINA) if publicados else 1
     for numero in range(1, paginas_indice + 1):
         rel = "blog/index.html" if numero == 1 else f"blog/pagina-{numero}.html"
@@ -1026,7 +1028,7 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo_blog, descripcion_blog, canonical,
             "index,follow" if hay_posts else "noindex,follow", "website",
-            og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
+            og_portada, OG_BLOG_ALT, ld_blog(), contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in publicados if p["categoria"] == clave]
         indexable = len(grupo) >= MINIMO_CATEGORIA
@@ -1048,18 +1050,16 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
-            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta),
+            "website", og_portada, OG_BLOG_ALT, ld_categoria(meta),
             contenido, menu_html, pie_html)
     for post in publicados:
         rel = f"blog/{post['slug']}.html"
         canonical = SITIO + "/blog/" + post["slug"] + ".html"
         titulo = titulo_visible(post["titulo_seo"])
-        extra = (ld_articulo(post, canonical) + "\n"
-                 '<meta property="og:image:width" content="1200">\n'
-                 '<meta property="og:image:height" content="630">')
+        extra = ld_articulo(post, canonical)
         archivos[rel] = envolver(
             shell, rel, titulo, post["descripcion"], canonical, "index,follow", "article",
-            SITIO + "/" + post["imagen_og"], post["imagen_alt"], extra,
+            OG_BLOG, OG_BLOG_ALT, extra,
             html_post(post, publicados, catalogo, raiz, activo), menu_html, pie_html)
     entradas = []
     if publicados:
