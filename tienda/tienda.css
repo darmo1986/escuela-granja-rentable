@@ -14,7 +14,7 @@
 }
 .t-banda-in{
   display:flex; flex-wrap:wrap; gap:6px 26px; justify-content:center;
-  padding-top:10px; padding-bottom:10px;
+  min-height: 44px; padding-top:10px; padding-bottom:10px;
   font-size:.92rem; font-weight:700; color:#fff; text-align:center;
 }
 .t-banda-in span::before{ content:"✓ "; color:var(--gold); font-weight:900; }
@@ -49,14 +49,15 @@
 }
 .t-hero-lead strong{ color:#fff; }
 .t-pais-chip{
-  display:inline-block; margin-top:16px; padding:7px 16px;
+  display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box;
+  min-height:40px; margin-top:16px; padding:7px 16px;
   border:1.5px solid rgba(255,255,255,.45); border-radius:999px;
   background:rgba(255,255,255,.12); backdrop-filter:blur(4px);
   font-size:.92rem; font-weight:800; color:#fff;
 }
 .t-pais-manual{
   margin:14px auto 0; display:flex; flex-wrap:wrap; gap:8px 10px;
-  align-items:center; justify-content:center;
+  align-items:center; justify-content:center; min-height:76px;
   font-size:.92rem; font-weight:700; color:#DDEEDF;
 }
 .t-pais-manual select{
@@ -217,7 +218,13 @@
 }
 
 /* ---------- Carrito de compra (carrito.js) ---------- */
-.site-head .head-in{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.site-head { min-height: 72px; }
+.site-head .head-in{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; min-height: 64px; }
+@media (max-width: 720px) {
+  /* El botón del carrito lo inyecta carrito.js y en móvil pasa a otra línea. */
+  .site-head { min-height: 120px; }
+  .site-head .head-in { min-height: 108px; }
+}
 .cart-head-btn{
   appearance:none; cursor:pointer; margin-left:auto;
   display:inline-flex; align-items:center; gap:7px;
