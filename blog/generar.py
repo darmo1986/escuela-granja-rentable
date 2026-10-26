@@ -958,8 +958,35 @@ def paginas_html(raiz):
         yield rel, ruta
 
 
-def actualizar_sitemap(texto, entradas):
+def html_es_noindex(html):
+    encontrado = re.search(r'<meta\s+name=["\']robots["\']\s+content=["\']([^"\']*)["\']', html or "", re.I)
+    return bool(encontrado and "noindex" in encontrado.group(1).lower())
+
+
+def rel_de_loc(loc):
+    ruta = loc.replace(SITIO, "", 1).split("?", 1)[0]
+    if ruta in ("", "/"):
+        return "index.html"
+    if ruta.rstrip("/") == "/blog":
+        return "blog/index.html"
+    rel = ruta.lstrip("/")
+    if rel.endswith("/"):
+        return rel + "index.html"
+    return rel
+
+
+def actualizar_sitemap(texto, entradas, raiz=None):
     texto = re.sub(r"\s*<url>\s*<loc>https://granjarentable.com/blog[^<]*</loc>.*?</url>", "", texto, flags=re.S)
+    if raiz is not None:
+        def quitar_noindex(coincidencia):
+            loc = re.search(r"<loc>([^<]+)</loc>", coincidencia.group(0))
+            if not loc:
+                return coincidencia.group(0)
+            archivo = Path(raiz) / rel_de_loc(loc.group(1).strip())
+            if archivo.is_file() and html_es_noindex(archivo.read_text(encoding="utf-8", errors="replace")):
+                return ""
+            return coincidencia.group(0)
+        texto = re.sub(r"\s*<url>\s*<loc>.*?</url>", quitar_noindex, texto, flags=re.S)
     bloque = []
     for loc, lastmod in entradas:
         if lastmod:
@@ -1073,9 +1100,15 @@ def planificar(raiz, incluir_borradores=False):
                              max(p["actualizado"] for p in grupo).isoformat()))
     for post in publicados:
         entradas.append((SITIO + "/blog/" + post["slug"] + ".html", post["actualizado"].isoformat()))
+    for loc, _lastmod in entradas:
+        rel = rel_de_loc(loc)
+        if html_es_noindex(archivos.get(rel, "")):
+            errores.append(f"sitemap: {loc} es noindex y no puede publicarse.")
     sitemap = raiz / "sitemap.xml"
+    if errores:
+        return errores, {}, []
     if sitemap.is_file():
-        archivos["sitemap.xml"] = actualizar_sitemap(sitemap.read_text(encoding="utf-8"), entradas)
+        archivos["sitemap.xml"] = actualizar_sitemap(sitemap.read_text(encoding="utf-8"), entradas, raiz)
     else:
         errores.append("No está sitemap.xml.")
     borrar = []

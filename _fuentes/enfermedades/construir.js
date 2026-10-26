@@ -430,12 +430,20 @@ function paginaCategoria(cat) {
   });
 }
 
+function esNoindex(rel) {
+  var file = path.join(ROOT, rel);
+  if (!fs.existsSync(file)) return true;
+  var html = fs.readFileSync(file, "utf8");
+  var m = html.match(/<meta\s+name=["']robots["']\s+content=["']([^"']*)["']/i);
+  return !!(m && /noindex/i.test(m[1]));
+}
+
 function sitemap() {
   var file = path.join(ROOT, "sitemap.xml");
   var xml = fs.readFileSync(file, "utf8");
-  xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc><\/url>/g, "");
-  xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc><\/url>/g, "");
-  var urls = ['<url><loc>https://granjarentable.com/enfermedades.html</loc></url>']
+  xml = xml.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc>[\s\S]*?<\/url>/g, "");
+  xml = xml.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc>[\s\S]*?<\/url>/g, "");
+  var lineas = ['<url><loc>https://granjarentable.com/enfermedades.html</loc></url>']
     .concat(data.categorias.filter(function (c) {
       return deCategoria(c.id).some(function (a) { return a.estado === "completo"; });
     }).map(function (c) {
@@ -443,8 +451,22 @@ function sitemap() {
     }))
     .concat(publicados().map(function (a) {
       return "<url><loc>https://granjarentable.com/enfermedades/" + a.id + ".html</loc></url>";
-    })).join("\n");
-  xml = xml.replace("</urlset>", urls + "\n</urlset>");
+    }));
+  lineas = lineas.filter(function (linea) {
+    var m = linea.match(/<loc>([^<]+)<\/loc>/);
+    if (!m) return false;
+    var rel = m[1].replace("https://granjarentable.com/", "");
+    if (esNoindex(rel)) {
+      console.error("sitemap: se omite porque es noindex: " + m[1]);
+      return false;
+    }
+    return true;
+  });
+  if (!lineas.length) throw new Error("sitemap: no quedó ninguna URL de enfermedades indexable.");
+  xml = xml.replace("</urlset>", lineas.join("\n") + "\n</urlset>");
+  if (/<loc>https:\/\/granjarentable\.com\/enfermedades\/(?:bronquitis|carencias|digestivas|gripe-aviar|huevo-retenido|lombrices|marek|micoplasma|newcastle|piojos|pododermatitis|pollitos|prolapso|sarna-patas)\.html<\/loc>/.test(xml)) {
+    throw new Error("sitemap: una ficha noindex de enfermedades volvió a entrar.");
+  }
   fs.writeFileSync(file, xml);
 }
 
