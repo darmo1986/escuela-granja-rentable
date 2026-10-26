@@ -30,6 +30,11 @@ ALTO_FOTO = 675
 ANCHO_OG = 1200
 ALTO_OG = 630
 MARCA_PAGINA = "<!-- pagina-generada: blog -->"
+# La portada responsive (-400 y -800) se genera aparte y se guarda en el repo.
+# Si no está, el HTML sigue usando la foto original de 1200 px.
+RAIZ_FS = None
+SIZES_FICHA = "(min-width: 720px) 672px, calc(100vw - 48px)"
+SIZES_TARJETA = "(min-width: 980px) 360px, (min-width: 640px) 46vw, calc(100vw - 48px)"
 
 CLAVES = {
     "titulo", "titulo_seo", "descripcion", "categoria", "fecha", "leccion",
@@ -710,9 +715,29 @@ def anuncio(tamano, activo):
             f'<div class="ad-slot" data-ad-slot="{tamano}" data-ad-size="{tamano}"></div></aside>')
 
 
-def tarjeta(post, raiz):
+def variantes_portada(imagen):
+    if RAIZ_FS is None or not str(imagen).endswith(".webp"):
+        return None
+    stem = str(imagen)[:-5]
+    if (RAIZ_FS / f"{stem}-400.webp").is_file() and (RAIZ_FS / f"{stem}-800.webp").is_file():
+        return stem
+    return None
+
+
+def etiqueta_foto(raiz, imagen, alt, prioritaria, sizes):
+    stem = variantes_portada(imagen)
+    if not stem:
+        return f'<img src="{esc(raiz + imagen)}" alt="{esc(alt)}" width="1200" height="675">'
+    carga = 'fetchpriority="high" decoding="async"' if prioritaria else 'loading="lazy" decoding="async"'
+    return (f'<img src="{esc(raiz + stem)}-800.webp" '
+            f'srcset="{esc(raiz + stem)}-400.webp 400w, {esc(raiz + stem)}-800.webp 800w" '
+            f'sizes="{sizes}" alt="{esc(alt)}" width="800" height="450" {carga}>')
+
+
+def tarjeta(post, raiz, prioritaria=False):
+    foto = etiqueta_foto(raiz, post["imagen"], post["imagen_alt"], prioritaria, SIZES_TARJETA)
     return f'''<article class="pcard">
-<a class="pcard-media post-media" href="{esc(post["slug"])}.html"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" width="1200" height="675"></a>
+<a class="pcard-media post-media" href="{esc(post["slug"])}.html">{foto}</a>
 <div class="pcard-body">
 <p class="pcard-cat">{esc(CATS[post["categoria"]]["nombre"])}</p>
 <h3><a href="{esc(post["slug"])}.html">{esc(post["titulo"])}</a></h3>
@@ -765,8 +790,9 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     cabeza = (f'<header class="page-hero post-head">\n{migas}\n'
               f'<p class="kicker">{esc(CATS[post["categoria"]]["nombre"])}</p>\n'
               f'<h1>{esc(post["titulo"])}</h1>\n<p class="post-meta">{meta}</p>\n</header>')
-    foto = (f'<figure class="post-foto"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" '
-            f'width="1200" height="675"></figure>')
+    foto = ('<figure class="post-foto">'
+            + etiqueta_foto(raiz, post["imagen"], post["imagen_alt"], True, SIZES_FICHA)
+            + '</figure>')
     guia_href, guia_titulo, _ = GUIAS[post["guia"]]
     guia = (f'<p>La guía fija de este tema es <a href="{raiz}{esc(guia_href)}">{esc(guia_titulo)}</a>.</p>')
     fuentes = ""
@@ -814,7 +840,7 @@ def listado(posts, pagina, total_paginas):
     corte = posts[inicio:inicio + POR_PAGINA]
     if not corte:
         return '<p class="blog-vacio">Todavía no hay artículos publicados. Cada texto se revisa antes de salir aquí.</p>'
-    html = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../") for p in corte) + "\n</div>"
+    html = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../", i == 0) for i, p in enumerate(corte)) + "\n</div>"
     if total_paginas > 1:
         enlaces = []
         if pagina > 1:
@@ -945,7 +971,9 @@ def actualizar_sitemap(texto, entradas):
 
 
 def planificar(raiz, incluir_borradores=False):
+    global RAIZ_FS
     raiz = Path(raiz)
+    RAIZ_FS = raiz
     if (raiz / ".nojekyll").exists():
         return ["Hay un .nojekyll en la raíz. Quítalo: si sigue ahí, Pages puede copiar las fuentes. La web sale solo de la Action, con _site/."], {}, []
     errores = []
@@ -1010,7 +1038,7 @@ def planificar(raiz, incluir_borradores=False):
                 f'<p class="kicker">Artículos</p>\n<h1>{esc(meta["nombre"])}</h1>\n'
                 f'<p>{esc(descripcion)}</p>\n</section>')
         if grupo:
-            rejilla = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../") for p in grupo) + "\n</div>"
+            rejilla = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../", i == 0) for i, p in enumerate(grupo)) + "\n</div>"
         else:
             rejilla = '<p class="blog-vacio">Todavía no hay artículos publicados en esta categoría.</p>'
         contenido = "\n".join(parte for parte in [
