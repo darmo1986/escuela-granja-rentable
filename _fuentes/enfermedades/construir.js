@@ -203,6 +203,34 @@ function menuDe(cat) {
   return cat.menu || cat.nombre;
 }
 
+function elegirDescripcion(opciones, contexto) {
+  for (var i = 0; i < opciones.length; i++) {
+    if (opciones[i].length >= 120 && opciones[i].length <= 155) return opciones[i];
+  }
+  throw new Error("descripción fuera de 120-155: " + contexto);
+}
+
+function descEnPreparacion(titulo) {
+  return elegirDescripcion([
+    "Ficha de " + titulo + " en preparación. Todavía no está publicada en Granja Rentable: información orientativa, sin dosis.",
+    "Ficha de " + titulo + " en preparación en Granja Rentable. Todavía no está publicada. Información orientativa, sin dosis.",
+    titulo + ": ficha en preparación en Granja Rentable. Todavía no está publicada. Información orientativa, sin dosis.",
+    "Ficha de " + titulo + " en preparación en Granja Rentable. Todavía no está publicada. Información orientativa, sin dosis ni tratamiento."
+  ], titulo);
+}
+
+function descCategoria(cat, listas) {
+  var nombre = menuDe(cat);
+  var estado = listas.length
+    ? (listas.length === 1 ? "hay 1 ficha redactada" : "hay " + listas.length + " fichas redactadas")
+    : "las fichas se publicarán cuando estén revisadas";
+  return elegirDescripcion([
+    "Categoría " + nombre + " de enfermedades de gallinas y pollos en Granja Rentable: " + estado + ". Información orientativa, sin dosis.",
+    nombre + " en Granja Rentable: " + estado + ". Enfermedades de gallinas y pollos, información orientativa y sin dosis.",
+    "Enfermedades, categoría " + nombre + ": " + estado + ". Información orientativa de Granja Rentable, sin dosis."
+  ], nombre);
+}
+
 function publicados() {
   return data.articulos.filter(function (a) { return a.estado === "completo"; });
 }
@@ -282,7 +310,7 @@ function ficha(art) {
       root: root,
       path: "/enfermedades/" + art.id + ".html",
       title: art.titulo + " | Enfermedades | Granja Rentable",
-      description: "Ficha en preparación. Todavía no está publicada.",
+      description: descEnPreparacion(art.titulo),
       robots: "noindex,follow",
       main: mainCorto,
       extra: '<script src="' + root + 'js/enfermedades.js"></script>\n'
@@ -414,7 +442,7 @@ function paginaCategoria(cat) {
     root: "../../",
     path: "/enfermedades/categoria/" + cat.id + ".html",
     title: menuDe(cat) + " | Enfermedades | Granja Rentable",
-    description: menuDe(cat) + ": " + (listas.length ? listas.length + (listas.length === 1 ? " ficha redactada" : " fichas redactadas") : "fichas próximamente") + ". Información orientativa, sin dosis.",
+    description: descCategoria(cat, listas),
     schema: JSON.stringify({
       "@context": "https://schema.org",
       "@type": "CollectionPage",

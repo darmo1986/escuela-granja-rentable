@@ -1,7 +1,7 @@
 ---
 titulo: "Precio del huevo y 5 negocios con gallinas"
 titulo_seo: "5 negocios con gallinas: precio del huevo"
-descripcion: "Cómo calcular el precio de tus huevos y 5 negocios con gallinas: pollitas, huevos fértiles, descarte y gallinaza."
+descripcion: "Cómo calcular el precio de tus huevos y 5 negocios con gallinas: pollitas, huevos fértiles, descarte y gallinaza. En Granja Rentable."
 categoria: ponedoras
 fecha: 2026-10-24
 borrador: false

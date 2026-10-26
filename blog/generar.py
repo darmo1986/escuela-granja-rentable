@@ -1032,9 +1032,16 @@ def planificar(raiz, incluir_borradores=False):
     except Fallo as exc:
         return [str(exc)], {}, []
     catalogo = cargar_catalogo(raiz)
-    titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
-    descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
-                        "sacados de las lecciones del curso gratis.")
+    def metas_indice(numero):
+        titulo = "Artículos de avicultura para tu granja | Granja Rentable"
+        descripcion = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
+                       "sacados de las lecciones del curso gratis.")
+        if numero > 1:
+            titulo = f"Artículos de avicultura, página {numero} | Granja Rentable"
+            descripcion = (f"Página {numero} de los artículos de avicultura de Granja Rentable: gallinas ponedoras, "
+                           "pollos de engorde, incubación, salud y alimentación del curso gratis.")
+        return titulo, descripcion
+
     og_portada = OG_BLOG
     paginas_indice = max(1, (len(publicados) + POR_PAGINA - 1) // POR_PAGINA) if publicados else 1
     for numero in range(1, paginas_indice + 1):
@@ -1052,6 +1059,7 @@ def planificar(raiz, incluir_borradores=False):
             bloque_curso("../"),
             anuncio("rect", activo),
         ] if parte)
+        titulo_blog, descripcion_blog = metas_indice(numero)
         archivos[rel] = envolver(
             shell, rel, titulo_blog, descripcion_blog, canonical,
             "index,follow" if hay_posts else "noindex,follow", "website",
@@ -1062,10 +1070,15 @@ def planificar(raiz, incluir_borradores=False):
         rel = f"blog/{meta['slug']}.html"
         canonical = SITIO + "/blog/" + meta["slug"] + ".html"
         titulo = f"{meta['nombre']} | Artículos | Granja Rentable"
-        descripcion = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, sacados de las lecciones del curso gratis."
+        visible = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, sacados de las lecciones del curso gratis."
+        descripcion = visible + " Textos cortos de Granja Rentable."
+        if len(descripcion) < 120:
+            descripcion = visible + " Textos cortos, ya en Granja Rentable."
+        if len(descripcion) > 155:
+            descripcion = visible[:-1] + " de Granja Rentable."
         hero = (f'<section class="page-hero">\n<p class="crumbs"><a href="../index.html">Inicio</a> › <a href="index.html">Artículos</a></p>\n'
                 f'<p class="kicker">Artículos</p>\n<h1>{esc(meta["nombre"])}</h1>\n'
-                f'<p>{esc(descripcion)}</p>\n</section>')
+                f'<p>{esc(visible)}</p>\n</section>')
         if grupo:
             rejilla = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../", i == 0) for i, p in enumerate(grupo)) + "\n</div>"
         else:
