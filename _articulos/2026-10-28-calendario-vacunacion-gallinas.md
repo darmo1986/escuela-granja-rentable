@@ -1,7 +1,7 @@
 ---
 titulo: "Calendario de vacunación para gallinas ponedoras"
 titulo_seo: "Calendario de vacunación para gallinas ponedoras"
-descripcion: "El calendario completo de vacunas para gallinas: qué vacuna poner, a qué edad y cómo aplicarla para un gallinero sano."
+descripcion: "Calendario de vacunas para gallinas ponedoras: qué vacuna, a qué edad y cómo se aplica. Ajústalo con tu veterinario según tu zona."
 categoria: salud
 fecha: 2026-10-28
 borrador: false

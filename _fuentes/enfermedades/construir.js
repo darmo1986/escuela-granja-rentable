@@ -203,6 +203,34 @@ function menuDe(cat) {
   return cat.menu || cat.nombre;
 }
 
+function elegirDescripcion(opciones, contexto) {
+  for (var i = 0; i < opciones.length; i++) {
+    if (opciones[i].length >= 120 && opciones[i].length <= 155) return opciones[i];
+  }
+  throw new Error("descripción fuera de 120-155: " + contexto);
+}
+
+function descEnPreparacion(titulo) {
+  return elegirDescripcion([
+    "Ficha de " + titulo + " en preparación. Todavía no está publicada en Granja Rentable: información orientativa, sin dosis.",
+    "Ficha de " + titulo + " en preparación en Granja Rentable. Todavía no está publicada. Información orientativa, sin dosis.",
+    titulo + ": ficha en preparación en Granja Rentable. Todavía no está publicada. Información orientativa, sin dosis.",
+    "Ficha de " + titulo + " en preparación en Granja Rentable. Todavía no está publicada. Información orientativa, sin dosis ni tratamiento."
+  ], titulo);
+}
+
+function descCategoria(cat, listas) {
+  var nombre = menuDe(cat);
+  var estado = listas.length
+    ? (listas.length === 1 ? "hay 1 ficha redactada" : "hay " + listas.length + " fichas redactadas")
+    : "las fichas se publicarán cuando estén revisadas";
+  return elegirDescripcion([
+    "Categoría " + nombre + " de enfermedades de gallinas y pollos en Granja Rentable: " + estado + ". Información orientativa, sin dosis.",
+    nombre + " en Granja Rentable: " + estado + ". Enfermedades de gallinas y pollos, información orientativa y sin dosis.",
+    "Enfermedades, categoría " + nombre + ": " + estado + ". Información orientativa de Granja Rentable, sin dosis."
+  ], nombre);
+}
+
 function publicados() {
   return data.articulos.filter(function (a) { return a.estado === "completo"; });
 }
@@ -282,7 +310,7 @@ function ficha(art) {
       root: root,
       path: "/enfermedades/" + art.id + ".html",
       title: art.titulo + " | Enfermedades | Granja Rentable",
-      description: "Ficha en preparación. Todavía no está publicada.",
+      description: descEnPreparacion(art.titulo),
       robots: "noindex,follow",
       main: mainCorto,
       extra: '<script src="' + root + 'js/enfermedades.js"></script>\n'
@@ -414,7 +442,7 @@ function paginaCategoria(cat) {
     root: "../../",
     path: "/enfermedades/categoria/" + cat.id + ".html",
     title: menuDe(cat) + " | Enfermedades | Granja Rentable",
-    description: menuDe(cat) + ": " + (listas.length ? listas.length + (listas.length === 1 ? " ficha redactada" : " fichas redactadas") : "fichas próximamente") + ". Información orientativa, sin dosis.",
+    description: descCategoria(cat, listas),
     schema: JSON.stringify({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -430,12 +458,20 @@ function paginaCategoria(cat) {
   });
 }
 
+function esNoindex(rel) {
+  var file = path.join(ROOT, rel);
+  if (!fs.existsSync(file)) return true;
+  var html = fs.readFileSync(file, "utf8");
+  var m = html.match(/<meta\s+name=["']robots["']\s+content=["']([^"']*)["']/i);
+  return !!(m && /noindex/i.test(m[1]));
+}
+
 function sitemap() {
   var file = path.join(ROOT, "sitemap.xml");
   var xml = fs.readFileSync(file, "utf8");
-  xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc><\/url>/g, "");
-  xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc><\/url>/g, "");
-  var urls = ['<url><loc>https://granjarentable.com/enfermedades.html</loc></url>']
+  xml = xml.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc>[\s\S]*?<\/url>/g, "");
+  xml = xml.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc>[\s\S]*?<\/url>/g, "");
+  var lineas = ['<url><loc>https://granjarentable.com/enfermedades.html</loc></url>']
     .concat(data.categorias.filter(function (c) {
       return deCategoria(c.id).some(function (a) { return a.estado === "completo"; });
     }).map(function (c) {
@@ -443,8 +479,22 @@ function sitemap() {
     }))
     .concat(publicados().map(function (a) {
       return "<url><loc>https://granjarentable.com/enfermedades/" + a.id + ".html</loc></url>";
-    })).join("\n");
-  xml = xml.replace("</urlset>", urls + "\n</urlset>");
+    }));
+  lineas = lineas.filter(function (linea) {
+    var m = linea.match(/<loc>([^<]+)<\/loc>/);
+    if (!m) return false;
+    var rel = m[1].replace("https://granjarentable.com/", "");
+    if (esNoindex(rel)) {
+      console.error("sitemap: se omite porque es noindex: " + m[1]);
+      return false;
+    }
+    return true;
+  });
+  if (!lineas.length) throw new Error("sitemap: no quedó ninguna URL de enfermedades indexable.");
+  xml = xml.replace("</urlset>", lineas.join("\n") + "\n</urlset>");
+  if (/<loc>https:\/\/granjarentable\.com\/enfermedades\/(?:bronquitis|carencias|digestivas|gripe-aviar|huevo-retenido|lombrices|marek|micoplasma|newcastle|piojos|pododermatitis|pollitos|prolapso|sarna-patas)\.html<\/loc>/.test(xml)) {
+    throw new Error("sitemap: una ficha noindex de enfermedades volvió a entrar.");
+  }
   fs.writeFileSync(file, xml);
 }
 

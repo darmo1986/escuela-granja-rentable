@@ -203,12 +203,15 @@
   }
 
   /* ---------- Portada de la tienda ---------- */
-  function tarjeta(p, pais) {
+  function etiquetaFoto(img, nombre, prioritaria) {
+    if (!img.src) return '<div class="t-sin-foto">Foto en preparación</div>';
+    var carga = prioritaria ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"';
+    return '<img src="' + esc(img.src) + '" alt="' + esc(nombre) + '" ' + carga + ' width="640" height="480">';
+  }
+  function tarjeta(p, pais, prioritaria) {
     var d = datosPais(p, pais);
     var img = imagenDe(p);
-    var media = img.src
-      ? '<img src="' + esc(img.src) + '" alt="' + esc(p.nombre) + '" loading="lazy" width="640" height="480">'
-      : '<div class="t-sin-foto">Foto en preparación</div>';
+    var media = etiquetaFoto(img, p.nombre, prioritaria);
     var badge = esMasVendido(p) ? '<span class="t-badge">Más vendido</span>' : "";
     return '<article class="pcard">' +
       '<a class="pcard-media" href="producto.html?p=' + esc(p.slug) + '" aria-label="' + esc(p.nombre) + '">' + media + badge + "</a>" +
@@ -229,11 +232,9 @@
      «Ver ficha» (la ficha ya avisa de que aún no se envía allí, sin
      precio) y WhatsApp para consultar, nunca para pedir. No se añade
      ningún texto de origen. */
-  function tarjetaVistaPrevia(p, paisNombre) {
+  function tarjetaVistaPrevia(p, paisNombre, prioritaria) {
     var img = imagenDe(p);
-    var media = img.src
-      ? '<img src="' + esc(img.src) + '" alt="' + esc(p.nombre) + '" loading="lazy" width="640" height="480">'
-      : '<div class="t-sin-foto">Foto en preparación</div>';
+    var media = etiquetaFoto(img, p.nombre, prioritaria);
     var badge = esMasVendido(p) ? '<span class="t-badge">Más vendido</span>' : "";
     return '<article class="pcard pcard-previa">' +
       '<a class="pcard-media" href="producto.html?p=' + esc(p.slug) + '" aria-label="' + esc(p.nombre) + '">' + media + badge + "</a>" +
@@ -281,9 +282,12 @@
        carga (la parrilla se pinta al instante) ni para un país sin
        activar (que tiene su vista previa). */
     var esPrevia = portada.modo === "vistaPrevia";
-    var dibujar = esPrevia
-      ? function (p) { return tarjetaVistaPrevia(p, portada.nombrePais); }
-      : function (p) { return tarjeta(p, pais); };
+    var quedaPrimera = true;
+    function dibujar(p) {
+      var prioritaria = quedaPrimera;
+      quedaPrimera = false;
+      return esPrevia ? tarjetaVistaPrevia(p, portada.nombrePais, prioritaria) : tarjeta(p, pais, prioritaria);
+    }
     var filtrando = filtro.cat !== "todas" || !!filtro.q;
     if (!filtrando) {
       var html = "";

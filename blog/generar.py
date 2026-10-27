@@ -23,6 +23,8 @@ SITIO = "https://granjarentable.com"
 AUTOR = "Juan Pablo González García"
 EDITOR = "Granja Rentable"
 LOGO = SITIO + "/img/logo.jpg"
+OG_BLOG = SITIO + "/img/og/blog.jpg"
+OG_BLOG_ALT = "Artículos de avicultura de Granja Rentable"
 POR_PAGINA = 12
 MINIMO_CATEGORIA = 3
 ANCHO_FOTO = 1200
@@ -30,6 +32,11 @@ ALTO_FOTO = 675
 ANCHO_OG = 1200
 ALTO_OG = 630
 MARCA_PAGINA = "<!-- pagina-generada: blog -->"
+# La portada responsive (-400 y -800) se genera aparte y se guarda en el repo.
+# Si no está, el HTML sigue usando la foto original de 1200 px.
+RAIZ_FS = None
+SIZES_FICHA = "(min-width: 720px) 672px, calc(100vw - 48px)"
+SIZES_TARJETA = "(min-width: 980px) 360px, (min-width: 640px) 46vw, calc(100vw - 48px)"
 
 CLAVES = {
     "titulo", "titulo_seo", "descripcion", "categoria", "fecha", "leccion",
@@ -710,9 +717,29 @@ def anuncio(tamano, activo):
             f'<div class="ad-slot" data-ad-slot="{tamano}" data-ad-size="{tamano}"></div></aside>')
 
 
-def tarjeta(post, raiz):
+def variantes_portada(imagen):
+    if RAIZ_FS is None or not str(imagen).endswith(".webp"):
+        return None
+    stem = str(imagen)[:-5]
+    if (RAIZ_FS / f"{stem}-400.webp").is_file() and (RAIZ_FS / f"{stem}-800.webp").is_file():
+        return stem
+    return None
+
+
+def etiqueta_foto(raiz, imagen, alt, prioritaria, sizes):
+    stem = variantes_portada(imagen)
+    if not stem:
+        return f'<img src="{esc(raiz + imagen)}" alt="{esc(alt)}" width="1200" height="675">'
+    carga = 'fetchpriority="high" decoding="async"' if prioritaria else 'loading="lazy" decoding="async"'
+    return (f'<img src="{esc(raiz + stem)}-800.webp" '
+            f'srcset="{esc(raiz + stem)}-400.webp 400w, {esc(raiz + stem)}-800.webp 800w" '
+            f'sizes="{sizes}" alt="{esc(alt)}" width="800" height="450" {carga}>')
+
+
+def tarjeta(post, raiz, prioritaria=False):
+    foto = etiqueta_foto(raiz, post["imagen"], post["imagen_alt"], prioritaria, SIZES_TARJETA)
     return f'''<article class="pcard">
-<a class="pcard-media post-media" href="{esc(post["slug"])}.html"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" width="1200" height="675"></a>
+<a class="pcard-media post-media" href="{esc(post["slug"])}.html">{foto}</a>
 <div class="pcard-body">
 <p class="pcard-cat">{esc(CATS[post["categoria"]]["nombre"])}</p>
 <h3><a href="{esc(post["slug"])}.html">{esc(post["titulo"])}</a></h3>
@@ -765,8 +792,9 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     cabeza = (f'<header class="page-hero post-head">\n{migas}\n'
               f'<p class="kicker">{esc(CATS[post["categoria"]]["nombre"])}</p>\n'
               f'<h1>{esc(post["titulo"])}</h1>\n<p class="post-meta">{meta}</p>\n</header>')
-    foto = (f'<figure class="post-foto"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" '
-            f'width="1200" height="675"></figure>')
+    foto = ('<figure class="post-foto">'
+            + etiqueta_foto(raiz, post["imagen"], post["imagen_alt"], True, SIZES_FICHA)
+            + '</figure>')
     guia_href, guia_titulo, _ = GUIAS[post["guia"]]
     guia = (f'<p>La guía fija de este tema es <a href="{raiz}{esc(guia_href)}">{esc(guia_titulo)}</a>.</p>')
     fuentes = ""
@@ -814,7 +842,7 @@ def listado(posts, pagina, total_paginas):
     corte = posts[inicio:inicio + POR_PAGINA]
     if not corte:
         return '<p class="blog-vacio">Todavía no hay artículos publicados. Cada texto se revisa antes de salir aquí.</p>'
-    html = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../") for p in corte) + "\n</div>"
+    html = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../", i == 0) for i, p in enumerate(corte)) + "\n</div>"
     if total_paginas > 1:
         enlaces = []
         if pagina > 1:
@@ -930,8 +958,35 @@ def paginas_html(raiz):
         yield rel, ruta
 
 
-def actualizar_sitemap(texto, entradas):
+def html_es_noindex(html):
+    encontrado = re.search(r'<meta\s+name=["\']robots["\']\s+content=["\']([^"\']*)["\']', html or "", re.I)
+    return bool(encontrado and "noindex" in encontrado.group(1).lower())
+
+
+def rel_de_loc(loc):
+    ruta = loc.replace(SITIO, "", 1).split("?", 1)[0]
+    if ruta in ("", "/"):
+        return "index.html"
+    if ruta.rstrip("/") == "/blog":
+        return "blog/index.html"
+    rel = ruta.lstrip("/")
+    if rel.endswith("/"):
+        return rel + "index.html"
+    return rel
+
+
+def actualizar_sitemap(texto, entradas, raiz=None):
     texto = re.sub(r"\s*<url>\s*<loc>https://granjarentable.com/blog[^<]*</loc>.*?</url>", "", texto, flags=re.S)
+    if raiz is not None:
+        def quitar_noindex(coincidencia):
+            loc = re.search(r"<loc>([^<]+)</loc>", coincidencia.group(0))
+            if not loc:
+                return coincidencia.group(0)
+            archivo = Path(raiz) / rel_de_loc(loc.group(1).strip())
+            if archivo.is_file() and html_es_noindex(archivo.read_text(encoding="utf-8", errors="replace")):
+                return ""
+            return coincidencia.group(0)
+        texto = re.sub(r"\s*<url>\s*<loc>.*?</url>", quitar_noindex, texto, flags=re.S)
     bloque = []
     for loc, lastmod in entradas:
         if lastmod:
@@ -945,7 +1000,9 @@ def actualizar_sitemap(texto, entradas):
 
 
 def planificar(raiz, incluir_borradores=False):
+    global RAIZ_FS
     raiz = Path(raiz)
+    RAIZ_FS = raiz
     if (raiz / ".nojekyll").exists():
         return ["Hay un .nojekyll en la raíz. Quítalo: si sigue ahí, Pages puede copiar las fuentes. La web sale solo de la Action, con _site/."], {}, []
     errores = []
@@ -975,10 +1032,17 @@ def planificar(raiz, incluir_borradores=False):
     except Fallo as exc:
         return [str(exc)], {}, []
     catalogo = cargar_catalogo(raiz)
-    titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
-    descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
-                        "sacados de las lecciones del curso gratis.")
-    og_portada = LOGO
+    def metas_indice(numero):
+        titulo = "Artículos de avicultura para tu granja | Granja Rentable"
+        descripcion = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
+                       "sacados de las lecciones del curso gratis.")
+        if numero > 1:
+            titulo = f"Artículos de avicultura, página {numero} | Granja Rentable"
+            descripcion = (f"Página {numero} de los artículos de avicultura de Granja Rentable: gallinas ponedoras, "
+                           "pollos de engorde, incubación, salud y alimentación del curso gratis.")
+        return titulo, descripcion
+
+    og_portada = OG_BLOG
     paginas_indice = max(1, (len(publicados) + POR_PAGINA - 1) // POR_PAGINA) if publicados else 1
     for numero in range(1, paginas_indice + 1):
         rel = "blog/index.html" if numero == 1 else f"blog/pagina-{numero}.html"
@@ -995,22 +1059,28 @@ def planificar(raiz, incluir_borradores=False):
             bloque_curso("../"),
             anuncio("rect", activo),
         ] if parte)
+        titulo_blog, descripcion_blog = metas_indice(numero)
         archivos[rel] = envolver(
             shell, rel, titulo_blog, descripcion_blog, canonical,
             "index,follow" if hay_posts else "noindex,follow", "website",
-            og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
+            og_portada, OG_BLOG_ALT, ld_blog(), contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in publicados if p["categoria"] == clave]
         indexable = len(grupo) >= MINIMO_CATEGORIA
         rel = f"blog/{meta['slug']}.html"
         canonical = SITIO + "/blog/" + meta["slug"] + ".html"
         titulo = f"{meta['nombre']} | Artículos | Granja Rentable"
-        descripcion = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, sacados de las lecciones del curso gratis."
+        visible = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, sacados de las lecciones del curso gratis."
+        descripcion = visible + " Textos cortos de Granja Rentable."
+        if len(descripcion) < 120:
+            descripcion = visible + " Textos cortos, ya en Granja Rentable."
+        if len(descripcion) > 155:
+            descripcion = visible[:-1] + " de Granja Rentable."
         hero = (f'<section class="page-hero">\n<p class="crumbs"><a href="../index.html">Inicio</a> › <a href="index.html">Artículos</a></p>\n'
                 f'<p class="kicker">Artículos</p>\n<h1>{esc(meta["nombre"])}</h1>\n'
-                f'<p>{esc(descripcion)}</p>\n</section>')
+                f'<p>{esc(visible)}</p>\n</section>')
         if grupo:
-            rejilla = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../") for p in grupo) + "\n</div>"
+            rejilla = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../", i == 0) for i, p in enumerate(grupo)) + "\n</div>"
         else:
             rejilla = '<p class="blog-vacio">Todavía no hay artículos publicados en esta categoría.</p>'
         contenido = "\n".join(parte for parte in [
@@ -1020,18 +1090,16 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
-            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta),
+            "website", og_portada, OG_BLOG_ALT, ld_categoria(meta),
             contenido, menu_html, pie_html)
     for post in publicados:
         rel = f"blog/{post['slug']}.html"
         canonical = SITIO + "/blog/" + post["slug"] + ".html"
         titulo = titulo_visible(post["titulo_seo"])
-        extra = (ld_articulo(post, canonical) + "\n"
-                 '<meta property="og:image:width" content="1200">\n'
-                 '<meta property="og:image:height" content="630">')
+        extra = ld_articulo(post, canonical)
         archivos[rel] = envolver(
             shell, rel, titulo, post["descripcion"], canonical, "index,follow", "article",
-            SITIO + "/" + post["imagen_og"], post["imagen_alt"], extra,
+            OG_BLOG, OG_BLOG_ALT, extra,
             html_post(post, publicados, catalogo, raiz, activo), menu_html, pie_html)
     entradas = []
     if publicados:
@@ -1045,9 +1113,15 @@ def planificar(raiz, incluir_borradores=False):
                              max(p["actualizado"] for p in grupo).isoformat()))
     for post in publicados:
         entradas.append((SITIO + "/blog/" + post["slug"] + ".html", post["actualizado"].isoformat()))
+    for loc, _lastmod in entradas:
+        rel = rel_de_loc(loc)
+        if html_es_noindex(archivos.get(rel, "")):
+            errores.append(f"sitemap: {loc} es noindex y no puede publicarse.")
     sitemap = raiz / "sitemap.xml"
+    if errores:
+        return errores, {}, []
     if sitemap.is_file():
-        archivos["sitemap.xml"] = actualizar_sitemap(sitemap.read_text(encoding="utf-8"), entradas)
+        archivos["sitemap.xml"] = actualizar_sitemap(sitemap.read_text(encoding="utf-8"), entradas, raiz)
     else:
         errores.append("No está sitemap.xml.")
     borrar = []

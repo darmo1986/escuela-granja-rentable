@@ -401,17 +401,8 @@
       }
     }
     renderSoon(map);
-    var buy = document.querySelector(".js-comprar");
-    if (buy) {
-      if (!p.envio) {
-        buy.textContent = "Avísame";
-        buy.href = root + "registro.html?interes=envio";
-        buy.removeAttribute("data-checkout");
-      } else {
-        buy.textContent = "Comprar";
-        buy.setAttribute("data-checkout", "");
-      }
-    }
+    /* El botón dorado del encabezado es un enlace fijo a /tienda/.
+       No se reescribe el texto ni el destino según el país. */
   }
 
   function applyPais(code, persist) {
