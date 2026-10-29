@@ -1,0 +1,137 @@
+<!--
+  BOTONES DE PAGO STRIPE PARA LOS EBOOKS DE GRANJA RENTABLE
+  Fragmento listo para pegar en la página de venta de ebooks de la web
+  (no es una página completa). Funciona con Codigo-stripe-ebooks.gs.
+
+  CÓMO FUNCIONA (sin tarjeta en la página): al pulsar, la web pide al
+  servidor que cree una sesión de pago en Stripe y redirige al comprador
+  a la página de Stripe (en español), donde paga con tarjeta. Tras pagar,
+  Stripe lo devuelve a ESTA página con ?stripe_session=cs_... y este
+  mismo fragmento pide al servidor que confirme el pago: solo si Stripe
+  dice "paid" por el importe exacto se envía el PDF por correo.
+
+  SUSTITUIR SOLO ESTE VALOR (nada más):
+    TU_URL_EXEC_DE_APPS_SCRIPT -> la URL /exec del despliegue del
+    proyecto «Granja Rentable formularios» (la misma que formEndpoint
+    en js/config.js).
+
+  ADEMÁS, en Codigo-stripe-ebooks.gs hay que poner en
+  STRIPE_EBOOKS_URL_VENTAS la URL de ESTA página (la misma donde se
+  pega este fragmento): es la página a la que Stripe devuelve al
+  comprador tras pagar o cancelar.
+
+  NO HACE FALTA ninguna clave de Stripe en esta página: la sesión la
+  crea el servidor. NO PEGAR NUNCA AQUÍ LA SECRET KEY DE STRIPE: vive
+  solo en Script Properties del proyecto (ver README-stripe-ebooks.md).
+
+  Si cambias el precio en STRIPE_EBOOKS_PRECIO, cambia también el texto
+  del precio debajo ("2 $") para que no mienta.
+
+  El PDF se envía por correo a la dirección que el comprador escribió
+  en la página de pago de Stripe: el mensaje de éxito debe decirle que
+  revise ese buzón (y la carpeta de spam).
+-->
+
+<!-- Ebook 1 -->
+<section class="ebook-stripe">
+  <h3>Guía para empezar tu granja</h3>
+  <p>2 $ · PDF · Pago con tarjeta (Stripe)</p>
+  <button type="button" data-stripe-ebook="guia-empezar">Pagar con tarjeta</button>
+  <p data-stripe-mensaje="guia-empezar" role="status"></p>
+</section>
+
+<!-- Ebook 2 -->
+<section class="ebook-stripe">
+  <h3>Alimenta bien a tus ponedoras</h3>
+  <p>2 $ · PDF · Pago con tarjeta (Stripe)</p>
+  <button type="button" data-stripe-ebook="alimenta-ponedoras">Pagar con tarjeta</button>
+  <p data-stripe-mensaje="alimenta-ponedoras" role="status"></p>
+</section>
+
+<script>
+(function () {
+  // ÚNICO valor a cambiar aquí: la URL /exec del proyecto Apps Script.
+  var SCRIPT_URL = "TU_URL_EXEC_DE_APPS_SCRIPT";
+
+  // POST a Apps Script sin preflight CORS: texto plano con cuerpo JSON
+  // (el doPost de Codigo.gs ya entiende ese formato).
+  function llamarScript(datos) {
+    return fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(datos)
+    }).then(function (r) { return r.json(); });
+  }
+
+  function mensajeDe(clave, texto) {
+    var el = document.querySelector('[data-stripe-mensaje="' + clave + '"]');
+    if (el) el.textContent = texto;
+  }
+
+  // Al pulsar: crear la sesión en el servidor (el importe lo fija el
+  // servidor) y redirigir a la página de pago de Stripe.
+  document.querySelectorAll("[data-stripe-ebook]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var clave = boton.getAttribute("data-stripe-ebook");
+      boton.disabled = true;
+      mensajeDe(clave, "Redirigiendo a la página de pago seguro…");
+      try { sessionStorage.setItem("stripeEbookProducto", clave); } catch (e) {}
+      llamarScript({ tipo: "stripe-ebook", accion: "crear", producto: clave })
+        .then(function (d) {
+          if (d && d.url) {
+            window.location.href = d.url;
+            return;
+          }
+          throw new Error((d && d.error) || "no_se_pudo_crear_la_sesion");
+        })
+        .catch(function () {
+          boton.disabled = false;
+          mensajeDe(clave, "No se pudo iniciar el pago con tarjeta. Inténtalo de nuevo.");
+        });
+    });
+  });
+
+  // Al volver de Stripe: confirmar el pago en el servidor. Solo si
+  // Stripe dice "paid" por el importe exacto se envía el PDF.
+  var params = new URLSearchParams(window.location.search);
+  var sessionId = params.get("stripe_session");
+  if (sessionId) {
+    var claveGuardada = null;
+    try { claveGuardada = sessionStorage.getItem("stripeEbookProducto"); } catch (e) {}
+    // Sin producto guardado, el servidor usa el de la sesión de Stripe.
+    var clave = claveGuardada || "";
+    llamarScript({
+      tipo: "stripe-ebook", accion: "confirmar",
+      sessionId: sessionId, producto: clave
+    }).then(function (d) {
+      if (d && d.ok) {
+        // El servidor dice qué ebook se compró: el mensaje sale bajo el
+        // ebook correcto aunque se haya perdido el producto guardado.
+        var claveMsg = (d && d.clave) || claveGuardada || "guia-empezar";
+        var texto = "¡Pago completado! Te hemos enviado el ebook por correo " +
+          "a la dirección que escribiste en el pago. Si no lo ves, revisa la carpeta de spam.";
+        if (d.ya_enviado) {
+          texto = "Este pedido ya estaba entregado: revisa tu correo (y el spam) " +
+            "para el ebook «" + (d.producto || "") + "».";
+        }
+        mensajeDe(claveMsg, texto);
+        // Limpiar la URL para que recargar no vuelva a confirmar
+        // (aunque confirmar dos veces NO reenvía el PDF: es idempotente).
+        try {
+          history.replaceState(null, "", window.location.pathname + window.location.hash);
+        } catch (e) {}
+        return;
+      }
+      mensajeDe(claveGuardada || "guia-empezar",
+        "No pudimos confirmar el pago todavía. Si se te ha cobrado, " +
+        "escríbenos y te enviamos el ebook.");
+    }).catch(function () {
+      mensajeDe(claveGuardada || "guia-empezar",
+        "No pudimos confirmar el pago. Inténtalo de nuevo recargando la página.");
+    });
+  } else if (params.get("stripe_cancelado")) {
+    mensajeDe("guia-empezar", "Pago cancelado: no se ha cobrado nada.");
+    mensajeDe("alimenta-ponedoras", "Pago cancelado: no se ha cobrado nada.");
+  }
+})();
+</script>

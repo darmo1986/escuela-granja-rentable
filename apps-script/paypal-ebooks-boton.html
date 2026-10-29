@@ -1,0 +1,105 @@
+<!--
+  BOTÓN DE PAGO PAYPAL PARA LOS EBOOKS DE GRANJA RENTABLE
+  Fragmento listo para pegar en la página de venta de ebooks de la web
+  (no es una página completa). Funciona con Codigo-paypal-ebooks.gs.
+
+  SUSTITUIR SOLO ESTOS DOS VALORES (nada más):
+    1) TU_CLIENT_ID_LIVE_DE_PAYPAL -> el Client ID EN VIVO de la app de
+       PayPal (PayPal Developer Dashboard -> tu app LIVE -> Client ID).
+       El Client ID es público por diseño: viaja en la URL del SDK y
+       puede ir en la web sin riesgo.
+    2) TU_URL_EXEC_DE_APPS_SCRIPT -> la URL /exec del despliegue del
+       proyecto «Granja Rentable formularios» (la misma que formEndpoint
+       en js/config.js).
+
+  NO PEGAR NUNCA AQUÍ EL SECRET DE PAYPAL. El Secret vive solo en
+  Script Properties del proyecto (ver README-paypal-ebooks.md).
+
+  El PDF se envía por correo a la dirección de la cuenta PayPal del
+  comprador: el mensaje de éxito debe decirle que revise ese buzón
+  (y la carpeta de spam).
+-->
+
+<!-- SDK de PayPal: botones, en euros, cobro inmediato (capture). -->
+<script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID_LIVE_DE_PAYPAL&currency=EUR&intent=capture&components=buttons"></script>
+
+<!-- Ebook 1 -->
+<section class="ebook-paypal">
+  <h3>Guía para empezar tu granja</h3>
+  <p>1 € · PDF · Pago con PayPal</p>
+  <div id="paypal-boton-guia"></div>
+  <p id="paypal-mensaje-guia" role="status"></p>
+</section>
+
+<!-- Ebook 2 -->
+<section class="ebook-paypal">
+  <h3>Alimenta bien a tus ponedoras</h3>
+  <p>1 € · PDF · Pago con PayPal</p>
+  <div id="paypal-boton-ponedoras"></div>
+  <p id="paypal-mensaje-ponedoras" role="status"></p>
+</section>
+
+<script>
+(function () {
+  // ÚNICO valor a cambiar aquí: la URL /exec del proyecto Apps Script.
+  var SCRIPT_URL = "TU_URL_EXEC_DE_APPS_SCRIPT";
+
+  // POST a Apps Script sin preflight CORS: texto plano con cuerpo JSON
+  // (el doPost de Codigo.gs ya entiende ese formato).
+  function llamarScript(datos) {
+    return fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(datos)
+    }).then(function (r) { return r.json(); });
+  }
+
+  function montarBoton(contenedorId, mensajeId, claveProducto) {
+    var mensaje = document.getElementById(mensajeId);
+    function decir(texto) { if (mensaje) mensaje.textContent = texto; }
+    paypal.Buttons({
+      style: { shape: "rect", layout: "vertical", color: "gold", label: "paypal" },
+
+      // 1) Crear el pedido en el servidor (el importe lo fija el servidor).
+      createOrder: function () {
+        return llamarScript({ tipo: "paypal-ebook", accion: "crear", producto: claveProducto })
+          .then(function (d) {
+            if (d && d.id) return d.id;
+            throw new Error((d && d.error) || "no_se_pudo_crear_el_pedido");
+          })
+          .catch(function (err) {
+            decir("No se pudo iniciar el pago con PayPal. Inténtalo de nuevo.");
+            throw err;
+          });
+      },
+
+      // 2) Al aprobar, capturar en el servidor: solo si el cobro es
+      // COMPLETED por 1,00 EUR se envía el PDF por correo.
+      onApprove: function (data, actions) {
+        return llamarScript({
+          tipo: "paypal-ebook", accion: "capturar",
+          orderID: data.orderID, producto: claveProducto
+        }).then(function (d) {
+          if (d && d.motivo === "INSTRUMENT_DECLINED") return actions.restart();
+          if (d && d.ok) {
+            decir("¡Pago completado! Te hemos enviado el ebook por correo " +
+              "a tu cuenta de PayPal. Si no lo ves, revisa la carpeta de spam.");
+            return;
+          }
+          throw new Error((d && d.error) || "captura_fallida");
+        }).catch(function () {
+          decir("No se pudo completar el pago. No se ha enviado ningún ebook. " +
+            "Inténtalo de nuevo o escríbenos.");
+        });
+      },
+
+      onError: function () {
+        decir("Hubo un problema con PayPal. Inténtalo de nuevo.");
+      }
+    }).render("#" + contenedorId);
+  }
+
+  montarBoton("paypal-boton-guia", "paypal-mensaje-guia", "guia-empezar");
+  montarBoton("paypal-boton-ponedoras", "paypal-mensaje-ponedoras", "alimenta-ponedoras");
+})();
+</script>
