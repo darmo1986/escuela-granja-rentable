@@ -3,7 +3,7 @@ titulo: "Reposición y descarte de gallinas tras la muda"
 titulo_seo: "Reposición y descarte de gallinas tras la muda"
 descripcion: "Qué hacer con el lote después de la muda: evaluar qué gallinas vuelven a poner, cuáles apartar y cómo reponer con pollitas sin mezclar edades."
 categoria: ponedoras
-fecha: 2026-11-09
+fecha: 2026-10-09
 borrador: false
 imagen: "img/blog/reposicion-descarte-tras-muda.webp"
 imagen_og: "img/blog/reposicion-descarte-tras-muda-og.webp"

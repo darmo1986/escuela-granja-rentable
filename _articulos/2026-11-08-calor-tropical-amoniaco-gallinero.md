@@ -3,7 +3,7 @@ titulo: "Calor tropical y amoníaco en el gallinero"
 titulo_seo: "Calor tropical y amoníaco en el gallinero"
 descripcion: "Cómo proteger a tus gallinas del calor fuerte y del amoníaco de la cama: señales de alerta, ventilación, agua y rutina diaria para el calor."
 categoria: salud
-fecha: 2026-11-08
+fecha: 2026-10-08
 borrador: false
 imagen: "img/blog/calor-tropical-amoniaco-gallinero.webp"
 imagen_og: "img/blog/calor-tropical-amoniaco-gallinero-og.webp"

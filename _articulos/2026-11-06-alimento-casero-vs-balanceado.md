@@ -3,7 +3,7 @@ titulo: "Alimento casero vs balanceado para gallinas"
 titulo_seo: "Alimento casero vs balanceado para gallinas"
 descripcion: "Números en mano: qué proteína, calcio y energía aporta lo casero frente al balanceado, por qué cae la puesta y el modelo mixto que funciona."
 categoria: alimentacion
-fecha: 2026-11-06
+fecha: 2026-10-06
 borrador: false
 imagen: "img/blog/alimento-casero-vs-balanceado.webp"
 imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"

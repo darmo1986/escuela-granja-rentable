@@ -3,7 +3,7 @@ titulo: "Bioseguridad: 10 puntos para tu granja"
 titulo_seo: "Bioseguridad: 10 puntos para tu granja"
 descripcion: "Los 10 puntos de bioseguridad que evitan que las enfermedades entren a tu gallinero: cuarentena, calzado, limpieza, visitas, roedores y registro."
 categoria: salud
-fecha: 2026-11-10
+fecha: 2026-10-10
 borrador: false
 imagen: "img/blog/bioseguridad-10-puntos-granja.webp"
 imagen_og: "img/blog/bioseguridad-10-puntos-granja-og.webp"

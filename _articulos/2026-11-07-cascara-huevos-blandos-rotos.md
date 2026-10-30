@@ -3,7 +3,7 @@ titulo: "Cáscara: huevos blandos, finos y rotos"
 titulo_seo: "Cáscara: huevos blandos, finos y rotos"
 descripcion: "Por qué salen huevos blandos o que se rompen: el calcio, la vitamina D3, la edad y el estrés, y un plan de 14 días para recuperar cáscaras firmes."
 categoria: ponedoras
-fecha: 2026-11-07
+fecha: 2026-10-07
 borrador: false
 imagen: "img/blog/cascara-huevos-blandos-rotos.webp"
 imagen_og: "img/blog/cascara-huevos-blandos-rotos-og.webp"
