@@ -50,5 +50,10 @@ La coccidiosis no se elimina de una granja: se convive con ella manteniendo la c
 
 ## Fuentes
 
+- Merck Veterinary Manual: "Coccidiosis in Poultry" (etiología, diagnóstico por flotación fecal y examen histopatológico, control). https://merckvetmanual.com/poultry/coccidiosis/overview-of-coccidiosis-in-poultry
+- Penn State Extension: "Managing Chicken Coccidiosis in Small Flocks During Summer" (manejo en pequeñas granjas, control de carga parasitaria). https://extension.psu.edu/managing-chicken-coccidiosis-in-small-flocks-during-summer
+- Cobb-Vantress: "Vaccination Procedure Guide" (vacunación contra coccidiosis, manejo de ooquistes vacunales). http://www.cobb-vantress.com/assets/Cobb-Files/Vaccination-Guide_07_2025.pdf
 - FAO: "Small-scale poultry production", cap. 4 (manejo, alojamiento, luz, sanidad en avicultura). https://www.fao.org/4/y5169e/y5169e05.htm
 - Hy-Line International: "Brown Commercial Layers – Performance Standards" (guías de manejo sanitario). https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf
+
+*Nota: los síntomas descritos orientan pero no confirman el diagnóstico por sí solos; la confirmación requiere análisis fecal o examen veterinario.*
