@@ -39,3 +39,9 @@ El error clásico es pasar de golpe de 11 a 16 horas. El cambio brusco estresa a
 - **Olvidar el agua y el pienso.** Más horas despierta significan más horas comiendo: revisa que tengan alimento desde que se enciende la luz.
 
 La luz no hace milagros: sin buena alimentación y sin agua limpia, ni con 16 horas pondrán bien. Pero con lo básico cubierto, el fotoperiodo es la diferencia entre un invierno sin huevos y una puesta que se mantiene.
+
+## Fuentes
+
+- Hy-Line International: "Brown Commercial Layers – Performance Standards" (programa de luz: incrementos de 30 min hasta 16 h; pico de puesta con 14–15 h de luz). https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf
+- Hy-Line International: "Technical Update – Lighting for Brown Egg Layers" (actualización técnica de iluminación). https://www.hyline.com/Upload/Resources/TU%20HLB10%20ENG.pdf
+- FAO: "Small-scale poultry production", cap. 4 (manejo, alojamiento, luz, sanidad). https://www.fao.org/4/y5169e/y5169e05.htm

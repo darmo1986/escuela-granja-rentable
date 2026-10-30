@@ -3,7 +3,7 @@ titulo: "La muda de la gallina: por qué deja de poner en otoño"
 titulo_seo: "La muda de la gallina: por qué deja de poner en otoño"
 descripcion: "En otoño muchas gallinas pierden plumas y dejan de poner. Es la muda: qué es, cuánto dura y cómo ayudarlas a pasarla rápido y bien."
 categoria: ponedoras
-fecha: 2026-10-31
+fecha: 2026-10-30
 borrador: false
 imagen: img/blog/muda-gallinas-otono.webp
 imagen_og: img/blog/muda-gallinas-otono-og.webp

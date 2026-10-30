@@ -47,3 +47,8 @@ El parásito completa su ciclo en la cama húmeda y vuelve al pollito cuando pic
 - Baja la densidad y seca la cama el mismo día: sin eso, el ciclo se repite a la semana siguiente.
 
 La coccidiosis no se elimina de una granja: se convive con ella manteniendo la carga baja. Cama seca, densidad justa y actuar el primer día son el 90 % del control.
+
+## Fuentes
+
+- FAO: "Small-scale poultry production", cap. 4 (manejo, alojamiento, luz, sanidad en avicultura). https://www.fao.org/4/y5169e/y5169e05.htm
+- Hy-Line International: "Brown Commercial Layers – Performance Standards" (guías de manejo sanitario). https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf

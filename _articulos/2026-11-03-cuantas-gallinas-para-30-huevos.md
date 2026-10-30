@@ -58,3 +58,9 @@ Antes de comprar, haz tus números con la calculadora de la web: el pienso es el
 Comprar el número justo de gallinas contando con que pondrán todas todos los días. El primer invierno llega la sorpresa: hay días de 18 o 20 huevos en vez de 30, y si vendes huevos, fallas a tus clientes.
 
 Compra siempre con la cuenta segura y mezcla edades: renueva una parte de la bandada cada año y la producción se mantiene estable todo el año.
+
+## Fuentes
+
+- Hy-Line International: "Brown Commercial Layers – Performance Standards" (fichas técnicas de puesta: pico con 14–15 h de luz, programa de incrementos de 30 min hasta 16 h). https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf
+- Hy-Line International: "Technical Update – Lighting for Brown Egg Layers". https://www.hyline.com/Upload/Resources/TU%20HLB10%20ENG.pdf
+- FAO: "Small-scale poultry production", cap. 4 (planificación en granjas familiares). https://www.fao.org/4/y5169e/y5169e05.htm
