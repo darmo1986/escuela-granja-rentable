@@ -4,6 +4,9 @@ titulo_seo: "Cuándo renovar el lote de gallinas ponedoras"
 descripcion: "Cuándo renovar el lote, renovación total o escalonada, el vacío sanitario bien hecho y cómo planificar los costes sin quedarte sin producción."
 categoria: ponedoras
 fecha: 2026-10-29
+imagen: img/blog/renovar-lotes-ponedoras-pollos-engorde.webp
+imagen_og: img/blog/renovar-lotes-ponedoras-pollos-engorde-og.webp
+imagen_alt: "Gallinas ponedoras jóvenes en granja, lote renovado"
 ---
 
 
