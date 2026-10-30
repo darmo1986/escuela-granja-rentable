@@ -3,7 +3,7 @@ titulo: "Cuarentena para gallinas nuevas: 30 días"
 titulo_seo: "Cuarentena para gallinas nuevas: 30 días"
 descripcion: "Por qué toda gallina nueva debe pasar cuarentena, cómo montar un espacio separado, qué observar cada día y cómo integrarla sin llevar enfermedades."
 categoria: salud
-fecha: 2026-11-16
+fecha: 2026-10-16
 borrador: false
 imagen: "img/blog/cuarentena-gallinas-nuevas.webp"
 imagen_og: "img/blog/cuarentena-gallinas-nuevas-og.webp"

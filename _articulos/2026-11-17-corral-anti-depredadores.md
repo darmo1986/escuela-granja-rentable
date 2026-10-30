@@ -3,7 +3,7 @@ titulo: "Corral anti-depredadores para gallinas"
 titulo_seo: "Corral anti-depredadores para gallinas"
 descripcion: "Cómo proteger tu gallinero de perros, zorros, ratas y rapaces: malla que sí detiene, puerta segura, techo y la rutina nocturna que evita los ataques."
 categoria: ponedoras
-fecha: 2026-11-17
+fecha: 2026-10-17
 borrador: false
 imagen: "img/blog/corral-anti-depredadores.webp"
 imagen_og: "img/blog/corral-anti-depredadores-og.webp"
