@@ -2,7 +2,7 @@
 titulo: "Registros en tu granja avícola: qué anotar y por qué"
 titulo_seo: "Registros granja avícola: qué anotar cada día"
 descripcion: "Qué anotar cada día (postura, bajas, pienso), cómo calcular tus números y una plantilla lista para copiar."
-categoria: gestion
+categoria: ponedoras
 fecha: 2026-10-29
 ---
 

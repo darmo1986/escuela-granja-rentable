@@ -2,7 +2,7 @@
 titulo: "Agua en verano para gallinas: calidad y cantidad"
 titulo_seo: "Cuánta agua necesita una gallina en verano"
 descripcion: "En verano una gallina bebe el doble: cuánta agua necesita con calor, cómo mantenerla fresca y qué pasa si falla."
-categoria: manejo
+categoria: ponedoras
 fecha: 2026-10-29
 ---
 
