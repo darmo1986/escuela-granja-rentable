@@ -3,7 +3,7 @@ titulo: "Ovoscopia: cómo revisar los huevos en la incubadora"
 titulo_seo: "Ovoscopia: cómo revisar los huevos en la incubadora"
 descripcion: "Cuándo mirar los huevos al trasluz, qué ver el día 7 y qué huevos sacar, con los datos de la lección L03."
 categoria: incubacion            # ponedoras | engorde | incubacion | salud | alimentacion
-fecha: 2026-11-02
+fecha: 2026-10-02
 borrador: true
 leccion: l03
 producto: incubadora-24egg-dual

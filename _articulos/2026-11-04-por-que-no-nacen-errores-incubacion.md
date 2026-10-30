@@ -3,7 +3,7 @@ titulo: "Por qué no nacen: 12 errores de incubación"
 titulo_seo: "Por qué no nacen: 12 errores de incubación"
 descripcion: "Nacen pocos, nacen tarde o no nacen: qué significa cada síntoma en la incubadora y cómo corregir temperatura, humedad, volteo y manejo del huevo."
 categoria: incubacion
-fecha: 2026-11-04
+fecha: 2026-10-04
 borrador: false
 imagen: "img/blog/por-que-no-nacen-errores-incubacion.webp"
 imagen_og: "img/blog/por-que-no-nacen-errores-incubacion-og.webp"

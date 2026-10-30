@@ -3,7 +3,7 @@ titulo: "¿Cuántas gallinas necesito para 30 huevos al día?"
 titulo_seo: "¿Cuántas gallinas necesito para 30 huevos al día?"
 descripcion: "La cuenta exacta: cuántos huevos pone una gallina al día, cuántas necesitas para 30 huevos diarios y cuánto pienso comen."
 categoria: ponedoras
-fecha: 2026-11-03
+fecha: 2026-10-03
 borrador: false
 leccion: l01
 producto: comedero-tolva

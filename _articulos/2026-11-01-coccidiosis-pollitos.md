@@ -3,7 +3,7 @@ titulo: "Coccidiosis en pollitos: síntomas, prevención y errores"
 titulo_seo: "Coccidiosis en pollitos: síntomas y prevención"
 descripcion: "Plumas erizadas, diarrea con sangre y pollitos apáticos a las 3 semanas: suele ser coccidiosis. Cómo reconocerla, prevenirla y qué no hacer."
 categoria: salud
-fecha: 2026-11-01
+fecha: 2026-10-01
 borrador: false
 leccion: l04a
 imagen: img/blog/coccidiosis-pollitos.webp

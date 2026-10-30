@@ -3,7 +3,7 @@ titulo: "Ácaros, piojos y cama húmeda en gallinas"
 titulo_seo: "Ácaros, piojos y cama húmeda en gallinas"
 descripcion: "Cómo distinguir el ácaro rojo del piojo, por qué la cama húmeda los multiplica y un plan de choque en 7 días para dejar el gallinero limpio."
 categoria: salud
-fecha: 2026-11-05
+fecha: 2026-10-05
 borrador: false
 imagen: "img/blog/acaros-piojos-cama-humeda.webp"
 imagen_og: "img/blog/acaros-piojos-cama-humeda-og.webp"
