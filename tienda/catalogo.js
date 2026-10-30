@@ -19,7 +19,7 @@
 */
 window.GR_TIENDA_CATALOGO = {
   "version": 1,
-  "actualizado": "2026-10-21",
+  "actualizado": "2026-10-30",
   "orden_paises": [
     "MX",
     "ES",
@@ -1406,6 +1406,150 @@ window.GR_TIENDA_CATALOGO = {
       "nota": "Envío gratis desde almacén en España, sin gastos de importación."
     }
   }
-}
+}    ,
+    {
+      "slug": "guantes-nitrilo-desechables-100",
+      "nombre": "Guantes desechables de nitrilo (caja de 100)",
+      "categoria": "proteccion",
+      "descripcion_corta": "Barrera higiénica para manos: nitrilo sin látex, resistentes y desechables, ideales para el manejo diario en el gallinero.",
+      "descripcion": "Los guantes de nitrilo son el EPI básico en cualquier granja avícola: protegen tus manos del contacto con excrementos, cama sucia y productos de limpieza, y evitan que lleves patógenos de un lote a otro. Son de un solo uso, sin látex (no dan alergia), y lo bastante resistentes para limpiar bebederos, recoger huevos o manipular aves enfermas. Cambiarlos entre tareas es la forma más barata de cortar la cadena de contagio en tu granja.",
+      "incluye": [
+        "100 guantes desechables de nitrilo",
+        "Sin látex, texturizados para mejor agarre"
+      ],
+      "utilidades": [
+        "Limpieza diaria de bebederos y comederos",
+        "Recogida de huevos sin contaminarlos",
+        "Manejo de aves enfermas o en cuarentena",
+        "Aplicación de desinfectantes y limpieza del gallinero"
+      ],
+      "como_se_usa": [
+        "Ponte un par nuevo antes de cada tarea",
+        "Cámbialos si se rompen o al pasar de un lote a otro",
+        "Tíralos tras usarlos, no los reutilices",
+        "Lávate las manos después de quitártelos"
+      ],
+      "imagenes": [],
+      "imagen_local": "",
+      "imagen_local_nota": "",
+      "precio_base_usd": 0.33,
+      "precio_base_nota": "Caja de 100 al precio del anuncio mejor valorado (4,6 estrellas, 50.000+ vendidos).",
+      "rating": 4.6,
+      "pedidos": "50,000+",
+      "vendedor": {
+        "nombre": null,
+        "positivo_pct": null,
+        "anos": null
+      },
+      "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-nitrile-gloves.html",
+      "link_pago": "",
+      "activo": true,
+      "verificacion": "Investigación 30-oct-2026: anuncio con 4,6 estrellas y 50.000+ vendidos a ~0,33 US$. Pasa filtros de rating y volumen. Pendiente verificar % del vendedor (>=90%) en ficha antes del alta definitiva.",
+      "paises": {
+        "MX": {"disponible": true, "moneda": "MXN", "precio": 89, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "ES": {"disponible": true, "moneda": "EUR", "precio": 3.99, "precio_confirmado": false, "dias_envio": "7–12 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento (programa Choice)."},
+        "US": {"disponible": true, "moneda": "USD", "precio": 4.49, "precio_confirmado": false, "dias_envio": "8–12 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "CO": {"disponible": true, "moneda": "COP", "precio": 18000, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "AR": {"disponible": true, "moneda": "USD", "precio": 4.49, "precio_confirmado": false, "dias_envio": "15–20 días", "origen_envio": "internacional", "nota": "Envío internacional. La aduana puede retener paquetes de bajo valor; preferir compra consolidada."},
+        "PE": {"disponible": true, "moneda": "PEN", "precio": 17, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "CL": {"disponible": true, "moneda": "CLP", "precio": 4200, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."}
+      }
+    },
+    {
+      "slug": "botas-goma-impermeables-granja",
+      "nombre": "Botas de goma impermeables para granja",
+      "categoria": "proteccion",
+      "descripcion_corta": "Calzado de bioseguridad: botas de goma fáciles de lavar y desinfectar, antideslizantes para el trabajo diario en el gallinero.",
+      "descripcion": "Las botas de goma son obligatorias en bioseguridad avícola: el calzado es la principal vía de entrada de patógenos a la granja. Estas botas de PVC de una pieza no tienen costuras donde se acumule suciedad, se lavan con manguera en segundos y aguantan el desinfectante del pediluvio sin estropearse. Suela antideslizante para no resbalar en cama húmeda. Un par exclusivo para la granja (que nunca salga de ella) es la medida de bioseguridad más barata que existe.",
+      "incluye": [
+        "1 par de botas de goma impermeables",
+        "Suela antideslizante"
+      ],
+      "utilidades": [
+        "Calzado exclusivo de granja: entra y sale por el pediluvio",
+        "Limpieza del gallinero con agua y desinfectante",
+        "Días de lluvia: pies secos en el corral embarrado",
+        "Visitas a otras granjas: botas que se desinfectan de verdad"
+      ],
+      "como_se_usa": [
+        "Reserva estas botas SOLO para la granja, no las uses en la calle",
+        "Al entrar al gallinero, mete las botas en el pediluvio con desinfectante",
+        "Lávalas con agua al terminar la jornada",
+        "Revisa la suela: si se agrieta, cámbialas"
+      ],
+      "imagenes": [],
+      "imagen_local": "",
+      "imagen_local_nota": "",
+      "precio_base_usd": 12.83,
+      "precio_base_nota": "Par al precio del anuncio mejor valorado (4,9 estrellas, 1.000+ vendidos, vendedor 92,7% positivo).",
+      "rating": 4.9,
+      "pedidos": "1,000+",
+      "vendedor": {
+        "nombre": null,
+        "positivo_pct": 92.7,
+        "anos": null
+      },
+      "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-rain-boots-farm-waterproof.html",
+      "link_pago": "",
+      "activo": true,
+      "verificacion": "Investigación 30-oct-2026: anuncio con 4,9 estrellas, 1.000+ vendidos, vendedor con 92,7% positivo. Pasa todos los filtros.",
+      "paises": {
+        "MX": {"disponible": true, "moneda": "MXN", "precio": 549, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "ES": {"disponible": true, "moneda": "EUR", "precio": 24.99, "precio_confirmado": false, "dias_envio": "7–12 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento (programa Choice)."},
+        "US": {"disponible": true, "moneda": "USD", "precio": 27.99, "precio_confirmado": false, "dias_envio": "8–12 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "CO": {"disponible": true, "moneda": "COP", "precio": 115000, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "AR": {"disponible": true, "moneda": "USD", "precio": 27.99, "precio_confirmado": false, "dias_envio": "15–20 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "PE": {"disponible": true, "moneda": "PEN", "precio": 105, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "CL": {"disponible": true, "moneda": "CLP", "precio": 26000, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."}
+      }
+    },
+    {
+      "slug": "overol-desechable-proteccion-granja",
+      "nombre": "Overol desechable de protección (tipo Tyvek)",
+      "categoria": "proteccion",
+      "descripcion_corta": "Barrera corporal completa: mono desechable transpirable contra polvo, plumas y salpicaduras. Bioseguridad profesional en tu granja.",
+      "descripcion": "El overol desechable es la prenda de bioseguridad que usan los profesionales: cubre tu ropa de calle para que no lleves patógenos al gallinero ni te los lleves a casa. Transpirable pero barrera contra polvo de cama, plumas, caspa y salpicaduras de desinfectante. De un solo uso: te lo pones al entrar, te lo quitas al salir, y la granja queda aislada del exterior. Imprescindible si visitas varias granjas o tienes lotes en cuarentena.",
+      "incluye": [
+        "1 overol desechable de protección",
+        "Capucha, puños y tobillos elásticos"
+      ],
+      "utilidades": [
+        "Entrar a la granja sin contaminar con la ropa de calle",
+        "Manejo de lotes en cuarentena o enfermos",
+        "Limpieza a fondo con desinfectantes",
+        "Visitas a otras granjas: no te llevas nada contigo"
+      ],
+      "como_se_usa": [
+        "Póntelo ANTES de entrar al gallinero, sobre tu ropa",
+        "Asegura puños y tobillos con cinta si hace falta",
+        "Al salir, quítatelo del revés y tíralo a la basura",
+        "No lo reutilices: es de un solo uso"
+      ],
+      "imagenes": [],
+      "imagen_local": "",
+      "imagen_local_nota": "",
+      "precio_base_usd": 14.39,
+      "precio_base_nota": "Unidad al precio del anuncio mejor valorado (4,8 estrellas, 1.000+ vendidos).",
+      "rating": 4.8,
+      "pedidos": "1,000+",
+      "vendedor": {
+        "nombre": null,
+        "positivo_pct": null,
+        "anos": null
+      },
+      "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-disposable-overalls.html",
+      "link_pago": "",
+      "activo": true,
+      "verificacion": "Investigación 30-oct-2026: anuncio con 4,8 estrellas y 1.000+ vendidos. Pasa filtros de rating y volumen. Pendiente verificar % del vendedor (>=90%) en ficha.",
+      "paises": {
+        "MX": {"disponible": true, "moneda": "MXN", "precio": 599, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "ES": {"disponible": true, "moneda": "EUR", "precio": 27.99, "precio_confirmado": false, "dias_envio": "7–12 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento (programa Choice)."},
+        "US": {"disponible": true, "moneda": "USD", "precio": 30.99, "precio_confirmado": false, "dias_envio": "8–12 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "CO": {"disponible": true, "moneda": "COP", "precio": 129000, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "AR": {"disponible": true, "moneda": "USD", "precio": 30.99, "precio_confirmado": false, "dias_envio": "15–20 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "PE": {"disponible": true, "moneda": "PEN", "precio": 118, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
+        "CL": {"disponible": true, "moneda": "CLP", "precio": 29000, "precio_confirmado": false, "dias_envio": "12–18 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."}
+      }
+    }
   ]
 };
