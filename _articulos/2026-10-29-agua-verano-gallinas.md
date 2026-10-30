@@ -6,7 +6,6 @@ categoria: ponedoras
 fecha: 2026-10-29
 ---
 
-# Agua en verano para gallinas: calidad y cantidad
 
 En verano, una gallina ponedora puede beber más del doble de agua que en invierno. Si el agua está caliente o sucia, deja de comer y la postura se desploma.
 

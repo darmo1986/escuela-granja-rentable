@@ -6,7 +6,6 @@ categoria: ponedoras
 fecha: 2026-10-29
 ---
 
-# Cómo llevar registros en tu granja avícola: qué anotar y por qué
 
 Llevar registros es lo que separa una granja rentable de una que solo sobrevive. Sin números, no sabes si ganas o pierdes dinero.
 

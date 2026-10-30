@@ -6,7 +6,6 @@ categoria: ponedoras
 fecha: 2026-10-29
 ---
 
-# Renovar lotes de ponedoras y pollos de engorde: cuándo y cómo
 
 Renovar el lote a tiempo es una de las decisiones que más dinero te hace ganar o perder. Tarde, y alimentas gallinas que no ponen. Pronto, y tiras dinero en pollitas.
 
