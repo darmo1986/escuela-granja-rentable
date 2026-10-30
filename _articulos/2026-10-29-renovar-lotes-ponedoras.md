@@ -1,5 +1,5 @@
 ---
-titulo: "Renovar lotes de ponedoras y pollos de engorde: cuándo y cómo"
+titulo: "Renovar lotes de ponedoras y engorde: cuándo y cómo"
 titulo_seo: "Cuándo renovar el lote de gallinas ponedoras"
 descripcion: "Cuándo renovar el lote, renovación total o escalonada, el vacío sanitario bien hecho y cómo planificar los costes sin quedarte sin producción."
 categoria: gestion

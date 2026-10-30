@@ -1,7 +1,7 @@
 ---
-titulo: "Cómo llevar registros en tu granja avícola: qué anotar y por qué"
+titulo: "Registros en tu granja avícola: qué anotar y por qué"
 titulo_seo: "Registros granja avícola: qué anotar cada día"
-descripcion: "Los registros son la diferencia entre una granja que sobrevive y una que gana dinero: qué anotar cada día (postura, bajas, pienso), cómo calcular tus números y una plantilla lista para copiar."
+descripcion: "Qué anotar cada día (postura, bajas, pienso), cómo calcular tus números y una plantilla lista para copiar."
 categoria: gestion
 fecha: 2026-10-29
 ---
