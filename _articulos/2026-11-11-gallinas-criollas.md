@@ -3,7 +3,7 @@ titulo: "Gallinas criollas: rústicas y buenas ponedoras"
 titulo_seo: "Gallinas criollas: rústicas y buenas ponedoras"
 descripcion: "Ventajas y límites reales de las gallinas criollas: rusticidad, pastoreo y longevidad frente a una puesta menor, y cómo seleccionar las mejores."
 categoria: ponedoras
-fecha: 2026-11-11
+fecha: 2026-10-11
 borrador: false
 imagen: "img/blog/gallinas-criollas.webp"
 imagen_og: "img/blog/gallinas-criollas-og.webp"

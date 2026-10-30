@@ -3,7 +3,7 @@ titulo: "Incubación día a día: del día 1 al 21"
 titulo_seo: "Incubación día a día: del día 1 al 21"
 descripcion: "Qué pasa dentro del huevo cada día de la incubación: desarrollo, miraje los días 7, 14 y 18, fin del volteo y nacimiento sin abrir la incubadora."
 categoria: incubacion
-fecha: 2026-11-12
+fecha: 2026-10-12
 borrador: false
 imagen: "img/blog/incubacion-dia-a-dia.webp"
 imagen_og: "img/blog/incubacion-dia-a-dia-og.webp"

@@ -3,7 +3,7 @@ titulo: "Picaje en ponedoras: causas y solución"
 titulo_seo: "Picaje en ponedoras: causas y solución"
 descripcion: "Por qué unas gallinas pican las plumas de otras, cómo distinguir un picaje leve de un problema grave y el plan en 7 días para detenerlo a tiempo."
 categoria: salud
-fecha: 2026-11-14
+fecha: 2026-10-14
 borrador: false
 imagen: "img/blog/picaje-ponedoras.webp"
 imagen_og: "img/blog/picaje-ponedoras-og.webp"

@@ -3,7 +3,7 @@ titulo: "Lombrices en gallinas: señales y control"
 titulo_seo: "Lombrices en gallinas: señales y control"
 descripcion: "Qué parásitos internos afectan a las gallinas, qué señales avisan antes de que el lote se venga abajo y cómo controlarlos con manejo y veterinario."
 categoria: salud
-fecha: 2026-11-15
+fecha: 2026-10-15
 borrador: false
 imagen: "img/blog/lombrices-gallinas.webp"
 imagen_og: "img/blog/lombrices-gallinas-og.webp"

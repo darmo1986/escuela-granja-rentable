@@ -3,7 +3,7 @@ titulo: "Agua para gallinas: bebederos y errores"
 titulo_seo: "Agua para gallinas: bebederos y errores"
 descripcion: "Cuánta agua bebe una ponedora, qué bebedero conviene según tu gallinero, a qué altura ponerlo y los errores que dejan al lote sin agua un día."
 categoria: alimentacion
-fecha: 2026-11-13
+fecha: 2026-10-13
 borrador: false
 imagen: "img/blog/agua-gallinas-ponedoras.webp"
 imagen_og: "img/blog/agua-gallinas-ponedoras-og.webp"
