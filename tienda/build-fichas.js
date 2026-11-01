@@ -91,6 +91,16 @@ function campoPendiente(valor, marca) {
   if (t) return esc(t);
   return '<strong class="t-pendiente">' + marca + "</strong>";
 }
+function datosAlmacen(p) {
+  var zonas = [];
+  Object.keys(p.paises || {}).forEach(function (k) {
+    var d = p.paises[k];
+    var z = d && d.disponible ? String(d.origen_envio || "").trim() : "";
+    if (z && z.toLowerCase() !== "internacional" && zonas.indexOf(z) === -1) zonas.push(z);
+  });
+  var nombre = p.vendedor && p.vendedor.nombre ? String(p.vendedor.nombre).trim() : "";
+  return { zona: zonas.join(", "), vendedor: nombre };
+}
 function bloqueLegal(p) {
   return [
     "<h2>Quién te vende</h2>",
@@ -100,11 +110,16 @@ function bloqueLegal(p) {
     "<p>El producto se envía directamente desde el proveedor. El importador puede variar según el producto y el país. Se informa en esta ficha o al registrar el pedido. Contacto del titular: <a href=\"mailto:dahanitrading@gmail.com\">dahanitrading@gmail.com</a>.</p>",
     "<h2>Desistimiento, devolución y garantía</h2>",
     "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso lo hace el titular en un plazo de 14 días desde la prueba de envío. Quien responde ante ti es Granja Rentable, no el proveedor.</p>",
-    "<p>Antes de comprar: la devolución se envía al almacén del proveedor de este producto. Dirección: " +
-      campoPendiente(p.devolucion_direccion, "[PENDIENTE PABLO: dirección del almacén de devolución]") +
-      ". Coste estimado: " +
-      campoPendiente(p.devolucion_coste, "[PENDIENTE PABLO: coste estimado de devolución]") +
-      ". <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>",
+    (function () {
+      var alm = datosAlmacen(p);
+      var conocido = "";
+      if (alm.vendedor) conocido += " Vendedor guardado en el catálogo: " + esc(alm.vendedor) + ".";
+      if (alm.zona) conocido += " El catálogo sitúa el almacén en " + esc(alm.zona) + ", sin calle ni código postal.";
+      return "<p>Antes de comprar: la devolución se envía al almacén del proveedor de este producto." + conocido +
+        " Dirección: " + campoPendiente(p.devolucion_direccion, "[PENDIENTE PABLO: dirección del almacén de devolución]") +
+        ". Coste estimado: " + campoPendiente(p.devolucion_coste, "[PENDIENTE PABLO: coste estimado de devolución]") +
+        ". <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>";
+    })(),
     "<p><a href=\"../../../condiciones-venta.html\">Condiciones de venta</a></p>"
   ].join("\n");
 }
