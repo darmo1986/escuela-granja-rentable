@@ -498,7 +498,7 @@
         note.hidden = false;
         note.textContent = ref === "DEMO"
           ? "Código de prueba DEMO guardado en este navegador (30 días). No genera comisión."
-          : "Llegaste con la recomendación " + ref + ". La guardamos 30 días. Hoy una compra de ebook, pack o kit no genera comisión.";
+          : "Llegaste con la recomendación " + ref + ". La guardamos 30 días. Hoy una compra de ebook o del pack no genera comisión.";
       } else note.hidden = true;
     }
     try { window.dispatchEvent(new CustomEvent("gr-pais", { detail: pais })); } catch (ePaisEvt) {}
