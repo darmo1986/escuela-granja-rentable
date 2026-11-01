@@ -57,7 +57,7 @@ Pide ayuda veterinaria si ves gusanos en heces o huevos, si varias gallinas adel
 
 ## El análisis de heces: cómo pedirlo
 
-El análisis de heces es la herramienta que separa el "creo que tienen lombrices" del "tienen lombrices y son estas". Se pide en cualquier clínica veterinaria que atienda aves o que trabaje con ganado: recoge heces frescas de varias gallinas, mejor de distintos puntos del gallinero y del corral, guárdalas en una bolsa limpia y llévalas el mismo día, sin refrigerar más de unas horas.
+El análisis de heces es la herramienta que separa el "creo que tienen lombrices" del "tienen lombrices y son estas". Se pide en cualquier clínica veterinaria que trate aves o que trabaje con ganado: recoge heces frescas de varias gallinas, mejor de distintos puntos del gallinero y del corral, guárdalas en una bolsa limpia y llévalas el mismo día, sin refrigerar más de unas horas.
 
 El resultado dice si hay huevos de parásito, de qué tipo y en qué cantidad. Con eso, el veterinario decide si hace falta tratar todo el lote o solo vigilar, y qué producto usar. Repetir el análisis unas semanas después del tratamiento confirma si funcionó o si hay que repetirlo. Es un gasto pequeño comparado con tratar a ciegas tres veces al año sin saber si el problema eran lombrices o era otra cosa.
 

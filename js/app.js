@@ -195,7 +195,9 @@ var ADS_RUTAS_SIN = {
   '/aviso-legal.html':1,'/privacidad.html':1,'/cookies.html':1,'/condiciones-venta.html':1,
   '/contacto.html':1,'/registro.html':1,'/cuenta.html':1,'/lista.html':1,
   '/examen-final.html':1,'/ebooks/':1,'/ebooks/index.html':1,'/404.html':1,
-  '/juegos.html':1,'/calculadora.html':1,'/calculadoras.html':1,'/tienda.html':1,'/tienda/':1
+  '/juegos.html':1,'/calculadora.html':1,'/calculadoras.html':1,'/afiliados.html':1,
+  '/blog/alimentacion.html':1,'/enfermedades/categoria/respiratorias.html':1,
+  '/enfermedades/categoria/parasitarias.html':1
 };
 function paginaSinAnuncios(){
   if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;

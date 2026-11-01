@@ -56,7 +56,7 @@
     var consent = localStorage.getItem("gr_consent");
     var adsActivos = !!(window.ads && window.ads.activo === true);
     var rutaAds = location.pathname || "/";
-    var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadora|calculadoras|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || rutaAds.indexOf("/tienda") === 0;
+    var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadora|calculadoras|afiliados|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || /\/blog\/alimentacion\.html$/.test(rutaAds) || /\/enfermedades\/categoria\/(respiratorias|parasitarias)\.html$/.test(rutaAds);
     if (sinAnuncios) document.documentElement.setAttribute("data-ads-pagina", "no");
     if (!sinAnuncios && adsActivos && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
     if (premiumVigente()) document.documentElement.classList.add("ad-off");
