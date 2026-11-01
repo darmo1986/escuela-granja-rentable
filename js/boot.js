@@ -52,7 +52,10 @@
   try {
     var consent = localStorage.getItem("gr_consent");
     var adsActivos = !!(window.ads && window.ads.activo === true);
-    if (adsActivos && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
+    var rutaAds = location.pathname || "/";
+    var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadoras|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || rutaAds.indexOf("/tienda") === 0;
+    if (sinAnuncios) document.documentElement.setAttribute("data-ads-pagina", "no");
+    if (!sinAnuncios && adsActivos && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
     if (premiumVigente()) document.documentElement.classList.add("ad-off");
   } catch (e0) {}
   var map = {

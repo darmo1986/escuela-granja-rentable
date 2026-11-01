@@ -190,7 +190,25 @@ function pedirDeNuevo(){
 function cerrarPregunta(){
   try { sessionStorage.removeItem('gr_pedir_cookies'); } catch(e){}
 }
+/* Páginas sin anuncios: legales, cuenta, formularios, examen, ebooks, 404 y listados escasos. */
+var ADS_RUTAS_SIN = {
+  '/aviso-legal.html':1,'/privacidad.html':1,'/cookies.html':1,'/condiciones-venta.html':1,
+  '/contacto.html':1,'/registro.html':1,'/cuenta.html':1,'/lista.html':1,
+  '/examen-final.html':1,'/ebooks/':1,'/ebooks/index.html':1,'/404.html':1,
+  '/juegos.html':1,'/calculadoras.html':1,'/tienda.html':1,'/tienda/':1
+};
+function paginaSinAnuncios(){
+  if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;
+  var robots=document.querySelector('meta[name="robots"]');
+  if(robots && /noindex/i.test(robots.getAttribute('content')||''))return true;
+  var p=location.pathname||'/';
+  if(p.length>1&&p.endsWith('/index.html'))p=p.slice(0,-10);
+  if(ADS_RUTAS_SIN[p]||ADS_RUTAS_SIN[p+'/'])return true;
+  if(/\/(checkout|descargas)\b/.test(p))return true;
+  return false;
+}
 function loadAds(){
+  if(paginaSinAnuncios()){quitarAnuncios();return;}
   if(!adsOn()){ocultarHuecos();return;}
   if(esPremiumLocal()){ quitarAnuncios(); return; }
   if(window.__adsLoaded)return; window.__adsLoaded=1;
@@ -232,6 +250,7 @@ function abrirAviso(){
   else {document.documentElement.classList.add('ad-ok');loadAds();notaLibre();}
 }
 function decidirAnuncios(){
+  if(paginaSinAnuncios()){ quitarAnuncios(); return; }
   if(!adsOn() || esPremiumLocal()){ quitarAnuncios(); return; }
   window.__adsLoaded = 0;
   document.documentElement.classList.remove('ad-off');

@@ -719,24 +719,29 @@ def anuncio(tamano, activo):
             f'<div class="ad-slot" data-ad-slot="{tamano}" data-ad-size="{tamano}"></div></aside>')
 
 
+def url_post(slug):
+    return "/blog/" + slug + ".html"
+
+
 def tarjeta(post, raiz):
+    href = url_post(post["slug"])
     return f'''<article class="pcard">
-<a class="pcard-media post-media" href="{esc(post["slug"])}.html"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" width="1200" height="675"></a>
+<a class="pcard-media post-media" href="{esc(href)}"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" width="1200" height="675" loading="lazy" decoding="async"></a>
 <div class="pcard-body">
 <p class="pcard-cat">{esc(CATS[post["categoria"]]["nombre"])}</p>
-<h3><a href="{esc(post["slug"])}.html">{esc(post["titulo"])}</a></h3>
+<h3><a href="{esc(href)}">{esc(post["titulo"])}</a></h3>
 <p class="post-meta">{("Basado en la lección " + esc(post["leccion"].upper()) + " · ") if post["leccion"] else ""}Lectura corta</p>
 <p>{esc(post["descripcion"])}</p>
-<a class="post-more" href="{esc(post["slug"])}.html">Leer artículo →</a>
+<a class="post-more" href="{esc(href)}">Leer artículo →</a>
 </div>
 </article>'''
 
 
 def categorias_nav(actual):
-    enlaces = ['<a href="index.html"' + (' aria-current="page"' if actual == "" else "") + '>Todos</a>']
+    enlaces = ['<a href="/blog/"' + (' aria-current="page"' if actual == "" else "") + '>Todos</a>']
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         marca = ' aria-current="page"' if actual == clave else ""
-        enlaces.append(f'<a href="{esc(meta["slug"])}.html"{marca}>{esc(meta["nombre"])}</a>')
+        enlaces.append(f'<a href="/blog/{esc(meta["slug"])}.html"{marca}>{esc(meta["nombre"])}</a>')
     return '<nav class="cats" aria-label="Categorías del blog">\n' + "\n".join(enlaces) + "\n</nav>"
 
 
@@ -765,7 +770,7 @@ def relacionados(post, publicados):
 def html_post(post, publicados, catalogo, raiz_sitio, activo):
     raiz = "../"
     migas = (f'<p class="crumbs"><a href="{raiz}index.html">Inicio</a> › '
-             f'<a href="index.html">Artículos</a> › '
+             f'<a href="/blog/">Artículos</a> › '
              f'<a href="{esc(CATS[post["categoria"]]["slug"])}.html">{esc(CATS[post["categoria"]]["nombre"])}</a></p>')
     meta = fecha_larga(post["fecha"]) + " · " + esc(AUTOR)
     if post["leccion"]:
@@ -827,19 +832,37 @@ def href_producto(raiz, producto):
     return raiz + FICHA_DESTINO.get(producto, "ebooks/")
 
 
-def listado(posts, pagina, total_paginas):
-    inicio = (pagina - 1) * POR_PAGINA
-    corte = posts[inicio:inicio + POR_PAGINA]
+def repartir_posts(n, por):
+    """Si la última página se quedaría con una sola entrada, se junta con la anterior."""
+    if n <= 0:
+        return [(0, 0)]
+    paginas = max(1, (n + por - 1) // por)
+    if paginas > 1 and n % por == 1:
+        paginas -= 1
+    base, extra = divmod(n, paginas)
+    cortes = []
+    i = 0
+    for p in range(paginas):
+        t = base + (1 if p < extra else 0)
+        cortes.append((i, i + t))
+        i += t
+    return cortes
+
+
+def listado(posts, pagina, cortes):
+    inicio, fin = cortes[pagina - 1]
+    corte = posts[inicio:fin]
+    total_paginas = len(cortes)
     if not corte:
         return '<p class="blog-vacio">Todavía no hay artículos publicados. Cada texto se revisa antes de salir aquí.</p>'
     html = '<div class="pgrid">\n' + "\n".join(tarjeta(p, "../") for p in corte) + "\n</div>"
     if total_paginas > 1:
         enlaces = []
         if pagina > 1:
-            anterior = "index.html" if pagina == 2 else f"pagina-{pagina - 1}.html"
+            anterior = "/blog/" if pagina == 2 else f"/blog/pagina-{pagina - 1}.html"
             enlaces.append(f'<a class="btn sec" href="{anterior}">Artículos anteriores</a>')
         if pagina < total_paginas:
-            enlaces.append(f'<a class="btn sec" href="pagina-{pagina + 1}.html">Ver más artículos</a>')
+            enlaces.append(f'<a class="btn sec" href="/blog/pagina-{pagina + 1}.html">Ver más artículos</a>')
         html += '\n<p class="split">' + " ".join(enlaces) + "</p>"
     return html
 
@@ -1000,7 +1023,8 @@ def planificar(raiz, incluir_borradores=False):
     descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
                         "sacados de las lecciones del curso gratis.")
     og_portada = LOGO
-    paginas_indice = max(1, (len(publicados) + POR_PAGINA - 1) // POR_PAGINA) if publicados else 1
+    cortes = repartir_posts(len(publicados), POR_PAGINA) if publicados else [(0, 0)]
+    paginas_indice = len(cortes)
     for numero in range(1, paginas_indice + 1):
         rel = "blog/index.html" if numero == 1 else f"blog/pagina-{numero}.html"
         canonical = SITIO + "/blog/" if numero == 1 else SITIO + f"/blog/pagina-{numero}.html"
@@ -1022,7 +1046,7 @@ def planificar(raiz, incluir_borradores=False):
             hero,
             anuncio("banner", activo),
             categorias_nav(""),
-            listado(publicados, numero, paginas_indice),
+            listado(publicados, numero, cortes),
             bloque_guias("../"),
             bloque_curso("../"),
             anuncio("rect", activo),
@@ -1038,7 +1062,7 @@ def planificar(raiz, incluir_borradores=False):
         canonical = SITIO + "/blog/" + meta["slug"] + ".html"
         titulo = f"{meta['nombre']} | Artículos | Granja Rentable"
         descripcion = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, sacados de las lecciones del curso gratis."
-        hero = (f'<section class="page-hero">\n<p class="crumbs"><a href="../index.html">Inicio</a> › <a href="index.html">Artículos</a></p>\n'
+        hero = (f'<section class="page-hero">\n<p class="crumbs"><a href="../index.html">Inicio</a> › <a href="/blog/">Artículos</a></p>\n'
                 f'<p class="kicker">Artículos</p>\n<h1>{esc(meta["nombre"])}</h1>\n'
                 f'<p>{esc(descripcion)}</p>\n</section>')
         if grupo:
@@ -1069,8 +1093,8 @@ def planificar(raiz, incluir_borradores=False):
     if publicados:
         entradas.append((SITIO + "/blog/", max(p["actualizado"] for p in publicados).isoformat()))
     for numero in range(2, paginas_indice + 1):
-        inicio = (numero - 1) * POR_PAGINA
-        corte = publicados[inicio:inicio + POR_PAGINA]
+        inicio, fin = cortes[numero - 1]
+        corte = publicados[inicio:fin]
         last = max((p["actualizado"] for p in corte), default=None)
         entradas.append((SITIO + f"/blog/pagina-{numero}.html", last.isoformat() if last else None))
     for clave in (c[0] for c in CATEGORIAS):
