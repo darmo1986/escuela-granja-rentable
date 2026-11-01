@@ -73,8 +73,8 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "copas-bebedero-automaticas",
       "nombre": "Copas de bebedero automáticas (pack de 6)",
       "categoria": "bebederos",
-      "descripcion_corta": "Agua limpia siempre disponible: la copa se llena sola cuando bebe la gallina y el depósito queda cerrado y sin contaminar.",
-      "descripcion": "El bebedero de copa es la forma más sencilla de acabar con los bebederos sucios, volcados y llenos de cama. Cada copa lleva una válvula que abre el paso del agua cuando la gallina la picotea y la mantiene al nivel justo, sin encharcar el suelo. El agua permanece dentro del cubo o del depósito cerrado, así que no le cae viruta, pienso ni excrementos: menos bacterias, menos problemas sanitarios y mucha menos limpieza. Se enroscan en un cubo, un bidón o un tubo y quedan funcionando en minutos. Una copa da de beber a unas 3-5 gallinas, así que el pack de 6 cubre un gallinero casero completo.",
+      "descripcion_corta": "Puede ayudar a servir agua más limpia: la copa se llena cuando bebe la gallina y el depósito queda cerrado. Es orientativo y no garantiza resultados.",
+      "descripcion": "El bebedero de copa puede ayudar a tener menos bebederos sucios, volcados o con cama. No garantiza un resultado sanitario. Cada copa lleva una válvula que abre el paso del agua cuando la gallina la picotea y la mantiene al nivel justo, sin encharcar el suelo. El agua permanece dentro del cubo o del depósito cerrado, así que no le cae viruta, pienso ni excrementos: menos bacterias, menos problemas sanitarios y mucha menos limpieza. Se enroscan en un cubo, un bidón o un tubo y quedan funcionando en minutos. Una copa da de beber a unas 3-5 gallinas, así que el pack de 6 cubre un gallinero casero completo.",
       "incluye": [
         "6 copas de bebedero automáticas con válvula",
         "Tuercas y juntas de sellado"
@@ -141,8 +141,8 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "tetinas-bebedero-colgantes",
       "nombre": "Tetinas con copa colgante para línea de agua (pack de 10)",
       "categoria": "bebederos",
-      "descripcion_corta": "El sistema de las granjas profesionales en tamaño casero: la tetina solo da agua cuando bebe el ave y el suelo queda seco.",
-      "descripcion": "La tetina con cazoleta es el bebedero estándar de la avicultura profesional adaptado al gallinero casero. La bola de la tetina deja pasar una gota cuando la gallina la toca con el pico, y la copa de debajo recoge la que sobra: el agua del depósito no se contamina y la cama no se encharca, que es donde nacen la mayoría de los problemas sanitarios de un lote. Se enroscan en tubo de PVC, en manguera rígida o en la pared de un cubo, y permiten montar una línea de agua automática completa alimentada por un depósito elevado.",
+      "descripcion_corta": "Un sistema habitual en muchas granjas, en tamaño casero: la tetina da agua cuando bebe el ave. Puede ayudar a mantener el suelo más seco. No garantiza resultados.",
+      "descripcion": "La tetina con cazoleta es un bebedero habitual en granjas, adaptado al gallinero casero. La bola de la tetina deja pasar una gota cuando la gallina la toca con el pico, y la copa de debajo recoge la que sobra: el agua del depósito no se contamina y la cama no se encharca, que es donde nacen la mayoría de los problemas sanitarios de un lote. Se enroscan en tubo de PVC, en manguera rígida o en la pared de un cubo, y permiten montar una línea de agua automática completa alimentada por un depósito elevado.",
       "incluye": [
         "10 tetinas con copa colgante",
         "Rosca estándar para tubo o cubo"
@@ -824,7 +824,7 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "bascula-precision-huevos",
       "nombre": "Báscula de precisión 0,01 g para pesar huevos",
       "categoria": "incubacion",
-      "descripcion_corta": "Pesa cada huevo al gramo y cada pollito al nacer: la clasificación profesional de la recogida, en el bolsillo.",
+      "descripcion_corta": "Pesa cada huevo y cada pollito al nacer: una forma ordenada de clasificar la recogida. Es orientativo y no garantiza resultados.",
       "descripcion": "El peso decide el destino de cada huevo. Para incubar rinden mejor los de 55 a 65 g: los muy pequeños dan pollitos débiles y los muy grandes suelen fallar o traer doble yema. Esta báscula de bolsillo pesa hasta 500 g con precisión de 0,01 g y pantalla retroiluminada, así que clasificas la recogida en un momento: incubar, vender o consumir. Y en la crianza vale igual: pesar a los pollitos al nacer y en las revisiones semanales es la forma de detectar a tiempo un lote de engorde que se está quedando atrás, cuando aún se puede corregir.",
       "incluye": [
         "Báscula de precisión 500 g / 0,01 g",
@@ -1362,15 +1362,15 @@ window.GR_TIENDA_CATALOGO = {
   "slug": "incubadora-automatica-30-huevos",
   "nombre": "Incubadora automática de 30 huevos con volteo y doble alimentación",
   "categoria": "incubacion",
-  "descripcion_corta": "La incubadora para sacar tus propios pollitos en 21 días: volteo automático, temperatura controlada y agua que se repone sola. Tú solo pones los huevos.",
-  "descripcion": "La forma más sencilla de dejar de comprar pollitos: esta incubadora automática hace el trabajo por ti. Voltea los huevos sola, mantiene la temperatura estable y repone el agua automáticamente para sostener la humedad. Su doble alimentación (220 V y 12 V) es un seguro de vida para la nidada: si se va la luz, la conectas a una batería de 12 V y la incubación no se pierde. Le caben 30 huevos de gallina (hay quien la usa también con codorniz y pato) y es el tamaño perfecto para empezar en casa o para complementar una granja pequeña. En 21 días, con huevos fértiles frescos, ves nacer tu primer pollito: no hay nada como eso.",
+      "descripcion_corta": "Incubadora con volteo automático y temperatura controlada. Puede ayudar a incubar en casa. No garantiza nacimientos.",
+      "descripcion": "Voltea los huevos sola, mantiene la temperatura y repone el agua para sostener la humedad. La doble alimentación (220 V y 12 V) puede ayudar si se va la luz, conectándola a una batería de 12 V. No garantiza que la incubación salga adelante. Le caben 30 huevos de gallina (hay quien la usa también con codorniz y pato). El resultado depende de los huevos y del manejo.",
   "incluye": [
     "1 incubadora automática de 30 huevos (versión Dual Power 12 V/220 V)",
     "Cable de alimentación 220 V",
     "Manual de instrucciones"
   ],
   "utilidades": [
-    "Sacar tus propios pollitos en casa en 21 días, sin depender de criaderos",
+    "Puede servir para incubar en casa. No garantiza los nacimientos.",
     "Empezar tu lote de ponedoras o camperos desde el huevo",
     "Incubar sin estar pendiente del volteo: lo hace sola cada día"
   ],
@@ -1507,8 +1507,8 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "overol-desechable-proteccion-granja",
       "nombre": "Overol desechable de protección (tipo Tyvek)",
       "categoria": "proteccion",
-      "descripcion_corta": "Barrera corporal completa: mono desechable transpirable contra polvo, plumas y salpicaduras. Bioseguridad profesional en tu granja.",
-      "descripcion": "El overol desechable es la prenda de bioseguridad que usan los profesionales: cubre tu ropa de calle para que no lleves patógenos al gallinero ni te los lleves a casa. Transpirable pero barrera contra polvo de cama, plumas, caspa y salpicaduras de desinfectante. De un solo uso: te lo pones al entrar, te lo quitas al salir, y la granja queda aislada del exterior. Imprescindible si visitas varias granjas o tienes lotes en cuarentena.",
+      "descripcion_corta": "Mono desechable transpirable contra polvo, plumas y salpicaduras. Puede ayudar en la bioseguridad de la granja. No garantiza resultados.",
+      "descripcion": "El overol desechable es una prenda que se usa en muchas granjas: cubre la ropa de calle y puede ayudar a no llevar suciedad de un lado a otro. No garantiza que aísle la granja. Transpirable, y hace de barrera frente al polvo de cama, las plumas, la caspa y las salpicaduras de desinfectante. De un solo uso: te lo pones al entrar y te lo quitas al salir. Conviene si visitas varias granjas o tienes lotes en cuarentena.",
       "incluye": [
         "1 overol desechable de protección",
         "Capucha, puños y tobillos elásticos"

@@ -25,7 +25,7 @@ La dispara el acortamiento de los días. Por eso casi todo el lote muda a la vez
 
 Una muda completa dura **entre 6 y 12 semanas**, según el ave:
 
-- Las buenas ponedoras mudan rápido y vuelven antes a poner.
+- Las que mudan rápido suelen volver antes a poner. Es orientativo y no garantiza la puesta.
 - Las gallinas mayores o débiles tardan más y salen peor de ella.
 - El orden suele ser: cabeza y cuello, pecho, cuerpo, alas y al final la cola.
 

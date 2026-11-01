@@ -1,6 +1,6 @@
 ---
-titulo: "Gallinas criollas: rústicas y buenas ponedoras"
-titulo_seo: "Gallinas criollas: rústicas y buenas ponedoras"
+titulo: "Gallinas criollas: rústicas, puesta variable"
+titulo_seo: "Gallinas criollas: rústicas, puesta variable"
 descripcion: "Ventajas y límites reales de las gallinas criollas: rusticidad, pastoreo y longevidad frente a una puesta menor, y cómo seleccionar las mejores."
 categoria: ponedoras
 fecha: 2026-10-11
@@ -75,4 +75,4 @@ Ninguna de las dos opciones es mejor en absoluto: depende de tu objetivo. Y much
 
 Las gallinas criollas llevan generaciones alimentando familias sin pedir casi nada. Con buena alimentación, un gallinero seco y un poco de selección, te devuelven huevos, rusticidad y años de compañía en el patio.
 
-Si quieres aprender manejo, alimentación y selección de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) te acompaña desde la primera pollita. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda).
+Si quieres aprender manejo, alimentación y selección de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).

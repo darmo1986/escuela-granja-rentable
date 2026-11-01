@@ -71,4 +71,4 @@ Anota lo que encuentres y arréglalo en la misma semana. Un hueco visto y no arr
 
 Un corral seguro no necesita ser caro ni feo: necesita una puerta que cierre de verdad, una malla que no se rompa, un suelo que no se cave y un techo que cubra. Con esas cuatro capas, tus gallinas duermen tranquilas y tú también.
 
-Si quieres aprender manejo y protección de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) te acompaña desde la primera pollita. Y para mallas, puertas y equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda).
+Si quieres aprender manejo y protección de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita. Y para mallas, puertas y equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).

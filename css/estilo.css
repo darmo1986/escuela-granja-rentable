@@ -385,6 +385,9 @@ body:has(#cookie-banner) main { padding-bottom: 120px; }
 .progress .bar { height: 10px; background: var(--gl); border-radius: 9px; overflow: hidden; }
 .progress .bar span { display: block; height: 100%; width: 0; background: var(--gold); }
 .lessons { list-style: none; padding: 0; margin: 0; }
+.t-pendiente { background: #fff3cd; color: #3d3a32; padding: 2px 6px; border-radius: 6px; }
+.lesson-sep { list-style: none; margin: 1.4rem 0 .35rem; padding: .2rem 0; }
+.lesson-sep h2 { margin: 0; font-size: 1.15rem; }
 .lesson { margin: 8px 0; }
 .lrow {
   display: flex; gap: 10px; align-items: center; background: #fff; border-radius: 14px;

@@ -1,7 +1,7 @@
 ---
-titulo: "Las 5 mejores razas de gallinas ponedoras"
-titulo_seo: "Las 5 mejores razas de gallinas ponedoras"
-descripcion: "Leghorn, Rhode Island, Sussex y más: las 5 mejores razas de gallinas ponedoras, cuántos huevos ponen y cuál te conviene."
+titulo: "5 razas de ponedoras para comparar"
+titulo_seo: "5 razas de ponedoras para comparar"
+descripcion: "Leghorn, Rhode Island y Sussex: 5 razas para comparar. Las puestas son orientativas y no están garantizadas."
 categoria: ponedoras
 fecha: 2026-10-26
 borrador: false
@@ -10,7 +10,7 @@ imagen_og: "img/blog/mejores-razas-gallinas-ponedoras-og.webp"
 imagen_alt: "Diferentes razas de gallinas ponedoras: Rhode Island, Leghorn y Sussex"
 ---
 
-## Las 5 mejores razas de gallinas ponedoras
+## 5 razas de ponedoras para comparar
 
 No todas las gallinas ponen igual. Estas cinco razas son las reinas de la puesta: elige según tu clima y tu objetivo.
 

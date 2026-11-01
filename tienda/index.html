@@ -9,13 +9,15 @@
 <link rel="stylesheet" href="../css/estilo.css?v=202610184">
 <link rel="stylesheet" href="tienda.css">
 <title>Tienda de Granja Rentable · Equipamiento avícola seleccionado</title>
-<meta name="description" content="Equipamiento avícola seleccionado a mano por Granja Rentable: bebederos, comederos y material de incubación con nota alta. Precio y plazo según tu país.">
+<meta name="description" content="Equipamiento avícola elegido uno a uno. Precio y plazo estimados según tu país; impuestos o aduana pueden no ir incluidos.">
 <link rel="canonical" href="https://granjarentable.com/tienda/">
 <meta property="og:title" content="Tienda de Granja Rentable">
-<meta property="og:description" content="Equipamiento avícola curado producto a producto, con precio y envío para tu país.">
+<meta property="og:description" content="Precio y plazo estimados según tu país. Impuestos o aduana pueden no ir incluidos.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://granjarentable.com/tienda/">
+<meta property="og:image" content="https://granjarentable.com/img/inicio-tienda.webp">
 </head>
-<body>
+<body data-root="../">
 <header class="site-head">
   <div class="wrap head-in">
     <a class="brand" href="../index.html"><span class="brand-mark"><img src="../img/logo.jpg" alt="Granja Rentable" width="46" height="46"></span><span class="brand-name">Granja Rentable</span></a>
@@ -36,7 +38,7 @@
   <div class="wrap t-banda-in">
     <span>Selección verificada producto a producto</span>
     <span>Envío con seguimiento</span>
-    <span>Devolución en 14 días gestionada por Granja Rentable</span>
+    <span>Desistimiento en 14 días, lo gestiona Granja Rentable</span>
   </div>
 </div>
 <main class="wrap">
@@ -44,7 +46,7 @@
     <img class="t-hero-logo" src="../img/logo.jpg" alt="Logotipo de Granja Rentable" width="96" height="96">
     <span class="chip t-hero-chip">Equipamiento seleccionado a mano</span>
     <h1>Tienda de Granja Rentable</h1>
-    <p class="t-hero-lead">Solo entra en esta tienda lo que supera nuestro filtro: nota de 4,5 o más, cientos de pedidos reales y un proveedor con historial. Ves el precio y el plazo de envío <strong>para tu país</strong>, sin sorpresas.</p>
+    <p class="t-hero-lead">Solo entra lo que supera el filtro: nota de 4,5 o más y un volumen de pedidos que pudimos revisar. Ves un <strong>precio y un plazo estimados</strong> para tu país. Pueden existir impuestos, tasas o gestión aduanera no incluidos.</p>
     <p><span class="t-pais-chip" id="tienda-pais">Detectando tu país…</span></p>
     <p class="t-pais-manual"><label for="tienda-pais-select">¿No es tu país? Elige el tuyo:</label>
     <select id="tienda-pais-select" aria-label="Elegir país de la tienda">
@@ -59,9 +61,9 @@
   </section>
 
   <div class="t-confianza">
-    <div class="mini"><strong>Curaduría real</strong><p>Cada producto se revisa uno a uno: nota, pedidos, vendedor y fotos de compradores. El que no pasa, no se vende.</p></div>
+    <div class="mini"><strong>Curaduría real</strong><p>Cada producto se revisa uno a uno: nota, pedidos, vendedor y fotos de compradores. Si no supera la revisión, no lo ponemos a la venta.</p></div>
     <div class="mini"><strong>Envío con seguimiento</strong><p>El proveedor prepara tu pedido y lo envía con número de seguimiento. El plazo que ves ya es el de tu país.</p></div>
-    <div class="mini"><strong>Devolución en 14 días</strong><p>Tienes 14 días naturales desde que lo recibes para devolverlo sin dar motivo. Te reembolsamos por el mismo medio de pago.</p></div>
+    <div class="mini"><strong>Desistimiento en 14 días</strong><p>Tienes 14 días desde que lo recibes para comunicarnos el desistimiento. El reembolso corre desde esa comunicación. Lo gestiona Granja Rentable.</p></div>
   </div>
 
   <section id="tienda-llegando" class="t-llegando" hidden>
@@ -85,6 +87,7 @@
 
   <p id="tienda-nota-pais" class="t-nota-pais" hidden>No pudimos detectar tu país, así que te mostramos el catálogo de México. Si no es tu país, elígelo en el selector de arriba.</p>
 
+  <p class="t-pendiente" id="catalogo">Precio y plazo estimados. Pueden existir impuestos, tasas o gestión aduanera no incluidos. <strong>[PENDIENTE: confirmar por país si el precio incluye IVA o aranceles]</strong> <strong>[PENDIENTE: confirmar quién figura como importador en cada país]</strong></p>
   <section id="tienda-catalogo" aria-live="polite">
     <p class="note">Cargando el catálogo de tu país…</p>
   </section>
@@ -95,7 +98,7 @@
     <div class="t-pasos">
       <div class="mini"><strong><span class="t-paso-n">1</span> Pides desde la ficha</strong><p>Eliges tus productos, rellenas el formulario de pedido y queda registrado al momento. Te enviamos un correo con los datos de tu pedido.</p></div>
       <div class="mini"><strong><span class="t-paso-n">2</span> El proveedor lo envía</strong><p>El proveedor verificado prepara tu paquete y lo envía con número de seguimiento. Te enviamos el código por correo para que lo sigas.</p></div>
-      <div class="mini"><strong><span class="t-paso-n">3</span> Lo recibes en casa</strong><p>Si cambias de idea, tienes 14 días naturales desde la recepción para devolverlo sin dar motivo: escríbenos y Granja Rentable gestiona la devolución contigo.</p></div>
+      <div class="mini"><strong><span class="t-paso-n">3</span> Lo recibes en casa</strong><p>El paquete sale del proveedor. Si desistes, escríbenos: te damos la dirección del almacén del proveedor y Granja Rentable responde del reembolso.</p></div>
     </div>
   </section>
 

@@ -176,12 +176,21 @@
     return !!(d && d.disponible);
   }
   function imagenDe(p) {
-    if (p.imagenes && p.imagenes.length) return { src: p.imagenes[0], nota: "" };
+    if (p.imagenes && p.imagenes.length) return { src: p.imagenes[0], nota: p.imagen_local_nota || "" };
     if (p.imagen_local) return { src: p.imagen_local, nota: p.imagen_local_nota || "" };
     return { src: "", nota: "" };
   }
+  /* Foto real = archivo propio del producto. Una imagen orientativa o vacía no se vende. */
+  function fotoReal(p) {
+    var img = imagenDe(p);
+    if (!img.src) return false;
+    return /foto del producto/i.test(String(p.imagen_local_nota || ""));
+  }
+  window.GRTiendaFotoReal = fotoReal;
+  function hrefFicha(p) { return "p/" + p.slug + "/"; }
   function textoEnvio(d) {
     if (d.origen_envio === "local") return "Envío desde almacén en tu país: " + d.dias_envio;
+    if (d.origen_envio && d.origen_envio !== "internacional") return "Envío (" + d.origen_envio + "): " + d.dias_envio;
     return "Envío internacional con seguimiento: " + d.dias_envio;
   }
   /* WhatsApp es SOLO un canal de preguntas: nunca tramita pedidos.
@@ -197,31 +206,38 @@
      Pablo decidió que todo pedido se registra en la web y se
      confirma por correo. */
   function botonCompra(p, pais) {
+    if (!fotoReal(p)) return "";
     var d = datosPais(p, pais);
     return '<button type="button" class="btn gold" data-cart-buy="' + esc(p.slug) + '">Comprar ahora · ' +
       esc(formatoPrecio(d.precio, d.moneda)) + "</button>";
+  }
+  function mediaTarjeta(p) {
+    var img = imagenDe(p);
+    if (!img.src) return '<div class="t-sin-foto">Próximamente</div>';
+    var alt = fotoReal(p) ? p.nombre : "Imagen orientativa. No es una foto de este producto.";
+    var nota = fotoReal(p) ? "" : '<span class="t-badge t-badge-orient">Imagen orientativa</span>';
+    return '<img src="' + esc(img.src) + '" alt="' + esc(alt) + '" loading="lazy" width="640" height="480">' + nota;
   }
 
   /* ---------- Portada de la tienda ---------- */
   function tarjeta(p, pais) {
     var d = datosPais(p, pais);
-    var img = imagenDe(p);
-    var media = img.src
-      ? '<img src="' + esc(img.src) + '" alt="' + esc(p.nombre) + '" loading="lazy" width="640" height="480">'
-      : '<div class="t-sin-foto">Foto en preparación</div>';
-    var badge = esMasVendido(p) ? '<span class="t-badge">Más vendido</span>' : "";
+    var badge = esMasVendido(p) && fotoReal(p) ? '<span class="t-badge">Más vendido</span>' : "";
+    var compra = fotoReal(p)
+      ? '<p class="t-precio">' + esc(formatoPrecio(d.precio, d.moneda)) + "</p>" +
+        '<p class="t-envio">' + esc(textoEnvio(d)) + " · estimado</p>" +
+        '<button type="button" class="btn cart-add" data-cart-add="' + esc(p.slug) + '">Añadir al carrito</button>'
+      : '<p class="t-pronto"><strong>Próximamente</strong> · no disponible</p>';
     return '<article class="pcard">' +
-      '<a class="pcard-media" href="producto.html?p=' + esc(p.slug) + '" aria-label="' + esc(p.nombre) + '">' + media + badge + "</a>" +
+      '<a class="pcard-media" href="' + esc(hrefFicha(p)) + '" aria-label="' + esc(p.nombre) + '">' + mediaTarjeta(p) + badge + "</a>" +
       '<div class="pcard-body">' +
       '<span class="pcard-cat">' + esc(CATS[p.categoria] || p.categoria) + "</span>" +
-      '<h3><a href="producto.html?p=' + esc(p.slug) + '">' + esc(p.nombre) + "</a></h3>" +
+      '<h3><a href="' + esc(hrefFicha(p)) + '">' + esc(p.nombre) + "</a></h3>" +
       '<p class="t-desc">' + esc(p.descripcion_corta) + "</p>" +
       '<p class="t-rating"><span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " +
       Number(p.rating).toFixed(1).replace(".", ",") + " · " + esc(p.pedidos) + " vendidos</p>" +
-      '<p class="t-precio">' + esc(formatoPrecio(d.precio, d.moneda)) + "</p>" +
-      '<p class="t-envio">' + esc(textoEnvio(d)) + "</p>" +
-      '<a class="btn sec" href="producto.html?p=' + esc(p.slug) + '">Ver ficha</a>' +
-      '<button type="button" class="btn cart-add" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
+      compra +
+      '<a class="btn sec" href="' + esc(hrefFicha(p)) + '">Ver ficha</a>' +
       "</div></article>";
   }
   /* Vista previa (país aún no activo): las mismas tarjetas SIN precio,
@@ -230,20 +246,18 @@
      precio) y WhatsApp para consultar, nunca para pedir. No se añade
      ningún texto de origen. */
   function tarjetaVistaPrevia(p, paisNombre) {
-    var img = imagenDe(p);
-    var media = img.src
-      ? '<img src="' + esc(img.src) + '" alt="' + esc(p.nombre) + '" loading="lazy" width="640" height="480">'
-      : '<div class="t-sin-foto">Foto en preparación</div>';
-    var badge = esMasVendido(p) ? '<span class="t-badge">Más vendido</span>' : "";
+    var badge = esMasVendido(p) && fotoReal(p) ? '<span class="t-badge">Más vendido</span>' : "";
+    var estado = fotoReal(p) ? "" : '<p class="t-pronto"><strong>Próximamente</strong> · no disponible</p>';
     return '<article class="pcard pcard-previa">' +
-      '<a class="pcard-media" href="producto.html?p=' + esc(p.slug) + '" aria-label="' + esc(p.nombre) + '">' + media + badge + "</a>" +
+      '<a class="pcard-media" href="' + esc(hrefFicha(p)) + '" aria-label="' + esc(p.nombre) + '">' + mediaTarjeta(p) + badge + "</a>" +
       '<div class="pcard-body">' +
       '<span class="pcard-cat">' + esc(CATS[p.categoria] || p.categoria) + "</span>" +
-      '<h3><a href="producto.html?p=' + esc(p.slug) + '">' + esc(p.nombre) + "</a></h3>" +
+      '<h3><a href="' + esc(hrefFicha(p)) + '">' + esc(p.nombre) + "</a></h3>" +
       '<p class="t-desc">' + esc(p.descripcion_corta) + "</p>" +
       '<p class="t-rating"><span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " +
       Number(p.rating).toFixed(1).replace(".", ",") + " · " + esc(p.pedidos) + " vendidos</p>" +
-      '<a class="btn sec" href="producto.html?p=' + esc(p.slug) + '">Ver ficha</a>' +
+      estado +
+      '<a class="btn sec" href="' + esc(hrefFicha(p)) + '">Ver ficha</a>' +
       '<a class="btn gold t-consulta" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, paisNombre)) + '">Consultar por WhatsApp</a>' +
       "</div></article>";
   }
@@ -290,7 +304,7 @@
       ORDEN_CATS.forEach(function (c) {
         var grupo = portada.lista.filter(function (p) { return p.categoria === c; });
         if (!grupo.length) return;
-        html += '<h2 class="t-cat">' + esc(CATS[c]) + '</h2><div class="pgrid">' +
+        html += '<h2 class="t-cat" id="' + esc(c) + '">' + esc(CATS[c]) + '</h2><div class="pgrid">' +
           grupo.map(dibujar).join("") + "</div>";
       });
       var resto = portada.lista.filter(function (p) { return ORDEN_CATS.indexOf(p.categoria) === -1; });
@@ -433,81 +447,56 @@
   }
 
   /* ---------- Ficha de producto ---------- */
-  function ponerCanonical(slug) {
-    if (!/^[a-z0-9-]{1,80}$/.test(slug)) return;
-    var link = document.querySelector('link[rel="canonical"]');
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "canonical";
-      document.head.appendChild(link);
+  function actualizarFichaEstatica(pais) {
+    var zona = $("#tienda-ficha");
+    var slug = zona.getAttribute("data-slug") || "";
+    var p = null;
+    CAT.productos.forEach(function (x) { if (x.slug === slug) p = x; });
+    var nombrePais = (CAT.paises[pais] && CAT.paises[pais].nombre) || pais;
+    var chip = $("#tienda-pais");
+    if (chip) chip.textContent = "País detectado: " + nombrePais;
+    var volver = $("#tienda-volver");
+    if (volver) volver.hidden = false;
+    var filas = document.querySelectorAll(".t-precios-pais li");
+    for (var i = 0; i < filas.length; i++) {
+      filas[i].classList.toggle("is-pais", filas[i].getAttribute("data-pais") === pais);
     }
-    link.href = "https://granjarentable.com/tienda/producto.html?p=" + slug;
-  }
-  function quitarCanonical() {
-    var link = document.querySelector('link[rel="canonical"]');
-    if (link) link.remove();
+    var acciones = $("#ficha-acciones");
+    var aviso = $("#ficha-aviso");
+    var precioEl = $("#ficha-precio");
+    var envioEl = $("#ficha-envio");
+    if (!p || !fotoReal(p)) {
+      if (acciones) acciones.hidden = true;
+      return;
+    }
+    var d = visible(p, pais) ? datosPais(p, pais) : null;
+    if (!d) {
+      if (acciones) acciones.hidden = true;
+      if (aviso) {
+        aviso.hidden = false;
+        aviso.textContent = "Todavía no enviamos este producto a " + nombrePais + ".";
+      }
+      return;
+    }
+    if (precioEl) precioEl.textContent = formatoPrecio(d.precio, d.moneda);
+    if (envioEl) envioEl.textContent = textoEnvio(d) + ". Estimado.";
+    if (acciones) acciones.hidden = false;
+    if (aviso) aviso.hidden = true;
+    var buy = zona.querySelector("[data-cart-buy]");
+    if (buy) buy.textContent = "Comprar ahora · " + formatoPrecio(d.precio, d.moneda);
   }
   function pintarFicha(pais) {
     var zona = $("#tienda-ficha");
     if (!zona) return;
-    var slug = null;
-    try { slug = new URLSearchParams(location.search).get("p"); } catch (e) {}
-    var p = null;
-    CAT.productos.forEach(function (x) { if (x.slug === slug) p = x; });
-    var nombrePais = (CAT.paises[pais] && CAT.paises[pais].nombre) || pais;
-    if (!slug) {
-      location.replace("./");
+    if (zona.getAttribute("data-estatica") === "1") {
+      actualizarFichaEstatica(pais);
       return;
     }
-    if (!p) {
-      quitarCanonical();
-      zona.innerHTML = '<div class="note"><p>Ese producto no está en el catálogo. ' +
-        '<a href="./">Volver a la tienda</a></p></div>';
-      return;
-    }
-    document.title = p.nombre + " · Tienda Granja Rentable";
-    ponerCanonical(p.slug);
-    var img = imagenDe(p);
-    var galeria = img.src
-      ? '<img src="' + esc(img.src) + '" alt="' + esc(p.nombre) + '" width="760" height="570">' +
-        (img.nota ? '<p class="t-nota-foto">' + esc(img.nota) + "</p>" : "")
-      : '<div class="t-sin-foto t-sin-foto-grande">Foto en preparación</div>';
-    var d = visible(p, pais) ? datosPais(p, pais) : null;
-    var compra;
-    if (d) {
-      compra = '<p class="t-precio t-precio-grande">' + esc(formatoPrecio(d.precio, d.moneda)) + "</p>" +
-        '<p class="t-envio">' + esc(textoEnvio(d)) + "</p>" +
-        (d.nota ? '<p class="t-nota-pais">' + esc(d.nota) + "</p>" : "") +
-        botonCompra(p, pais, nombrePais) +
-        '<button type="button" class="btn cart-add cart-add-ficha" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
-        '<p class="t-garantia">Selección curada por Granja Rentable: solo vendemos productos con nota alta y cientos de pedidos reales. El pedido lo prepara y envía el proveedor con número de seguimiento. Devolución en 14 días sin dar motivo. <a href="../condiciones-venta.html">Condiciones de venta</a>.</p>';
-    } else if (!p.activo) {
-      compra = '<div class="note"><p><strong>Producto no disponible ahora mismo.</strong> Lo hemos retirado de la venta mientras revisamos su stock con el proveedor.</p>' +
-        '<a class="btn gold" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, nombrePais)) + '">¿Dudas? Pregúntame por WhatsApp</a></div>';
-    } else {
-      compra = '<div class="note"><p><strong>Todavía no enviamos este producto a ' + esc(nombrePais) + ".</strong> " +
-        "Estamos abriendo países por orden y el tuyo está en la lista.</p>" +
-        '<a class="btn gold" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, nombrePais)) + '">¿Dudas? Pregúntame por WhatsApp</a></div>';
-    }
-    var incluye = (p.incluye || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
-    var utilidades = (p.utilidades || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
-    var uso = (p.como_se_usa || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
-    zona.innerHTML =
-      '<p class="pdp-cat">' + esc(CATS[p.categoria] || p.categoria) + " · Tienda Granja Rentable</p>" +
-      "<h1>" + esc(p.nombre) + "</h1>" +
-      '<p class="t-rating t-rating-ficha"><span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " +
-      Number(p.rating).toFixed(1).replace(".", ",") + " de nota media · " + esc(p.pedidos) + " vendidos</p>" +
-      '<div class="pdp-grid"><div class="pdp-media">' + galeria + '</div>' +
-      '<div class="pdp-buy">' + compra + "</div></div>" +
-      '<div class="pdp-copy"><p>' + esc(p.descripcion) + "</p>" +
-      (incluye ? "<h2>Qué incluye</h2><ul>" + incluye + "</ul>" : "") +
-      (utilidades ? "<h2>Utilidades</h2><ul>" + utilidades + "</ul>" : "") +
-      (uso ? "<h2>Cómo se usa</h2><ol>" + uso + "</ol>" : "") +
-      "<h2>Cómo funciona tu pedido</h2><p>Granja Rentable selecciona y verifica cada producto. Al pedir, el proveedor prepara tu paquete y lo envía con número de seguimiento hasta tu país; el plazo que ves arriba ya es el estimado para " + esc(nombrePais) + ". Tienes 14 días naturales desde que lo recibes para devolverlo sin dar motivo: escríbenos a ventas@granjarentable.com. Consulta también las <a href=\"../condiciones-venta.html\">condiciones de venta</a>.</p></div>";
-    var volver = $("#tienda-volver");
-    if (volver) volver.hidden = false;
+    var slug = "";
+    try { slug = new URLSearchParams(location.search).get("p") || ""; } catch (e) {}
+    if (slug && /^[a-z0-9-]{1,80}$/.test(slug)) location.replace("p/" + slug + "/");
+    else location.replace("./");
   }
-
   /* ---------- Arranque ---------- */
   document.addEventListener("DOMContentLoaded", function () {
     var sel = $("#tienda-pais-select");

@@ -74,18 +74,20 @@
   }
 
   var FICHA_DESTINO = {
-    "comedero-tolva": "tienda/producto.html?p=tolva-happy-chickens-finca-casarejo",
-    "bebedero-campana": "tienda/producto.html?p=bebedero-campana-finca-casarejo",
+    "comedero-tolva": "tienda/p/tolva-happy-chickens-finca-casarejo/",
+    "bebedero-campana": "tienda/p/bebedero-campana-finca-casarejo/",
     "suplemento": "tienda/",
     "criadora-calor": "tienda/",
     "curso-avicultura": "curso.html",
-    "ebook-guia-avicultura": "ebooks.html",
-    "app-pollos-engorde": "app.html"
+    "ebook-guia-avicultura": "ebooks/",
+    "app-pollos-engorde": "app.html",
+    "incubadora-24egg-dual": "tienda/",
+    "incubadora-wonegg-48": "tienda/"
   };
 
   function productHref(id) {
     if (FICHA_DESTINO[id]) return root + FICHA_DESTINO[id];
-    return root + "producto/" + id + ".html";
+    return root + "tienda/";
   }
 
   function waProduct(name) {
@@ -1039,7 +1041,7 @@
       var canal = "";
       if (esTienda) {
         canal = "tienda";
-        producto = t.getAttribute("data-producto") || "Incubadora 24Egg Dual";
+        producto = t.getAttribute("data-producto") || "Tienda";
       } else {
         canal = "whatsapp";
         var m = /[?&]text=([^&]+)/.exec(href);

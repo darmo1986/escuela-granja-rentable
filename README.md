@@ -92,7 +92,7 @@ La ficha ya está en `data/curso-web.json`, la fila ya está en `curso.html` y l
 - 14 testers con Gmail: el cupo se cuenta en la hoja, no hay un número en vivo.
 - Opiniones reales, cuando haya permiso por escrito.
 - El código `?ref=` ya se guarda 30 días y se añade al enlace de la tienda. La tienda todavía tiene que copiar ese `ref` al pedido. El pago del 10 % se hace a mano por PayPal desde la hoja (mínimo US$ 20, después de los 14 días). No hay n8n ni una herramienta de pago de afiliados.
-- Fichas del curso: L01–L04B usan el texto de cada lección. Los minutos son la duración del video (13, 24, 18, 27 y 29). L05A–L06C se publican con una entrada en `data/curso-web.json` y el mp4 en `videos/` (ver arriba). El vocabulario del curso usa español neutro de Latinoamérica (alimento, costo) y `og:locale` es `es_419`.
+- Fichas del curso: L01–L04B usan el texto de cada lección. Los minutos son la duración del vídeo (13, 24, 18, 27 y 29). L05A–L06C se publican con una entrada en `data/curso-web.json` y el mp4 en `videos/` (ver arriba). En el texto visible se unifican «vídeo», «depredadores» y «coste». `og:locale` sigue siendo `es_419`.
 
 ## Formularios (gratis, Google Sheets)
 

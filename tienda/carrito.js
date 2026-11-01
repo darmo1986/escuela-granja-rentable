@@ -42,7 +42,7 @@
   var vista = "carrito"; /* carrito | pedido | ok */
   var enviando = false;
   var ultimoProtegido = false;
-  var ultimoPaypalUrl = "";
+  var ultimoPaypalUrl = ""; /* PayPal no se ofrece: paypalMe está vacío y no hay botones. */
 
   /* ---------- Utilidades (mismo criterio que tienda.js) ---------- */
   function $(s, c) { return (c || document).querySelector(s); }
@@ -81,26 +81,13 @@
   }
   function textoEnvio(d) {
     if (d.origen_envio === "local") return "Envío desde almacén en tu país: " + d.dias_envio;
+    if (d.origen_envio && d.origen_envio !== "internacional") return "Envío (" + d.origen_envio + "): " + d.dias_envio;
     return "Envío internacional con seguimiento: " + d.dias_envio;
   }
   function redondea2(n) { return Math.round(n * 100) / 100; }
 
-  /* ---------- PayPal.Me: enlace de pago con el total del pedido ----------
-     Sin API: la base sale de GR.paypalMe (js/config.js). PayPal.Me admite
-     importe y moneda en la propia URL (…/16.95EUR): se adjuntan solo en
-     las monedas habituales de PayPal.Me; en el resto va el enlace pelado
-     y el cliente escribe el total que ve en su pedido. */
-  function paypalBase() {
-    var GR = window.GR || {};
-    return String(GR.paypalMe || "").trim().replace(/\/+$/, "");
-  }
-  function paypalUrlPara(total, moneda) {
-    var base = paypalBase();
-    if (!base) return "";
-    if (["EUR", "USD", "MXN", "GBP"].indexOf(moneda) !== -1) {
-      return base + "/" + total.toFixed(2) + moneda;
-    }
-    return base;
+  function sePuedeComprar(p) {
+    return !!(p && window.GRTiendaFotoReal && window.GRTiendaFotoReal(p));
   }
 
   /* ---------- Protección Trustap: comisión sobre el subtotal ---------- */
@@ -173,7 +160,7 @@
     var out = [];
     Object.keys(estado.items).forEach(function (slug) {
       var p = productoPorSlug(slug);
-      if (!p) return;
+      if (!p || !sePuedeComprar(p)) return;
       var cant = Math.min(Math.max(1, parseInt(estado.items[slug], 10) || 1), topeDe(p));
       var d = paisActual && visible(p, paisActual) ? datosPais(p, paisActual) : null;
       out.push({ p: p, cant: cant, d: d, subtotal: d ? d.precio * cant : 0 });
@@ -232,19 +219,7 @@
             '</div>' +
             '<label class="cart-campo">País de envío' +
               '<select id="gr-ped-pais">' + opcionesPais() + "</select></label>" +
-            (paypalBase()
-              ? '<div class="cart-pago">' +
-                  '<p class="cart-pago-t"><strong>¿Cómo quieres pagar?</strong></p>' +
-                  '<label class="cart-pago-lab">' +
-                    '<input type="radio" name="gr-ped-metodo" value="paypal" checked>' +
-                    "<span><strong>Pagar ahora con PayPal</strong> — con la Protección del comprador de PayPal.</span>" +
-                  "</label>" +
-                  '<label class="cart-pago-lab">' +
-                    '<input type="radio" name="gr-ped-metodo" value="correo">' +
-                    "<span><strong>Pagar después por correo</strong> — te escribimos para cerrar el pago.</span>" +
-                  "</label>" +
-                "</div>"
-              : "") +
+            '<p class="cart-pago-t">El pedido se registra en la web. Te escribimos al correo para concretar el pago. En esta página no hay botón de PayPal.</p>' +
             '<p class="cart-linea"><span>Subtotal</span><strong id="gr-ped-subtotal">—</strong></p>' +
             '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-ped-total">—</strong></p>' +
             '<button type="submit" class="btn gold cart-checkout" id="gr-ped-enviar">Enviar pedido</button>' +
@@ -256,20 +231,17 @@
           '<div class="cart-ok">' +
             '<p class="cart-ok-t">✅ Pedido recibido</p>' +
             "<p>Tu pedido se está procesando. Te hemos enviado un correo con los datos de tu pedido; cuando salga, te enviaremos también el seguimiento por correo.</p>" +
-            '<p class="cart-ok-paypal" id="gr-cart-ok-paypal" hidden>💳 <strong>Solo te falta pagar tu pedido:</strong><br>' +
-              '<a class="btn gold" id="gr-cart-ok-paypal-btn" href="#" target="_blank" rel="noopener">Pagar ahora con PayPal</a><br>' +
-              '<span class="cart-ok-paypal-nota">El importe ya va rellenado con el total de tu pedido. Cruzamos tu pago con el correo que nos has dado.</span></p>' +
             '<p><button type="button" class="btn sec" id="gr-cart-ok-cerrar">Seguir viendo la tienda</button></p>' +
           "</div>" +
         "</section>" +
         '<div class="cart-foot" id="gr-cart-foot">' +
           '<div class="cart-confianza">' +
-            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Devolución en 14 días gestionada por Granja Rentable<br>✓ Te confirmamos el pedido por correo electrónico<br><a href="../condiciones-venta.html">Condiciones de venta</a></p>' +
+            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Desistimiento en 14 días, gestionado por Granja Rentable<br>✓ Te confirmamos el pedido por correo electrónico<br><a href="../condiciones-venta.html">Condiciones de venta</a></p>' +
           '</div>' +
           '<p class="cart-linea"><span>Subtotal</span><strong id="gr-cart-subtotal">—</strong></p>' +
           '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-cart-total">—</strong></p>' +
           '<p class="cart-envio" id="gr-cart-envio"></p>' +
-          '<p class="cart-nota">El precio de cada producto ya incluye el envío a tu país. Al finalizar la compra rellenas un formulario corto y tu pedido queda registrado: te enviamos un correo con los datos del pedido y, cuando salga, otro con el seguimiento.</p>' +
+          '<p class="cart-nota">El precio es una estimación para tu país y puede incluir el envío estimado. Pueden existir impuestos, tasas o gestión aduanera no incluidos. Al finalizar rellenas un formulario y el pedido queda registrado: te escribimos con los datos y, cuando salga, con el seguimiento.</p>' +
           '<button type="button" class="btn gold cart-checkout" id="gr-cart-checkout">Finalizar compra</button>' +
           '<p class="cart-msg" id="gr-cart-msg" role="status"></p>' +
           '<button type="button" class="cart-vaciar" id="gr-cart-vaciar">Vaciar el carrito</button>' +
@@ -347,12 +319,6 @@
     if (vista === "ok") {
       var t = $("#gr-cart-ok-trustap");
       if (t) t.hidden = !ultimoProtegido;
-      var pp = $("#gr-cart-ok-paypal");
-      if (pp) {
-        pp.hidden = !ultimoPaypalUrl;
-        var btn = $("#gr-cart-ok-paypal-btn");
-        if (btn && ultimoPaypalUrl) btn.href = ultimoPaypalUrl;
-      }
     }
     if (vista === "pedido") pintarForm();
   }
@@ -474,10 +440,7 @@
       cp: v("#gr-ped-cp"),
       paisEnvio: sel && sel.value ? sel.value : (paisActual || ""),
       trustap: !!(chk && chk.checked),
-      metodo: (function () {
-        var r = document.querySelector('input[name="gr-ped-metodo"]:checked');
-        return r ? r.value : (paypalBase() ? "paypal" : "correo");
-      })()
+      metodo: "correo"
     };
   }
   function validarForm(f) {
@@ -497,12 +460,8 @@
     var totalFinal = redondea2(t.subtotal + fee);
     var paisEnvioNombre = (CAT.paises[f.paisEnvio] && CAT.paises[f.paisEnvio].nombre) || f.paisEnvio;
     var direccion = f.calle + ", " + f.ciudad + ", " + f.cp + ", " + paisEnvioNombre;
-    /* Método de pago efectivo: si el cliente marcó Trustap, la compra
-       protegida MANDA sobre PayPal (no se le ofrece pagar por PayPal.Me
-       un dinero que debe ir a la custodia). */
-    var metodoEfectivo = comision ? "trustap"
-      : (f.metodo === "paypal" && paypalBase() ? "paypal" : "correo");
-    var urlPaypal = metodoEfectivo === "paypal" ? paypalUrlPara(totalFinal, t.moneda) : "";
+    var metodoEfectivo = comision ? "trustap" : "correo";
+    var urlPaypal = "";
     /* Resumen COMPLETO del pedido: viaja en «interes» del tipo «pedido»
        SIN el recorte de 140 caracteres de las intenciones «compra»
        (el Apps Script lo guarda entero en la hoja y lo mete en los
@@ -514,12 +473,9 @@
       "\nSubtotal: " + formatoPrecio(t.subtotal, t.moneda) +
       (comision ? "\nProtección Trustap: " + formatoPrecio(fee, t.moneda) : "") +
       "\nTotal: " + formatoPrecio(totalFinal, t.moneda) + " (precios para " + nombrePais() + ")" +
-      "\nMétodo de pago: " + (metodoEfectivo === "paypal"
-        ? "PayPal (pago inmediato)"
-        : metodoEfectivo === "trustap"
-          ? "Compra protegida con Trustap"
-          : "A acordar por correo") +
-      (urlPaypal ? "\nEnlace de pago PayPal: " + urlPaypal : "") +
+      "\nMétodo de pago: " + (metodoEfectivo === "trustap"
+        ? "Compra protegida con Trustap"
+        : "A acordar por correo") +
       (t.plazos.length ? "\nEnvío estimado: " + t.plazos.join(" / ") : "") +
       "\n\nCliente: " + f.nombre +
       "\nCorreo: " + f.email +
@@ -573,13 +529,7 @@
        (slug, cantidad, precio y moneda ya resueltos por país) y
        redirigir a la URL de la sesión tras registrar el pedido.
 
-     → PAYPAL (PayPal.Me): YA integrado sin API. Si el cliente eligió
-       PayPal y no marcó Trustap, pedido.paypalUrl lleva el enlace con
-       el total ya rellenado: se le muestra como botón en la pantalla
-       de confirmación y viaja en el payload (metodo_pago y
-       paypal_link) para que el Apps Script lo meta también en su
-       correo de confirmación. La base se configura en GR.paypalMe
-       (js/config.js); vacío = el método no se ofrece.
+     → PAYPAL: no se ofrece. No hay botones ni SDK en la tienda.
 
      → TRUSTAP «PAGO PROTEGIDO» (escrow): si el cliente marcó la
        casilla, pedido.proteccion trae la comisión ya calculada y su
@@ -647,7 +597,10 @@
   /* ---------- Operaciones ---------- */
   function anadir(slug) {
     var p = productoPorSlug(slug);
-    if (!p) return;
+    if (!p || !sePuedeComprar(p)) {
+      toast("Próximamente: este producto no está a la venta.");
+      return;
+    }
     var estado = leer();
     var cant = Math.min((parseInt(estado.items[slug], 10) || 0) + 1, topeDe(p));
     estado.items[slug] = cant;
@@ -659,7 +612,10 @@
      de pedido directamente, sin pasar por WhatsApp. */
   function comprarAhora(slug) {
     var p = productoPorSlug(slug);
-    if (!p) return;
+    if (!p || !sePuedeComprar(p)) {
+      toast("Próximamente: este producto no está a la venta.");
+      return;
+    }
     var estado = leer();
     var cant = Math.min((parseInt(estado.items[slug], 10) || 0) + 1, topeDe(p));
     estado.items[slug] = cant;

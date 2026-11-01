@@ -431,11 +431,11 @@ function paintLessonSlot(slot,enlace){
     const b=document.createElement('button');
     b.type='button';
     b.className='yt-facade';
-    b.textContent='Ver el video';
+    b.textContent='Ver el vídeo';
     b.addEventListener('click',function(){
       const f=document.createElement('iframe');
       f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(media.id)+'?rel=0';
-      f.title='Video de la lección';
+      f.title='Vídeo de la lección';
       f.allow='accelerometer; encrypted-media; picture-in-picture';
       f.allowFullscreen=true;
       f.loading='lazy';

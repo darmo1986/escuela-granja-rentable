@@ -49,7 +49,7 @@ GUIAS = {
     "empezar": (
         "guia-empezar.html",
         "Carne, huevos o genética",
-        "Un solo camino al empezar, y el alimento como la mayor parte del costo. Sale de L01.",
+        "Un solo camino al empezar, y el alimento como la mayor parte del coste. Sale de L01.",
     ),
     "espacio": (
         "guia-espacio.html",
@@ -59,7 +59,7 @@ GUIAS = {
     "incubadora": (
         "guia-incubadora.html",
         "Incubadora y días",
-        "21, 17 y 28 días según L03, y las fichas de la 24Egg Dual y la WONEGG 48.",
+        "21, 17 y 28 días según L03. El equipo de incubación está en la tienda.",
     ),
 }
 MESES = (
@@ -107,7 +107,7 @@ def clave_nav(rel):
         return "articulos"
     base = rel.split("/")[-1]
     carpeta = rel.split("/")[0] if "/" in rel else ""
-    if carpeta == "producto" or base == "tienda.html":
+    if carpeta in ("producto", "tienda") or base == "tienda.html":
         return "tienda"
     if carpeta == "lecciones" or base in ("curso.html", "examen-final.html", "leccion.html"):
         return "curso"
@@ -742,10 +742,10 @@ def bloque_guias(raiz):
 
 
 def bloque_curso(raiz):
-    return ("<section class=\"panel panel-shop\">\n<h2>¿Quieres aprenderlo con video?</h2>\n"
+    return ("<section class=\"panel panel-shop\">\n<h2>¿Quieres aprenderlo con vídeo?</h2>\n"
             "<p>El curso es gratis y va paso a paso. Las herramientas que usamos están en nuestra tienda.</p>\n"
             f"<p class=\"split\"><a class=\"btn gold\" href=\"{esc(raiz)}curso.html\">Empezar el curso gratis</a> "
-            f"<a class=\"btn sec\" href=\"{esc(raiz)}tienda.html\">Ver la tienda</a></p>\n</section>")
+            f"<a class=\"btn sec\" href=\"{esc(raiz)}tienda/\">Ver la tienda</a></p>\n</section>")
 
 
 def relacionados(post, publicados):
@@ -778,8 +778,8 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
                + '" rel="noopener nofollow" target="_blank">la publicación en redes</a>.</p>')
     video = ""
     if post["video"]:
-        video = (f'<h2>Video</h2>\n<button class="yt-facade" type="button" data-yt="{esc(post["video"])}">'
-                 'Ver el video (se carga al pulsar)</button>')
+        video = (f'<h2>Vídeo</h2>\n<button class="yt-facade" type="button" data-yt="{esc(post["video"])}">'
+                 'Ver el vídeo (se carga al pulsar)</button>')
     cajas = []
     if post["leccion"]:
         nombre = titulo_leccion(raiz_sitio, post["leccion"]) or post["leccion"].upper()
@@ -789,9 +789,8 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
                      '</section>')
     if post["producto"]:
         ficha = catalogo[post["producto"]]
-        nota = " El precio y si hay envío salen en la ficha, según tu país."
-        if post["producto"] == "incubadora-24egg-dual":
-            nota += " En Estados Unidos, la ficha muestra la WONEGG 48."
+        nota = (" El precio y el plazo de la tienda son estimados. "
+                "Pueden existir impuestos, tasas o gestión aduanera no incluidos.")
         cajas.append('<section class="panel panel-shop">\n<h3>En nuestra tienda</h3>\n'
                      f'<div class="media-mini"><img src="{esc(raiz + ficha["imagen"])}" alt="{esc(ficha.get("alt") or ficha["nombre"])}" width="84" height="84">'
                      f'<p>{esc(ficha["nombre"])}. {esc(ficha.get("resumen") or "")}{esc(nota)}</p></div>\n'
@@ -812,18 +811,20 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
 # Fichas viejas que ya no tienen HTML propio: el enlace del artículo
 # apunta al destino, no a la redirección de producto/.
 FICHA_DESTINO = {
-    "comedero-tolva": "tienda/producto.html?p=tolva-happy-chickens-finca-casarejo",
-    "bebedero-campana": "tienda/producto.html?p=bebedero-campana-finca-casarejo",
+    "comedero-tolva": "tienda/p/tolva-happy-chickens-finca-casarejo/",
+    "bebedero-campana": "tienda/p/bebedero-campana-finca-casarejo/",
     "suplemento": "tienda/",
     "criadora-calor": "tienda/",
     "curso-avicultura": "curso.html",
-    "ebook-guia-avicultura": "ebooks.html",
+    "ebook-guia-avicultura": "ebooks/",
     "app-pollos-engorde": "app.html",
+    "incubadora-24egg-dual": "tienda/",
+    "incubadora-wonegg-48": "tienda/",
 }
 
 
 def href_producto(raiz, producto):
-    return raiz + FICHA_DESTINO.get(producto, f"producto/{producto}.html")
+    return raiz + FICHA_DESTINO.get(producto, "tienda/")
 
 
 def listado(posts, pagina, total_paginas):

@@ -76,4 +76,4 @@ El estrés también afina la cáscara: un susto fuerte, un cambio brusco de gall
 
 Una cáscara firme es la suma de una dieta correcta, un gallinero tranquilo y gallinas en su edad de puesta. Corrige el calcio, dale tiempo al plan y anota los resultados: en dos semanas sabrás si vas por buen camino.
 
-Si quieres profundizar en alimentación y manejo de ponedoras, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) te explica cada etapa de la puesta con video. Y para nidales, comederos y el equipamiento que hace la diferencia en el gallinero, visita [nuestra tienda](https://granjarentable.com/tienda).
+Si quieres profundizar en alimentación y manejo de ponedoras, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te explica cada etapa de la puesta con vídeo. Y para nidales, comederos y el equipamiento que hace la diferencia en el gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).

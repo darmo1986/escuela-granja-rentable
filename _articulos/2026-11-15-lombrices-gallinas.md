@@ -65,4 +65,4 @@ Un error frecuente es analizar solo a la gallina que se ve peor. Los parásitos 
 
 Un lote con buen manejo, pastoreo rotado y cama seca puede vivir con una carga baja sin problemas. El objetivo no es un gallinero estéril, que no existe, sino un lote fuerte donde los parásitos no mandan.
 
-Si quieres aprender salud y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) te acompaña desde la primera pollita. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda).
+Si quieres aprender salud y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).

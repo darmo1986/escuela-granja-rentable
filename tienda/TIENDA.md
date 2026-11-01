@@ -1,17 +1,15 @@
 # Tienda nueva de Granja Rentable (`/tienda/`)
 
 Tienda de dropshipping curado sobre AliExpress, dentro de la web
-principal (GitHub Pages). Sustituye a futuro a la tienda vieja de
-`tienda.html` (que hoy sigue enlazando a Netlify): **la navegación del
-sitio sigue apuntando a `tienda.html` hasta que Pablo verifique la
-nueva y dé la orden de cambiar**. Cambiar entonces será editar el
-enlace «Tienda» de los bloques de menú (`menu:inicio/fin`) y del pie
-(`pie-sitio`) de `tienda.html` → `tienda/`, y retirar la vieja.
+principal (GitHub Pages). Es la tienda canónica. `tienda.html` solo
+redirige aquí (noindex, canonical y meta refresh). La navegación del
+sitio apunta a `tienda/`. Las fichas estáticas salen de
+`node tienda/build-fichas.js`.
 
 ## Cómo funciona
 
 - `tienda/index.html` — portada: parrilla de productos por categoría.
-- `tienda/producto.html?p=<slug>` — ficha del producto (JS).
+- `tienda/p/<slug>/` — ficha estática. `producto.html?p=` redirige ahí.
 - `tienda/catalogo.js` — los datos: `window.GR_TIENDA_CATALOGO`.
   **El catálogo es el único archivo que hay que tocar para vender.**
 - `tienda/tienda.js` — la lógica del escaparate (no tocar sin necesidad).

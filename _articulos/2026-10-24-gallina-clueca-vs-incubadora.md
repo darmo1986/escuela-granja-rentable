@@ -70,7 +70,7 @@ comercial, no esperes cluecas: ahí la incubadora es el camino.
 
 Si vas por la incubadora, mira primero [cómo elegir la mejor
 incubadora](como-elegir-incubadora.html) y repasa
-[temperatura y humedad ideal para incubar](temperatura-humedad-incubar.html):
+[temperatura y humedad al incubar](temperatura-humedad-incubar.html):
 ahí están los números que no puedes fallar.
 
 ## Cómo manejar la clueca paso a paso

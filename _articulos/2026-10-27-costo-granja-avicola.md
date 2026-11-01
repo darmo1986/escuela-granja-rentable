@@ -8,7 +8,7 @@ borrador: false
 producto: incubadora-24egg-dual
 imagen: "img/blog/costo-granja-avicola.webp"
 imagen_og: "img/blog/costo-granja-avicola-og.webp"
-imagen_alt: "Calculadora y monedas junto a granja avícola pequeña, concepto de costos"
+imagen_alt: "Calculadora y monedas junto a granja avícola pequeña, concepto de costes"
 ---
 
 ## Cuánto cuesta montar una granja avícola pequeña en 2026
@@ -44,7 +44,7 @@ Montar una granja avícola pequeña es más barato de lo que parece. Aquí tiene
 | Pienso inicial | 60-75 € |
 | **TOTAL** | **840-1.305 €** |
 
-Construir tú el gallinero con palets reciclados puede bajar el total a unos **600-700 €**.
+Construir tú el gallinero con palets reciclados puede bajar el total a unos **600-700 €** (estimación orientativa, no una cifra medida ni un resultado garantizado).
 
 ### Los gastos mensuales
 
@@ -75,4 +75,4 @@ Empieza pequeño, aprende el manejo y escala cuando los números te lo pidan. La
 
 ### Cómo reducir la inversión inicial
 
-Si el presupuesto aprieta, hay formas de empezar con menos: construye el gallinero con palets y madera reciclada (ahorras 200-300 €), compra pollitos de un día en vez de pollitas (ahorras 100 € pero esperas 5 meses), y usa bebederos y comederos caseros al principio. Lo único en lo que no conviene ahorrar es en la incubadora y en la calidad de las aves: ahí se juega tu producción.
+Si el presupuesto aprieta, hay formas de empezar con menos. Construir el gallinero con palets y madera reciclada puede suponer un ahorro orientativo de unos 200-300 € (estimación, no una cifra medida). Comprar pollitos de un día en vez de pollitas puede suponer unos 100 € menos de salida (también estimación) y hay que esperar unos 5 meses. Los bebederos y comederos caseros son una opción al principio. Nada de esto garantiza un resultado. En la incubadora y en las aves el criterio pesa, y tampoco garantiza la producción.
