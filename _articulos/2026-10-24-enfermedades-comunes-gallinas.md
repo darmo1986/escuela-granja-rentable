@@ -1,9 +1,10 @@
 ---
 titulo: "5 enfermedades comunes en gallinas y cómo evitarlas"
 titulo_seo: "5 enfermedades comunes en gallinas y cómo evitarlas"
-descripcion: "Coriza, coccidiosis, viruela aviar y más: síntomas, tratamiento y prevención de las 5 enfermedades más comunes en gallinas."
+descripcion: "Coriza, coccidiosis, viruela aviar y más: síntomas, prevención y cuándo llamar al veterinario en las 5 enfermedades más comunes en gallinas."
 categoria: salud
 fecha: 2026-10-24
+actualizado: 2026-11-01
 borrador: false
 imagen: "img/blog/enfermedades-comunes-gallinas.webp"
 imagen_og: "img/blog/enfermedades-comunes-gallinas-og.webp"
@@ -12,46 +13,46 @@ imagen_alt: "Veterinario revisando gallina enferma en granja"
 
 ## 5 enfermedades comunes en gallinas y cómo prevenirlas
 
-Conocer las enfermedades más frecuentes te permite actuar rápido. La prevención siempre sale más barata que el tratamiento.
+Conocer las enfermedades más frecuentes te permite actuar rápido. La prevención siempre sale más barata que el tratamiento. Aquí no encontrarás medicamentos ni dosis: el diagnóstico y el tratamiento son cosa de tu veterinario.
 
 ### 1. Coriza infecciosa
 
 **Síntomas:** estornudos, secreción nasal con mal olor, ojos hinchados y cerrados, cara inflamada.
-**Prevención:** cuarentena de 2-3 semanas para toda ave nueva, buena ventilación sin corrientes.
-**Tratamiento:** antibiótico según veterinario (tilosina o eritromicina). Aísla a las enfermas: es muy contagiosa.
+**Prevención:** cuarentena para toda ave nueva (consulta con tu veterinario cuánto tiempo) y buena ventilación sin corrientes.
+**Tratamiento:** lo decide y lo receta el veterinario tras ver a las aves. Mientras tanto, aísla a las enfermas: es muy contagiosa.
 
 ### 2. Coccidiosis
 
 **Síntomas:** diarrea con sangre, plumas erizadas, decaimiento, sobre todo en pollitos de 3 a 8 semanas.
 **Prevención:** cama siempre seca (la humedad la dispara), bebederos limpios, no mezclar edades.
-**Tratamiento:** anticoccidial en el agua (amprolio) durante 5-7 días. Actúa rápido: mata en días.
+**Tratamiento:** lo decide y lo receta el veterinario. Llámalo en cuanto veas sangre en las heces: avanza muy rápido.
 
 ### 3. Viruela aviar
 
 **Síntomas:** costras y verrugas en cresta, barbillas y párpados; en la forma húmeda, placas amarillas en boca y garganta.
-**Prevención:** vacunación una vez al año (pinchazo en el ala), control de mosquitos que la transmiten.
-**Tratamiento:** no tiene cura directa; se tratan las lesiones con yodo y se evita que se infecten. La mayoría se recupera en 3-4 semanas.
+**Prevención:** control de los mosquitos que la transmiten. Existe vacuna: el veterinario te dirá qué vacunas y cuándo, según tu zona.
+**Tratamiento:** no tiene cura directa. Separa a las aves afectadas y pide al veterinario que te indique cómo cuidar las lesiones para que no se infecten.
 
 ### 4. Bronquitis infecciosa
 
 **Síntomas:** tos, estornudos, respiración con ruido, y en ponedoras: caída brusca de la puesta y huevos deformes.
-**Prevención:** vacunación, evitar el estrés y los cambios bruscos de temperatura.
-**Tratamiento:** no hay tratamiento específico; calor, buena alimentación y antibiótico solo si hay infección secundaria.
+**Prevención:** evitar el estrés y los cambios bruscos de temperatura. Existe vacuna: el veterinario te dirá qué vacunas y cuándo, según tu zona.
+**Tratamiento:** no hay tratamiento específico. Dales calor, tranquilidad, agua y pienso a mano, y consulta con tu veterinario.
 
 ### 5. Parásitos externos (piojos y ácaros)
 
 **Síntomas:** picor, pérdida de plumas, palidez de cresta, baja puesta, ácaros rojos en perchas de noche.
-**Prevención:** baños de ceniza o tierra de diatomeas, limpieza del gallinero, revisar perchas de noche.
-**Tratamiento:** insecticida específico avícola en aves y gallinero, repetir a los 10 días.
+**Prevención:** baños de arena o ceniza, limpieza del gallinero y revisar las perchas de noche.
+**Tratamiento:** lo decide el veterinario según el parásito que haya. No uses productos de casa ni de otros animales.
 
 ### Las 4 reglas de oro de la prevención
 
-1. **Cuarentena:** toda ave nueva, 2-3 semanas separada antes de juntarla.
+1. **Cuarentena:** toda ave nueva, separada antes de juntarla. En nuestro artículo de cuarentena proponemos 30 días como recomendación; confírmalo con tu veterinario.
 2. **Limpieza:** cama seca, bebederos lavados y gallinero desinfectado entre lotes.
-3. **Vacunación:** sigue el calendario de tu zona (tenemos guía completa en el blog).
+3. **Vacunación:** el veterinario te dirá qué vacunas y cuándo, según tu zona.
 4. **Observación diaria:** una gallina apartada, con los ojos cerrados o que no come es una alarma. Aísla y actúa el primer día.
 
-Un gallinero limpio, seco y bien ventilado previene el 80 % de los problemas. La higiene es la mejor medicina.
+Un gallinero limpio, seco y bien ventilado previene la mayoría de los problemas. La higiene es la mejor medicina.
 
 ### Cuándo llamar al veterinario
 

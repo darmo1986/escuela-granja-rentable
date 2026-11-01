@@ -4,6 +4,7 @@ titulo_seo: "Cómo criar pollitos: guía de los primeros 30 días"
 descripcion: "Todo lo que necesita un pollito recién nacido: temperatura, cama, agua, comida y vacunas durante sus primeros 30 días de vida."
 categoria: engorde
 fecha: 2026-10-22
+actualizado: 2026-11-01
 borrador: false
 imagen: "img/blog/criar-pollitos-30-dias.webp"
 imagen_og: "img/blog/criar-pollitos-30-dias-og.webp"
@@ -12,7 +13,7 @@ imagen_alt: "Pollitos sanos de 30 días creciendo en criadora de granja"
 
 ## Cómo criar pollitos recién nacidos: guía de los primeros 30 días
 
-Los primeros 30 días deciden si tendrás gallinas fuertes y ponedoras o bajas constantes. Esta guía te lleva semana a semana.
+Los primeros 30 días deciden si tendrás un lote de pollos de engorde fuerte y parejo o bajas constantes. Esta guía te lleva semana a semana. Cría los pollitos en su propio espacio: no los mezcles con gallinas ponedoras ni con aves adultas.
 
 ### Preparar la criadora antes de que lleguen
 
@@ -26,7 +27,7 @@ Monta la criadora **24 horas antes** de que lleguen los pollitos:
 ### Semana 1 (días 1-7): calor y observación
 
 - Temperatura: **35 °C** bajo la lámpara.
-- Agua tibia el primer día, con un poco de azúcar las primeras horas para darles energía.
+- Agua limpia y tibia desde el primer momento, sin añadirle nada que no te haya indicado el veterinario.
 - Pienso de iniciación a libre disposición, siempre.
 - Revisa 3-4 veces al día: pollitos activos y repartidos = todo bien.
 
@@ -56,9 +57,9 @@ Monta la criadora **24 horas antes** de que lleguen los pollitos:
 
 ### Vacunas en el primer mes
 
-- **Día 1:** Marek (normalmente la pone el criadero).
-- **Día 7-10:** Gumboro (según el plan de tu zona).
-- Consulta con tu veterinario el calendario completo: lo tienes detallado en nuestro artículo de vacunación.
+- Al comprar los pollitos, pregunta qué vacunas traen hechas desde la incubadora y pide el papel.
+- El veterinario te dirá qué vacunas y cuándo, según tu zona.
+- Apunta cada vacunación: fecha, lote y quién la aplicó.
 
 ### Señales de alarma
 
