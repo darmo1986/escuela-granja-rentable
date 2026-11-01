@@ -232,13 +232,6 @@
             '</div>' +
             '<label class="cart-campo">País de envío' +
               '<select id="gr-ped-pais">' + opcionesPais() + "</select></label>" +
-            '<div class="cart-trustap">' +
-              '<label class="cart-trustap-lab">' +
-                '<input type="checkbox" id="gr-ped-trustap">' +
-                "<span><strong>Quiero compra protegida con Trustap</strong></span>" +
-              "</label>" +
-              '<p class="cart-trustap-txt" id="gr-ped-trustap-txt"></p>' +
-            "</div>" +
             (paypalBase()
               ? '<div class="cart-pago">' +
                   '<p class="cart-pago-t"><strong>¿Cómo quieres pagar?</strong></p>' +
@@ -253,7 +246,6 @@
                 "</div>"
               : "") +
             '<p class="cart-linea"><span>Subtotal</span><strong id="gr-ped-subtotal">—</strong></p>' +
-            '<p class="cart-linea" id="gr-ped-linea-trustap" hidden><span>Protección Trustap</span><strong id="gr-ped-trustap-imp">—</strong></p>' +
             '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-ped-total">—</strong></p>' +
             '<button type="submit" class="btn gold cart-checkout" id="gr-ped-enviar">Enviar pedido</button>' +
             '<p class="cart-msg" id="gr-ped-msg" role="alert"></p>' +
@@ -264,7 +256,6 @@
           '<div class="cart-ok">' +
             '<p class="cart-ok-t">✅ Pedido recibido</p>' +
             "<p>Tu pedido se está procesando. Te hemos enviado un correo con los datos de tu pedido; cuando salga, te enviaremos también el seguimiento por correo.</p>" +
-            '<p class="cart-ok-trustap" id="gr-cart-ok-trustap" hidden>🛡️ Tu compra está protegida con Trustap: el pago solo se libera al proveedor cuando recibas tu pedido.</p>' +
             '<p class="cart-ok-paypal" id="gr-cart-ok-paypal" hidden>💳 <strong>Solo te falta pagar tu pedido:</strong><br>' +
               '<a class="btn gold" id="gr-cart-ok-paypal-btn" href="#" target="_blank" rel="noopener">Pagar ahora con PayPal</a><br>' +
               '<span class="cart-ok-paypal-nota">El importe ya va rellenado con el total de tu pedido. Cruzamos tu pago con el correo que nos has dado.</span></p>' +
@@ -273,9 +264,7 @@
         "</section>" +
         '<div class="cart-foot" id="gr-cart-foot">' +
           '<div class="cart-confianza">' +
-            '<p class="cart-confianza-t">🛡️ Compra protegida</p>' +
-            '<p>Estamos activando el pago con depósito en garantía: un tercero neutral (Trustap) retiene tu dinero y solo lo libera al proveedor cuando recibes tu pedido. Si algo sale mal, recuperas tu dinero.</p>' +
-            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Devolución en 14 días gestionada por Granja Rentable<br>✓ Te confirmamos el pedido por correo electrónico</p>' +
+            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Devolución en 14 días gestionada por Granja Rentable<br>✓ Te confirmamos el pedido por correo electrónico<br><a href="../condiciones-venta.html">Condiciones de venta</a></p>' +
           '</div>' +
           '<p class="cart-linea"><span>Subtotal</span><strong id="gr-cart-subtotal">—</strong></p>' +
           '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-cart-total">—</strong></p>' +

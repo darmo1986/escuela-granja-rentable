@@ -10,7 +10,14 @@
 <link rel="stylesheet" href="tienda.css">
 <title>Producto · Tienda Granja Rentable</title>
 <meta name="description" content="Ficha del producto en la tienda de Granja Rentable: precio y plazo de envío para tu país, con la verificación de curaduría de la casa.">
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex,follow">
+<script>
+(function () {
+  var slug = "";
+  try { slug = new URLSearchParams(location.search).get("p") || ""; } catch (e) {}
+  if (!slug) location.replace("./");
+})();
+</script>
 </head>
 <body>
 <header class="site-head">
@@ -31,16 +38,18 @@
 </header>
 <main class="wrap">
   <p id="tienda-volver" hidden><a href="./">← Volver a la tienda</a> · <span class="t-pais-chip" id="tienda-pais">Tu país…</span></p>
+  <p class="fine"><a href="../condiciones-venta.html">Condiciones de venta</a></p>
   <section id="tienda-ficha" aria-live="polite">
-    <p class="note">Cargando la ficha…</p>
+    <p class="note">Cargando la ficha… <a href="./">Volver a la tienda</a></p>
   </section>
+  <noscript><p><a href="./">Ir a la tienda</a></p></noscript>
 </main>
 <footer class="foot">
 <div class="wrap foot-grid">
 <div>
 <p class="foot-brand">Granja Rentable</p>
 <p>Juan Pablo González García<br>NIF 78701119H<br>Calle Juan Rumeu García 6 bajo<br>38008 Santa Cruz de Tenerife, España</p>
-<p><a href="mailto:ventas@granjarentable.com">ventas@granjarentable.com</a></p>
+<p><!--email_off--><a href="mailto:ventas@granjarentable.com">ventas@granjarentable.com</a><!--/email_off--></p>
 </div>
 <div>
 <p class="foot-brand">Sitio</p>
@@ -69,6 +78,7 @@
 <li><a href="../aviso-legal.html">Aviso legal</a></li>
 <li><a href="../privacidad.html">Privacidad</a></li>
 <li><a href="../cookies.html">Cookies</a></li>
+<li><a href="../condiciones-venta.html">Condiciones de venta</a></li>
 </ul>
 </div>
 </div>

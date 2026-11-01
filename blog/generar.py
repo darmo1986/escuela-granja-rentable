@@ -795,7 +795,7 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
         cajas.append('<section class="panel panel-shop">\n<h3>En nuestra tienda</h3>\n'
                      f'<div class="media-mini"><img src="{esc(raiz + ficha["imagen"])}" alt="{esc(ficha.get("alt") or ficha["nombre"])}" width="84" height="84">'
                      f'<p>{esc(ficha["nombre"])}. {esc(ficha.get("resumen") or "")}{esc(nota)}</p></div>\n'
-                     f'<a class="btn sec" href="{raiz}producto/{esc(post["producto"])}.html">Ver la ficha</a>\n</section>')
+                     f'<a class="btn sec" href="{esc(href_producto(raiz, post["producto"]))}">Ver la ficha</a>\n</section>')
     cta = ""
     if cajas:
         cta = '<div class="post-cta">\n' + "\n".join(cajas) + "\n</div>"
@@ -807,6 +807,23 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     return (cabeza + "\n" + anuncio("banner", activo) + "\n" + foto + "\n"
             + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + guia + "\n" + red + "\n" + fuentes
             + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
+
+
+# Fichas viejas que ya no tienen HTML propio: el enlace del artículo
+# apunta al destino, no a la redirección de producto/.
+FICHA_DESTINO = {
+    "comedero-tolva": "tienda/producto.html?p=tolva-happy-chickens-finca-casarejo",
+    "bebedero-campana": "tienda/producto.html?p=bebedero-campana-finca-casarejo",
+    "suplemento": "tienda/",
+    "criadora-calor": "tienda/",
+    "curso-avicultura": "curso.html",
+    "ebook-guia-avicultura": "ebooks.html",
+    "app-pollos-engorde": "app.html",
+}
+
+
+def href_producto(raiz, producto):
+    return raiz + FICHA_DESTINO.get(producto, f"producto/{producto}.html")
 
 
 def listado(posts, pagina, total_paginas):
@@ -983,9 +1000,20 @@ def planificar(raiz, incluir_borradores=False):
     for numero in range(1, paginas_indice + 1):
         rel = "blog/index.html" if numero == 1 else f"blog/pagina-{numero}.html"
         canonical = SITIO + "/blog/" if numero == 1 else SITIO + f"/blog/pagina-{numero}.html"
-        hero = ('<section class="page-hero">\n<p class="kicker">Artículos</p>\n<h1>Artículos de avicultura</h1>\n'
-                "<p>Textos cortos y prácticos para tu granja. Cada uno sale de una lección del curso gratis y dice de dónde vienen sus datos.</p>\n"
-                "</section>")
+        if numero == 1:
+            titulo_pagina = titulo_blog
+            descripcion_pagina = descripcion_blog
+            h1 = "Artículos de avicultura"
+            lead = "Textos cortos y prácticos para tu granja. Cada uno sale de una lección del curso gratis y dice de dónde vienen sus datos."
+        else:
+            titulo_pagina = f"Artículos de avicultura, página {numero} | Granja Rentable"
+            descripcion_pagina = (f"Página {numero} de los artículos de avicultura de Granja Rentable: "
+                                  "gallinas, pollos, incubación, salud y alimentación.")
+            h1 = f"Artículos de avicultura, página {numero}"
+            lead = (f"Página {numero}. Textos cortos y prácticos para tu granja. "
+                    "Cada uno sale de una lección del curso gratis y dice de dónde vienen sus datos.")
+        hero = ('<section class="page-hero">\n<p class="kicker">Artículos</p>\n'
+                f"<h1>{esc(h1)}</h1>\n<p>{esc(lead)}</p>\n</section>")
         contenido = "\n".join(parte for parte in [
             hero,
             anuncio("banner", activo),
@@ -996,7 +1024,7 @@ def planificar(raiz, incluir_borradores=False):
             anuncio("rect", activo),
         ] if parte)
         archivos[rel] = envolver(
-            shell, rel, titulo_blog, descripcion_blog, canonical,
+            shell, rel, titulo_pagina, descripcion_pagina, canonical,
             "index,follow" if hay_posts else "noindex,follow", "website",
             og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
@@ -1037,7 +1065,10 @@ def planificar(raiz, incluir_borradores=False):
     if publicados:
         entradas.append((SITIO + "/blog/", max(p["actualizado"] for p in publicados).isoformat()))
     for numero in range(2, paginas_indice + 1):
-        entradas.append((SITIO + f"/blog/pagina-{numero}.html", None))
+        inicio = (numero - 1) * POR_PAGINA
+        corte = publicados[inicio:inicio + POR_PAGINA]
+        last = max((p["actualizado"] for p in corte), default=None)
+        entradas.append((SITIO + f"/blog/pagina-{numero}.html", last.isoformat() if last else None))
     for clave in (c[0] for c in CATEGORIAS):
         grupo = [p for p in publicados if p["categoria"] == clave]
         if len(grupo) >= MINIMO_CATEGORIA:

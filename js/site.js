@@ -73,7 +73,18 @@
     return map;
   }
 
+  var FICHA_DESTINO = {
+    "comedero-tolva": "tienda/producto.html?p=tolva-happy-chickens-finca-casarejo",
+    "bebedero-campana": "tienda/producto.html?p=bebedero-campana-finca-casarejo",
+    "suplemento": "tienda/",
+    "criadora-calor": "tienda/",
+    "curso-avicultura": "curso.html",
+    "ebook-guia-avicultura": "ebooks.html",
+    "app-pollos-engorde": "app.html"
+  };
+
   function productHref(id) {
+    if (FICHA_DESTINO[id]) return root + FICHA_DESTINO[id];
     return root + "producto/" + id + ".html";
   }
 
@@ -200,7 +211,7 @@
       href = root + "app.html";
       text = "Quiero ser tester";
     }
-    paintSku(card, "Precio próximamente", detalle || "Te avisamos cuando haya precio para tu país.", "", "", "Próximamente", {
+    paintSku(card, "No disponible en tu país", detalle || "Este producto no se vende en el país que elegiste.", "", "", "No disponible en tu país", {
       text: text,
       href: href,
       buy: false,
@@ -432,10 +443,10 @@
       var cta = card.querySelector(".js-cta");
       var extra = card.querySelector(".js-extra");
       if (!p.envio) {
-        fillText(usdEl, "Precio próximamente");
-        fillText(localEl, "Todavía no hay un precio publicado para " + p.nombre + ".");
+        fillText(usdEl, "No disponible en tu país");
+        fillText(localEl, "Todavía no enviamos a " + p.nombre + ".");
         fillText(metaEl, "");
-        fillText(notaEl, "Precio próximamente para " + p.nombre + ". Déjanos tu correo y lo publicamos aquí.");
+        fillText(notaEl, "No disponible en " + p.nombre + ". Déjanos tu correo y te avisamos si llega.");
         if (extra) extra.hidden = true;
         if (cta) {
           cta.textContent = "Avísame cuando llegue";

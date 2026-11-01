@@ -214,7 +214,7 @@ function notaLibre(){
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
-  n.innerHTML='<span>Mostramos anuncios de Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
+  n.innerHTML='<span>Mostramos anuncios de Google AdSense o Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
   n.addEventListener('click',e=>{
     if(e.target.dataset.c!=='no')return;
     localStorage.setItem(CK,'no');
