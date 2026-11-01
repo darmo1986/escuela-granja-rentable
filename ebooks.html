@@ -5,17 +5,17 @@
 <meta name="google-adsense-account" content="ca-pub-5311145772953700">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ebooks de avicultura | Granja Rentable</title>
-<meta name="description" content="Guías de avicultura en PDF por 2 $ cada una. Paga con PayPal o con tarjeta y el ebook llega a tu correo.">
+<meta name="description" content="Guías de avicultura en PDF por 2 $ cada una, o las 4 por 6 $. Paga con PayPal o con tarjeta y el ebook llega a tu correo.">
 <link rel="canonical" href="https://granjarentable.com/ebooks.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ebooks de avicultura | Granja Rentable">
-<meta property="og:description" content="Guías de avicultura en PDF por 2 $ cada una. Paga con PayPal o con tarjeta y el ebook llega a tu correo.">
+<meta property="og:description" content="Guías de avicultura en PDF por 2 $ cada una, o las 4 por 6 $. Paga con PayPal o con tarjeta y el ebook llega a tu correo.">
 <meta property="og:image" content="https://granjarentable.com/img/ebook-guia-empezar.jpg">
 <meta property="og:locale" content="es_419">
 <meta property="og:url" content="https://granjarentable.com/ebooks.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ebooks de avicultura | Granja Rentable">
-<meta name="twitter:description" content="Guías de avicultura en PDF por 2 $ cada una. Paga con PayPal o con tarjeta y el ebook llega a tu correo.">
+<meta name="twitter:description" content="Guías de avicultura en PDF por 2 $ cada una, o las 4 por 6 $. Paga con PayPal o con tarjeta y el ebook llega a tu correo.">
 <meta name="twitter:image" content="https://granjarentable.com/img/ebook-guia-empezar.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -26,8 +26,15 @@
 .ebook-venta{display:grid;grid-template-columns:220px 1fr;gap:1.5rem;align-items:start;margin:2rem 0;padding:1.5rem;border:1px solid #e5e0d5;border-radius:12px;background:#FFFEF9}
 .ebook-venta img{width:100%;height:auto;border-radius:8px}
 .ebook-venta .precio{font-size:1.4rem;font-weight:700}
-.ebook-venta button[data-stripe-ebook]{margin-top:.5rem;padding:.7rem 1.2rem;font-size:1rem;border-radius:8px;cursor:pointer}
+.ebook-venta button[data-stripe-ebook],button[data-stripe-digital]{margin-top:.5rem;padding:.7rem 1.2rem;font-size:1rem;border-radius:8px;cursor:pointer}
 @media(max-width:640px){.ebook-venta{grid-template-columns:1fr}.ebook-venta img{max-width:260px}}
+.ebook-pack{border:2px solid #C4A035;border-radius:12px;padding:16px;background:#F6F3EA}
+.ebook-pack .precio s{color:#3E5146;font-weight:400;margin-left:.3em}
+.pack-lista{margin:.4em 0 .8em 1.1em;padding:0}.pack-lista li{margin:.25em 0}
+.nota-pago{font-size:.88em;color:#3E5146}
+.oferta-kit{margin:14px 0;padding:14px 16px;border:2px solid #1F5E2E;border-radius:12px;background:#E7F3EA;color:#1C2B22}
+.oferta-kit h3{margin:0 0 .4em}
+.oferta-no{background:none;border:0;color:#3E5146;text-decoration:underline;cursor:pointer;padding:6px 0}
 </style>
 </head>
 <body data-root="./">
@@ -114,7 +121,40 @@
 <main id="contenido">
 <p class="crumb"><a href="tienda/">Tienda</a> · Ebooks</p>
 <h1>Ebooks de Granja Rentable</h1>
-<p>Cuatro guías en PDF por 2 $ cada una. Pagas con PayPal o con tarjeta y el ebook llega a tu correo (si no lo ves, revisa la carpeta de spam).</p>
+<p>Cuatro guías en PDF por 2 $ cada una, o las cuatro juntas por 6 $. Pagas con PayPal o con tarjeta y el ebook llega a tu correo (si no lo ves, revisa la carpeta de spam).</p>
+
+<section class="ebook-venta ebook-pack" id="pack">
+<img src="img/pack-4-ebooks.jpg" alt="Portadas de los 4 ebooks de Granja Rentable" width="300">
+<div>
+<p class="kicker">Pack · 4 PDF · 227 páginas</p>
+<h2>Los 4 ebooks de Granja Rentable</h2>
+<p>Todo lo que tenemos en PDF, junto y más barato: cómo empezar, cómo elegir el pienso, cómo hacerlo tú y cómo alimentar a tus ponedoras.</p>
+<ul class="pack-lista">
+<li><strong>Guía para empezar tu granja</strong> (18 págs.): montar la granja desde cero y evitar los errores de principiante.</li>
+<li><strong>Cómo elegir el pienso</strong> (86 págs.): leer la etiqueta del saco, comparar por etapa y no pagar de más.</li>
+<li><strong>Cómo hacer tu propio pienso</strong> (106 págs.): máquinas, ingredientes, fórmulas, tablas y paso a paso.</li>
+<li><strong>Alimenta bien a tus ponedoras</strong> (17 págs.): alimentación por etapas, raciones orientativas y plan de 7 días.</li>
+</ul>
+<p class="precio">6 $ <s>8 $</s> · 4 por el precio de 3</p>
+<div id="paypal-boton-pack"></div>
+<p id="paypal-mensaje-pack" role="status"></p>
+<button type="button" data-stripe-digital="pack-4-ebooks" data-mensaje="pack-4-ebooks">Pagar con tarjeta</button>
+<p data-stripe-mensaje="pack-4-ebooks" role="status"></p>
+<p class="nota-pago">Pagas una vez y te llega por correo un enlace para descargar los 4 PDF. Son guías orientativas: no sustituyen al veterinario ni al técnico de tu zona. Al comprar aceptas que, una vez iniciada la descarga, pierdes el derecho de desistimiento de 14 días (<a href="condiciones-venta.html">condiciones de venta</a>). Si un PDF no te llega o está dañado, escríbenos y te lo reenviamos o te devolvemos el dinero.</p>
+</div>
+</section>
+
+<aside class="oferta-kit" id="oferta-kit" hidden>
+<h3>¿Quieres llevar las cuentas de tu granja?</h3>
+<p>Ya tienes tu ebook en camino. Si quieres pasar de leer a apuntar, el <strong>Kit Granja en Orden</strong> trae la hoja de costes, el plan de pienso por etapas, el registro de puesta y la guía de incubación con calendario.</p>
+<p>Como acabas de comprar, te descontamos los 2 $: <strong>10 $ en vez de 12 $</strong>.</p>
+<p><a data-oferta-ver href="kit.html" target="_blank" rel="noopener">Ver qué trae el kit</a></p>
+<div id="paypal-boton-oferta-kit"></div>
+<p id="paypal-mensaje-oferta-kit" role="status"></p>
+<button type="button" data-stripe-digital="kit-tras-ebook" data-mensaje="kit-tras-ebook">Lo quiero por 10 $ con tarjeta</button>
+<p data-stripe-mensaje="kit-tras-ebook" role="status"></p>
+<button type="button" class="oferta-no" data-oferta-cerrar>No, gracias</button>
+</aside>
 
 <section class="ebook-venta">
 <img src="img/ebook-pienso-hacer.jpg" alt="Portada: Cómo hacer tu propio pienso" width="300">
@@ -172,9 +212,12 @@
 </div>
 </section>
 
+<p class="kit-enlace">¿Quieres llevar las cuentas de tu granja? Mira el <a href="kit.html">Kit Granja en Orden</a>: hoja de costes, registros y guía de incubación por 12 $.</p>
+
 <p>¿Dudas? Escríbenos por <a data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable">WhatsApp</a>.</p>
 </main>
 
+<script src="js/pago-digital.js?v=202611011"></script>
 <script>
 (function () {
   var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeSZCE95DI1wdls0MiNoKdh92i8ve0GkkJHy4GAY3p4pWsBCRhs0hb3bmUMTV-Xw0Wzw/exec";
@@ -212,6 +255,7 @@
           if (d && d.ok) {
             decir(mensajeId, "¡Pago completado! Te hemos enviado el ebook por correo " +
               "a tu cuenta de PayPal. Si no lo ves, revisa la carpeta de spam.");
+            if (window.GR_digital) GR_digital.ofertaKit("paypal", data.orderID, mensajeId);
             return;
           }
           throw new Error((d && d.error) || "captura_fallida");
@@ -238,12 +282,14 @@
         montarBoton("paypal-boton-ponedoras", "paypal-mensaje-ponedoras", "alimenta-ponedoras");
         montarBoton("paypal-boton-pienso-hacer", "paypal-mensaje-pienso-hacer", "pienso-hacer");
         montarBoton("paypal-boton-pienso-elegir", "paypal-mensaje-pienso-elegir", "pienso-elegir");
+        if (window.GR_digital) GR_digital.montarPaypal("paypal-boton-pack", "paypal-mensaje-pack", "pack-4-ebooks");
       };
       s.onerror = function () {
         decir("paypal-mensaje-guia", "PayPal no disponible todavía. Prueba con tarjeta.");
         decir("paypal-mensaje-ponedoras", "PayPal no disponible todavía. Prueba con tarjeta.");
         decir("paypal-mensaje-pienso-hacer", "PayPal no disponible todavía. Prueba con tarjeta.");
         decir("paypal-mensaje-pienso-elegir", "PayPal no disponible todavía. Prueba con tarjeta.");
+        decir("paypal-mensaje-pack", "PayPal no disponible todavía. Prueba con tarjeta.");
       };
       document.head.appendChild(s);
     })
@@ -252,6 +298,7 @@
       decir("paypal-mensaje-ponedoras", "PayPal no disponible todavía. Prueba con tarjeta.");
       decir("paypal-mensaje-pienso-hacer", "PayPal no disponible todavía. Prueba con tarjeta.");
       decir("paypal-mensaje-pienso-elegir", "PayPal no disponible todavía. Prueba con tarjeta.");
+      decir("paypal-mensaje-pack", "PayPal no disponible todavía. Prueba con tarjeta.");
     });
 })();
 </script>
@@ -309,6 +356,7 @@
             "para el ebook «" + (d.producto || "") + "».";
         }
         mensajeDe(claveMsg, texto);
+        if (!d.ya_enviado && window.GR_digital) GR_digital.ofertaKit("stripe", sessionId, claveMsg);
         try {
           history.replaceState(null, "", window.location.pathname + window.location.hash);
         } catch (e) {}
@@ -328,6 +376,10 @@
     mensajeDe("pienso-elegir", "Pago cancelado: no se ha cobrado nada.");
   }
 })();
+</script>
+<script>
+// Pack de 4 ebooks: tarjeta (Stripe) y vuelta del pago. PayPal se monta arriba, con el SDK de los ebooks.
+if (window.GR_digital) { GR_digital.enlazarStripe(document.getElementById("pack")); GR_digital.confirmarStripeAlVolver("pack-4-ebooks"); }
 </script>
 <footer class="foot">
 <div class="wrap foot-grid">

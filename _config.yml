@@ -17,6 +17,8 @@ exclude:
   - LEEME.md
   - js/apodo-pruebas.js
   - apps-script/Codigo.gs
+  - apps-script/Codigo-kit-pack.gs
+  - apps-script/README-kit-pack.md
   - _articulos
   - blog/plantillas
   - blog/pruebas
