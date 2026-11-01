@@ -46,6 +46,9 @@
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (eTz) {}
   var estricto = zonaEstricta(tz);
   try { if (navigator.globalPrivacyControl === true) estricto = true; } catch (eG) {}
+  /* «libre» solo fuera de la UE, el EEE, el Reino Unido y Suiza.
+     Europa (incluye Reino Unido y Suiza), los territorios de la lista
+     y una zona desconocida piden Aceptar antes. */
   document.documentElement.dataset.ads = estricto ? "ue" : "libre";
   var pedir = false;
   try { pedir = sessionStorage.getItem("gr_pedir_cookies") === "1"; } catch (ePedir) {}
@@ -53,7 +56,7 @@
     var consent = localStorage.getItem("gr_consent");
     var adsActivos = !!(window.ads && window.ads.activo === true);
     var rutaAds = location.pathname || "/";
-    var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadoras|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || rutaAds.indexOf("/tienda") === 0;
+    var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadora|calculadoras|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || rutaAds.indexOf("/tienda") === 0;
     if (sinAnuncios) document.documentElement.setAttribute("data-ads-pagina", "no");
     if (!sinAnuncios && adsActivos && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
     if (premiumVigente()) document.documentElement.classList.add("ad-off");
