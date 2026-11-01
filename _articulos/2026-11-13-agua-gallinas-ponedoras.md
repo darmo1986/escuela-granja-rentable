@@ -65,4 +65,4 @@ Otro detalle que se pasa por alto: las gallinas beben más justo después de com
 
 El agua es lo más barato del gallinero y lo que más rinde: limpia, fresca y siempre disponible, es la base silenciosa de una buena puesta.
 
-Si quieres aprender alimentación y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita. Y para bebederos y equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).
+Si quieres aprender alimentación y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.

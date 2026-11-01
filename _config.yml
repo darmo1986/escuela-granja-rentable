@@ -18,7 +18,7 @@ exclude:
   - js/apodo-pruebas.js
   - apps-script/Codigo.gs
   - apps-script/*.html
-  - tienda/TIENDA.md
+  - _archivo-tienda
   - _articulos
   - blog/plantillas
   - blog/pruebas

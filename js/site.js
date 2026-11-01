@@ -50,9 +50,7 @@
   }
 
   function storeUrl(hash) {
-    var u = new URL(GR.tiendaBase || "https://granjarentable.com/tienda/");
-    /* Siempre el país elegido en el sitio. La tienda, si no recibe ?pais=, cae en Perú. */
-    u.searchParams.set("pais", pais);
+    var u = new URL(root + "ebooks/");
     var ref = readRef();
     if (ref) u.searchParams.set("ref", ref);
     if (hash) u.hash = String(hash).replace(/^#/, "");
@@ -74,20 +72,20 @@
   }
 
   var FICHA_DESTINO = {
-    "comedero-tolva": "tienda/p/tolva-happy-chickens-finca-casarejo/",
-    "bebedero-campana": "tienda/p/bebedero-campana-finca-casarejo/",
-    "suplemento": "tienda/",
-    "criadora-calor": "tienda/",
+    "comedero-tolva": "ebooks/",
+    "bebedero-campana": "ebooks/",
+    "suplemento": "ebooks/",
+    "criadora-calor": "ebooks/",
     "curso-avicultura": "curso.html",
     "ebook-guia-avicultura": "ebooks/",
     "app-pollos-engorde": "app.html",
-    "incubadora-24egg-dual": "tienda/",
-    "incubadora-wonegg-48": "tienda/"
+    "incubadora-24egg-dual": "ebooks/",
+    "incubadora-wonegg-48": "ebooks/"
   };
 
   function productHref(id) {
     if (FICHA_DESTINO[id]) return root + FICHA_DESTINO[id];
-    return root + "tienda/";
+    return root + "ebooks/";
   }
 
   function waProduct(name) {
@@ -224,7 +222,7 @@
   function paintGratis(card, item) {
     var nameEl = card.querySelector(".js-sku-name");
     if (nameEl) nameEl.textContent = item.nombre;
-    paintSku(card, "Gratis", item.resumen || "El curso de este sitio no tiene costo.", "", "", "", {
+    paintSku(card, "Gratis", item.resumen || "El curso de este sitio no tiene coste.", "", "", "", {
       text: "Entrar al curso",
       href: root + "curso.html",
       buy: true,
@@ -499,8 +497,8 @@
       if (ref) {
         note.hidden = false;
         note.textContent = ref === "DEMO"
-          ? "Código de prueba DEMO guardado en este navegador (30 días). No genera comisión. Si compras en nuestra tienda, el enlace lleva ?ref=DEMO."
-          : "Llegaste con la recomendación " + ref + ". La guardamos 30 días para poder pagarle a esa persona si compras en nuestra tienda.";
+          ? "Código de prueba DEMO guardado en este navegador (30 días). No genera comisión."
+          : "Llegaste con la recomendación " + ref + ". La guardamos 30 días. Hoy una compra de ebook, pack o kit no genera comisión.";
       } else note.hidden = true;
     }
     try { window.dispatchEvent(new CustomEvent("gr-pais", { detail: pais })); } catch (ePaisEvt) {}

@@ -65,4 +65,4 @@ Si vas a incubar en varias tandas, que cada tanda tenga su propio calendario y, 
 
 Anota cada incubación: fecha de inicio, número de huevos, fértiles en cada miraje, nacidos y problemas. Con dos o tres tandas anotadas, tu propio calendario vale más que cualquier tabla: sabrás si tu incubadora pierde peso demasiado rápido, si tu volteo falla o si tus huevos llegan demasiado viejos.
 
-Si quieres repasar las bases antes de tu primera tanda, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) explica la incubación paso a paso. Y para el equipamiento de tu incubadora, visita [nuestra tienda](https://granjarentable.com/tienda/).
+Si quieres repasar las bases antes de tu primera tanda, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) explica la incubación paso a paso.

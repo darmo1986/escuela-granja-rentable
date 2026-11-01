@@ -67,4 +67,4 @@ Si una del grupo enferma, no la mezcles con el lote sano ni la devuelvas con las
 
 La cuarentena es aburrida, no se ve y no da huevos. Y es, precisamente por eso, la medida que distingue al granjero que conserva su lote del que empieza de cero cada año.
 
-Si quieres aprender bioseguridad y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).
+Si quieres aprender bioseguridad y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.

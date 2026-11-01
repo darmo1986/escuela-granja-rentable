@@ -72,4 +72,4 @@ Las causas son casi siempre las mismas: cama húmeda, bebederos que gotean, mala
 
 Con esta rutina, la mayoría de los lotes pasa la época de calor con la puesta solo un poco más baja de lo habitual, en lugar de desplomarse. El calor no se puede eliminar, pero sí se puede gestionar, y las gallinas lo agradecen en huevos y en salud.
 
-Si quieres aprender el manejo completo del gallinero en clima cálido, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) lo explica con vídeo y ejemplos. Y para bebederos, ventilación y el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).
+Si quieres aprender el manejo completo del gallinero en clima cálido, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) lo explica con vídeo y ejemplos.

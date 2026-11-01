@@ -60,7 +60,7 @@
 </main>
 <footer class="foot">
 <div class="wrap">
-<p class="fine">Panel interno de Granja Rentable. Una <strong>intención de compra</strong> es el clic en «Comprar» o en un WhatsApp de producto: todavía no es una venta. La venta confirmada la registra la tienda (Stripe).</p>
+<p class="fine">Panel interno de Granja Rentable. Una <strong>intención de compra</strong> es el clic en un enlace de pago o en un WhatsApp de producto: todavía no es una venta. La venta confirmada de un ebook la registra Stripe.</p>
 </div>
 </footer>
 
@@ -114,7 +114,7 @@
       "<tr><th>Cloudflare Web Analytics (estadísticas sin cookies)</th><td>" +
         (cfOk ? "<span class='panel-estado activo'>Activo</span> — token puesto en js/config.js." : "<span class='panel-estado pendiente'>Pendiente</span> — falta crear el sitio en Cloudflare → Analytics → Web Analytics y pegar el token en js/config.js (GR.analitica.cfToken).") + "</td></tr>" +
       "<tr><th>Aviso por correo al pulsar Comprar</th><td><span class='panel-estado pendiente'>Pendiente</span> — hay que pegar el Codigo.gs actualizado en Apps Script y redesplegar la aplicación web. Hasta entonces, las intenciones se ven aquí y en la revisión diaria.</td></tr>" +
-      "<tr><th>Venta confirmada (pago en Stripe, tienda en Netlify)</th><td>El aviso de venta de verdad lo manda Stripe: en su panel, Ajustes → Correos, activa el aviso de pago correcto. Esta web no ve los pagos.</td></tr>" +
+      "<tr><th>Venta confirmada (pago en Stripe)</th><td>El aviso de venta de verdad lo manda Stripe: en su panel, Ajustes, Correos, activa el aviso de pago correcto. Esta web no ve los pagos.</td></tr>" +
       "</table>";
   }
 

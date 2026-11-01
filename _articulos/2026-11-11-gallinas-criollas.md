@@ -75,4 +75,4 @@ Ninguna de las dos opciones es mejor en absoluto: depende de tu objetivo. Y much
 
 Las gallinas criollas llevan generaciones alimentando familias sin pedir casi nada. Con buena alimentación, un gallinero seco y un poco de selección, te devuelven huevos, rusticidad y años de compañía en el patio.
 
-Si quieres aprender manejo, alimentación y selección de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).
+Si quieres aprender manejo, alimentación y selección de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.

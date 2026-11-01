@@ -65,4 +65,4 @@ Y un matiz importante: no todo desplume es picaje. La muda deja zonas peladas de
 
 El picaje es un mensaje del lote. Escucharlo a tiempo, con espacio, luz suave, proteína completa y algo que picar, detiene casi todos los casos antes de que lleguen a la sangre.
 
-Si quieres aprender manejo y salud de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda/).
+Si quieres aprender manejo y salud de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.
