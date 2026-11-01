@@ -86,10 +86,8 @@ function precios(p) {
   }).join("");
 }
 
-function campoPendiente(valor, marca) {
-  var t = String(valor || "").trim();
-  if (t) return esc(t);
-  return '<strong class="t-pendiente">' + marca + "</strong>";
+function campoPendiente(valor) {
+  return esc(String(valor || "").trim());
 }
 function datosAlmacen(p) {
   var zonas = [];
@@ -104,21 +102,25 @@ function datosAlmacen(p) {
 function bloqueLegal(p) {
   return [
     "<h2>Quién te vende</h2>",
-    "<p>Te vende Juan Pablo González García (NIF 78701119H), titular de Granja Rentable.</p><!-- [PENDIENTE PABLO: explicar qué es The Honey Trading y por qué aparece en el cobro] -->",
+    "<p>Te vende Juan Pablo González García, persona física, NIF 78701119H, Calle Juan Rumeu García 6 bajo, 38008 Santa Cruz de Tenerife. El correo dahanitrading@gmail.com es solo un correo de contacto.</p><!-- [PENDIENTE PABLO: explicar qué es The Honey Trading y por qué aparece en el cobro] -->",
     "<h2>Precio, plazo e impuestos</h2>",
-    "<p>El país de esta ficha sale de la IP. Con ese país se muestran el precio, el plazo y los impuestos confirmados. El titular está en Canarias. En una compra desde Canarias se aplica el tipo general del IGIC, el 7 %, incluido en el precio, salvo que esta ficha indique otro tipo aplicable. Esta ficha no indica otro tipo. No es el IVA. <strong class=\"t-pendiente\">[PENDIENTE gestor: confirmar el tipo de IGIC por producto]</strong> Para el resto de España, la UE y los demás países, <strong class=\"t-pendiente\">[PENDIENTE gestor: impuestos del precio en el resto de España, la UE y otros países]</strong>. Fuera de Canarias pueden existir tasas o gestión aduanera no incluidas.</p>",
-    "<p>El producto se envía directamente desde el proveedor. El importador puede variar según el producto y el país. Se informa en esta ficha o al registrar el pedido. Contacto del titular: <a href=\"mailto:dahanitrading@gmail.com\">dahanitrading@gmail.com</a>.</p>",
+    "<p>El país de esta ficha sale de la IP. Si no podemos detectarlo, mostramos España y el precio lleva los impuestos incluidos. Puedes elegir otro país en el selector de esta página. En una compra desde Canarias se aplica el tipo general del IGIC, el 7 %, incluido en el precio. No es el IVA.</p>",
+    "<!-- [PENDIENTE gestor: confirmar el tipo de IGIC por producto si no es el general del 7 %. Confirmar el impuesto fuera de Canarias.] -->",
+    "<p>El producto se envía directamente desde el proveedor. Contacto: <a href=\"mailto:dahanitrading@gmail.com\">dahanitrading@gmail.com</a>, solo un correo.</p>",
     "<h2>Desistimiento, devolución y garantía</h2>",
-    "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso lo hace el titular en un plazo de 14 días desde la prueba de envío. Quien responde ante ti es Granja Rentable, no el proveedor.</p>",
+    "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso lo hace Juan Pablo González García en un plazo de 14 días desde la prueba de envío.</p>",
     (function () {
       var alm = datosAlmacen(p);
-      var conocido = "";
-      if (alm.vendedor) conocido += " Vendedor guardado en el catálogo: " + esc(alm.vendedor) + ".";
-      if (alm.zona) conocido += " El catálogo sitúa el almacén en " + esc(alm.zona) + ", sin calle ni código postal.";
-      return "<p>Antes de comprar: la devolución se envía al almacén del proveedor de este producto." + conocido +
-        " Dirección: " + campoPendiente(p.devolucion_direccion, "[PENDIENTE PABLO: dirección del almacén de devolución]") +
-        ". Coste estimado: " + campoPendiente(p.devolucion_coste, "[PENDIENTE PABLO: coste estimado de devolución]") +
-        ". <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>";
+      var dir = campoPendiente(p.devolucion_direccion);
+      var coste = campoPendiente(p.devolucion_coste);
+      var nota = "<!-- [PENDIENTE PABLO: dirección del almacén de devolución y coste estimado. Hueco en el catálogo: devolucion_direccion y devolucion_coste.";
+      if (alm.vendedor) nota += " Vendedor guardado: " + alm.vendedor + ".";
+      if (alm.zona) nota += " Zona de almacén en el catálogo: " + alm.zona + ".";
+      nota += " Plazos de garantía legal por país, sin confirmar.] -->";
+      if (dir && coste) {
+        return "<p>Antes de comprar: la devolución se envía a " + dir + ". Coste estimado de la devolución: " + coste + ".</p>\n" + nota;
+      }
+      return "<p>Antes de comprar, escríbenos y te indicamos la dirección y el coste de la devolución.</p>\n" + nota;
     })(),
     "<p><a href=\"../../../condiciones-venta.html\">Condiciones de venta</a></p>"
   ].join("\n");

@@ -16,12 +16,13 @@ sitio apunta a `tienda/`. Las fichas estáticas salen de
 - `tienda/tienda.css` — estilos propios sobre `css/estilo.css`.
 - `tienda/check_stock.py` — vigilancia diaria de enlaces (ver abajo).
 
-## Revelado SOLO por IP (sin selector)
+## País por IP y selector visible
 
-Cada visitante ve **únicamente** el catálogo de su país, detectado por
-IP (ipapi.co; respaldo: `/cdn-cgi/trace` de Cloudflare; caché de 7 días
-en `localStorage`). **No hay selector de país en la interfaz**: nadie
-puede curiosear el catálogo de otro país.
+Cada visitante ve el catálogo de su país, detectado por IP (ipapi.co;
+respaldo: `/cdn-cgi/trace` de Cloudflare; caché de 7 días en
+`localStorage`). Hay un selector manual de país visible en la portada
+y en cada ficha. Si la detección falla, el país por defecto es España
+y el precio se muestra con los impuestos incluidos.
 
 Despliegue por países, en este orden (decisión de Pablo, 20-oct-2026):
 
@@ -32,7 +33,7 @@ Despliegue por países, en este orden (decisión de Pablo, 20-oct-2026):
 
 Si el país detectado no está en `paises_activos`, la tienda muestra el
 estado «Estamos llegando a tu país» con el botón de WhatsApp, sin
-ningún producto. Sin señal de IP se asume MX (primer mercado).
+ningún producto. Sin señal de IP se asume España.
 
 **Vista previa del dueño** (no aparece en la interfaz): añadir
 `?pais=XX` a la URL — `/tienda/?pais=CO` enseña el estado «llegando» de
@@ -288,6 +289,24 @@ carrito.
   la comprobación fina sigue siendo manual en la app al recibir un
   pedido desde la web, hasta conectar la API de afiliados de
   AliExpress en una fase posterior.
+
+## Pendientes que no se muestran al cliente
+
+El titular es Juan Pablo González García, persona física, NIF 78701119H,
+Calle Juan Rumeu García 6 bajo, 38008 Santa Cruz de Tenerife.
+dahanitrading@gmail.com es solo un correo de contacto.
+
+Ningún texto visible lleva corchetes. Estos huecos viven aquí y en
+comentarios HTML de las fichas:
+
+- Explicar qué es The Honey Trading y por qué aparece en el cobro.
+- Confirmar el tipo de IGIC por producto si no es el general del 7 %.
+  Confirmar el impuesto fuera de Canarias.
+- Dirección del almacén de devolución y coste estimado, por producto.
+  El hueco está en `devolucion_direccion` y `devolucion_coste` del
+  catálogo. Mientras estén vacíos, la ficha dice: «Antes de comprar,
+  escríbenos y te indicamos la dirección y el coste de la devolución».
+- Plazos de garantía legal por país, sin confirmar.
 
 ## Pendiente (fuera de este commit)
 

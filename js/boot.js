@@ -128,7 +128,7 @@
       }
     }
   } catch (e) {}
-  document.documentElement.dataset.pais = p || "MX";
+  document.documentElement.dataset.pais = p || "ES";
   try {
     if (new URLSearchParams(location.search).get("tema") === "claro") {
       document.documentElement.dataset.tema = "claro";

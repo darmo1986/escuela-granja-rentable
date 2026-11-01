@@ -124,6 +124,10 @@
   function primerPaisActivo() {
     return (CAT.paises_activos && CAT.paises_activos[0]) || "MX";
   }
+  /* Si la IP no responde, el país por defecto es España y el precio lleva los impuestos incluidos. */
+  function paisSiFallaIp() {
+    return "ES";
+  }
   /* Vista previa: todos los productos activos del catálogo, sin
      depender de datos por país (los países no activos no tienen
      precio ni plazo en catalogo.js, así que no se puede usar
@@ -163,9 +167,9 @@
             var m = /loc=([A-Z]{2})/.exec(txt || "");
             if (m) { guardarCache(m[1]); return m[1]; }
             deteccionIpFallida = true;
-            return primerPaisActivo(); /* sin señal: primer mercado del despliegue */
+            return paisSiFallaIp();
           })
-          .catch(function () { deteccionIpFallida = true; return primerPaisActivo(); });
+          .catch(function () { deteccionIpFallida = true; return paisSiFallaIp(); });
       });
   }
 
@@ -385,7 +389,7 @@
      provisional ni cuando el visitante eligió país a mano. */
   function actualizarAvisos(pais, modo, opts) {
     var nota = $("#tienda-nota-pais");
-    if (nota) nota.hidden = !(opts.origen === "deteccion" && deteccionIpFallida && pais === primerPaisActivo());
+    if (nota) nota.hidden = !(opts.origen === "deteccion" && deteccionIpFallida && pais === paisSiFallaIp());
     var previa = $("#tienda-vista-previa");
     if (previa) previa.hidden = (modo !== "vistaPrevia");
     var previaPais = $("#vista-previa-pais");
