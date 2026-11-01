@@ -104,7 +104,7 @@ function datosAlmacen(p) {
 function bloqueLegal(p) {
   return [
     "<h2>Quién te vende</h2>",
-    "<p>Te vende Juan Pablo González García (NIF 78701119H), titular de Granja Rentable. En la página de pago el cobro aparece como The Honey Trading, que corresponde al mismo titular (mismo NIF y domicilio). <strong class=\"t-pendiente\">[PENDIENTE PABLO: confirmar si es nombre comercial]</strong></p>",
+    "<p>Te vende Juan Pablo González García (NIF 78701119H), titular de Granja Rentable. El cobro aparece como The Honey Trading [PENDIENTE PABLO: explicar qué es y su relación con el vendedor].</p>",
     "<h2>Precio, plazo e impuestos</h2>",
     "<p>El país de esta ficha sale de la IP. Con ese país se muestran el precio, el plazo y los impuestos confirmados. El titular está en Canarias. En una compra desde Canarias se aplica el tipo general del IGIC, el 7 %, incluido en el precio, salvo que esta ficha indique otro tipo aplicable. Esta ficha no indica otro tipo. No es el IVA. <strong class=\"t-pendiente\">[PENDIENTE gestor: confirmar el tipo de IGIC por producto]</strong> Para el resto de España, la UE y los demás países, <strong class=\"t-pendiente\">[PENDIENTE gestor: impuestos del precio en el resto de España, la UE y otros países]</strong>. Fuera de Canarias pueden existir tasas o gestión aduanera no incluidas.</p>",
     "<p>El producto se envía directamente desde el proveedor. El importador puede variar según el producto y el país. Se informa en esta ficha o al registrar el pedido. Contacto del titular: <a href=\"mailto:dahanitrading@gmail.com\">dahanitrading@gmail.com</a>.</p>",
