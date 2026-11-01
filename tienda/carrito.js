@@ -219,7 +219,7 @@
             '</div>' +
             '<label class="cart-campo">País de envío' +
               '<select id="gr-ped-pais">' + opcionesPais() + "</select></label>" +
-            '<p class="cart-pago-t">El pedido se registra en la web. Te escribimos al correo para concretar el pago. En esta página no hay botón de PayPal.</p>' +
+            '<p class="cart-pago-t">El pedido se registra en la web. Te escribimos al correo para concretar el pago.</p>' +
             '<p class="cart-linea"><span>Subtotal</span><strong id="gr-ped-subtotal">—</strong></p>' +
             '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-ped-total">—</strong></p>' +
             '<button type="submit" class="btn gold cart-checkout" id="gr-ped-enviar">Enviar pedido</button>' +

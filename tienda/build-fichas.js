@@ -90,15 +90,26 @@ function precios(p) {
 function bloqueLegal() {
   return [
     "<h2>Quién te vende</h2>",
-    "<p>Te vende Juan Pablo González García (NIF 78701119H), titular de Granja Rentable. The Honey Trading es un nombre comercial del mismo titular. <strong class=\"t-pendiente\">[PENDIENTE: confirmar si The Honey Trading aparece en el cobro de todos los productos de la tienda o solo en la incubadora]</strong></p>",
+    "<p>Te vende Juan Pablo González García (NIF 78701119H), titular de Granja Rentable. En la página de pago el cobro aparece como The Honey Trading, que corresponde al mismo titular (mismo NIF y domicilio). <strong class=\"t-pendiente\">[PENDIENTE PABLO: confirmar si es nombre comercial]</strong></p>",
     "<h2>Precio, plazo e impuestos</h2>",
     "<p>El país de esta ficha sale de la IP. Con ese país se muestran el precio, el plazo y los impuestos confirmados. El titular está en Canarias: en una compra desde Canarias el precio lleva el IGIC al 7 % incluido. No es el IVA. Para el resto de España, la UE y los demás países, <strong class=\"t-pendiente\">[PENDIENTE gestor: impuestos del precio en el resto de España, la UE y otros países]</strong>. Fuera de Canarias pueden existir tasas o gestión aduanera no incluidas.</p>",
     "<p>El producto se envía directamente desde el proveedor. El importador puede variar según el producto y el país. Se informa en esta ficha o al registrar el pedido. Contacto del titular: <a href=\"mailto:dahanitrading@gmail.com\">dahanitrading@gmail.com</a>.</p>",
     "<h2>Desistimiento, devolución y garantía</h2>",
-    "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso, incluidos los gastos de entrega ordinaria, se hace como máximo en 14 días desde esa comunicación. Podemos retener el reembolso hasta recibir el bien o una prueba de que lo has enviado. El coste de la devolución lo asumes tú; te lo decimos antes de que envíes el paquete.</p>",
-    "<p>La devolución se envía a la dirección del almacén del proveedor. Esa dirección te la facilitamos cuando nos comunicas el desistimiento, escribiendo a <a href=\"mailto:ventas@granjarentable.com\">ventas@granjarentable.com</a>. Quien responde ante ti del reembolso y de la garantía legal de conformidad es Granja Rentable, no el proveedor. <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>",
+    "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso lo hace el titular en un plazo de 14 días desde la prueba de envío. Quien responde ante ti es Granja Rentable, no el proveedor. <strong class=\"t-pendiente\">[PENDIENTE PABLO: dirección de devolución]</strong> <strong class=\"t-pendiente\">[PENDIENTE PABLO: coste estimado de devolución por país]</strong> <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>",
     "<p><a href=\"../../../condiciones-venta.html\">Condiciones de venta</a></p>"
   ].join("\n");
+}
+
+function textoNota(p) {
+  var tiene = p.rating != null && p.rating !== "" && !isNaN(Number(p.rating));
+  var bits = [];
+  if (tiene) bits.push(Number(p.rating).toFixed(1).replace(".", ",") + " de nota media");
+  if (p.pedidos) {
+    var n = parseInt(String(p.pedidos).replace(/[^0-9]/g, ""), 10);
+    bits.push(n === 1 ? "1 vendido" : String(p.pedidos) + " vendidos");
+  }
+  if (!bits.length) return "";
+  return '<p class="t-rating">' + esc(bits.join(" · ")) + " en AliExpress</p>";
 }
 
 function ficha(p) {
@@ -130,6 +141,7 @@ function ficha(p) {
     '<link rel="stylesheet" href="../../../css/estilo.css?v=202610184">\n' +
     '<link rel="stylesheet" href="../../tienda.css">\n' +
     "<title>" + esc(titulo) + "</title>\n" +
+    (real ? "" : '<meta name="robots" content="noindex,follow">\n') +
     '<meta name="description" content="' + esc(desc) + '">\n' +
     '<link rel="canonical" href="' + canon + '">\n' +
     '<meta property="og:type" content="product">\n' +
@@ -152,7 +164,7 @@ function ficha(p) {
     '<article id="tienda-ficha" data-estatica="1" data-slug="' + esc(p.slug) + '">\n' +
     '<p class="pdp-cat">' + esc(CATS[p.categoria] || p.categoria) + " · Tienda Granja Rentable</p>\n" +
     "<h1>" + esc(p.nombre) + "</h1>\n" +
-    '<p class="t-rating">' + esc(Number(p.rating).toFixed(1).replace(".", ",")) + " de nota media · " + esc(p.pedidos) + " vendidos</p>\n" +
+    textoNota(p) + "\n" +
     '<div class="pdp-grid"><div class="pdp-media">' + media + '</div><div class="pdp-buy">' + compra +
     '<ul class="t-precios-pais">' + precios(p) + "</ul></div></div>\n" +
     '<div class="pdp-copy"><p>' + esc(p.descripcion) + "</p>\n" +
@@ -182,10 +194,12 @@ function asegurar(loc) {
   if (sitemap.indexOf("<loc>" + loc + "</loc>") !== -1) return;
   sitemap = sitemap.replace("</urlset>", '<url><loc>' + loc + '</loc><lastmod>2026-11-01</lastmod></url>\n</urlset>');
 }
-asegurar("https://granjarentable.com/ebooks");
+sitemap = sitemap.replace("<loc>https://granjarentable.com/ebooks</loc>", "<loc>https://granjarentable.com/ebooks/</loc>");
+sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/tienda\/p\/[^<]+<\/loc>[\s\S]*?<\/url>/g, "");
+asegurar("https://granjarentable.com/ebooks/");
 asegurar("https://granjarentable.com/tienda/");
 CAT.productos.forEach(function (p) {
-  asegurar("https://granjarentable.com/tienda/p/" + p.slug + "/");
+  if (fotoReal(p)) asegurar("https://granjarentable.com/tienda/p/" + p.slug + "/");
 });
 fs.writeFileSync(sitemapRuta, sitemap);
 console.log("Fichas: " + CAT.productos.length);

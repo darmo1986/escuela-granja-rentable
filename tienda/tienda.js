@@ -29,9 +29,10 @@
     incubacion: "Incubación",
     crianza: "Crianza y calor",
     gallinero: "Gallinero y cercas",
-    mallas: "Mallas y huerto"
+    mallas: "Mallas y huerto",
+    proteccion: "Protección"
   };
-  var ORDEN_CATS = ["bebederos", "comederos", "incubacion", "crianza", "gallinero", "mallas"];
+  var ORDEN_CATS = ["bebederos", "comederos", "incubacion", "crianza", "gallinero", "mallas", "proteccion"];
 
   function $(s, c) { return (c || document).querySelector(s); }
   function esc(s) {
@@ -211,6 +212,18 @@
     return '<button type="button" class="btn gold" data-cart-buy="' + esc(p.slug) + '">Comprar ahora · ' +
       esc(formatoPrecio(d.precio, d.moneda)) + "</button>";
   }
+  function lineaNota(p) {
+    var tiene = p.rating != null && p.rating !== "" && !isNaN(Number(p.rating));
+    var bits = [];
+    if (tiene) bits.push(Number(p.rating).toFixed(1).replace(".", ",") + " de nota media");
+    if (p.pedidos) {
+      var n = parseInt(String(p.pedidos).replace(/[^0-9]/g, ""), 10);
+      bits.push(n === 1 ? "1 vendido" : String(p.pedidos) + " vendidos");
+    }
+    if (!bits.length) return "";
+    var stars = tiene ? '<span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " : "";
+    return '<p class="t-rating">' + stars + esc(bits.join(" · ")) + " en AliExpress</p>";
+  }
   function mediaTarjeta(p) {
     var img = imagenDe(p);
     if (!img.src) return '<div class="t-sin-foto">Próximamente</div>';
@@ -234,8 +247,7 @@
       '<span class="pcard-cat">' + esc(CATS[p.categoria] || p.categoria) + "</span>" +
       '<h3><a href="' + esc(hrefFicha(p)) + '">' + esc(p.nombre) + "</a></h3>" +
       '<p class="t-desc">' + esc(p.descripcion_corta) + "</p>" +
-      '<p class="t-rating"><span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " +
-      Number(p.rating).toFixed(1).replace(".", ",") + " · " + esc(p.pedidos) + " vendidos</p>" +
+      lineaNota(p) +
       compra +
       '<a class="btn sec" href="' + esc(hrefFicha(p)) + '">Ver ficha</a>' +
       "</div></article>";
@@ -254,8 +266,7 @@
       '<span class="pcard-cat">' + esc(CATS[p.categoria] || p.categoria) + "</span>" +
       '<h3><a href="' + esc(hrefFicha(p)) + '">' + esc(p.nombre) + "</a></h3>" +
       '<p class="t-desc">' + esc(p.descripcion_corta) + "</p>" +
-      '<p class="t-rating"><span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " +
-      Number(p.rating).toFixed(1).replace(".", ",") + " · " + esc(p.pedidos) + " vendidos</p>" +
+      lineaNota(p) +
       estado +
       '<a class="btn sec" href="' + esc(hrefFicha(p)) + '">Ver ficha</a>' +
       '<a class="btn gold t-consulta" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, paisNombre)) + '">Consultar por WhatsApp</a>' +

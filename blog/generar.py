@@ -661,7 +661,8 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
     menu = menu_listo(menu_html, raiz, clave_nav(rel))
     if pagina_sin_whatsapp(rel):
         menu = conservar_messenger(quitar_whatsapp_nav(menu), html)
-    pie = pie_html.replace("@@RAIZ@@", raiz)
+    pie = pie_html.replace("@@RAIZ@@", raiz).rstrip("\n")
+    menu = menu.rstrip("\n")
     if "<!-- menu:inicio -->" in html and "<!-- menu:fin -->" in html:
         html = re.sub(r"<!-- menu:inicio -->.*?<!-- menu:fin -->", lambda _: menu, html, count=1, flags=re.S)
     else:
@@ -680,6 +681,8 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
             html, count=1, flags=re.S)
         if n != 1:
             raise Fallo(f"{rel}: tiene menú y no encontré la lista Sitio del pie.")
+    html = re.sub(r"(<!-- menu:fin -->)\n{2,}", r"\1\n", html)
+    html = re.sub(r"(<!-- pie-sitio:fin -->)\n{2,}", r"\1\n", html)
     if rel == "index.html":
         html = asegurar_portada(html, hay_posts)
     if pagina_sin_whatsapp(rel):
@@ -788,13 +791,23 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
                      f'<a class="btn gold" href="{raiz}lecciones/{esc(post["leccion"])}.html">Ver la lección {esc(post["leccion"].upper())}</a>\n'
                      '</section>')
     if post["producto"]:
-        ficha = catalogo[post["producto"]]
+        if post["producto"] in ("incubadora-24egg-dual", "incubadora-wonegg-48"):
+            ficha = {
+                "nombre": "Incubadora automática de 30 huevos",
+                "resumen": "Volteo automático y temperatura controlada. Hoy se vende en España. El precio y el plazo son estimados y no garantizan nacimientos.",
+                "imagen": "img/productos/incubadora-30-huevos.webp",
+                "alt": "Incubadora automática de 30 huevos",
+            }
+            href = raiz + "tienda/p/incubadora-automatica-30-huevos/"
+        else:
+            ficha = catalogo[post["producto"]]
+            href = href_producto(raiz, post["producto"])
         nota = (" El precio y el plazo de la tienda son estimados. "
                 "Pueden existir impuestos, tasas o gestión aduanera no incluidos.")
         cajas.append('<section class="panel panel-shop">\n<h3>En nuestra tienda</h3>\n'
                      f'<div class="media-mini"><img src="{esc(raiz + ficha["imagen"])}" alt="{esc(ficha.get("alt") or ficha["nombre"])}" width="84" height="84">'
                      f'<p>{esc(ficha["nombre"])}. {esc(ficha.get("resumen") or "")}{esc(nota)}</p></div>\n'
-                     f'<a class="btn sec" href="{esc(href_producto(raiz, post["producto"]))}">Ver la ficha</a>\n</section>')
+                     f'<a class="btn sec" href="{esc(href)}">Ver la ficha</a>\n</section>')
     cta = ""
     if cajas:
         cta = '<div class="post-cta">\n' + "\n".join(cajas) + "\n</div>"

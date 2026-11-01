@@ -74,7 +74,7 @@ window.GR_TIENDA_CATALOGO = {
       "nombre": "Copas de bebedero automáticas (pack de 6)",
       "categoria": "bebederos",
       "descripcion_corta": "Puede ayudar a servir agua más limpia: la copa se llena cuando bebe la gallina y el depósito queda cerrado. Es orientativo y no garantiza resultados.",
-      "descripcion": "El bebedero de copa puede ayudar a tener menos bebederos sucios, volcados o con cama. No garantiza un resultado sanitario. Cada copa lleva una válvula que abre el paso del agua cuando la gallina la picotea y la mantiene al nivel justo, sin encharcar el suelo. El agua permanece dentro del cubo o del depósito cerrado, así que no le cae viruta, pienso ni excrementos: menos bacterias, menos problemas sanitarios y mucha menos limpieza. Se enroscan en un cubo, un bidón o un tubo y quedan funcionando en minutos. Una copa da de beber a unas 3-5 gallinas, así que el pack de 6 cubre un gallinero casero completo.",
+      "descripcion": "El bebedero de copa puede ayudar a tener menos bebederos sucios, volcados o con cama. No garantiza un resultado sanitario. Cada copa lleva una válvula que abre el paso del agua cuando la gallina la picotea y la mantiene al nivel justo, sin encharcar el suelo. El agua permanece dentro del cubo o del depósito cerrado, así que puede caer menos viruta, pienso o excrementos. Puede ayudar a reducir la limpieza. Se enroscan en un cubo, un bidón o un tubo. Una copa puede dar de beber a unas 3-5 gallinas; el pack de 6 puede alcanzar para un gallinero casero. Es orientativo.",
       "incluye": [
         "6 copas de bebedero automáticas con válvula",
         "Tuercas y juntas de sellado"
@@ -142,7 +142,7 @@ window.GR_TIENDA_CATALOGO = {
       "nombre": "Tetinas con copa colgante para línea de agua (pack de 10)",
       "categoria": "bebederos",
       "descripcion_corta": "Un sistema habitual en muchas granjas, en tamaño casero: la tetina da agua cuando bebe el ave. Puede ayudar a mantener el suelo más seco. No garantiza resultados.",
-      "descripcion": "La tetina con cazoleta es un bebedero habitual en granjas, adaptado al gallinero casero. La bola de la tetina deja pasar una gota cuando la gallina la toca con el pico, y la copa de debajo recoge la que sobra: el agua del depósito no se contamina y la cama no se encharca, que es donde nacen la mayoría de los problemas sanitarios de un lote. Se enroscan en tubo de PVC, en manguera rígida o en la pared de un cubo, y permiten montar una línea de agua automática completa alimentada por un depósito elevado.",
+      "descripcion": "La tetina con cazoleta es un bebedero habitual en granjas, adaptado al gallinero casero. La bola de la tetina deja pasar una gota cuando la gallina la toca con el pico, y la copa de debajo recoge la que sobra. Puede ayudar a que el agua del depósito se ensucie menos y a que la cama se encharque menos. No garantiza un resultado sanitario. Se enroscan en tubo de PVC, en manguera rígida o en la pared de un cubo, y permiten montar una línea de agua alimentada por un depósito elevado.",
       "incluye": [
         "10 tetinas con copa colgante",
         "Rosca estándar para tubo o cubo"
@@ -1170,8 +1170,8 @@ window.GR_TIENDA_CATALOGO = {
   "slug": "bascula-precision-500g",
   "nombre": "Báscula de precisión 500 g / 0,01 g SODANY",
   "categoria": "gallinero",
-  "descripcion_corta": "Pesa al pollito, el huevo y las dosis con precisión de 0,01 g: la báscula pequeña que toda granja termina necesitando.",
-  "descripcion": "Una báscula de bolsillo con precisión de centésima de gramo sirve para mucho más que para la cocina: pesar pollitos al nacer y en los controles semanales, clasificar huevos por peso antes de meterlos en la incubadora (los de peso medio eclosionan mejor) y dosificar con exactitud suplementos y medicamentos que van por gramo. Pantalla LCD con tara y pilas incluidas. Se vende desde almacén en España con entrega en pocos días.",
+  "descripcion_corta": "Puede servir para pesar el pollito y el huevo, con una lectura de 0,01 g. Es orientativo y no garantiza resultados.",
+  "descripcion": "Una báscula de bolsillo con lectura de 0,01 g puede servir para pesar pollitos y para clasificar huevos por peso antes de incubar. No garantiza mejores nacimientos. Pantalla LCD con tara y pilas incluidas. Se vende desde almacén en España con entrega en pocos días.",
   "incluye": [
     "1 báscula digital 500 g / 0,01 g",
     "Pilas incluidas"

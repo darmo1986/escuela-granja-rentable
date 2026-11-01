@@ -104,9 +104,6 @@
 </div>
 </div>
 <!-- menu:fin -->
-
-
-
 </nav>
 </div>
 </header>
@@ -120,7 +117,7 @@
 <li><strong>País elegido</strong> para precios y enlaces (<code>gr_pais</code>, localStorage). Igual: solo en tu navegador.</li>
 <li><strong>País por la IP para los anuncios</strong>, solo si los anuncios están activos, pulsas Aceptar en el aviso de la UE (o de Brasil, o cuando la zona no dice el país) y todavía no elegiste país. Pedimos el código de país a get.geojs.io. Ellos ven la IP para contestar y en este navegador queda <code>gr_pais_ip</code>. Esa llamada no se usa para decidir el aviso, ni se hace al cargar anuncios en Latinoamérica o Estados Unidos, ni cuando el interruptor de anuncios está apagado. Si rechazas, no hay esa llamada: el país de los precios de la tienda antigua sale de la zona horaria, del idioma o de México. Base: consentimiento.</li>
 <li><strong>País de la tienda</strong> (<code>/tienda/</code>). Al abrirla pedimos el código de país a ipapi.co y, si falla, a la traza de Cloudflare (<code>/cdn-cgi/trace</code>). Esos servicios ven la IP solo para responder el país. En este navegador queda <code>gr_tienda_pais_ip</code> (unos 7 días) y también se copia a <code>gr_pais_ip</code>. Si eliges país en el selector, se guarda <code>gr_tienda_pais_manual</code>. Sirve para mostrar el catálogo, el precio estimado y el plazo. No decide el aviso de anuncios.</li>
-<li><strong>Cloudflare Insights</strong>. El código puede cargar la baliza <code>static.cloudflareinsights.com/beacon.min.js</code> si hay un token de analítica. En el repositorio ese token está vacío, así que la baliza no se inserta. Si se activara, Cloudflare podría guardar una cookie para medir visitas. <strong class="t-pendiente">[PENDIENTE: confirmar si en el sitio publicado el token de Cloudflare Insights está activo]</strong></li>
+<li><strong>Cloudflare Web Analytics</strong>. Si hay un token de analítica, el sitio puede cargar la baliza <code>static.cloudflareinsights.com/beacon.min.js</code> para medir visitas de forma agregada. Esa baliza puede guardar una cookie. <strong class="t-pendiente">[PENDIENTE PABLO: confirmar si Cloudflare Web Analytics está activo en el sitio publicado]</strong></li>
 <li><strong>PayPal</strong>. La web no carga el SDK de PayPal ni ofrece botones de PayPal. No usamos la cookie <code>__paypal_storage__</code>.</li>
 <li><strong>Código de afiliado</strong> si entras con <code>?ref=</code>. Cookie <code>gr_ref</code> y localStorage, 30 días, para saber a quién pagar el 10 % si compras en nuestra tienda. No lo vendemos. Base: interés legítimo de liquidar una recomendación, limitado a ese fin.</li>
 <li><strong>Formularios</strong> (registro, prueba de la app, alta de afiliado, lista y calendario): nombre, correo y, si aplica, si quieres la app, el método de pago, el correo de PayPal y el día de inicio de la lista. Base: tu consentimiento, que puedes retirar. Finalidad: enviarte novedades, convocarte a la prueba, gestionar el alta o entregarte la lista. Al enviar, esos datos van a una hoja de cálculo de Google (Google Sheets) mediante una aplicación web gratuita de Google Apps Script. En la lista el tipo guardado es lead. Google puede tratar datos fuera del Espacio Económico Europeo con las cláusulas tipo del RGPD. Conservación: hasta que pidas la baja, y las altas de afiliado el tiempo que haga falta para pagar y cumplir obligaciones contables. El archivo de la lista se arma en tu navegador después de guardar el correo.</li>
@@ -180,9 +177,6 @@
 <li><a href="tienda/">Tienda</a></li>
 </ul>
 <!-- pie-sitio:fin -->
-
-
-
 </div>
 <div>
 <p class="foot-brand">Ayuda y legal</p>
