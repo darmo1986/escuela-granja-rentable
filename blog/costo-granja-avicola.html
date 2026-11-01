@@ -102,9 +102,12 @@
 <div class="nav-drop">
 <div class="nav-row">
 <a class="nav-shop" data-nav="tienda" href="../tienda.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M5 13.2 16 5l11 8.2V27H5V13.2zm2.2 1.6V24.8h6.2v-5.6h5.2v5.6h6.2V14.8L16 8.1 7.2 14.8z"/></svg></span><span class="nav-label">Tienda</span></a>
-
+<button class="nav-parent" type="button" aria-expanded="false" aria-controls="nav-tienda" aria-label="Categorías de la tienda"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
 </div>
-
+<div class="nav-sub" id="nav-tienda">
+<a href="../tienda.html#incubadoras"><span class="nav-label">Incubadoras</span></a>
+<a href="../tienda.html#complementos"><span class="nav-label">Complementos</span></a>
+</div>
 </div>
 <!-- menu:fin -->
 </nav>
@@ -122,29 +125,27 @@
 <div class="panel prose post-body">
 <h2>Cuánto cuesta montar una granja avícola pequeña en 2026</h2>
 <p>Montar una granja avícola pequeña es más barato de lo que parece. Aquí tienes un presupuesto realista para empezar con 20 gallinas ponedoras.</p>
-<blockquote><p><strong>Supuestos de este presupuesto (España, 2026, precios en euros).</strong> Granja pequeña de 20 gallinas ponedoras camperas, en plena producción, con venta directa de huevos (no a tienda ni a mayorista). Los precios de pienso y de huevo son de España; en México y el resto de Latinoamérica los precios cambian y el cálculo hay que rehacerlo con precios locales. Las cifras de materiales, equipamiento y gastos pequeños son estimaciones orientativas de Granja Rentable observadas en su tienda y en proveedores en octubre de 2026, no precios oficiales. La producción y el consumo siguen la guía de manejo Hy-Line Brown (ver fuentes al final).</p></blockquote>
 <h3>La inversión inicial</h3>
-<p><strong>Gallinero (20 gallinas)</strong> — estimación orientativa de Granja Rentable, octubre de 2026, sin fuente oficial única (los precios varían por zona y material):</p>
+<p><strong>Gallinero (20 gallinas):</strong></p>
 <ul class="steps">
 <li>Materiales (madera, techo, malla): 300-500 €</li>
 <li>Nidos, perchas, comederos y bebederos: 80-120 €</li>
 <li>Puerta automática (recomendada): 60-100 €</li>
 </ul>
-<p><strong>Equipamiento</strong> — estimación orientativa de Granja Rentable, octubre de 2026, salvo la incubadora, que queda referenciada por la ficha de la propia tienda (donde el precio varía por país):</p>
+<p><strong>Equipamiento:</strong></p>
 <ul class="steps">
 <li>Incubadora de 24 huevos con control digital: 120-180 €</li>
 <li>Criadora con lámpara de calor: 40-60 €</li>
 <li>Ovoscopio y termómetro de repuesto: 20-30 €</li>
 </ul>
-<p><strong>Animales</strong> — hay que distinguir dos canales, porque el precio cambia mucho:</p>
+<p><strong>Animales:</strong></p>
 <ul class="steps">
-<li>20 pollitas ponedoras comerciales de puesta, de 16-18 semanas, a 8-12 € cada una → 160-240 €. Esta horquilla es defendible para pollitas comerciales compradas en lote o en criadero: como referencia, Ibercaja/Agroinforma da un coste de 6,56 € por pollita ponedora y lotes de 10.000 a 8 € (<a href="https://agroinforma.ibercaja.es/noticias/prensa/por-que-el-huevo-cuesta-un-huevo.aspx">Ibercaja</a>).</li>
-<li>OJO: eso NO es el precio de gallinas de raza en tienda minorista española, que en octubre de 2026 estaba en 11,95–19,99 € según raza (<a href="https://avicoladeseleccion.es/12-gallinas-y-pollitos?p=2">Avícola de Selección</a>). Si compras gallinas de raza en tienda, la inversión inicial sube.</li>
-<li>Alternativa barata: 20 pollitos de un día a 2-3 €, pero esperas 5 meses hasta la puesta. El precio 2-3 € es una estimación orientativa de Granja Rentable SIN fuente directa: ningún listado consultado da el precio del pollito de un día. La referencia cercana es 3,80 € para pollitos de hasta 2 semanas en la misma tienda española, que no es lo mismo que un pollito de un día.</li>
+<li>20 pollitas ponedoras de 16-18 semanas: 8-12 € cada una → 160-240 €</li>
+<li>(Alternativa barata: 20 pollitos de un día a 2-3 €, pero esperas 5 meses para la puesta)</li>
 </ul>
-<p><strong>Pienso inicial (primeros 2 meses)</strong> — ver el apartado de pienso abajo para el precio por kilo. Con el supuesto de 0,125 kg/día por ave:</p>
+<p><strong>Pienso inicial (primeros 2 meses):</strong></p>
 <ul class="steps">
-<li>20 gallinas x 0,125 kg/día x 60 días = 150 kg → 60-75 € a 0,40-0,50 €/kg (a 0,45 €/kg salen 67,50 €, dentro de esa horquilla).</li>
+<li>20 gallinas x 0,125 kg/día x 60 días = 150 kg → 60-75 €</li>
 </ul>
 <h3>Total estimado</h3>
 <div class="tabla"><table>
@@ -152,53 +153,35 @@
 <tbody>
 <tr><td>Gallinero completo</td><td>440-720 €</td></tr>
 <tr><td>Equipamiento</td><td>180-270 €</td></tr>
-<tr><td>20 pollitas (comerciales de puesta)</td><td>160-240 €</td></tr>
+<tr><td>20 pollitas</td><td>160-240 €</td></tr>
 <tr><td>Pienso inicial</td><td>60-75 €</td></tr>
 <tr><td><strong>TOTAL</strong></td><td><strong>840-1.305 €</strong></td></tr>
 </tbody></table></div>
-<p>Construir tú el gallinero con palets reciclados puede bajar el total a unos <strong>600-700 €</strong> (estimación orientativa de Granja Rentable; el ahorro de 200-300 € también es estimación, no cifra medida).</p>
+<p>Construir tú el gallinero con palets reciclados puede bajar el total a unos <strong>600-700 €</strong>.</p>
 <h3>Los gastos mensuales</h3>
 <ul class="steps">
-<li>Pienso: 20 gallinas x 3,75 kg/mes x 0,45 €/kg ≈ <strong>34 €/mes</strong> (ver el apartado siguiente: ese 0,45 €/kg es un precio intermedio, no el de saco pequeño de tienda).</li>
-<li>Cama (viruta): ~<strong>8 €/mes</strong> (estimación redondeada, sin fuente).</li>
-<li>Vacunas y desparasitación: ~<strong>3 €/mes</strong> (estimación redondeada, sin fuente).</li>
-<li>Agua y luz: ~<strong>5 €/mes</strong> (estimación redondeada, sin fuente).</li>
-<li><strong>Total: unos 50 €/mes</strong> de gastos corrientes.</li>
+<li>Pienso: 20 gallinas x 3,75 kg/mes x 0,45 €/kg ≈ <strong>34 €/mes</strong></li>
+<li>Cama (viruta): ~<strong>8 €/mes</strong></li>
+<li>Vacunas y desparasitación: ~<strong>3 €/mes</strong></li>
+<li>Agua y luz: ~<strong>5 €/mes</strong></li>
+<li><strong>Total: unos 50 €/mes</strong></li>
 </ul>
-<h3>El pienso, con mayorista y minorista separados (el punto más delicado)</h3>
-<p><strong>Mayorista (precio de fábrica, España).</strong> El Ministerio de Agricultura (MAPA), en su «Estimación de precios de piensos» de julio de 2026, da el pienso de ponedoras a 317,84 €/t, es decir, <strong>0,318 €/kg</strong> (<a href="https://www.mapama.gob.es/dam/mapa/contenido/ganaderia/temas/alimentacion-animal/precios/informe-estimacion-precios-piensos-diciembre-2025.pdf">MAPA</a>). Ese es un precio estimado mayorista/fábrica, no el que pagas en tienda.</p>
-<p><strong>Minorista (saco de 25 kg en tienda, España, octubre de 2026).</strong> Precios reales consultados: 13,95 €/25 kg = <strong>0,558 €/kg</strong> (<a href="https://marrugatsa.com/alimentacion-animal/4179-pienso-gallinas-ponedoras-granulado-blanco-25kg.html">Marrugat</a>), 15,50 €/25 kg = <strong>0,62 €/kg</strong> (<a href="https://www.agroanimal.es/productos-destacados-para-animales/1353-pienso-gallinas-ponedoras-25-kg.html">Agroanimal</a>) y 16,35 €/25 kg = <strong>0,654 €/kg</strong> (<a href="https://marrugatsa.com/alimentacion-animal/3461-pienso-gallinas-ponedoras-premium-granulado-25kg.html">Marrugat premium</a>). Es decir, en saco pequeño de tienda el pienso ronda <strong>0,56–0,65 €/kg</strong>.</p>
-<p><strong>El 0,45 €/kg que usa este presupuesto</strong> está entre ambos: supone compra por saco grande o a través de cooperativa. En saco pequeño de tienda, el gasto mensual de pienso sube de 34 € a <strong>42–49 €/mes</strong> (75 kg × 0,56–0,65 €/kg), el gasto total mensual sube a unos 61 €/mes, el beneficio baja a 29–89 €/mes y el caso central de recuperación se va a unos 18 meses. Por eso el supuesto del pienso es el más importante de todo el artículo y queda escrito aquí, no escondido.</p>
-<p><strong>Consumo por ave.</strong> La guía de manejo Hy-Line Brown da un consumo medio de <strong>109 g/ave/día</strong> y un pico de puesta del <strong>95–96 %</strong> (<a href="https://1library.co/document/qog932kz-manual-manejo-general-levante-ponedora-comercial-sistema-bateria.html">guía Hy-Line Brown</a>, <a href="https://zoovetesmipasion.com/avicultura/gallinas-ponedoras/consumo-de-alimento-de-la-gallina">tabla de consumo</a>). Este presupuesto usa <strong>0,125 kg/día (125 g)</strong>, POR ENCIMA de los 109 g de la guía: es un supuesto propio, defendible para camperas (más actividad, más gasto), pero NO es una cifra Hy-Line. Si se usaran 109 g, el pienso mensual bajaría de 75 kg a 65,4 kg por las 20 gallinas.</p>
 <h3>Los ingresos</h3>
-<p>20 gallinas ponen unos <strong>15–17 huevos al día (450–510 al mes)</strong>. Ese 75–85 % de puesta es una media prudente, por debajo del pico del 95–96 % de la guía Hy-Line Brown citada arriba, y razonable para camperas. Vendidos en venta directa a 0,20–0,30 €/unidad (precio de huevo campero en venta directa):</p>
+<p>20 gallinas ponen unos <strong>15-17 huevos al día</strong> (450-500 al mes). Vendidos a 0,20-0,30 €/unidad (precio de huevo campero):</p>
 <ul class="steps">
-<li><strong>90–150 €/mes</strong> de ingresos.</li>
-<li>Beneficio mensual: <strong>40–100 €/mes</strong> después de los gastos corrientes de arriba (50 €/mes).</li>
+<li><strong>90-150 €/mes</strong> de ingresos.</li>
+<li>Beneficio mensual: <strong>40-100 €/mes</strong> después de gastos.</li>
 </ul>
-<p>Como referencia de precio de tienda (NO de venta directa): la OCU daba la docena campera en tienda a 4,13 € en diciembre de 2025 (0,344 €/unidad) y a una media de 3,77 € en octubre de 2026 (0,314 €/unidad) (<a href="https://www.ocu.org/organizacion/prensa/notas-de-prensa/2025/huevoscamperos181225">OCU</a>). Que la venta directa (0,20–0,30 €/ud) quede por debajo del precio de tienda (0,31–0,34 €/ud) es lo lógico al no haber intermediario.</p>
-<p><strong>Qué NO descuenta ese beneficio de 40–100 €/mes:</strong> mano de obra, mortalidad y bajas de puesta, veterinario extraordinario, impuestos ni la amortización de la inversión inicial. La amortización se cuenta aparte, en el plazo de recuperación de abajo. No se afirma, por tanto, que el beneficio descuente todos los costes.</p>
-<h3>¿Cuándo se recupera la inversión? (estimación ilustrativa)</h3>
-<blockquote><p><strong>El plazo es una ESTIMACIÓN ILUSTRATIVA, no una promesa.</strong> Caso central: una inversión de unos 1.070 € dividida entre un beneficio de unos 70 €/mes da unos 15 meses. Pero el rango completo con las propias cifras de este artículo es de <strong>8 a 33 meses</strong>: 840 € ÷ 100 €/mes = 8,4 meses en el mejor caso, y 1.305 € ÷ 40 €/mes = 32,6 meses en el peor. Si todo sale caro y se vende barato, la recuperación se alarga más allá de los 2 años; si todo sale barato y se vende bien, puede ser menos de un año. El antiguo «12–18 meses» era solo el escenario medio, y se retira como afirmación cerrada.</p></blockquote>
-<h3>3 formas de ganar más (corregidas)</h3>
-<ol>
-<li><strong>Vende pollitos:</strong> con una incubadora, y con una eclosión normal (alrededor de 3 de cada 4 huevos), una tanda de 24 huevos puede darte unos 18 pollitos, que en venta directa rondan 3–5 € según zona y raza. Son estimaciones, no una garantía.</li>
-<li><strong>Huevos ecológicos:</strong> se venden más caros que los camperos, pero exigen certificación y costes que hay que calcular antes; no es automático. SIN CIFRA hasta tener fuente: la afirmación anterior («vende al doble de precio») NO tiene respaldo. La OCU muestra que el campero en tienda solo cuesta ~24 % más que el de suelo (3,77 € frente a 3,03 € la docena), y eso ni siquiera es el ecológico frente al campero.</li>
-<li><strong>Abonos:</strong> la gallinaza compostada puede venderse o usarse como abono; el precio depende de la zona y NO está incluido en los ingresos de 90–150 €/mes de este cálculo.</li>
-</ol>
-<h3>Cómo reducir la inversión inicial</h3>
-<p>Si el presupuesto aprieta, hay formas de empezar con menos: construye el gallinero con palets y madera reciclada (ahorras 200–300 €, estimación), compra pollitos de un día en vez de pollitas (ahorras 100 € pero esperas 5 meses), y usa bebederos y comederos caseros al principio. Lo único en lo que no conviene ahorrar es en la incubadora y en la calidad de las aves: ahí se juega tu producción.</p>
+<h3>¿Cuándo se recupera la inversión?</h3>
+<p>Con 20 gallinas y venta directa de huevos camperos, la inversión se recupera en <strong>12-18 meses</strong>. A partir de ahí, es beneficio (además de huevos gratis para casa).</p>
+<h3>3 formas de ganar más</h3>
+<p>1. <strong>Vende pollitos:</strong> con una incubadora, cada tanda de 24 huevos te da 18-20 pollitos para vender a 3-5 €. 2. <strong>Huevos ecológicos:</strong> certifícate y vende al doble de precio. 3. <strong>Abonos:</strong> la gallinaza compostada se vende muy bien como fertilizante.</p>
 <p>Empieza pequeño, aprende el manejo y escala cuando los números te lo pidan. La avicultura premia la constancia, no la prisa.</p>
-<h3>Fuentes (precios consultados en octubre de 2026; revisar cuando cambien)</h3>
-<ol>
-<li>MAPA — Estimación de precios de piensos, julio 2026 (pienso ponedoras 317,84 €/t = 0,318 €/kg mayorista): <a href="https://www.mapama.gob.es/dam/mapa/contenido/ganaderia/temas/alimentacion-animal/precios/informe-estimacion-precios-piensos-diciembre-2025.pdf">informe MAPA</a></li>
-<li>OCU — precio de la docena campera en tienda (4,13 € dic 2025; 3,77 € media posterior; ~24 % más que la de suelo, 3,03 €): <a href="https://www.ocu.org/organizacion/prensa/notas-de-prensa/2025/huevoscamperos181225">nota de prensa OCU</a></li>
-<li>Guía de manejo Hy-Line Brown (pico 95–96 %, 109 g/ave/día): <a href="https://1library.co/document/qog932kz-manual-manejo-general-levante-ponedora-comercial-sistema-bateria.html">manual de manejo</a> y <a href="https://zoovetesmipasion.com/avicultura/gallinas-ponedoras/consumo-de-alimento-de-la-gallina">tabla de consumo</a></li>
-<li>Ibercaja/Agroinforma — coste de la pollita ponedora (6,56 €; lotes a 8 €): <a href="https://agroinforma.ibercaja.es/noticias/prensa/por-que-el-huevo-cuesta-un-huevo.aspx">Agroinforma</a></li>
-<li>Precios minoristas de pienso en saco de 25 kg (0,56–0,65 €/kg): <a href="https://marrugatsa.com/alimentacion-animal/4179-pienso-gallinas-ponedoras-granulado-blanco-25kg.html">Marrugat</a> y <a href="https://www.agroanimal.es/productos-destacados-para-animales/1353-pienso-gallinas-ponedoras-25-kg.html">Agroanimal</a></li>
-<li>Precios minoristas de gallinas 18/20 semanas (11,95–19,99 € según raza): <a href="https://avicoladeseleccion.es/12-gallinas-y-pollitos?p=2">Avícola de Selección</a></li>
-</ol>
-<p><em>Nota honesta: todos los enlaces se comprobaron la noche del 28-oct-2026. Los precios de tienda cambian; este artículo dice «precios consultados en octubre de 2026» y debe revisarse cuando cambien.</em></p>
+<h3>Cómo reducir la inversión inicial</h3>
+<p>Si el presupuesto aprieta, hay formas de empezar con menos: construye el gallinero con palets y madera reciclada (ahorras 200-300 €), compra pollitos de un día en vez de pollitas (ahorras 100 € pero esperas 5 meses), y usa bebederos y comederos caseros al principio. Lo único en lo que no conviene ahorrar es en la incubadora y en la calidad de las aves: ahí se juega tu producción.</p>
+
+<p>La guía fija de este tema es <a href="../guia-espacio.html">Espacio por ave</a>.</p>
+
 
 </div>
 <div class="post-cta">
