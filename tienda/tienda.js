@@ -181,7 +181,7 @@
     if (p.imagen_local) return { src: p.imagen_local, nota: p.imagen_local_nota || "" };
     return { src: "", nota: "" };
   }
-  /* Foto real = archivo propio del producto. Una imagen orientativa o vacía no se vende. */
+  /* El rótulo no decide si se vende: solo dice si la imagen es del proveedor o orientativa. */
   function fotoReal(p) {
     var img = imagenDe(p);
     if (!img.src) return false;
@@ -207,7 +207,6 @@
      Pablo decidió que todo pedido se registra en la web y se
      confirma por correo. */
   function botonCompra(p, pais) {
-    if (!fotoReal(p)) return "";
     var d = datosPais(p, pais);
     return '<button type="button" class="btn gold" data-cart-buy="' + esc(p.slug) + '">Comprar ahora · ' +
       esc(formatoPrecio(d.precio, d.moneda)) + "</button>";
@@ -224,23 +223,24 @@
     var stars = tiene ? '<span class="t-stars" aria-hidden="true">' + estrellas(p.rating) + "</span> " : "";
     return '<p class="t-rating">' + stars + esc(bits.join(" · ")) + " en AliExpress</p>";
   }
+  function rotuloFoto(p) {
+    return fotoReal(p) ? "Foto del producto del proveedor" : "Imagen orientativa";
+  }
   function mediaTarjeta(p) {
     var img = imagenDe(p);
-    if (!img.src) return '<div class="t-sin-foto">Próximamente</div>';
+    var rotulo = '<span class="t-badge t-badge-orient">' + esc(rotuloFoto(p)) + "</span>";
+    if (!img.src) return '<div class="t-sin-foto">' + esc(rotuloFoto(p)) + "</div>";
     var alt = fotoReal(p) ? p.nombre : "Imagen orientativa. No es una foto de este producto.";
-    var nota = fotoReal(p) ? "" : '<span class="t-badge t-badge-orient">Imagen orientativa</span>';
-    return '<img src="' + esc(img.src) + '" alt="' + esc(alt) + '" loading="lazy" width="640" height="480">' + nota;
+    return '<img src="' + esc(img.src) + '" alt="' + esc(alt) + '" loading="lazy" width="640" height="480">' + rotulo;
   }
 
   /* ---------- Portada de la tienda ---------- */
   function tarjeta(p, pais) {
     var d = datosPais(p, pais);
-    var badge = esMasVendido(p) && fotoReal(p) ? '<span class="t-badge">Más vendido</span>' : "";
-    var compra = fotoReal(p)
-      ? '<p class="t-precio">' + esc(formatoPrecio(d.precio, d.moneda)) + "</p>" +
-        '<p class="t-envio">' + esc(textoEnvio(d)) + " · estimado</p>" +
-        '<button type="button" class="btn cart-add" data-cart-add="' + esc(p.slug) + '">Añadir al carrito</button>'
-      : '<p class="t-pronto"><strong>Próximamente</strong> · no disponible</p>';
+    var badge = esMasVendido(p) ? '<span class="t-badge">Más vendido</span>' : "";
+    var compra = '<p class="t-precio">' + esc(formatoPrecio(d.precio, d.moneda)) + "</p>" +
+      '<p class="t-envio">' + esc(textoEnvio(d)) + " · estimado</p>" +
+      '<button type="button" class="btn cart-add" data-cart-add="' + esc(p.slug) + '">Añadir al carrito</button>';
     return '<article class="pcard">' +
       '<a class="pcard-media" href="' + esc(hrefFicha(p)) + '" aria-label="' + esc(p.nombre) + '">' + mediaTarjeta(p) + badge + "</a>" +
       '<div class="pcard-body">' +
@@ -258,8 +258,8 @@
      precio) y WhatsApp para consultar, nunca para pedir. No se añade
      ningún texto de origen. */
   function tarjetaVistaPrevia(p, paisNombre) {
-    var badge = esMasVendido(p) && fotoReal(p) ? '<span class="t-badge">Más vendido</span>' : "";
-    var estado = fotoReal(p) ? "" : '<p class="t-pronto"><strong>Próximamente</strong> · no disponible</p>';
+    var badge = esMasVendido(p) ? '<span class="t-badge">Más vendido</span>' : "";
+    var estado = "";
     return '<article class="pcard pcard-previa">' +
       '<a class="pcard-media" href="' + esc(hrefFicha(p)) + '" aria-label="' + esc(p.nombre) + '">' + mediaTarjeta(p) + badge + "</a>" +
       '<div class="pcard-body">' +
@@ -476,10 +476,7 @@
     var aviso = $("#ficha-aviso");
     var precioEl = $("#ficha-precio");
     var envioEl = $("#ficha-envio");
-    if (!p || !fotoReal(p)) {
-      if (acciones) acciones.hidden = true;
-      return;
-    }
+    if (!p) return;
     var d = visible(p, pais) ? datosPais(p, pais) : null;
     if (!d) {
       if (acciones) acciones.hidden = true;

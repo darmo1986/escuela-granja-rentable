@@ -86,7 +86,12 @@ function precios(p) {
   }).join("");
 }
 
-function bloqueLegal() {
+function campoPendiente(valor, marca) {
+  var t = String(valor || "").trim();
+  if (t) return esc(t);
+  return '<strong class="t-pendiente">' + marca + "</strong>";
+}
+function bloqueLegal(p) {
   return [
     "<h2>Quién te vende</h2>",
     "<p>Te vende Juan Pablo González García (NIF 78701119H), titular de Granja Rentable. En la página de pago el cobro aparece como The Honey Trading, que corresponde al mismo titular (mismo NIF y domicilio). <strong class=\"t-pendiente\">[PENDIENTE PABLO: confirmar si es nombre comercial]</strong></p>",
@@ -94,7 +99,12 @@ function bloqueLegal() {
     "<p>El país de esta ficha sale de la IP. Con ese país se muestran el precio, el plazo y los impuestos confirmados. El titular está en Canarias. En una compra desde Canarias se aplica el tipo general del IGIC, el 7 %, incluido en el precio, salvo que esta ficha indique otro tipo aplicable. Esta ficha no indica otro tipo. No es el IVA. <strong class=\"t-pendiente\">[PENDIENTE gestor: confirmar el tipo de IGIC por producto]</strong> Para el resto de España, la UE y los demás países, <strong class=\"t-pendiente\">[PENDIENTE gestor: impuestos del precio en el resto de España, la UE y otros países]</strong>. Fuera de Canarias pueden existir tasas o gestión aduanera no incluidas.</p>",
     "<p>El producto se envía directamente desde el proveedor. El importador puede variar según el producto y el país. Se informa en esta ficha o al registrar el pedido. Contacto del titular: <a href=\"mailto:dahanitrading@gmail.com\">dahanitrading@gmail.com</a>.</p>",
     "<h2>Desistimiento, devolución y garantía</h2>",
-    "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso lo hace el titular en un plazo de 14 días desde la prueba de envío. Quien responde ante ti es Granja Rentable, no el proveedor. <strong class=\"t-pendiente\">[PENDIENTE PABLO: dirección de devolución]</strong> <strong class=\"t-pendiente\">[PENDIENTE PABLO: coste estimado de devolución por país]</strong> <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>",
+    "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso lo hace el titular en un plazo de 14 días desde la prueba de envío. Quien responde ante ti es Granja Rentable, no el proveedor.</p>",
+    "<p>Antes de comprar: la devolución se envía al almacén del proveedor de este producto. Dirección: " +
+      campoPendiente(p.devolucion_direccion, "[PENDIENTE PABLO: dirección del almacén de devolución]") +
+      ". Coste estimado: " +
+      campoPendiente(p.devolucion_coste, "[PENDIENTE PABLO: coste estimado de devolución]") +
+      ". <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>",
     "<p><a href=\"../../../condiciones-venta.html\">Condiciones de venta</a></p>"
   ].join("\n");
 }
@@ -114,20 +124,20 @@ function textoNota(p) {
 function ficha(p) {
   var real = fotoReal(p);
   var web = srcWeb(p);
+  var rotulo = real ? "Foto del producto del proveedor" : "Imagen orientativa";
   var alt = real ? p.nombre : "Imagen orientativa. No es una foto de este producto.";
   var media = web
     ? '<img src="' + esc(web) + '" alt="' + esc(alt) + '" width="760" height="570">' +
-      (real ? "" : '<p class="t-nota-foto"><strong>Imagen orientativa.</strong> No es una foto de este producto.</p>')
-    : '<div class="t-sin-foto t-sin-foto-grande">Próximamente</div>';
-  var compra = real
-    ? '<p class="t-precio t-precio-grande" id="ficha-precio">Precio estimado según tu país</p>' +
-      '<p class="t-envio" id="ficha-envio">Plazo estimado en la lista de países.</p>' +
-      '<p id="ficha-aviso" class="note" hidden></p>' +
-      '<div id="ficha-acciones">' +
-      '<button type="button" class="btn gold" data-cart-buy="' + esc(p.slug) + '">Comprar ahora</button>' +
-      '<button type="button" class="btn cart-add cart-add-ficha" data-cart-add="' + esc(p.slug) + '">Añadir al carrito</button>' +
-      "</div>"
-    : '<p class="t-pronto"><strong>Próximamente</strong></p><p>No está a la venta: no hay una foto real de este producto. No se puede añadir al carrito.</p>';
+      '<p class="t-nota-foto"><strong>' + esc(rotulo) + ".</strong>" +
+      (real ? "" : " No es una foto de este producto.") + "</p>"
+    : '<div class="t-sin-foto t-sin-foto-grande">' + esc(rotulo) + "</div>";
+  var compra = '<p class="t-precio t-precio-grande" id="ficha-precio">Precio estimado según tu país</p>' +
+    '<p class="t-envio" id="ficha-envio">Plazo estimado en la lista de países.</p>' +
+    '<p id="ficha-aviso" class="note" hidden></p>' +
+    '<div id="ficha-acciones">' +
+    '<button type="button" class="btn gold" data-cart-buy="' + esc(p.slug) + '">Comprar ahora</button>' +
+    '<button type="button" class="btn cart-add cart-add-ficha" data-cart-add="' + esc(p.slug) + '">Añadir al carrito</button>' +
+    "</div>";
   var desc = metaDe(p);
   var titulo = p.nombre + " · Tienda Granja Rentable";
   var canon = "https://granjarentable.com/tienda/p/" + p.slug + "/";
@@ -140,7 +150,6 @@ function ficha(p) {
     '<link rel="stylesheet" href="../../../css/estilo.css?v=202610184">\n' +
     '<link rel="stylesheet" href="../../tienda.css">\n' +
     "<title>" + esc(titulo) + "</title>\n" +
-    (real ? "" : '<meta name="robots" content="noindex,follow">\n') +
     '<meta name="description" content="' + esc(desc) + '">\n' +
     '<link rel="canonical" href="' + canon + '">\n' +
     '<meta property="og:type" content="product">\n' +
@@ -170,7 +179,7 @@ function ficha(p) {
     (p.incluye && p.incluye.length ? "<h2>Qué incluye</h2>" + lista(p.incluye) : "") +
     (p.utilidades && p.utilidades.length ? "<h2>Para qué puede servir</h2>" + lista(p.utilidades) : "") +
     (p.como_se_usa && p.como_se_usa.length ? "<h2>Cómo se usa</h2>" + lista(p.como_se_usa, "ol") : "") +
-    bloqueLegal() + "</div>\n</article>\n</main>\n" +
+    bloqueLegal(p) + "</div>\n</article>\n</main>\n" +
     '<footer class="foot"><div class="wrap"><p>Juan Pablo González García · NIF 78701119H · Calle Juan Rumeu García 6 bajo · 38008 Santa Cruz de Tenerife · <a href="mailto:ventas@granjarentable.com">ventas@granjarentable.com</a></p>' +
     '<p><a href="../../../aviso-legal.html">Aviso legal</a> · <a href="../../../privacidad.html">Privacidad</a> · <a href="../../../cookies.html">Cookies</a> · <a href="../../../condiciones-venta.html">Condiciones de venta</a></p></div></footer>\n' +
     '<script src="../../../js/config.js?v=202610184"></script>\n' +
@@ -198,7 +207,7 @@ sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/tienda
 asegurar("https://granjarentable.com/ebooks/");
 asegurar("https://granjarentable.com/tienda/");
 CAT.productos.forEach(function (p) {
-  if (fotoReal(p)) asegurar("https://granjarentable.com/tienda/p/" + p.slug + "/");
+  if (p.activo !== false) asegurar("https://granjarentable.com/tienda/p/" + p.slug + "/");
 });
 fs.writeFileSync(sitemapRuta, sitemap);
 console.log("Fichas: " + CAT.productos.length);

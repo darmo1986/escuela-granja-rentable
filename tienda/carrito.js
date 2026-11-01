@@ -87,7 +87,7 @@
   function redondea2(n) { return Math.round(n * 100) / 100; }
 
   function sePuedeComprar(p) {
-    return !!(p && window.GRTiendaFotoReal && window.GRTiendaFotoReal(p));
+    return !!(p && p.activo !== false);
   }
 
   /* ---------- Protección Trustap: comisión sobre el subtotal ---------- */
@@ -598,7 +598,7 @@
   function anadir(slug) {
     var p = productoPorSlug(slug);
     if (!p || !sePuedeComprar(p)) {
-      toast("Próximamente: este producto no está a la venta.");
+      toast("Este producto no está a la venta.");
       return;
     }
     var estado = leer();
@@ -613,7 +613,7 @@
   function comprarAhora(slug) {
     var p = productoPorSlug(slug);
     if (!p || !sePuedeComprar(p)) {
-      toast("Próximamente: este producto no está a la venta.");
+      toast("Este producto no está a la venta.");
       return;
     }
     var estado = leer();

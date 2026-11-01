@@ -106,6 +106,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-chicken-drinking-nipples.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio «Chicken Drinking Poultry Water Fountain Drinking Cup Automatic Drinker» con 4,9 estrellas y más de 1.000 vendidos a 1,09 US$/ud. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda y fotos de compradores. Confirmar esos cuatro datos en la app antes de publicar la tienda.",
       "paises": {
         "MX": {
@@ -174,6 +176,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-chicken-drinking-nipples.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio «5/10Pcs Chicken Quail Hanging Water Cups Nipple Drinking Bowl» con 4,5 estrellas, más de 1.000 vendidos y sello «Top selling on AliExpress». Filtros superados: rating (justo en el mínimo de la casa) y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -243,6 +247,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-part-feeder.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en la tabla de productos más vendidos de AliExpress (21-oct-2026): «DIY Chicken Feeder Rain Proof Poultry Feeder Port Gravity Feed Kit» con 4,6 estrellas y 2.269 ventas. Filtros superados: rating y volumen (el mayor del lote). NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -311,6 +317,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-candling-incubator-lamp.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): primer anuncio de la categoría «candling incubator lamp» con 4,6 estrellas y más de 600 vendidos (set portátil LED, 27,81 US$). Se descartaron lámparas sueltas desde 5,71 US$ por tener mucho menos volumen de ventas. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -380,6 +388,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-stc-1000-temperature-controller.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): varias tarjetas de anuncio del STC-1000 coinciden en 4,8 estrellas y más de 5.000 vendidos (otro anuncio: 4,8 estrellas y más de 1.000). Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda y fotos de compradores. Confirmar esos cuatro datos en la app antes de publicar la tienda.",
       "paises": {
         "MX": {
@@ -448,6 +458,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-thermostat-socket.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «timer socket thermostat» con sonda y temporizador con 4,9 estrellas y más de 2.000 vendidos a 8,98 US$; la variante de enchufe EU muestra 4,9 estrellas y más de 3.000 vendidos. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -517,6 +529,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-w1209-thermostat.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «W1209 DC 5V 12V heat cool temp thermostat temperature control switch» con 4,8 estrellas y más de 1.000 vendidos; otros anuncios del mismo módulo muestran 4,9 estrellas. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -585,6 +599,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-mini-hygrometer.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «Mini Hygrometer Thermometer Fahrenheit or Celsius Meter Digital LCD Monitor Round» con 4,8 estrellas y más de 10.000 vendidos, repetido en varias tarjetas coincidentes. Filtros superados: rating y volumen (el mayor del catálogo). NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -654,6 +670,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-automatic-chicken-coop-door.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "EVIDENCIA SECUNDARIA (no es la tarjeta del anuncio vista directamente): datos de ventas retail de AliExpress recopilados por accio (21-oct-2026): modelo solar con pantalla LCD, temporizador, sensor de luz y 4 modos con 4,6 estrellas y 810 ventas en el último mes a 39,99 US$ (el total acumulado es mayor); la misma categoría muestra un modelo con 4,5 estrellas y 2.492 ventas en el último mes. Filtros superados: rating y volumen (mensual) según esa recopilación. Pendiente doble antes de publicar: confirmar en la app de AliExpress la nota, los vendidos totales, el vendedor, su % de positivos, los años de tienda y las fotos de compradores.",
       "paises": {
         "MX": {
@@ -722,6 +740,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-chicken-leg-rings.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «100 pcs Chicken Foot Rings Label Clasp Plastic Poultry Leg Snap Ratchet Clip» con 4,5 estrellas y más de 500 vendidos. Filtros superados: rating (justo en el mínimo de la casa) y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -789,6 +809,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-fake-chicken-eggs.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «Fake Chicken Eggs Poultry Layer Coop Hatching Simulation Dummy Egg» (packs de 6 a 24) con 4,5 estrellas y más de 2.000 vendidos. Filtros superados: rating (justo en el mínimo de la casa) y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -857,6 +879,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-precision-scale.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «0.01g Kitchen Scale High-precision Small Electronic Scale Precision Scale» con 4,9 estrellas y más de 10.000 vendidos. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -925,6 +949,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-anti-bird-netting.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio «20/10M Anti Bird Protection Net Mesh Garden Plant Netting Protect Plants and Fruit Trees from Birds Deer Poultry Best Fencing», marcado «Top selling on AliExpress», con 4,6 estrellas y más de 4.000 vendidos a 2,33 US$ según variante. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda, fotos de compradores y almacén/plazo exacto por país. Confirmar esos datos en la app antes de publicar, fijando la variante exacta (10 o 20 m); si aparece una alternativa con almacén local que supere todos los filtros, tiene prioridad (política de almacén local).",
       "paises": {
         "MX": {
@@ -992,6 +1018,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-fruit-protection-bags.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio pack «10-200Pcs Fruit Protection Netting Bags» con 4,8 estrellas y más de 900 vendidos a 6,41 US$ el pack, con entrega mostrada en tarjeta de unos 5 días; la bolsa suelta del mismo tipo («Nylon Plant Protection Netting Mesh Bag Cover for Fruit…») muestra 4,8 estrellas y más de 5.000 vendidos a 0,99 US$/ud. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda, fotos de compradores y almacén. Confirmar esos datos en la app antes de publicar, incluida la composición exacta del pack (número de bolsas y tamaño); si aparece una alternativa con almacén local que supere todos los filtros, tiene prioridad (política de almacén local).",
       "paises": {
         "MX": {
@@ -1059,6 +1087,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005007663926484.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días, envío gratis. Marca avícola española conocida. Volumen bajo (7 vendidos, 1 reseña de 5 estrellas): entra por almacén local y marca, no por volumen.",
   "paises": {
     "ES": {
@@ -1106,6 +1136,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005007663840696.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días. 4,6 estrellas con 5 reseñas y 44 vendidos. Entra por almacén local y marca española.",
   "paises": {
     "ES": {
@@ -1153,6 +1185,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005007663893590.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días, envío gratis. 5,0 estrellas con 5 reseñas. Volumen bajo: entra por almacén local y marca española.",
   "paises": {
     "ES": {
@@ -1201,6 +1235,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005010488549160.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días. 4,7 estrellas con 12 reseñas y 72 vendidos. Vendedor con 93,7 % de positivos (por debajo del 95 % ideal): entra por almacén local confirmado y bajo riesgo del producto.",
   "paises": {
     "ES": {
@@ -1249,6 +1285,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005003920493321.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega más rápida en 2 días, envío gratis. La ficha no muestra reseñas del producto; la tienda SATKIT tiene 4,8 de valoración y 95,7 % de positivos con más de 5.000 vendidos en total. Entra por almacén local y vendedor solvente; volumen del anuncio bajo.",
   "paises": {
     "ES": {
@@ -1298,6 +1336,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005013100843629.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», «entrega más rápida: mañana», envío gratis. 5,0 estrellas (1 reseña en este vendedor; 29 ventas totales del producto). Entra por almacén local y entrega inmediata; volumen bajo.",
   "paises": {
     "ES": {
@@ -1345,6 +1385,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005009810105985.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: 4,6 estrellas (124 valoraciones) y más de 1.000 vendidos; entrega estimada 26-oct–2-nov con mensajería local (Ecoscooting/Correos/CTT/GLS). La ficha NO afirma literalmente «Envío desde España» (plazo compatible con almacén europeo/Choice); entra en el catálogo porque pablo lo aprobó el 21-oct por la demanda directa en Facebook (una seguidora preguntando dónde comprar una lámpara de calor).",
   "paises": {
     "ES": {
@@ -1394,6 +1436,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005012485606785.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 22-oct-2026: «Envío desde España» literal en la ficha, envío gratis y «entrega más rápida en 2 días»; 4,6 estrellas (24 valoraciones) y 193 vendidos; vendedor con 95,1 % de valoraciones positivas. Entra en el catálogo porque pablo pidió el 22-oct una incubadora para la tienda: los dos Shorts de la incubadora anuncian una a 129 € con envío incluido y la tienda no tenía ninguna.",
   "paises": {
     "ES": {
@@ -1444,6 +1488,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-nitrile-gloves.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Investigación 30-oct-2026: anuncio con 4,6 estrellas y 50.000+ vendidos a ~0,33 US$. Pasa filtros de rating y volumen. Pendiente verificar % del vendedor (>=90%) en ficha antes del alta definitiva.",
       "paises": {
         "MX": {"disponible": true, "moneda": "MXN", "precio": 89, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
@@ -1492,6 +1538,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-rain-boots-farm-waterproof.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Investigación 30-oct-2026: anuncio con 4,9 estrellas, 1.000+ vendidos, vendedor con 92,7% positivo. Pasa todos los filtros.",
       "paises": {
         "MX": {"disponible": true, "moneda": "MXN", "precio": 549, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
@@ -1540,6 +1588,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-disposable-overalls.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Investigación 30-oct-2026: anuncio con 4,8 estrellas y 1.000+ vendidos. Pasa filtros de rating y volumen. Pendiente verificar % del vendedor (>=90%) en ficha.",
       "paises": {
         "MX": {"disponible": true, "moneda": "MXN", "precio": 599, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
