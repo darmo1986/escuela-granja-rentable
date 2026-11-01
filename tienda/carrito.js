@@ -275,7 +275,7 @@
           '<div class="cart-confianza">' +
             '<p class="cart-confianza-t">🛡️ Compra protegida</p>' +
             '<p>Estamos activando el pago con depósito en garantía: un tercero neutral (Trustap) retiene tu dinero y solo lo libera al proveedor cuando recibes tu pedido. Si algo sale mal, recuperas tu dinero.</p>' +
-            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Devolución en 14 días gestionada por Granja Rentable<br>✓ Te confirmamos el pedido por correo electrónico</p>' +
+            '<p class="cart-confianza-sellos">✓ Envío con seguimiento<br>✓ Devolución en 14 días gestionada por Granja Rentable<br>✓ Te confirmamos el pedido por correo electrónico<br><a href="../condiciones-venta.html">Condiciones de venta</a></p>' +
           '</div>' +
           '<p class="cart-linea"><span>Subtotal</span><strong id="gr-cart-subtotal">—</strong></p>' +
           '<p class="cart-linea cart-total"><span>Total</span><strong id="gr-cart-total">—</strong></p>' +

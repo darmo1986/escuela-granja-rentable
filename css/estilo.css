@@ -755,6 +755,8 @@ code { overflow-wrap: anywhere; }
 .enf-sub summary::-webkit-details-marker { display: none; }
 .enf-sub-lista { list-style: none; margin: 8px 0 0; padding: 8px; display: flex; flex-direction: column; gap: 4px; background: #fff; border-radius: 16px; box-shadow: var(--shadow); }
 .enf-sub-lista a { display: flex; justify-content: space-between; gap: 8px; align-items: center; min-height: 44px; padding: 6px 10px; border-radius: 12px; text-decoration: none; color: var(--gd); font-weight: 750; }
+.enf-sub-lista .enf-sub-off { display: flex; justify-content: space-between; gap: 8px; align-items: center; min-height: 44px; padding: 6px 10px; border-radius: 12px; color: var(--muted); font-weight: 750; }
+.enf-cat:not(a) { cursor: default; }
 .enf-sub-lista a[aria-current="page"] { background: var(--gl); }
 .enf-sub-n { color: var(--muted); font-size: .85rem; }
 .enf-cats { display: grid; gap: 12px; }

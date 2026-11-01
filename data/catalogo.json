@@ -469,14 +469,14 @@
   },
   {
     "id": "comedero-tolva",
-    "nombre": "Comedero de tolva",
-    "alt": "",
+    "nombre": "Comedero tolva Happy Chickens 2 kg",
+    "alt": "Comedero tolva Happy Chickens 2 kg",
     "categoria": "complementos",
-    "imagen": "",
-    "resumen": "Comedero de tolva para gallinas. Precio próximamente.",
+    "imagen": "img/productos/tolva-happy-chickens.webp",
+    "resumen": "Comedero tolva Happy Chickens de 2 kg. El precio y el envío salen en la ficha de la tienda.",
     "parrafos": [
-      "Comedero de tolva para gallinas.",
-      "El precio se publicará cuando esté confirmado para tu país."
+      "Comedero tolva Happy Chickens de 2 kg, en la tienda.",
+      "El precio y el envío salen en la ficha, según tu país."
     ],
     "incluye": [],
     "capacidad": "",

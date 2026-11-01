@@ -211,13 +211,9 @@ function deCategoria(id) {
 }
 
 function textoCuenta(id) {
-  var lista = deCategoria(id);
-  var listas = lista.filter(function (a) { return a.estado === "completo"; }).length;
-  var pronto = lista.length - listas;
-  if (!lista.length) return "Próximamente";
-  if (!listas) return (lista.length === 1 ? "1 ficha" : lista.length + " fichas") + " · próximamente";
-  if (!pronto) return listas === 1 ? "1 ficha" : listas + " fichas";
-  return listas + (listas === 1 ? " lista" : " listas") + " · " + pronto + " próximamente";
+  var listas = deCategoria(id).filter(function (a) { return a.estado === "completo"; }).length;
+  if (!listas) return "Sin fichas publicadas";
+  return listas === 1 ? "1 ficha publicada" : listas + " fichas publicadas";
 }
 
 function migas(items) {
@@ -231,8 +227,10 @@ function migas(items) {
 function subnav(activo, prefijo) {
   var enlaces = data.categorias.map(function (cat) {
     var n = deCategoria(cat.id).filter(function (a) { return a.estado === "completo"; }).length;
+    var inner = "<span>" + esc(menuDe(cat)) + '</span><span class="enf-sub-n">' + n + "</span>";
+    if (!n) return '<li><span class="enf-sub-off">' + inner + "</span></li>";
     var actual = cat.id === activo ? ' aria-current="page"' : "";
-    return '<li><a href="' + esc(prefijo + cat.id) + '.html"' + actual + "><span>" + esc(menuDe(cat)) + '</span><span class="enf-sub-n">' + n + "</span></a></li>";
+    return '<li><a href="' + esc(prefijo + cat.id) + '.html"' + actual + ">" + inner + "</a></li>";
   }).join("\n");
   return '<details class="enf-sub" open>\n<summary>Categorías</summary>\n<ul class="enf-sub-lista">\n' + enlaces + "\n</ul>\n</details>\n";
 }
@@ -263,15 +261,14 @@ function ficha(art) {
   var tags = (art.etiquetas || []).map(function (e) { return '<li>' + esc(etiNombre(e)) + "</li>"; }).join("");
   var rel = (art.relacionados || []).map(function (id) {
     var otro = porId(id);
-    if (!otro) return "";
-    if (otro.estado !== "completo") return "<li>" + esc(otro.titulo) + " <span class=\"fine\">(próximamente)</span></li>";
+    if (!otro || otro.estado !== "completo") return "";
     return '<li><a href="' + esc(id) + '.html">' + esc(otro.titulo) + "</a></li>";
   }).join("");
   if (art.estado !== "completo") {
     var corto = "<h1>" + esc(art.titulo) + "</h1>\n" +
       '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n" +
       (art.declaracion ? avisoOficial(art) : "") +
-      "<p><strong>Próximamente.</strong> Esta ficha todavía no está publicada.</p>\n";
+      "<p>Esta ficha todavía no está publicada.</p>\n";
     var mainCorto = migas([
       { href: root + "index.html", texto: "Inicio" },
       { href: root + "enfermedades.html", texto: "Enfermedades" },
@@ -360,7 +357,10 @@ function indice() {
     return tarjeta(art, "enfermedades/" + art.id + ".html");
   }).join("");
   var cats = data.categorias.map(function (cat) {
-    return '<a class="enf-cat" data-cat="' + esc(cat.id) + '" href="enfermedades/categoria/' + esc(cat.id) + '.html"><span class="enf-cat-ico">' + ICONOS[cat.id] + '</span><span><strong>' + esc(menuDe(cat)) + '</strong><span class="fine">' + esc(textoCuenta(cat.id)) + "</span></span></a>";
+    var n = deCategoria(cat.id).filter(function (a) { return a.estado === "completo"; }).length;
+    var inner = '<span class="enf-cat-ico">' + ICONOS[cat.id] + '</span><span><strong>' + esc(menuDe(cat)) + '</strong><span class="fine">' + esc(textoCuenta(cat.id)) + "</span></span>";
+    if (!n) return '<div class="enf-cat" data-cat="' + esc(cat.id) + '">' + inner + "</div>";
+    return '<a class="enf-cat" data-cat="' + esc(cat.id) + '" href="enfermedades/categoria/' + esc(cat.id) + '.html">' + inner + "</a>";
   }).join("\n");
   var schema = JSON.stringify({
     "@context": "https://schema.org",
@@ -374,7 +374,7 @@ function indice() {
   var cuerpo = "";
   cuerpo += '<section class="panel enf-buscador" aria-labelledby="enf-que">\n<h2 id="enf-que">¿Qué le pasa a mi gallina?</h2>\n<p>Elige un signo o escribe una palabra. Salen las fichas que más se acercan. No es un diagnóstico.</p>\n<div class="enf-filtros" id="enf-sintomas">\n' + sintomas + '\n</div>\n<p id="enf-oficial" class="enf-oficial" hidden>Si ves muertes repentinas o muchas aves enfermas a la vez, avisa hoy a sanidad animal. No es un caso para remedios de casa. Las fichas de gripe aviar y Newcastle lo explican.</p>\n<label class="enf-label" for="enf-buscar">Buscar</label>\n<input id="enf-buscar" class="enf-buscar" type="search" placeholder="Cara hinchada, ácaro, pollito…" autocomplete="off">\n<div class="enf-filtros" id="enf-etiquetas">\n' + etiquetas + '\n</div>\n<p><button type="button" class="btn sec" id="enf-limpiar">Limpiar búsqueda</button> <span id="enf-cuenta" class="fine"></span></p>\n</section>\n';
   cuerpo += '<div id="enf-resultados" class="enf-grid" hidden>\n' + resultados + "</div>\n";
-  cuerpo += "<h2>Las ocho categorías</h2>\n<p class=\"fine\">Cada una tiene su página. Tres fichas están redactadas: coriza, coccidiosis y ácaro rojo. El resto dice próximamente.</p>\n";
+  cuerpo += "<h2>Las ocho categorías</h2>\n<p class=\"fine\">Tres fichas están publicadas: coriza infecciosa, coccidiosis y ácaro rojo. Las categorías sin ficha no enlazan a una página vacía.</p>\n";
   cuerpo += '<div class="enf-cats">\n' + cats + "\n</div>\n";
   var main = migas([
     { href: "index.html", texto: "Inicio" },
@@ -401,8 +401,8 @@ function paginaCategoria(cat) {
   cuerpo += "<p>" + esc(cat.nota) + "</p>\n";
   cuerpo += '<p class="enf-aviso">' + esc(data.aviso) + "</p>\n";
   if (cat.id === "viricas") cuerpo += avisoGripe() + avisoNewcastle();
-  if (!listas.length) cuerpo += "<p><strong>Próximamente.</strong> Las fichas de esta categoría todavía no están publicadas.</p>\n";
-  cuerpo += '<div class="enf-grid">\n' + lista.map(function (art) {
+  if (!listas.length) cuerpo += "<p>Todavía no hay fichas publicadas en esta categoría.</p>\n";
+  else cuerpo += '<div class="enf-grid">\n' + listas.map(function (art) {
     return tarjeta(art, "../" + art.id + ".html");
   }).join("") + "</div>\n";
   var main = migas([
@@ -424,7 +424,7 @@ function paginaCategoria(cat) {
       url: SITIO + "/enfermedades/categoria/" + cat.id + ".html",
       isPartOf: { "@type": "WebSite", name: "Granja Rentable", url: SITIO + "/" }
     }, null, 2),
-    robots: listas.length ? "index,follow" : "noindex,follow",
+    robots: "noindex,follow",
     main: main,
     extra: '<script src="../../js/enfermedades.js"></script>\n'
   });
@@ -433,14 +433,9 @@ function paginaCategoria(cat) {
 function sitemap() {
   var file = path.join(ROOT, "sitemap.xml");
   var xml = fs.readFileSync(file, "utf8");
-  xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc><\/url>/g, "");
-  xml = xml.replace(/\n<url><loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc><\/url>/g, "");
+  xml = xml.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/enfermedades(?:\/[^<]*)?\.html<\/loc>[\s\S]*?<\/url>/g, "");
+  xml = xml.replace(/\s*<url>\s*<loc>https:\/\/granjarentable\.com\/(?:preguntas|cuenta)\.html<\/loc>[\s\S]*?<\/url>/g, "");
   var urls = ['<url><loc>https://granjarentable.com/enfermedades.html</loc></url>']
-    .concat(data.categorias.filter(function (c) {
-      return deCategoria(c.id).some(function (a) { return a.estado === "completo"; });
-    }).map(function (c) {
-      return "<url><loc>https://granjarentable.com/enfermedades/categoria/" + c.id + ".html</loc></url>";
-    }))
     .concat(publicados().map(function (a) {
       return "<url><loc>https://granjarentable.com/enfermedades/" + a.id + ".html</loc></url>";
     })).join("\n");
