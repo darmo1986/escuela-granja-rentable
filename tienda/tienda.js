@@ -503,7 +503,7 @@
       (incluye ? "<h2>Qué incluye</h2><ul>" + incluye + "</ul>" : "") +
       (utilidades ? "<h2>Utilidades</h2><ul>" + utilidades + "</ul>" : "") +
       (uso ? "<h2>Cómo se usa</h2><ol>" + uso + "</ol>" : "") +
-      "<h2>Cómo funciona tu pedido</h2><p>Granja Rentable selecciona y verifica cada producto. Al pedir, el proveedor prepara tu paquete y lo envía con número de seguimiento hasta tu país; el plazo que ves arriba ya es el estimado para " + esc(nombrePais) + ". Si el producto llega distinto a la ficha o defectuoso, tienes 14 días para escribirnos y gestionamos la devolución o el reembolso contigo. Más detalle en las <a href=\"../condiciones-venta.html\">condiciones de venta</a>.</p></div>";
+      "<h2>Cómo funciona tu pedido</h2><p>Granja Rentable selecciona y verifica cada producto. Al pedir, el proveedor prepara tu paquete y lo envía con número de seguimiento hasta tu país; el plazo que ves arriba ya es el estimado para " + esc(nombrePais) + ". Si el producto llega distinto a la ficha o defectuoso, tienes 14 días para escribirnos y gestionamos la devolución o el reembolso contigo. Consulta también las <a href=\"../condiciones-venta.html\">condiciones de venta</a>.</p></div>";
     var volver = $("#tienda-volver");
     if (volver) volver.hidden = false;
   }
