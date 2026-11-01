@@ -80,10 +80,9 @@ function precios(p) {
     if (!d || !d.disponible) return "";
     var nombre = (CAT.paises[code] && CAT.paises[code].nombre) || code;
     var nota = d.nota ? " " + d.nota : "";
-    var igic = code === "ES" ? " Compra desde Canarias: IGIC al 7 % incluido." : "";
     return '<li data-pais="' + code + '"><strong>' + esc(nombre) + ":</strong> " +
       esc(dinero(d.precio, d.moneda)) + " · plazo estimado " + esc(d.dias_envio) + "." +
-      esc(nota) + esc(igic) + "</li>";
+      esc(nota) + "</li>";
   }).join("");
 }
 
@@ -92,7 +91,7 @@ function bloqueLegal() {
     "<h2>Quién te vende</h2>",
     "<p>Te vende Juan Pablo González García (NIF 78701119H), titular de Granja Rentable. En la página de pago el cobro aparece como The Honey Trading, que corresponde al mismo titular (mismo NIF y domicilio). <strong class=\"t-pendiente\">[PENDIENTE PABLO: confirmar si es nombre comercial]</strong></p>",
     "<h2>Precio, plazo e impuestos</h2>",
-    "<p>El país de esta ficha sale de la IP. Con ese país se muestran el precio, el plazo y los impuestos confirmados. El titular está en Canarias: en una compra desde Canarias el precio lleva el IGIC al 7 % incluido. No es el IVA. Para el resto de España, la UE y los demás países, <strong class=\"t-pendiente\">[PENDIENTE gestor: impuestos del precio en el resto de España, la UE y otros países]</strong>. Fuera de Canarias pueden existir tasas o gestión aduanera no incluidas.</p>",
+    "<p>El país de esta ficha sale de la IP. Con ese país se muestran el precio, el plazo y los impuestos confirmados. El titular está en Canarias. En una compra desde Canarias se aplica el tipo general del IGIC, el 7 %, incluido en el precio, salvo que esta ficha indique otro tipo aplicable. Esta ficha no indica otro tipo. No es el IVA. <strong class=\"t-pendiente\">[PENDIENTE gestor: confirmar el tipo de IGIC por producto]</strong> Para el resto de España, la UE y los demás países, <strong class=\"t-pendiente\">[PENDIENTE gestor: impuestos del precio en el resto de España, la UE y otros países]</strong>. Fuera de Canarias pueden existir tasas o gestión aduanera no incluidas.</p>",
     "<p>El producto se envía directamente desde el proveedor. El importador puede variar según el producto y el país. Se informa en esta ficha o al registrar el pedido. Contacto del titular: <a href=\"mailto:dahanitrading@gmail.com\">dahanitrading@gmail.com</a>.</p>",
     "<h2>Desistimiento, devolución y garantía</h2>",
     "<p>Tienes 14 días naturales desde que recibes el producto para comunicar el desistimiento, sin dar motivo. El reembolso lo hace el titular en un plazo de 14 días desde la prueba de envío. Quien responde ante ti es Granja Rentable, no el proveedor. <strong class=\"t-pendiente\">[PENDIENTE PABLO: dirección de devolución]</strong> <strong class=\"t-pendiente\">[PENDIENTE PABLO: coste estimado de devolución por país]</strong> <strong class=\"t-pendiente\">[PENDIENTE: plazos de garantía legal por país]</strong></p>",
