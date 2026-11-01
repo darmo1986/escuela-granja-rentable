@@ -480,7 +480,7 @@
         (d.nota ? '<p class="t-nota-pais">' + esc(d.nota) + "</p>" : "") +
         botonCompra(p, pais, nombrePais) +
         '<button type="button" class="btn cart-add cart-add-ficha" data-cart-add="' + esc(p.slug) + '">🛒 Añadir al carrito</button>' +
-        '<p class="t-garantia">Selección curada por Granja Rentable: solo vendemos productos con nota alta y cientos de pedidos reales. El pedido lo prepara y envía el proveedor con número de seguimiento. Devolución en 14 días si el producto no es el de la ficha. <a href="../condiciones-venta.html">Condiciones de venta</a>.</p>';
+        '<p class="t-garantia">Selección curada por Granja Rentable: solo vendemos productos con nota alta y cientos de pedidos reales. El pedido lo prepara y envía el proveedor con número de seguimiento. Devolución en 14 días sin dar motivo. <a href="../condiciones-venta.html">Condiciones de venta</a>.</p>';
     } else if (!p.activo) {
       compra = '<div class="note"><p><strong>Producto no disponible ahora mismo.</strong> Lo hemos retirado de la venta mientras revisamos su stock con el proveedor.</p>' +
         '<a class="btn gold" target="_blank" rel="noopener" href="' + esc(enlaceWhats(p, nombrePais)) + '">¿Dudas? Pregúntame por WhatsApp</a></div>';
@@ -503,7 +503,7 @@
       (incluye ? "<h2>Qué incluye</h2><ul>" + incluye + "</ul>" : "") +
       (utilidades ? "<h2>Utilidades</h2><ul>" + utilidades + "</ul>" : "") +
       (uso ? "<h2>Cómo se usa</h2><ol>" + uso + "</ol>" : "") +
-      "<h2>Cómo funciona tu pedido</h2><p>Granja Rentable selecciona y verifica cada producto. Al pedir, el proveedor prepara tu paquete y lo envía con número de seguimiento hasta tu país; el plazo que ves arriba ya es el estimado para " + esc(nombrePais) + ". Si el producto llega distinto a la ficha o defectuoso, tienes 14 días para escribirnos y gestionamos la devolución o el reembolso contigo. Consulta también las <a href=\"../condiciones-venta.html\">condiciones de venta</a>.</p></div>";
+      "<h2>Cómo funciona tu pedido</h2><p>Granja Rentable selecciona y verifica cada producto. Al pedir, el proveedor prepara tu paquete y lo envía con número de seguimiento hasta tu país; el plazo que ves arriba ya es el estimado para " + esc(nombrePais) + ". Tienes 14 días naturales desde que lo recibes para devolverlo sin dar motivo: escríbenos a ventas@granjarentable.com. Consulta también las <a href=\"../condiciones-venta.html\">condiciones de venta</a>.</p></div>";
     var volver = $("#tienda-volver");
     if (volver) volver.hidden = false;
   }
