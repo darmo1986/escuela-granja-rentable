@@ -25,6 +25,8 @@ EDITOR = "Granja Rentable"
 LOGO = SITIO + "/img/logo.jpg"
 POR_PAGINA = 12
 MINIMO_CATEGORIA = 3
+# Listado flojo: se genera, con noindex y fuera del sitemap, y sin huecos de anuncios.
+CATEGORIAS_NOINDEX = {"alimentacion"}
 ANCHO_FOTO = 1200
 ALTO_FOTO = 675
 ANCHO_OG = 1200
@@ -369,8 +371,12 @@ def markdown_a_html(texto, origen, errores):
 
 
 def cargar_catalogo(raiz):
-    ruta = raiz / "data" / "catalogo.json"
-    if not ruta.is_file():
+    ruta = None
+    for candidato in (raiz / "data" / "catalogo.json", raiz / "_archivo-tienda" / "catalogo.json"):
+        if candidato.is_file():
+            ruta = candidato
+            break
+    if ruta is None:
         return {}
     datos = json.loads(ruta.read_text(encoding="utf-8"))
     return {item["id"]: item for item in datos if "id" in item}
@@ -800,7 +806,7 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
                      f'<p>{esc(nombre if nombre.endswith(".") else nombre + ".")} Es gratis.</p>\n'
                      f'<a class="btn gold" href="{raiz}lecciones/{esc(post["leccion"])}.html">Ver la lección {esc(post["leccion"].upper())}</a>\n'
                      '</section>')
-    # El campo producto se sigue validando, pero ya no se pinta: la tienda física no se publica.
+    # El campo producto se sigue validando, pero ya no se pinta.
     cta = ""
     if cajas:
         cta = '<div class="post-cta">\n' + "\n".join(cajas) + "\n</div>"
@@ -1057,7 +1063,8 @@ def planificar(raiz, incluir_borradores=False):
             og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in publicados if p["categoria"] == clave]
-        indexable = len(grupo) >= MINIMO_CATEGORIA
+        indexable = len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX
+        con_anuncios = activo and clave not in CATEGORIAS_NOINDEX
         rel = f"blog/{meta['slug']}.html"
         canonical = SITIO + "/blog/" + meta["slug"] + ".html"
         titulo = f"{meta['nombre']} | Artículos | Granja Rentable"
@@ -1070,8 +1077,8 @@ def planificar(raiz, incluir_borradores=False):
         else:
             rejilla = '<p class="blog-vacio">Todavía no hay artículos publicados en esta categoría.</p>'
         contenido = "\n".join(parte for parte in [
-            hero, anuncio("banner", activo), categorias_nav(clave), rejilla,
-            bloque_guias("../"), bloque_curso("../"), anuncio("rect", activo),
+            hero, anuncio("banner", con_anuncios), categorias_nav(clave), rejilla,
+            bloque_guias("../"), bloque_curso("../"), anuncio("rect", con_anuncios),
         ] if parte)
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
@@ -1099,7 +1106,7 @@ def planificar(raiz, incluir_borradores=False):
         entradas.append((SITIO + f"/blog/pagina-{numero}.html", last.isoformat() if last else None))
     for clave in (c[0] for c in CATEGORIAS):
         grupo = [p for p in publicados if p["categoria"] == clave]
-        if len(grupo) >= MINIMO_CATEGORIA:
+        if len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX:
             entradas.append((SITIO + "/blog/" + CATS[clave]["slug"] + ".html",
                              max(p["actualizado"] for p in grupo).isoformat()))
     for post in publicados:

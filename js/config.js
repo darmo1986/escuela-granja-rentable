@@ -22,11 +22,9 @@ window.ADSTERRA = {
 /* Interruptor de publicidad. false = no se inyecta ningún script ni iframe de anuncios. */
 window.ads = { activo: false };
 
-/* El curso y los ebooks van primero. La tienda física está archivada. */
+/* El curso y los ebooks van primero. */
 window.GR = {
   siteUrl: "https://granjarentable.com",
-  /* Destino de los botones de pago que antes iban a la tienda física. */
-  tiendaBase: "https://granjarentable.com/ebooks/",
   youtubeUrl: "https://www.youtube.com/@GranjaRentable",
   /* Confirma la URL exacta de la página de Facebook. */
   facebookUrl: "https://www.facebook.com/GranjaRentable",
@@ -86,39 +84,25 @@ window.GR = {
   }
 };
 
-/* Precios antiguos de la incubadora, copiados el 14 oct 2026.
-   Ya no se muestran: la tienda física no se publica. */
+/* País del lector. Solo el nombre, para el selector de la cabecera. */
 window.GR_PAISES = {
-  MX: { nombre: "México", envio: true, moneda: "MXN", precio: 2799, texto: "$2,799 MXN", voltaje: "110V", entrega: "3–6 semanas",
-    impuesto: "En México la paquetería llega del extranjero y la aduana puede cobrar una tasa global al recibir (hasta 33,5 % del valor declarado). Ese pago no está en nuestro precio.",
-    garantia: "14 días para devolver. Si llega con un defecto, reparación o cambio." },
-  US: { nombre: "Estados Unidos", envio: true, moneda: "USD", precio: 119, texto: "US$ 119", voltaje: "110V", entrega: "3–8 días",
-    impuesto: "Sale de un almacén en Estados Unidos: sin trámite de aduana. El cargo es en dólares.",
-    garantia: "14 días para devolver. Si llega con un defecto, reparación o cambio." },
-  CO: { nombre: "Colombia", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "",
-    impuesto: "", garantia: "" },
-  PE: { nombre: "Perú", envio: true, moneda: "PEN", precio: 499, texto: "S/ 499", voltaje: "220V", entrega: "3–6 semanas",
-    impuesto: "En Perú, las compras de hasta US$ 200 por envío suelen estar exentas de impuestos de importación (envíos de entrega rápida, SUNAT).",
-    garantia: "14 días para devolver. Si llega con un defecto, reparación o cambio." },
-  ES: { nombre: "España", envio: true, moneda: "EUR", precio: 129, texto: "129 €", voltaje: "220V", entrega: "2–4 días laborables",
-    impuesto: "Precio final con impuestos incluidos. Enviamos a Península y Baleares. Todavía no enviamos a Canarias, Ceuta ni Melilla.",
-    garantia: "14 días para devolver y 3 años de garantía legal." },
-  AR: { nombre: "Argentina", envio: true, moneda: "USD", precio: 169, texto: "US$ 169", voltaje: "220V", entrega: "3–6 semanas",
-    impuesto: "El cobro es en dólares. Puede corresponder IVA (21 %) y tasas del courier al recibir. Hasta US$ 400 no se pagan derechos de importación. Tu banco puede sumar su propia comisión.",
-    garantia: "14 días para devolver sin coste para ti. Garantía legal de 6 meses." },
-  VE: { nombre: "Venezuela", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  EC: { nombre: "Ecuador", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  DO: { nombre: "República Dominicana", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  CL: { nombre: "Chile", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  PY: { nombre: "Paraguay", envio: true, moneda: "USD", precio: 145, texto: "US$ 145", voltaje: "220V", entrega: "3–6 semanas",
-    impuesto: "El cobro es en dólares. Puede haber tasas de aduana o del courier al recibir, y las paga quien recibe.",
-    garantia: "14 días para devolver. Si llega con un defecto, reparación o cambio." },
-  UY: { nombre: "Uruguay", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  BO: { nombre: "Bolivia", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  GT: { nombre: "Guatemala", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  HN: { nombre: "Honduras", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  SV: { nombre: "El Salvador", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  NI: { nombre: "Nicaragua", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  CR: { nombre: "Costa Rica", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
-  PA: { nombre: "Panamá", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" }
+  MX: { nombre: "México" },
+  US: { nombre: "Estados Unidos" },
+  CO: { nombre: "Colombia" },
+  PE: { nombre: "Perú" },
+  ES: { nombre: "España" },
+  AR: { nombre: "Argentina" },
+  VE: { nombre: "Venezuela" },
+  EC: { nombre: "Ecuador" },
+  DO: { nombre: "República Dominicana" },
+  CL: { nombre: "Chile" },
+  PY: { nombre: "Paraguay" },
+  UY: { nombre: "Uruguay" },
+  BO: { nombre: "Bolivia" },
+  GT: { nombre: "Guatemala" },
+  HN: { nombre: "Honduras" },
+  SV: { nombre: "El Salvador" },
+  NI: { nombre: "Nicaragua" },
+  CR: { nombre: "Costa Rica" },
+  PA: { nombre: "Panamá" }
 };

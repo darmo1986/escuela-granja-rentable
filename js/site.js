@@ -78,9 +78,7 @@
     "criadora-calor": "ebooks/",
     "curso-avicultura": "curso.html",
     "ebook-guia-avicultura": "ebooks/",
-    "app-pollos-engorde": "app.html",
-    "incubadora-24egg-dual": "ebooks/",
-    "incubadora-wonegg-48": "ebooks/"
+    "app-pollos-engorde": "app.html"
   };
 
   function productHref(id) {
@@ -136,27 +134,7 @@
   }
 
   function applyFeatured() {
-    var box = document.querySelector("[data-featured]");
-    if (!box) return;
-    var skuBox = box.querySelector("[data-sku]");
-    if (!skuBox) return;
-    var id = (PAISES[pais] && PAISES[pais].envio && pais === "US") ? "incubadora-wonegg-48" : "incubadora-24egg-dual";
-    skuBox.setAttribute("data-sku", id);
-    var item = catalogMap()[id];
-    if (!item) return;
-    var img = box.querySelector(".js-feat-img");
-    var link = box.querySelector(".js-feat-link");
-    var more = box.querySelector(".js-feat-more");
-    var name = box.querySelector(".js-feat-name");
-    var res = box.querySelector(".js-feat-resumen");
-    if (img && item.imagen) {
-      img.src = root + item.imagen;
-      img.alt = item.alt || item.nombre;
-    }
-    if (link) link.href = productHref(id);
-    if (more) more.href = productHref(id);
-    if (name) name.textContent = item.nombre;
-    if (res) res.textContent = item.resumen || "";
+    return;
   }
 
   function ensureAsk(card) {
@@ -231,7 +209,6 @@
   }
 
   var CAT_LABEL = {
-    incubadoras: "Incubadoras",
     complementos: "Complementos",
     calefaccion: "Calefacción",
     guias: "Guías",
@@ -277,14 +254,7 @@
       var usd = usdLabel(offer.moneda, offer.precio, offer.texto);
       if (usd) ref = usd + " de referencia.";
     }
-    var small = "";
-    if (item.categoria === "incubadoras") {
-      small = offer.moneda === "USD"
-        ? "Precio con envío a " + p.nombre + "."
-        : "Envío incluido a " + p.nombre + (ref ? ". " + ref : ".");
-    } else {
-      small = ref;
-    }
+    var small = ref;
     if (offer.antes) small = (small ? small + " " : "") + "Antes " + offer.antes + ".";
     return { big: big, small: small };
   }
@@ -381,7 +351,7 @@
       }
       var hash = item.categoria === "complementos" ? "complementos" : "";
       paintSku(card, lines.big, lines.small, meta, nota, "", {
-        text: "Comprar",
+        text: "Ver los ebooks",
         href: storeUrl(hash),
         buy: true,
         store: true,
@@ -414,14 +384,9 @@
     renderSoon(map);
     var buy = document.querySelector(".js-comprar");
     if (buy) {
-      if (!p.envio) {
-        buy.textContent = "Avísame";
-        buy.href = root + "registro.html?interes=envio";
-        buy.removeAttribute("data-checkout");
-      } else {
-        buy.textContent = "Comprar";
-        buy.setAttribute("data-checkout", "");
-      }
+      buy.textContent = "Ebooks";
+      buy.href = root + "ebooks/";
+      buy.removeAttribute("data-checkout");
     }
   }
 
@@ -432,51 +397,6 @@
       try { localStorage.setItem("gr_pais", pais); } catch (e) {}
     }
     var p = PAISES[pais];
-    var usd = usdOf(p);
-    var fecha = (GR.fx && GR.fx.fecha) || "";
-
-    document.querySelectorAll("[data-price-card]").forEach(function (card) {
-      var usdEl = card.querySelector(".js-usd");
-      var localEl = card.querySelector(".js-local");
-      var metaEl = card.querySelector(".js-meta");
-      var notaEl = card.querySelector(".js-nota");
-      var cta = card.querySelector(".js-cta");
-      var extra = card.querySelector(".js-extra");
-      if (!p.envio) {
-        fillText(usdEl, "No disponible en tu país");
-        fillText(localEl, "Todavía no enviamos a " + p.nombre + ".");
-        fillText(metaEl, "");
-        fillText(notaEl, "No disponible en " + p.nombre + ". Déjanos tu correo y te avisamos si llega.");
-        if (extra) extra.hidden = true;
-        if (cta) {
-          cta.textContent = "Avísame cuando llegue";
-          cta.href = root + "registro.html?interes=envio";
-          cta.removeAttribute("data-checkout");
-        }
-        return;
-      }
-      if (p.moneda === "USD") {
-        fillText(usdEl, "US$ " + p.precio);
-        fillText(localEl, "Ese es el precio, con envío incluido a " + p.nombre + ".");
-      } else {
-        fillText(usdEl, p.texto);
-        fillText(localEl, (usd != null ? "Unos US$ " + usd + " de referencia. " : "") + "Envío incluido a " + p.nombre + ".");
-      }
-      fillText(metaEl, [p.voltaje, "llega en " + p.entrega, "capacidad real: unos 16–18 huevos de gallina"].filter(Boolean).join(" · "));
-      var nota = p.impuesto || "";
-      if (p.moneda !== "USD" && fecha) {
-        nota += (nota ? " " : "") + "El dólar es una referencia del " + fecha + " para comparar. El cargo es en " + p.moneda + ".";
-      }
-      if (p.moneda === "USD" && pais !== "US") {
-        nota += (nota ? " " : "") + "Tu banco puede sumar una comisión por pagar en dólares.";
-      }
-      fillText(notaEl, nota);
-      if (extra) extra.hidden = false;
-      if (cta) {
-        cta.textContent = "Comprar la incubadora";
-        cta.setAttribute("data-checkout", "");
-      }
-    });
 
     applyFeatured();
     applySkus();
@@ -498,7 +418,7 @@
         note.hidden = false;
         note.textContent = ref === "DEMO"
           ? "Código de prueba DEMO guardado en este navegador (30 días). No genera comisión."
-          : "Llegaste con la recomendación " + ref + ". La guardamos 30 días. Hoy una compra de ebook o del pack no genera comisión.";
+          : "Llegaste con la recomendación " + ref + ". La guardamos 30 días. Hoy una compra de ebook no genera comisión.";
       } else note.hidden = true;
     }
     try { window.dispatchEvent(new CustomEvent("gr-pais", { detail: pais })); } catch (ePaisEvt) {}
@@ -922,14 +842,6 @@
   }
 
   applyPais(pais, false);
-  fetch(root + "data/catalogo-paises.json", { credentials: "omit" })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data || !data.paises) return;
-      window.GR_PAIS_CATALOGO = data;
-      applyPais(pais, false);
-    })
-    .catch(function () {});
   function askGeo() {
     try {
       if (!(window.ads && window.ads.activo === true)) return;
@@ -954,13 +866,13 @@
     if (t && t.getAttribute("data-c") === "si") askGeo();
   });
   window.GR_estado = function () {
-    return { pais: pais, ref: readRef(), tienda: (PAISES[pais] && PAISES[pais].envio) ? storeUrl() : "" };
+    return { pais: pais, ref: readRef(), ebooks: storeUrl() };
   };
 })();
 
-/* === Panel: registro de visitas e intenciones de compra (sin cookies) ===
-   Una fila por página vista en public.visitas y una por clic en «Comprar»
-   (tienda) o en un WhatsApp de producto en public.intenciones_compra.
+/* === Panel: registro de visitas e intenciones de pago (sin cookies) ===
+   Una fila por página vista en public.visitas y una por clic en un enlace
+   de pago o en un WhatsApp de consulta en public.intenciones_compra.
    Sin IP, sin huella, sin datos personales: solo ruta, dominio de origen y país.
    Si las tablas aún no existen (migración 20261020193000_panel.sql sin correr),
    los envíos fallan en silencio y la web ni se entera.
@@ -1025,21 +937,21 @@
       visita();
     }
 
-    /* Intención de compra: clic en Comprar o en WhatsApp de producto.
+    /* Intención de pago: clic en un enlace de pago o en WhatsApp.
        No se frena la navegación: el envío va con keepalive y en segundo plano. */
     document.addEventListener("click", function (ev) {
       var t = ev.target && ev.target.closest ? ev.target.closest("a") : null;
       if (!t) return;
       var href = t.href || "";
-      var esTienda = t.hasAttribute("data-checkout") || t.classList.contains("js-comprar");
+      var esPago = t.hasAttribute("data-checkout") || t.classList.contains("js-comprar");
       var esWhats = href.indexOf("wa.me/") > -1;
-      if (!esTienda && !esWhats) return;
+      if (!esPago && !esWhats) return;
 
       var producto = "";
       var canal = "";
-      if (esTienda) {
-        canal = "tienda";
-        producto = t.getAttribute("data-producto") || "Tienda";
+      if (esPago) {
+        canal = "pago";
+        producto = t.getAttribute("data-producto") || "Pago";
       } else {
         canal = "whatsapp";
         var m = /[?&]text=([^&]+)/.exec(href);

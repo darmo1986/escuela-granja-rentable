@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /descargas/*.apk
 
 Sitemap: https://granjarentable.com/sitemap.xml
