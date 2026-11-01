@@ -52,7 +52,7 @@
    "videoFinal": "",
    "examen": "l04a.json",
    "descripcion": "Pollos de engorde, parte 1: cómo preparar la nave, la temperatura de arranque, el alimento por fases y el manejo diario del lote.",
-   "enlace": "videos/l04a.mp4"
+   "enlace": "https://github.com/Darmo1986/escuela-granja-rentable/releases/download/curso-videos/leccion-04a-1080p.mp4"
   },
   {
    "id": "l04b",
@@ -63,7 +63,7 @@
    "videoFinal": "",
    "examen": "l04b.json",
    "descripcion": "Pollos de engorde, parte 2: controla el amoníaco, aplica bioseguridad, protege el lote de depredadores y conoce enfermedades y vacunas.",
-   "enlace": "videos/l04b.mp4"
+   "enlace": "https://github.com/Darmo1986/escuela-granja-rentable/releases/download/curso-videos/leccion-04b-1080p.mp4"
   },
   {
    "id": "l05a",
