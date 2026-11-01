@@ -17,7 +17,7 @@ fuentes:
 
 Un cuaderno a la misma hora vale más que la memoria. Sin números, un mes flojo y un mes bueno se mezclan, y al cabo de un tiempo solo queda la impresión de que «antes ponían más». El registro no hace que el lote ponga más: te dice si el cambio que hiciste (sombra, pienso, un ave separada) coincidió con más huevos, menos bajas o el mismo resultado.
 
-La [FAO, en su manual de avicultura a pequeña escala](https://www.fao.org/4/y5169e/y5169e.pdf), recuerda que el agua limpia y el alimento se descuidan cuando nadie los mira cada día, y que la mortalidad de los pollitos que solo picotean en libertad a menudo se subestima. En ese manual se cita que, en esas condiciones, las bajas hasta las ocho semanas superan con frecuencia el 50 %, y que los depredadores explican buena parte. Esa cifra es de aves en pastoreo sin suplemento controlado, no una meta ni un pronóstico de tu corral. Sirve para una cosa: si no anotas la baja el día que ocurre, a fin de mes no sabes si perdiste dos aves o doce.
+La [FAO, en su manual de avicultura a pequeña escala](https://www.fao.org/4/y5169e/y5169e.pdf), recuerda que dar agua limpia es una prioridad que a menudo se descuida. En ese manual se cita que, en pollitos criados por la gallina que solo comen lo que encuentran, las bajas hasta las ocho semanas superan con frecuencia el 50 %, y que los depredadores explican buena parte. Esa cifra es de aves en pastoreo sin suplemento controlado, no una meta ni un pronóstico de tu corral. Sirve para una cosa: si no anotas la baja el día que ocurre, a fin de mes no sabes si perdiste dos aves o doce.
 
 ## Qué anotar cada día
 

@@ -50,7 +50,7 @@
   }
 
   function storeUrl(hash) {
-    var u = new URL(root + "ebooks/");
+    var u = new URL(root + "ebooks/", location.href);
     var ref = readRef();
     if (ref) u.searchParams.set("ref", ref);
     if (hash) u.hash = String(hash).replace(/^#/, "");

@@ -31,7 +31,7 @@ El número que te sirve es el tuyo, no el de un folleto.
 4. Divide los litros que sí bajaron entre las aves. Compara esa cifra con la de hace una semana, a la misma hora.
 5. Si un día baja y al siguiente vuelve, puede ser una tarde más fresca. Si baja varios días seguidos, revisa bebederos, sombra, pienso y el estado de las aves antes de cambiar de saco.
 
-Ejemplo de la cuenta, no de un lote real: echas 8 litros por la mañana y quedan 3 por la noche, el suelo está seco y hay 20 gallinas. Bebieron unos 5 litros, 0,25 litros por ave ese día. Si al día siguiente, con más calor, quedan solo 1 litro y el suelo sigue seco, han bebido más. Si quedan 6 litros y varias gallinas jadean junto a un bebedero al sol, no están bebiendo poco «porque les sobra»: el agua no les sirve.
+Ejemplo de la cuenta, no de un lote real: echas 8 litros por la mañana y quedan 3 por la noche, el suelo está seco y hay 20 gallinas. Bebieron unos 5 litros, 0,25 litros por ave ese día. Si al día siguiente, con más calor, queda solo 1 litro y el suelo sigue seco, han bebido más. Si quedan 6 litros y varias gallinas jadean junto a un bebedero al sol, no están bebiendo poco «porque les sobra»: el agua no les sirve.
 
 El manual de la FAO para [producción avícola a pequeña escala](https://www.fao.org/4/Y5169e/y5169e05.htm) publica una tabla de consumos mínimos en clima cálido y seco (tabla 4.5) y dice que, en clima templado, esas cantidades pueden reducirse a la mitad. Las casillas de litros de esa tabla no se copian aquí porque dependen de la edad y del clima del manual. Úsala como aviso: en calor seco el lote pide más agua que en un día fresco, y el bebedero se calcula para el día peor, no para el día medio.
 
@@ -46,15 +46,15 @@ Esas medidas evitan la cola del mediodía, cuando todas quieren beber a la vez. 
 
 Coloca el bebedero a la sombra todo el día, no solo por la mañana. Si a las dos de la tarde le da el sol, el agua se calienta justo cuando más la necesitan. Súbelo a la altura de la espalda del ave para que no escarben cama dentro. Si se posan en el borde, una rejilla o un ladrillo a los lados les quita el apoyo.
 
-La FAO describe un bebedero de lata que puedes copiar sin comprar nada: un bote invertido sobre un plato, con un agujero a unos 2 cm del borde abierto. El vacío sujeta el nivel del plato. También dice que un cántaro de barro, por ser poroso, deja el agua alrededor de medio grado más fresca que otros recipientes, y que en clima muy seco pierde agua por la propia pared: si lo usas, míralo dos veces al día o el lote se queda sin nada aunque «acabas de llenarlo».
+La FAO describe un bebedero de lata que puedes copiar sin comprar nada: un bote invertido sobre un plato, con un agujero a unos 2 cm del borde abierto. El vacío sujeta el nivel del plato. También dice que un cántaro de barro, por ser poroso, deja el agua alrededor de medio grado más fresca que otros recipientes, y que en clima muy seco pierde agua por la propia pared: si lo usas, míralo dos veces al día o el lote se queda sin nada aunque lo acabes de llenar.
 
 En la época de lluvias, la FAO recomienda dejar agua y alimento dentro del refugio, porque el barro ensucia lo que está fuera. Un charco del parque no cuenta como bebedero: no sabes qué arrastra.
 
 ## Qué mirar de la calidad, sin inventar un tratamiento
 
-La Extensión de Mississippi State insiste en que no existe un agua «pura» y en que conviene analizar minerales y bacterias si no sabes qué sale del pozo o de la red. Su pregunta práctica es directa: ¿beberías tú la misma agua que beben las gallinas? Si huele a huevo podrido, sale rojiza o está turbia, no la des por buena porque las aves «están acostumbradas».
+La Extensión de Mississippi State recuerda que un agua clara y sin olor no es por eso segura, y que conviene analizar minerales y bacterias si no sabes qué sale del pozo o de la red. Su pregunta práctica es directa: ¿beberías tú la misma agua que beben las gallinas? Si huele a huevo podrido, sale rojiza o está turbia, no la des por buena porque las aves «están acostumbradas».
 
-En esa misma publicación, un pH entre 6,2 y 6,8 les suele ir bien, y aceptan mejor el agua del lado ácido que la alcalina. No es una orden de echar ácido. La extensión menciona que algunos productores usan vinagre de manzana al 5 % para bajar el pH, y a la vez dice que lo simple suele ser mejor: agua limpia, sin añadidos, cuando el análisis no pide otra cosa. Aquí no hay una dosis. Si no has analizado el agua, no improvises un producto.
+En esa misma publicación, un pH entre 6,2 y 6,8 les suele ir bien, y aceptan mejor el agua del lado ácido que la alcalina. No es una orden de añadir nada al agua. Si el análisis da un pH alto, pregunta al veterinario o al técnico de extensión qué hacer. Aquí no hay productos ni dosis.
 
 La [publicación 2839](https://extension.msstate.edu/sites/default/files/publications/p2839.pdf) de esa extensión da referencias de laboratorio, no recetas de corral. Para el sodio, cita 50 ppm como nivel medio en agua de bebida de aves y 150 ppm como máximo aceptable. Para el hierro, 0,2 ppm de media y 0,3 ppm como máximo aceptable, y recuerda que 1 ppm ya puede favorecer bacterias. Si el pH pasa de 7 y hay mucho calcio o magnesio (por encima de unos 60 ppm de uno u otro), avisa de incrustaciones en tuberías y tetinas. Esos números sirven para leer un análisis, no para diagnosticar el pozo a ojo. Pide el análisis en un laboratorio de tu zona y enseña el papel al veterinario si el lote no rinde.
 
