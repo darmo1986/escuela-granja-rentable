@@ -1,6 +1,6 @@
 ---
-titulo: "Fotoperiodo en ponedoras: luz para poner todo el año"
-titulo_seo: "Fotoperiodo en ponedoras: luz para poner todo el año"
+titulo: "Fotoperiodo en ponedoras: luz y puesta"
+titulo_seo: "Fotoperiodo en ponedoras: luz y puesta"
 descripcion: "Cuántas horas de luz necesita una ponedora, cómo subirlas sin estresarla y qué bombilla usar para que no baje la puesta en invierno."
 categoria: ponedoras
 fecha: 2026-10-30

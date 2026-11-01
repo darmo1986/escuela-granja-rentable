@@ -97,7 +97,7 @@ Nuestra recomendación: si tu veterinario sospecha esta enfermedad, que sea él 
 
 ## Sigue aprendiendo
 
-Si quieres montar el gallinero con la prevención bien pensada desde el principio, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) te lleva paso a paso: instalaciones, alimentación, manejo y sanidad. 
+Si quieres montar el gallinero con la prevención bien pensada desde el principio, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te lleva paso a paso: instalaciones, alimentación, manejo y sanidad. 
 
 Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagnóstico y el tratamiento siempre los decide el veterinario.**
 

@@ -1,29 +1,28 @@
 # Tienda nueva de Granja Rentable (`/tienda/`)
 
 Tienda de dropshipping curado sobre AliExpress, dentro de la web
-principal (GitHub Pages). Sustituye a futuro a la tienda vieja de
-`tienda.html` (que hoy sigue enlazando a Netlify): **la navegación del
-sitio sigue apuntando a `tienda.html` hasta que Pablo verifique la
-nueva y dé la orden de cambiar**. Cambiar entonces será editar el
-enlace «Tienda» de los bloques de menú (`menu:inicio/fin`) y del pie
-(`pie-sitio`) de `tienda.html` → `tienda/`, y retirar la vieja.
+principal (GitHub Pages). Es la tienda canónica. `tienda.html` solo
+redirige aquí (noindex, canonical y meta refresh). La navegación del
+sitio apunta a `tienda/`. Las fichas estáticas salen de
+`node tienda/build-fichas.js`.
 
 ## Cómo funciona
 
 - `tienda/index.html` — portada: parrilla de productos por categoría.
-- `tienda/producto.html?p=<slug>` — ficha del producto (JS).
+- `tienda/p/<slug>/` — ficha estática. `producto.html?p=` redirige ahí.
 - `tienda/catalogo.js` — los datos: `window.GR_TIENDA_CATALOGO`.
   **El catálogo es el único archivo que hay que tocar para vender.**
 - `tienda/tienda.js` — la lógica del escaparate (no tocar sin necesidad).
 - `tienda/tienda.css` — estilos propios sobre `css/estilo.css`.
 - `tienda/check_stock.py` — vigilancia diaria de enlaces (ver abajo).
 
-## Revelado SOLO por IP (sin selector)
+## País por IP y selector visible
 
-Cada visitante ve **únicamente** el catálogo de su país, detectado por
-IP (ipapi.co; respaldo: `/cdn-cgi/trace` de Cloudflare; caché de 7 días
-en `localStorage`). **No hay selector de país en la interfaz**: nadie
-puede curiosear el catálogo de otro país.
+Cada visitante ve el catálogo de su país, detectado por IP (ipapi.co;
+respaldo: `/cdn-cgi/trace` de Cloudflare; caché de 7 días en
+`localStorage`). Hay un selector manual de país visible en la portada
+y en cada ficha. Si la detección falla, el país por defecto es España
+y el precio se muestra con los impuestos incluidos.
 
 Despliegue por países, en este orden (decisión de Pablo, 20-oct-2026):
 
@@ -34,7 +33,7 @@ Despliegue por países, en este orden (decisión de Pablo, 20-oct-2026):
 
 Si el país detectado no está en `paises_activos`, la tienda muestra el
 estado «Estamos llegando a tu país» con el botón de WhatsApp, sin
-ningún producto. Sin señal de IP se asume MX (primer mercado).
+ningún producto. Sin señal de IP se asume España.
 
 **Vista previa del dueño** (no aparece en la interfaz): añadir
 `?pais=XX` a la URL — `/tienda/?pais=CO` enseña el estado «llegando» de
@@ -290,6 +289,24 @@ carrito.
   la comprobación fina sigue siendo manual en la app al recibir un
   pedido desde la web, hasta conectar la API de afiliados de
   AliExpress en una fase posterior.
+
+## Pendientes que no se muestran al cliente
+
+El titular es Juan Pablo González García, persona física, NIF 78701119H,
+Calle Juan Rumeu García 6 bajo, 38008 Santa Cruz de Tenerife.
+dahanitrading@gmail.com es solo un correo de contacto.
+
+Ningún texto visible lleva corchetes. Estos huecos viven aquí y en
+comentarios HTML de las fichas:
+
+- Explicar qué es The Honey Trading y por qué aparece en el cobro.
+- Confirmar el tipo de IGIC por producto si no es el general del 7 %.
+  Confirmar el impuesto fuera de Canarias.
+- Dirección del almacén de devolución y coste estimado, por producto.
+  El hueco está en `devolucion_direccion` y `devolucion_coste` del
+  catálogo. Mientras estén vacíos, la ficha dice: «Antes de comprar,
+  escríbenos y te indicamos la dirección y el coste de la devolución».
+- Plazos de garantía legal por país, sin confirmar.
 
 ## Pendiente (fuera de este commit)
 

@@ -22,13 +22,11 @@ window.ADSTERRA = {
 /* Interruptor de publicidad. false = no se inyecta ningún script ni iframe de anuncios. */
 window.ads = { activo: false };
 
-/* Sitio unificado. La tienda propia y el curso van primero. */
+/* El curso y los ebooks van primero. La tienda física está archivada. */
 window.GR = {
   siteUrl: "https://granjarentable.com",
-  /* Única URL de la tienda. Desde el 21-oct-2026 es la tienda nueva en
-     granjarentable.com/tienda/ (la de Netlify quedó cerrada).
-     Los botones Comprar la leen de aquí. */
-  tiendaBase: "https://granjarentable.com/tienda/",
+  /* Destino de los botones de pago que antes iban a la tienda física. */
+  tiendaBase: "https://granjarentable.com/ebooks/",
   youtubeUrl: "https://www.youtube.com/@GranjaRentable",
   /* Confirma la URL exacta de la página de Facebook. */
   facebookUrl: "https://www.facebook.com/GranjaRentable",
@@ -48,7 +46,7 @@ window.GR = {
      Cuando la ficha de Google Play esté publicada, cambia esta URL. */
   appUrl: "/descargas/registro-pollos-1.0.10.apk",
   refDays: 30,
-  /* Tipo de cambio de referencia (14 oct 2026) solo para mostrar dólares. El cargo real es el de la tienda. */
+  /* Tipo de cambio de referencia (14 oct 2026) solo para mostrar dólares. El cargo de un ebook es el de su página de pago. */
   fx: { fecha: "14 de octubre de 2026", MXN: 18.361368, PEN: 3.440436, EUR: 0.893421 },
   /* Un solo bloque comunidad. Lo comparten la cuenta, el reto y el concurso.
      No crees otro: en JavaScript la segunda clave comunidad pisa a la primera.
@@ -88,8 +86,8 @@ window.GR = {
   }
 };
 
-/* Precios reales de la tienda (envío incluido), copiados el 14 oct 2026.
-   envio:false = la incubadora todavía no llega a ese país. */
+/* Precios antiguos de la incubadora, copiados el 14 oct 2026.
+   Ya no se muestran: la tienda física no se publica. */
 window.GR_PAISES = {
   MX: { nombre: "México", envio: true, moneda: "MXN", precio: 2799, texto: "$2,799 MXN", voltaje: "110V", entrega: "3–6 semanas",
     impuesto: "En México la paquetería llega del extranjero y la aduana puede cobrar una tasa global al recibir (hasta 33,5 % del valor declarado). Ese pago no está en nuestro precio.",
@@ -107,7 +105,7 @@ window.GR_PAISES = {
     garantia: "14 días para devolver y 3 años de garantía legal." },
   AR: { nombre: "Argentina", envio: true, moneda: "USD", precio: 169, texto: "US$ 169", voltaje: "220V", entrega: "3–6 semanas",
     impuesto: "El cobro es en dólares. Puede corresponder IVA (21 %) y tasas del courier al recibir. Hasta US$ 400 no se pagan derechos de importación. Tu banco puede sumar su propia comisión.",
-    garantia: "14 días para devolver sin costo para ti. Garantía legal de 6 meses." },
+    garantia: "14 días para devolver sin coste para ti. Garantía legal de 6 meses." },
   VE: { nombre: "Venezuela", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
   EC: { nombre: "Ecuador", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },
   DO: { nombre: "República Dominicana", envio: false, moneda: "USD", precio: 0, texto: "", voltaje: "", entrega: "", impuesto: "", garantia: "" },

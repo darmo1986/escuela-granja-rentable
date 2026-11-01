@@ -73,8 +73,8 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "copas-bebedero-automaticas",
       "nombre": "Copas de bebedero automáticas (pack de 6)",
       "categoria": "bebederos",
-      "descripcion_corta": "Agua limpia siempre disponible: la copa se llena sola cuando bebe la gallina y el depósito queda cerrado y sin contaminar.",
-      "descripcion": "El bebedero de copa es la forma más sencilla de acabar con los bebederos sucios, volcados y llenos de cama. Cada copa lleva una válvula que abre el paso del agua cuando la gallina la picotea y la mantiene al nivel justo, sin encharcar el suelo. El agua permanece dentro del cubo o del depósito cerrado, así que no le cae viruta, pienso ni excrementos: menos bacterias, menos problemas sanitarios y mucha menos limpieza. Se enroscan en un cubo, un bidón o un tubo y quedan funcionando en minutos. Una copa da de beber a unas 3-5 gallinas, así que el pack de 6 cubre un gallinero casero completo.",
+      "descripcion_corta": "Puede ayudar a servir agua más limpia: la copa se llena cuando bebe la gallina y el depósito queda cerrado. Es orientativo y no garantiza resultados.",
+      "descripcion": "El bebedero de copa puede ayudar a tener menos bebederos sucios, volcados o con cama. No garantiza un resultado sanitario. Cada copa lleva una válvula que abre el paso del agua cuando la gallina la picotea y la mantiene al nivel justo, sin encharcar el suelo. El agua permanece dentro del cubo o del depósito cerrado, así que puede caer menos viruta, pienso o excrementos. Puede ayudar a reducir la limpieza. Se enroscan en un cubo, un bidón o un tubo. Una copa puede dar de beber a unas 3-5 gallinas; el pack de 6 puede alcanzar para un gallinero casero. Es orientativo.",
       "incluye": [
         "6 copas de bebedero automáticas con válvula",
         "Tuercas y juntas de sellado"
@@ -106,6 +106,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-chicken-drinking-nipples.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio «Chicken Drinking Poultry Water Fountain Drinking Cup Automatic Drinker» con 4,9 estrellas y más de 1.000 vendidos a 1,09 US$/ud. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda y fotos de compradores. Confirmar esos cuatro datos en la app antes de publicar la tienda.",
       "paises": {
         "MX": {
@@ -141,8 +143,8 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "tetinas-bebedero-colgantes",
       "nombre": "Tetinas con copa colgante para línea de agua (pack de 10)",
       "categoria": "bebederos",
-      "descripcion_corta": "El sistema de las granjas profesionales en tamaño casero: la tetina solo da agua cuando bebe el ave y el suelo queda seco.",
-      "descripcion": "La tetina con cazoleta es el bebedero estándar de la avicultura profesional adaptado al gallinero casero. La bola de la tetina deja pasar una gota cuando la gallina la toca con el pico, y la copa de debajo recoge la que sobra: el agua del depósito no se contamina y la cama no se encharca, que es donde nacen la mayoría de los problemas sanitarios de un lote. Se enroscan en tubo de PVC, en manguera rígida o en la pared de un cubo, y permiten montar una línea de agua automática completa alimentada por un depósito elevado.",
+      "descripcion_corta": "Un sistema habitual en muchas granjas, en tamaño casero: la tetina da agua cuando bebe el ave. Puede ayudar a mantener el suelo más seco. No garantiza resultados.",
+      "descripcion": "La tetina con cazoleta es un bebedero habitual en granjas, adaptado al gallinero casero. La bola de la tetina deja pasar una gota cuando la gallina la toca con el pico, y la copa de debajo recoge la que sobra. Puede ayudar a que el agua del depósito se ensucie menos y a que la cama se encharque menos. No garantiza un resultado sanitario. Se enroscan en tubo de PVC, en manguera rígida o en la pared de un cubo, y permiten montar una línea de agua alimentada por un depósito elevado.",
       "incluye": [
         "10 tetinas con copa colgante",
         "Rosca estándar para tubo o cubo"
@@ -174,6 +176,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-chicken-drinking-nipples.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio «5/10Pcs Chicken Quail Hanging Water Cups Nipple Drinking Bowl» con 4,5 estrellas, más de 1.000 vendidos y sello «Top selling on AliExpress». Filtros superados: rating (justo en el mínimo de la casa) y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -243,6 +247,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-part-feeder.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en la tabla de productos más vendidos de AliExpress (21-oct-2026): «DIY Chicken Feeder Rain Proof Poultry Feeder Port Gravity Feed Kit» con 4,6 estrellas y 2.269 ventas. Filtros superados: rating y volumen (el mayor del lote). NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -311,6 +317,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-candling-incubator-lamp.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): primer anuncio de la categoría «candling incubator lamp» con 4,6 estrellas y más de 600 vendidos (set portátil LED, 27,81 US$). Se descartaron lámparas sueltas desde 5,71 US$ por tener mucho menos volumen de ventas. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -380,6 +388,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-stc-1000-temperature-controller.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): varias tarjetas de anuncio del STC-1000 coinciden en 4,8 estrellas y más de 5.000 vendidos (otro anuncio: 4,8 estrellas y más de 1.000). Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda y fotos de compradores. Confirmar esos cuatro datos en la app antes de publicar la tienda.",
       "paises": {
         "MX": {
@@ -448,6 +458,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-thermostat-socket.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «timer socket thermostat» con sonda y temporizador con 4,9 estrellas y más de 2.000 vendidos a 8,98 US$; la variante de enchufe EU muestra 4,9 estrellas y más de 3.000 vendidos. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -517,6 +529,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-w1209-thermostat.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «W1209 DC 5V 12V heat cool temp thermostat temperature control switch» con 4,8 estrellas y más de 1.000 vendidos; otros anuncios del mismo módulo muestran 4,9 estrellas. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -585,6 +599,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-mini-hygrometer.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «Mini Hygrometer Thermometer Fahrenheit or Celsius Meter Digital LCD Monitor Round» con 4,8 estrellas y más de 10.000 vendidos, repetido en varias tarjetas coincidentes. Filtros superados: rating y volumen (el mayor del catálogo). NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -654,6 +670,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-automatic-chicken-coop-door.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "EVIDENCIA SECUNDARIA (no es la tarjeta del anuncio vista directamente): datos de ventas retail de AliExpress recopilados por accio (21-oct-2026): modelo solar con pantalla LCD, temporizador, sensor de luz y 4 modos con 4,6 estrellas y 810 ventas en el último mes a 39,99 US$ (el total acumulado es mayor); la misma categoría muestra un modelo con 4,5 estrellas y 2.492 ventas en el último mes. Filtros superados: rating y volumen (mensual) según esa recopilación. Pendiente doble antes de publicar: confirmar en la app de AliExpress la nota, los vendidos totales, el vendedor, su % de positivos, los años de tienda y las fotos de compradores.",
       "paises": {
         "MX": {
@@ -722,6 +740,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-chicken-leg-rings.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «100 pcs Chicken Foot Rings Label Clasp Plastic Poultry Leg Snap Ratchet Clip» con 4,5 estrellas y más de 500 vendidos. Filtros superados: rating (justo en el mínimo de la casa) y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -789,6 +809,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-fake-chicken-eggs.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «Fake Chicken Eggs Poultry Layer Coop Hatching Simulation Dummy Egg» (packs de 6 a 24) con 4,5 estrellas y más de 2.000 vendidos. Filtros superados: rating (justo en el mínimo de la casa) y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -824,7 +846,7 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "bascula-precision-huevos",
       "nombre": "Báscula de precisión 0,01 g para pesar huevos",
       "categoria": "incubacion",
-      "descripcion_corta": "Pesa cada huevo al gramo y cada pollito al nacer: la clasificación profesional de la recogida, en el bolsillo.",
+      "descripcion_corta": "Pesa cada huevo y cada pollito al nacer: una forma ordenada de clasificar la recogida. Es orientativo y no garantiza resultados.",
       "descripcion": "El peso decide el destino de cada huevo. Para incubar rinden mejor los de 55 a 65 g: los muy pequeños dan pollitos débiles y los muy grandes suelen fallar o traer doble yema. Esta báscula de bolsillo pesa hasta 500 g con precisión de 0,01 g y pantalla retroiluminada, así que clasificas la recogida en un momento: incubar, vender o consumir. Y en la crianza vale igual: pesar a los pollitos al nacer y en las revisiones semanales es la forma de detectar a tiempo un lote de engorde que se está quedando atrás, cuando aún se puede corregir.",
       "incluye": [
         "Báscula de precisión 500 g / 0,01 g",
@@ -857,6 +879,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-precision-scale.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados retail de AliExpress (21-oct-2026): anuncio «0.01g Kitchen Scale High-precision Small Electronic Scale Precision Scale» con 4,9 estrellas y más de 10.000 vendidos. Filtros superados: rating y volumen. NO verificable desde la web pública: vendedor, % de positivos, años de tienda y fotos de compradores. Confirmar en la app antes de publicar.",
       "paises": {
         "MX": {
@@ -925,6 +949,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-anti-bird-netting.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio «20/10M Anti Bird Protection Net Mesh Garden Plant Netting Protect Plants and Fruit Trees from Birds Deer Poultry Best Fencing», marcado «Top selling on AliExpress», con 4,6 estrellas y más de 4.000 vendidos a 2,33 US$ según variante. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda, fotos de compradores y almacén/plazo exacto por país. Confirmar esos datos en la app antes de publicar, fijando la variante exacta (10 o 20 m); si aparece una alternativa con almacén local que supere todos los filtros, tiene prioridad (política de almacén local).",
       "paises": {
         "MX": {
@@ -992,6 +1018,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-fruit-protection-bags.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Verificado en los resultados de AliExpress (21-oct-2026): anuncio pack «10-200Pcs Fruit Protection Netting Bags» con 4,8 estrellas y más de 900 vendidos a 6,41 US$ el pack, con entrega mostrada en tarjeta de unos 5 días; la bolsa suelta del mismo tipo («Nylon Plant Protection Netting Mesh Bag Cover for Fruit…») muestra 4,8 estrellas y más de 5.000 vendidos a 0,99 US$/ud. Filtros superados: rating y volumen. NO verificable desde la web pública (AliExpress muestra la ficha completa solo en su app): nombre del vendedor, % de positivos, años de la tienda, fotos de compradores y almacén. Confirmar esos datos en la app antes de publicar, incluida la composición exacta del pack (número de bolsas y tamaño); si aparece una alternativa con almacén local que supere todos los filtros, tiene prioridad (política de almacén local).",
       "paises": {
         "MX": {
@@ -1059,6 +1087,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005007663926484.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días, envío gratis. Marca avícola española conocida. Volumen bajo (7 vendidos, 1 reseña de 5 estrellas): entra por almacén local y marca, no por volumen.",
   "paises": {
     "ES": {
@@ -1106,6 +1136,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005007663840696.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días. 4,6 estrellas con 5 reseñas y 44 vendidos. Entra por almacén local y marca española.",
   "paises": {
     "ES": {
@@ -1153,6 +1185,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005007663893590.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días, envío gratis. 5,0 estrellas con 5 reseñas. Volumen bajo: entra por almacén local y marca española.",
   "paises": {
     "ES": {
@@ -1170,8 +1204,8 @@ window.GR_TIENDA_CATALOGO = {
   "slug": "bascula-precision-500g",
   "nombre": "Báscula de precisión 500 g / 0,01 g SODANY",
   "categoria": "gallinero",
-  "descripcion_corta": "Pesa al pollito, el huevo y las dosis con precisión de 0,01 g: la báscula pequeña que toda granja termina necesitando.",
-  "descripcion": "Una báscula de bolsillo con precisión de centésima de gramo sirve para mucho más que para la cocina: pesar pollitos al nacer y en los controles semanales, clasificar huevos por peso antes de meterlos en la incubadora (los de peso medio eclosionan mejor) y dosificar con exactitud suplementos y medicamentos que van por gramo. Pantalla LCD con tara y pilas incluidas. Se vende desde almacén en España con entrega en pocos días.",
+  "descripcion_corta": "Puede servir para pesar el pollito y el huevo, con una lectura de 0,01 g. Es orientativo y no garantiza resultados.",
+  "descripcion": "Una báscula de bolsillo con lectura de 0,01 g puede servir para pesar pollitos y para clasificar huevos por peso antes de incubar. No garantiza mejores nacimientos. Pantalla LCD con tara y pilas incluidas. Se vende desde almacén en España con entrega en pocos días.",
   "incluye": [
     "1 báscula digital 500 g / 0,01 g",
     "Pilas incluidas"
@@ -1201,6 +1235,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005010488549160.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega estimada 2-4 días. 4,7 estrellas con 12 reseñas y 72 vendidos. Vendedor con 93,7 % de positivos (por debajo del 95 % ideal): entra por almacén local confirmado y bajo riesgo del producto.",
   "paises": {
     "ES": {
@@ -1249,6 +1285,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005003920493321.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», entrega más rápida en 2 días, envío gratis. La ficha no muestra reseñas del producto; la tienda SATKIT tiene 4,8 de valoración y 95,7 % de positivos con más de 5.000 vendidos en total. Entra por almacén local y vendedor solvente; volumen del anuncio bajo.",
   "paises": {
     "ES": {
@@ -1298,6 +1336,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005013100843629.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: «Envío desde España», «entrega más rápida: mañana», envío gratis. 5,0 estrellas (1 reseña en este vendedor; 29 ventas totales del producto). Entra por almacén local y entrega inmediata; volumen bajo.",
   "paises": {
     "ES": {
@@ -1345,6 +1385,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005009810105985.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 21-oct-2026: 4,6 estrellas (124 valoraciones) y más de 1.000 vendidos; entrega estimada 26-oct–2-nov con mensajería local (Ecoscooting/Correos/CTT/GLS). La ficha NO afirma literalmente «Envío desde España» (plazo compatible con almacén europeo/Choice); entra en el catálogo porque pablo lo aprobó el 21-oct por la demanda directa en Facebook (una seguidora preguntando dónde comprar una lámpara de calor).",
   "paises": {
     "ES": {
@@ -1362,15 +1404,15 @@ window.GR_TIENDA_CATALOGO = {
   "slug": "incubadora-automatica-30-huevos",
   "nombre": "Incubadora automática de 30 huevos con volteo y doble alimentación",
   "categoria": "incubacion",
-  "descripcion_corta": "La incubadora para sacar tus propios pollitos en 21 días: volteo automático, temperatura controlada y agua que se repone sola. Tú solo pones los huevos.",
-  "descripcion": "La forma más sencilla de dejar de comprar pollitos: esta incubadora automática hace el trabajo por ti. Voltea los huevos sola, mantiene la temperatura estable y repone el agua automáticamente para sostener la humedad. Su doble alimentación (220 V y 12 V) es un seguro de vida para la nidada: si se va la luz, la conectas a una batería de 12 V y la incubación no se pierde. Le caben 30 huevos de gallina (hay quien la usa también con codorniz y pato) y es el tamaño perfecto para empezar en casa o para complementar una granja pequeña. En 21 días, con huevos fértiles frescos, ves nacer tu primer pollito: no hay nada como eso.",
+      "descripcion_corta": "Incubadora con volteo automático y temperatura controlada. Puede ayudar a incubar en casa. No garantiza nacimientos.",
+      "descripcion": "Voltea los huevos sola, mantiene la temperatura y repone el agua para sostener la humedad. La doble alimentación (220 V y 12 V) puede ayudar si se va la luz, conectándola a una batería de 12 V. No garantiza que la incubación salga adelante. Le caben 30 huevos de gallina (hay quien la usa también con codorniz y pato). El resultado depende de los huevos y del manejo.",
   "incluye": [
     "1 incubadora automática de 30 huevos (versión Dual Power 12 V/220 V)",
     "Cable de alimentación 220 V",
     "Manual de instrucciones"
   ],
   "utilidades": [
-    "Sacar tus propios pollitos en casa en 21 días, sin depender de criaderos",
+    "Puede servir para incubar en casa. No garantiza los nacimientos.",
     "Empezar tu lote de ponedoras o camperos desde el huevo",
     "Incubar sin estar pendiente del volteo: lo hace sola cada día"
   ],
@@ -1394,6 +1436,8 @@ window.GR_TIENDA_CATALOGO = {
   "enlace_proveedor": "https://es.aliexpress.com/item/1005012485606785.html",
   "link_pago": "",
   "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
   "verificacion": "Ficha verificada en vivo el 22-oct-2026: «Envío desde España» literal en la ficha, envío gratis y «entrega más rápida en 2 días»; 4,6 estrellas (24 valoraciones) y 193 vendidos; vendedor con 95,1 % de valoraciones positivas. Entra en el catálogo porque pablo pidió el 22-oct una incubadora para la tienda: los dos Shorts de la incubadora anuncian una a 129 € con envío incluido y la tienda no tenía ninguna.",
   "paises": {
     "ES": {
@@ -1444,6 +1488,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-nitrile-gloves.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Investigación 30-oct-2026: anuncio con 4,6 estrellas y 50.000+ vendidos a ~0,33 US$. Pasa filtros de rating y volumen. Pendiente verificar % del vendedor (>=90%) en ficha antes del alta definitiva.",
       "paises": {
         "MX": {"disponible": true, "moneda": "MXN", "precio": 89, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
@@ -1492,6 +1538,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-rain-boots-farm-waterproof.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Investigación 30-oct-2026: anuncio con 4,9 estrellas, 1.000+ vendidos, vendedor con 92,7% positivo. Pasa todos los filtros.",
       "paises": {
         "MX": {"disponible": true, "moneda": "MXN", "precio": 549, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},
@@ -1507,8 +1555,8 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "overol-desechable-proteccion-granja",
       "nombre": "Overol desechable de protección (tipo Tyvek)",
       "categoria": "proteccion",
-      "descripcion_corta": "Barrera corporal completa: mono desechable transpirable contra polvo, plumas y salpicaduras. Bioseguridad profesional en tu granja.",
-      "descripcion": "El overol desechable es la prenda de bioseguridad que usan los profesionales: cubre tu ropa de calle para que no lleves patógenos al gallinero ni te los lleves a casa. Transpirable pero barrera contra polvo de cama, plumas, caspa y salpicaduras de desinfectante. De un solo uso: te lo pones al entrar, te lo quitas al salir, y la granja queda aislada del exterior. Imprescindible si visitas varias granjas o tienes lotes en cuarentena.",
+      "descripcion_corta": "Mono desechable transpirable contra polvo, plumas y salpicaduras. Puede ayudar en la bioseguridad de la granja. No garantiza resultados.",
+      "descripcion": "El overol desechable es una prenda que se usa en muchas granjas: cubre la ropa de calle y puede ayudar a no llevar suciedad de un lado a otro. No garantiza que aísle la granja. Transpirable, y hace de barrera frente al polvo de cama, las plumas, la caspa y las salpicaduras de desinfectante. De un solo uso: te lo pones al entrar y te lo quitas al salir. Conviene si visitas varias granjas o tienes lotes en cuarentena.",
       "incluye": [
         "1 overol desechable de protección",
         "Capucha, puños y tobillos elásticos"
@@ -1540,6 +1588,8 @@ window.GR_TIENDA_CATALOGO = {
       "enlace_proveedor": "https://www.aliexpress.com/w/wholesale-disposable-overalls.html",
       "link_pago": "",
       "activo": true,
+      "devolucion_direccion": "",
+      "devolucion_coste": "",
       "verificacion": "Investigación 30-oct-2026: anuncio con 4,8 estrellas y 1.000+ vendidos. Pasa filtros de rating y volumen. Pendiente verificar % del vendedor (>=90%) en ficha.",
       "paises": {
         "MX": {"disponible": true, "moneda": "MXN", "precio": 599, "precio_confirmado": false, "dias_envio": "10–15 días", "origen_envio": "internacional", "nota": "Envío internacional con seguimiento."},

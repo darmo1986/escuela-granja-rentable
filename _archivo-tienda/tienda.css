@@ -181,6 +181,26 @@
   aspect-ratio:4/3; background:var(--gl); color:var(--muted);
   font-weight:700; font-size:.95rem; text-align:center; padding:12px;
 }
+.t-badge-orient{
+  position:absolute; left:8px; bottom:8px; max-width:calc(100% - 16px);
+  background:#fff3cd; color:#3d3a32; font-size:.78rem; font-weight:800;
+  padding:4px 8px; border-radius:8px;
+}
+.pcard-media{ position:relative; }
+.t-pronto{ font-weight:800; color:var(--gd); }
+.t-pendiente, .t-pendiente strong{
+  background:#fff3cd; color:#3d3a32; padding:8px 10px; border-radius:10px;
+}
+.t-precios-pais li.is-pais{ font-weight:800; background:var(--gl); border-radius:8px; }
+.pcard .btn, .pdp-buy .btn, .cart-add, .cart-checkout, button[data-stripe-ebook]{
+  white-space:normal; max-width:100%; height:auto; text-align:center;
+}
+@media (max-width:390px){
+  .t-banda-in{ font-size:.82rem; gap:4px 12px; }
+  .t-hero{ padding:22px 14px; }
+  .t-precio-grande{ font-size:1.55rem; }
+  .pcard .btn, .pdp-buy .btn{ width:100%; }
+}
 .t-sin-foto-grande{ font-size:1.1rem; }
 
 /* ---------- Ficha de producto ---------- */

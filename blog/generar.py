@@ -49,7 +49,7 @@ GUIAS = {
     "empezar": (
         "guia-empezar.html",
         "Carne, huevos o genética",
-        "Un solo camino al empezar, y el alimento como la mayor parte del costo. Sale de L01.",
+        "Un solo camino al empezar, y el alimento como la mayor parte del coste. Sale de L01.",
     ),
     "espacio": (
         "guia-espacio.html",
@@ -59,7 +59,7 @@ GUIAS = {
     "incubadora": (
         "guia-incubadora.html",
         "Incubadora y días",
-        "21, 17 y 28 días según L03, y las fichas de la 24Egg Dual y la WONEGG 48.",
+        "21, 17 y 28 días según L03. Son plazos orientativos, no una garantía de nacimientos.",
     ),
 }
 MESES = (
@@ -107,7 +107,7 @@ def clave_nav(rel):
         return "articulos"
     base = rel.split("/")[-1]
     carpeta = rel.split("/")[0] if "/" in rel else ""
-    if carpeta == "producto" or base == "tienda.html":
+    if carpeta in ("producto", "tienda") or base == "tienda.html":
         return "tienda"
     if carpeta == "lecciones" or base in ("curso.html", "examen-final.html", "leccion.html"):
         return "curso"
@@ -654,14 +654,21 @@ def poner_version(html):
     return html
 
 
+def quitar_comprar(html):
+    """El botón Comprar de la cabecera iba a la tienda física, que ya no se publica."""
+    return re.sub(r'\n?<a class="btn gold js-comprar"[^>]*>\s*Comprar\s*</a>', "", html)
+
+
 def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
+    html = quitar_comprar(html)
     if 'id="site-nav"' not in html:
         return poner_version(html), False
     raiz = raiz_de(rel)
     menu = menu_listo(menu_html, raiz, clave_nav(rel))
     if pagina_sin_whatsapp(rel):
         menu = conservar_messenger(quitar_whatsapp_nav(menu), html)
-    pie = pie_html.replace("@@RAIZ@@", raiz)
+    pie = pie_html.replace("@@RAIZ@@", raiz).rstrip("\n")
+    menu = menu.rstrip("\n")
     if "<!-- menu:inicio -->" in html and "<!-- menu:fin -->" in html:
         html = re.sub(r"<!-- menu:inicio -->.*?<!-- menu:fin -->", lambda _: menu, html, count=1, flags=re.S)
     else:
@@ -680,6 +687,8 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
             html, count=1, flags=re.S)
         if n != 1:
             raise Fallo(f"{rel}: tiene menú y no encontré la lista Sitio del pie.")
+    html = re.sub(r"(<!-- menu:fin -->)\n{2,}", r"\1\n", html)
+    html = re.sub(r"(<!-- pie-sitio:fin -->)\n{2,}", r"\1\n", html)
     if rel == "index.html":
         html = asegurar_portada(html, hay_posts)
     if pagina_sin_whatsapp(rel):
@@ -742,10 +751,9 @@ def bloque_guias(raiz):
 
 
 def bloque_curso(raiz):
-    return ("<section class=\"panel panel-shop\">\n<h2>¿Quieres aprenderlo con video?</h2>\n"
-            "<p>El curso es gratis y va paso a paso. Las herramientas que usamos están en nuestra tienda.</p>\n"
-            f"<p class=\"split\"><a class=\"btn gold\" href=\"{esc(raiz)}curso.html\">Empezar el curso gratis</a> "
-            f"<a class=\"btn sec\" href=\"{esc(raiz)}tienda.html\">Ver la tienda</a></p>\n</section>")
+    return ("<section class=\"panel\">\n<h2>¿Quieres aprenderlo con vídeo?</h2>\n"
+            "<p>El curso es gratis y va paso a paso.</p>\n"
+            f"<p><a class=\"btn gold\" href=\"{esc(raiz)}curso.html\">Empezar el curso gratis</a></p>\n</section>")
 
 
 def relacionados(post, publicados):
@@ -778,8 +786,8 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
                + '" rel="noopener nofollow" target="_blank">la publicación en redes</a>.</p>')
     video = ""
     if post["video"]:
-        video = (f'<h2>Video</h2>\n<button class="yt-facade" type="button" data-yt="{esc(post["video"])}">'
-                 'Ver el video (se carga al pulsar)</button>')
+        video = (f'<h2>Vídeo</h2>\n<button class="yt-facade" type="button" data-yt="{esc(post["video"])}">'
+                 'Ver el vídeo (se carga al pulsar)</button>')
     cajas = []
     if post["leccion"]:
         nombre = titulo_leccion(raiz_sitio, post["leccion"]) or post["leccion"].upper()
@@ -787,15 +795,7 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
                      f'<p>{esc(nombre if nombre.endswith(".") else nombre + ".")} Es gratis.</p>\n'
                      f'<a class="btn gold" href="{raiz}lecciones/{esc(post["leccion"])}.html">Ver la lección {esc(post["leccion"].upper())}</a>\n'
                      '</section>')
-    if post["producto"]:
-        ficha = catalogo[post["producto"]]
-        nota = " El precio y si hay envío salen en la ficha, según tu país."
-        if post["producto"] == "incubadora-24egg-dual":
-            nota += " En Estados Unidos, la ficha muestra la WONEGG 48."
-        cajas.append('<section class="panel panel-shop">\n<h3>En nuestra tienda</h3>\n'
-                     f'<div class="media-mini"><img src="{esc(raiz + ficha["imagen"])}" alt="{esc(ficha.get("alt") or ficha["nombre"])}" width="84" height="84">'
-                     f'<p>{esc(ficha["nombre"])}. {esc(ficha.get("resumen") or "")}{esc(nota)}</p></div>\n'
-                     f'<a class="btn sec" href="{esc(href_producto(raiz, post["producto"]))}">Ver la ficha</a>\n</section>')
+    # El campo producto se sigue validando, pero ya no se pinta: la tienda física no se publica.
     cta = ""
     if cajas:
         cta = '<div class="post-cta">\n' + "\n".join(cajas) + "\n</div>"
@@ -809,21 +809,22 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
             + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
 
 
-# Fichas viejas que ya no tienen HTML propio: el enlace del artículo
-# apunta al destino, no a la redirección de producto/.
+# Destino si algún texto aún nombra una ficha. Lo físico va a los ebooks.
 FICHA_DESTINO = {
-    "comedero-tolva": "tienda/producto.html?p=tolva-happy-chickens-finca-casarejo",
-    "bebedero-campana": "tienda/producto.html?p=bebedero-campana-finca-casarejo",
-    "suplemento": "tienda/",
-    "criadora-calor": "tienda/",
+    "comedero-tolva": "ebooks/",
+    "bebedero-campana": "ebooks/",
+    "suplemento": "ebooks/",
+    "criadora-calor": "ebooks/",
     "curso-avicultura": "curso.html",
-    "ebook-guia-avicultura": "ebooks.html",
+    "ebook-guia-avicultura": "ebooks/",
     "app-pollos-engorde": "app.html",
+    "incubadora-24egg-dual": "ebooks/",
+    "incubadora-wonegg-48": "ebooks/",
 }
 
 
 def href_producto(raiz, producto):
-    return raiz + FICHA_DESTINO.get(producto, f"producto/{producto}.html")
+    return raiz + FICHA_DESTINO.get(producto, "ebooks/")
 
 
 def listado(posts, pagina, total_paginas):
@@ -949,6 +950,9 @@ def paginas_html(raiz):
 
 def actualizar_sitemap(texto, entradas):
     texto = re.sub(r"\s*<url>\s*<loc>https://granjarentable.com/blog[^<]*</loc>.*?</url>", "", texto, flags=re.S)
+    texto = re.sub(
+        r"\s*<url>\s*<loc>https://granjarentable.com/(?:tienda(?:/|\.html)|producto/)[^<]*</loc>.*?</url>",
+        "", texto, flags=re.S)
     bloque = []
     for loc, lastmod in entradas:
         if lastmod:

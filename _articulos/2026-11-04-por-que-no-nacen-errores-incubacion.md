@@ -94,4 +94,4 @@ Ver un pollito picando durante horas da ganas de ayudar, pero romper la cáscara
 
 Si anotas en cada lote la fecha de recogida, la temperatura, la humedad y el resultado, en dos o tres lotes tendrás tu propio manual: sabrás exactamente qué ajuste necesita tu incubadora, en tu clima y con tus gallinas. Incubar bien no es un don, es un registro.
 
-Si quieres aprender la incubación paso a paso, con video y con los datos de cada día, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) te guía desde la recogida del huevo hasta el nacimiento. Y si tu incubadora ya no da más, en [nuestra tienda](https://granjarentable.com/tienda) encontrarás equipamiento de incubación para empezar el próximo lote con buen pie.
+Si quieres aprender la incubación paso a paso, con vídeo y con los datos de cada día, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te guía desde la recogida del huevo hasta el nacimiento.

@@ -100,4 +100,4 @@ Esta ración es orientativa: ajusta según el tamaño de tus gallinas, el clima 
 
 Lo casero alimenta, entretiene y abarata, pero no sustituye a una dieta completa; el balanceado asegura la puesta y lo casero la enriquece. Juntos, en la proporción correcta, dan gallinas sanas, huevos firmes y un gasto bajo control.
 
-Si quieres aprender a formular raciones y a leer una etiqueta de alimento, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) dedica lecciones completas a la alimentación de ponedoras. Y para comederos, bebederos y el resto del equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda).
+Si quieres aprender a formular raciones y a leer una etiqueta de alimento, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) dedica lecciones completas a la alimentación de ponedoras.

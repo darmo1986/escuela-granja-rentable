@@ -40,7 +40,7 @@ La cifra que decide si ganas o pierdes es la **conversión**: los kilos de piens
 - **Calefacción y luz:** la criadora trabaja fuerte las 2-3 primeras semanas. Según la época del año, **25-45 €** por lote.
 - **Varios:** agua, desinfectante y reposición de cama, **10-15 €**.
 
-El equipamiento (comederos, bebederos, criadora) no entra en esta cuenta porque dura muchos lotes. Si estás empezando, en [nuestra tienda](../tienda/) tienes el material que supera nuestro filtro de calidad.
+El equipamiento (comederos, bebederos, criadora) no entra en esta cuenta porque dura muchos lotes.
 
 ### La mortalidad también cuesta
 

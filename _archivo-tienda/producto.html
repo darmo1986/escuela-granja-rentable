@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha · Tienda Granja Rentable</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://granjarentable.com/tienda/">
+<script>
+(function () {
+  var slug = "";
+  try { slug = new URLSearchParams(location.search).get("p") || ""; } catch (e) {}
+  if (/^[a-z0-9-]{1,80}$/.test(slug)) location.replace("/tienda/p/" + slug + "/");
+  else location.replace("/tienda/");
+})();
+</script>
+<meta http-equiv="refresh" content="0;url=/tienda/">
+</head>
+<body>
+<p>Esta ficha está en la <a href="/tienda/">tienda</a>.</p>
+</body>
+</html>

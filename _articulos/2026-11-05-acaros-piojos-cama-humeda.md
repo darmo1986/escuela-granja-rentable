@@ -76,4 +76,4 @@ Si hay varias bajas, si las gallinas están muy anémicas, si la puesta cae de g
 
 Un gallinero seco, con baño de polvo y revisiones periódicas, tiene muchos menos parásitos que un gallinero húmedo que solo se trata cuando ya hay plaga. La prevención es más barata que el tratamiento, y las gallinas lo notan en la puesta.
 
-Si quieres aprender el manejo sanitario completo, con calendario y rutinas de limpieza, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) te lo explica paso a paso. Y para el equipamiento del gallinero, desde bebederos que no gotean hasta el material de cama, pasa por [nuestra tienda](https://granjarentable.com/tienda).
+Si quieres aprender el manejo sanitario completo, con calendario y rutinas de limpieza, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te lo explica paso a paso.

@@ -37,7 +37,7 @@
     if (huevos > 0) lines.push("Por huevo: " + money(total / huevos) + ".");
     if (carne > 0) lines.push("Por kilo producido: " + money(total / carne) + ".");
     if (!(huevos > 0) && !(carne > 0)) return { error: "Escribe huevos o kilos producidos." };
-    lines.push("Si ese alimento es el 60 % del costo de insumos, el total de insumos ronda " + money(total / 0.6) + ". Si es el 80 %, ronda " + money(total / 0.8) + ". Es la cuenta de la cita de la FAO en L01, no un precio de tu granja.");
+    lines.push("Si ese alimento es el 60 % del coste de insumos, el total de insumos ronda " + money(total / 0.6) + ". Si es el 80 %, ronda " + money(total / 0.8) + ". Es la cuenta de la cita de la FAO en L01, no un precio de tu granja.");
     return { text: lines.join(" ") };
   }
   function eclosion(iso, especie) {

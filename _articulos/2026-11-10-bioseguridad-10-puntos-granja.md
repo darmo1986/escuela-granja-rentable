@@ -92,4 +92,4 @@ Si hoy no aplicas ninguno de estos puntos, empieza por tres: cuarentena para ave
 
 Un gallinero con buena bioseguridad no es un gallinero sin enfermedades para siempre: es un gallinero donde las enfermedades entran menos, se detectan antes y se controlan más rápido. Y eso se nota en la puesta, en las bajas y en el bolsillo.
 
-Si quieres el manejo sanitario completo con calendario y rutinas, el [curso gratis de Granja Rentable](https://granjarentable.com/curso) lo explica paso a paso. Y para el equipamiento de tu gallinero, visita [nuestra tienda](https://granjarentable.com/tienda).
+Si quieres el manejo sanitario completo con calendario y rutinas, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) lo explica paso a paso.
