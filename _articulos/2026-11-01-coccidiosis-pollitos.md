@@ -27,7 +27,7 @@ La edad típica es **de 3 a 6 semanas**: antes, el pollito aún vive de la inmun
 
 ## El error más grave
 
-Ante una diarrea con sangre, el impulso es dar **un antibiótico de amplio espectro «por si acaso»**. Es un error: la coccidiosis la causa un protozoo, no una bacteria, y el antibiótico no le hace nada mientras el parásito sigue destruyendo el intestino. El tratamiento específico es un **anticoccidiósico** (en el agua de bebida, siguiendo la dosis del producto), y cuanto antes empiece, menos intestino se pierde.
+Ante una diarrea con sangre, el impulso es dar **un antibiótico de amplio espectro «por si acaso»**. Es un error: la coccidiosis la causa un protozoo, no una bacteria, y el antibiótico no le hace nada mientras el parásito sigue destruyendo el intestino. Solo un **veterinario** puede confirmar el diagnóstico (normalmente con un análisis fecal) e indicar el tratamiento adecuado: existen productos específicos, pero la elección del producto, la dosis y la duración las decide el profesional según cada caso. **No mediques por tu cuenta.**
 
 El segundo error es esperar «a ver si se les pasa». En 48 horas un cuadro leve puede convertirse en la pérdida de media criadora.
 
@@ -37,12 +37,12 @@ El parásito completa su ciclo en la cama húmeda y vuelve al pollito cuando pic
 
 - **Cama seca siempre.** La humedad junto al bebedero es el punto crítico: aleja el agua de la zona de descanso y remueve o cambia la cama mojada cada día.
 - **Densidad correcta.** Criadora apretada significa más excrementos por metro y más contagio.
-- **Pienso de arranque con anticoccidiósico preventivo** en las primeras semanas, si en tu zona la presión del parásito es alta.
+- Consulta con tu **veterinario** si en tu zona conviene un pienso de arranque con protección preventiva en las primeras semanas: la presión del parásito varía mucho según la zona y el manejo.
 - **Agua limpia a diario** y bebederos sin cama dentro.
 
 ## Qué hacer si aparece
 
-- Trata a **todo el lote** con el anticoccidiósico en el agua, no solo a los que se ven mal: los demás están incubándola.
+- Avisa a tu **veterinario** el primer día: él decidirá si hay que tratar a todo el lote o solo a los afectados, y con qué producto. **No trates por tu cuenta**: los que «se ven bien» pueden estar incubándola sin síntomas.
 - Refuerza con vitaminas (sobre todo K y complejo B) tras el tratamiento, según indique el producto.
 - Baja la densidad y seca la cama el mismo día: sin eso, el ciclo se repite a la semana siguiente.
 
