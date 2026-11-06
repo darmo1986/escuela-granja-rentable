@@ -77,6 +77,7 @@ Si la acción sale en rojo, abre el detalle: el mensaje dice qué falló, sin pe
 - Otro WhatsApp. El del pie y el botón verde son los de la web.
 - HTML. Si pegas una etiqueta, se muestra como texto: no se ejecuta.
 - Un precio. Sale en la ficha, según el país.
+
 Una categoría con menos de 3 artículos publicados lleva `noindex` y no entra en el sitemap. Con 3 o más, sí.
 
 ## De dónde sale la web
