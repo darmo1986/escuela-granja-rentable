@@ -72,11 +72,11 @@ Si la acción sale en rojo, abre el detalle: el mensaje dice qué falló, sin pe
 
 ## Lo que no hay que poner
 
-- Enlaces o menciones a eBay, Amazon, Mercado Libre o `campid`, aunque no lleven punto. Solo la tienda propia y el curso.
+- Enlaces o menciones a eBay, Mercado Libre o `campid`, aunque no lleven punto. Solo la tienda propia, el curso y Amazon (permitido desde el 5-nov-2026 como tienda afiliada).
 - Marcas con dos arrobas (`@@`). El generador las usa por dentro.
 - Otro WhatsApp. El del pie y el botón verde son los de la web.
 - HTML. Si pegas una etiqueta, se muestra como texto: no se ejecuta.
-- Un precio. Sale en la ficha, según el país.
+
 
 Una categoría con menos de 3 artículos publicados lleva `noindex` y no entra en el sitemap. Con 3 o más, sí.
 
