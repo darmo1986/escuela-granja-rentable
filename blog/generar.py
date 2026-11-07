@@ -25,8 +25,8 @@ EDITOR = "Granja Rentable"
 LOGO = SITIO + "/img/logo.jpg"
 POR_PAGINA = 12
 MINIMO_CATEGORIA = 3
-# Listado flojo: se genera, con noindex y fuera del sitemap, y sin huecos de anuncios.
-CATEGORIAS_NOINDEX = {"alimentacion"}
+# Las categorías requieren el mínimo de artículos antes de indexarse.
+CATEGORIAS_NOINDEX = set()
 ANCHO_FOTO = 1200
 ALTO_FOTO = 675
 ANCHO_OG = 1200
@@ -1028,7 +1028,7 @@ def planificar(raiz, incluir_borradores=False):
     catalogo = cargar_catalogo(raiz)
     titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
     descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
-                        "sacados de las lecciones del curso gratis.")
+                        "con guías prácticas y fuentes para ampliar la información.")
     og_portada = LOGO
     cortes = repartir_posts(len(publicados), POR_PAGINA) if publicados else [(0, 0)]
     paginas_indice = len(cortes)
@@ -1039,14 +1039,14 @@ def planificar(raiz, incluir_borradores=False):
             titulo_pagina = titulo_blog
             descripcion_pagina = descripcion_blog
             h1 = "Artículos de avicultura"
-            lead = "Textos cortos y prácticos para tu granja. Cada uno sale de una lección del curso gratis y dice de dónde vienen sus datos."
+            lead = "Textos cortos y prácticos para tu granja. Encontrarás explicaciones prácticas y sus fuentes de información."
         else:
             titulo_pagina = f"Artículos de avicultura, página {numero} | Granja Rentable"
             descripcion_pagina = (f"Página {numero} de los artículos de avicultura de Granja Rentable: "
                                   "gallinas, pollos, incubación, salud y alimentación.")
             h1 = f"Artículos de avicultura, página {numero}"
             lead = (f"Página {numero}. Textos cortos y prácticos para tu granja. "
-                    "Cada uno sale de una lección del curso gratis y dice de dónde vienen sus datos.")
+                    "Encontrarás explicaciones prácticas y sus fuentes de información.")
         hero = ('<section class="page-hero">\n<p class="kicker">Artículos</p>\n'
                 f"<h1>{esc(h1)}</h1>\n<p>{esc(lead)}</p>\n</section>")
         contenido = "\n".join(parte for parte in [
@@ -1069,7 +1069,7 @@ def planificar(raiz, incluir_borradores=False):
         rel = f"blog/{meta['slug']}.html"
         canonical = SITIO + "/blog/" + meta["slug"] + ".html"
         titulo = f"{meta['nombre']} | Artículos | Granja Rentable"
-        descripcion = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, sacados de las lecciones del curso gratis."
+        descripcion = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, con guías prácticas y fuentes para ampliar la información."
         hero = (f'<section class="page-hero">\n<p class="crumbs"><a href="../index.html">Inicio</a> › <a href="/blog/">Artículos</a></p>\n'
                 f'<p class="kicker">Artículos</p>\n<h1>{esc(meta["nombre"])}</h1>\n'
                 f'<p>{esc(descripcion)}</p>\n</section>')
