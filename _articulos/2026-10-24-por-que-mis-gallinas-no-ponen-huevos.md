@@ -4,8 +4,9 @@ titulo_seo: "Por qué no ponen huevos: diagnóstico en 10 pasos"
 descripcion: "Por qué tus gallinas no ponen huevos: luz, muda, edad, estrés, alimento, calcio y enfermedad, con un diagnóstico paso a paso."
 categoria: ponedoras
 fecha: 2026-10-24
+actualizado: 2026-11-08
 borrador: false
-leccion: l05a
+leccion: ""
 producto: ""
 imagen: img/blog/gallinas-no-ponen.webp
 imagen_alt: "Gallinas ponedoras marrones en un gallinero rústico junto a un nido vacío, sin huevos"
@@ -13,151 +14,77 @@ imagen_og: img/blog/gallinas-no-ponen-og.webp
 video: ""
 red: ""
 guia: empezar
+relacionados:
+  - fotoperiodo-gallinas-ponedoras
+  - muda-gallinas-otono
+  - alimentacion-gallinas-ponedoras
 fuentes:
-  - "Guías de manejo de ponedoras comerciales (Lohmann, Hy-Line, ISA)"
-  - "Lección L01 del curso gratis de Granja Rentable"
+  - "Lección L01 de Granja Rentable: fichas de puesta (ISA, Lohmann, Hy-Line), 20–30 huevos/año en patio tradicional (FAO) y 1 ponedero cada 4 o 5 gallinas (Virginia Tech)"
+  - "Hy-Line, Brown Commercial Layers, programa de luz hasta 16 h y pico con 14–15 h, resumido en el artículo de fotoperiodo de esta web: https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf"
+  - "Lección L05A del curso: sigue en preparación y no se ofrece aquí como clase terminada"
 ---
 
 ## La respuesta corta
 
-Si tus gallinas no ponen huevos, casi nunca es mala suerte: hay una
-causa concreta, y en la mayoría de los casos es una de estas tres:
-**poca luz, muda o edad**. Una ponedora sana, en plena postura, pone
-5 o 6 huevos por semana. Cero huevos durante semanas no es normal:
-algo hay que corregir.
+Si dejan de poner, no cambies el pienso, la luz y el corral el mismo día. Empieza por tres cosas que se ven sin diagnosticar una enfermedad: el largo del día, la muda y la edad del lote. Anota siete días antes de comprar otro saco. La [hoja de puesta y pienso](../hoja-registro-puesta.html) se descarga sin correo.
 
-El truco es diagnosticar por descarte, en orden, sin cambiarlo todo a
-la vez. Si cambias el pienso, la luz y el corral el mismo día, nunca
-sabrás qué era. Sigue estos 10 pasos en orden.
+La lección en vídeo L05A sigue en preparación. Esta guía no la da por terminada. La lección publicada para decidir el tipo de lote es [L01](../lecciones/l01.html).
 
-## 1. La luz: menos de 14 horas y la puesta se apaga
+L01 no promete una puesta de patio. Cita objetivos de ficha comercial (ISA Brown, unos 476 huevos HH de la semana 18 a la 100; Lohmann, unos 324 a las 72 semanas; Hy-Line, unos 315–333 entre las semanas 18 y 75) y, aparte, 20–30 huevos al año en patio tradicional según la FAO. Un cero durante semanas no se explica con esas fichas: hay que mirar el lote.
 
-Es la causa número uno. Las gallinas necesitan entre **14 y 16 horas
-de luz al día** para poner. En otoño e invierno, con días cortos, la
-puesta cae sola, sin que estén enfermas.
+## Por dónde mirar
 
-Comprueba cuántas horas de luz real tienen (sol + luz del gallinero).
-Si son menos de 14, añade luz artificial por la mañana o por la
-tarde hasta llegar a 14–16 horas, siempre a la misma hora. Lo tienes
-explicado a fondo en [fotoperiodo en ponedoras](fotoperiodo-gallinas-ponedoras.html).
+| Lo que ves | Primera causa a revisar | Dónde seguir |
+| --- | --- | --- |
+| Baja cuando el día se acorta | Horas de luz | [Fotoperiodo](fotoperiodo-gallinas-ponedoras.html) |
+| Plumas en el suelo y puesta casi a cero | Muda | [La muda](muda-gallinas-otono.html) |
+| Pollitas jóvenes | Puede que aún no les toque | Ficha de L01, desde la semana 18 en la ISA |
+| Cáscara fina o blanda | Pienso que no es de puesta, o un problema a consultar | [Alimentación](alimentacion-gallinas-ponedoras.html) |
+| Un día sin agua y luego menos huevos | Bebedero | [Agua](agua-gallinas-ponedoras.html) |
+| Todas paran y además hay síntomas | Posible enfermedad, no un cambio de saco | Veterinario |
 
-## 2. La muda: en otoño paran para cambiar la pluma
+## 1. La luz
 
-Si es otoño y ves plumas por todo el corral, no busques más: están
-mudando. Durante la muda, que dura varias semanas, casi dejan de
-poner porque toda la energía va a la pluma nueva.
+En ponedoras comerciales marrones, Hy-Line describe un programa que sube de 30 en 30 minutos hasta 16 horas y sitúa el pico de puesta con 14–15 horas de luz. Esa ficha no es una regla de todas las razas ni de un corral sin el mismo manejo. Sirve para no inventar otra cifra: si el día es corto, lee el [fotoperiodo](fotoperiodo-gallinas-ponedoras.html) y no enciendas la luz de golpe.
 
-Es normal y no se fuerza. Ayuda con un poco más de proteína en el
-pienso y paciencia: cuando la pluma nueva esté completa, vuelven a
-poner. Más detalle en [la muda de la gallina](muda-gallinas-otono.html).
+## 2. La muda
 
-## 3. La edad: demasiado jóvenes o demasiado viejas
+Si es época de pluma nueva y casi no hay huevos, la energía se está yendo a la pluma. No fuerces la puesta. El detalle está en [la muda](muda-gallinas-otono.html).
 
-Las pollitas empiezan a poner entre las **18 y las 20 semanas**. Si
-las tuyas tienen menos de 5 meses, no es que no pongan: es que aún
-no les toca.
+## 3. La edad
 
-El pico de puesta está entre los 6 y los 18 meses. A partir del
-segundo año cada gallina pone menos, y con 3 años la producción ya
-es claramente menor. Si tu bandada es vieja y la puesta baja poco a
-poco, es edad, no enfermedad.
+La ficha de L01 cuenta los huevos de la ISA Brown desde la semana 18. Si tus pollitas son más jóvenes, puede que todavía no les toque: no es la fecha de todas las razas. Si el lote es viejo y la bajada es lenta, de meses, no lo trates como un brote.
 
-## 4. El estrés: cambios, sustos y calor
+## 4. El estrés
 
-Un cambio de corral, un depredador rondando de noche, obras, ruidos
-o una ola de calor pueden parar la puesta días o semanas. Las
-gallinas son animales de rutina: cualquier cambio brusco les pasa
-factura en huevos.
+Un traslado, un susto nocturno o un calor fuerte pueden cortar la puesta unos días. Pregunta qué cambió y no sumes a la vez un pienso nuevo. Si apartas un ave o cambias la sombra, anótalo en la hoja para ver si los huevos vuelven.
 
-Pregúntate qué cambió en los últimos días. Si hubo un susto o un
-traslado, dales rutina, sombra, agua fresca y tiempo: suelen
-recuperarse solas.
+## 5. El alimento
 
-## 5. El alimento: proteína baja o cambio brusco
+No hay en L01 un porcentaje de proteína que valga para cualquier saco. Lee la etiqueta y usa pienso de puesta, no el de pollitos ni maíz como única ración. La [guía de alimentación](alimentacion-gallinas-ponedoras.html) explica cómo pasar el precio de tu saco a coste por docena. Las guías escritas de pienso están en [Ebooks](../ebooks/); esta página no cambia ese precio.
 
-Una ponedora necesita un pienso de puesta con alrededor de un
-**16–18 % de proteína**. Si les das pienso de crecimiento, maíz solo
-o restos de cocina como base, la puesta cae en pocos días.
+## 6. La cáscara
 
-Tampoco cambies de pienso de golpe: mezcla el nuevo con el viejo
-durante una semana. Y ojo con el pienso viejo o húmedo: pierde
-calidad y puede sentarles mal. La base está en [qué comen las
-gallinas ponedoras](alimentacion-gallinas-ponedoras.html).
+Una cáscara fina o blanda no se resuelve con una dosis escrita aquí. Confirma que el saco es de puesta. La conchilla aparte, a libre disposición, es una práctica habitual; no es una receta con gramos. Si sigue, llama al veterinario y no mediques por tu cuenta. Más contexto en [cáscaras blandas](cascara-huevos-blandos-rotos.html).
 
-## 6. El calcio: cáscara fina, blanda o sin cáscara
+## 7. El agua
 
-Si ponen huevos con la cáscara fina, blanda o directamente sin
-cáscara, falta calcio. El pienso de puesta ya lleva calcio, pero en
-plena postura muchas gallinas necesitan un extra: **concha de ostra
-triturada a libre disposición**, en un comedero aparte, para que cada
-una coma lo que necesite.
+Revisa el bebedero antes de cambiar el pienso. Esta página no da un litro fijo: el consumo cambia con el calor y con el pienso. La guía de [agua](agua-gallinas-ponedoras.html) está al lado.
 
-No mezcles la concha con el pienso: si la comen obligada, las que no
-la necesitan también la comen, y eso tampoco es bueno.
+## 8. Parásitos
 
-## 7. El agua: un día sin agua son días sin huevos
+Ácaros de noche en las perchas, piojos, cresta pálida o aves que ya no duermen en el aseladero son señales para mirar, no para aplicar un producto a ciegas. Revisa con linterna y, si los ves, consulta al veterinario antes de tratar. La ficha de [ácaros y piojos](acaros-piojos-cama-humeda.html) describe el problema; no sustituye el diagnóstico.
 
-Un solo día sin agua puede parar la puesta varios días. Revisa los
-bebederos: sucios, vacíos, congelados en invierno o con poca
-capacidad en verano. Cada ponedora bebe alrededor de **medio litro
-al día**, el doble con calor.
+## 9. Cuando paran todas
 
-Agua limpia y siempre disponible, antes que cualquier suplemento.
+Si todo el lote para a la vez y además hay diarrea, estornudos, secreción o aves abatidas, no lo atribuyas a la luz. Separa las que están peor, no des un tratamiento universal y llama al veterinario. El [repaso de enfermedades](enfermedades-comunes-gallinas.html) y el [calendario de vacunación](calendario-vacunacion-gallinas.html) orientan; no diagnostican el tuyo.
 
-## 8. Los parásitos: ácaros y piojos que chupan energía
+## 10. Clueca y nidos
 
-Los ácaros rojos (se esconden en las perchas y pican de noche) y los
-piojos debilitan a la gallina hasta dejarla sin puesta. Señales:
-plumas erizadas, cresta pálida, inquietud de noche y gallinas que
-duermen fuera de las perchas.
+Una gallina clueca se queda en el nido, erizada, y no pone mientras empolla. Y a veces sí ponen, pero no donde miras. L01 cita a Virginia Tech: un ponedero cada 4 o 5 gallinas. Cuéntalos antes de dar el lote por parado.
 
-Revisa las perchas de noche con una linterna y la zona de la cloaca.
-Si hay parásitos, limpia el gallinero a fondo y trata a toda la
-bandada a la vez, no solo a la gallina que ves mal.
+## Un ejemplo para anotar, no una meta
 
-## 9. La enfermedad: cuando paran todas a la vez
+No uses una cifra de huevos por semana como objetivo de tu corral. Durante siete días apunta aves vivas, huevos enteros, rotos y si el agua faltó. Si un día se hunden los huevos y la nota dice «bebedero vacío», la causa de ese día no es la raza. La cuenta del pienso, con tu precio, se hace en la [calculadora de coste por docena](../calculadoras.html#coste-docena). El beneficio del lote, si quieres estimarlo con más partidas, está en la [calculadora de rentabilidad](../calculadora.html): el resultado es una estimación, no el dinero que te queda.
 
-Si **todas** dejan de poner de golpe y además ves plumas erizadas,
-cresta pálida, diarrea, estornudos o secreciones, piensa en
-enfermedad, no en luz ni en pienso. Separa a las enfermas, revisa el
-calendario de vacunas y llama al veterinario: algunas enfermedades
-de puesta se contagian rápido.
-
-Repasa [5 enfermedades comunes en gallinas](enfermedades-comunes-gallinas.html)
-y [el calendario de vacunación](calendario-vacunacion-gallinas.html).
-
-## 10. La clueca y los nidos: ponen, pero no donde miras
-
-Una gallina clueca deja de poner para empollar: se queda en el nido
-todo el día, erizada, y pica si te acercas. Es normal, pero mientras
-dure no hay huevos de esa gallina.
-
-Y revisa los nidos: con pocos nidos o nidos incómodos, ponen en el
-suelo, en rincones escondidos o se comen los huevos. Cuenta **un
-ponedero por cada 4 o 5 gallinas**, con paja limpia y un sitio
-tranquilo y oscuro.
-
-## Qué dice la cáscara
-
-| Lo que ves | Causa más probable |
-| --- | --- |
-| Cáscara fina o blanda | Falta calcio, o gallina vieja |
-| Huevos sin cáscara | Falta calcio, estrés fuerte |
-| Cáscara rugosa o deforme | Estrés, enfermedad, gallina vieja |
-| Huevos rotos en el nido | Pocos nidos, falta de calcio |
-| Cáscara normal pero pocos huevos | Luz, muda, edad o estrés |
-
-## Cuándo preocuparse de verdad
-
-- **Para una sola gallina:** casi siempre es edad, clueca o
-  parásitos. Revisa esa gallina, no toda la bandada.
-- **Paran todas a la vez:** luz (otoño), calor fuerte o enfermedad.
-  Si además hay síntomas, actúa rápido.
-- **Baja poco a poco durante meses:** edad de la bandada o pienso
-  flojo. Renueva una parte de la bandada cada año.
-
-Empieza por luz, muda y edad: ahí está la causa en la mayoría de
-los casos. Luego alimento y agua, y solo después parásitos y
-enfermedad. Y si vas a empezar con ponedoras, haz tus números antes
-con el curso gratis: la puesta manda, pero el alimento decide si los
-huevos salen rentables.
+Si vienes de un vídeo del canal, la página de destino de este tema es [desde YouTube: puesta](../youtube/puesta.html).

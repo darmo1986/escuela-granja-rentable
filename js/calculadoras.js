@@ -34,10 +34,34 @@
     if (!(precio >= 0) || !(kg >= 0)) return { error: "Escribe el precio por kilo y los kilos de alimento." };
     var total = precio * kg;
     var lines = ["Alimento usado: " + money(total) + " en la moneda de tu precio."];
-    if (huevos > 0) lines.push("Por huevo: " + money(total / huevos) + ".");
+    if (huevos > 0) {
+      lines.push("Por huevo: " + money(total / huevos) + ".");
+      lines.push("Por docena (12 huevos): " + money((total / huevos) * 12) + ". Es el coste del pienso que escribiste, no el beneficio ni el resto de gastos.");
+    }
     if (carne > 0) lines.push("Por kilo producido: " + money(total / carne) + ".");
     if (!(huevos > 0) && !(carne > 0)) return { error: "Escribe huevos o kilos producidos." };
     lines.push("Si ese alimento es el 60 % del coste de insumos, el total de insumos ronda " + money(total / 0.6) + ". Si es el 80 %, ronda " + money(total / 0.8) + ". Es la cuenta de la cita de la FAO en L01, no un precio de tu granja.");
+    return { text: lines.join(" ") };
+  }
+  function kilosTexto(n) {
+    return String(Math.round(n * 1000) / 1000).replace(".", ",");
+  }
+  function sacos(precioA, kgA, precioB, kgB, usados) {
+    if (!(precioA >= 0) || !(kgA > 0) || !(precioB >= 0) || !(kgB > 0)) {
+      return { error: "Escribe el precio y los kilos de cada saco. Los kilos tienen que ser mayores que cero." };
+    }
+    var porA = precioA / kgA;
+    var porB = precioB / kgB;
+    var cual = porA === porB ? "Salen igual por kilo." : (porA < porB ? "El saco A sale más barato por kilo." : "El saco B sale más barato por kilo.");
+    var lines = [
+      "Saco A: " + money(porA) + " por kilo.",
+      "Saco B: " + money(porB) + " por kilo.",
+      cual
+    ];
+    if (usados > 0) {
+      lines.push("Si gastas " + kilosTexto(usados) + " kg, el saco A costaría " + money(porA * usados) + " y el saco B " + money(porB * usados) + ".");
+    }
+    lines.push("Es solo el pienso, con los precios que escribiste. No es una oferta ni un precio de un país.");
     return { text: lines.join(" ") };
   }
   function eclosion(iso, especie) {
@@ -51,7 +75,7 @@
     var larga = window.GR_lista.fechaLarga || function (s) { return s; };
     return { text: nombres[especie] + ": " + d + " días. Si empiezas el " + larga(iso) + ", la fecha orientativa es " + larga(fin) + "." };
   }
-  window.GR_calc = { espacio: espacio, alimento: alimento, eclosion: eclosion };
+  window.GR_calc = { espacio: espacio, alimento: alimento, eclosion: eclosion, sacos: sacos };
 
   function paint(id, result) {
     var out = document.getElementById(id);
@@ -71,10 +95,36 @@
     });
   }
   var ali = document.getElementById("calc-alimento");
-  if (ali) ali.addEventListener("submit", function (e) {
-    e.preventDefault();
-    paint("calc-alimento-out", alimento(num(ali, "precio"), num(ali, "kg"), num(ali, "huevos"), num(ali, "carne")));
-  });
+  if (ali) {
+    ali.addEventListener("submit", function (e) {
+      e.preventDefault();
+      paint("calc-alimento-out", alimento(num(ali, "precio"), num(ali, "kg"), num(ali, "huevos"), num(ali, "carne")));
+    });
+    var pruebaAli = document.getElementById("calc-alimento-ejemplo");
+    if (pruebaAli) pruebaAli.addEventListener("click", function () {
+      ali.querySelector("[name=precio]").value = "1";
+      ali.querySelector("[name=kg]").value = "12";
+      ali.querySelector("[name=huevos]").value = "24";
+      ali.querySelector("[name=carne]").value = "0";
+      paint("calc-alimento-out", alimento(1, 12, 24, 0));
+    });
+  }
+  var sac = document.getElementById("calc-sacos");
+  if (sac) {
+    sac.addEventListener("submit", function (e) {
+      e.preventDefault();
+      paint("calc-sacos-out", sacos(num(sac, "precioA"), num(sac, "kgA"), num(sac, "precioB"), num(sac, "kgB"), num(sac, "usados")));
+    });
+    var pruebaSac = document.getElementById("calc-sacos-ejemplo");
+    if (pruebaSac) pruebaSac.addEventListener("click", function () {
+      sac.querySelector("[name=precioA]").value = "10";
+      sac.querySelector("[name=kgA]").value = "20";
+      sac.querySelector("[name=precioB]").value = "18";
+      sac.querySelector("[name=kgB]").value = "40";
+      sac.querySelector("[name=usados]").value = "25";
+      paint("calc-sacos-out", sacos(10, 20, 18, 40, 25));
+    });
+  }
   var eco = document.getElementById("calc-eclosion");
   if (eco) eco.addEventListener("submit", function (e) {
     e.preventDefault();

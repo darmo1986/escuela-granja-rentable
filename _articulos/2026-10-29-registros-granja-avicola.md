@@ -4,7 +4,7 @@ titulo_seo: "Registros granja avícola: qué anotar cada día"
 descripcion: "Qué anotar cada día (postura, bajas, pienso), cómo calcular tus números y una plantilla lista para copiar."
 categoria: ponedoras
 fecha: 2026-10-29
-actualizado: 2026-11-01
+actualizado: 2026-11-08
 borrador: false
 imagen: img/blog/registros-granja-avicola.webp
 imagen_og: img/blog/registros-granja-avicola-og.webp
@@ -74,6 +74,8 @@ Ninguna de estas cuentas dice qué raza es mejor ni cuántos huevos «tocan». S
 6. Elige una sola prueba para la semana siguiente: más sombra, un bebedero más, recoger el huevo a otra hora, o apartar al ave que las demás pican. No cambies pienso, lote y horario a la vez: si no, el cuaderno no te dice qué funcionó.
 
 Si el lote sigue débil después de agua, sombra y espacio, llama al veterinario. Este registro no sustituye esa llamada y no incluye nombres de productos ni dosis.
+
+La misma tabla, en blanco y lista para imprimir o abrir en una hoja de cálculo, está en la [hoja de registro de puesta y pienso](../hoja-registro-puesta.html). No pide correo. Los números de ejemplo de esta guía no van rellenos en esa descarga.
 
 ## Una hoja que cabe en el bolsillo
 

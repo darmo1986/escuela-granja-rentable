@@ -36,7 +36,7 @@ MARCA_PAGINA = "<!-- pagina-generada: blog -->"
 CLAVES = {
     "titulo", "titulo_seo", "descripcion", "categoria", "fecha", "leccion",
     "producto", "imagen", "imagen_alt", "imagen_og", "video", "red",
-    "fuentes", "borrador", "guia", "actualizado",
+    "fuentes", "borrador", "guia", "actualizado", "relacionados",
 }
 CATEGORIAS = (
     ("ponedoras", "Gallinas ponedoras", "gallinas-ponedoras", "empezar"),
@@ -518,6 +518,21 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         raise Fallo(f"{origen}: fuentes es una lista de textos.")
     for fuente in fuentes:
         exigir_limpio(fuente, origen, "fuentes")
+    relacionados = datos.get("relacionados", "")
+    if relacionados == "":
+        relacionados = []
+    if not isinstance(relacionados, list):
+        raise Fallo(f"{origen}: relacionados es una lista de direcciones de artículos.")
+    rel_limpios = []
+    for item in relacionados:
+        slug_rel = str(item).strip()
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug_rel):
+            raise Fallo(f"{origen}: relacionados tiene una dirección que no vale ({slug_rel}).")
+        if slug_rel in rel_limpios:
+            raise Fallo(f"{origen}: relacionados repite {slug_rel}.")
+        rel_limpios.append(slug_rel)
+    if len(rel_limpios) > 3:
+        raise Fallo(f"{origen}: relacionados admite como mucho 3 artículos.")
     imagen = campo(datos, "imagen")
     imagen_og = campo(datos, "imagen_og")
     imagen_alt = campo(datos, "imagen_alt")
@@ -555,6 +570,7 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         "video": video,
         "red": red,
         "fuentes": [x.strip() for x in fuentes],
+        "relacionados": rel_limpios,
         "html": html,
         "publicar": not borrador,
     }
@@ -771,9 +787,23 @@ def bloque_curso(raiz):
 
 
 def relacionados(post, publicados):
-    misma = [p for p in publicados if p["slug"] != post["slug"] and p["categoria"] == post["categoria"]]
-    otros = [p for p in publicados if p["slug"] != post["slug"] and p["categoria"] != post["categoria"]]
-    return (misma + otros)[:3]
+    por_slug = {p["slug"]: p for p in publicados}
+    elegidos = []
+    vistos = {post["slug"]}
+    for slug in post.get("relacionados") or []:
+        otro = por_slug.get(slug)
+        if otro and otro["slug"] not in vistos:
+            elegidos.append(otro)
+            vistos.add(otro["slug"])
+    if len(elegidos) >= 3:
+        return elegidos[:3]
+    misma = [p for p in publicados if p["slug"] not in vistos and p["categoria"] == post["categoria"]]
+    otros = [p for p in publicados if p["slug"] not in vistos and p["categoria"] != post["categoria"]]
+    for candidato in misma + otros:
+        elegidos.append(candidato)
+        if len(elegidos) == 3:
+            break
+    return elegidos
 
 
 def html_post(post, publicados, catalogo, raiz_sitio, activo):
@@ -782,6 +812,8 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
              f'<a href="/blog/">Artículos</a> › '
              f'<a href="{esc(CATS[post["categoria"]]["slug"])}.html">{esc(CATS[post["categoria"]]["nombre"])}</a></p>')
     meta = fecha_larga(post["fecha"]) + " · " + esc(AUTOR)
+    if post["actualizado"] != post["fecha"]:
+        meta += " · Revisado el " + fecha_larga(post["actualizado"])
     if post["leccion"]:
         meta += f' · Basado en la lección <a href="{raiz}lecciones/{esc(post["leccion"])}.html">{esc(post["leccion"].upper())}</a>'
     cabeza = (f'<header class="page-hero post-head">\n{migas}\n'
@@ -1008,6 +1040,13 @@ def planificar(raiz, incluir_borradores=False):
         return errores, {}, []
     publicados = [p for p in posts if p["publicar"] or incluir_borradores]
     publicados.sort(key=lambda p: (p["fecha"], p["slug"]), reverse=True)
+    por_slug = {p["slug"]: p for p in publicados}
+    for post in publicados:
+        for slug in post.get("relacionados") or []:
+            if slug == post["slug"] or slug not in por_slug:
+                errores.append(f"{post['origen']}: relacionados apunta a {slug}, que no está publicado.")
+    if errores:
+        return errores, {}, []
     activo = anuncios_activos(raiz)
     try:
         menu_html = (raiz / "blog" / "plantillas" / "menu.html").read_text(encoding="utf-8")

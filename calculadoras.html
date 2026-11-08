@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="google-adsense-account" content="ca-pub-5311145772953700">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calculadoras gratis de granja | Granja Rentable</title>
-<meta name="description" content="Espacio por ave, coste del alimento por huevo o por kilo, y fecha orientativa de nacimiento. Cifras de las lecciones publicadas.">
+<title>Coste por docena, espacio y nacimiento | Granja Rentable</title>
+<meta name="description" content="Calcula el coste de pienso por docena con tu precio, compara dos sacos por kilo y estima espacio o fecha de nacimiento. Cifras de las lecciones, no un precio de tu país.">
 <link rel="canonical" href="https://granjarentable.com/calculadoras.html">
 <meta property="og:url" content="https://granjarentable.com/calculadoras.html">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Calculadoras gratis de granja | Granja Rentable">
-<meta property="og:description" content="Espacio por ave, coste del alimento por huevo o por kilo, y fecha orientativa de nacimiento. Cifras de las lecciones publicadas.">
+<meta property="og:title" content="Coste por docena, espacio y nacimiento | Granja Rentable">
+<meta property="og:description" content="Calcula el coste de pienso por docena con tu precio, compara dos sacos por kilo y estima espacio o fecha de nacimiento. Cifras de las lecciones, no un precio de tu país.">
 <meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
 <meta property="og:locale" content="es_419">
 <meta property="og:image:alt" content="Logo de Granja Rentable">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Calculadoras gratis de granja | Granja Rentable">
-<meta name="twitter:description" content="Espacio por ave, coste del alimento por huevo o por kilo, y fecha orientativa de nacimiento. Cifras de las lecciones publicadas.">
+<meta name="twitter:title" content="Coste por docena, espacio y nacimiento | Granja Rentable">
+<meta name="twitter:description" content="Calcula el coste de pienso por docena con tu precio, compara dos sacos por kilo y estima espacio o fecha de nacimiento. Cifras de las lecciones, no un precio de tu país.">
 <meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="favicon.ico">
@@ -101,14 +101,15 @@
 <p id="ref-note" class="ref-note" hidden></p>
 <main id="contenido">
 <section class="page-hero">
-<p class="kicker">Gratis</p>
-<h1>Calculadoras de la granja</h1>
-<p>Usan las cifras de L01, L02, L03 y L04A. El resultado es una cuenta, no un consejo veterinario ni una garantía de tu lote.</p>
-<p>Para el beneficio del lote (huevos, carne o doble propósito, con 50 razas) está la <a href="calculadora.html">calculadora de rentabilidad</a>. Las tres de abajo siguen siendo espacio, alimento y fecha de nacimiento.</p>
+<p class="kicker">Gratis · sin correo</p>
+<h1>Coste por docena, espacio y nacimiento</h1>
+<p>Estas cuentas usan las cifras de L01, L02, L03 y L04A, y los precios que escribes tú. El resultado es una estimación, no un consejo veterinario, ni una garantía de tu lote, ni el beneficio si faltan gastos.</p>
+<p>La fórmula del pienso por docena es (precio por kilo × kilos) ÷ (huevos enteros ÷ 12). Los rotos no entran. L01 cita a la FAO: el alimento suele ser el 60–80 % del coste de insumos. El otro tramo lo anotas aparte. No hay un precio igual para España y América.</p>
+<p>Para el lote completo (huevos, carne o doble propósito) está la <a href="calculadora.html">calculadora de rentabilidad</a>. La <a href="hoja-registro-puesta.html">hoja de puesta y pienso</a> se descarga sin correo. Si vienes de un vídeo, elige el <a href="youtube/">recurso de ese vídeo</a>. Las guías escritas están en <a href="ebooks/">Ebooks</a>; su precio no se calcula aquí.</p>
 </section>
 
 <div class="calc-grid">
-<section class="panel calc">
+<section class="panel calc" id="espacio">
 <h2>Espacio</h2>
 <p>Patio y suelo de ponedoras, engorde a 30 kg/m² y campero. L01 y L02.</p>
 <form id="calc-espacio">
@@ -124,19 +125,36 @@
 <p id="calc-espacio-out" class="calc-out" role="status"></p>
 </form>
 </section>
-<section class="panel calc">
-<h2>Alimento y coste</h2>
-<p>Precio por kilo por los kilos usados. Si escribes huevos o kilos producidos, sale el coste de cada uno. L01 cita a la FAO: el alimento suele ser el 60–80 % del coste de insumos.</p>
+<section class="panel calc" id="coste-docena">
+<span id="alimento"></span>
+<h2>Coste de pienso por docena</h2>
+<p>Precio por kilo por los kilos usados. Con huevos enteros sale el coste por huevo y por docena. Con kilos de pollo, el coste por kilo producido. Es el pienso, no el beneficio.</p>
+<p>Números de prueba, no un precio: 1 de precio, 12 kg y 24 huevos. 24 huevos son 2 docenas, así que el pienso por docena sale 6. Bórralos y pon tu saco.</p>
 <form id="calc-alimento">
 <label>Precio por kilo<input name="precio" type="number" min="0" step="0.01" inputmode="decimal" required></label>
 <label>Kilos usados<input name="kg" type="number" min="0" step="0.1" inputmode="decimal" required></label>
-<label>Huevos<input name="huevos" type="number" min="0" step="1" inputmode="numeric" value="0"></label>
+<label>Huevos enteros<input name="huevos" type="number" min="0" step="1" inputmode="numeric" value="0"></label>
 <label>Kilos producidos<input name="carne" type="number" min="0" step="0.1" inputmode="decimal" value="0"></label>
-<button class="btn gold" type="submit">Calcular coste</button>
+<p class="split"><button class="btn gold" type="submit">Calcular coste</button> <button class="btn sec" type="button" id="calc-alimento-ejemplo">Cargar números de prueba</button></p>
 <p id="calc-alimento-out" class="calc-out" role="status"></p>
 </form>
+<p>La guía de la ración es <a href="blog/alimentacion-gallinas-ponedoras.html">qué comen las ponedoras</a>. El lote de engorde, con la ficha de L01 y sin tarifa, está en <a href="blog/cuanto-cuesta-criar-100-pollos-engorde.html">cuánto cuesta criar 100 pollos</a>.</p>
 </section>
-<section class="panel calc">
+<section class="panel calc" id="sacos">
+<h2>Qué saco sale más barato por kilo</h2>
+<p>Precio del saco dividido entre los kilos que trae. Si escribes los kilos que vas a gastar, compara ese consumo con cada precio. No supone un país ni un saco concreto.</p>
+<form id="calc-sacos">
+<label>Precio del saco A<input name="precioA" type="number" min="0" step="0.01" inputmode="decimal" required></label>
+<label>Kilos del saco A<input name="kgA" type="number" min="0.1" step="0.1" inputmode="decimal" required></label>
+<label>Precio del saco B<input name="precioB" type="number" min="0" step="0.01" inputmode="decimal" required></label>
+<label>Kilos del saco B<input name="kgB" type="number" min="0.1" step="0.1" inputmode="decimal" required></label>
+<label>Kilos que vas a gastar, si ya los sabes<input name="usados" type="number" min="0" step="0.1" inputmode="decimal" value="0"></label>
+<p class="split"><button class="btn gold" type="submit">Comparar sacos</button> <button class="btn sec" type="button" id="calc-sacos-ejemplo">Cargar números de prueba</button></p>
+<p id="calc-sacos-out" class="calc-out" role="status"></p>
+</form>
+<p>La prueba usa 10 por 20 kg y 18 por 40 kg. Sale 0,50 y 0,45 por kilo. Con 25 kg gastados, 12,50 y 11,25. Son números para ver la división, no una oferta.</p>
+</section>
+<section class="panel calc" id="nacimiento">
 <h2>Fecha de nacimiento</h2>
 <p>Gallina 21 días, codorniz 17, pato 28 y pavo 28. L03, con la cita de MSU. La fecha es orientativa.</p>
 <form id="calc-eclosion">

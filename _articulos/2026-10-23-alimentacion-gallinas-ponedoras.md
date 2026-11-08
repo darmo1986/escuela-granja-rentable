@@ -1,61 +1,65 @@
 ---
 titulo: "Qué comen las gallinas ponedoras: guía completa"
 titulo_seo: "Qué comen las gallinas ponedoras: guía completa"
-descripcion: "La alimentación ideal para gallinas ponedoras: pienso, calcio, proteínas y alimentos caseros gratis para más huevos y mejor calidad."
+descripcion: "Qué comen las ponedoras: pienso de puesta, agua y calcio, y cómo pasar el precio de tu saco a coste por docena."
 categoria: alimentacion
 fecha: 2026-10-23
+actualizado: 2026-11-08
 borrador: false
 imagen: "img/blog/alimentacion-gallinas-ponedoras.webp"
 imagen_og: "img/blog/alimentacion-gallinas-ponedoras-og.webp"
 imagen_alt: "Gallinas ponedoras comiendo pienso en granja avícola"
+relacionados:
+  - reducir-desperdicio-pienso
+  - por-que-mis-gallinas-no-ponen-huevos
+  - agua-gallinas-ponedoras
+fuentes:
+  - "Lección L01 de Granja Rentable: el alimento suele ser el 60–80 % del coste de insumos (FAO)"
+  - "Calculadora de rentabilidad del sitio: rangos orientativos de puesta para un ave de tamaño medio, 110–125 g al día y 16–17 % de proteína. El propio programa los llama rangos, no fichas de catálogo"
 ---
 
-## Qué comen las gallinas ponedoras: guía de alimentación
+## La respuesta corta
 
-Una gallina ponedora es una fábrica de huevos: para poner 5-6 huevos por semana necesita comer bien todos los días. Esto es lo que de verdad funciona.
+La base es un pienso de puesta, agua limpia siempre disponible y no usar restos de cocina como ración. No hay un gramo único que sirva en España y en América: el precio y el consumo los pones tú.
 
-### La base: pienso de ponedoras
+La calculadora de rentabilidad de esta web usa, para un ave de tamaño medio en puesta, un rango orientativo de 110–125 g al día y 16–17 % de proteína. El programa los marca como rangos, no como ficha de una guía de manejo. No los copies a tu lote como si los hubieras pesado. Pesa lo que sale del saco y léelo en la etiqueta. Cómo leerla está en [la etiqueta del pienso](leer-etiqueta-pienso-aves.html).
 
-El **pienso específico para ponedoras** (16-18 % de proteína) debe ser el 80-90 % de su dieta. Está formulado con el calcio, las proteínas y las vitaminas exactas que necesitan. Cantidad: **120-130 gramos por gallina al día**.
+## Qué hace cada parte
 
-No uses pienso de engorde ni de pollitos para ponedoras adultas: tienen demasiado o muy poco calcio y la puesta se resiente.
+| Parte | Qué hacer | Qué no da esta página |
+| --- | --- | --- |
+| Pienso | Que sea de puesta, no de pollitos ni de engorde | Un porcentaje único para todos los sacos |
+| Calcio | El de la fórmula del pienso de puesta. La conchilla, si la ofreces, va aparte y a libre disposición | Una dosis en gramos |
+| Agua | Limpia y sin que el bebedero se quede vacío | Un litro fijo por gallina |
+| Restos y pasto | Complemento, no la comida del día | Que sustituyan al pienso |
+| Precio | El de tu saco, en tu moneda | Un precio igual para todos los países |
 
-### El calcio: imprescindible para la cáscara
+L01 cita a la FAO: el alimento suele ser el 60–80 % del coste de insumos. El resto (aves, cama, luz, tu tiempo) no está dentro de ese porcentaje. Por eso el coste del pienso por docena no es el beneficio.
 
-Cada huevo lleva unos 2 gramos de calcio en la cáscara. Si falta, salen huevos con cáscara blanda o la gallina lo saca de sus propios huesos. Pon siempre a su alcance:
+## La cuenta, con letras
 
-- **Conchilla de ostra molida** (lo mejor).
-- Cáscaras de huevo trituradas y tostadas (gratis y efectivas).
+Anota en un periodo los kilos que echaste (K), el precio por kilo de ese saco (P) y los huevos enteros que sí puedes vender o comer (H). Los rotos no entran en H.
 
-Nunca mezcles el calcio con el pienso: déjalo aparte para que cada gallina tome lo que necesite.
+- Coste del pienso = P × K
+- Docenas = H / 12
+- Coste de pienso por docena = (P × K) / (H / 12)
 
-### Proteínas: el motor de la puesta
+Es solo el pienso. Si H es cero, no dividas: ese periodo no tiene docenas vendibles. La misma cuenta está hecha en la [calculadora de coste por docena](../calculadoras.html#coste-docena). Para ver qué saco sale más barato por kilo, sin suponer un precio, usa [la comparación de sacos](../calculadoras.html#sacos).
 
-Si la proteína baja del 15 %, la puesta cae. Refuerzos proteicos buenos y baratos:
+## Un ejemplo de prueba, no un consumo
 
-- Lombrices y insectos del pastoreo.
-- Restos de legumbres cocidas.
-- Harina de soja (en el pienso ya viene incluida).
+La calculadora puede cargar 1 de precio, 12 kg y 24 huevos. Salen 12 de pienso y 6 por docena, porque 24 huevos son 2 docenas y 12 / 2 = 6. Esos tres números solo enseñan la división. Bórralos y pon el precio de tu ticket y los huevos de tu [hoja de registro](../hoja-registro-puesta.html).
 
-### 5 alimentos GRATIS que les encantan
+## Dónde se pierde el saco
 
-1. **Verduras y hortalizas:** restos de lechuga, acelga, calabaza, zanahoria.
-2. **Frutas:** sandía, melón, plátano (con moderación por el azúcar).
-3. **Pan duro remojado:** como complemento, no como base.
-4. **Cáscaras de huevo:** calcio gratis, siempre trituradas para que no asocien el huevo entero con comida.
-5. **Hierba y pastoreo:** el pastoreo libre mejora la yema (más naranja y nutritiva).
+Antes de cambiar de marca, mira si parte del pienso acaba en la cama. El registro de siete días está en [cómo reducir el desperdicio](reducir-desperdicio-pienso.html). Guardar el saco seco es otra página: [almacenar el pienso](almacenar-pienso-gallinas.html).
 
-### Agua: más importante que la comida
+## Agua y salud
 
-Una gallina bebe **medio litro de agua al día**, el doble en verano. Sin agua, deja de poner en 24 horas. Bebederos siempre limpios y a la sombra.
+Sin agua la puesta se resiente, pero esta guía no fija mililitros. Revisa el bebedero cada día y sigue en [agua para las ponedoras](agua-gallinas-ponedoras.html). Si la cáscara falla o el lote enferma, no añadas un producto por tu cuenta: anota lo que ves y llama al veterinario. El orden para una puesta que cae está en [por qué no ponen](por-que-mis-gallinas-no-ponen-huevos.html).
 
-### Qué NUNCA debes darles
+## Guías escritas
 
-- **Aguacate, chocolate, café:** tóxicos.
-- **Cebolla y ajo en exceso:** alteran el sabor del huevo.
-- **Comida podrida o con moho:** las micotoxinas las enferman.
-- **Judías crudas:** contienen toxinas; cocidas sí valen.
+«Cómo elegir el pienso» y «Alimenta bien a tus ponedoras» están en [Ebooks](../ebooks/). El precio de esa página no se convierte aquí ni entra en la calculadora.
 
-### Horario de comidas
-
-Pon el pienso a primera hora de la mañana y deja comederos con comida todo el día. Las gallinas comen poco y muchas veces: con 2-3 raciones al día es suficiente si el comedero no se vacía del todo.
+Si el vídeo del que vienes hablaba de pienso o de ahorrar saco, el destino es [desde YouTube: alimentación](../youtube/alimentacion.html).
