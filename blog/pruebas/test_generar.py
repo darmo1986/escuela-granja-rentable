@@ -73,8 +73,8 @@ def post(tmp, nombre, **cambios):
         webp(tmp / datos["imagen_og"], 1200, 630)
     lineas = ["---"]
     for clave, valor in datos.items():
-        if clave == "fuentes":
-            lineas.append("fuentes:")
+        if clave in ("fuentes", "relacionados"):
+            lineas.append(f"{clave}:")
             for item in valor:
                 lineas.append(f'  - "{item}"')
         elif isinstance(valor, bool):
@@ -358,6 +358,30 @@ class Generador(unittest.TestCase):
         html = (self.tmp / "calculadora.html").read_text(encoding="utf-8")
         self.assertIn('data-nav="herramientas" aria-current="page"', html)
         self.assertIn('data-nav="calculadora" aria-current="page"', html)
+
+    def test_relacionados_elegidos_y_fecha_de_revision(self):
+        post(self.tmp, "2026-11-02-alfa.md", titulo="Artículo alfa de incubación",
+             titulo_seo="Artículo alfa de incubación",
+             relacionados=["beta-prueba"])
+        post(self.tmp, "2026-11-03-beta-prueba.md", titulo="Artículo beta de incubación",
+             titulo_seo="Artículo beta de incubación", fecha="2026-11-03", actualizado="2026-11-08",
+             imagen="img/blog/beta.webp", imagen_og="img/blog/beta-og.webp",
+             leccion="", producto="")
+        post(self.tmp, "2026-11-04-gamma.md", titulo="Artículo gamma de incubación",
+             titulo_seo="Artículo gamma de incubación", fecha="2026-11-04",
+             imagen="img/blog/gamma.webp", imagen_og="img/blog/gamma-og.webp",
+             categoria="ponedoras")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "alfa.html").read_text(encoding="utf-8")
+        self.assertLess(html.find("beta-prueba.html"), html.find("gamma.html"))
+        beta = (self.tmp / "blog" / "beta-prueba.html").read_text(encoding="utf-8")
+        self.assertIn("Revisado el 8 de noviembre de 2026", beta)
+        post(self.tmp, "2026-11-05-roto.md", titulo="Artículo roto de incubación",
+             titulo_seo="Artículo roto de incubación", relacionados=["no-existe"],
+             imagen="img/blog/roto.webp", imagen_og="img/blog/roto-og.webp")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(errores)
+        self.assertIn("no-existe", errores[0])
 
 
 if __name__ == "__main__":

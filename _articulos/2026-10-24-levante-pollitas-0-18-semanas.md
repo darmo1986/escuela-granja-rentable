@@ -4,8 +4,8 @@ titulo_seo: "Levante 0-18 semanas: peso, luz y alimento"
 descripcion: "Levante de pollitas semana a semana: peso objetivo, uniformidad, luz y alimento de 0 a 18 semanas, y los errores de las 2 primeras semanas."
 categoria: ponedoras
 fecha: 2026-10-24
+actualizado: 2026-11-08
 borrador: false
-leccion: l05a
 producto: ""
 imagen: img/blog/levante-pollitas.webp
 imagen_alt: "Pollitas marrones jóvenes comiendo en un comedero largo dentro de un gallinero con cama de paja"
@@ -25,6 +25,8 @@ nunca, por más que luego le des el mejor pienso. El objetivo es
 llegar a las **18 semanas con el peso correcto, el lote uniforme y
 las pollitas sanas**. Si lo consigues, la puesta arranca fuerte y
 se mantiene. Si no, arrastras el problema todo el año.
+
+La lección en vídeo L05A sigue en preparación. Esta guía no la ofrece como clase terminada. El curso que ya se puede ver empieza en la [lección L01](../lecciones/l01.html).
 
 Los primeros 30 días están explicados a fondo en
 [cómo criar pollitos: guía de los primeros 30 días](criar-pollitos-30-dias.html).

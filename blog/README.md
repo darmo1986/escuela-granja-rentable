@@ -58,7 +58,7 @@ El texto va aquí, en párrafos.
 
 Di siempre **pollos de engorde**. No uses «pollo de carne» ni «broiler».
 
-`leccion` (l01, l03, l04a…) pone el botón de la lección. `producto` tiene que ser una ficha de `producto/`. El artículo no lleva precios. `guia` puede ser `empezar`, `espacio` o `incubadora`. `video` es solo el id de YouTube. `red` es el enlace https del post de Facebook o YouTube del que sale, si lo hay.
+`leccion` (l01, l03, l04a…) pone el botón de la lección. `producto` tiene que ser una ficha de `producto/`. El artículo no lleva precios. `guia` puede ser `empezar`, `espacio` o `incubadora`. `video` es solo el id de YouTube. `red` es el enlace https del post de Facebook o YouTube del que sale, si lo hay. `relacionados` es una lista opcional de hasta 3 direcciones de artículos ya publicados, sin `.html`. Esas tarjetas salen primero. `actualizado`, si es posterior a `fecha`, se muestra como fecha de revisión.
 
 `imagen_alt` describe la foto. Sin imagen, o con una medida distinta, **no se publica**.
 
