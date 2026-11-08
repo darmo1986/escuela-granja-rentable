@@ -126,6 +126,8 @@ def clave_nav(rel):
         return "afiliados"
     if base == "registro.html":
         return "registro"
+    if carpeta == "ebooks" or base == "ebooks.html":
+        return "ebooks"
     return None
 
 

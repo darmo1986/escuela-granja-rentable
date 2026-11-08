@@ -5,17 +5,17 @@
 <meta name="google-adsense-account" content="ca-pub-5311145772953700">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ebooks de avicultura | Granja Rentable</title>
-<meta name="description" content="Cuatro guías de avicultura en PDF a 2,00 USD. Pago con tarjeta y entrega por correo.">
+<meta name="description" content="Cuatro guías de avicultura en PDF a 2,00 USD. El precio está en dólares de Estados Unidos y no pasa a euros. Pago con tarjeta y entrega por correo.">
 <link rel="canonical" href="https://granjarentable.com/ebooks/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ebooks de avicultura | Granja Rentable">
-<meta property="og:description" content="Cuatro guías de avicultura en PDF a 2,00 USD. Pago con tarjeta y entrega por correo.">
+<meta property="og:description" content="Cuatro guías de avicultura en PDF a 2,00 USD. El precio está en dólares de Estados Unidos y no pasa a euros. Pago con tarjeta y entrega por correo.">
 <meta property="og:image" content="https://granjarentable.com/img/ebook-guia-empezar-1200.webp">
 <meta property="og:locale" content="es_419">
 <meta property="og:url" content="https://granjarentable.com/ebooks/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ebooks de avicultura | Granja Rentable">
-<meta name="twitter:description" content="Cuatro guías de avicultura en PDF a 2,00 USD. Pago con tarjeta y entrega por correo.">
+<meta name="twitter:description" content="Cuatro guías de avicultura en PDF a 2,00 USD. El precio está en dólares de Estados Unidos y no pasa a euros. Pago con tarjeta y entrega por correo.">
 <meta name="twitter:image" content="https://granjarentable.com/img/ebook-guia-empezar-1200.webp">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="../favicon.ico">
@@ -24,11 +24,23 @@
 <link rel="stylesheet" href="../css/estilo.css?v=202610184">
 <script src="../js/boot.js?v=202610184"></script>
 <style>
-.ebook-venta{display:grid;grid-template-columns:220px 1fr;gap:1.5rem;align-items:start;margin:2rem 0;padding:1.5rem;border:1px solid #e5e0d5;border-radius:12px;background:#FFFEF9}
+.ebook-venta{display:grid;grid-template-columns:minmax(200px,240px) 1fr;gap:1.15rem 1.75rem;align-items:start;margin:1.5rem 0;padding:1.35rem 1.4rem;border:1px solid #e5e0d5;border-radius:12px;background:#FFFEF9}
 .ebook-venta img{width:100%;height:auto;border-radius:8px}
-.ebook-venta .precio{font-size:1.4rem;font-weight:700}
-.ebook-venta button[data-stripe-ebook]{margin-top:.5rem;padding:.7rem 1.2rem;font-size:1rem;border-radius:8px;cursor:pointer}.ebook-check{display:flex;gap:.7rem;align-items:flex-start;margin:.8rem 0}.ebook-check input{width:1.25rem;height:1.25rem;margin-top:.15rem;flex:none}button[data-stripe-ebook][disabled]{opacity:.55;cursor:not-allowed}.ebook-total{font-weight:700}
-@media(max-width:640px){.ebook-venta{grid-template-columns:1fr}.ebook-venta img{max-width:260px}}
+.ebook-venta h2{margin:.15rem 0 .4rem;font-size:1.45rem;line-height:1.25}
+.ebook-venta .kicker{margin:0}
+.ebook-precio{margin:.9rem 0 .2rem}
+.ebook-venta .precio{font-size:1.75rem;font-weight:800;line-height:1.1;margin:0}
+.ebook-moneda{margin:.35rem 0 0;font-size:1rem;line-height:1.4}
+.ebook-venta button[data-stripe-ebook]{margin-top:.9rem;padding:.75rem 1.2rem;min-height:48px;font-size:1rem;border-radius:8px;cursor:pointer}
+.ebook-consent{margin:.95rem 0 0;padding:.85rem 1rem 1rem;border:2px solid #1F5E2E;border-radius:10px;background:#fff}
+.ebook-consent legend{font-weight:800;padding:0 .35rem}
+.ebook-check{display:flex;gap:.75rem;align-items:flex-start;margin:0;font-size:1rem;line-height:1.45}
+.ebook-check input{width:1.35rem;height:1.35rem;margin-top:.2rem;flex:none}
+.ebook-consent-nota{margin:.75rem 0 0;font-size:.98rem;line-height:1.45}
+button[data-stripe-ebook][disabled]{opacity:.55;cursor:not-allowed}
+.ebook-total{font-weight:700;margin:.45rem 0 0}
+.ebook-usd{margin:.4rem 0 0;padding:.75rem .9rem;border-radius:8px;background:#f3f6f1}
+@media(max-width:640px){.ebook-venta{grid-template-columns:1fr}.ebook-venta img{max-width:280px}}
 </style>
 </head>
 <body data-root="../">
@@ -83,6 +95,7 @@
 </div>
 </div>
 <a data-nav="app" href="../app.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M11 3h10a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1.8 2.6v17.2h6.4V5.6h-6.4zM14.6 24.8h2.8V26.6h-2.8z"/></svg></span><span class="nav-label">App</span></a>
+<a data-nav="ebooks" aria-current="page" href="../ebooks/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 4h11l5 5v19H8V4zm10 1.6V10h4.2L18 5.6zM10.2 14h11.6v2H10.2zm0 4h11.6v2H10.2zm0 4h8v2h-8z"/></svg></span><span class="nav-label">Ebooks</span></a>
 <div class="nav-drop">
 <div class="nav-row">
 <button class="nav-redes" type="button" aria-expanded="false" aria-controls="nav-redes"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="16" r="3.3" fill="currentColor"/><circle cx="23" cy="7.5" r="3.3" fill="currentColor"/><circle cx="23" cy="24.5" r="3.3" fill="currentColor"/><path d="M11.1 14.6 20 8.8M11.1 17.4 20 23.2" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></span><span class="nav-label">Redes</span></button>
@@ -96,7 +109,6 @@
 </div>
 </div>
 <a class="nav-wa" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 4.2a10.6 10.6 0 0 0-9.1 16L5.4 26.6l6.6-1.6A10.6 10.6 0 1 0 16 4.2zm5.8 14.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.2l-.7.8c-.1.2-.3.2-.5.1a7 7 0 0 1-3.4-3c-.2-.4.2-.4.7-1.2 0-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1 2.6c.2.2 1.7 2.6 4.1 3.6 1.5.6 2 .7 2.8.5.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1l-.4-.2z"/></svg></span><span class="nav-label">WhatsApp</span></a>
-<a class="nav-extra" data-nav="ebooks" href="../ebooks/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 4h11l5 5v19H8V4zm10 1.6V10h4.2L18 5.6zM10.2 14h11.6v2H10.2zm0 4h11.6v2H10.2zm0 4h8v2h-8z"/></svg></span><span class="nav-label">Ebooks</span></a>
 <a class="nav-extra" data-nav="afiliados" href="../afiliados.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M11 14.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8zm10.2.4a2.8 2.8 0 1 0 0-5.6 2.8 2.8 0 0 0 0 5.6zM4.8 25.2c.4-3.6 3.2-5.6 6.2-5.6s5.8 2 6.2 5.6H4.8zm10.2-.2c-.2-2.2.4-4.2 1.8-5.4 1.2-.4 2.6-.6 4-.2 2.4.6 3.8 2.4 4.2 5.6h-10z"/></svg></span><span class="nav-label">Afiliados</span></a>
 <a class="nav-extra nav-cta" data-nav="registro" href="../registro.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 15.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4zM7.2 25.4c.6-4.2 4-6.6 8.8-6.6s8.2 2.4 8.8 6.6H7.2z"/></svg></span><span class="nav-label">Regístrate</span></a>
 <!-- menu:fin -->
@@ -108,6 +120,7 @@
 <p class="crumb"><a href="../index.html">Inicio</a> · Ebooks</p>
 <h1>Ebooks de Granja Rentable</h1>
 <p>Cuatro guías en PDF a 2,00 USD cada una. En una compra desde Canarias el precio incluye el tipo general del IGIC, el 7 %. Pagas con tarjeta en la página de Stripe y el ebook llega al correo que indicas (si no lo ves, revisa la carpeta de spam).</p>
+<p class="ebook-usd">Los precios de esta página están en dólares de Estados Unidos (USD). Si eliges España, el importe sigue en USD: no lo pasamos a euros y no cambia el impuesto.</p>
 
 <section class="ebook-venta">
 <img src="../img/ebook-pienso-hacer-480.webp" srcset="../img/ebook-pienso-hacer-480.webp 480w, ../img/ebook-pienso-hacer-768.webp 768w, ../img/ebook-pienso-hacer-1200.webp 1200w" sizes="(max-width: 640px) 260px, 220px" alt="Portada: Cómo hacer tu propio pienso" width="480" height="320" fetchpriority="high" decoding="async">
@@ -115,9 +128,16 @@
 <p class="kicker">Ebook · PDF · 106 páginas</p>
 <h2>Cómo hacer tu propio pienso</h2>
 <p>Guía práctica y completa para fabricar alimento para pollos, gallos y gallinas: máquinas, ingredientes, fórmulas, tablas y paso a paso.</p>
-<p class="precio">2,00 USD · PDF</p>
-<label class="ebook-check"><input type="checkbox" data-ebook-check="pienso-hacer"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<div class="ebook-precio">
+<p class="precio">2,00 USD</p>
+<p class="ebook-moneda">Dólares de Estados Unidos (USD). Este importe no pasa a euros.</p>
 <p class="ebook-total">Total a pagar: <strong>2,00 USD</strong>. En una compra desde Canarias incluye el tipo general del IGIC (7 %).</p>
+</div>
+<fieldset class="ebook-consent">
+<legend>Consentimiento antes de pagar</legend>
+<label class="ebook-check"><input type="checkbox" data-ebook-check="pienso-hacer"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<p class="ebook-consent-nota">La casilla no viene marcada. Sin ella, el botón de pago no se activa. El mismo texto está en las <a href="../condiciones-venta.html">condiciones de venta</a>.</p>
+</fieldset>
 <button type="button" data-stripe-ebook="pienso-hacer" disabled>Pagar con tarjeta</button>
 <p data-stripe-mensaje="pienso-hacer" role="status"></p>
 </div>
@@ -129,9 +149,16 @@
 <p class="kicker">Ebook · PDF · 86 páginas</p>
 <h2>Cómo elegir el pienso</h2>
 <p>Cómo leer la etiqueta de un saco, comparar por etapa y no pagar de más: el método para elegir el pienso ya fabricado con criterio.</p>
-<p class="precio">2,00 USD · PDF</p>
-<label class="ebook-check"><input type="checkbox" data-ebook-check="pienso-elegir"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<div class="ebook-precio">
+<p class="precio">2,00 USD</p>
+<p class="ebook-moneda">Dólares de Estados Unidos (USD). Este importe no pasa a euros.</p>
 <p class="ebook-total">Total a pagar: <strong>2,00 USD</strong>. En una compra desde Canarias incluye el tipo general del IGIC (7 %).</p>
+</div>
+<fieldset class="ebook-consent">
+<legend>Consentimiento antes de pagar</legend>
+<label class="ebook-check"><input type="checkbox" data-ebook-check="pienso-elegir"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<p class="ebook-consent-nota">La casilla no viene marcada. Sin ella, el botón de pago no se activa. El mismo texto está en las <a href="../condiciones-venta.html">condiciones de venta</a>.</p>
+</fieldset>
 <button type="button" data-stripe-ebook="pienso-elegir" disabled>Pagar con tarjeta</button>
 <p data-stripe-mensaje="pienso-elegir" role="status"></p>
 </div>
@@ -143,9 +170,16 @@
 <p class="kicker">Ebook · PDF · 18 páginas</p>
 <h2>Guía para empezar tu granja</h2>
 <p>Una guía para montar la granja desde cero. Puede ayudar a evitar errores frecuentes. No garantiza resultados ni que no pierdas dinero.</p>
-<p class="precio">2,00 USD · PDF</p>
-<label class="ebook-check"><input type="checkbox" data-ebook-check="guia-empezar"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<div class="ebook-precio">
+<p class="precio">2,00 USD</p>
+<p class="ebook-moneda">Dólares de Estados Unidos (USD). Este importe no pasa a euros.</p>
 <p class="ebook-total">Total a pagar: <strong>2,00 USD</strong>. En una compra desde Canarias incluye el tipo general del IGIC (7 %).</p>
+</div>
+<fieldset class="ebook-consent">
+<legend>Consentimiento antes de pagar</legend>
+<label class="ebook-check"><input type="checkbox" data-ebook-check="guia-empezar"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<p class="ebook-consent-nota">La casilla no viene marcada. Sin ella, el botón de pago no se activa. El mismo texto está en las <a href="../condiciones-venta.html">condiciones de venta</a>.</p>
+</fieldset>
 <button type="button" data-stripe-ebook="guia-empezar" disabled>Pagar con tarjeta</button>
 <p data-stripe-mensaje="guia-empezar" role="status"></p>
 </div>
@@ -157,9 +191,16 @@
 <p class="kicker">Ebook · PDF · 17 páginas</p>
 <h2>Alimenta bien a tus ponedoras</h2>
 <p>Alimentación por etapas, con raciones orientativas y un plan de 7 días. Puede ayudar a organizar la comida. No garantiza más huevos ni una cáscara más fuerte.</p>
-<p class="precio">2,00 USD · PDF</p>
-<label class="ebook-check"><input type="checkbox" data-ebook-check="alimenta-ponedoras"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<div class="ebook-precio">
+<p class="precio">2,00 USD</p>
+<p class="ebook-moneda">Dólares de Estados Unidos (USD). Este importe no pasa a euros.</p>
 <p class="ebook-total">Total a pagar: <strong>2,00 USD</strong>. En una compra desde Canarias incluye el tipo general del IGIC (7 %).</p>
+</div>
+<fieldset class="ebook-consent">
+<legend>Consentimiento antes de pagar</legend>
+<label class="ebook-check"><input type="checkbox" data-ebook-check="alimenta-ponedoras"> <span>Solicito que el contenido digital se entregue inmediatamente y reconozco que perderé mi derecho de desistimiento cuando comience la descarga.</span></label>
+<p class="ebook-consent-nota">La casilla no viene marcada. Sin ella, el botón de pago no se activa. El mismo texto está en las <a href="../condiciones-venta.html">condiciones de venta</a>.</p>
+</fieldset>
 <button type="button" data-stripe-ebook="alimenta-ponedoras" disabled>Pagar con tarjeta</button>
 <p data-stripe-mensaje="alimenta-ponedoras" role="status"></p>
 </div>
