@@ -394,9 +394,11 @@
     var precioUnidad = state.huevoModo === "docena" ? num(state.precioHuevo) / 12 : num(state.precioHuevo);
     var ingresoHuevos = huevosVend * precioUnidad;
     var vivos = aves * (1 - mort) * pl.nLots;
+    var porcentajeVenta = state.porcentajeVenta == null ? 100 : Math.min(100, Math.max(0, num(state.porcentajeVenta)));
+    var avesVendidas = vivos * porcentajeVenta / 100;
     var ingresoAves = state.ventaModo === "kg"
-      ? vivos * num(state.pesoKg) * num(state.precioVenta)
-      : vivos * num(state.precioVenta);
+      ? avesVendidas * num(state.pesoKg) * num(state.precioVenta)
+      : avesVendidas * num(state.precioVenta);
     var ingresos = ingresoHuevos + ingresoAves;
     var beneficio = ingresos - costes;
     var margen = null;
@@ -404,7 +406,7 @@
     var costeHuevo = huevosVend > 0 ? costes / huevosVend : null;
     var costeDocena = costeHuevo == null ? null : costeHuevo * 12;
     var minDocena = huevosVend > 0 ? Math.max(0, costes - ingresoAves) * 12 / huevosVend : null;
-    var minAve = vivos > 0 ? (costes - ingresoHuevos) / vivos : null;
+    var minAve = avesVendidas > 0 ? Math.max(0, costes - ingresoHuevos) / avesVendidas : null;
     var hayPrecio = num(state.precioPienso) > 0 || num(state.precioHuevo) > 0 || num(state.precioVenta) > 0 || num(state.precioAve) > 0;
     if (!hayPrecio && costes === 0 && ingresos === 0) {
       return { ok: false, vacio: true, error: "Escribe los precios", luz: "" };
@@ -449,6 +451,7 @@
       minDocena: minDocena,
       minAve: minAve,
       vivos: Math.round(vivos),
+      avesVendidas: avesVendidas,
       luz: luz,
       huevos: pl.huevos
     };
@@ -650,6 +653,7 @@
       precioHuevo: $("c-precio-huevo").value,
       vendibles: $("c-vendibles").value,
       ventaModo: radio("venta-modo") || "unidad",
+      porcentajeVenta: $("c-porcentaje-venta") ? $("c-porcentaje-venta").value : 100,
       precioVenta: $("c-precio-venta").value,
       pesoKg: $("c-peso").value
     };
@@ -724,6 +728,7 @@
     } else {
       html += fila("Huevos", "No entran en esta cuenta");
     }
+    html += fila("Aves que prevés vender (estimación)", esc(fmt(res.avesVendidas, 1)));
     html += fila("Ingresos por venta de aves", dinero(res.ingresoAves));
     html += fila("Beneficio neto", dinero(res.beneficio));
     html += fila("Margen", res.margen == null ? "—" : esc(fmt(res.margen, 1) + " %"));
@@ -874,6 +879,7 @@
     document.querySelector("input[name='inicio'][value='pollita']").checked = true;
     $("c-aves").value = "100";
     $("c-mortalidad").value = "5";
+    if ($("c-porcentaje-venta")) $("c-porcentaje-venta").value = "100";
     $("c-meses").value = "12";
     $("c-precio-ave").value = "7";
     $("c-precio-pienso").value = "0,52";
