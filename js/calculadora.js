@@ -166,7 +166,7 @@
         if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
         else s = s.replace(/,/g, "");
       } else if (coma) s = s.replace(",", ".");
-      else if (punto && /^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
+      else if (punto && /^[1-9]\d{0,2}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
     }
     var n = parseFloat(s);
     return isFinite(n) ? n : 0;
@@ -270,9 +270,8 @@
   function lotesEnteros(dias, cria, vacio) {
     var hueco = cria + Math.max(0, vacio);
     if (!(dias > 0) || !(cria > 0)) return 0;
-    var n = Math.floor((dias + vacio) / hueco);
-    if (n < 1 && dias + 0.01 >= cria * 0.95) n = 1;
-    return n;
+    // El vacío se cuenta entre lotes. Tolera únicamente el redondeo de coma flotante.
+    return Math.floor((dias + vacio) / hueco + 1e-12);
   }
   function plan(state) {
     var dias = Math.max(0, num(state.meses)) * DIAS_MES;
@@ -347,6 +346,22 @@
     if (!(aves > 0) || !(meses > 0)) {
       return { ok: false, error: "Escribe el número de aves y los meses del ciclo.", luz: "" };
     }
+    var preciosPienso = [state.precioPienso].concat(pl.segs.map(function (seg) {
+      return state.precioEtapa && state.precioEtapa[seg.id];
+    }));
+    var precioInvalido = preciosPienso.some(function (valor) {
+      if (valor == null || String(valor).trim() === "") return false;
+      if (typeof valor === "number") return !isFinite(valor) || valor < 0;
+      var texto = String(valor).trim();
+      if (/^\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:[.,]\d+)?$/.test(texto)) texto = texto.replace(/\s/g, "");
+      return !/^(?:\d+(?:[.,]\d+)?|\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d{1,3}(?:,\d{3})+\.\d+|[.,]\d+)$/.test(texto) || !isFinite(Number(texto.replace(/[.,]/g, "")));
+    });
+    if (precioInvalido) {
+      return { ok: false, error: "Revisa los precios del pienso. Escribe un importe positivo o cero, sin letras ni símbolo de moneda.", luz: "" };
+    }
+    if (num(state.instalacion) > 0 && !(num(state.anios) > 0)) {
+      return { ok: false, error: "Indica en cuántos años amortizas la inversión en instalaciones.", luz: "" };
+    }
     var etapas = [];
     var kg = 0;
     var costePienso = 0;
@@ -394,30 +409,31 @@
     var precioUnidad = state.huevoModo === "docena" ? num(state.precioHuevo) / 12 : num(state.precioHuevo);
     var ingresoHuevos = huevosVend * precioUnidad;
     var vivos = aves * (1 - mort) * pl.nLots;
+    var porcentajeVenta = state.porcentajeVenta == null ? 100 : Math.min(100, Math.max(0, num(state.porcentajeVenta)));
+    var avesVendidas = vivos * porcentajeVenta / 100;
     var ingresoAves = state.ventaModo === "kg"
-      ? vivos * num(state.pesoKg) * num(state.precioVenta)
-      : vivos * num(state.precioVenta);
+      ? avesVendidas * num(state.pesoKg) * num(state.precioVenta)
+      : avesVendidas * num(state.precioVenta);
     var ingresos = ingresoHuevos + ingresoAves;
     var beneficio = ingresos - costes;
     var margen = null;
     if (ingresos > 0) margen = beneficio / ingresos * 100;
-    else if (costes > 0) margen = -100;
-    var netoHuevo = costes - ingresoAves;
-    var costeHuevo = huevosVend > 0 ? netoHuevo / huevosVend : null;
+    var costeHuevo = huevosVend > 0 ? costes / huevosVend : null;
     var costeDocena = costeHuevo == null ? null : costeHuevo * 12;
-    var minDocena = costeDocena;
-    var minAve = vivos > 0 ? (costes - ingresoHuevos) / vivos : null;
+    var minDocena = huevosVend > 0 ? Math.max(0, costes - ingresoAves) * 12 / huevosVend : null;
+    var minAve = avesVendidas > 0 ? Math.max(0, costes - ingresoHuevos) / avesVendidas : null;
     var hayPrecio = num(state.precioPienso) > 0 || num(state.precioHuevo) > 0 || num(state.precioVenta) > 0 || num(state.precioAve) > 0;
-    if (!hayPrecio) {
+    if (!hayPrecio && costes === 0 && ingresos === 0) {
       return { ok: false, vacio: true, error: "Escribe los precios", luz: "" };
     }
     var luz = "";
     var faltan = "";
-    if (margen != null && (costes > 0 || ingresos > 0)) {
+    if (costes > 0 || ingresos > 0) {
       if (manoCero) {
         luz = "faltan";
         faltan = "Faltan costes. Con la mano de obra a 0 el semáforo no se pone en verde.";
-      } else if (margen > 15) luz = "verde";
+      } else if (ingresos === 0) luz = "rojo";
+      else if (margen > 15) luz = "verde";
       else if (margen >= 0) luz = "ambar";
       else luz = "rojo";
     }
@@ -450,6 +466,7 @@
       minDocena: minDocena,
       minAve: minAve,
       vivos: Math.round(vivos),
+      avesVendidas: avesVendidas,
       luz: luz,
       huevos: pl.huevos
     };
@@ -602,7 +619,7 @@
       huevos.disabled = true;
     }
     hintsDe(item);
-    if (item.clase === "engorde") setCampo("meses", 1.6);
+    if (item.clase === "engorde") setCampo("meses", Math.ceil(LOTE_ENGORDE / DIAS_MES * 100) / 100);
     else if (item.clase === "campero" && radio("objetivo") === "carne") setCampo("meses", 2.8);
     if (!feederRazaTouched) {
       $("f-raza").value = item.id;
@@ -651,6 +668,7 @@
       precioHuevo: $("c-precio-huevo").value,
       vendibles: $("c-vendibles").value,
       ventaModo: radio("venta-modo") || "unidad",
+      porcentajeVenta: $("c-porcentaje-venta") ? $("c-porcentaje-venta").value : 100,
       precioVenta: $("c-precio-venta").value,
       pesoKg: $("c-peso").value
     };
@@ -692,6 +710,7 @@
       luz.textContent = res.error;
       resumen.textContent = "";
       box.innerHTML = "";
+      $("calc-chart").setAttribute("aria-label", "Sin resultados. " + res.error);
       draw($("calc-chart"), 0, 0, true);
       return;
     }
@@ -700,7 +719,7 @@
       ambar: "Ámbar: margen entre 0 % y 15 %.",
       rojo: "Rojo: el lote sale a pérdida."
     };
-    var margenTxt = res.margen == null ? "" : (res.margen < -100 ? " Margen < −100 %." : " Margen " + fmt(res.margen, 1) + " %.");
+    var margenTxt = res.margen == null ? " Sin ingresos, el margen porcentual no se puede calcular." : " Margen " + fmt(res.margen, 1) + " %.";
     var cola = (res.tope ? " " + res.tope : "") + (res.raro ? " " + res.raro : "");
     luz.className = "semaforo " + (res.luz || "");
     if (res.luz === "faltan") luz.textContent = res.faltan + margenTxt + cola;
@@ -725,12 +744,13 @@
     } else {
       html += fila("Huevos", "No entran en esta cuenta");
     }
+    html += fila("Aves que prevés vender (estimación)", esc(fmt(res.avesVendidas, 1)));
     html += fila("Ingresos por venta de aves", dinero(res.ingresoAves));
     html += fila("Beneficio neto", dinero(res.beneficio));
-    html += fila("Margen", res.margen == null ? "—" : esc(res.margen < -100 ? "< −100 %" : fmt(res.margen, 1) + " %"));
+    html += fila("Margen", res.margen == null ? "—" : esc(fmt(res.margen, 1) + " %"));
     if (res.costeHuevo != null) {
-      html += fila("Coste por huevo", esc(cifra(res.costeHuevo, 3)));
-      html += fila("Coste por docena", dinero(res.costeDocena));
+      html += fila("Coste total del lote por huevo vendido", esc(cifra(res.costeHuevo, 3)));
+      html += fila("Coste total del lote por docena vendida", dinero(res.costeDocena));
       html += fila("Precio mínimo de la docena", res.minDocena <= 0 ? esc(cifra(0)) + " (las aves ya cubren el coste)" : dinero(res.minDocena));
     }
     if (!res.huevos && res.minAve != null) html += fila("Precio mínimo por ave", dinero(res.minAve));
@@ -875,6 +895,7 @@
     document.querySelector("input[name='inicio'][value='pollita']").checked = true;
     $("c-aves").value = "100";
     $("c-mortalidad").value = "5";
+    if ($("c-porcentaje-venta")) $("c-porcentaje-venta").value = "100";
     $("c-meses").value = "12";
     $("c-precio-ave").value = "7";
     $("c-precio-pienso").value = "0,52";
@@ -959,7 +980,7 @@
         if (el.id === "c-raza" && !silent) aplicarRaza(porId(el.value));
         if (el.name === "objetivo" && !silent) {
           var elegida = porId($("c-raza").value);
-          if (elegida.clase === "engorde") setCampo("meses", 1.6);
+          if (elegida.clase === "engorde") setCampo("meses", Math.ceil(LOTE_ENGORDE / DIAS_MES * 100) / 100);
           if (elegida.clase === "campero" && el.value === "carne") setCampo("meses", 2.8);
         }
         refrescar();
