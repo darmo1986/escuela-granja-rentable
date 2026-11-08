@@ -401,23 +401,23 @@
     var beneficio = ingresos - costes;
     var margen = null;
     if (ingresos > 0) margen = beneficio / ingresos * 100;
-    else if (costes > 0) margen = -100;
     var netoHuevo = costes - ingresoAves;
     var costeHuevo = huevosVend > 0 ? netoHuevo / huevosVend : null;
     var costeDocena = costeHuevo == null ? null : costeHuevo * 12;
     var minDocena = costeDocena;
     var minAve = vivos > 0 ? (costes - ingresoHuevos) / vivos : null;
     var hayPrecio = num(state.precioPienso) > 0 || num(state.precioHuevo) > 0 || num(state.precioVenta) > 0 || num(state.precioAve) > 0;
-    if (!hayPrecio) {
+    if (!hayPrecio && costes === 0 && ingresos === 0) {
       return { ok: false, vacio: true, error: "Escribe los precios", luz: "" };
     }
     var luz = "";
     var faltan = "";
-    if (margen != null && (costes > 0 || ingresos > 0)) {
+    if (costes > 0 || ingresos > 0) {
       if (manoCero) {
         luz = "faltan";
         faltan = "Faltan costes. Con la mano de obra a 0 el semáforo no se pone en verde.";
-      } else if (margen > 15) luz = "verde";
+      } else if (ingresos === 0) luz = "rojo";
+      else if (margen > 15) luz = "verde";
       else if (margen >= 0) luz = "ambar";
       else luz = "rojo";
     }
@@ -700,7 +700,7 @@
       ambar: "Ámbar: margen entre 0 % y 15 %.",
       rojo: "Rojo: el lote sale a pérdida."
     };
-    var margenTxt = res.margen == null ? "" : (res.margen < -100 ? " Margen < −100 %." : " Margen " + fmt(res.margen, 1) + " %.");
+    var margenTxt = res.margen == null ? " Sin ingresos, el margen porcentual no se puede calcular." : " Margen " + fmt(res.margen, 1) + " %.";
     var cola = (res.tope ? " " + res.tope : "") + (res.raro ? " " + res.raro : "");
     luz.className = "semaforo " + (res.luz || "");
     if (res.luz === "faltan") luz.textContent = res.faltan + margenTxt + cola;
@@ -727,7 +727,7 @@
     }
     html += fila("Ingresos por venta de aves", dinero(res.ingresoAves));
     html += fila("Beneficio neto", dinero(res.beneficio));
-    html += fila("Margen", res.margen == null ? "—" : esc(res.margen < -100 ? "< −100 %" : fmt(res.margen, 1) + " %"));
+    html += fila("Margen", res.margen == null ? "—" : esc(fmt(res.margen, 1) + " %"));
     if (res.costeHuevo != null) {
       html += fila("Coste por huevo", esc(cifra(res.costeHuevo, 3)));
       html += fila("Coste por docena", dinero(res.costeDocena));
