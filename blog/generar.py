@@ -1181,7 +1181,38 @@ def planificar(raiz, incluir_borradores=False):
     for rel in list(archivos):
         if rel.startswith(("blog/posts/", "blog/plantillas/", "blog/pruebas/", f"{CARPETA_POSTS}/", "_")) or "/_" in rel:
             errores.append(f"El generador iba a escribir en una carpeta excluida: {rel}")
+    for rel, html in list(archivos.items()):
+        if rel.endswith(".html"):
+            archivos[rel] = integrar_recursos_comerciales(rel, html)
     return errores, archivos, borrar
+
+
+
+# Monetización propia persistente: el generador es la fuente de verdad.
+from recursos_comerciales import ADSENSE_HEAD, recurso_principal
+
+def integrar_recursos_comerciales(rel, html):
+    if not re.search(r"<head\\b", html, re.I):
+        return html
+    if "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" not in html:
+        html = re.sub(r"</head>", lambda m: ADSENSE_HEAD + "\\n" + m.group(0), html, count=1, flags=re.I)
+    # El bloque previo no debe competir con el recurso propio.
+    html = re.sub(r'<aside data-recursos-granja\\b.*?</aside>', '', html, flags=re.S)
+    html = re.sub(r'<script defer src="[^"]*recursos-articulo\\.js[^"]*"></script>', '', html)
+    if '<!-- recursos-propios-v1 -->' not in html:
+        recurso = recurso_principal(rel)
+        raiz = raiz_de(rel)
+        href = raiz + recurso["href"].lstrip("/")
+        bloque = ('<!-- recursos-propios-v1 --><aside class="recursos-propios" '
+                  'aria-label="Recursos de Granja Rentable" '
+                  'style="max-width:1080px;margin:2rem auto;padding:1.25rem;'
+                  'border:1px solid #b4cdb7;border-radius:12px">'
+                  '<p><strong>' + esc(recurso["titulo"]) + '</strong></p>'
+                  '<p><a class="btn gold" href="' + esc(href) + '">Ver ebooks</a></p>'
+                  '</aside>')
+        cierre = "</main>" if "</main>" in html else "</body>"
+        html = html.replace(cierre, bloque + "\\n" + cierre, 1)
+    return html
 
 
 def escribir(raiz, archivos, borrar):
