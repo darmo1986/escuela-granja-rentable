@@ -401,10 +401,9 @@
     var beneficio = ingresos - costes;
     var margen = null;
     if (ingresos > 0) margen = beneficio / ingresos * 100;
-    var netoHuevo = costes - ingresoAves;
-    var costeHuevo = huevosVend > 0 ? netoHuevo / huevosVend : null;
+    var costeHuevo = huevosVend > 0 ? costes / huevosVend : null;
     var costeDocena = costeHuevo == null ? null : costeHuevo * 12;
-    var minDocena = costeDocena;
+    var minDocena = huevosVend > 0 ? Math.max(0, costes - ingresoAves) * 12 / huevosVend : null;
     var minAve = vivos > 0 ? (costes - ingresoHuevos) / vivos : null;
     var hayPrecio = num(state.precioPienso) > 0 || num(state.precioHuevo) > 0 || num(state.precioVenta) > 0 || num(state.precioAve) > 0;
     if (!hayPrecio && costes === 0 && ingresos === 0) {
@@ -729,8 +728,8 @@
     html += fila("Beneficio neto", dinero(res.beneficio));
     html += fila("Margen", res.margen == null ? "—" : esc(fmt(res.margen, 1) + " %"));
     if (res.costeHuevo != null) {
-      html += fila("Coste por huevo", esc(cifra(res.costeHuevo, 3)));
-      html += fila("Coste por docena", dinero(res.costeDocena));
+      html += fila("Coste total del lote por huevo vendido", esc(cifra(res.costeHuevo, 3)));
+      html += fila("Coste total del lote por docena vendida", dinero(res.costeDocena));
       html += fila("Precio mínimo de la docena", res.minDocena <= 0 ? esc(cifra(0)) + " (las aves ya cubren el coste)" : dinero(res.minDocena));
     }
     if (!res.huevos && res.minAve != null) html += fila("Precio mínimo por ave", dinero(res.minAve));
