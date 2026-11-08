@@ -5,6 +5,11 @@ document.querySelectorAll('[data-recursos-granja]').forEach(function (panel) {
   if (fichas.length < 2 || !controles) return;
   const pausa = controles.querySelector('[data-pausa]');
   const movimiento = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // Baraja las fichas una vez por visita usando Fisher-Yates.
+  for (let i = fichas.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fichas[i], fichas[j]] = [fichas[j], fichas[i]];
+  }
   let indice = 0;
   let detenido = movimiento.matches;
   let visible = false;
