@@ -270,9 +270,8 @@
   function lotesEnteros(dias, cria, vacio) {
     var hueco = cria + Math.max(0, vacio);
     if (!(dias > 0) || !(cria > 0)) return 0;
-    var n = Math.floor((dias + vacio) / hueco);
-    if (n < 1 && dias + 0.01 >= cria * 0.95) n = 1;
-    return n;
+    // El vacío se cuenta entre lotes. Tolera únicamente el redondeo de coma flotante.
+    return Math.floor((dias + vacio) / hueco + 1e-12);
   }
   function plan(state) {
     var dias = Math.max(0, num(state.meses)) * DIAS_MES;
@@ -620,7 +619,7 @@
       huevos.disabled = true;
     }
     hintsDe(item);
-    if (item.clase === "engorde") setCampo("meses", 1.6);
+    if (item.clase === "engorde") setCampo("meses", Math.ceil(LOTE_ENGORDE / DIAS_MES * 100) / 100);
     else if (item.clase === "campero" && radio("objetivo") === "carne") setCampo("meses", 2.8);
     if (!feederRazaTouched) {
       $("f-raza").value = item.id;
@@ -981,7 +980,7 @@
         if (el.id === "c-raza" && !silent) aplicarRaza(porId(el.value));
         if (el.name === "objetivo" && !silent) {
           var elegida = porId($("c-raza").value);
-          if (elegida.clase === "engorde") setCampo("meses", 1.6);
+          if (elegida.clase === "engorde") setCampo("meses", Math.ceil(LOTE_ENGORDE / DIAS_MES * 100) / 100);
           if (elegida.clase === "campero" && el.value === "carne") setCampo("meses", 2.8);
         }
         refrescar();
