@@ -233,6 +233,8 @@
 <label><input type="radio" name="venta-modo" value="kg" data-save><span>Por kg</span></label>
 </div>
 </fieldset>
+<label>Porcentaje de aves supervivientes que prevés vender<input id="c-porcentaje-venta" data-save type="number" min="0" max="100" step="any" value="100" aria-describedby="ayuda-venta-aves"></label>
+<p class="hint" id="ayuda-venta-aves">Si conservas todas las ponedoras, escribe 0. Si de 80 supervivientes vendes 20, escribe 25. El porcentaje se aplica después de descontar la mortalidad.</p>
 <label id="lbl-venta"><span id="lbl-venta-txt" data-etiq="Precio de la gallina de desvieje">Precio de la gallina de desvieje</span><input id="c-precio-venta" data-save inputmode="decimal" value="0"></label>
 <div id="grp-peso" hidden>
 <label>Peso por ave, kg<input id="c-peso" data-save inputmode="decimal" value="0"></label>
@@ -339,6 +341,6 @@
 <script src="js/config.js?v=202610184"></script>
 <script src="js/app.js?v=202610184"></script>
 <script src="js/catalogo.js"></script>
-<script src="js/calculadora.js"></script>
+<script src="js/calculadora.js?v=20261108"></script>
 <script src="js/site.js?v=202610184"></script>
 </body></html>
