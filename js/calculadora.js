@@ -166,7 +166,7 @@
         if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
         else s = s.replace(/,/g, "");
       } else if (coma) s = s.replace(",", ".");
-      else if (punto && /^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
+      else if (punto && /^[1-9]\d{0,2}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
     }
     var n = parseFloat(s);
     return isFinite(n) ? n : 0;
@@ -346,6 +346,22 @@
     var pl = plan(state);
     if (!(aves > 0) || !(meses > 0)) {
       return { ok: false, error: "Escribe el número de aves y los meses del ciclo.", luz: "" };
+    }
+    var preciosPienso = [state.precioPienso].concat(pl.segs.map(function (seg) {
+      return state.precioEtapa && state.precioEtapa[seg.id];
+    }));
+    var precioInvalido = preciosPienso.some(function (valor) {
+      if (valor == null || String(valor).trim() === "") return false;
+      if (typeof valor === "number") return !isFinite(valor) || valor < 0;
+      var texto = String(valor).trim();
+      if (/^\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:[.,]\d+)?$/.test(texto)) texto = texto.replace(/\s/g, "");
+      return !/^(?:\d+(?:[.,]\d+)?|\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d{1,3}(?:,\d{3})+\.\d+|[.,]\d+)$/.test(texto) || !isFinite(Number(texto.replace(/[.,]/g, "")));
+    });
+    if (precioInvalido) {
+      return { ok: false, error: "Revisa los precios del pienso. Escribe un importe positivo o cero, sin letras ni símbolo de moneda.", luz: "" };
+    }
+    if (num(state.instalacion) > 0 && !(num(state.anios) > 0)) {
+      return { ok: false, error: "Indica en cuántos años amortizas la inversión en instalaciones.", luz: "" };
     }
     var etapas = [];
     var kg = 0;
@@ -695,6 +711,7 @@
       luz.textContent = res.error;
       resumen.textContent = "";
       box.innerHTML = "";
+      $("calc-chart").setAttribute("aria-label", "Sin resultados. " + res.error);
       draw($("calc-chart"), 0, 0, true);
       return;
     }
