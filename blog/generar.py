@@ -806,6 +806,14 @@ def relacionados(post, publicados):
     return elegidos
 
 
+RECURSOS_ARTICULO = {
+    "alimentacion-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Ebook de Granja Rentable</small><br><a href=\"../ebooks/\">Cómo elegir el pienso</a></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "agua-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "criar-pollitos-30-dias": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "como-elegir-incubadora": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B0793HHZ1L?tag=granjarentabl-20\">Incubadora Nurture Right 360</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>"
+}
+
+
 def html_post(post, publicados, catalogo, raiz_sitio, activo):
     raiz = "../"
     migas = (f'<p class="crumbs"><a href="{raiz}index.html">Inicio</a> › '
@@ -850,8 +858,11 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     if cerca:
         bloque_cerca = ('<section>\n<p class="kicker">Sigue leyendo</p>\n<h2>Artículos relacionados</h2>\n<div class="pgrid">\n'
                         + "\n".join(tarjeta(p, raiz) for p in cerca) + "\n</div>\n</section>")
+    recursos = RECURSOS_ARTICULO.get(post["slug"], "")
+    if recursos:
+        recursos += '<script defer src="../js/recursos-articulo.js"></script>'
     return (cabeza + "\n" + anuncio("banner", activo) + "\n" + foto + "\n"
-            + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + guia + "\n" + red + "\n" + fuentes
+            + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + recursos + "\n" + guia + "\n" + red + "\n" + fuentes
             + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
 
 
