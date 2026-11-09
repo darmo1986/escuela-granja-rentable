@@ -86,6 +86,7 @@ SUFIJO_TITULO = " | Granja Rentable"
 TITULO_MAX_EXTRA = {
     "agua-gallinas-ponedoras-bebederos": 100,
     "cuanto-cuesta-producir-docena-huevos": 70,
+    "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
 VERSION_ACTIVOS = "202610184"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
@@ -890,7 +891,7 @@ def ebook_y_amazon(rel, post=None):
     blob = rel.lower()
     if post:
         blob += " " + post.get("slug", "") + " " + post.get("categoria", "")
-    if "codorn" in blob:
+    if "codorn" in blob or "problemas-gallinero" in blob:
         return "pack", None
     if "incub" in blob:
         return "empezar", "incubacion"
