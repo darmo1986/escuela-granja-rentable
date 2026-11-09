@@ -849,6 +849,117 @@ def anuncio(tamano, activo):
             f'<div class="ad-slot" data-ad-slot="{tamano}" data-ad-size="{tamano}"></div></aside>')
 
 
+ADSENSE_CLIENT = "ca-pub-5311145772953700"
+ADSENSE_SRC = ("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="
+               + ADSENSE_CLIENT)
+# ASINs que el sitio ya enlazaba. No se añaden productos nuevos.
+AMAZON_POR_TEMA = {
+    "incubacion": ("Incubadora Nurture Right 360", "B0793HHZ1L"),
+    "bebedero": ("Copas de bebedero Lil’Clucker", "B089XZVZMP"),
+    "comedero": ("Comedero de pedal Grandpa’s Feeders Standard", "B00TXW0UQK"),
+}
+EBOOK_POR_CLAVE = {
+    "pack": ("Pack de ebooks de Granja Rentable", "ebooks/"),
+    "alimenta": ("Alimenta bien a tus ponedoras", "ebooks/#alimenta-ponedoras"),
+    "elegir": ("Cómo elegir el pienso", "ebooks/#pienso-elegir"),
+    "hacer": ("Cómo hacer tu propio pienso", "ebooks/#pienso-hacer"),
+    "empezar": ("Guía para empezar tu granja", "ebooks/#guia-empezar"),
+}
+
+
+def etiqueta_amazon(raiz):
+    """Vacío si js/config.js no trae amazonTag. Así el hueco de Amazon queda apagado."""
+    ruta = Path(raiz) / "js" / "config.js"
+    try:
+        texto = ruta.read_text(encoding="utf-8")
+    except OSError:
+        return ""
+    coincidencia = re.search(r"window\.ads\s*=\s*\{([^}]*)\}", texto)
+    if not coincidencia:
+        return ""
+    tag = re.search(r"""amazonTag\s*:\s*["']([^"']*)["']""", coincidencia.group(1))
+    return tag.group(1).strip() if tag else ""
+
+
+def ebook_y_amazon(rel, post=None):
+    if rel in ("index.html", "blog/index.html") or rel.startswith("blog/pagina-"):
+        return "pack", None
+    if rel in ("blog/gallinas-ponedoras.html", "blog/pollos-de-engorde.html",
+               "blog/incubacion.html", "blog/salud.html", "blog/alimentacion.html"):
+        return "pack", None
+    blob = rel.lower()
+    if post:
+        blob += " " + post.get("slug", "") + " " + post.get("categoria", "")
+    if "codorn" in blob:
+        return "pack", None
+    if "incub" in blob:
+        return "empezar", "incubacion"
+    if "bebedero" in blob or "agua-" in blob:
+        return "alimenta", "bebedero"
+    if "comedero" in blob or "engorde" in blob:
+        return "hacer", "comedero"
+    if "aliment" in blob or "pienso" in blob or "ponedor" in blob:
+        return "alimenta", None
+    return "empezar", None
+
+
+def precio_catalogo(raiz, href):
+    """Precio visible del ebook en ebooks/index.html. El pack no tiene uno solo."""
+    ancla = href.split("#", 1)[1] if "#" in href else ""
+    if not ancla:
+        return ""
+    ruta = Path(raiz) / "ebooks" / "index.html"
+    try:
+        texto = ruta.read_text(encoding="utf-8")
+    except OSError:
+        return ""
+    coincidencia = re.search(
+        rf'id="{re.escape(ancla)}"[\s\S]{{0,2500}}?<p class="precio">([^<]+)</p>',
+        texto)
+    return coincidencia.group(1).strip() if coincidencia else ""
+
+
+def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
+    titulo, href = EBOOK_POR_CLAVE[ebook_clave]
+    precio_html = f"<p>{esc(precio)}</p>" if precio else ""
+    bloque = (f'<aside class="banner-ebook" data-banner-ebook>'
+              f'<p class="kicker">De Granja Rentable</p>'
+              f'<p><a href="{esc(raiz_url + href)}">{esc(titulo)}</a></p>'
+              f'{precio_html}'
+              f'</aside>')
+    if tag and amazon_tema in AMAZON_POR_TEMA:
+        nombre, asin = AMAZON_POR_TEMA[amazon_tema]
+        url = f"https://www.amazon.com/dp/{asin}?tag={tag}"
+        bloque += (f'<aside class="banner-amazon" data-banner-amazon>'
+                   f'<p><small>Enlace de afiliado</small></p>'
+                   f'<p><a rel="sponsored nofollow noopener" target="_blank" href="{esc(url)}">{esc(nombre)}</a></p>'
+                   f'</aside>')
+    return bloque
+
+
+def asegurar_adsense(html, activo):
+    """Con la publicidad apagada no se añade el script. Si ya está, no se duplica ni se borra."""
+    if not activo or not re.search(r"<head\b", html, re.I):
+        return html
+    if ADSENSE_SRC in html:
+        return html
+    etiqueta = f'<script async src="{ADSENSE_SRC}" crossorigin="anonymous"></script>'
+    return re.sub(r"</head>", etiqueta + "\n</head>", html, count=1, flags=re.I)
+
+
+def colocar_banners(rel, html, raiz, post=None):
+    """El banner propio se inserta una vez. Si ya está, se conserva."""
+    if "data-banner-ebook" in html or "</main>" not in html:
+        return html
+    if rel != "index.html" and not (rel.startswith("blog/") and rel.endswith(".html")):
+        return html
+    clave, amazon_tema = ebook_y_amazon(rel, post)
+    _titulo, href = EBOOK_POR_CLAVE[clave]
+    banner = html_banner(raiz_de(rel), clave, amazon_tema, etiqueta_amazon(raiz),
+                         precio_catalogo(raiz, href))
+    return html.replace("</main>", banner + "\n</main>", 1)
+
+
 def url_post(slug):
     return "/blog/" + slug + ".html"
 
@@ -1316,6 +1427,16 @@ def planificar(raiz, incluir_borradores=False):
     for rel in list(archivos):
         if rel.startswith(("blog/posts/", "blog/plantillas/", "blog/pruebas/", f"{CARPETA_POSTS}/", "_")) or "/_" in rel:
             errores.append(f"El generador iba a escribir en una carpeta excluida: {rel}")
+    if errores:
+        return errores, {}, []
+    activo_ads = anuncios_activos(raiz)
+    por_rel = {f"blog/{p['slug']}.html": p for p in publicados}
+    for rel, html in list(archivos.items()):
+        if not rel.endswith(".html"):
+            continue
+        html = colocar_banners(rel, html, raiz, por_rel.get(rel))
+        html = asegurar_adsense(html, activo_ads)
+        archivos[rel] = html
     return errores, archivos, borrar
 
 

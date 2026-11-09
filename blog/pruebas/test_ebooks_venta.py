@@ -16,8 +16,12 @@ class EbooksVenta(unittest.TestCase):
         self.menu = MENU.read_text(encoding="utf-8")
 
     def test_cuatro_precios_siguen_en_dos_dolares(self):
-        self.assertEqual(len(re.findall(r'<p class="precio">2,00 USD</p>', self.html)), 4)
-        self.assertEqual(len(re.findall(r"<strong>2,00 USD</strong>", self.html)), 4)
+        self.assertEqual(len(re.findall(r'<p class="precio">2,00 USD</p>', self.html)), 3)
+        self.assertEqual(len(re.findall(r"<strong>2,00 USD</strong>", self.html)), 3)
+        ponedoras = self.html.split('id="alimenta-ponedoras"', 1)[1].split("</section>", 1)[0]
+        self.assertIn('<p class="precio">3,00 USD</p>', ponedoras)
+        self.assertIn("<strong>3,00 USD</strong>", ponedoras)
+        self.assertNotIn("2,00 USD", ponedoras)
         self.assertNotIn("5,00 USD", self.html)
         self.assertNotIn("€", self.html)
         self.assertNotIn("euros", self.html.lower().replace("no lo pasamos a euros", "").replace("no pasa a euros", ""))

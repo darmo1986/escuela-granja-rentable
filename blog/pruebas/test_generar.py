@@ -429,6 +429,52 @@ class Generador(unittest.TestCase):
         cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
         self.assertNotIn("pasos.html", cat)
 
+    def test_adsense_una_vez_y_banner_que_permanece(self):
+        post(self.tmp, "2026-11-09-banner.md", borrador="false", leccion="", producto="",
+             categoria="incubacion", titulo="Artículo con banner de incubación",
+             titulo_seo="Artículo con banner de incubación")
+        (self.tmp / "js").mkdir(exist_ok=True)
+        (self.tmp / "js" / "config.js").write_text(
+            'window.ads = { activo: false, amazonTag: "" };\n', encoding="utf-8")
+        (self.tmp / "index.html").write_text(
+            "<head><title>Inicio</title></head><body><main><p>Hola</p></main></body>",
+            encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "banner.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertIn("Guía para empezar tu granja", html)
+        self.assertIn("ebooks/#guia-empezar", html)
+        self.assertNotIn("adsbygoogle.js", html)
+        self.assertNotIn("data-banner-amazon", html)
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "banner.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertNotIn("adsbygoogle.js", html)
+        (self.tmp / "js" / "config.js").write_text(
+            'window.ads = { activo: true, amazonTag: "" };\n', encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "banner.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("adsbygoogle.js?client=ca-pub-5311145772953700"), 1)
+        self.assertIn('crossorigin="anonymous"', html)
+        self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertNotIn("data-banner-amazon", html)
+        (self.tmp / "js" / "config.js").write_text(
+            'window.ads = { activo: true, amazonTag: "test-20" };\n', encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "banner.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("adsbygoogle.js"), 1)
+        self.assertEqual(html.count("data-banner-amazon"), 1)
+        self.assertIn("Enlace de afiliado", html)
+        self.assertIn("tag=test-20", html)
+        self.assertIn('rel="sponsored nofollow noopener"', html)
+        portada = (self.tmp / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Pack de ebooks de Granja Rentable", portada)
+        self.assertEqual(portada.count("adsbygoogle.js"), 1)
+        clave, _tema = generar.ebook_y_amazon(
+            "blog/criar-codornices-desde-cero.html",
+            {"slug": "criar-codornices-desde-cero", "categoria": "ponedoras"})
+        self.assertEqual(clave, "pack")
+
 
 if __name__ == "__main__":
     unittest.main()
