@@ -32,11 +32,13 @@ También influye el propio sistema de suministro: un bebedero mal colocado, obst
 
 ### Relación entre agua y pienso
 
-Como referencia general de manejo, el *Merck Veterinary Manual* («Management of Backyard Poultry») indica **entre 1,5 y 3,5 partes de agua por cada parte de pienso consumido**, según las condiciones.
+Como referencia general, el *Merck Veterinary Manual* indica que, en condiciones termoneutras (sin calor ni frío que obliguen al ave a compensar), las aves beben aproximadamente **el doble de agua que de pienso**, en peso.
 
-Como equivalencia práctica (1 litro de agua pesa aproximadamente 1 kg), eso viene a ser **unos 1,5–3,5 litros de agua por kilogramo de pienso consumido**.
+Expresado de forma práctica, esto equivale aproximadamente a:
 
-Es una relación orientativa, no una ración que debas imponer ni una cantidad máxima.
+**unos 2 litros de agua por kilogramo de pienso consumido** (un litro de agua pesa aproximadamente un kilo).
+
+Es una relación orientativa, no una ración que debas imponer ni una cantidad máxima. La temperatura, la humedad, la sal y la proteína de la dieta y el nivel de puesta la hacen variar.
 
 El consumo puede aumentar considerablemente con el calor. Las aves deben disponer de agua limpia de forma continua.
 
@@ -419,7 +421,7 @@ Restablece inmediatamente un suministro accesible y seguro. Revisa tuberías y v
 
 ### ¿Puedo añadir productos al agua para mejorar la puesta?
 
-No añadas suplementos, medicamentos o desinfectantes sin una indicación técnica justificada. Un producto mal utilizado puede afectar a las aves o al sistema de suministro.
+No añadas suplementos, medicamentos ni desinfectantes al agua de bebida por tu cuenta. Si crees que tus gallinas necesitan algo más que agua limpia, consulta al veterinario. Un producto mal utilizado puede afectar a las aves o al sistema de suministro.
 
 ## 14. Conclusión: el mejor bebedero es el que funciona todos los días
 
@@ -433,9 +435,7 @@ Después de instalarlo, mide el agua utilizada, revisa los puntos de bebida y re
 
 **No basta con tener agua en el depósito: tus gallinas tienen que poder beberla cuando la necesitan.**
 
-En **Granja Rentable** encontrarás más guías sobre alimentación, gallineros, manejo de ponedoras y control de costes.
-
-Visita [**www.granjarentable.com**](https://www.granjarentable.com) y aprende a criar aves con criterios prácticos y datos comprobables.
+[**Ver los ebooks de Granja Rentable**](https://granjarentable.com/ebooks/) para aprender más sobre alimentación, gallineros, manejo de ponedoras y control de costes. El curso está en [granjarentable.com/curso.html](https://granjarentable.com/curso.html).
 
 ## Fuentes técnicas y referencias
 
@@ -445,7 +445,7 @@ Visita [**www.granjarentable.com**](https://www.granjarentable.com) y aprende a 
 2. **FAO — Small-scale poultry production.** Sonaiya, E. B. y Swan, S. E., 2004. Manual de producción avícola a pequeña escala que incluye alojamiento, alimentación, suministro de agua y manejo.  
    [https://www.fao.org/4/y5169e/y5169e00.htm](https://www.fao.org/4/y5169e/y5169e00.htm)
 
-3. **Merck Veterinary Manual — Management of Backyard Poultry.** Referencia técnica sobre manejo de aves domésticas, instalaciones, alimentación, relación de 1,5–3,5 partes de agua por parte de pienso y prevención sanitaria.  
+3. **Merck Veterinary Manual — Management of Backyard Poultry.** Referencia técnica sobre manejo de aves domésticas, instalaciones, alimentación y prevención sanitaria.  
    [https://www.merckvetmanual.com/exotic-and-laboratory-animals/backyard-poultry/management-of-backyard-poultry](https://www.merckvetmanual.com/exotic-and-laboratory-animals/backyard-poultry/management-of-backyard-poultry)
 
 4. **FAO — Poultry production and products.** Recursos técnicos sobre producción, manejo, sanidad y sistemas avícolas.  
