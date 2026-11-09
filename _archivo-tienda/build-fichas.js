@@ -161,9 +161,9 @@ function ficha(p) {
   var og = srcAbsoluta(p);
   return '<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
-    '<script src="../../../js/boot.js?v=202610184"></script>\n' +
+    '<script src="../../../js/boot.js?v=20261109b"></script>\n' +
     '<link rel="icon" type="image/png" href="../../../img/favicon.png">\n' +
-    '<link rel="stylesheet" href="../../../css/estilo.css?v=202610184">\n' +
+    '<link rel="stylesheet" href="../../../css/estilo.css?v=20261109b">\n' +
     '<link rel="stylesheet" href="../../tienda.css">\n' +
     "<title>" + esc(titulo) + "</title>\n" +
     '<meta name="description" content="' + esc(desc) + '">\n' +
@@ -198,9 +198,9 @@ function ficha(p) {
     bloqueLegal(p) + "</div>\n</article>\n</main>\n" +
     '<footer class="foot"><div class="wrap"><p>Juan Pablo González García · NIF 78701119H · Calle Juan Rumeu García 6 bajo · 38008 Santa Cruz de Tenerife · <a href="mailto:ventas@granjarentable.com">ventas@granjarentable.com</a></p>' +
     '<p><a href="../../../aviso-legal.html">Aviso legal</a> · <a href="../../../privacidad.html">Privacidad</a> · <a href="../../../cookies.html">Cookies</a> · <a href="../../../condiciones-venta.html">Condiciones de venta</a></p></div></footer>\n' +
-    '<script src="../../../js/config.js?v=202610184"></script>\n' +
+    '<script src="../../../js/config.js?v=20261109b"></script>\n' +
     '<script src="../../catalogo.js"></script>\n<script src="../../tienda.js"></script>\n<script src="../../carrito.js"></script>\n' +
-    '<script src="../../../js/site.js?v=202610184"></script>\n</body>\n</html>\n';
+    '<script src="../../../js/site.js?v=20261109b"></script>\n</body>\n</html>\n';
 }
 
 var dirBase = path.join(__dirname, "p");
