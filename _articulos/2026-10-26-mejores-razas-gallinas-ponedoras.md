@@ -1,13 +1,17 @@
 ---
 titulo: "5 razas de ponedoras para comparar"
-titulo_seo: "5 razas de ponedoras para comparar"
-descripcion: "Leghorn, Rhode Island y Sussex: 5 razas para comparar. Las puestas son orientativas y no están garantizadas."
+titulo_seo: "Razas de gallinas ponedoras: 5 para comparar"
+descripcion: "Comparativa de 5 razas de gallinas ponedoras (Leghorn, Rhode Island, Sussex…). Puesta orientativa, no garantizada."
 categoria: ponedoras
 fecha: 2026-10-26
 borrador: false
 imagen: "img/blog/mejores-razas-gallinas-ponedoras.webp"
 imagen_og: "img/blog/mejores-razas-gallinas-ponedoras-og.webp"
 imagen_alt: "Diferentes razas de gallinas ponedoras: Rhode Island, Leghorn y Sussex"
+relacionados:
+  - "empezar-con-10-gallinas-ponedoras"
+  - "cuantas-gallinas-para-30-huevos"
+  - "gallinas-criollas"
 ---
 
 ## 5 razas de ponedoras para comparar

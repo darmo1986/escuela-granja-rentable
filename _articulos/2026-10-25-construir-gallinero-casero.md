@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/construir-gallinero-casero.webp"
 imagen_og: "img/blog/construir-gallinero-casero-og.webp"
 imagen_alt: "Gallinero de madera en construcción en patio de granja"
+relacionados:
+  - "corral-anti-depredadores"
+  - "empezar-con-10-gallinas-ponedoras"
+  - "cuantas-gallinas-para-30-huevos"
 ---
 
 ## Cómo construir un gallinero casero paso a paso

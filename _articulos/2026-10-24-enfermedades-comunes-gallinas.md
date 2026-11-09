@@ -9,6 +9,10 @@ borrador: false
 imagen: "img/blog/enfermedades-comunes-gallinas.webp"
 imagen_og: "img/blog/enfermedades-comunes-gallinas-og.webp"
 imagen_alt: "Veterinario revisando gallina enferma en granja"
+relacionados:
+  - "bioseguridad-10-puntos-granja"
+  - "cuarentena-gallinas-nuevas"
+  - "calendario-vacunacion-gallinas"
 ---
 
 ## 5 enfermedades comunes en gallinas y cómo prevenirlas
