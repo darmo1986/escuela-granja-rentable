@@ -524,5 +524,26 @@ class Generador(unittest.TestCase):
         self.assertEqual(clave, "pack")
 
 
+class ConfiguracionReal(unittest.TestCase):
+    """js/config.js del repositorio: Amazon como relleno detrás del ebook, sin redes de anuncios."""
+
+    def test_amazon_con_etiqueta_y_anuncios_apagados(self):
+        self.assertEqual(generar.etiqueta_amazon(RAIZ), "granjarentabl-20")
+        self.assertFalse(generar.anuncios_activos(RAIZ))
+        config = (RAIZ / "js" / "config.js").read_text(encoding="utf-8").lower()
+        self.assertNotIn("adsbygoogle", config)
+        self.assertNotIn("adsterra", config)
+
+    def test_hueco_amazon_va_detras_del_ebook(self):
+        html = (RAIZ / "blog" / "incubacion-dia-a-dia.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertEqual(html.count("data-banner-amazon"), 1)
+        self.assertLess(html.index("data-banner-ebook"), html.index("data-banner-amazon"))
+        self.assertIn("tag=granjarentabl-20", html)
+        self.assertIn('rel="sponsored nofollow noopener"', html)
+        self.assertNotIn("adsbygoogle", html)
+        self.assertNotIn("adsterra", html.lower())
+
+
 if __name__ == "__main__":
     unittest.main()
