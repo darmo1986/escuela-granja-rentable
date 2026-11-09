@@ -1,6 +1,5 @@
 /* Publicidad. Sitio aprobado en Adsterra: granjarentable.com (id 6132524).
    El cartelito usa redes.adsterra.bannerKey (320×50). Solo banners en iframe. */
-window.ADSENSE_CLIENT = "ca-pub-5311145772953700";
 window.ADSTERRA = {
   /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así.
      www.highperformanceformat.com también sirve el mismo script: se usa este
@@ -19,7 +18,7 @@ window.ADSTERRA = {
   }
 };
 
-/* Interruptor de publicidad. false = no se inyecta el script de AdSense ni huecos de red.
+/* Interruptor de publicidad. false = no se pintan huecos de anuncio ni se pide Adsterra.
    amazonTag vacío = no se pinta el hueco de Amazon. La configuración del sitio no trae etiqueta. */
 window.ads = { activo: false, amazonTag: "" };
 

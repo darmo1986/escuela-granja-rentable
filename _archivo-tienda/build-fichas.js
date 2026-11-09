@@ -160,7 +160,6 @@ function ficha(p) {
   var canon = "https://granjarentable.com/tienda/p/" + p.slug + "/";
   var og = srcAbsoluta(p);
   return '<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="utf-8">\n' +
-    '<meta name="google-adsense-account" content="ca-pub-5311145772953700">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
     '<script src="../../../js/boot.js?v=202610184"></script>\n' +
     '<link rel="icon" type="image/png" href="../../../img/favicon.png">\n' +

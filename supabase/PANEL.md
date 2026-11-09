@@ -44,7 +44,7 @@ el navegador: solo salen por dos funciones con control de acceso.
 4. **Cloudflare Web Analytics** (opcional). En dash.cloudflare.com →
    Analytics → Web Analytics → «Add a site» con granjarentable.com. Copia el
    token y pégalo en `js/config.js`, en `GR.analitica.cfToken`. La baliza se
-   inyecta sola desde `js/site.js`. Es sin cookies y no molesta a AdSense.
+   inyecta sola desde `js/site.js`. Es sin cookies.
    Sirve de contraste: el panel propio es la fuente principal.
 
 ## Aviso de venta confirmada (Stripe)

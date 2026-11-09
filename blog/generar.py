@@ -850,9 +850,6 @@ def anuncio(tamano, activo):
             f'<div class="ad-slot" data-ad-slot="{tamano}" data-ad-size="{tamano}"></div></aside>')
 
 
-ADSENSE_CLIENT = "ca-pub-5311145772953700"
-ADSENSE_SRC = ("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="
-               + ADSENSE_CLIENT)
 # ASINs que el sitio ya enlazaba. No se añaden productos nuevos.
 AMAZON_POR_TEMA = {
     "incubacion": ("Incubadora Nurture Right 360", "B0793HHZ1L"),
@@ -936,16 +933,6 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
                    f'<p><a rel="sponsored nofollow noopener" target="_blank" href="{esc(url)}">{esc(nombre)}</a></p>'
                    f'</aside>')
     return bloque
-
-
-def asegurar_adsense(html, activo):
-    """Con la publicidad apagada no se añade el script. Si ya está, no se duplica ni se borra."""
-    if not activo or not re.search(r"<head\b", html, re.I):
-        return html
-    if ADSENSE_SRC in html:
-        return html
-    etiqueta = f'<script async src="{ADSENSE_SRC}" crossorigin="anonymous"></script>'
-    return re.sub(r"</head>", etiqueta + "\n</head>", html, count=1, flags=re.I)
 
 
 def colocar_banners(rel, html, raiz, post=None):
@@ -1430,13 +1417,11 @@ def planificar(raiz, incluir_borradores=False):
             errores.append(f"El generador iba a escribir en una carpeta excluida: {rel}")
     if errores:
         return errores, {}, []
-    activo_ads = anuncios_activos(raiz)
     por_rel = {f"blog/{p['slug']}.html": p for p in publicados}
     for rel, html in list(archivos.items()):
         if not rel.endswith(".html"):
             continue
         html = colocar_banners(rel, html, raiz, por_rel.get(rel))
-        html = asegurar_adsense(html, activo_ads)
         archivos[rel] = html
     return errores, archivos, borrar
 
