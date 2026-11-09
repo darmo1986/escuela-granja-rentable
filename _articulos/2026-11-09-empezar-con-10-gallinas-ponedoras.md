@@ -409,7 +409,7 @@ Depende de preparar un alojamiento apropiado, proporcionar alimentación equilib
 
 En Granja Rentable queremos ayudarte a criar aves con criterios prácticos y cuentas comprobables.
 
-Visita [**www.granjarentable.com**](https://granjarentable.com/ebooks/) para seguir aprendiendo sobre gallinas ponedoras, alimentación, instalaciones y gestión de pequeñas explotaciones.
+[**Ver los ebooks de Granja Rentable**](https://granjarentable.com/ebooks/) para seguir aprendiendo sobre gallinas ponedoras, alimentación, instalaciones y gestión de pequeñas explotaciones.
 
 ## Fuentes técnicas y referencias
 
