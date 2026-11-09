@@ -52,6 +52,6 @@ El plástico de calidad aísla mejor que el barato. Busca paredes gruesas y un v
 
 ### Nuestra recomendación
 
-Para quien empieza, una incubadora de 24 huevos con control digital de temperatura y humedad, volteo automático y buena ventilación es la mejor inversión. Dura años y te da eclosiones consistentes del 80-90%.
+Para quien empieza, una incubadora de 24 huevos con control digital de temperatura y humedad, volteo automático y buena ventilación es una opción habitual. La eclosión depende de la fertilidad de los huevos, del manejo y del control de temperatura y humedad.
 
 ¿Tienes dudas? Déjanos un comentario o escríbenos por WhatsApp.
