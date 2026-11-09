@@ -19,8 +19,9 @@ window.ADSTERRA = {
   }
 };
 
-/* Interruptor de publicidad. false = no se inyecta ningún script ni iframe de anuncios. */
-window.ads = { activo: false };
+/* Interruptor de publicidad. false = no se inyecta el script de AdSense ni huecos de red.
+   amazonTag vacío = no se pinta el hueco de Amazon. La configuración del sitio no trae etiqueta. */
+window.ads = { activo: false, amazonTag: "" };
 
 /* El curso y los ebooks van primero. */
 window.GR = {
