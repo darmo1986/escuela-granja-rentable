@@ -90,7 +90,8 @@ TITULO_MAX_EXTRA = {
 }
 VERSION_ACTIVOS = "20261109b"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
-SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
+# premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
+SIN_WHATSAPP = {"condiciones-premium.html"}
 CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}
 
 
@@ -779,7 +780,7 @@ def poner_version(html):
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
             "js/site.js", "js/app.js", "js/config.js"):
         html = re.sub(
-            rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=\d+)?"',
+            rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
             rf'\1?v={VERSION_ACTIVOS}"',
             html)
     return html
@@ -798,6 +799,8 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
     menu = menu_listo(menu_html, raiz, clave_nav(rel))
     if pagina_sin_whatsapp(rel):
         menu = conservar_messenger(quitar_whatsapp_nav(menu), html)
+    elif rel.replace("\\", "/") == "premium.html":
+        menu = conservar_messenger(menu, html)
     pie = pie_html.replace("@@RAIZ@@", raiz).rstrip("\n")
     menu = menu.rstrip("\n")
     if "<!-- menu:inicio -->" in html and "<!-- menu:fin -->" in html:

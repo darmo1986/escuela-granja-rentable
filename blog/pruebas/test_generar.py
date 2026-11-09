@@ -325,7 +325,7 @@ class Generador(unittest.TestCase):
         self.assertEqual(titulo, corto + " | Granja Rentable")
         self.assertLessEqual(len(titulo), 60)
 
-    def test_premium_no_recupera_whatsapp(self):
+    def test_premium_conserva_whatsapp(self):
         (self.tmp / "premium.html").write_text(
             '<link rel="stylesheet" href="css/estilo.css">\n'
             '<script src="js/boot.js"></script>\n'
@@ -343,11 +343,22 @@ class Generador(unittest.TestCase):
         html = (self.tmp / "premium.html").read_text(encoding="utf-8")
         self.assertIn("Messenger", html)
         self.assertIn("m.me/PENDIENTE", html)
-        self.assertNotIn("WhatsApp", html)
-        self.assertNotIn("wa.me", html)
-        self.assertNotIn("wa-float", html)
+        self.assertIn('data-social="whatsapp" href="https://wa.me/34656267726"', html)
+        self.assertIn('<a class="wa-float" href="https://wa.me/34656267726">', html)
         self.assertIn("css/estilo.css?v=20261109b", html)
         self.assertIn("js/boot.js?v=20261109b", html)
+
+    def test_version_con_letras_se_sustituye(self):
+        html = generar.poner_version('<link href="css/estilo.css?v=20261109a"><script src="js/app.js?v=1"></script>')
+        self.assertIn(f"css/estilo.css?v={generar.VERSION_ACTIVOS}\"", html)
+        self.assertIn(f"js/app.js?v={generar.VERSION_ACTIVOS}\"", html)
+        self.assertNotIn("20261109a", html)
+
+    def test_premium_real_conserva_whatsapp(self):
+        html = (RAIZ / "premium.html").read_text(encoding="utf-8")
+        self.assertIn('class="nav-wa"', html)
+        self.assertIn('class="wa-float"', html)
+        self.assertGreaterEqual(html.count("wa.me/34656267726"), 3)
         self.assertIn("js/config.js?v=20261109b", html)
         self.assertIn("js/app.js?v=20261109b", html)
         self.assertIn("js/site.js?v=20261109b", html)
