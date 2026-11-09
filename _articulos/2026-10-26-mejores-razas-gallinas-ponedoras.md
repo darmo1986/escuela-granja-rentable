@@ -41,7 +41,7 @@ Doble propósito (huevos y carne) y muy buena madre si quieres incubación natur
 
 ### 4. Plymouth Rock: la clásica
 
-- **Puesta:** 200-250 huevos al año.
+- **Puesta:** unos 200 huevos al año.
 - **Huevo:** marrón, tamaño M.
 - **Carácter:** tranquila y buena ponedora en invierno.
 - **Ideal para:** climas fríos. Sigue poniendo cuando otras razas paran.
@@ -49,7 +49,7 @@ Doble propósito (huevos y carne) y muy buena madre si quieres incubación natur
 ### 5. Australorp: la récord
 
 - **Puesta:** 250-300 huevos al año (tiene el récord mundial: 364 huevos en 365 días).
-- **Huevo:** marrón, tamaño L.
+- **Huevo:** de color crema a marrón claro, tamaño L.
 - **Carácter:** dócil y tranquila.
 - **Ideal para:** quien quiere producción alta con una gallina manejable y bonita (plumaje negro con brillo verde).
 
@@ -60,8 +60,8 @@ Doble propósito (huevos y carne) y muy buena madre si quieres incubación natur
 | Leghorn | 300-320 | Blanco | Templado-cálido |
 | Rhode Island | 250-300 | Marrón | Todos |
 | Sussex | 240-260 | Marrón claro | Todos |
-| Plymouth Rock | 200-250 | Marrón | Frío |
-| Australorp | 250-300 | Marrón | Todos |
+| Plymouth Rock | unos 200 | Marrón | Frío |
+| Australorp | 250-300 | de color crema a marrón claro | Todos |
 
 ### ¿Cuál elijo?
 
