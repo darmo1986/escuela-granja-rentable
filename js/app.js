@@ -3,7 +3,7 @@ const root=document.body.dataset.root||'';
 const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
 const save=p=>{localStorage.setItem(PK,JSON.stringify(p));if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);};
-/* ── Consentimiento + publicidad (Adsterra o AdSense; nada sin key y sin «Aceptar») ── */
+/* ── Consentimiento + publicidad (Adsterra; nada sin key y sin «Aceptar») ── */
 function smallBannerCfg(){
   const g=(window.GR&&window.GR.redes&&window.GR.redes.adsterra)||{};
   const key=String(g.bannerKey||'').trim();
@@ -26,7 +26,7 @@ function ocultarHuecos(){
   document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
 }
 if(!adsOn())ocultarHuecos();
-function adsConfigured(){return adsOn()&&!!(window.ADSENSE_CLIENT||adsterraHasKey());}
+function adsConfigured(){return adsOn()&&adsterraHasKey();}
 function pickAdsterra(cfg,size){
   if(size==='banner')return smallBannerCfg();
   if(!cfg)return null;
@@ -143,24 +143,6 @@ function loadAdsterra(){
   slots.forEach(el=>io.observe(el));
   return true;
 }
-function loadAdsense(){
-  if(!adsOn())return false;
-  if(!window.ADSENSE_CLIENT)return false;
-  const slots=[...document.querySelectorAll('.ad-slot')].filter(d=>d.dataset.adSlot&&d.dataset.adSlot.indexOf('SLOT_')!==0);
-  if(!slots.length)return false;
-  const s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';
-  s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(window.ADSENSE_CLIENT);
-  document.head.appendChild(s); document.documentElement.classList.add('ad-on');
-  slots.forEach(d=>{
-    if(d.dataset.adFilled)return;
-    d.hidden=false;
-    d.dataset.adFilled='adsense';
-    const i=document.createElement('ins');i.className='adsbygoogle';i.style.display='block';
-    i.dataset.adClient=window.ADSENSE_CLIENT;i.dataset.adSlot=d.dataset.adSlot;i.dataset.adFormat='auto';i.dataset.fullWidthResponsive='true';d.appendChild(i);
-    (window.adsbygoogle=window.adsbygoogle||[]).push({});
-  });
-  return true;
-}
 /* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
    gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
    html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
@@ -214,9 +196,7 @@ function loadAds(){
   if(!adsOn()){ocultarHuecos();return;}
   if(esPremiumLocal()){ quitarAnuncios(); return; }
   if(window.__adsLoaded)return; window.__adsLoaded=1;
-  /* Si hay Adsterra con key, gana frente a AdSense. */
-  if(adsterraHasKey()){loadAdsterra();return;}
-  loadAdsense();
+  if(adsterraHasKey())loadAdsterra();
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
@@ -224,7 +204,7 @@ function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra y/o Google AdSense) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
@@ -234,7 +214,7 @@ function notaLibre(){
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
-  n.innerHTML='<span>Mostramos anuncios de Google AdSense o Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
+  n.innerHTML='<span>Mostramos anuncios de Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
   n.addEventListener('click',e=>{
     if(e.target.dataset.c!=='no')return;
     localStorage.setItem(CK,'no');
