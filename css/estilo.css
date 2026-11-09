@@ -567,6 +567,10 @@ code { overflow-wrap: anywhere; }
 .raza { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
 .raza-media { background: #e7f3ea; aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 12px; text-align: center; }
 .raza-media svg { width: min(100%, 220px); height: auto; }
+.raza-media:has(figure) { aspect-ratio: auto; padding: 0; justify-content: flex-start; background: #f6faf7; }
+.raza-media figure { margin: 0; width: 100%; }
+.raza-media img { width: 100%; height: auto; display: block; }
+.raza-media figcaption { margin: 0; padding: 8px 12px 10px; color: var(--muted); font-size: .78rem; font-weight: 650; line-height: 1.35; text-align: left; }
 .raza-media p { margin: 0; color: var(--muted); font-weight: 750; font-size: .92rem; }
 .raza-body { padding: 12px 14px 16px; }
 .raza-body h2 { margin: 0 0 8px; font-size: 1.2rem; }
