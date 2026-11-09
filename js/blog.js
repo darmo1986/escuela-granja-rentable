@@ -1,22 +1,10 @@
 /* Artículos: el video carga al pulsar.
-   Los anuncios los decide app.js, después de window.ads.activo y de Premium
-   (GR_esPremium / esPremiumLocal). Solo con activo === true se puede pedir un anuncio.
-   Si el hueco existe, no se borra aquí: el alto reservado evita el salto. */
+   No hay red de anuncios de terceros: se ocultan los huecos viejos. */
 (function () {
-  function premium() {
-    if (typeof window.esPremiumLocal === "function") return window.esPremiumLocal();
-    if (typeof window.GR_esPremium === "function") return window.GR_esPremium();
-    return false;
-  }
-  function anunciosApagados() {
-    return premium() || !(window.ads && window.ads.activo === true);
-  }
-  if (anunciosApagados()) {
-    if (typeof window.GR_quitarAnuncios === "function") window.GR_quitarAnuncios();
-    else {
-      document.documentElement.classList.add("ad-off");
-      document.documentElement.classList.remove("ad-ok");
-    }
+  if (typeof window.GR_quitarAnuncios === "function") window.GR_quitarAnuncios();
+  else {
+    document.documentElement.classList.add("ad-off");
+    document.documentElement.classList.remove("ad-ok");
   }
   document.querySelectorAll(".yt-facade[data-yt]").forEach(function (b) {
     b.addEventListener("click", function () {

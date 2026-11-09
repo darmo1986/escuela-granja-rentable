@@ -828,9 +828,9 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
 
 
 def anuncios_activos(raiz):
-    """True solo si js/config.js deja window.ads.activo en true.
+    """True solo si el interruptor de js/config.js está en true.
 
-    Con false, o si falta el archivo, el blog no pinta huecos ni carga anuncios.
+    Con false, o si falta el archivo, el blog no pinta huecos de anuncio.
     """
     ruta = Path(raiz) / "js" / "config.js"
     try:

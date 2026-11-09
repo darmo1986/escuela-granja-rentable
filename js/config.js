@@ -1,25 +1,6 @@
-/* Publicidad. Sitio aprobado en Adsterra: granjarentable.com (id 6132524).
-   El cartelito usa redes.adsterra.bannerKey (320×50). Solo banners en iframe. */
-window.ADSTERRA = {
-  /* Dominio de invoke.js. Los códigos de granjarentable.com lo traen así.
-     www.highperformanceformat.com también sirve el mismo script: se usa este
-     host aquí y como respaldo en app.js para que los dos no diverjan. */
-  host: "https://www.highrevenueformat.com",
-  banner: {
-    key: "054847add79800fd21407ef878aef225",
-    w: 728,
-    h: 90,
-    movil: { key: "96014a59041982a1a0b8be24828db835", w: 320, h: 50 }
-  },
-  rect: {
-    key: "4c10efc097372233b52ed4f05e0a6ab8",
-    w: 300,
-    h: 250
-  }
-};
-
-/* Interruptor de publicidad. false = no se pintan huecos de anuncio ni se pide Adsterra.
-   amazonTag vacío = no se pinta el hueco de Amazon. La configuración del sitio no trae etiqueta. */
+/* Interruptor de publicidad. false = no se pintan huecos de anuncio.
+   amazonTag vacío = no se pinta el hueco de Amazon. La configuración del sitio no trae etiqueta.
+   La web no carga redes de anuncios de terceros. */
 window.ads = { activo: false, amazonTag: "" };
 
 /* El curso y los ebooks van primero. */
@@ -69,15 +50,6 @@ window.GR = {
      muestra /panel.html; necesita la migración 20261020193000_panel.sql. */
   analitica: {
     cfToken: ""
-  },
-  redes: {
-    adsterra: {
-      /* Clave del banner pequeño (320×50).
-         Vacío = la página muestra «Publicidad no disponible.» y no llama a Adsterra. */
-      bannerKey: "96014a59041982a1a0b8be24828db835",
-      w: 320,
-      h: 50
-    }
   }
 };
 

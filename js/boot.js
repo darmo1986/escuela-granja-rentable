@@ -50,15 +50,10 @@
      Europa (incluye Reino Unido y Suiza), los territorios de la lista
      y una zona desconocida piden Aceptar antes. */
   document.documentElement.dataset.ads = estricto ? "ue" : "libre";
-  var pedir = false;
-  try { pedir = sessionStorage.getItem("gr_pedir_cookies") === "1"; } catch (ePedir) {}
   try {
-    var consent = localStorage.getItem("gr_consent");
-    var adsActivos = !!(window.ads && window.ads.activo === true);
     var rutaAds = location.pathname || "/";
     var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadora|calculadoras|afiliados|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || /\/blog\/alimentacion\.html$/.test(rutaAds) || /\/enfermedades\/categoria\/(respiratorias|parasitarias)\.html$/.test(rutaAds);
     if (sinAnuncios) document.documentElement.setAttribute("data-ads-pagina", "no");
-    if (!sinAnuncios && adsActivos && !pedir && !premiumVigente() && (consent === "si" || (!estricto && consent !== "no"))) document.documentElement.classList.add("ad-ok");
     if (premiumVigente()) document.documentElement.classList.add("ad-off");
   } catch (e0) {}
   var map = {
@@ -121,7 +116,6 @@
       localStorage.setItem("gr_pais", p);
     }
     if (!p) p = localStorage.getItem("gr_pais") || "";
-    if (!p) p = localStorage.getItem("gr_pais_ip") || "";
     if (!p) p = map[tz] || "";
     if (!p) {
       var known = { MX:1, US:1, CO:1, PE:1, ES:1, AR:1, VE:1, EC:1, DO:1, CL:1, PY:1, UY:1, BO:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1 };

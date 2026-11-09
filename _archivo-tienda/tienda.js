@@ -103,7 +103,6 @@
   function guardarCache(p) {
     try {
       localStorage.setItem("gr_tienda_pais_ip", JSON.stringify({ pais: p, ts: Date.now() }));
-      localStorage.setItem("gr_pais_ip", p); /* coherencia con js/site.js */
     } catch (e) {}
   }
   /* País elegido a mano en el selector: manda sobre la detección por IP */
