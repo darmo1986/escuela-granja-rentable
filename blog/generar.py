@@ -36,7 +36,7 @@ MARCA_PAGINA = "<!-- pagina-generada: blog -->"
 CLAVES = {
     "titulo", "titulo_seo", "descripcion", "categoria", "fecha", "leccion",
     "producto", "imagen", "imagen_alt", "imagen_og", "video", "red",
-    "fuentes", "borrador", "guia", "actualizado", "relacionados",
+    "fuentes", "borrador", "guia", "actualizado", "relacionados", "autor",
 }
 CATEGORIAS = (
     ("ponedoras", "Gallinas ponedoras", "gallinas-ponedoras", "empezar"),
@@ -81,6 +81,10 @@ CARPETA_POSTS = "_articulos"
 MAX_TITULO = 60
 MAX_DESCRIPCION = 150
 SUFIJO_TITULO = " | Granja Rentable"
+# El tope de 60 sigue valiendo para el resto. Este título lo aprobó el editor.
+TITULO_MAX_EXTRA = {
+    "agua-gallinas-ponedoras-bebederos": 100,
+}
 VERSION_ACTIVOS = "202610184"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
@@ -269,6 +273,22 @@ def enlace_rechazado(url):
     return False
 
 
+def marcar_enfasis(texto):
+    """Negrita y cursiva dentro de un enlace. El resto de los artículos no las usa ahí."""
+    partes = []
+    pos = 0
+    patron = re.compile(r"\*\*([^*]+)\*\*|\*([^*]+)\*")
+    for coincidencia in patron.finditer(texto):
+        partes.append(esc(texto[pos:coincidencia.start()]))
+        if coincidencia.group(1) is not None:
+            partes.append("<strong>" + esc(coincidencia.group(1)) + "</strong>")
+        else:
+            partes.append("<em>" + esc(coincidencia.group(2)) + "</em>")
+        pos = coincidencia.end()
+    partes.append(esc(texto[pos:]))
+    return "".join(partes)
+
+
 def enlace(texto, url, origen, errores):
     url = url.strip()
     if texto_prohibido(url) or texto_prohibido(texto):
@@ -277,11 +297,12 @@ def enlace(texto, url, origen, errores):
     if enlace_rechazado(url):
         errores.append(f"{origen}: el enlace no es válido. Usa https:// con dos barras, o una ruta del sitio.")
         return esc(texto)
+    visible = marcar_enfasis(texto)
     if url.startswith(("http://", "https://")):
         host = host_de(url)
         if host != "granjarentable.com":
-            return f'<a href="{esc(url)}" rel="noopener nofollow" target="_blank">{esc(texto)}</a>'
-    return f'<a href="{esc(url)}">{esc(texto)}</a>'
+            return f'<a href="{esc(url)}" rel="noopener nofollow" target="_blank">{visible}</a>'
+    return f'<a href="{esc(url)}">{visible}</a>'
 
 
 def en_linea(texto, origen, errores):
@@ -475,8 +496,9 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
     descripcion = campo(datos, "descripcion")
     if not descripcion:
         raise Fallo(f"{origen}: falta la descripcion.")
-    exigir_largo(titulo, MAX_TITULO, origen, "el titulo")
-    exigir_largo(titulo_seo, MAX_TITULO, origen, "el titulo")
+    limite_titulo = TITULO_MAX_EXTRA.get(slug, MAX_TITULO)
+    exigir_largo(titulo, limite_titulo, origen, "el titulo")
+    exigir_largo(titulo_seo, limite_titulo, origen, "el titulo")
     exigir_largo(descripcion, MAX_DESCRIPCION, origen, "la descripcion")
     exigir_limpio(titulo, origen, "el titulo")
     exigir_limpio(titulo_seo, origen, "el titulo")
@@ -533,6 +555,8 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         rel_limpios.append(slug_rel)
     if len(rel_limpios) > 3:
         raise Fallo(f"{origen}: relacionados admite como mucho 3 artículos.")
+    autor = campo(datos, "autor") or AUTOR
+    exigir_limpio(autor, origen, "autor")
     imagen = campo(datos, "imagen")
     imagen_og = campo(datos, "imagen_og")
     imagen_alt = campo(datos, "imagen_alt")
@@ -567,6 +591,7 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         "imagen": imagen,
         "imagen_og": imagen_og,
         "imagen_alt": imagen_alt,
+        "autor": autor,
         "video": video,
         "red": red,
         "fuentes": [x.strip() for x in fuentes],
@@ -819,7 +844,7 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     migas = (f'<p class="crumbs"><a href="{raiz}index.html">Inicio</a> › '
              f'<a href="/blog/">Artículos</a> › '
              f'<a href="{esc(CATS[post["categoria"]]["slug"])}.html">{esc(CATS[post["categoria"]]["nombre"])}</a></p>')
-    meta = fecha_larga(post["fecha"]) + " · " + esc(AUTOR)
+    meta = fecha_larga(post["fecha"]) + " · " + esc(post.get("autor") or AUTOR)
     if post["actualizado"] != post["fecha"]:
         meta += " · Revisado el " + fecha_larga(post["actualizado"])
     if post["leccion"]:
@@ -974,7 +999,7 @@ def ld_articulo(post, canonical):
         "datePublished": post["fecha"].isoformat(),
         "dateModified": post["actualizado"].isoformat(),
         "inLanguage": "es-419",
-        "author": {"@type": "Person", "name": AUTOR},
+        "author": {"@type": "Person", "name": post.get("autor") or AUTOR},
         "publisher": {
             "@type": "Organization",
             "name": EDITOR,

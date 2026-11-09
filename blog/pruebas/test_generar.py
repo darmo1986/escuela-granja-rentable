@@ -195,7 +195,7 @@ class Generador(unittest.TestCase):
 
     def test_tienda_ajena_y_vocabulario_no_publican(self):
         post(self.tmp, "2026-11-02-amazon.md", borrador="false",
-             _cuerpo="Compralo en https://www.amazon.com/dp/1")
+             _cuerpo="Compralo en https://www.ebay.com/itm/1")
         errores = generar.generar(self.tmp)
         self.assertTrue(errores)
         self.assertFalse((self.tmp / "blog" / "amazon.html").exists())
@@ -268,9 +268,9 @@ class Generador(unittest.TestCase):
     def test_tiendas_sin_punto_en_campos(self):
         (self.tmp / "blog" / "index.html").write_text("NO-TOCAR", encoding="utf-8")
         post(self.tmp, "2026-11-02-tienda.md", borrador="false",
-             titulo_seo="Oferta Amazon de la semana")
+             titulo_seo="Oferta eBay de la semana")
         errores = generar.generar(self.tmp)
-        self.assertTrue(any("Amazon" in e for e in errores))
+        self.assertTrue(any("eBay" in e for e in errores))
         self.assertFalse(any("Oferta" in e for e in errores))
         post(self.tmp, "2026-11-02-tienda.md", borrador="false",
              imagen_alt="Foto de un huevo y un anuncio de eBay al fondo")
@@ -382,6 +382,28 @@ class Generador(unittest.TestCase):
         errores = generar.generar(self.tmp)
         self.assertTrue(errores)
         self.assertIn("no-existe", errores[0])
+
+    def test_titulo_aprobado_y_autor_del_post(self):
+        titulo = "Agua para gallinas ponedoras: cuánto beben, qué bebedero elegir y cómo mantenerlo limpio"
+        self.assertGreater(len(titulo), 60)
+        self.assertLessEqual(len(titulo), 100)
+        post(self.tmp, "2026-11-09-agua-gallinas-ponedoras-bebederos.md", borrador="false",
+             titulo=titulo, titulo_seo=titulo, fecha="2026-11-09",
+             autor="Equipo editorial de Granja Rentable",
+             leccion="", producto="",
+             _cuerpo="Visita [**www.granjarentable.com**](https://www.granjarentable.com) y la [guía](https://www.merckvetmanual.com/poultry/nutrition-and-management-poultry/nutritional-requirements-of-poultry).")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "agua-gallinas-ponedoras-bebederos.html").read_text(encoding="utf-8")
+        self.assertIn(f"<title>{titulo}</title>", html)
+        self.assertIn("9 de noviembre de 2026 · Equipo editorial de Granja Rentable", html)
+        self.assertIn('"name":"Equipo editorial de Granja Rentable"', html)
+        self.assertIn('<a href="https://www.granjarentable.com"><strong>www.granjarentable.com</strong></a>', html)
+        self.assertIn('href="https://www.merckvetmanual.com/poultry/nutrition-and-management-poultry/nutritional-requirements-of-poultry" rel="noopener nofollow"', html)
+        self.assertIn("Juan Pablo González García", html)
+        post(self.tmp, "2026-11-02-otro-largo.md", borrador="false", titulo="T" * 61,
+             imagen="img/blog/otro.webp", imagen_og="img/blog/otro-og.webp")
+        errores = generar.generar(self.tmp)
+        self.assertTrue(any("61 caracteres" in e and "60" in e for e in errores))
 
 
 if __name__ == "__main__":
