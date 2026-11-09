@@ -14,7 +14,7 @@ La enfermedad de Newcastle es, junto con la [gripe aviar](https://granjarentable
 
 ## Qué es y a qué aves afecta
 
-La [OMSA](https://woah.org/es/enfermedad/enfermedad-de-newcastle/) la describe como una infección muy contagiosa y con frecuencia grave, presente en todo el mundo, causada por un virus de la familia de los paramixovirus. El [MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/newcastle/enf_newcastle) precisa que el agente es el paramixovirus aviar de tipo 1 (APMV-1). También se la conoce como pseudopeste aviar.
+La [OMSA](https://www.woah.org/es/enfermedad/enfermedad-de-newcastle/) la describe como una infección muy contagiosa y con frecuencia grave, presente en todo el mundo, causada por un virus de la familia de los paramixovirus. El [MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/newcastle/enf_newcastle) precisa que el agente es el paramixovirus aviar de tipo 1 (APMV-1). También se la conoce como pseudopeste aviar.
 
 Afecta a gallinas, pavos, codornices, faisanes, palomas, aves ornamentales y muchas aves silvestres. La OMSA explica que hay tres formas según la virulencia del virus:
 
@@ -78,7 +78,7 @@ No muevas aves ni huevos, no tires los cadáveres a la basura y separa a las enf
 
 ## ¿Es de declaración obligatoria en España?
 
-**Sí.** Según el MAPA, la enfermedad de Newcastle es de notificación inmediata (salvo en palomas que no se crían como aves de corral y en aves silvestres, que siguen otras reglas). Figura en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
+**Sí.** Según el MAPA, la enfermedad de Newcastle es de notificación inmediata (salvo en palomas que no se crían como aves de corral y en aves silvestres, que siguen otras reglas). Figura en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
 
 La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha.
 
@@ -103,11 +103,11 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 
 ## Fuentes
 
-- [OMSA: enfermedad de Newcastle](https://woah.org/es/enfermedad/enfermedad-de-newcastle/)
-- [MAPA: enfermedad de Newcastle](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/newcastle/enf_newcastle)
+- [OMSA: enfermedad de Newcastle](https://www.woah.org/es/enfermedad/enfermedad-de-newcastle/)
+- [MAPA: enfermedad de Newcastle](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/newcastle/enf_newcastle)
 - [Manual Merck de Veterinaria: Newcastle Disease in Poultry](https://merckvetmanual.com/poultry/newcastle-disease-and-other-avian-paramyxovirus-infections/newcastle-disease-in-poultry)
 - [FAO: sanidad animal en aves de corral](https://www.fao.org/poultry-production-products/production/animal-health/es)
 - [Universidad Estatal de Iowa (CFSPH): enfermedad de Newcastle](https://cfsph.iastate.edu/diseaseinfo/disease/?disease=newcastle-disease&lang=es)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

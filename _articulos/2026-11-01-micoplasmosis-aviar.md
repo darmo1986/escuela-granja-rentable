@@ -14,7 +14,7 @@ La micoplasmosis aviar es una de esas enfermedades que se quedan a vivir en el g
 
 ## Qué es y a qué aves afecta
 
-Según el [MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/micoplasmosis-aviar/micoplasmosis_aviar), la micoplasmosis aviar la causan bacterias del género Mycoplasma. Las principales son:
+Según el [MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/micoplasmosis-aviar/micoplasmosis_aviar), la micoplasmosis aviar la causan bacterias del género Mycoplasma. Las principales son:
 
 | Agente | Aves | Qué causa sobre todo |
 |---|---|---|
@@ -72,7 +72,7 @@ Hay vacunas, pero su uso lo valora el veterinario según el tipo de granja. Si s
 
 ## ¿Es de declaración obligatoria en España?
 
-**Sí.** El MAPA indica que la micoplasmosis aviar es de declaración obligatoria y que está incluida en la lista de la OMSA; en la Unión Europea es de categoría D+E (evitar su propagación y vigilancia). Figura en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
+**Sí.** El MAPA indica que la micoplasmosis aviar es de declaración obligatoria y que está incluida en la lista de la OMSA; en la Unión Europea es de categoría D+E (evitar su propagación y vigilancia). Figura en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
 
 La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha.
 
@@ -97,10 +97,10 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 
 ## Fuentes
 
-- [MAPA: micoplasmosis aviar](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/micoplasmosis-aviar/micoplasmosis_aviar)
-- [OMSA: micoplasmosis aviar (Mycoplasma gallisepticum)](https://woah.org/es/enfermedad/micoplasmosis-aviar-mycoplasma-gallisepticum/)
+- [MAPA: micoplasmosis aviar](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/micoplasmosis-aviar/micoplasmosis_aviar)
+- [OMSA: micoplasmosis aviar (Mycoplasma gallisepticum)](https://www.woah.org/es/enfermedad/micoplasmosis-aviar-mycoplasma-gallisepticum/)
 - [Manual Merck de Veterinaria: Mycoplasma gallisepticum Infection in Poultry](https://merckvetmanual.com/poultry/mycoplasmosis/mycoplasma-gallisepticum-infection-in-poultry)
 - [Manual Merck de Veterinaria: Mycoplasma synoviae Infection in Poultry](https://merckvetmanual.com/poultry/mycoplasmosis/mycoplasma-synoviae-infection-in-poultry)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

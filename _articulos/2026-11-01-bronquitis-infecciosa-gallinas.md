@@ -16,7 +16,7 @@ Si tus gallinas tosen, la puesta cae de golpe y empiezan a salir huevos arrugado
 
 El [Manual Merck de Veterinaria](https://merckvetmanual.com/poultry/infectious-bronchitis/infectious-bronchitis-in-chickens) explica que la causa un coronavirus aviar que **solo produce enfermedad en la gallina** (Gallus). También se ha encontrado en faisanes y pavos reales, que pueden infectarse sin enfermar. Es un coronavirus propio de las aves; no es el de la COVID-19 ni pasa a las personas.
 
-Está en todo el mundo y hay muchos tipos (serotipos) del virus circulando a la vez, algunos muy extendidos y otros regionales. Esto complica la prevención, porque la protección frente a un tipo no siempre cubre a otro. La [OMSA](https://woah.org/es/enfermedad/bronquitis-infecciosa-aviar/) la incluye en su lista de enfermedades de los animales terrestres.
+Está en todo el mundo y hay muchos tipos (serotipos) del virus circulando a la vez, algunos muy extendidos y otros regionales. Esto complica la prevención, porque la protección frente a un tipo no siempre cubre a otro. La [OMSA](https://www.woah.org/es/enfermedad/bronquitis-infecciosa-aviar/) la incluye en su lista de enfermedades de los animales terrestres.
 
 ## Signos
 
@@ -73,7 +73,7 @@ Recuerda que la caída de puesta con huevos anormales también aparece en la [en
 
 ## ¿Es de declaración obligatoria en España?
 
-La bronquitis infecciosa aviar está en la [lista de enfermedades de la OMSA](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/). El [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779) regula en España las enfermedades de declaración obligatoria en el ámbito nacional, de la Unión Europea y de la OMSA; para las de la lista de la OMSA, las autoridades hacen una declaración oficial cada seis meses. No figura entre las enfermedades de aves que el MAPA destaca en su [lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) de notificación inmediata.
+La bronquitis infecciosa aviar está en la [lista de enfermedades de la OMSA](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/). El [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779) regula en España las enfermedades de declaración obligatoria en el ámbito nacional, de la Unión Europea y de la OMSA; para las de la lista de la OMSA, las autoridades hacen una declaración oficial cada seis meses. No figura entre las enfermedades de aves que el MAPA destaca en su [lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) de notificación inmediata.
 
 La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha.
 
@@ -99,8 +99,8 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 ## Fuentes
 
 - [Manual Merck de Veterinaria: Infectious Bronchitis in Chickens](https://merckvetmanual.com/poultry/infectious-bronchitis/infectious-bronchitis-in-chickens)
-- [OMSA: bronquitis infecciosa aviar](https://woah.org/es/enfermedad/bronquitis-infecciosa-aviar/)
-- [OMSA: enfermedades de los animales (lista por especies)](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
+- [OMSA: bronquitis infecciosa aviar](https://www.woah.org/es/enfermedad/bronquitis-infecciosa-aviar/)
+- [OMSA: enfermedades de los animales (lista por especies)](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

@@ -23,7 +23,7 @@ Afecta a la gallina joven en todo el mundo, tanto a pollitas de puesta como a po
 - en algunas razas ligeras de puesta se han visto casos graves hasta las 18 semanas;
 - la mortalidad suele ser mayor en razas de puesta que en pollos de engorde.
 
-Pavos y otras aves pueden infectarse con otro tipo del virus, pero el Manual Merck indica que no les causa enfermedad. La [OMSA](https://woah.org/es/enfermedad/bursitis-infecciosa-enfermedad-de-gumboro/) la incluye en su lista de enfermedades.
+Pavos y otras aves pueden infectarse con otro tipo del virus, pero el Manual Merck indica que no les causa enfermedad. La [OMSA](https://www.woah.org/es/enfermedad/bursitis-infecciosa-enfermedad-de-gumboro/) la incluye en su lista de enfermedades.
 
 ## Signos
 
@@ -71,7 +71,7 @@ El diagnóstico se confirma con necropsia y laboratorio. Lleva al veterinario av
 
 ## ¿Es de declaración obligatoria en España?
 
-La enfermedad de Gumboro (bursitis infecciosa) está en la [lista de enfermedades de la OMSA](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/). El [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779) regula en España las enfermedades de declaración obligatoria en el ámbito nacional, de la Unión Europea y de la OMSA; para las de la lista de la OMSA, las autoridades hacen una declaración oficial cada seis meses. No figura entre las enfermedades de aves que el MAPA destaca en su [lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) de notificación inmediata.
+La enfermedad de Gumboro (bursitis infecciosa) está en la [lista de enfermedades de la OMSA](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/). El [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779) regula en España las enfermedades de declaración obligatoria en el ámbito nacional, de la Unión Europea y de la OMSA; para las de la lista de la OMSA, las autoridades hacen una declaración oficial cada seis meses. No figura entre las enfermedades de aves que el MAPA destaca en su [lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) de notificación inmediata.
 
 La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha.
 
@@ -97,8 +97,8 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 ## Fuentes
 
 - [Manual Merck de Veterinaria: Infectious Bursal Disease in Poultry](https://merckvetmanual.com/poultry/infectious-bursal-disease/infectious-bursal-disease-in-poultry)
-- [OMSA: bursitis infecciosa (enfermedad de Gumboro)](https://woah.org/es/enfermedad/bursitis-infecciosa-enfermedad-de-gumboro/)
-- [OMSA: enfermedades de los animales (lista por especies)](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
+- [OMSA: bursitis infecciosa (enfermedad de Gumboro)](https://www.woah.org/es/enfermedad/bursitis-infecciosa-enfermedad-de-gumboro/)
+- [OMSA: enfermedades de los animales (lista por especies)](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

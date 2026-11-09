@@ -16,7 +16,7 @@ Una pollita que un día cojea, después se queda sentada con una pata estirada h
 
 El [Manual Merck de Veterinaria](https://merckvetmanual.com/poultry/neoplasms-in-poultry/marek-s-disease-in-poultry) la define como una enfermedad causada por un herpesvirus muy contagioso entre las gallinas. Además de parálisis, provoca **tumores** en nervios, órganos internos, piel y músculo. Afecta sobre todo a la gallina (también a pollos de engorde) y, más rara vez, a pavos y codornices.
 
-El Manual Merck indica que puede aparecer en aves desde las 3 semanas de edad. Lo habitual es verla en pollitas en crecimiento y gallinas jóvenes. La [OMSA](https://woah.org/es/enfermedad/enfermedad-de-marek/) tiene una página sobre ella.
+El Manual Merck indica que puede aparecer en aves desde las 3 semanas de edad. Lo habitual es verla en pollitas en crecimiento y gallinas jóvenes. La [OMSA](https://www.woah.org/es/enfermedad/enfermedad-de-marek/) tiene una página sobre ella.
 
 ## Signos
 
@@ -67,7 +67,7 @@ Ojo: la parálisis y el cuello torcido también aparecen en la [enfermedad de Ne
 
 ## ¿Es de declaración obligatoria en España?
 
-La enfermedad de Marek **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
+La enfermedad de Marek **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
 
 Eso no significa que puedas callarte un brote. La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha. Una mortalidad alta o repentina en el gallinero puede ser gripe aviar o Newcastle aunque parezca otra cosa, y eso solo lo aclara el laboratorio.
 
@@ -91,8 +91,8 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 ## Fuentes
 
 - [Manual Merck de Veterinaria: Marek's Disease in Poultry](https://merckvetmanual.com/poultry/neoplasms-in-poultry/marek-s-disease-in-poultry)
-- [OMSA: enfermedad de Marek](https://woah.org/es/enfermedad/enfermedad-de-marek/)
-- [OMSA: enfermedades de los animales (lista por especies)](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
+- [OMSA: enfermedad de Marek](https://www.woah.org/es/enfermedad/enfermedad-de-marek/)
+- [OMSA: enfermedades de los animales (lista por especies)](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

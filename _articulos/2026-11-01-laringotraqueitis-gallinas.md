@@ -20,7 +20,7 @@ El [Manual Merck de Veterinaria](https://merckvetmanual.com/poultry/infectious-l
 - faisanes y pavos reales;
 - con menos frecuencia, pavos.
 
-Según el Manual Merck, aves silvestres como palomas y aves acuáticas pueden llevar el virus sin mostrar signos. La enfermedad causa pérdidas por muertes y por caída de la puesta. La [OMSA](https://woah.org/es/enfermedad/laringotraqueitis-infecciosa-aviar/) la incluye en su lista de enfermedades de los animales terrestres.
+Según el Manual Merck, aves silvestres como palomas y aves acuáticas pueden llevar el virus sin mostrar signos. La enfermedad causa pérdidas por muertes y por caída de la puesta. La [OMSA](https://www.woah.org/es/enfermedad/laringotraqueitis-infecciosa-aviar/) la incluye en su lista de enfermedades de los animales terrestres.
 
 ## Signos
 
@@ -79,7 +79,7 @@ No muevas aves fuera de tu granja mientras esperas, y no recibas aves nuevas. El
 
 ## ¿Es de declaración obligatoria en España?
 
-La laringotraqueitis infecciosa aviar está en la [lista de enfermedades de la OMSA](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/). El [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779) regula en España las enfermedades de declaración obligatoria en el ámbito nacional, de la Unión Europea y de la OMSA; para las de la lista de la OMSA, las autoridades hacen una declaración oficial cada seis meses. No figura entre las enfermedades de aves que el MAPA destaca en su [lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) de notificación inmediata.
+La laringotraqueitis infecciosa aviar está en la [lista de enfermedades de la OMSA](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/). El [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779) regula en España las enfermedades de declaración obligatoria en el ámbito nacional, de la Unión Europea y de la OMSA; para las de la lista de la OMSA, las autoridades hacen una declaración oficial cada seis meses. No figura entre las enfermedades de aves que el MAPA destaca en su [lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) de notificación inmediata.
 
 La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha.
 
@@ -106,8 +106,8 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 ## Fuentes
 
 - [Manual Merck de Veterinaria: Infectious Laryngotracheitis in Poultry](https://merckvetmanual.com/poultry/infectious-laryngotracheitis/infectious-laryngotracheitis)
-- [OMSA: laringotraqueitis infecciosa aviar](https://woah.org/es/enfermedad/laringotraqueitis-infecciosa-aviar/)
-- [OMSA: enfermedades de los animales (lista por especies)](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
+- [OMSA: laringotraqueitis infecciosa aviar](https://www.woah.org/es/enfermedad/laringotraqueitis-infecciosa-aviar/)
+- [OMSA: enfermedades de los animales (lista por especies)](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
