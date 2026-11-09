@@ -917,35 +917,74 @@ def precio_catalogo(raiz, href):
     return coincidencia.group(1).strip() if coincidencia else ""
 
 
+def id_banner(prefijo, clave):
+    return prefijo + "-" + clave
+
+
+def con_utm_interno(url, banner_id):
+    """Solo enlaces de /ebooks/. Si ya hay utm, se deja. Amazon no pasa por aquí."""
+    base, sep, ancla = url.partition("#")
+    if "utm_" in base:
+        return url
+    union = "&" if "?" in base else "?"
+    extra = ("utm_source=granjarentable&utm_medium=banner&utm_campaign=" + banner_id)
+    salida = base + union + extra
+    if sep:
+        salida += "#" + ancla
+    return salida
+
+
 def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
+    id_ebook = id_banner("ebook", ebook_clave)
     precio_html = f"<p>{esc(precio)}</p>" if precio else ""
-    bloque = (f'<aside class="banner-ebook" data-banner-ebook>'
+    enlace = con_utm_interno(raiz_url + href, id_ebook)
+    bloque = (f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
               f'<p class="kicker">De Granja Rentable</p>'
-              f'<p><a href="{esc(raiz_url + href)}">{esc(titulo)}</a></p>'
+              f'<p><a href="{esc(enlace)}">{esc(titulo)}</a></p>'
               f'{precio_html}'
               f'</aside>')
     if tag and amazon_tema in AMAZON_POR_TEMA:
         nombre, asin = AMAZON_POR_TEMA[amazon_tema]
+        id_amazon = id_banner("amazon", amazon_tema)
         url = f"https://www.amazon.com/dp/{asin}?tag={tag}"
-        bloque += (f'<aside class="banner-amazon" data-banner-amazon>'
+        bloque += (f'<aside class="banner-amazon" data-banner-amazon data-banner="{esc(id_amazon)}">'
                    f'<p><small>Enlace de afiliado</small></p>'
                    f'<p><a rel="sponsored nofollow noopener" target="_blank" href="{esc(url)}">{esc(nombre)}</a></p>'
                    f'</aside>')
     return bloque
 
 
-def colocar_banners(rel, html, raiz, post=None):
-    """El banner propio se inserta una vez. Si ya está, se conserva."""
-    if "data-banner-ebook" in html or "</main>" not in html:
+def pagina_con_banner(rel):
+    return rel == "index.html" or (rel.startswith("blog/") and rel.endswith(".html"))
+
+
+def asegurar_script_banners(html, rel):
+    if "js/registro-banners.js" in html or "</body>" not in html:
         return html
-    if rel != "index.html" and not (rel.startswith("blog/") and rel.endswith(".html")):
+    src = f"{raiz_de(rel)}js/registro-banners.js?v={VERSION_ACTIVOS}"
+    etiqueta = f'<script defer src="{src}"></script>'
+    return html.replace("</body>", etiqueta + "\n</body>", 1)
+
+
+def colocar_banners(rel, html, raiz, post=None):
+    """El banner propio se inserta una vez. Si ya está, se vuelve a escribir con su id."""
+    if not pagina_con_banner(rel) or "</main>" not in html:
         return html
     clave, amazon_tema = ebook_y_amazon(rel, post)
     _titulo, href = EBOOK_POR_CLAVE[clave]
     banner = html_banner(raiz_de(rel), clave, amazon_tema, etiqueta_amazon(raiz),
                          precio_catalogo(raiz, href))
-    return html.replace("</main>", banner + "\n</main>", 1)
+    if re.search(r'<aside class="banner-ebook"', html):
+        html, n = re.subn(
+            r'<aside class="banner-ebook"[\s\S]*?</aside>'
+            r'(?:<aside class="banner-amazon"[\s\S]*?</aside>)?',
+            lambda _: banner, html, count=1)
+        if n != 1:
+            return html
+    else:
+        html = html.replace("</main>", banner + "\n</main>", 1)
+    return asegurar_script_banners(html, rel)
 
 
 def url_post(slug):

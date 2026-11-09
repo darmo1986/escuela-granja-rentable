@@ -2,6 +2,7 @@
 """Pruebas del generador de Artículos. No publican nada en el sitio."""
 import importlib.util
 import json
+import re
 import shutil
 import tempfile
 import unittest
@@ -442,13 +443,17 @@ class Generador(unittest.TestCase):
         self.assertEqual(generar.generar(self.tmp), [])
         html = (self.tmp / "blog" / "banner.html").read_text(encoding="utf-8")
         self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertIn('data-banner="ebook-empezar"', html)
         self.assertIn("Guía para empezar tu granja", html)
-        self.assertIn("ebooks/#guia-empezar", html)
+        self.assertIn("ebooks/?utm_source=granjarentable&amp;utm_medium=banner&amp;utm_campaign=ebook-empezar#guia-empezar", html)
+        self.assertEqual(html.count("js/registro-banners.js"), 1)
         self.assertNotIn("adsbygoogle.js", html)
         self.assertNotIn("data-banner-amazon", html)
         self.assertEqual(generar.generar(self.tmp), [])
         html = (self.tmp / "blog" / "banner.html").read_text(encoding="utf-8")
         self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertEqual(html.count("js/registro-banners.js"), 1)
+        self.assertEqual(html.count("utm_campaign=ebook-empezar"), 1)
         self.assertNotIn("adsbygoogle.js", html)
         (self.tmp / "js" / "config.js").write_text(
             'window.ads = { activo: true, amazonTag: "" };\n', encoding="utf-8")
@@ -464,12 +469,35 @@ class Generador(unittest.TestCase):
         html = (self.tmp / "blog" / "banner.html").read_text(encoding="utf-8")
         self.assertNotIn("adsbygoogle.js", html)
         self.assertEqual(html.count("data-banner-amazon"), 1)
+        self.assertIn('data-banner="amazon-incubacion"', html)
+        amazon = html.split("banner-amazon", 1)[1]
+        self.assertNotIn("utm_", amazon)
         self.assertIn("Enlace de afiliado", html)
         self.assertIn("tag=test-20", html)
         self.assertIn('rel="sponsored nofollow noopener"', html)
+        self.assertEqual(html.count("js/registro-banners.js"), 1)
         portada = (self.tmp / "index.html").read_text(encoding="utf-8")
         self.assertIn("Pack de ebooks de Granja Rentable", portada)
         self.assertNotIn("adsbygoogle.js", portada)
+        self.assertNotIn("ca-pub-5311145772953700", portada)
+        self.assertIn('data-banner="ebook-pack"', portada)
+        self.assertIn("utm_campaign=ebook-pack", portada)
+        self.assertEqual(portada.count("js/registro-banners.js"), 1)
+        paginas = []
+        for ruta in self.tmp.rglob("*.html"):
+            rel = ruta.relative_to(self.tmp).as_posix()
+            if rel.startswith(("blog/plantillas/", "blog/pruebas/")):
+                continue
+            texto = ruta.read_text(encoding="utf-8")
+            if "banner-ebook" not in texto and "banner-amazon" not in texto:
+                continue
+            paginas.append(rel)
+            self.assertEqual(texto.count("js/registro-banners.js"), 1, rel)
+            self.assertNotIn("adsbygoogle", texto, rel)
+            for aside in re.findall(r"<aside class=\"banner-(?:ebook|amazon)\"[^>]*>", texto):
+                self.assertIn("data-banner=\"", aside, rel)
+        self.assertIn("blog/banner.html", paginas)
+        self.assertIn("index.html", paginas)
         clave, _tema = generar.ebook_y_amazon(
             "blog/criar-codornices-desde-cero.html",
             {"slug": "criar-codornices-desde-cero", "categoria": "ponedoras"})
