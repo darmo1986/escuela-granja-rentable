@@ -934,49 +934,45 @@ def con_utm_interno(url, banner_id):
     return salida
 
 
-# Portada provisional, la misma de /ebooks/. Cuando llegue la imagen generada
-# de cada banner, cambia aquí el nombre base (img/<nombre>-480.webp y sus
-# hermanos de 768 y 1200). El título, el precio y «Compra ya» siguen en HTML.
-EBOOK_PORTADA = {
-    "pack": "ebook-guia-empezar",
-    "alimenta": "ebook-alimenta-ponedoras",
-    "elegir": "ebook-pienso-elegir",
-    "hacer": "ebook-pienso-hacer",
-    "empezar": "ebook-guia-empezar",
+# Banner opción 1 (elegida por Pablo): logo arriba, titular corto, ilustración
+# a la izquierda (recorte sin texto de la imagen de ChatGPT, img/banners/),
+# precio grande y botón «Compra ya» que lleva a la ficha de compra del ebook.
+EBOOK_ILUSTRACION = {
+    "pack": "banner-empezar",
+    "alimenta": "banner-alimenta",
+    "elegir": "banner-elegir",
+    "hacer": "banner-hacer",
+    "empezar": "banner-empezar",
 }
 EBOOK_ALT = {
-    "pack": "Portada: Guía para empezar tu granja",
-    "alimenta": "Portada: Alimenta bien a tus ponedoras",
-    "elegir": "Portada: Cómo elegir el pienso",
-    "hacer": "Portada: Cómo hacer tu propio pienso",
-    "empezar": "Portada: Guía para empezar tu granja",
+    "pack": "Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera",
+    "alimenta": "Ilustración: gallinas ponedoras comiendo pienso en un comedero de madera junto a cajas de huevos",
+    "elegir": "Ilustración: manos abriendo un saco de pienso junto a una gallina con sus pollitos",
+    "hacer": "Ilustración: gallinas y pollitos junto a sacos de pienso y un molino para fabricar el alimento",
+    "empezar": "Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera",
 }
-EBOOK_BENEFICIO = {
-    "pack": "Cuatro guías en PDF para consultar cuando las necesites.",
-    "alimenta": "Alimentación por etapas y un plan de 7 días para organizar la comida.",
-    "elegir": "Cómo leer la etiqueta y comparar el pienso ya fabricado.",
-    "hacer": "Máquinas, ingredientes y el paso a paso para fabricar el alimento.",
-    "empezar": "Una guía corta para montar la granja desde cero.",
+EBOOK_TITULAR = {
+    "pack": "Guías prácticas para tu granja",
+    "alimenta": "Más huevos, mejor alimentación",
+    "elegir": "Elige el pienso adecuado",
+    "hacer": "Fabrica tu propio pienso",
+    "empezar": "Empieza tu granja sin errores",
 }
 
 
 def precio_banner(clave):
-    """El pack no tiene un solo precio. Cada guía se anuncia a 3,00 USD."""
+    """El pack no tiene un solo precio. Cada guía se anuncia a 3 USD."""
     if clave == "pack":
-        return "desde 3,00 USD"
-    return "3,00 USD"
+        return "desde 3 USD"
+    return "3 USD"
 
 
-def html_portada(raiz_url, clave):
-    nombre = EBOOK_PORTADA[clave]
-    def ruta(ancho):
-        return f"{raiz_url}img/{nombre}-{ancho}.webp"
-    srcset = ", ".join(f"{ruta(ancho)} {ancho}w" for ancho in (480, 768, 1200))
+def html_ilustracion(raiz_url, clave):
+    ruta = f"{raiz_url}img/banners/{EBOOK_ILUSTRACION[clave]}.webp"
     return (
-        f'<picture><source type="image/webp" srcset="{esc(srcset)}" '
-        f'sizes="(max-width: 480px) 96px, 148px">'
-        f'<img src="{esc(ruta(480))}" alt="{esc(EBOOK_ALT[clave])}" '
-        f'width="480" height="320" loading="lazy" decoding="async"></picture>'
+        f'<img class="banner-ebook-ilustracion" src="{esc(ruta)}" '
+        f'alt="{esc(EBOOK_ALT[clave])}" width="600" height="469" '
+        f'loading="lazy" decoding="async">'
     )
 
 
@@ -984,17 +980,20 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
     id_ebook = id_banner("ebook", ebook_clave)
     enlace = con_utm_interno(raiz_url + href, id_ebook)
+    guia = f"{titulo} · 4 guías en PDF" if ebook_clave == "pack" else f"Ebook en PDF: {titulo}"
     bloque = (
         f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
         f'<a class="banner-ebook-ficha" href="{esc(enlace)}">'
-        f'{html_portada(raiz_url, ebook_clave)}'
-        f'<span class="banner-ebook-texto">'
-        f'<p class="kicker">De Granja Rentable</p>'
-        f'<p class="banner-ebook-titulo">{esc(titulo)}</p>'
-        f'<p class="banner-ebook-beneficio">{esc(EBOOK_BENEFICIO[ebook_clave])}</p>'
+        f'<div class="banner-ebook-marca">'
+        f'<img src="{esc(raiz_url)}img/logo-oscuro.svg" alt="Granja Rentable" width="36" height="36" decoding="async">'
+        f'<span>Granja Rentable</span></div>'
+        f'{html_ilustracion(raiz_url, ebook_clave)}'
+        f'<div class="banner-ebook-texto">'
+        f'<p class="banner-ebook-titulo">{esc(EBOOK_TITULAR[ebook_clave])}</p>'
+        f'<p class="banner-ebook-guia">{esc(guia)}</p>'
         f'<p class="banner-ebook-precio">{esc(precio_banner(ebook_clave))}</p>'
         f'<span class="banner-ebook-cta">Compra ya</span>'
-        f'</span></a></aside>'
+        f'</div></a></aside>'
     )
     if tag and amazon_tema in AMAZON_POR_TEMA:
         nombre, asin = AMAZON_POR_TEMA[amazon_tema]
