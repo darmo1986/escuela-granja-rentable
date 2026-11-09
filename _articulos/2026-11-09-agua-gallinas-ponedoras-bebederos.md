@@ -12,7 +12,6 @@ imagen_alt: "Gallinas marrones bebiendo de un bebedero de campana rojo colgado, 
 relacionados:
   - agua-gallinas-ponedoras
   - agua-verano-gallinas-calidad-cantidad
-  - alimentacion-gallinas-ponedoras
 ---
 
 Una gallina puede tener un pienso excelente y un gallinero bien preparado, pero si no dispone de agua suficiente y limpia, su bienestar y su producción pueden verse afectados.
@@ -455,3 +454,5 @@ Visita [**www.granjarentable.com**](https://www.granjarentable.com) y aprende a 
 **Metodología editorial:** Las fórmulas permiten registrar y calcular datos propios. Las cantidades de agua son referencias técnicas generales, no consumos medidos en una granja concreta. Las recomendaciones de limpieza y mantenimiento deben adaptarse al sistema y a las instrucciones de los fabricantes.
 
 **Nota editorial:** Esta guía no sustituye un análisis de calidad de agua, una evaluación veterinaria ni las obligaciones sanitarias aplicables en cada localidad.
+
+Otras guías del mismo tema: [bebederos y errores frecuentes](agua-gallinas-ponedoras.html) y [agua en verano: calidad y cantidad](agua-verano-gallinas-calidad-cantidad.html).

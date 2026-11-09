@@ -5,6 +5,7 @@ descripcion: "Compara los tamaños Standard y Large, el entrenamiento y los lím
 categoria: alimentacion
 fecha: 2026-11-05
 borrador: false
+noindex: true
 imagen: "img/blog/grandpas-feeders-standard-comedero-automatico.webp"
 imagen_og: "img/blog/grandpas-feeders-standard-comedero-automatico-og.webp"
 imagen_alt: "Comedero automático de pedal Grandpa's Feeders, variante Standard"

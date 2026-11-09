@@ -5,6 +5,7 @@ descripcion: "Revisa capacidad anunciada, montaje y límites de la EcoGlow 600; 
 categoria: engorde
 fecha: 2026-11-05
 borrador: false
+noindex: true
 imagen: "img/blog/brinsea-ecoglow-safety-600-opinion.webp"
 imagen_og: "img/blog/brinsea-ecoglow-safety-600-opinion-og.webp"
 imagen_alt: "Placa de calor Brinsea EcoGlow Safety 600 para pollitos"

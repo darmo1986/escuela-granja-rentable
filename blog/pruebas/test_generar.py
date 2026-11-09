@@ -405,6 +405,30 @@ class Generador(unittest.TestCase):
         errores = generar.generar(self.tmp)
         self.assertTrue(any("61 caracteres" in e and "60" in e for e in errores))
 
+    def test_lista_numerada_faq_noindex_y_scripts(self):
+        post(self.tmp, "2026-11-09-pasos.md", borrador="false", leccion="", producto="",
+             noindex=True,
+             _cuerpo="## Preguntas frecuentes\n\n### ¿Hay que limpiar el bebedero?\n\nSí, cuando se vea sucio.\n\n## Pasos\n\n1. Vacía el agua.\n\n2. Lava el recipiente.\n")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "pasos.html").read_text(encoding="utf-8")
+        self.assertIn('<ol class="steps">', html)
+        self.assertIn("<li>Vacía el agua.</li>", html)
+        self.assertIn("<li>Lava el recipiente.</li>", html)
+        self.assertIn('"@type":"FAQPage"', html)
+        self.assertIn("¿Hay que limpiar el bebedero?", html)
+        self.assertIn('content="noindex,follow"', html)
+        self.assertIn("js/app.js?v=202610184", html)
+        self.assertIn("js/site.js?v=202610184", html)
+        self.assertNotIn("catalogo.js", html)
+        self.assertIn("quienes-somos.html#equipo-editorial", html)
+        sitemap = (self.tmp / "sitemap.xml").read_text(encoding="utf-8")
+        self.assertNotIn("https://granjarentable.com/blog/pasos.html", sitemap)
+        self.assertIn("https://granjarentable.com/blog/", sitemap)
+        indice = (self.tmp / "blog" / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("pasos.html", indice)
+        cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
+        self.assertNotIn("pasos.html", cat)
+
 
 if __name__ == "__main__":
     unittest.main()

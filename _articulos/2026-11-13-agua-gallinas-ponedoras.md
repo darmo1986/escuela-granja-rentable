@@ -8,6 +8,9 @@ borrador: false
 imagen: "img/blog/agua-gallinas-ponedoras.webp"
 imagen_og: "img/blog/agua-gallinas-ponedoras-og.webp"
 imagen_alt: "Gallinas marrones en primer plano a la derecha bebiendo agua fresca en un bebedero de campana, fondo verde desenfocado"
+relacionados:
+  - agua-gallinas-ponedoras-bebederos
+  - agua-verano-gallinas-calidad-cantidad
 ---
 
 ## El nutriente que más se descuida
@@ -66,3 +69,5 @@ Otro detalle que se pasa por alto: las gallinas beben más justo después de com
 El agua es lo más barato del gallinero y lo que más rinde: limpia, fresca y siempre disponible, es la base silenciosa de una buena puesta.
 
 Si quieres aprender alimentación y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.
+
+Otras guías del mismo tema: [cuánto beben, qué bebedero elegir y cómo mantenerlo limpio](agua-gallinas-ponedoras-bebederos.html) y [agua en verano: calidad y cantidad](agua-verano-gallinas-calidad-cantidad.html).

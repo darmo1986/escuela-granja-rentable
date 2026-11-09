@@ -5,6 +5,7 @@ descripcion: "Cómo usar las virutas Fresh Flakes y qué comparar con otras cama
 categoria: engorde
 fecha: 2026-11-05
 borrador: false
+noindex: true
 imagen: "img/blog/manna-pro-fresh-flakes-cama-pino-engorde.webp"
 imagen_og: "img/blog/manna-pro-fresh-flakes-cama-pino-engorde-og.webp"
 imagen_alt: "Virutas de pino Manna Pro Fresh Flakes para cama de gallinero"
