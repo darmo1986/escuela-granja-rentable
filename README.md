@@ -27,7 +27,7 @@ Precios de la incubadora copiados de la tienda el 14 de octubre de 2026, con el 
 
 ## Catálogo (todos los productos que se pudieron leer)
 
-La fuente de la tienda de incubación es `config` de https://granjarentable-incubadora.netlify.app/ (14 de octubre de 2026). Las fotos están en `img/productos/`. Cada ficha está en `producto/`. El menú Tienda abre Incubadoras y Complementos.
+La tienda de incubadoras con Stripe se cerró el 1 de noviembre de 2026. Su código no está en este repositorio: no hay `netlify.toml`, ni `_redirects`, ni el identificador del sitio. Las fichas antiguas de `producto/` redirigen a `/ebooks/`.
 
 | Producto | En esta tienda | Origen |
 | --- | --- | --- |
