@@ -72,7 +72,7 @@
     raza("leghorn", "Leghorn blanca", "Italia", [250, 300], "nerviosa", "medio", "ligera", "raza"),
     raza("rhode-island", "Rhode Island Red", "EE. UU.", [200, 280], "rústica", "sí", "media", "raza"),
     raza("australorp", "Australorp", "Australia", [220, 300], "tranquila", "sí", "pesada", "raza"),
-    raza("plymouth", "Plymouth Rock barrada", "EE. UU.", [200, 280], "tranquila", "sí", "pesada", "raza"),
+    raza("plymouth", "Plymouth Rock barrada", "EE. UU.", [180, 220], "tranquila", "sí", "pesada", "raza"),
     raza("sussex", "Sussex", "Inglaterra", [200, 260], "dócil", "sí", "pesada", "raza"),
     raza("new-hampshire", "New Hampshire", "EE. UU.", [200, 250], "tranquila", "sí", "media", "raza"),
     raza("delaware", "Delaware", "EE. UU.", [180, 250], "tranquila", "sí", "media", "raza"),
