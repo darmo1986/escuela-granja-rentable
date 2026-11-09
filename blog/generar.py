@@ -934,16 +934,67 @@ def con_utm_interno(url, banner_id):
     return salida
 
 
+# Portada provisional, la misma de /ebooks/. Cuando llegue la imagen generada
+# de cada banner, cambia aquí el nombre base (img/<nombre>-480.webp y sus
+# hermanos de 768 y 1200). El título, el precio y «Compra ya» siguen en HTML.
+EBOOK_PORTADA = {
+    "pack": "ebook-guia-empezar",
+    "alimenta": "ebook-alimenta-ponedoras",
+    "elegir": "ebook-pienso-elegir",
+    "hacer": "ebook-pienso-hacer",
+    "empezar": "ebook-guia-empezar",
+}
+EBOOK_ALT = {
+    "pack": "Portada: Guía para empezar tu granja",
+    "alimenta": "Portada: Alimenta bien a tus ponedoras",
+    "elegir": "Portada: Cómo elegir el pienso",
+    "hacer": "Portada: Cómo hacer tu propio pienso",
+    "empezar": "Portada: Guía para empezar tu granja",
+}
+EBOOK_BENEFICIO = {
+    "pack": "Cuatro guías en PDF para consultar cuando las necesites.",
+    "alimenta": "Alimentación por etapas y un plan de 7 días para organizar la comida.",
+    "elegir": "Cómo leer la etiqueta y comparar el pienso ya fabricado.",
+    "hacer": "Máquinas, ingredientes y el paso a paso para fabricar el alimento.",
+    "empezar": "Una guía corta para montar la granja desde cero.",
+}
+
+
+def precio_banner(clave):
+    """El pack no tiene un solo precio. Cada guía se anuncia a 3 USD."""
+    if clave == "pack":
+        return "desde 3 USD"
+    return "3 USD"
+
+
+def html_portada(raiz_url, clave):
+    nombre = EBOOK_PORTADA[clave]
+    def ruta(ancho):
+        return f"{raiz_url}img/{nombre}-{ancho}.webp"
+    srcset = ", ".join(f"{ruta(ancho)} {ancho}w" for ancho in (480, 768, 1200))
+    return (
+        f'<picture><source type="image/webp" srcset="{esc(srcset)}" '
+        f'sizes="(max-width: 480px) 96px, 148px">'
+        f'<img src="{esc(ruta(480))}" alt="{esc(EBOOK_ALT[clave])}" '
+        f'width="480" height="320" loading="lazy" decoding="async"></picture>'
+    )
+
+
 def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
     id_ebook = id_banner("ebook", ebook_clave)
-    precio_html = f"<p>{esc(precio)}</p>" if precio else ""
     enlace = con_utm_interno(raiz_url + href, id_ebook)
-    bloque = (f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
-              f'<p class="kicker">De Granja Rentable</p>'
-              f'<p><a href="{esc(enlace)}">{esc(titulo)}</a></p>'
-              f'{precio_html}'
-              f'</aside>')
+    bloque = (
+        f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
+        f'{html_portada(raiz_url, ebook_clave)}'
+        f'<a class="banner-ebook-ficha" href="{esc(enlace)}">'
+        f'<p class="kicker">De Granja Rentable</p>'
+        f'<p class="banner-ebook-titulo">{esc(titulo)}</p>'
+        f'<p class="banner-ebook-beneficio">{esc(EBOOK_BENEFICIO[ebook_clave])}</p>'
+        f'<p class="banner-ebook-precio">{esc(precio_banner(ebook_clave))}</p>'
+        f'<span class="banner-ebook-cta">Compra ya</span>'
+        f'</a></aside>'
+    )
     if tag and amazon_tema in AMAZON_POR_TEMA:
         nombre, asin = AMAZON_POR_TEMA[amazon_tema]
         id_amazon = id_banner("amazon", amazon_tema)
