@@ -258,7 +258,7 @@ Este resultado puede incluir tanto alimento ingerido como desperdiciado, así qu
 
 ## 9. Alimentación y agua van juntas
 
-Las aves no comen con normalidad si no tienen agua suficiente. Como referencia general, el *Merck Veterinary Manual* («Management of Backyard Poultry») indica entre 1,5 y 3,5 partes de agua por cada parte de pienso consumido, y más cuando hace calor. Es una relación orientativa, nunca un límite de suministro.
+Las aves no comen con normalidad si no tienen agua suficiente. Como referencia general, el *Merck Veterinary Manual* («Nutritional Requirements of Poultry») indica que, en condiciones termoneutras, las aves beben aproximadamente el doble de agua que de pienso, es decir, **unos 2 litros por kilogramo de pienso consumido**. La temperatura, la humedad, la sal y la proteína de la dieta y el nivel de producción hacen variar esa relación, y con calor beben más. Es una relación orientativa, nunca un límite de suministro.
 
 Si registras a la vez el pienso y el agua, podrás detectar cambios bruscos en cualquiera de los dos. Cómo medir el agua, elegir bebederos y mantenerlos limpios lo explicamos en nuestra guía [**«Agua para gallinas ponedoras: cuánto beben, qué bebedero elegir y cómo mantenerlo limpio»**](https://granjarentable.com/blog/agua-gallinas-ponedoras-bebederos.html).
 

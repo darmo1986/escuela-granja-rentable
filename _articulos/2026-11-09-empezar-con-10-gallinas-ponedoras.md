@@ -17,7 +17,7 @@ relacionados:
 
 ¿Quieres empezar a criar gallinas para obtener huevos, pero no sabes cuánto espacio necesitas, qué debes comprar o si realmente te saldrá rentable?
 
-Empezar con diez gallinas ponedoras puede ser una forma de aprender a manejar una pequeña explotación sin adquirir un lote demasiado grande. Pero hay algo que conviene entender desde el principio: **tener diez gallinas no significa recoger diez huevos diarios ni obtener beneficios automáticamente**.
+Empezar con diez gallinas ponedoras puede ser una forma de aprender a manejar una pequeña explotación sin adquirir un lote demasiado grande. Pero hay algo que conviene entender desde el principio: tener diez gallinas no significa recoger diez huevos diarios ni obtener beneficios automáticamente.
 
 La producción depende de la edad, la genética, la alimentación, el ambiente, la salud y el manejo. Además, producir huevos y conseguir venderlos son dos tareas diferentes.
 
@@ -37,7 +37,7 @@ Con diez gallinas puedes practicar tareas fundamentales:
 
 La principal ventaja de comenzar con pocas aves es que puedes descubrir problemas de manejo sin haber invertido en una explotación grande.
 
-Sin embargo, **diez gallinas no son necesariamente un negocio rentable**. La inversión inicial, el coste del pienso, las instalaciones y el tiempo de trabajo pueden superar el valor de los huevos obtenidos.
+Sin embargo, diez gallinas no son necesariamente un negocio rentable. La inversión inicial, el coste del pienso, las instalaciones y el tiempo de trabajo pueden superar el valor de los huevos obtenidos.
 
 Por eso, antes de comprar, debes decidir si tu objetivo es el autoconsumo, la venta de excedentes o desarrollar una actividad comercial. Cada opción puede tener obligaciones legales y costes diferentes.
 
@@ -60,7 +60,7 @@ Para una persona sin experiencia, comprar pollitas próximas al inicio de la pue
 
 Eso no significa que empiecen a poner inmediatamente. El momento de inicio y la regularidad de la producción dependen de cada línea y de sus condiciones de manejo.
 
-**Consejo:** no compres las gallinas únicamente por una fotografía o una promesa de huevos anuales. Solicita información concreta y verificable del lote.
+Consejo: no compres las gallinas únicamente por una fotografía o una promesa de huevos anuales. Solicita información concreta y verificable del lote.
 
 ### ¿Hace falta un gallo para obtener huevos?
 
@@ -82,9 +82,9 @@ Una instalación adecuada necesita protección frente a depredadores, ventilaci�
 
 No existe una única medida válida para todos los sistemas de cría. La superficie necesaria depende del tamaño de las aves, el diseño de la instalación, el acceso al exterior y la normativa aplicable.
 
-Como referencia técnica general, el Manual Veterinario Merck menciona aproximadamente **0,15–0,20 m² interiores por gallina ponedora y 0,75–1 m² en un recinto exterior** para determinadas condiciones de cría doméstica.
+Como referencia técnica general, el Manual Veterinario Merck menciona aproximadamente 0,15–0,20 m² interiores por gallina ponedora y 0,75–1 m² en un recinto exterior para determinadas condiciones de cría doméstica.
 
-Estas cifras son referencias generales, **no un proyecto de instalación ni una garantía de cumplimiento legal o bienestar**. No deben interpretarse como dimensiones ideales para cualquier clima, raza o sistema.
+Estas cifras son referencias generales, no un proyecto de instalación ni una garantía de cumplimiento legal o bienestar. No deben interpretarse como dimensiones ideales para cualquier clima, raza o sistema.
 
 Para diez gallinas, la superficie debe calcularse considerando además comederos, bebederos, nidales, perchas, circulación y facilidad de limpieza. Siempre que sea posible, conviene proporcionar más espacio útil y un entorno enriquecido.
 
@@ -112,7 +112,7 @@ Las gallinas necesitan lugares tranquilos y protegidos para poner.
 
 Los nidales deben ser accesibles, suficientemente amplios para las aves y fáciles de limpiar. Una cama limpia y una ubicación relativamente resguardada ayudan a mantener los huevos en mejores condiciones.
 
-La FAO (Small-scale poultry production, capítulo 4) describe la preferencia de las gallinas por lugares de puesta protegidos, con una base cómoda y cierta privacidad.
+La FAO describe la preferencia de las gallinas por lugares de puesta protegidos, con una base cómoda y cierta privacidad.
 
 No hace falta fabricar un nidal complicado. Lo importante es que sea estable, higiénico y adecuado al tamaño de las gallinas.
 
@@ -128,24 +128,24 @@ Un gallinero que solo contiene aves, pienso y agua puede quedarse corto en biene
 
 Prepara una lista de materiales y solicita presupuestos reales en tu zona.
 
-| Elemento                         | Para qué sirve           | Qué comprobar                                          |
-| -------------------------------- | ------------------------ | ------------------------------------------------------ |
-| Gallinero y cerramiento          | Refugio y protección     | Ventilación, resistencia, seguridad y limpieza         |
-| Nidales                          | Puesta de huevos         | Acceso, privacidad e higiene                           |
-| Perchas                          | Descanso                 | Estabilidad, tamaño y colocación                       |
-| Comedero                         | Suministro de alimento   | Acceso suficiente y poco desperdicio                   |
-| Bebedero                         | Agua permanente          | Limpieza, capacidad y ausencia de fugas                |
-| Recipiente para almacenar pienso | Conservación             | Protección frente a humedad y plagas                   |
-| Material de cama                 | Higiene y confort        | Capacidad para mantenerse seco y facilidad de retirada |
-| Utensilios de limpieza           | Mantenimiento            | Uso exclusivo y limpieza adecuada                      |
-| Bandejas para huevos             | Recogida y clasificación | Limpieza y protección frente a roturas                 |
-| Registro de manejo               | Control de resultados    | Facilidad para anotar datos cada día                   |
+| Elemento | Para qué sirve | Qué comprobar |
+| --- | --- | --- |
+| Gallinero y cerramiento | Refugio y protección | Ventilación, resistencia, seguridad y limpieza |
+| Nidales | Puesta de huevos | Acceso, privacidad e higiene |
+| Perchas | Descanso | Estabilidad, tamaño y colocación |
+| Comedero | Suministro de alimento | Acceso suficiente y poco desperdicio |
+| Bebedero | Agua permanente | Limpieza, capacidad y ausencia de fugas |
+| Recipiente para almacenar pienso | Conservación | Protección frente a humedad y plagas |
+| Material de cama | Higiene y confort | Capacidad para mantenerse seco y facilidad de retirada |
+| Utensilios de limpieza | Mantenimiento | Uso exclusivo y limpieza adecuada |
+| Bandejas para huevos | Recogida y clasificación | Limpieza y protección frente a roturas |
+| Registro de manejo | Control de resultados | Facilidad para anotar datos cada día |
 
 No es obligatorio comprar el equipo más caro. Tampoco conviene elegir únicamente por precio.
 
 Un bebedero económico que pierde agua puede deteriorar la cama. Un comedero mal diseñado puede desperdiciar pienso. Una instalación difícil de limpiar puede aumentar el tiempo de trabajo.
 
-**El coste de compra es solo una parte del coste real de utilización.**
+El coste de compra es solo una parte del coste real de utilización.
 
 ## 5. Alimentación de diez gallinas ponedoras
 
@@ -163,6 +163,8 @@ No sustituyas la ración por una mezcla improvisada de maíz, pan, restos de coc
 
 Estos alimentos pueden alterar el equilibrio nutricional si desplazan una parte importante del pienso completo.
 
+Además, en la Unión Europea está prohibido alimentar a los animales de granja con residuos de cocina o con materiales que los contengan o deriven de ellos (Reglamento (CE) n.º 1069/2009, artículo 11, apartado 1, letra b). En otros países, consulta la normativa local.
+
 Tampoco añadas calcio u otros suplementos indiscriminadamente. Consulta la ficha del alimento y, cuando corresponda, a un profesional de nutrición aviar.
 
 ### ¿Cuánto pienso consumen diez gallinas?
@@ -179,7 +181,7 @@ Para presupuestar correctamente:
 4. Calcula el consumo real durante un periodo suficientemente representativo.
 5. Ajusta el presupuesto utilizando tus registros.
 
-No confundas **pienso ofrecido** con **pienso realmente consumido**.
+No confundas pienso ofrecido con pienso realmente consumido.
 
 Si el alimento termina en el suelo, lo has pagado, pero no necesariamente ha alimentado a tus gallinas.
 
@@ -187,11 +189,15 @@ Si el alimento termina en el suelo, lo has pagado, pero no necesariamente ha ali
 
 Las gallinas deben disponer permanentemente de agua limpia y accesible.
 
-El Manual Veterinario Merck describe como referencia general una relación aproximada de **1,5 a 3,5 partes de agua por cada parte de alimento consumido**, con variaciones importantes por temperatura y condiciones.
+Como referencia general del Manual Veterinario Merck, las aves beben unas 2 veces más agua que pienso (unos 2 l por kg), aunque la relación puede variar según la temperatura, el alimento y las condiciones de manejo.
 
-Expresado de forma práctica, esa referencia equivale aproximadamente a **1,5–3,5 litros de agua por kilogramo de pienso**, considerando la equivalencia habitual de masa y volumen del agua.
+Expresado de forma práctica, si conoces los kilogramos de pienso realmente consumidos, puedes obtener una referencia inicial del agua necesaria:
 
-No es una cantidad fija que debas limitar ni una previsión exacta para tu gallinero. En épocas de calor, el consumo puede aumentar.
+Agua orientativa (litros) = Pienso consumido (kg) × 2
+
+Esta fórmula es únicamente una orientación para planificar el suministro, no una cantidad fija ni un límite de consumo.
+
+Durante los periodos de calor, las necesidades de agua pueden aumentar. Por eso, las gallinas deben tener acceso continuo al agua y no depender de una cantidad calculada de antemano.
 
 Comprueba a diario que los bebederos funcionan, no están obstruidos y no humedecen la cama.
 
@@ -244,16 +250,16 @@ Por eso, en lugar de afirmar que diez gallinas producirán una cantidad determin
 
 Puedes utilizar esta tabla:
 
-| Día                   | Huevos recogidos | Huevos rotos o descartados | Huevos disponibles | Observaciones |
-| --------------------- | ---------------- | -------------------------- | ------------------ | ------------- |
-| Día 1                 | Por registrar    | Por registrar              | Por calcular       |               |
-| Día 2                 | Por registrar    | Por registrar              | Por calcular       |               |
-| Día 3                 | Por registrar    | Por registrar              | Por calcular       |               |
-| Continuar diariamente |                  |                            |                    |               |
+| Día | Huevos recogidos | Huevos rotos o descartados | Huevos disponibles | Observaciones |
+| --- | --- | --- | --- | --- |
+| Día 1 | Por registrar | Por registrar | Por calcular |  |
+| Día 2 | Por registrar | Por registrar | Por calcular |  |
+| Día 3 | Por registrar | Por registrar | Por calcular |  |
+| Continuar diariamente |  |  |  |  |
 
 Al finalizar cada semana y cada mes, suma los resultados.
 
-**Huevos disponibles = huevos recogidos − huevos descartados.**
+Huevos disponibles = Huevos recogidos − Huevos descartados
 
 Después separa los huevos destinados al autoconsumo de los efectivamente vendidos. No todo huevo producido representa un ingreso.
 
@@ -281,19 +287,19 @@ Si vas a vender huevos, revisa además los requisitos legales, fiscales y sanita
 
 ### Plantilla para calcular tus propios costes
 
-| Concepto                            | Importe real | Periodo o criterio                       |
-| ----------------------------------- | ------------ | ---------------------------------------- |
-| Compra de gallinas                  | Pendiente    | Inversión inicial                        |
-| Construcción y cerramientos         | Pendiente    | Inversión inicial                        |
-| Comederos y bebederos               | Pendiente    | Vida útil del equipo                     |
-| Pienso                              | Pendiente    | Consumo del periodo                      |
-| Agua                                | Pendiente    | Consumo del periodo                      |
-| Electricidad                        | Pendiente    | Consumo del periodo                      |
-| Cama y limpieza                     | Pendiente    | Consumo del periodo                      |
-| Sanidad y reposición                | Pendiente    | Coste registrado o provisión justificada |
-| Envases y transporte                | Pendiente    | Ventas y entregas                        |
-| Tiempo de trabajo                   | Pendiente    | Horas registradas                        |
-| Otros costes e impuestos aplicables | Pendiente    | Según actividad                          |
+| Concepto | Importe real | Periodo o criterio |
+| --- | --- | --- |
+| Compra de gallinas | Pendiente | Inversión inicial |
+| Construcción y cerramientos | Pendiente | Inversión inicial |
+| Comederos y bebederos | Pendiente | Vida útil del equipo |
+| Pienso | Pendiente | Consumo del periodo |
+| Agua | Pendiente | Consumo del periodo |
+| Electricidad | Pendiente | Consumo del periodo |
+| Cama y limpieza | Pendiente | Consumo del periodo |
+| Sanidad y reposición | Pendiente | Coste registrado o provisión justificada |
+| Envases y transporte | Pendiente | Ventas y entregas |
+| Tiempo de trabajo | Pendiente | Horas registradas |
+| Otros costes e impuestos aplicables | Pendiente | Según actividad |
 
 La tabla se rellena con tus datos. No contiene precios supuestos ni beneficios inventados.
 
@@ -303,9 +309,9 @@ La pregunta importante no es únicamente cuántos huevos producen, sino cuánto 
 
 Para analizar el resultado de un periodo, calcula:
 
-**Ingresos por ventas = huevos efectivamente vendidos × precio cobrado por huevo.**
+Ingresos por ventas = Huevos efectivamente vendidos × Precio cobrado por huevo
 
-**Resultado económico del periodo = ingresos − costes correspondientes al periodo.**
+Resultado económico del periodo = Ingresos − Costes correspondientes al periodo
 
 En esos costes deben incluirse tanto los gastos operativos como la parte del equipo imputable al periodo, además de otros costes pertinentes.
 
@@ -337,23 +343,23 @@ Antes de ofrecer huevos a restaurantes, comercios o particulares, consulta a la 
 
 También debes comprobar si existen restricciones temporales de movimiento, confinamiento o bioseguridad por enfermedades aviares.
 
-**Primero verifica que puedes realizar la actividad legalmente; después calcula si te interesa económicamente.**
+Primero verifica que puedes realizar la actividad legalmente; después calcula si te interesa económicamente.
 
 ## 11. Errores frecuentes al empezar con gallinas ponedoras
 
-**Comprar las aves antes de preparar el gallinero.** Esto obliga a improvisar refugio, agua y seguridad.
+Comprar las aves antes de preparar el gallinero. Esto obliga a improvisar refugio, agua y seguridad.
 
-**Elegir el pienso más barato sin comprobar su composición.** Un alimento inadecuado puede perjudicar la salud y la producción.
+Elegir el pienso más barato sin comprobar su composición. Un alimento inadecuado puede perjudicar la salud y la producción.
 
-**No medir el desperdicio.** El pienso derramado también cuesta dinero.
+No medir el desperdicio. El pienso derramado también cuesta dinero.
 
-**Confundir huevos recogidos con huevos vendidos.** El autoconsumo, las roturas y los excedentes no vendidos deben registrarse por separado.
+Confundir huevos recogidos con huevos vendidos. El autoconsumo, las roturas y los excedentes no vendidos deben registrarse por separado.
 
-**Ignorar el calor y la ventilación.** Un recinto protegido de la lluvia puede seguir siendo inadecuado si acumula calor o humedad.
+Ignorar el calor y la ventilación. Un recinto protegido de la lluvia puede seguir siendo inadecuado si acumula calor o humedad.
 
-**Comprar más gallinas para compensar una mala cuenta económica.** Aumentar el lote también puede aumentar los gastos y los problemas de manejo.
+Comprar más gallinas para compensar una mala cuenta económica. Aumentar el lote también puede aumentar los gastos y los problemas de manejo.
 
-**No llevar registros.** Sin datos propios resulta difícil identificar qué está funcionando y qué necesita mejorar.
+No llevar registros. Sin datos propios resulta difícil identificar qué está funcionando y qué necesita mejorar.
 
 ## 12. Lista de comprobación antes de comprar
 
@@ -383,7 +389,7 @@ Necesitas espacio suficiente y un diseño adecuado al tamaño, comportamiento y 
 
 ### ¿Puedo alimentar a mis gallinas con restos de comida?
 
-No deben sustituir una ración completa y equilibrada. Además, el suministro de determinados residuos alimentarios puede estar restringido o prohibido según la legislación aplicable. Consulta las normas locales antes de utilizarlos.
+No deben sustituir una ración completa y equilibrada. En la Unión Europea está prohibido alimentar a los animales de granja con residuos de cocina o con materiales que los contengan o deriven de ellos (Reglamento (CE) n.º 1069/2009, artículo 11, apartado 1, letra b). En otros países, consulta la normativa local antes de utilizarlos.
 
 ### ¿Cuándo empezaré a recoger huevos?
 
@@ -405,7 +411,7 @@ Pero el éxito no depende únicamente de comprar buenas aves.
 
 Depende de preparar un alojamiento apropiado, proporcionar alimentación equilibrada, mantener el agua limpia, prevenir enfermedades y conocer los costes reales.
 
-**Antes de ampliar tu gallinero, consigue algo más importante que una promesa de rentabilidad: registros propios que te permitan tomar decisiones.**
+Antes de ampliar tu gallinero, consigue algo más importante que una promesa de rentabilidad: registros propios que te permitan tomar decisiones.
 
 En Granja Rentable queremos ayudarte a criar aves con criterios prácticos y cuentas comprobables.
 
@@ -415,17 +421,23 @@ En Granja Rentable queremos ayudarte a criar aves con criterios prácticos y cue
 
 Este artículo es una guía editorial de divulgación. Las referencias siguientes respaldan las recomendaciones generales de manejo; no sustituyen la normativa local ni una evaluación veterinaria o técnica de una instalación concreta.
 
-1. **FAO — Small-scale poultry production.** Sonaiya, E. B. y Swan, S. E. Organización de las Naciones Unidas para la Alimentación y la Agricultura, 2004. Manual sobre producción avícola a pequeña escala, alojamiento, alimentación, sanidad y economía.  
-   [https://www.fao.org/4/y5169e/y5169e00.htm](https://www.fao.org/4/y5169e/y5169e00.htm) (nidales: [capítulo 4](https://www.fao.org/4/y5169e/y5169e05.htm))
-2. **FAO — Management and housing.** Recomendaciones sobre condiciones ambientales, alimentación, agua, sanidad y bienestar en instalaciones avícolas.  
+1. FAO — Small-scale poultry production. Sonaiya, E. B. y Swan, S. E. Organización de las Naciones Unidas para la Alimentación y la Agricultura, 2004. Manual sobre producción avícola a pequeña escala, alojamiento, alimentación, sanidad y economía.  
+   [https://www.fao.org/4/y5169e/y5169e00.htm](https://www.fao.org/4/y5169e/y5169e00.htm)
+
+2. FAO — Management and housing. Recursos técnicos sobre condiciones ambientales, alojamiento y manejo de aves de corral.  
    [https://www.fao.org/poultry-production-products/production/management-and-housing/](https://www.fao.org/poultry-production-products/production/management-and-housing/)
-3. **Merck Veterinary Manual — Management of Backyard Poultry.** Yuko Sato, revisión de noviembre de 2024. Manejo, instalaciones, nutrición, agua y prevención sanitaria.  
+
+3. Merck Veterinary Manual — Management of Backyard Poultry. Referencia sobre manejo, instalaciones, nutrición, agua y prevención sanitaria en aves de traspatio.  
    [https://www.merckvetmanual.com/exotic-and-laboratory-animals/backyard-poultry/management-of-backyard-poultry](https://www.merckvetmanual.com/exotic-and-laboratory-animals/backyard-poultry/management-of-backyard-poultry)
-4. **Merck Veterinary Manual — Nutritional Requirements of Poultry.** Doug Korver, actualización de septiembre de 2024. Necesidades nutricionales y factores que afectan al consumo de agua.  
+
+4. Merck Veterinary Manual — Nutritional Requirements of Poultry. Referencia sobre necesidades nutricionales y factores que afectan al consumo de alimento y agua. Se utiliza como base para la relación orientativa de aproximadamente dos litros de agua por kilogramo de pienso.  
    [https://www.merckvetmanual.com/poultry/nutrition-and-management-poultry/nutritional-requirements-of-poultry](https://www.merckvetmanual.com/poultry/nutrition-and-management-poultry/nutritional-requirements-of-poultry)
-5. **Merck Veterinary Manual — Laying and Reproduction in Backyard Poultry.** Yuko Sato, revisión de noviembre de 2024. Puesta, nidales, reproducción y factores que afectan a la producción.  
+
+5. Merck Veterinary Manual — Laying and Reproduction in Backyard Poultry. Referencia sobre puesta, nidales, reproducción y factores que afectan a la producción.  
    [https://www.merckvetmanual.com/exotic-and-laboratory-animals/backyard-poultry/laying-and-reproduction-in-backyard-poultry](https://www.merckvetmanual.com/exotic-and-laboratory-animals/backyard-poultry/laying-and-reproduction-in-backyard-poultry)
 
-**Nota editorial:** Este contenido no constituye asesoramiento veterinario individualizado ni certifica el cumplimiento de requisitos legales en una ubicación determinada. Las obligaciones deben comprobarse ante las autoridades competentes.
+6. Reglamento (CE) n.º 1069/2009 — Artículo 11, apartado 1, letra b. Prohibición de alimentar a los animales de granja con residuos de cocina o materiales que los contengan o deriven de ellos.  
+   [https://www.boe.es/buscar/doc.php?id=DOUE-L-2009-82155](https://www.boe.es/buscar/doc.php?id=DOUE-L-2009-82155)  
+   [https://eur-lex.europa.eu/legal-content/ES/ALL/?uri=celex%3A32009R1069](https://eur-lex.europa.eu/legal-content/ES/ALL/?uri=celex%3A32009R1069)
 
-Las fuentes de FAO y del Manual Veterinario Merck se han contrastado para este artículo, especialmente en alojamiento, alimentación, agua y producción de huevos.
+Nota editorial: Este contenido no constituye asesoramiento veterinario individualizado ni certifica el cumplimiento de requisitos legales en una ubicación determinada. Las obligaciones deben comprobarse ante las autoridades competentes. Las cifras técnicas citadas son orientativas y deben interpretarse según las condiciones del sistema de cría.
