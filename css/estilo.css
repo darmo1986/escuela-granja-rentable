@@ -656,6 +656,10 @@ code { overflow-wrap: anywhere; }
 .racion-aviso { background: #fff6d8; border-radius: 12px; padding: 10px 12px; font-weight: 750; }
 .tabla td:first-child, .tabla th:first-child { position: sticky; left: 0; }
 .tabla td:first-child { background: #fff; }
+@media (max-width: 719px) {
+  .tabla td:first-child, .tabla th:first-child { position: static; }
+  .tabla th, .tabla td { padding: 4px 6px; }
+}
 @media (min-width: 1040px) {
   #site-nav > a, #site-nav > .nav-drop { min-width: 0; }
 }

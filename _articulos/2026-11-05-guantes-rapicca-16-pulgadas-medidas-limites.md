@@ -5,6 +5,7 @@ descripcion: "Qué declara RAPICCA sobre la manga y el cuidado de sus guantes, y
 categoria: salud
 fecha: 2026-11-05
 borrador: false
+noindex: true
 imagen: "img/blog/rapicca-guantes-16-pulgadas-revision.webp"
 imagen_og: "img/blog/rapicca-guantes-16-pulgadas-revision-og.webp"
 imagen_alt: "Guantes de manejo de animales RAPICCA de 16 pulgadas"

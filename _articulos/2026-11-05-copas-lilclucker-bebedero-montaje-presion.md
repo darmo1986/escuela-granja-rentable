@@ -5,6 +5,7 @@ descripcion: "Revisa el tamaño del pack, perforación, recipiente y presión an
 categoria: ponedoras
 fecha: 2026-11-05
 borrador: false
+noindex: true
 imagen: "img/blog/lilclucker-bebedero-automatico-vasos-ponedoras.webp"
 imagen_og: "img/blog/lilclucker-bebedero-automatico-vasos-ponedoras-og.webp"
 imagen_alt: "Copas automáticas naranjas Lil'Clucker para bebedero de gallinas"

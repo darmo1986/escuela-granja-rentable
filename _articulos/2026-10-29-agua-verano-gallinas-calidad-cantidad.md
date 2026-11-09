@@ -15,6 +15,9 @@ fuentes:
   - "FAO, Small-scale poultry production, agua y bebederos: https://www.fao.org/4/Y5169e/y5169e05.htm"
   - "Mississippi State University Extension, Water Quality and Quantity Influence Flock Performance: https://extension.msstate.edu/publications/water-quality-and-quantity-influence-flock-performance"
   - "Mississippi State University Extension, publicación 2839, Poultry Water Line Sanitation: https://extension.msstate.edu/sites/default/files/publications/p2839.pdf"
+relacionados:
+  - agua-gallinas-ponedoras-bebederos
+  - agua-gallinas-ponedoras
 ---
 
 En verano el agua limita al lote antes que el pienso. Una gallina puede dejar de comer si el bebedero está caliente, vacío o sucio, y la puesta baja ese mismo día o al siguiente. No hace falta adivinar «cuántos litros le tocan a la tuya» con una tabla de otro clima: hay cifras publicadas para orientarte, y un método simple para medir lo que bebe tu corral.
@@ -69,3 +72,5 @@ Entre lote y lote, vacía y frota las líneas y los bebederos. Con aves dentro, 
 5. Anota litros y una línea en el cuaderno de la granja. Sin esa línea, la semana que viene no sabrás si el bajón de huevos coincidió con un bebedero vacío.
 
 Un día entero sin agua, con calor fuerte, puede matar. No esperes a ver el huevo del día siguiente para rellenar. La revisión de la tarde, cuando el sol aún pega, es la que evita el desastre; la de la mañana solo dice cómo amaneció el lote.
+
+Otras guías del mismo tema: [cuánto beben, qué bebedero elegir y cómo mantenerlo limpio](agua-gallinas-ponedoras-bebederos.html) y [bebederos y errores frecuentes](agua-gallinas-ponedoras.html).

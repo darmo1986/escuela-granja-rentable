@@ -5,6 +5,7 @@ descripcion: "Qué confirmar de la malla Land Guard antes de comprar y cómo com
 categoria: ponedoras
 fecha: 2026-11-05
 borrador: false
+noindex: true
 imagen: "img/blog/land-guard-19-gauge-hardware-cloth-qt070.webp"
 imagen_og: "img/blog/land-guard-19-gauge-hardware-cloth-qt070-og.webp"
 imagen_alt: "Malla metálica soldada Land Guard de media pulgada para gallinero"

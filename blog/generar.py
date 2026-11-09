@@ -37,6 +37,7 @@ CLAVES = {
     "titulo", "titulo_seo", "descripcion", "categoria", "fecha", "leccion",
     "producto", "imagen", "imagen_alt", "imagen_og", "video", "red",
     "fuentes", "borrador", "guia", "actualizado", "relacionados", "autor",
+    "noindex",
 }
 CATEGORIAS = (
     ("ponedoras", "Gallinas ponedoras", "gallinas-ponedoras", "empezar"),
@@ -322,6 +323,51 @@ def en_linea(texto, origen, errores):
     return "".join(partes)
 
 
+def es_lista_numerada(linea):
+    return bool(re.match(r"\d+\.\s+\S", linea.strip()))
+
+
+def texto_plano(texto):
+    texto = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", str(texto))
+    texto = texto.replace("**", "")
+    texto = re.sub(r"(?<!\*)\*(?!\*)", "", texto)
+    return re.sub(r"\s+", " ", texto).strip()
+
+
+def extraer_faq(texto):
+    """Preguntas bajo un apartado «Preguntas frecuentes», con el texto visible."""
+    lineas = str(texto).replace("\r\n", "\n").replace("\r", "\n").split("\n")
+    faqs = []
+    en_faq = False
+    pregunta = None
+    buf = []
+
+    def cerrar():
+        nonlocal pregunta, buf
+        if pregunta:
+            respuesta = texto_plano(" ".join(buf))
+            if respuesta:
+                faqs.append((pregunta, respuesta))
+        pregunta = None
+        buf = []
+
+    for linea in lineas:
+        if linea.startswith("## "):
+            cerrar()
+            en_faq = "preguntas frecuentes" in linea.lower()
+            continue
+        if not en_faq:
+            continue
+        if linea.startswith("### "):
+            cerrar()
+            pregunta = texto_plano(linea[4:])
+            continue
+        if linea.strip():
+            buf.append(linea.strip())
+    cerrar()
+    return faqs
+
+
 def es_separador(linea):
     celdas = [c.strip() for c in linea.strip().strip("|").split("|")]
     return bool(celdas) and all(re.fullmatch(r":?-{3,}:?", c) for c in celdas)
@@ -364,6 +410,28 @@ def markdown_a_html(texto, origen, errores):
                 items.append(en_linea(lineas[i].lstrip()[2:].strip(), origen, errores))
                 i += 1
             html.append("<ul class=\"steps\">\n" + "".join(f"<li>{item}</li>\n" for item in items) + "</ul>")
+            continue
+        if es_lista_numerada(linea):
+            items = []
+            while i < len(lineas):
+                actual = lineas[i]
+                if not actual.strip():
+                    j = i + 1
+                    while j < len(lineas) and not lineas[j].strip():
+                        j += 1
+                    if j < len(lineas) and es_lista_numerada(lineas[j]):
+                        i = j
+                        continue
+                    break
+                if not es_lista_numerada(actual):
+                    break
+                partes = [re.sub(r"^\d+\.\s+", "", actual.strip())]
+                while i + 1 < len(lineas) and lineas[i + 1].startswith((" ", "\t")) and lineas[i + 1].strip():
+                    i += 1
+                    partes.append(lineas[i].strip())
+                items.append(en_linea(" ".join(partes), origen, errores))
+                i += 1
+            html.append("<ol class=\"steps\">\n" + "".join(f"<li>{item}</li>\n" for item in items) + "</ol>")
             continue
         if "|" in linea and i + 1 < len(lineas) and es_separador(lineas[i + 1]):
             cabecera = celdas_de(linea)
@@ -557,6 +625,9 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         raise Fallo(f"{origen}: relacionados admite como mucho 3 artículos.")
     autor = campo(datos, "autor") or AUTOR
     exigir_limpio(autor, origen, "autor")
+    noindex = False
+    if "noindex" in datos and str(datos.get("noindex", "")).strip() != "":
+        noindex = a_bool(datos["noindex"], origen, "noindex")
     imagen = campo(datos, "imagen")
     imagen_og = campo(datos, "imagen_og")
     imagen_alt = campo(datos, "imagen_alt")
@@ -575,6 +646,11 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
     html = markdown_a_html(cuerpo, origen, errores_md)
     if errores_md:
         raise Fallo(" ".join(errores_md))
+    imagen_800 = ""
+    if imagen.endswith(".webp"):
+        candidata = imagen[:-5] + "-800.webp"
+        if (raiz / candidata).is_file():
+            imagen_800 = candidata
     return {
         "origen": origen,
         "slug": slug,
@@ -589,9 +665,12 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         "leccion": leccion,
         "producto": producto,
         "imagen": imagen,
+        "imagen_800": imagen_800,
         "imagen_og": imagen_og,
         "imagen_alt": imagen_alt,
         "autor": autor,
+        "noindex": noindex,
+        "faq": extraer_faq(cuerpo),
         "video": video,
         "red": red,
         "fuentes": [x.strip() for x in fuentes],
@@ -773,10 +852,18 @@ def url_post(slug):
     return "/blog/" + slug + ".html"
 
 
+def attrs_srcset(raiz, post):
+    chica = post.get("imagen_800") or ""
+    if not chica:
+        return ""
+    return (f' srcset="{esc(raiz + chica)} 800w, {esc(raiz + post["imagen"])} 1200w"'
+            ' sizes="(max-width: 720px) 100vw, 672px"')
+
+
 def tarjeta(post, raiz):
     href = url_post(post["slug"])
     return f'''<article class="pcard">
-<a class="pcard-media post-media" href="{esc(href)}"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" width="1200" height="675" loading="lazy" decoding="async"></a>
+<a class="pcard-media post-media" href="{esc(href)}"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}"{attrs_srcset(raiz, post)} width="1200" height="675" loading="lazy" decoding="async"></a>
 <div class="pcard-body">
 <p class="pcard-cat">{esc(CATS[post["categoria"]]["nombre"])}</p>
 <h3><a href="{esc(href)}">{esc(post["titulo"])}</a></h3>
@@ -849,11 +936,13 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
         meta += " · Revisado el " + fecha_larga(post["actualizado"])
     if post["leccion"]:
         meta += f' · Basado en la lección <a href="{raiz}lecciones/{esc(post["leccion"])}.html">{esc(post["leccion"].upper())}</a>'
+    nota = (f'<p class="post-meta">El <a href="{raiz}quienes-somos.html#equipo-editorial">Equipo editorial de Granja Rentable</a> '
+            'revisa el texto con las fuentes citadas. No es un diagnóstico veterinario.</p>')
     cabeza = (f'<header class="page-hero post-head">\n{migas}\n'
               f'<p class="kicker">{esc(CATS[post["categoria"]]["nombre"])}</p>\n'
-              f'<h1>{esc(post["titulo"])}</h1>\n<p class="post-meta">{meta}</p>\n</header>')
-    foto = (f'<figure class="post-foto"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}" '
-            f'width="1200" height="675"></figure>')
+              f'<h1>{esc(post["titulo"])}</h1>\n<p class="post-meta">{meta}</p>\n{nota}\n</header>')
+    foto = (f'<figure class="post-foto"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}"'
+            f'{attrs_srcset(raiz, post)} width="1200" height="675"></figure>')
     guia_href, guia_titulo, _ = GUIAS[post["guia"]]
     guia = (f'<p>La guía fija de este tema es <a href="{raiz}{esc(guia_href)}">{esc(guia_titulo)}</a>.</p>')
     fuentes = ""
@@ -1022,6 +1111,20 @@ def ld_articulo(post, canonical):
             + '<script type="application/ld+json">' + json_seguro(migas) + "</script>")
 
 
+def ld_faq(preguntas):
+    if not preguntas:
+        return ""
+    return '<script type="application/ld+json">' + json_seguro({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": pregunta,
+            "acceptedAnswer": {"@type": "Answer", "text": respuesta},
+        } for pregunta, respuesta in preguntas],
+    }) + "</script>\n"
+
+
 def ld_categoria(meta):
     migas = {
         "@context": "https://schema.org",
@@ -1167,11 +1270,12 @@ def planificar(raiz, incluir_borradores=False):
         rel = f"blog/{post['slug']}.html"
         canonical = SITIO + "/blog/" + post["slug"] + ".html"
         titulo = titulo_visible(post["titulo_seo"])
-        extra = (ld_articulo(post, canonical) + "\n"
-                 '<meta property="og:image:width" content="1200">\n'
+        extra = (ld_articulo(post, canonical) + "\n" + ld_faq(post.get("faq") or [])
+                 + '<meta property="og:image:width" content="1200">\n'
                  '<meta property="og:image:height" content="630">')
+        robots = "noindex,follow" if post.get("noindex") else "index,follow"
         archivos[rel] = envolver(
-            shell, rel, titulo, post["descripcion"], canonical, "index,follow", "article",
+            shell, rel, titulo, post["descripcion"], canonical, robots, "article",
             SITIO + "/" + post["imagen_og"], post["imagen_alt"], extra,
             html_post(post, publicados, catalogo, raiz, activo), menu_html, pie_html)
     entradas = []
@@ -1188,6 +1292,8 @@ def planificar(raiz, incluir_borradores=False):
             entradas.append((SITIO + "/blog/" + CATS[clave]["slug"] + ".html",
                              max(p["actualizado"] for p in grupo).isoformat()))
     for post in publicados:
+        if post.get("noindex"):
+            continue
         entradas.append((SITIO + "/blog/" + post["slug"] + ".html", post["actualizado"].isoformat()))
     sitemap = raiz / "sitemap.xml"
     if sitemap.is_file():

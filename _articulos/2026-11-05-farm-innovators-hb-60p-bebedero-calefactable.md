@@ -5,6 +5,7 @@ descripcion: "Revisa potencia, instalación eléctrica y límites del HB-60P ant
 categoria: ponedoras
 fecha: 2026-11-05
 borrador: false
+noindex: true
 imagen: "img/blog/farm-innovators-hb-60p-bebedero-calefactable-ponedoras.webp"
 imagen_og: "img/blog/farm-innovators-hb-60p-bebedero-calefactable-ponedoras-og.webp"
 imagen_alt: "Bebedero calefactable Farm Innovators HB-60P de 2 galones con tres nipples"
