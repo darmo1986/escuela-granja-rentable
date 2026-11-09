@@ -84,4 +84,4 @@ Una categoría con menos de 3 artículos publicados lleva `noindex` y no entra e
 
 La web no se copia de la rama. Al fusionar, en GitHub: **Settings → Pages → Build and deployment → Source = GitHub Actions**. La acción corre el generador, Jekyll escribe `_site/` y Pages publica solo esa carpeta. El Markdown de `_articulos/` y las plantillas no se pueden descargar.
 
-Los anuncios del blog siguen `window.ads.activo` en `js/config.js`. Con `false` las páginas no llevan hueco ni piden ningún anuncio.
+Los huecos de anuncio del blog siguen el interruptor de `js/config.js`. Con false las páginas no llevan hueco.

@@ -842,29 +842,6 @@
   }
 
   applyPais(pais, false);
-  function askGeo() {
-    try {
-      if (!(window.ads && window.ads.activo === true)) return;
-      if (localStorage.getItem("gr_pais")) return;
-      if (localStorage.getItem("gr_consent") !== "si") return;
-      if (window.__grGeoAsked) return;
-      window.__grGeoAsked = 1;
-      fetch("https://get.geojs.io/v1/ip/country.json", { credentials: "omit" })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          var code = String((d && (d.country || d.country_code)) || "").toUpperCase();
-          if (!PAISES[code]) return;
-          try { localStorage.setItem("gr_pais_ip", code); } catch (e1) {}
-          if (code !== pais && !localStorage.getItem("gr_pais")) applyPais(code, false);
-        })
-        .catch(function () {});
-    } catch (eGeo) {}
-  }
-  askGeo();
-  document.addEventListener("click", function (ev) {
-    var t = ev.target && ev.target.closest ? ev.target.closest("[data-c]") : null;
-    if (t && t.getAttribute("data-c") === "si") askGeo();
-  });
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), ebooks: storeUrl() };
   };

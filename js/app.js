@@ -4,7 +4,7 @@ const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
 const save=p=>{localStorage.setItem(PK,JSON.stringify(p));if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);};
 /* ── Consentimiento. La web no carga redes de anuncios de terceros. ── */
-function adsOn(){return !!(window.ads&&window.ads.activo===true);}
+function adsOn(){return false;}
 function ocultarHuecos(){
   document.documentElement.classList.remove('ad-ok');
   document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
