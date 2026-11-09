@@ -470,6 +470,10 @@ class Generador(unittest.TestCase):
         portada = (self.tmp / "index.html").read_text(encoding="utf-8")
         self.assertIn("Pack de ebooks de Granja Rentable", portada)
         self.assertEqual(portada.count("adsbygoogle.js"), 1)
+        clave, _tema = generar.ebook_y_amazon(
+            "blog/criar-codornices-desde-cero.html",
+            {"slug": "criar-codornices-desde-cero", "categoria": "ponedoras"})
+        self.assertEqual(clave, "pack")
 
 
 if __name__ == "__main__":

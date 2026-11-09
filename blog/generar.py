@@ -890,6 +890,8 @@ def ebook_y_amazon(rel, post=None):
     blob = rel.lower()
     if post:
         blob += " " + post.get("slug", "") + " " + post.get("categoria", "")
+    if "codorn" in blob:
+        return "pack", None
     if "incub" in blob:
         return "empezar", "incubacion"
     if "bebedero" in blob or "agua-" in blob:
@@ -901,11 +903,29 @@ def ebook_y_amazon(rel, post=None):
     return "empezar", None
 
 
-def html_banner(raiz_url, ebook_clave, amazon_tema, tag):
+def precio_catalogo(raiz, href):
+    """Precio visible del ebook en ebooks/index.html. El pack no tiene uno solo."""
+    ancla = href.split("#", 1)[1] if "#" in href else ""
+    if not ancla:
+        return ""
+    ruta = Path(raiz) / "ebooks" / "index.html"
+    try:
+        texto = ruta.read_text(encoding="utf-8")
+    except OSError:
+        return ""
+    coincidencia = re.search(
+        rf'id="{re.escape(ancla)}"[\s\S]{{0,2500}}?<p class="precio">([^<]+)</p>',
+        texto)
+    return coincidencia.group(1).strip() if coincidencia else ""
+
+
+def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
+    precio_html = f"<p>{esc(precio)}</p>" if precio else ""
     bloque = (f'<aside class="banner-ebook" data-banner-ebook>'
               f'<p class="kicker">De Granja Rentable</p>'
               f'<p><a href="{esc(raiz_url + href)}">{esc(titulo)}</a></p>'
+              f'{precio_html}'
               f'</aside>')
     if tag and amazon_tema in AMAZON_POR_TEMA:
         nombre, asin = AMAZON_POR_TEMA[amazon_tema]
@@ -934,7 +954,9 @@ def colocar_banners(rel, html, raiz, post=None):
     if rel != "index.html" and not (rel.startswith("blog/") and rel.endswith(".html")):
         return html
     clave, amazon_tema = ebook_y_amazon(rel, post)
-    banner = html_banner(raiz_de(rel), clave, amazon_tema, etiqueta_amazon(raiz))
+    _titulo, href = EBOOK_POR_CLAVE[clave]
+    banner = html_banner(raiz_de(rel), clave, amazon_tema, etiqueta_amazon(raiz),
+                         precio_catalogo(raiz, href))
     return html.replace("</main>", banner + "\n</main>", 1)
 
 
