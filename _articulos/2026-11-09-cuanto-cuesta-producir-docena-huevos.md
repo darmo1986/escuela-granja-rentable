@@ -461,7 +461,7 @@ Con esa información podrás detectar desperdicios, revisar precios, comparar ca
 
 En **Granja Rentable** queremos ayudarte a tomar decisiones con datos, no con promesas.
 
-Visita [**www.granjarentable.com**](https://www.granjarentable.com) para aprender más sobre alimentación, gallineros, manejo de ponedoras y economía de pequeñas explotaciones avícolas.
+Visita [**www.granjarentable.com**](https://granjarentable.com/ebooks/) para aprender más sobre alimentación, gallineros, manejo de ponedoras y economía de pequeñas explotaciones avícolas.
 
 ## Fuentes técnicas y metodología
 
