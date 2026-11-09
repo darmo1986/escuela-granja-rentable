@@ -1,7 +1,7 @@
 ---
 titulo: "Agua para gallinas ponedoras: cuánto beben, qué bebedero elegir y cómo mantenerlo limpio"
 titulo_seo: "Agua para gallinas ponedoras: cuánto beben, qué bebedero elegir y cómo mantenerlo limpio"
-descripcion: "Si no hay agua suficiente y limpia, el bienestar y la producción pueden verse afectados. Calcula el consumo, compara bebederos y manténlos limpios."
+descripcion: "Si no hay agua suficiente y limpia, el bienestar y la producción pueden verse afectados. Calcula el consumo, compara bebederos y mantenlos limpios."
 categoria: alimentacion
 fecha: 2026-11-09
 borrador: false
