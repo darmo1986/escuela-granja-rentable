@@ -1091,6 +1091,59 @@ def bloque_curso(raiz):
             f"<p><a class=\"btn gold\" href=\"{esc(raiz)}curso.html\">Empezar el curso gratis</a></p>\n</section>")
 
 
+
+# Enlaces internos a hubs del sitio (estudio competencia Campo y Corral: enlazado denso).
+# Solo páginas propias ya publicadas. Sin cifras inventadas.
+ENLACES_HUB = {
+    "ponedoras": [
+        ("razas.html", "Líneas de aves y razas de gallinas"),
+        ("calculadora.html", "Calculadora de rentabilidad"),
+        ("ebooks/", "Ebooks de avicultura"),
+        ("curso.html", "Curso gratis de avicultura"),
+    ],
+    "engorde": [
+        ("app.html", "App Registro de pollos"),
+        ("calculadora.html", "Calculadora de rentabilidad"),
+        ("curso.html", "Curso gratis de avicultura"),
+        ("ebooks/", "Ebooks de avicultura"),
+    ],
+    "incubacion": [
+        ("guia-incubadora.html", "Guía de incubadora y días"),
+        ("curso.html", "Curso gratis de avicultura"),
+        ("ebooks/", "Ebooks de avicultura"),
+        ("faq.html", "Preguntas frecuentes"),
+    ],
+    "salud": [
+        ("enfermedades.html", "Enfermedades de gallinas y pollos"),
+        ("curso.html", "Curso gratis de avicultura"),
+        ("faq.html", "Preguntas frecuentes"),
+        ("ebooks/", "Ebooks de avicultura"),
+    ],
+    "alimentacion": [
+        ("ebooks/", "Ebooks de avicultura"),
+        ("calculadora.html", "Calculadora de rentabilidad"),
+        ("curso.html", "Curso gratis de avicultura"),
+        ("guia-empezar.html", "Guía para empezar"),
+    ],
+}
+
+
+def enlaces_hub(categoria, raiz):
+    """Bloque corto de enlaces internos a hubs del sitio."""
+    items = ENLACES_HUB.get(categoria) or []
+    if not items:
+        return ""
+    lis = "".join(
+        f'<li><a href="{esc(raiz + href)}">{esc(texto)}</a></li>' for href, texto in items
+    )
+    return (
+        '<section class="panel">\n'
+        '<p class="kicker">En el sitio</p>\n'
+        '<h2>Más recursos de Granja Rentable</h2>\n'
+        f'<ul class="steps">\n{lis}</ul>\n</section>'
+    )
+
+
 def relacionados(post, publicados):
     por_slug = {p["slug"]: p for p in publicados}
     elegidos = []
@@ -1104,6 +1157,9 @@ def relacionados(post, publicados):
         return elegidos[:3]
     misma = [p for p in publicados if p["slug"] not in vistos and p["categoria"] == post["categoria"]]
     otros = [p for p in publicados if p["slug"] not in vistos and p["categoria"] != post["categoria"]]
+    # Dentro de cada grupo, los más recientes primero (mejor enlazado interno).
+    misma.sort(key=lambda p: (p["fecha"], p["slug"]), reverse=True)
+    otros.sort(key=lambda p: (p["fecha"], p["slug"]), reverse=True)
     for candidato in misma + otros:
         elegidos.append(candidato)
         if len(elegidos) == 3:
@@ -1163,14 +1219,16 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     cerca = relacionados(post, publicados)
     bloque_cerca = ""
     if cerca:
-        bloque_cerca = ('<section>\n<p class="kicker">Sigue leyendo</p>\n<h2>Artículos relacionados</h2>\n<div class="pgrid">\n'
+        bloque_cerca = ('<section>\n<p class="kicker">Sigue leyendo</p>\n'
+                        '<h2>Te puede interesar</h2>\n<div class="pgrid">\n'
                         + "\n".join(tarjeta(p, raiz) for p in cerca) + "\n</div>\n</section>")
+    bloque_hub = enlaces_hub(post["categoria"], raiz)
     recursos = RECURSOS_ARTICULO.get(post["slug"], "")
     if recursos:
         recursos += '<script defer src="../js/recursos-articulo.js"></script>'
     return (cabeza + "\n" + anuncio("banner", activo) + "\n" + foto + "\n"
             + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + recursos + "\n" + guia + "\n" + red + "\n" + fuentes
-            + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
+            + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + bloque_hub + "\n" + anuncio("rect", activo))
 
 
 # Destino si algún texto aún nombra una ficha. Lo físico va a los ebooks.
@@ -1274,7 +1332,7 @@ def ld_blog():
 def ld_articulo(post, canonical):
     articulo = {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": ["Article", "BlogPosting"],
         "headline": post["titulo"],
         "description": post["descripcion"],
         "image": SITIO + "/" + post["imagen_og"],
@@ -1287,7 +1345,9 @@ def ld_articulo(post, canonical):
             "name": EDITOR,
             "logo": {"@type": "ImageObject", "url": LOGO},
         },
-        "mainEntityOfPage": canonical,
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
+        "url": canonical,
+        "isAccessibleForFree": True,
         "articleSection": CATS[post["categoria"]]["nombre"],
     }
     migas = {
@@ -1298,6 +1358,7 @@ def ld_articulo(post, canonical):
             {"@type": "ListItem", "position": 2, "name": "Artículos", "item": SITIO + "/blog/"},
             {"@type": "ListItem", "position": 3, "name": CATS[post["categoria"]]["nombre"],
              "item": SITIO + "/blog/" + CATS[post["categoria"]]["slug"] + ".html"},
+            {"@type": "ListItem", "position": 4, "name": post["titulo"], "item": canonical},
         ],
     }
     return ('<script type="application/ld+json">' + json_seguro(articulo) + "</script>\n"
@@ -1318,18 +1379,41 @@ def ld_faq(preguntas):
     }) + "</script>\n"
 
 
-def ld_categoria(meta):
+def ld_categoria(meta, posts=None):
+    url_cat = SITIO + "/blog/" + meta["slug"] + ".html"
     migas = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Inicio", "item": SITIO + "/"},
             {"@type": "ListItem", "position": 2, "name": "Artículos", "item": SITIO + "/blog/"},
-            {"@type": "ListItem", "position": 3, "name": meta["nombre"],
-             "item": SITIO + "/blog/" + meta["slug"] + ".html"},
+            {"@type": "ListItem", "position": 3, "name": meta["nombre"], "item": url_cat},
         ],
     }
-    return '<script type="application/ld+json">' + json_seguro(migas) + "</script>"
+    coleccion = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": meta["nombre"] + " | Granja Rentable",
+        "url": url_cat,
+        "inLanguage": "es-419",
+        "isPartOf": {"@type": "Blog", "name": "Artículos de avicultura | Granja Rentable",
+                     "url": SITIO + "/blog/"},
+    }
+    if posts:
+        coleccion["mainEntity"] = {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": i,
+                    "url": SITIO + "/blog/" + p["slug"] + ".html",
+                    "name": p["titulo"],
+                }
+                for i, p in enumerate(posts, start=1)
+            ],
+        }
+    return ('<script type="application/ld+json">' + json_seguro(coleccion) + "</script>\n"
+            + '<script type="application/ld+json">' + json_seguro(migas) + "</script>")
 
 
 def paginas_html(raiz):
@@ -1443,8 +1527,26 @@ def planificar(raiz, incluir_borradores=False):
         con_anuncios = activo and clave not in CATEGORIAS_NOINDEX
         rel = f"blog/{meta['slug']}.html"
         canonical = SITIO + "/blog/" + meta["slug"] + ".html"
-        titulo = f"{meta['nombre']} | Artículos | Granja Rentable"
-        descripcion = f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, con guías prácticas y fuentes para ampliar la información."
+        # Títulos orientados a búsquedas reales (estudio /workspace/seo + competencia).
+        titulos_seo_cat = {
+            "ponedoras": "Gallinas ponedoras: artículos y manejo",
+            "engorde": "Pollos de engorde: crianza y costes",
+            "incubacion": "Incubar huevos: guía y errores",
+            "salud": "Enfermedades de gallinas: síntomas y manejo",
+            "alimentacion": "Alimento para gallinas ponedoras y pollos",
+        }
+        descs_seo_cat = {
+            "ponedoras": "Artículos de gallinas ponedoras: puesta, razas, gallinero y manejo práctico para granjas pequeñas.",
+            "engorde": "Artículos de pollos de engorde: crianza, pienso, conversión alimenticia y costes del lote.",
+            "incubacion": "Artículos de incubación: días, ovoscopia, temperatura, humedad y errores cuando no nacen.",
+            "salud": "Artículos de salud aviar: síntomas, bioseguridad y manejo. Orientativo; no es diagnóstico.",
+            "alimentacion": "Artículos de alimentación: pienso, proteína, bebederos y cómo reducir el desperdicio.",
+        }
+        titulo = titulos_seo_cat.get(clave, meta["nombre"]) + " | Granja Rentable"
+        descripcion = descs_seo_cat.get(
+            clave,
+            f"Artículos de {meta['nombre'].lower()} para granjas pequeñas, con guías prácticas y fuentes.",
+        )
         hero = (f'<section class="page-hero">\n<p class="crumbs"><a href="../index.html">Inicio</a> › <a href="/blog/">Artículos</a></p>\n'
                 f'<p class="kicker">Artículos</p>\n<h1>{esc(meta["nombre"])}</h1>\n'
                 f'<p>{esc(descripcion)}</p>\n</section>')
@@ -1459,7 +1561,7 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
-            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta),
+            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta, grupo),
             contenido, menu_html, pie_html)
     for post in publicados:
         rel = f"blog/{post['slug']}.html"

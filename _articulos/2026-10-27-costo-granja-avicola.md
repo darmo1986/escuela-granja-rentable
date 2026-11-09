@@ -9,6 +9,10 @@ producto: incubadora-24egg-dual
 imagen: "img/blog/costo-granja-avicola.webp"
 imagen_og: "img/blog/costo-granja-avicola-og.webp"
 imagen_alt: "Calculadora y monedas junto a granja avícola pequeña, concepto de costes"
+relacionados:
+  - "cuanto-cuesta-producir-docena-huevos"
+  - "cuanto-cuesta-criar-100-pollos-engorde"
+  - "precio-huevo-5-negocios"
 ---
 
 ## Cuánto cuesta montar una granja avícola pequeña en 2026
