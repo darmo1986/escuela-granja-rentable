@@ -956,7 +956,7 @@ EBOOK_TITULAR = {
     "alimenta": "Más huevos, mejor alimentación",
     "elegir": "Elige el pienso adecuado",
     "hacer": "Fabrica tu propio pienso",
-    "empezar": "Empieza tu granja sin errores",
+    "empezar": "Empieza tu granja con buen pie",
 }
 
 
@@ -985,7 +985,7 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
         f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
         f'<a class="banner-ebook-ficha" href="{esc(enlace)}">'
         f'<div class="banner-ebook-marca">'
-        f'<img src="{esc(raiz_url)}img/logo-oscuro.svg" alt="Granja Rentable" width="36" height="36" decoding="async">'
+        f'<img src="{esc(raiz_url)}img/logo-oscuro.svg" alt="" width="36" height="36" decoding="async">'
         f'<span>Granja Rentable</span></div>'
         f'{html_ilustracion(raiz_url, ebook_clave)}'
         f'<div class="banner-ebook-texto">'
