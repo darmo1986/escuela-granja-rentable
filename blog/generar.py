@@ -961,10 +961,10 @@ EBOOK_BENEFICIO = {
 
 
 def precio_banner(clave):
-    """El pack no tiene un solo precio. Cada guía se anuncia a 3 USD."""
+    """El pack no tiene un solo precio. Cada guía se anuncia a 3,00 USD."""
     if clave == "pack":
-        return "desde 3 USD"
-    return "3 USD"
+        return "desde 3,00 USD"
+    return "3,00 USD"
 
 
 def html_portada(raiz_url, clave):
@@ -986,14 +986,15 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     enlace = con_utm_interno(raiz_url + href, id_ebook)
     bloque = (
         f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
-        f'{html_portada(raiz_url, ebook_clave)}'
         f'<a class="banner-ebook-ficha" href="{esc(enlace)}">'
+        f'{html_portada(raiz_url, ebook_clave)}'
+        f'<span class="banner-ebook-texto">'
         f'<p class="kicker">De Granja Rentable</p>'
         f'<p class="banner-ebook-titulo">{esc(titulo)}</p>'
         f'<p class="banner-ebook-beneficio">{esc(EBOOK_BENEFICIO[ebook_clave])}</p>'
         f'<p class="banner-ebook-precio">{esc(precio_banner(ebook_clave))}</p>'
         f'<span class="banner-ebook-cta">Compra ya</span>'
-        f'</a></aside>'
+        f'</span></a></aside>'
     )
     if tag and amazon_tema in AMAZON_POR_TEMA:
         nombre, asin = AMAZON_POR_TEMA[amazon_tema]
