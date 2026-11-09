@@ -20,13 +20,13 @@
   (y la carpeta de spam).
 -->
 
-<!-- SDK de PayPal: botones, en euros, cobro inmediato (capture). -->
+<!-- SDK de PayPal: botones, en USD, cobro inmediato (capture). -->
 <!-- PayPal no se ofrece en la web. No cargar el SDK. -->
 
 <!-- Ebook 1 -->
 <section class="ebook-paypal">
   <h3>Guía para empezar tu granja</h3>
-  <p>1 € · PDF · Pago con PayPal</p>
+  <p>3,00 USD · PDF · Pago con PayPal</p>
   <div id="paypal-boton-guia"></div>
   <p id="paypal-mensaje-guia" role="status"></p>
 </section>
@@ -34,7 +34,7 @@
 <!-- Ebook 2 -->
 <section class="ebook-paypal">
   <h3>Alimenta bien a tus ponedoras</h3>
-  <p>1 € · PDF · Pago con PayPal</p>
+  <p>3,00 USD · PDF · Pago con PayPal</p>
   <div id="paypal-boton-ponedoras"></div>
   <p id="paypal-mensaje-ponedoras" role="status"></p>
 </section>
@@ -74,7 +74,7 @@
       },
 
       // 2) Al aprobar, capturar en el servidor: solo si el cobro es
-      // COMPLETED por 1,00 EUR se envía el PDF por correo.
+      // COMPLETED por 3,00 USD se envía el PDF por correo.
       onApprove: function (data, actions) {
         return llamarScript({
           tipo: "paypal-ebook", accion: "capturar",
