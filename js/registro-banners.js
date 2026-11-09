@@ -54,6 +54,7 @@
       method: "POST",
       mode: "no-cors",
       keepalive: true,
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: texto
     }).catch(function () {});
   }

@@ -37,6 +37,12 @@
  *    rehacer el resumen cada día.
  */
 
+function celdaTexto_(valor) {
+  var s = String(valor == null ? "" : valor);
+  if (/^[=+\-@]/.test(s)) return "'" + s;
+  return s;
+}
+
 var HOJA_BANNERS = "Registro banners";
 var HOJA_RESUMEN_BANNERS = "Resumen banners";
 var COLUMNAS_BANNERS = ["fecha", "banner", "evento", "página", "referrer"];
@@ -66,7 +72,13 @@ function registrarBanner_(e) {
   lock.waitLock(15000);
   try {
     var hoja = abrirHojaBanners_();
-    hoja.appendRow([fecha.slice(0, 25), banner, evento, pagina, referrer]);
+    hoja.appendRow([
+      celdaTexto_(fecha.slice(0, 25)),
+      celdaTexto_(banner),
+      celdaTexto_(evento),
+      celdaTexto_(pagina),
+      celdaTexto_(referrer)
+    ]);
     return jsonBanner_({ ok: true });
   } finally {
     lock.releaseLock();
@@ -114,7 +126,7 @@ function resumenBanners() {
   claves.forEach(function (clave) {
     var fila = totales[clave];
     var ctr = fila.impresiones ? fila.clics / fila.impresiones : 0;
-    hoja.appendRow([fila.dia, fila.banner, fila.impresiones, fila.clics, ctr]);
+    hoja.appendRow([celdaTexto_(fila.dia), celdaTexto_(fila.banner), fila.impresiones, fila.clics, ctr]);
   });
   if (claves.length) hoja.getRange(2, 5, claves.length, 1).setNumberFormat("0.00%");
 }
