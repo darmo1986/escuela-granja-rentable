@@ -1179,6 +1179,8 @@ def planificar(raiz, incluir_borradores=False):
         return errores, {}, []
     publicados = [p for p in posts if p["publicar"] or incluir_borradores]
     publicados.sort(key=lambda p: (p["fecha"], p["slug"]), reverse=True)
+    # Las fichas noindex siguen publicadas, pero no salen en el índice, las páginas ni las categorías.
+    visibles = [p for p in publicados if not p.get("noindex")]
     por_slug = {p["slug"]: p for p in publicados}
     for post in publicados:
         for slug in post.get("relacionados") or []:
@@ -1210,7 +1212,7 @@ def planificar(raiz, incluir_borradores=False):
     descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
                         "con guías prácticas y fuentes para ampliar la información.")
     og_portada = LOGO
-    cortes = repartir_posts(len(publicados), POR_PAGINA) if publicados else [(0, 0)]
+    cortes = repartir_posts(len(visibles), POR_PAGINA) if visibles else [(0, 0)]
     paginas_indice = len(cortes)
     for numero in range(1, paginas_indice + 1):
         rel = "blog/index.html" if numero == 1 else f"blog/pagina-{numero}.html"
@@ -1233,17 +1235,17 @@ def planificar(raiz, incluir_borradores=False):
             hero,
             anuncio("banner", activo),
             categorias_nav(""),
-            listado(publicados, numero, cortes),
+            listado(visibles, numero, cortes),
             bloque_guias("../"),
             bloque_curso("../"),
             anuncio("rect", activo),
         ] if parte)
         archivos[rel] = envolver(
             shell, rel, titulo_pagina, descripcion_pagina, canonical,
-            "index,follow" if hay_posts else "noindex,follow", "website",
+            "index,follow" if visibles else "noindex,follow", "website",
             og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
-        grupo = [p for p in publicados if p["categoria"] == clave]
+        grupo = [p for p in visibles if p["categoria"] == clave]
         indexable = len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX
         con_anuncios = activo and clave not in CATEGORIAS_NOINDEX
         rel = f"blog/{meta['slug']}.html"
@@ -1280,14 +1282,15 @@ def planificar(raiz, incluir_borradores=False):
             html_post(post, publicados, catalogo, raiz, activo), menu_html, pie_html)
     entradas = []
     if publicados:
-        entradas.append((SITIO + "/blog/", max(p["actualizado"] for p in publicados).isoformat()))
+        fuente_fecha = visibles or publicados
+        entradas.append((SITIO + "/blog/", max(p["actualizado"] for p in fuente_fecha).isoformat()))
     for numero in range(2, paginas_indice + 1):
         inicio, fin = cortes[numero - 1]
-        corte = publicados[inicio:fin]
+        corte = visibles[inicio:fin]
         last = max((p["actualizado"] for p in corte), default=None)
         entradas.append((SITIO + f"/blog/pagina-{numero}.html", last.isoformat() if last else None))
     for clave in (c[0] for c in CATEGORIAS):
-        grupo = [p for p in publicados if p["categoria"] == clave]
+        grupo = [p for p in visibles if p["categoria"] == clave]
         if len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX:
             entradas.append((SITIO + "/blog/" + CATS[clave]["slug"] + ".html",
                              max(p["actualizado"] for p in grupo).isoformat()))

@@ -424,6 +424,10 @@ class Generador(unittest.TestCase):
         sitemap = (self.tmp / "sitemap.xml").read_text(encoding="utf-8")
         self.assertNotIn("https://granjarentable.com/blog/pasos.html", sitemap)
         self.assertIn("https://granjarentable.com/blog/", sitemap)
+        indice = (self.tmp / "blog" / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("pasos.html", indice)
+        cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
+        self.assertNotIn("pasos.html", cat)
 
 
 if __name__ == "__main__":
