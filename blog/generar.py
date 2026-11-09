@@ -85,6 +85,7 @@ SUFIJO_TITULO = " | Granja Rentable"
 # El tope de 60 sigue valiendo para el resto. Este título lo aprobó el editor.
 TITULO_MAX_EXTRA = {
     "agua-gallinas-ponedoras-bebederos": 100,
+    "cuanto-cuesta-producir-docena-huevos": 70,
 }
 VERSION_ACTIVOS = "202610184"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
