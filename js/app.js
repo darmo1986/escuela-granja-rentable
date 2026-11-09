@@ -3,146 +3,14 @@ const root=document.body.dataset.root||'';
 const PK='gr_progreso',CK='gr_consent';
 const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
 const save=p=>{localStorage.setItem(PK,JSON.stringify(p));if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);};
-/* ── Consentimiento + publicidad (Adsterra; nada sin key y sin «Aceptar») ── */
-function smallBannerCfg(){
-  const g=(window.GR&&window.GR.redes&&window.GR.redes.adsterra)||{};
-  const key=String(g.bannerKey||'').trim();
-  if(key)return {key:key,w:+g.w||320,h:+g.h||50};
-  const mov=window.ADSTERRA&&window.ADSTERRA.banner&&window.ADSTERRA.banner.movil;
-  const fallback=mov&&String(mov.key||'').trim();
-  if(fallback)return {key:fallback,w:+mov.w||320,h:+mov.h||50};
-  return null;
-}
-function adsterraHasKey(){
-  if(smallBannerCfg())return true;
-  const A=window.ADSTERRA||{};
-  return ['banner','rect'].some(k=>{
-    const o=A[k]; return !!(o&&((o.key&&String(o.key).trim())||(o.movil&&o.movil.key&&String(o.movil.key).trim())));
-  });
-}
+/* ── Consentimiento. La web no carga redes de anuncios de terceros. ── */
 function adsOn(){return !!(window.ads&&window.ads.activo===true);}
 function ocultarHuecos(){
   document.documentElement.classList.remove('ad-ok');
   document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
 }
 if(!adsOn())ocultarHuecos();
-function adsConfigured(){return adsOn()&&adsterraHasKey();}
-function pickAdsterra(cfg,size){
-  if(size==='banner')return smallBannerCfg();
-  if(!cfg)return null;
-  const desk=cfg.key&&String(cfg.key).trim()?{key:String(cfg.key).trim(),w:+cfg.w||300,h:+cfg.h||250}:null;
-  return desk;
-}
-function markBannerGap(el){
-  if(el.dataset.adFilled)return;
-  el.dataset.adFilled='gap';
-  const p=document.createElement('p');
-  p.className='ad-gap';
-  p.textContent='Publicidad no disponible.';
-  el.appendChild(p);
-}
-/* Cada pieza va en su propio iframe para que atOptions no se pise.
-   format iframe, params vacío: sin tema ni palabras clave.
-   El dominio sale de ADSTERRA.host (config.js). */
-function adsterraScriptHost(){
-  const fallback='https://www.highrevenueformat.com';
-  const raw=String((window.ADSTERRA&&window.ADSTERRA.host)||'').trim().replace(/\/+$/,'');
-  return /^https:\/\/[a-z0-9.-]+$/i.test(raw)?raw:fallback;
-}
-function mountAdsterra(el,cfg){
-  if(!adsOn())return;
-  if(el.dataset.adFilled)return;
-  el.dataset.adFilled='adsterra';
-  const frame=document.createElement('iframe');
-  frame.title='Publicidad';
-  frame.setAttribute('scrolling','no');
-  frame.setAttribute('loading','lazy');
-  /* Origen opaco: sin allow-same-origin y sin allow-top-navigation*.
-     El anuncio no puede tocar esta página ni cambiar su dirección. */
-  frame.setAttribute('sandbox','allow-scripts allow-popups allow-popups-to-escape-sandbox');
-  frame.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
-  frame.style.cssText='width:'+cfg.w+'px;height:'+cfg.h+'px;max-width:100%;border:0;display:block;overflow:hidden';
-  const key=cfg.key;
-  frame.srcdoc='<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;overflow:hidden">'+
-    '<script>atOptions={key:'+JSON.stringify(key)+',format:"iframe",height:'+cfg.h+',width:'+cfg.w+',params:{}};<\/script>'+
-    '<script src="'+adsterraScriptHost()+'/'+encodeURIComponent(key)+'/invoke.js"><\/script>'+
-    '</body></html>';
-  el.appendChild(frame);
-}
-function loadAdsterra(){
-  const narrow=window.matchMedia('(max-width:1099px)').matches;
-  const seen={};
-  document.querySelectorAll('.ad-slot[data-ad-size]').forEach(el=>{
-    const size=el.dataset.adSize;
-    if(narrow && size==='rect'){
-      const box=el.closest('.ad-inline');
-      if(box)box.remove();
-      return;
-    }
-    if(seen[size]){
-      const box=el.closest('.ad-inline');
-      if(box)box.remove();
-      return;
-    }
-    seen[size]=el;
-  });
-  const arm=el=>{
-    const size=el.dataset.adSize;
-    const cfg=pickAdsterra((window.ADSTERRA||{})[size],size);
-    if(cfg)mountAdsterra(el,cfg);
-    else if(size==='banner')markBannerGap(el);
-  };
-  /* El 300×250 es un lateral fijo. En una página corta el pie lo tapa
-     (ad-rail-off) y no debe contarse una impresión. */
-  if(!narrow && seen.rect){
-    const rail=seen.rect.closest('.ad-inline');
-    const foot=document.querySelector('.foot');
-    if(rail){
-      rail.classList.add('ad-rail');
-      const showRect=hidden=>{
-        rail.classList.toggle('ad-rail-off', !!hidden);
-        if(hidden||seen.rect.dataset.adFilled)return;
-        const cs=getComputedStyle(rail);
-        if(cs.display==='none'||cs.visibility==='hidden')return;
-        const r=rail.getBoundingClientRect();
-        const vh=window.innerHeight||document.documentElement.clientHeight;
-        const vw=window.innerWidth||document.documentElement.clientWidth;
-        if(r.width<2||r.height<2||r.bottom<=0||r.right<=0||r.top>=vh||r.left>=vw)return;
-        arm(seen.rect);
-      };
-      if(foot && 'IntersectionObserver' in window){
-        new IntersectionObserver(entries=>{
-          showRect(entries.some(e=>e.isIntersecting));
-        }).observe(foot);
-      }else{
-        const covered=()=>{
-          if(!foot)return false;
-          const fr=foot.getBoundingClientRect();
-          const vh=window.innerHeight||document.documentElement.clientHeight;
-          return fr.top<vh && fr.bottom>0;
-        };
-        const sync=()=>showRect(covered());
-        sync();
-        if(foot){
-          window.addEventListener('scroll', sync, {passive:true});
-          window.addEventListener('resize', sync);
-        }
-      }
-    }
-  }
-  const slots=seen.banner?[seen.banner]:[];
-  if(!slots.length)return !!seen.rect;
-  if(!('IntersectionObserver' in window)){slots.forEach(arm);return true;}
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(en=>{
-      if(!en.isIntersecting)return;
-      io.unobserve(en.target);
-      arm(en.target);
-    });
-  },{rootMargin:'200px 0px'});
-  slots.forEach(el=>io.observe(el));
-  return true;
-}
+function adsConfigured(){return false;}
 /* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
    gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
    html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
@@ -195,8 +63,7 @@ function loadAds(){
   if(paginaSinAnuncios()){quitarAnuncios();return;}
   if(!adsOn()){ocultarHuecos();return;}
   if(esPremiumLocal()){ quitarAnuncios(); return; }
-  if(window.__adsLoaded)return; window.__adsLoaded=1;
-  if(adsterraHasKey())loadAdsterra();
+  window.__adsLoaded=1;
 }
 function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
 function banner(){
@@ -204,7 +71,7 @@ function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Usamos cookies de publicidad (Adsterra) para mostrar anuncios (que pueden ser personalizados) y así mantener el curso gratis. Solo se activan si aceptas. La cuenta, si entras, se guarda aparte en este navegador y no depende de este aviso. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Este sitio no carga redes de anuncios de terceros. La cuenta, si entras, se guarda aparte en este navegador. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
@@ -214,7 +81,7 @@ function notaLibre(){
   const n=document.createElement('aside');
   n.id='cookie-note';
   n.setAttribute('role','note');
-  n.innerHTML='<span>Mostramos anuncios de Adsterra para mantener el curso gratis.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Rechazar</button>';
+  n.innerHTML='<span>Este sitio no carga redes de anuncios de terceros.</span> <a href="'+root+'cookies.html">Política de cookies</a> <button type="button" class="btn sec" data-c="no">Cerrar</button>';
   n.addEventListener('click',e=>{
     if(e.target.dataset.c!=='no')return;
     localStorage.setItem(CK,'no');

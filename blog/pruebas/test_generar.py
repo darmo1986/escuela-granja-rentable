@@ -293,6 +293,7 @@ class Generador(unittest.TestCase):
         for pagina in (html, indice):
             self.assertNotIn("ad-inline", pagina)
             self.assertNotIn("highperformanceformat", pagina)
+            self.assertNotIn("highrevenueformat", pagina)
             self.assertNotIn("adsbygoogle", pagina)
             self.assertNotIn("adsterra", pagina.lower())
         (self.tmp / "js" / "config.js").write_text("window.ads = { activo: true };\n", encoding="utf-8")
@@ -301,6 +302,8 @@ class Generador(unittest.TestCase):
         self.assertIn('data-ad-size="banner"', html)
         self.assertIn('data-ad-size="rect"', html)
         self.assertNotIn("highperformanceformat", html)
+        self.assertNotIn("highrevenueformat", html)
+        self.assertNotIn("adsterra", html.lower())
 
     def test_titulo_final_no_pasa_de_60(self):
         largo = "Ovoscopia: cómo revisar los huevos en la incubadora"
