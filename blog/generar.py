@@ -88,9 +88,10 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "202610184"
+VERSION_ACTIVOS = "20261109b"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
-SIN_WHATSAPP = {"premium.html", "condiciones-premium.html"}
+# premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
+SIN_WHATSAPP = {"condiciones-premium.html"}
 CLAVES_HERRAMIENTAS = {"calculadora", "enfermedades", "juegos"}
 
 
@@ -779,7 +780,7 @@ def poner_version(html):
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
             "js/site.js", "js/app.js", "js/config.js"):
         html = re.sub(
-            rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=\d+)?"',
+            rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
             rf'\1?v={VERSION_ACTIVOS}"',
             html)
     return html
@@ -798,6 +799,8 @@ def aplicar_menu(html, rel, menu_html, pie_html, hay_posts):
     menu = menu_listo(menu_html, raiz, clave_nav(rel))
     if pagina_sin_whatsapp(rel):
         menu = conservar_messenger(quitar_whatsapp_nav(menu), html)
+    elif rel.replace("\\", "/") == "premium.html":
+        menu = conservar_messenger(menu, html)
     pie = pie_html.replace("@@RAIZ@@", raiz).rstrip("\n")
     menu = menu.rstrip("\n")
     if "<!-- menu:inicio -->" in html and "<!-- menu:fin -->" in html:
@@ -934,16 +937,67 @@ def con_utm_interno(url, banner_id):
     return salida
 
 
+# Banner opción 1 (elegida por Pablo): logo arriba, titular corto, ilustración
+# a la izquierda (recorte sin texto de la imagen de ChatGPT, img/banners/),
+# precio grande y botón «Compra ya» que lleva a la ficha de compra del ebook.
+EBOOK_ILUSTRACION = {
+    "pack": "banner-empezar",
+    "alimenta": "banner-alimenta",
+    "elegir": "banner-elegir",
+    "hacer": "banner-hacer",
+    "empezar": "banner-empezar",
+}
+EBOOK_ALT = {
+    "pack": "Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera",
+    "alimenta": "Ilustración: gallinas ponedoras comiendo pienso en un comedero de madera junto a cajas de huevos",
+    "elegir": "Ilustración: manos abriendo un saco de pienso junto a una gallina con sus pollitos",
+    "hacer": "Ilustración: gallinas y pollitos junto a sacos de pienso y un molino para fabricar el alimento",
+    "empezar": "Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera",
+}
+EBOOK_TITULAR = {
+    "pack": "Guías prácticas para tu granja",
+    "alimenta": "Más huevos, mejor alimentación",
+    "elegir": "Elige el pienso adecuado",
+    "hacer": "Fabrica tu propio pienso",
+    "empezar": "Empieza tu granja con buen pie",
+}
+
+
+def precio_banner(clave):
+    """El pack no tiene un solo precio. Cada guía se anuncia a 3 USD."""
+    if clave == "pack":
+        return "desde 3 USD"
+    return "3 USD"
+
+
+def html_ilustracion(raiz_url, clave):
+    ruta = f"{raiz_url}img/banners/{EBOOK_ILUSTRACION[clave]}.webp"
+    return (
+        f'<img class="banner-ebook-ilustracion" src="{esc(ruta)}" '
+        f'alt="{esc(EBOOK_ALT[clave])}" width="600" height="469" '
+        f'loading="lazy" decoding="async">'
+    )
+
+
 def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
     id_ebook = id_banner("ebook", ebook_clave)
-    precio_html = f"<p>{esc(precio)}</p>" if precio else ""
     enlace = con_utm_interno(raiz_url + href, id_ebook)
-    bloque = (f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
-              f'<p class="kicker">De Granja Rentable</p>'
-              f'<p><a href="{esc(enlace)}">{esc(titulo)}</a></p>'
-              f'{precio_html}'
-              f'</aside>')
+    guia = f"{titulo} · 4 guías en PDF" if ebook_clave == "pack" else f"Ebook en PDF: {titulo}"
+    bloque = (
+        f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
+        f'<a class="banner-ebook-ficha" href="{esc(enlace)}">'
+        f'<div class="banner-ebook-marca">'
+        f'<img src="{esc(raiz_url)}img/logo-oscuro.svg" alt="" width="36" height="36" decoding="async">'
+        f'<span>Granja Rentable</span></div>'
+        f'{html_ilustracion(raiz_url, ebook_clave)}'
+        f'<div class="banner-ebook-texto">'
+        f'<p class="banner-ebook-titulo">{esc(EBOOK_TITULAR[ebook_clave])}</p>'
+        f'<p class="banner-ebook-guia">{esc(guia)}</p>'
+        f'<p class="banner-ebook-precio">{esc(precio_banner(ebook_clave))}</p>'
+        f'<span class="banner-ebook-cta">Compra ya</span>'
+        f'</div></a></aside>'
+    )
     if tag and amazon_tema in AMAZON_POR_TEMA:
         nombre, asin = AMAZON_POR_TEMA[amazon_tema]
         id_amazon = id_banner("amazon", amazon_tema)

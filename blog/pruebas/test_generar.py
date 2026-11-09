@@ -116,13 +116,13 @@ class Generador(unittest.TestCase):
         self.assertNotIn(">Artículos<", menu)
         self.assertNotIn('href="blog/"', menu)
         self.assertIn(">Calculadoras<", menu)
-        self.assertIn("css/estilo.css?v=202610184", indice)
-        self.assertIn("js/boot.js?v=202610184", indice)
-        self.assertIn("css/blog.css?v=202610184", indice)
-        self.assertIn("js/blog.js?v=202610184", indice)
-        self.assertIn("js/config.js?v=202610184", indice)
-        self.assertIn("js/app.js?v=202610184", indice)
-        self.assertIn("js/site.js?v=202610184", indice)
+        self.assertIn("css/estilo.css?v=20261109b", indice)
+        self.assertIn("js/boot.js?v=20261109b", indice)
+        self.assertIn("css/blog.css?v=20261109b", indice)
+        self.assertIn("js/blog.js?v=20261109b", indice)
+        self.assertIn("js/config.js?v=20261109b", indice)
+        self.assertIn("js/app.js?v=20261109b", indice)
+        self.assertIn("js/site.js?v=20261109b", indice)
         self.assertIn("<!-- menu:inicio -->", menu)
         self.assertIn('id="nav-herramientas"', menu)
         self.assertIn(">Herramientas<", menu)
@@ -325,7 +325,7 @@ class Generador(unittest.TestCase):
         self.assertEqual(titulo, corto + " | Granja Rentable")
         self.assertLessEqual(len(titulo), 60)
 
-    def test_premium_no_recupera_whatsapp(self):
+    def test_premium_conserva_whatsapp(self):
         (self.tmp / "premium.html").write_text(
             '<link rel="stylesheet" href="css/estilo.css">\n'
             '<script src="js/boot.js"></script>\n'
@@ -343,14 +343,25 @@ class Generador(unittest.TestCase):
         html = (self.tmp / "premium.html").read_text(encoding="utf-8")
         self.assertIn("Messenger", html)
         self.assertIn("m.me/PENDIENTE", html)
-        self.assertNotIn("WhatsApp", html)
-        self.assertNotIn("wa.me", html)
-        self.assertNotIn("wa-float", html)
-        self.assertIn("css/estilo.css?v=202610184", html)
-        self.assertIn("js/boot.js?v=202610184", html)
-        self.assertIn("js/config.js?v=202610184", html)
-        self.assertIn("js/app.js?v=202610184", html)
-        self.assertIn("js/site.js?v=202610184", html)
+        self.assertIn('data-social="whatsapp" href="https://wa.me/34656267726"', html)
+        self.assertIn('<a class="wa-float" href="https://wa.me/34656267726">', html)
+        self.assertIn("css/estilo.css?v=20261109b", html)
+        self.assertIn("js/boot.js?v=20261109b", html)
+
+    def test_version_con_letras_se_sustituye(self):
+        html = generar.poner_version('<link href="css/estilo.css?v=20261109a"><script src="js/app.js?v=1"></script>')
+        self.assertIn(f"css/estilo.css?v={generar.VERSION_ACTIVOS}\"", html)
+        self.assertIn(f"js/app.js?v={generar.VERSION_ACTIVOS}\"", html)
+        self.assertNotIn("20261109a", html)
+
+    def test_premium_real_conserva_whatsapp(self):
+        html = (RAIZ / "premium.html").read_text(encoding="utf-8")
+        self.assertIn('class="nav-wa"', html)
+        self.assertIn('class="wa-float"', html)
+        self.assertGreaterEqual(html.count("wa.me/34656267726"), 3)
+        self.assertIn("js/config.js?v=20261109b", html)
+        self.assertIn("js/app.js?v=20261109b", html)
+        self.assertIn("js/site.js?v=20261109b", html)
         self.assertNotIn("js/app.js?v=1", html)
 
     def test_herramientas_marca_la_pagina_activa(self):
@@ -421,8 +432,8 @@ class Generador(unittest.TestCase):
         self.assertIn('"@type":"FAQPage"', html)
         self.assertIn("¿Hay que limpiar el bebedero?", html)
         self.assertIn('content="noindex,follow"', html)
-        self.assertIn("js/app.js?v=202610184", html)
-        self.assertIn("js/site.js?v=202610184", html)
+        self.assertIn("js/app.js?v=20261109b", html)
+        self.assertIn("js/site.js?v=20261109b", html)
         self.assertNotIn("catalogo.js", html)
         self.assertIn("quienes-somos.html#equipo-editorial", html)
         sitemap = (self.tmp / "sitemap.xml").read_text(encoding="utf-8")
@@ -448,6 +459,18 @@ class Generador(unittest.TestCase):
         self.assertEqual(html.count("data-banner-ebook"), 1)
         self.assertIn('data-banner="ebook-empezar"', html)
         self.assertIn("Guía para empezar tu granja", html)
+        self.assertIn("Compra ya", html)
+        self.assertIn("3 USD", html)
+        self.assertIn("Empieza tu granja con buen pie", html)
+        self.assertNotIn("Empieza tu granja sin errores", html)
+        self.assertRegex(html, r'<div class="banner-ebook-marca"><img src="[^"]*img/logo-oscuro\.svg" alt=""[^>]*><span>Granja Rentable</span>')
+        self.assertIn('class="banner-ebook-marca"', html)
+        self.assertIn("img/logo-oscuro.svg", html)
+        self.assertIn("img/banners/banner-empezar.webp", html)
+        self.assertIn('<div class="banner-ebook-texto">', html)
+        self.assertNotIn('<span class="banner-ebook-texto">', html)
+        self.assertRegex(html, r'class="banner-ebook-ilustracion"[^>]*alt="Ilustración: [^"]+"')
+        self.assertIn('loading="lazy"', html)
         self.assertIn("ebooks/?utm_source=granjarentable&amp;utm_medium=banner&amp;utm_campaign=ebook-empezar#guia-empezar", html)
         self.assertEqual(html.count("js/registro-banners.js"), 1)
         self.assertNotIn("adsbygoogle.js", html)
@@ -484,6 +507,11 @@ class Generador(unittest.TestCase):
         self.assertNotIn("adsbygoogle.js", portada)
         self.assertNotIn("ca-pub-5311145772953700", portada)
         self.assertIn('data-banner="ebook-pack"', portada)
+        self.assertIn("desde 3 USD", portada)
+        self.assertIn("Guías prácticas para tu granja", portada)
+        self.assertNotIn("Empieza tu granja", portada)
+        self.assertIn('img/logo-oscuro.svg" alt=""', portada)
+        self.assertIn("Compra ya", portada)
         self.assertIn("utm_campaign=ebook-pack", portada)
         self.assertEqual(portada.count("js/registro-banners.js"), 1)
         paginas = []
@@ -505,6 +533,27 @@ class Generador(unittest.TestCase):
             "blog/criar-codornices-desde-cero.html",
             {"slug": "criar-codornices-desde-cero", "categoria": "ponedoras"})
         self.assertEqual(clave, "pack")
+
+
+class ConfiguracionReal(unittest.TestCase):
+    """js/config.js del repositorio: Amazon como relleno detrás del ebook, sin redes de anuncios."""
+
+    def test_amazon_con_etiqueta_y_anuncios_apagados(self):
+        self.assertEqual(generar.etiqueta_amazon(RAIZ), "granjarentabl-20")
+        self.assertFalse(generar.anuncios_activos(RAIZ))
+        config = (RAIZ / "js" / "config.js").read_text(encoding="utf-8").lower()
+        self.assertNotIn("adsbygoogle", config)
+        self.assertNotIn("adsterra", config)
+
+    def test_hueco_amazon_va_detras_del_ebook(self):
+        html = (RAIZ / "blog" / "incubacion-dia-a-dia.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertEqual(html.count("data-banner-amazon"), 1)
+        self.assertLess(html.index("data-banner-ebook"), html.index("data-banner-amazon"))
+        self.assertIn("tag=granjarentabl-20", html)
+        self.assertIn('rel="sponsored nofollow noopener"', html)
+        self.assertNotIn("adsbygoogle", html)
+        self.assertNotIn("adsterra", html.lower())
 
 
 if __name__ == "__main__":
