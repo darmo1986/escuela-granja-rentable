@@ -429,7 +429,7 @@ class Generador(unittest.TestCase):
         cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
         self.assertNotIn("pasos.html", cat)
 
-    def test_adsense_una_vez_y_banner_que_permanece(self):
+    def test_sin_adsense_y_banner_que_permanece(self):
         post(self.tmp, "2026-11-09-banner.md", borrador="false", leccion="", producto="",
              categoria="incubacion", titulo="Artículo con banner de incubación",
              titulo_seo="Artículo con banner de incubación")
