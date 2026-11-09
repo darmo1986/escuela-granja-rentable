@@ -74,7 +74,7 @@ Si las muertes son repentinas y numerosas, llama ese mismo día, porque hay que 
 
 ## ¿Es de declaración obligatoria en España?
 
-La colibacilosis **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
+La colibacilosis **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
 
 Eso no significa que puedas callarte un brote. La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha. Una mortalidad alta o repentina en el gallinero puede ser gripe aviar o Newcastle aunque parezca otra cosa, y eso solo lo aclara el laboratorio.
 
@@ -101,4 +101,4 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 - [FAO: sanidad animal en aves de corral](https://www.fao.org/poultry-production-products/production/animal-health/es)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

@@ -385,6 +385,9 @@ Si quieres profundizar en alimentación, agua e instalaciones, en los [**ebooks 
 5. **FAO — Small-scale poultry production.** Sonaiya, E. B. y Swan, S. E., 2004. Manual de avicultura familiar en países en desarrollo; el capítulo 4 trata alojamiento (espacio, ventilación, luz y protección). Algunas prácticas descritas no aplican igual en la UE.  
    [https://www.fao.org/4/y5169e/y5169e00.htm](https://www.fao.org/4/y5169e/y5169e00.htm) · Capítulo 4: [https://www.fao.org/4/y5169e/y5169e05.htm](https://www.fao.org/4/y5169e/y5169e05.htm)
 
+6. **University of Minnesota Extension — Preventing heat stress in poultry.** Prevención del estrés térmico en aves (sombra, ventilación, agua).  
+   [https://extension.umn.edu/agriculture/animals-and-livestock/poultry/preventing-heat-stress-in-poultry](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/preventing-heat-stress-in-poultry)
+
 **Metodología editorial:** Las referencias de temperatura, signos de estrés térmico, factores de picaje y prevención del consumo de huevos proceden de las fuentes citadas y son orientaciones generales, no datos medidos en una granja concreta. El artículo no incluye tratamientos, dosis ni porcentajes de incidencia.
 
 **Nota editorial:** Esta guía es divulgativa. No sustituye la valoración de un veterinario, el diagnóstico de laboratorio ni las obligaciones de notificación sanitaria aplicables en tu comunidad autónoma o país.

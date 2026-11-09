@@ -14,7 +14,7 @@ Cuando se habla de salmonela en las aves se mezclan dos problemas distintos. Uno
 
 ## Qué es y a qué aves afecta
 
-Según el [MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/pullorosis-tifosis-aviar/pullorosis_tifosis_aviar) y el Manual Merck de Veterinaria:
+Según el [MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/pullorosis-tifosis-aviar/pullorosis_tifosis_aviar) y el Manual Merck de Veterinaria:
 
 | Enfermedad | Bacteria | A quién afecta sobre todo |
 |---|---|---|
@@ -24,7 +24,7 @@ Según el [MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-g
 
 El MAPA explica que la pullorosis y la tifosis son de las enfermedades bacterianas más importantes de las aves de corral y que están en todo el mundo. Las salmonelas Pullorum y Gallinarum están adaptadas a las aves y se considera que tienen muy poco riesgo para las personas, aunque pueden causar brotes en humanos. Además de gallinas y pavos, el [Manual Merck](https://merckvetmanual.com/poultry/salmonelloses-in-poultry/pullorum-disease-in-poultry) cita pintadas, codornices, faisanes, gorriones, loros y canarios, y advierte de que la pullorosis sigue apareciendo en lotes pequeños de traspatio.
 
-En cambio, la [salmonela de tipo zoonótico](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/salmonella/salmonella_general), sobre todo Enteritidis y Typhimurium, es una **zoonosis**: pasa de los animales a las personas, sobre todo a través de los alimentos.
+En cambio, la [salmonela de tipo zoonótico](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/salmonella/salmonella_general), sobre todo Enteritidis y Typhimurium, es una **zoonosis**: pasa de los animales a las personas, sobre todo a través de los alimentos.
 
 ## Signos
 
@@ -72,7 +72,7 @@ El veterinario decide qué hacer con las aves positivas; con frecuencia la recom
 
 ## ¿Es de declaración obligatoria en España?
 
-**Sí, en el caso de la pullorosis y la tifosis.** El MAPA indica que son enfermedades de declaración obligatoria e incluidas en la lista de la OMSA. Figuran en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
+**Sí, en el caso de la pullorosis y la tifosis.** El MAPA indica que son enfermedades de declaración obligatoria e incluidas en la lista de la OMSA. Figuran en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
 
 La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha.
 
@@ -80,7 +80,7 @@ En la práctica: llama a tu veterinario y a los servicios veterinarios oficiales
 
 **En Latinoamérica**, consulta a tu autoridad sanitaria oficial: SENASA (Argentina y Perú), SENASICA (México), ICA (Colombia), AGROCALIDAD (Ecuador) o el servicio veterinario oficial de tu país. Cada país tiene su propia lista de enfermedades de aviso obligatorio y su propio canal para avisar.
 
-Para la **salmonela zoonótica** (Enteritidis y Typhimurium), España aplica **programas nacionales de control** en gallinas reproductoras y ponedoras, pollos de engorde y pavos, según el Reglamento (CE) 2160/2003, como explica el [MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/salmonella/salmonella_general). Si produces huevos o carne para la venta, tu veterinario y tu comunidad autónoma te dirán qué controles te tocan.
+Para la **salmonela zoonótica** (Enteritidis y Typhimurium), España aplica **programas nacionales de control** en gallinas reproductoras y ponedoras, pollos de engorde y pavos, según el Reglamento (CE) 2160/2003, como explica el [MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/salmonella/salmonella_general). Si produces huevos o carne para la venta, tu veterinario y tu comunidad autónoma te dirán qué controles te tocan.
 
 ## Otras enfermedades que conviene conocer
 
@@ -99,14 +99,14 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 
 ## Fuentes
 
-- [MAPA: pullorosis y tifosis aviar](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/pullorosis-tifosis-aviar/pullorosis_tifosis_aviar)
-- [MAPA: salmonela (programas nacionales de control)](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/salmonella/salmonella_general)
-- [OMSA: pulorosis aviar](https://woah.org/es/enfermedad/pulorosis-aviar/)
-- [OMSA: tifosis aviar](https://woah.org/es/enfermedad/tifosis-aviar/)
+- [MAPA: pullorosis y tifosis aviar](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/pullorosis-tifosis-aviar/pullorosis_tifosis_aviar)
+- [MAPA: salmonela (programas nacionales de control)](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/salmonella/salmonella_general)
+- [OMSA: pulorosis aviar](https://www.woah.org/es/enfermedad/pulorosis-aviar/)
+- [OMSA: tifosis aviar](https://www.woah.org/es/enfermedad/tifosis-aviar/)
 - [Manual Merck de Veterinaria: Pullorum Disease in Poultry](https://merckvetmanual.com/poultry/salmonelloses-in-poultry/pullorum-disease-in-poultry)
 - [Manual Merck de Veterinaria: Fowl Typhoid](https://merckvetmanual.com/poultry/salmonelloses-in-poultry/fowl-typhoid)
 - [Manual Merck de Veterinaria: Paratyphoid Infections in Poultry](https://merckvetmanual.com/poultry/salmonelloses-in-poultry/paratyphoid-infections-in-poultry)
 - [EFSA: salmonela](https://efsa.europa.eu/es/topics/topic/salmonella)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

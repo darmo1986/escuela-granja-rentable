@@ -22,7 +22,7 @@ Según el Manual Merck:
 - las gallinas adultas son más sensibles que las jóvenes;
 - algunas razas de gallina son más sensibles que otras.
 
-La [FAO](https://www.fao.org/poultry-production-products/production/animal-health/es) señala que, en algunas regiones, el cólera aviar es una de las enfermedades con más mortalidad en pollos y patos. La [OMSA](https://woah.org/es/enfermedad/colera-aviar/) tiene una página informativa sobre él.
+La [FAO](https://www.fao.org/poultry-production-products/production/animal-health/es) señala que, en algunas regiones, el cólera aviar es una de las enfermedades con más mortalidad en pollos y patos. La [OMSA](https://www.woah.org/es/enfermedad/colera-aviar/) tiene una página informativa sobre él.
 
 ## Signos
 
@@ -84,7 +84,7 @@ Ante muertes súbitas, el veterinario tiene que descartar la gripe aviar y la en
 
 ## ¿Es de declaración obligatoria en España?
 
-La cólera aviar **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
+La cólera aviar **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
 
 Eso no significa que puedas callarte un brote. La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha. Una mortalidad alta o repentina en el gallinero puede ser gripe aviar o Newcastle aunque parezca otra cosa, y eso solo lo aclara el laboratorio.
 
@@ -108,8 +108,8 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 ## Fuentes
 
 - [Manual Merck de Veterinaria: Fowl Cholera](https://merckvetmanual.com/poultry/fowl-cholera/fowl-cholera)
-- [OMSA: cólera aviar](https://woah.org/es/enfermedad/colera-aviar/)
+- [OMSA: cólera aviar](https://www.woah.org/es/enfermedad/colera-aviar/)
 - [FAO: sanidad animal en aves de corral](https://www.fao.org/poultry-production-products/production/animal-health/es)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

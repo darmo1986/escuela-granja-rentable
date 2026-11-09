@@ -14,7 +14,7 @@ La gripe aviar (o influenza aviar) es la enfermedad de las aves que más preocup
 
 ## Qué es la gripe aviar y a qué aves afecta
 
-Según la [Organización Mundial de Sanidad Animal (OMSA)](https://woah.org/es/enfermedad/influenza-aviar/), la influenza aviar es una enfermedad viral muy contagiosa que afecta a aves domésticas y silvestres. Con menos frecuencia también se ha detectado en mamíferos, incluidas las personas. Hay muchos subtipos del virus (por ejemplo H5N1 o H5N8) y cambian con rapidez.
+Según la [Organización Mundial de Sanidad Animal (OMSA)](https://www.woah.org/es/enfermedad/influenza-aviar/), la influenza aviar es una enfermedad viral muy contagiosa que afecta a aves domésticas y silvestres. Con menos frecuencia también se ha detectado en mamíferos, incluidas las personas. Hay muchos subtipos del virus (por ejemplo H5N1 o H5N8) y cambian con rapidez.
 
 La OMSA distingue dos grandes grupos según la gravedad en las aves de corral:
 
@@ -68,7 +68,7 @@ Las vacunas frente a la gripe aviar existen, pero en la Unión Europea su uso de
 
 En España, la [Orden APA/2442/2006](https://boe.es/buscar/act.php?id=BOE-A-2006-13654) define unos municipios de **especial riesgo** y de **especial vigilancia**, situados en o alrededor de marismas, riberas, costas, lagos y otros humedales. Cuando el riesgo sube, el Ministerio publica órdenes que activan medidas como el **confinamiento** de las aves (que no estén al aire libre) y, si el riesgo es muy alto, puede extenderlas a más municipios. Cuando el riesgo baja, otra orden las levanta.
 
-Las fechas cambian cada temporada, así que no te fíes de lo que leas en redes ni en esta página. Consulta siempre la [página de influenza aviar del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/influenza-aviar/influenza_aviar) o la de tu comunidad autónoma. Si no puedes encerrar a tus aves, el *Plan de confinamiento y bioseguridad* del MAPA propone alternativas para reducir el riesgo.
+Las fechas cambian cada temporada, así que no te fíes de lo que leas en redes ni en esta página. Consulta siempre la [página de influenza aviar del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/influenza-aviar/influenza_aviar) o la de tu comunidad autónoma. Si no puedes encerrar a tus aves, el *Plan de confinamiento y bioseguridad* del MAPA propone alternativas para reducir el riesgo.
 
 ## Cuándo llamar al veterinario
 
@@ -83,7 +83,7 @@ Mientras esperas: no saques aves ni huevos, no lleves cadáveres a ningún sitio
 
 ## ¿Es de declaración obligatoria en España?
 
-**Sí.** La influenza aviar de alta patogenicidad (IAAP) es de notificación inmediata, según el MAPA; la de baja patogenicidad se comunica de forma anual. La influenza aviar figura en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
+**Sí.** La influenza aviar de alta patogenicidad (IAAP) es de notificación inmediata, según el MAPA; la de baja patogenicidad se comunica de forma anual. La influenza aviar figura en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo), que se apoya en el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779). El MAPA define estas enfermedades como aquellas cuya sospecha o presencia debe comunicarse de forma inmediata.
 
 La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha.
 
@@ -108,8 +108,8 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 
 ## Fuentes
 
-- [OMSA: influenza aviar](https://woah.org/es/enfermedad/influenza-aviar/)
-- [MAPA: influenza aviar (situación, normativa y confinamientos)](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/influenza-aviar/influenza_aviar)
+- [OMSA: influenza aviar](https://www.woah.org/es/enfermedad/influenza-aviar/)
+- [MAPA: influenza aviar (situación, normativa y confinamientos)](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/enfermedades/influenza-aviar/influenza_aviar)
 - [Orden APA/2442/2006, medidas específicas de protección frente a la influenza aviar (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2006-13654)
 - [Manual Merck de Veterinaria: Avian Influenza in Poultry and Wild Birds](https://merckvetmanual.com/poultry/avian-influenza-in-poultry-and-wild-birds/avian-influenza-in-poultry-and-wild-birds)
 - [EFSA: influenza aviar](https://efsa.europa.eu/es/topics/topic/avian-influenza)
@@ -117,4 +117,4 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 - [Universidad Estatal de Iowa (CFSPH): influenza aviar](https://cfsph.iastate.edu/diseaseinfo/disease/?disease=avian-influenza&lang=es)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)

@@ -109,14 +109,14 @@
   function integraciones(datosOk) {
     var cfOk = !!(GR.analitica && GR.analitica.cfToken);
     return "<h2>Estado de los avisos</h2>" +
-      "<table class='panel-tabla'>" +
+      "<div class='tabla'><table class='panel-tabla'>" +
       "<tr><th>Registro de visitas e intenciones (Supabase)</th><td>" +
         (datosOk ? "<span class='panel-estado activo'>Activo</span>" : "<span class='panel-estado pendiente'>Pendiente</span> — falta correr la migración del panel.") + "</td></tr>" +
       "<tr><th>Cloudflare Web Analytics (estadísticas sin cookies)</th><td>" +
         (cfOk ? "<span class='panel-estado activo'>Activo</span> — token puesto en js/config.js." : "<span class='panel-estado pendiente'>Pendiente</span> — falta crear el sitio en Cloudflare → Analytics → Web Analytics y pegar el token en js/config.js (GR.analitica.cfToken).") + "</td></tr>" +
       "<tr><th>Aviso por correo al pulsar un enlace de pago</th><td><span class='panel-estado pendiente'>Pendiente</span> — hay que pegar el Codigo.gs actualizado en Apps Script y redesplegar la aplicación web. Hasta entonces, las intenciones se ven aquí y en la revisión diaria.</td></tr>" +
       "<tr><th>Venta confirmada (pago en Stripe)</th><td>El aviso de venta de verdad lo manda Stripe: en su panel, Ajustes, Correos, activa el aviso de pago correcto. Esta web no ve los pagos.</td></tr>" +
-      "</table>";
+      "</table></div>";
   }
 
   function pintar(d) {
@@ -141,11 +141,11 @@
 
     html += "<h3>Páginas más vistas (7 días)</h3>";
     if (d.top_rutas_7d && d.top_rutas_7d.length) {
-      html += "<table class='panel-tabla'><tr><th>Página</th><th>Visitas</th></tr>";
+      html += "<div class='tabla'><table class='panel-tabla'><tr><th>Página</th><th>Visitas</th></tr>";
       d.top_rutas_7d.forEach(function (r) {
         html += "<tr><td>" + esc(r.ruta) + "</td><td>" + r.n + "</td></tr>";
       });
-      html += "</table>";
+      html += "</table></div>";
     } else {
       html += "<p>Todavía no hay visitas registradas.</p>";
     }
@@ -155,7 +155,7 @@
       "<div class='panel-card'><div class='num'>" + (d.intenciones_7d || 0) + "</div><div class='etq'>últimos 7 días</div></div>" +
       "</div>";
     if (d.ultimas_intenciones && d.ultimas_intenciones.length) {
-      html += "<table class='panel-tabla'><tr><th>Cuándo</th><th>Producto</th><th>País</th><th>Canal</th></tr>";
+      html += "<div class='tabla'><table class='panel-tabla'><tr><th>Cuándo</th><th>Producto</th><th>País</th><th>Canal</th></tr>";
       d.ultimas_intenciones.forEach(function (i) {
         var esWa = i.canal === "whatsapp";
         html += "<tr><td>" + fechaHora(i.creado) + "</td><td>" + esc(i.producto) + "</td><td>" +
@@ -163,7 +163,7 @@
           "<span class='panel-canal " + (esWa ? "wa" : "pago") + "'>" +
           (esWa ? "WhatsApp" : "Pago") + "</span></td></tr>";
       });
-      html += "</table>";
+      html += "</table></div>";
     } else {
       html += "<p>Todavía no hay intenciones registradas.</p>";
     }

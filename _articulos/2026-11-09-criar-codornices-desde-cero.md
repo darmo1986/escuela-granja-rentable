@@ -457,17 +457,14 @@ Si estás empezando, en los [**ebooks de Granja Rentable**](https://granjarentab
 6. **FDA — What You Need to Know About Egg Safety.** Salmonella en huevos con cáscara limpia, higiene y cocinado.  
    [https://www.fda.gov/food/buy-store-serve-safe-food/what-you-need-know-about-egg-safety](https://www.fda.gov/food/buy-store-serve-safe-food/what-you-need-know-about-egg-safety)
 
-7. **Merck Veterinary Manual — Nutritional Requirements of Poultry.** Principios generales de nutrición avícola: energía, aminoácidos, vitaminas y minerales.  
-   [https://www.merckvetmanual.com/poultry/nutrition-and-management-poultry/nutritional-requirements-of-poultry](https://www.merckvetmanual.com/poultry/nutrition-and-management-poultry/nutritional-requirements-of-poultry)
-
-8. **Real Decreto 637/2021**, por el que se establecen las normas básicas de ordenación de las granjas avícolas (artículos 2 y 16).  
+7. **Real Decreto 637/2021**, por el que se establecen las normas básicas de ordenación de las granjas avícolas (artículos 2 y 16).  
    [https://www.boe.es/buscar/act.php?id=BOE-A-2021-12609](https://www.boe.es/buscar/act.php?id=BOE-A-2021-12609)
 
-9. **Reglamento Delegado (UE) 2023/2465** sobre normas de comercialización de los huevos (artículo 1: huevos de *Gallus gallus*).  
+8. **Reglamento Delegado (UE) 2023/2465** sobre normas de comercialización de los huevos (artículo 1: huevos de *Gallus gallus*).  
    [https://www.boe.es/buscar/doc.php?id=DOUE-L-2023-81561](https://www.boe.es/buscar/doc.php?id=DOUE-L-2023-81561)
 
-10. **Reglamento (CE) n.º 1069/2009** sobre subproductos animales (artículo 11.1.b: prohibición de alimentar a los animales de granja con residuos de cocina).  
-    [https://www.boe.es/buscar/doc.php?id=DOUE-L-2009-82155](https://www.boe.es/buscar/doc.php?id=DOUE-L-2009-82155)
+9. **Reglamento (CE) n.º 1069/2009** sobre subproductos animales (artículo 11.1.b: prohibición de alimentar a los animales de granja con residuos de cocina).  
+   [https://www.boe.es/buscar/doc.php?id=DOUE-L-2009-82155](https://www.boe.es/buscar/doc.php?id=DOUE-L-2009-82155)
 
 **Metodología editorial:** Las cifras de edad de puesta, incubación, altura del alojamiento y composición de los huevos proceden de las fuentes citadas y son referencias generales, no datos medidos en una granja concreta. Las fórmulas de costes están pensadas para introducir los datos reales del lector; el artículo no usa precios ni producciones supuestas.
 

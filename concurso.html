@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Concurso mensual de avicultura · Granja Rentable</title>
+<link rel="stylesheet" href="css/estilo.css?v=20261109b">
 <meta name="robots" content="noindex,follow">
 <meta name="description" content="El concurso mensual de Granja Rentable: 100 preguntas de avicultura, 30 segundos por pregunta. El mejor del mes gana 20 €.">
 <link rel="canonical" href="https://granjarentable.com/concurso.html">
@@ -306,11 +307,11 @@ function cargarRanking(){
     .then(function(r){ return r.json(); })
     .then(function(rows){
       if(!rows || !rows.length){ el.innerHTML = "<p class='aviso'>Aún no hay participantes este mes. ¡Sé el primero!</p>"; return; }
-      var h = "<table class='ranking'><tr><th>#</th><th>Nombre</th><th>Aciertos</th><th>Tiempo medio</th></tr>";
+      var h = "<div class='tabla'><table class='ranking'><tr><th>#</th><th>Nombre</th><th>Aciertos</th><th>Tiempo medio</th></tr>";
       rows.forEach(function(r, i){
         h += "<tr><td>" + (i+1) + "</td><td>" + (r.nombre || "Anónimo") + "</td><td>" + r.aciertos + "/100</td><td>" + r.tiempo_medio + "s</td></tr>";
       });
-      el.innerHTML = h + "</table>";
+      el.innerHTML = h + "</table></div>";
     })
     .catch(function(){ el.innerHTML = "<p class='aviso'>No se pudo cargar el ranking ahora mismo.</p>"; });
 }

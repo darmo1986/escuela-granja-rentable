@@ -16,7 +16,7 @@ Costras oscuras en la cresta, las barbillas o alrededor de los ojos, sobre todo 
 
 El [Manual Merck de Veterinaria](https://merckvetmanual.com/poultry/fowlpox/fowlpox-in-chickens-and-turkeys) explica que la causa el virus de la viruela aviar, un poxvirus presente en todo el mundo. Afecta sobre todo a **gallinas y pavos**, y se ha descrito también en patos, gansos, faisanes, codornices, canarios y aves rapaces.
 
-Un dato tranquilizador del Manual Merck: **los mamíferos no se infectan** de forma natural con este virus, así que no pasa a las personas ni a perros o gatos. La [OMSA](https://woah.org/es/enfermedad/viruela-aviar/) tiene una página informativa sobre ella.
+Un dato tranquilizador del Manual Merck: **los mamíferos no se infectan** de forma natural con este virus, así que no pasa a las personas ni a perros o gatos. La [OMSA](https://www.woah.org/es/enfermedad/viruela-aviar/) tiene una página informativa sobre ella.
 
 Según el Manual Merck, la incubación en gallinas y pavos suele ser de 4 a 10 días.
 
@@ -70,7 +70,7 @@ El veterinario confirmará el diagnóstico y decidirá el tratamiento de apoyo y
 
 ## ¿Es de declaración obligatoria en España?
 
-La viruela aviar **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
+La viruela aviar **no figura** en la [lista de enfermedades de declaración obligatoria del MAPA](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo) ni en la [lista de enfermedades de la OMSA](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/) que recoge el [Real Decreto 779/2023](https://boe.es/eli/es/rd/2023/10/10/779).
 
 Eso no significa que puedas callarte un brote. La [Ley 8/2003 de sanidad animal](https://boe.es/buscar/act.php?id=BOE-A-2003-8510) (artículo 5) obliga a cualquier persona a comunicar **de forma inmediata** a la autoridad competente los focos de enfermedades graves o de difusión rápida. También obliga a comunicar cualquier proceso que haga **sospechar** una enfermedad de declaración obligatoria. No hace falta tener un diagnóstico confirmado: basta la sospecha. Una mortalidad alta o repentina en el gallinero puede ser gripe aviar o Newcastle aunque parezca otra cosa, y eso solo lo aclara el laboratorio.
 
@@ -94,8 +94,8 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 ## Fuentes
 
 - [Manual Merck de Veterinaria: Fowlpox in Chickens and Turkeys](https://merckvetmanual.com/poultry/fowlpox/fowlpox-in-chickens-and-turkeys)
-- [OMSA: viruela aviar](https://woah.org/es/enfermedad/viruela-aviar/)
-- [OMSA: enfermedades de los animales (lista por especies)](https://woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
+- [OMSA: viruela aviar](https://www.woah.org/es/enfermedad/viruela-aviar/)
+- [OMSA: enfermedades de los animales (lista por especies)](https://www.woah.org/es/que-hacemos/sanidad-y-bienestar-animal/enfermedades-animales/)
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
-- [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+- [MAPA: lista de enfermedades de declaración obligatoria](https://www.mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
