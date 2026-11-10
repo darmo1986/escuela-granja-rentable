@@ -354,7 +354,7 @@ window.GR_TIENDA_CATALOGO = {
       "slug": "termostato-stc1000-incubadora",
       "nombre": "Termostato STC-1000 para incubadora (repuesto)",
       "categoria": "incubacion",
-      "descripcion_corta": "El cerebro de la incubadora casera: mantiene los 37,5 °C encendiendo y apagando el calor por ti, día y noche.",
+      "descripcion_corta": "El cerebro de la incubadora casera: mantiene los 37,8 °C (100 °F) en incubadora de aire forzado encendiendo y apagando el calor por ti, día y noche.",
       "descripcion": "En una incubadora, medio grado arriba o abajo durante horas se paga con nacimientos malos. El STC-1000 es el controlador que llevan miles de incubadoras caseras: mide la temperatura con su sonda NTC de 1 m y acciona dos relés independientes, uno para calentar y otro para enfriar o ventilar, manteniendo estable la consigna que marques. Tiene pantalla LED clara y memoria ante cortes de luz: si se va la corriente, al volver sigue con tu ajuste. Existe en versiones de 220 V, 110 V y 12 V: elige la de tu red eléctrica y, al pedir por WhatsApp, lo confirmamos contigo antes de enviar.",
       "incluye": [
         "Controlador STC-1000",
@@ -370,7 +370,7 @@ window.GR_TIENDA_CATALOGO = {
       "como_se_usa": [
         "Coloca la sonda a la altura de los huevos, sin que toque la resistencia",
         "Cablea el relé de calor a tu fuente de calor siguiendo el esquema de la carcasa",
-        "Ajusta la consigna (37,5 °C en incubación de gallina) y un diferencial estrecho",
+        "Ajusta la consigna a 37,8 °C (100 °F) en incubadora de aire forzado y un diferencial estrecho",
         "Contrasta la lectura con un termómetro fiable antes de meter los huevos"
       ],
       "imagenes": [],
@@ -1417,7 +1417,7 @@ window.GR_TIENDA_CATALOGO = {
     "Incubar sin estar pendiente del volteo: lo hace sola cada día"
   ],
   "como_se_usa": [
-    "Enciéndela 24 horas antes y estabiliza la temperatura a 37,5 °C",
+    "Enciéndela 24 horas antes y estabiliza la temperatura a 37,8 °C (100 °F) en incubadora de aire forzado",
     "Usa huevos fértiles frescos (menos de 7 días) y deja que el volteo automático trabaje hasta el día 18",
     "Los últimos 3 días sube la humedad (65–70 %), deja de voltear y no abras la tapa: es el momento del nacimiento"
   ],

@@ -860,7 +860,7 @@ AMAZON_POR_TEMA = {
     "comedero": ("Comedero de pedal Grandpa’s Feeders Standard", "B00TXW0UQK"),
 }
 EBOOK_POR_CLAVE = {
-    "pack": ("Pack de ebooks de Granja Rentable", "ebooks/"),
+    "pack": ("Ebooks de Granja Rentable", "ebooks/"),
     "alimenta": ("Alimenta bien a tus ponedoras", "ebooks/#alimenta-ponedoras"),
     "elegir": ("Cómo elegir el pienso", "ebooks/#pienso-elegir"),
     "hacer": ("Cómo hacer tu propio pienso", "ebooks/#pienso-hacer"),
@@ -964,9 +964,9 @@ EBOOK_TITULAR = {
 
 
 def precio_banner(clave):
-    """El pack no tiene un solo precio. Cada guía se anuncia a 3 USD."""
+    """No hay un pack a la venta. Cada guía cuesta 3 USD."""
     if clave == "pack":
-        return "desde 3 USD"
+        return "Ebooks a 3 USD"
     return "3 USD"
 
 

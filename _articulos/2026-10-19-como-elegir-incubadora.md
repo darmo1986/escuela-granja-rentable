@@ -23,7 +23,7 @@ Elegir una incubadora no es solo cuestión de precio. Una mala elección signifi
 
 ### 2. Control de temperatura: lo más importante
 
-La temperatura debe mantenerse estable en **37,5°C**. Busca incubadoras con:
+La temperatura debe mantenerse estable. Para huevo de gallina, la lección L03 cita a la MSU: aire forzado ≈ **37,8 °C (100 °F)**; aire quieto ≈ **38,9 °C (102 °F, arriba del huevo)**. Busca incubadoras con:
 
 - Termostato digital (no analógico)
 - Pantalla que muestre la temperatura real
@@ -33,7 +33,7 @@ Las variaciones de más de 0,5°C durante horas pueden matar el embrión.
 
 ### 3. Control de humedad: el gran olvidado
 
-Una humedad orientativa está entre **55% y 65%** los primeros 18 días, y sube a **70%** los últimos 3 días. No garantiza la eclosión. Sin un higrómetro fiable, es fácil incubar sin saber la humedad real.
+Los días 1 a 18 la humedad es del **58–60 %**, y los últimos 3 días **≥ 65 %** (L03, MSU). No garantiza la eclosión. Sin un higrómetro fiable, es fácil incubar sin saber la humedad real.
 
 ### 4. Volteo automático: no lo hagas a mano
 
