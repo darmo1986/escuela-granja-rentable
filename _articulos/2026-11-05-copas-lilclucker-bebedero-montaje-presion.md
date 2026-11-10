@@ -4,7 +4,7 @@ titulo_seo: "Copas Lil'Clucker: montaje y presión de agua"
 descripcion: "Revisa el tamaño del pack, perforación, recipiente y presión antes de instalar copas Lil'Clucker en un bebedero."
 categoria: ponedoras
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/lilclucker-bebedero-automatico-vasos-ponedoras.webp"
 imagen_og: "img/blog/lilclucker-bebedero-automatico-vasos-ponedoras-og.webp"

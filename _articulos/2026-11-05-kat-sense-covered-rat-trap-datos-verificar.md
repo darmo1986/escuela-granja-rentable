@@ -4,7 +4,7 @@ titulo_seo: "Kat Sense Covered Rat Trap: datos por verificar"
 descripcion: "Qué falta confirmar sobre la trampa Kat Sense y qué medidas de control de roedores sí puede revisar un gallinero."
 categoria: salud
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/kat-sense-covered-rat-trap-asin-b081lg4t1w.webp"
 imagen_og: "img/blog/kat-sense-covered-rat-trap-asin-b081lg4t1w-og.webp"

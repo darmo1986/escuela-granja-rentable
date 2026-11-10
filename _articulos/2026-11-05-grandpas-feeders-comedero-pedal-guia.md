@@ -4,7 +4,7 @@ titulo_seo: "Grandpa's Feeders: guía del comedero de pedal"
 descripcion: "Compara los tamaños Standard y Large, el entrenamiento y los límites del comedero Grandpa's Feeders antes de elegir."
 categoria: alimentacion
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/grandpas-feeders-standard-comedero-automatico.webp"
 imagen_og: "img/blog/grandpas-feeders-standard-comedero-automatico-og.webp"

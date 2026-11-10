@@ -532,6 +532,8 @@ html.ad-ok .ad-gap { margin: 0; height: 50px; display: flex; align-items: center
 .tabla th { background: var(--gl); color: var(--g); }
 code, .codebox { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92rem; }
 code { overflow-wrap: anywhere; }
+/* Las URLs largas de las fichas (lista de fuentes) no deben ensanchar el móvil. */
+main ol a, .fuentes a { overflow-wrap: anywhere; word-break: break-word; }
 .codebox { display: block; background: var(--gd); color: #fff; border-radius: 12px; padding: 12px; overflow-x: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

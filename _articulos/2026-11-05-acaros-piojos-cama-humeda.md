@@ -14,7 +14,7 @@ imagen_alt: "Gallina marrón rascándose el plumaje en un gallinero seco y limpi
 
 Gallinas que se rascan, que pierden pluma, con la cresta pálida y con la puesta por los suelos: muchas veces el culpable no es una enfermedad rara, sino un parásito externo. Y casi siempre aparece junto a una cama húmeda, que es lo que le da cobijo. Ácaros, piojos y cama húmeda forman un trío: la humedad debilita a las aves y alimenta a los parásitos, y los parásitos estresan a las aves y les bajan las defensas.
 
-La buena noticia es que los tres se corrigen con manejo: limpieza, cama seca y un tratamiento repetido en el momento justo. No hace falta gastar mucho, pero sí hace falta constancia, porque un solo tratamiento casi nunca basta.
+La buena noticia es que los tres se corrigen con manejo: limpieza, cama seca y el tratamiento que indique el veterinario o la etiqueta del producto.
 
 ## Ácaro rojo: el que pica de noche
 
@@ -22,7 +22,7 @@ El ácaro rojo es el parásito externo más dañino en gallinas ponedoras. De d�
 
 Las señales son claras: gallinas inquietas por la noche, que no quieren subir a las perchas, cresta y barbillas pálidas por la anemia, puesta baja y, en casos graves, bajas. Para confirmarlo, revisa las perchas de noche con una linterna y pasa un papel blanco por debajo: los puntos rojos que se mueven son ácaros. También aparecen manchas rojizas o grises en las grietas de la madera.
 
-El error habitual es tratar solo a las gallinas. El ácaro vive en el gallinero, así que hay que tratar gallinero y aves a la vez: limpiar a fondo, tratar grietas y perchas con un producto específico para ácaro rojo autorizado para aves, y repetir el tratamiento a los 7 días, porque los huevos del ácaro eclosionan después del primer tratamiento y la nueva generación vuelve a picar. Sin esa segunda pasada, el problema vuelve en dos semanas.
+El error habitual es tratar solo a las gallinas. El ácaro vive en el gallinero, así que hay que tratar gallinero y aves a la vez: limpiar a fondo y tratar grietas y perchas con un producto específico para ácaro rojo autorizado para aves. Sigue la pauta que indique el veterinario o la etiqueta del producto.
 
 ## Piojos: los que viven en el ave
 
@@ -30,7 +30,7 @@ Los piojos son distintos: viven toda su vida sobre la gallina, comiendo pluma y 
 
 Las señales son picor constante, pluma rota y deshilachada, piel irritada y gallinas nerviosas que se pican entre ellas. La puesta baja, pero la anemia grave es menos frecuente que con el ácaro rojo. Los piojos se contagian por contacto directo entre aves, así que un ave nueva sin cuarentena puede infestar todo el lote.
 
-El tratamiento también se repite: un producto específico avícola aplicado sobre las aves, con una segunda aplicación a los 10 días para cubrir a los piojos que nacieron de las liendres después de la primera pasada. Y, como siempre, revisa todas las aves del lote, no solo las que se rascan: cuando una muestra síntomas, las demás ya tienen piojos aunque aún no se note.
+El tratamiento lo marca el veterinario o la etiqueta: un producto específico avícola aplicado sobre las aves, siguiendo esa pauta y sin fijar aquí un intervalo de días. Y, como siempre, revisa todas las aves del lote, no solo las que se rascan: cuando una muestra síntomas, las demás ya tienen piojos aunque aún no se note.
 
 ## Ácaro rojo o piojo: cómo distinguirlos
 
@@ -43,7 +43,7 @@ El tratamiento también se repite: un producto específico avícola aplicado sob
 | Anemia y cresta pálida | Frecuente y grave | Menos frecuente |
 | Gallinas que evitan las perchas | Sí, típico | No |
 | Dónde tratar | Gallinero y aves | Principalmente las aves |
-| Repetir el tratamiento | A los 7 días | A los 10 días |
+| Repetir el tratamiento | La pauta del veterinario o de la etiqueta | La pauta del veterinario o de la etiqueta |
 
 ## La cama húmeda: la causa de fondo
 
@@ -59,8 +59,8 @@ Para corregirla, primero arregla la causa: bebederos a la altura del dorso para 
 - **Día 1:** saca la cama húmeda y apelmazada, limpia bebederos y comederos, y repara bebederos que goteen.
 - **Día 2:** trata gallinero y aves con el producto específico según el parásito que encontraste, siguiendo la etiqueta al pie de la letra, incluido el tiempo de espera si lo hay.
 - **Día 3 a 6:** cama seca nueva, baño de polvo disponible todos los días y revisión diaria de las aves más afectadas.
-- **Día 7:** segunda pasada del tratamiento contra el ácaro rojo. Si el problema eran piojos, la segunda pasada va el día 10.
-- **Día 10:** segunda pasada contra piojos si los había, y revisión general: ¿bajó el picor? ¿La cresta recupera color? ¿La puesta se estabiliza?
+- **Día 7:** si el veterinario o la etiqueta indican una segunda pasada, hazla siguiendo esa pauta. No repitas el tratamiento por un plazo fijo de esta página.
+- **Día 10:** revisión general: ¿bajó el picor? ¿La cresta recupera color? ¿La puesta se estabiliza?
 
 ## Prevención para que no vuelva
 
@@ -72,7 +72,7 @@ Para corregirla, primero arregla la causa: bebederos a la altura del dorso para 
 
 ## Cuándo llamar al veterinario
 
-Si hay varias bajas, si las gallinas están muy anémicas, si la puesta cae de golpe sin otra explicación o si el tratamiento no funciona tras dos pasadas bien hechas, llama a un veterinario avícola. Algunas enfermedades se parecen a una parasitosis y no lo son, y un diagnóstico a tiempo evita perder el lote. Lleva anotado cuándo empezó el picor, qué tratamiento usaste y en qué fechas: esa información ayuda mucho.
+Si hay varias bajas, si las gallinas están muy anémicas, si la puesta cae de golpe sin otra explicación o si el tratamiento indicado no mejora el lote, llama a un veterinario avícola. Algunas enfermedades se parecen a una parasitosis y no lo son, y un diagnóstico a tiempo evita perder el lote. Lleva anotado cuándo empezó el picor, qué tratamiento usaste y en qué fechas: esa información ayuda mucho.
 
 Un gallinero seco, con baño de polvo y revisiones periódicas, tiene muchos menos parásitos que un gallinero húmedo que solo se trata cuando ya hay plaga. La prevención es más barata que el tratamiento, y las gallinas lo notan en la puesta.
 

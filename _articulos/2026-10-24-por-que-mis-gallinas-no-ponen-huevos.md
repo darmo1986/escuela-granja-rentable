@@ -40,7 +40,7 @@ L01 no promete una puesta de patio. Cita objetivos de ficha comercial (ISA Brown
 | Plumas en el suelo y puesta casi a cero | Muda | [La muda](muda-gallinas-otono.html) |
 | Pollitas jóvenes | Puede que aún no les toque | Ficha de L01, desde la semana 18 en la ISA |
 | Cáscara fina o blanda | Pienso que no es de puesta, o un problema a consultar | [Alimentación](alimentacion-gallinas-ponedoras.html) |
-| Un día sin agua y luego menos huevos | Bebedero | [Agua](agua-gallinas-ponedoras.html) |
+| Un día sin agua y luego menos huevos | Bebedero | [Agua](agua-gallinas-ponedoras-bebederos.html) |
 | Todas paran y además hay síntomas | Posible enfermedad, no un cambio de saco | Veterinario |
 
 ## 1. La luz
@@ -69,7 +69,7 @@ Una cáscara fina o blanda no se resuelve con una dosis escrita aquí. Confirma 
 
 ## 7. El agua
 
-Revisa el bebedero antes de cambiar el pienso. Esta página no da un litro fijo: el consumo cambia con el calor y con el pienso. La guía de [agua](agua-gallinas-ponedoras.html) está al lado.
+Revisa el bebedero antes de cambiar el pienso. Esta página no da un litro fijo: el consumo cambia con el calor y con el pienso. La guía de [agua](agua-gallinas-ponedoras-bebederos.html) está al lado.
 
 ## 8. Parásitos
 

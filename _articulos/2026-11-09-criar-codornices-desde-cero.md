@@ -6,9 +6,9 @@ categoria: ponedoras
 fecha: 2026-11-09
 borrador: false
 autor: "Equipo editorial de Granja Rentable"
-imagen: "img/blog/precio-huevo-negocios.webp"
-imagen_og: "img/blog/precio-huevo-negocios-og.webp"
-imagen_alt: "Manos de granjero sosteniendo una cesta de huevos frescos en un puesto de granja, con monedas sobre la mesa"
+imagen: "img/blog/criar-codornices-desde-cero.webp"
+imagen_og: "img/blog/criar-codornices-desde-cero-og.webp"
+imagen_alt: "Codornices jóvenes de plumaje moteado junto a una hoja verde, dentro de un corral con malla"
 relacionados:
   - empezar-con-10-gallinas-ponedoras
   - cuanto-cuesta-producir-docena-huevos

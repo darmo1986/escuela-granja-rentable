@@ -53,7 +53,7 @@ Más que "contagiarse" de un ave a otra como un virus, la colibacilosis aparece 
 
 El Manual Merck basa la prevención en **buenas prácticas de manejo** que reducen la exposición a la bacteria y el estrés:
 
-- **Agua limpia:** lava a diario los bebederos y limpia los depósitos y las tuberías. Ver nuestra guía sobre el [agua de las gallinas](https://granjarentable.com/blog/agua-gallinas-ponedoras.html).
+- **Agua limpia:** lava a diario los bebederos y limpia los depósitos y las tuberías. Ver nuestra guía sobre el [agua de las gallinas](https://granjarentable.com/blog/agua-gallinas-ponedoras-bebederos.html).
 - **Ventilación** suficiente para que no se acumulen amoníaco ni polvo. Repasa [calor, amoníaco y ventilación](https://granjarentable.com/blog/calor-tropical-amoniaco-gallinero.html).
 - **Cama seca:** retira las zonas húmedas bajo los bebederos y cambia la cama cuando se apelmace. Más en [ácaros, piojos y cama húmeda](https://granjarentable.com/blog/acaros-piojos-cama-humeda.html).
 - **Control de plagas:** roedores, moscas y escarabajos.

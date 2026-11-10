@@ -12,7 +12,7 @@ imagen_alt: "Gallinas ponedoras comiendo pienso en granja avícola"
 relacionados:
   - reducir-desperdicio-pienso
   - por-que-mis-gallinas-no-ponen-huevos
-  - agua-gallinas-ponedoras
+  - agua-gallinas-ponedoras-bebederos
 fuentes:
   - "Lección L01 de Granja Rentable: el alimento suele ser el 60–80 % del coste de insumos (FAO)"
   - "Calculadora de rentabilidad del sitio: rangos orientativos de puesta para un ave de tamaño medio, 110–125 g al día y 16–17 % de proteína. El propio programa los llama rangos, no fichas de catálogo"
@@ -56,7 +56,7 @@ Antes de cambiar de marca, mira si parte del pienso acaba en la cama. El registr
 
 ## Agua y salud
 
-Sin agua la puesta se resiente, pero esta guía no fija mililitros. Revisa el bebedero cada día y sigue en [agua para las ponedoras](agua-gallinas-ponedoras.html). Si la cáscara falla o el lote enferma, no añadas un producto por tu cuenta: anota lo que ves y llama al veterinario. El orden para una puesta que cae está en [por qué no ponen](por-que-mis-gallinas-no-ponen-huevos.html).
+Sin agua la puesta se resiente, pero esta guía no fija mililitros. Revisa el bebedero cada día y sigue en [agua para las ponedoras](agua-gallinas-ponedoras-bebederos.html). Si la cáscara falla o el lote enferma, no añadas un producto por tu cuenta: anota lo que ves y llama al veterinario. El orden para una puesta que cae está en [por qué no ponen](por-que-mis-gallinas-no-ponen-huevos.html).
 
 ## Guías escritas
 

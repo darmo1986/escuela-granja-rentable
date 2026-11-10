@@ -282,31 +282,31 @@ Este indicador ayuda a comparar canales de venta.
 
 Una entrega individual puede tener una estructura de costes distinta de una ruta con varios compradores.
 
-## 10. Plantilla completa para calcular el coste de una docena
+## 10. Plantilla para rellenar con tus datos
 
 Utiliza la siguiente tabla con datos de un mismo periodo.
 
 | Concepto                       | Dato del lector | Cómo calcularlo               |
 | ------------------------------ | --------------- | ----------------------------- |
-| Huevos producidos              | Pendiente       | Suma de huevos recogidos      |
-| Huevos vendidos                | Pendiente       | Suma de ventas efectivas      |
+| Huevos producidos              | Tu dato       | Suma de huevos recogidos      |
+| Huevos vendidos                | Tu dato       | Suma de ventas efectivas      |
 | Docenas producidas             | Por calcular    | Huevos producidos ÷ 12        |
 | Docenas vendidas               | Por calcular    | Huevos vendidos ÷ 12          |
-| Pienso                         | Pendiente       | Coste del pienso utilizado    |
-| Agua                           | Pendiente       | Coste atribuible del agua     |
-| Electricidad                   | Pendiente       | Coste eléctrico atribuible    |
-| Cama y limpieza                | Pendiente       | Materiales utilizados         |
-| Sanidad y bioseguridad         | Pendiente       | Costes atribuibles            |
-| Reposición de aves             | Pendiente       | Coste imputado al periodo     |
-| Instalaciones y equipos        | Pendiente       | Coste imputado al periodo     |
-| Trabajo                        | Pendiente       | Horas × valor por hora        |
-| Envases                        | Pendiente       | Coste de envases utilizados   |
-| Transporte                     | Pendiente       | Coste atribuible de reparto   |
-| Otros gastos                   | Pendiente       | Costes documentados           |
+| Pienso                         | Tu dato       | Coste del pienso utilizado    |
+| Agua                           | Tu dato       | Coste atribuible del agua     |
+| Electricidad                   | Tu dato       | Coste eléctrico atribuible    |
+| Cama y limpieza                | Tu dato       | Materiales utilizados         |
+| Sanidad y bioseguridad         | Tu dato       | Costes atribuibles            |
+| Reposición de aves             | Tu dato       | Coste imputado al periodo     |
+| Instalaciones y equipos        | Tu dato       | Coste imputado al periodo     |
+| Trabajo                        | Tu dato       | Horas × valor por hora        |
+| Envases                        | Tu dato       | Coste de envases utilizados   |
+| Transporte                     | Tu dato       | Coste atribuible de reparto   |
+| Otros gastos                   | Tu dato       | Costes documentados           |
 | Costes de producción           | Por calcular    | Suma de costes productivos    |
 | Costes comerciales             | Por calcular    | Suma de costes comerciales    |
 | Costes totales                 | Por calcular    | Producción + comercialización |
-| Ingresos cobrados o devengados | Pendiente       | Según criterio elegido        |
+| Ingresos cobrados o devengados | Tu dato       | Según criterio elegido        |
 | Resultado del periodo          | Por calcular    | Ingresos − costes totales     |
 
 **Importante:** elige un criterio temporal y contable coherente. No mezcles facturas pagadas, gastos imputados e ingresos de otros periodos sin conciliarlos.

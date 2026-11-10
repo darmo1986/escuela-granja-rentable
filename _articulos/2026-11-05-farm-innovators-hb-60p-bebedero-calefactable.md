@@ -4,7 +4,7 @@ titulo_seo: "Farm Innovators HB-60P: guía del bebedero"
 descripcion: "Revisa potencia, instalación eléctrica y límites del HB-60P antes de elegir un bebedero calefactable para aves."
 categoria: ponedoras
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/farm-innovators-hb-60p-bebedero-calefactable-ponedoras.webp"
 imagen_og: "img/blog/farm-innovators-hb-60p-bebedero-calefactable-ponedoras-og.webp"
