@@ -14,13 +14,13 @@
    "categoria": "incubacion",
    "pregunta": "¿A qué temperatura debe mantenerse una incubadora de aire forzado para huevos de gallina?",
    "opciones": [
-    "37,5 – 37,8 °C",
+    "≈ 37,8 °C (100 °F)",
     "35,0 – 35,5 °C",
     "39,0 – 39,5 °C",
     "36,0 – 36,2 °C"
    ],
    "respuesta": 0,
-   "explicacion": "El rango óptimo en incubadoras de aire forzado es 37,5–37,8 °C; por encima de 39 °C la mortalidad embrionaria se dispara."
+   "explicacion": "L03 cita a la MSU: aire forzado ≈ 37,8 °C (100 °F). Por encima de 39 °C la mortalidad embrionaria se dispara."
   },
   {
    "id": 2,

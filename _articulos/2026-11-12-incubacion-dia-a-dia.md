@@ -14,7 +14,7 @@ imagen_alt: "Gallina marrón en primer plano a la derecha mirando huevos en una 
 
 Incubar huevos de gallina dura 21 días, y cada fase tiene su tarea. Quien abre la incubadora a cada rato, olvida el volteo o sube la humedad antes de tiempo suele tener el mismo resultado: menos nacimientos de los que el huevo permitía. Este artículo es el calendario completo, día a día, para que sepas qué está pasando dentro del huevo y qué tienes que hacer tú en cada momento.
 
-Las cifras de este calendario son las de una incubadora de aire forzado, la más habitual en casa: 37,5 °C constantes, humedad del 45 al 55 % los primeros 18 días y del 65 al 75 % en el nacimiento, y volteo de 3 a 5 veces al día hasta el día 18. Si tu incubadora es de aire quieto, la temperatura a la altura del huevo marca algo más; sigue en ese caso el manual de tu modelo y no mezcles las dos referencias.
+Las cifras de este calendario son las de la lección L03, que cita a la MSU, para huevo de gallina. En aire forzado, la más habitual en casa: ≈ 37,8 °C (100 °F) constantes, humedad del 58–60 % los días 1 a 18 y ≥ 65 % los últimos 3 días, y volteo de 3 a 5 veces al día hasta el día 18. En aire quieto la temperatura es ≈ 38,9 °C (102 °F, arriba del huevo). No mezcles las dos referencias.
 
 ## Antes del día 1: el huevo manda
 
@@ -26,13 +26,13 @@ Antes de meter los huevos, pon la incubadora en marcha vacía al menos unas hora
 
 | Días | Qué pasa dentro del huevo | Qué haces tú |
 | --- | --- | --- |
-| 1 a 3 | Empieza el desarrollo: se forman las primeras estructuras y los vasos sanguíneos | Temperatura estable a 37,5 °C, humedad 45-55 %, volteo 3-5 veces al día |
+| 1 a 3 | Empieza el desarrollo: se forman las primeras estructuras y los vasos sanguíneos | Temperatura estable a ≈ 37,8 °C (100 °F, aire forzado), humedad 58–60 %, volteo 3-5 veces al día |
 | 4 a 6 | El embrión crece rápido y se distingue el ojo y el latido | Igual que antes; no abras más de lo necesario |
 | 7 | Primer miraje: se ven vasos en forma de araña en los fértiles | Miraje: retira los claros (sin desarrollo) y los de anillo de sangre |
 | 8 a 13 | El embrión ocupa cada vez más huevo; se forman plumas y pico | Volteo constante; vigila que la pérdida de peso vaya por el 12-14 % al día 18 |
 | 14 | Segundo miraje: el huevo fértil está oscuro salvo la cámara de aire | Miraje: confirma desarrollo y retira los detenidos |
 | 15 a 17 | El pollito se coloca con la cabeza hacia la cámara de aire | Últimos días de volteo; prepara la nacedora o la zona de nacimiento |
-| 18 | Último miraje y fin del volteo: el huevo pasa a posición de nacimiento | Deja de voltear, sube la humedad al 65-75 % y no abras más |
+| 18 | Último miraje y fin del volteo: el huevo pasa a posición de nacimiento | Deja de voltear, sube la humedad a ≥ 65 % y no abras más |
 | 19 a 21 | El pollito pica la cáscara, descansa, gira y nace | No abras, no ayudes, espera: el nacimiento lleva horas y es normal |
 
 ## El miraje: tres fechas, no más
@@ -45,7 +45,7 @@ Mirar todos los días no ayuda: cada apertura enfría los huevos y alarga el pro
 
 El volteo evita que el embrión se pegue a la cáscara. De 3 a 5 veces al día, en ángulos de unos 45 grados a cada lado, hasta el día 18, es suficiente. Si tu incubadora voltea sola, comprueba al menos una vez al día que el mecanismo se mueve de verdad: un volteo parado varios días se nota en el nacimiento.
 
-La humedad se mide con higrómetro, no a ojo. Del 45 al 55 % los primeros 18 días permite que el huevo pierda el 12-14 % de su peso, que es lo que necesita la cámara de aire para que el pollito pueda respirar y girar al nacer. Subir la humedad antes del día 18 deja pollitos grandes y blandos que no pueden girar; bajarla demasiado los deja pegados a la cáscara. En los últimos tres días, la humedad alta, del 65 al 75 %, ablanda la cáscara y facilita la salida.
+La humedad se mide con higrómetro, no a ojo. Los días 1 a 18, la humedad es del 58–60 % (L03, MSU). El huevo de gallina debe perder el 12-14 % de su peso hasta el día 18, que es lo que necesita la cámara de aire para que el pollito pueda respirar y girar al nacer. Subir la humedad antes del día 18 deja pollitos grandes y blandos que no pueden girar; bajarla demasiado los deja pegados a la cáscara. En los últimos tres días, la humedad es ≥ 65 % (L03).
 
 ## Los últimos tres días: no abrir
 
