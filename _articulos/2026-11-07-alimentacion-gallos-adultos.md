@@ -5,9 +5,10 @@ descripcion: "Cómo elegir pienso para un gallo adulto, revisar su condición co
 categoria: "alimentacion"
 fecha: "2026-11-07"
 borrador: false
-imagen: "img/blog/alimento-casero-vs-balanceado.webp"
-imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
-imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
+imagen: "img/blog/alimentacion-gallos-adultos.webp"
+imagen_og: "img/blog/alimentacion-gallos-adultos-og.webp"
+imagen_alt: "Gallo adulto de plumaje cobrizo y cola oscura, con la cabeza baja, comiendo grano en el suelo del corral"
+imagen_credito: "Foto: EEIM, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pollo_Gallo_comiendo.jpg)"
 ---
 
 Un gallo adulto no produce huevos y tampoco tiene las mismas necesidades que un pollito en crecimiento. Para elegir su alimento, empieza por su edad, su actividad y el grupo con el que vive. Comprar el saco con más proteína no resuelve por sí solo la decisión.
