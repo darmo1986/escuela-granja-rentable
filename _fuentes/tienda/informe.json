@@ -1,0 +1,69 @@
+{
+  "productos_csv": 171,
+  "productos_mostrados": 169,
+  "categorias_mostradas": 33,
+  "categorias": [
+    "Agua y riego",
+    "Almacenaje de pienso",
+    "Baño de arena",
+    "Bebederos de tetina y copas",
+    "Bebederos normales",
+    "Bebederos y bases calefactadas",
+    "Comederos",
+    "Cámaras y luz nocturna",
+    "Disuasores y trampas de depredadores",
+    "Energía e iluminación",
+    "Gallineros y corrales",
+    "Golosinas e insectos",
+    "Grit y concha de ostra",
+    "Herramientas de granja",
+    "Huevos y venta",
+    "Incubadoras y ovoscopios",
+    "Kits, comederos y bebederos de pollitos",
+    "Limpieza y desinfección",
+    "Malla eléctrica y pastores",
+    "Malla y vallas",
+    "Medición",
+    "Moscas",
+    "Nidales y cama",
+    "Perchas",
+    "Pienso",
+    "Placas y lámparas de calor",
+    "Puertas automáticas y cierres",
+    "Ratas y ratones",
+    "Ropa y protección",
+    "Salud y botiquín",
+    "Transporte y cuarentena",
+    "Vitaminas, electrolitos y probióticos",
+    "Ácaros, piojos e insectos"
+  ],
+  "excluidos": [
+    {
+      "asin": "B0BH2QQT9K",
+      "categoria": "Comederos",
+      "motivo": "duplicado de B0FK27D1G7: mismas estrellas y reseñas; se queda el otro"
+    },
+    {
+      "asin": "B0CJBJ26VY",
+      "categoria": "Protección",
+      "motivo": "duplicado de B0CWXWX52L: mismas estrellas y reseñas; se queda el otro"
+    }
+  ],
+  "mostrados_42": [
+    "B092W338NC",
+    "B0DKN6TZB6",
+    "B0H5J3F9XD",
+    "B0G6RSQ4XX"
+  ],
+  "textos_escritos": [],
+  "frases_anadidas": 0,
+  "secciones": [
+    "Agua y bebederos",
+    "Comida y comederos",
+    "Nidales, cama y perchas",
+    "Gallinero, malla y depredadores",
+    "Incubación, calor y manejo",
+    "Limpieza, plagas y botiquín",
+    "Herramientas, ropa y energía"
+  ]
+}

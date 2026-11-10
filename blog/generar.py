@@ -1346,8 +1346,10 @@ def paginas_html(raiz):
 
 def actualizar_sitemap(texto, entradas):
     texto = re.sub(r"\s*<url>\s*<loc>https://granjarentable.com/blog[^<]*</loc>.*?</url>", "", texto, flags=re.S)
+    # La tienda de afiliados (/tienda/ y sus fichas) se conserva.
+    # Solo se retiran las fichas viejas de producto físico en /producto/.
     texto = re.sub(
-        r"\s*<url>\s*<loc>https://granjarentable.com/(?:tienda(?:/|\.html)|producto/)[^<]*</loc>.*?</url>",
+        r"\s*<url>\s*<loc>https://granjarentable.com/producto/[^<]*</loc>.*?</url>",
         "", texto, flags=re.S)
     bloque = []
     for loc, lastmod in entradas:

@@ -1,0 +1,122 @@
+/* Tienda de afiliados. Mobile first. Sin carrito ni envíos. */
+.t-card[hidden], .t-seccion[hidden], .t-cat[hidden], .t-vacio[hidden] { display: none !important; }
+.t-hero { margin: 0 0 1.1rem; }
+.t-hero h1 { margin: .2rem 0 .45rem; font-size: clamp(1.7rem, 6vw, 2.35rem); line-height: 1.15; }
+.t-lead { margin: 0 0 .8rem; font-size: 1.05rem; line-height: 1.5; }
+.t-aviso {
+  margin: 0 0 1.1rem; padding: .85rem 1rem;
+  border: 2px solid var(--g); border-radius: 12px; background: #f3f6f1;
+  font-size: 1rem; line-height: 1.45;
+}
+.t-aviso strong { color: var(--gd); }
+.t-vet {
+  margin: .7rem 0 1rem; padding: .85rem 1rem;
+  border: 2px solid #8a3b12; border-radius: 12px; background: #fff6ee;
+  font-weight: 700; line-height: 1.45;
+}
+.t-ebooks { margin: 0 0 1.6rem; }
+.t-ebooks > h2 { margin-bottom: .35rem; }
+.t-nota { margin: .2rem 0 .8rem; color: var(--muted, #4d5a50); }
+.ebook-venta {
+  display: grid; grid-template-columns: 1fr; gap: .9rem;
+  margin: 0 0 1rem; padding: 1rem; border: 1px solid #e5e0d5;
+  border-radius: 12px; background: #FFFEF9;
+}
+.ebook-venta img { width: 100%; max-width: 280px; height: auto; border-radius: 8px; }
+.ebook-venta h2 { margin: .15rem 0 .4rem; font-size: 1.35rem; line-height: 1.25; }
+.ebook-venta .kicker { margin: 0; }
+.ebook-precio { margin: .9rem 0 .2rem; }
+.ebook-venta .precio { font-size: 1.75rem; font-weight: 800; line-height: 1.1; margin: 0; }
+.ebook-moneda { margin: .35rem 0 0; font-size: 1rem; line-height: 1.4; }
+.ebook-venta button[data-stripe-ebook] {
+  margin-top: .9rem; padding: .75rem 1.2rem; min-height: 48px;
+  font-size: 1rem; border-radius: 8px; cursor: pointer;
+}
+.ebook-consent {
+  margin: .95rem 0 0; padding: .85rem 1rem 1rem;
+  border: 2px solid #1F5E2E; border-radius: 10px; background: #fff;
+}
+.ebook-consent legend { font-weight: 800; padding: 0 .35rem; }
+.ebook-check { display: flex; gap: .75rem; align-items: flex-start; margin: 0; font-size: 1rem; line-height: 1.45; }
+.ebook-check input { width: 1.35rem; height: 1.35rem; margin-top: .2rem; flex: none; }
+.ebook-consent-nota { margin: .75rem 0 0; font-size: .98rem; line-height: 1.45; }
+button[data-stripe-ebook][disabled] { opacity: .55; cursor: not-allowed; }
+.ebook-total { font-weight: 700; margin: .45rem 0 0; }
+.ebook-usd { margin: .4rem 0 .9rem; padding: .75rem .9rem; border-radius: 8px; background: #f3f6f1; }
+.t-filtros {
+  margin: 0 0 1rem; padding: .85rem .9rem;
+  background: #fff; border: 1px solid #e5e0d5; border-radius: 14px;
+  display: flex; flex-direction: column; gap: .7rem;
+}
+.t-buscar-etq { display: block; font-weight: 800; margin-bottom: .35rem; }
+.t-buscar input {
+  width: 100%; min-height: 48px; padding: .7rem .85rem;
+  border: 1.5px solid #cfc8b8; border-radius: 10px; font: inherit; font-size: 1rem;
+}
+.t-buscar input:focus { outline: 2px solid var(--g); outline-offset: 2px; }
+.t-chips {
+  display: flex; gap: .45rem; overflow-x: auto; padding-bottom: .2rem;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+}
+.t-chip {
+  appearance: none; cursor: pointer; flex: none; scroll-snap-align: start;
+  min-height: 44px; border: 1.5px solid #e5e0d5; border-radius: 999px; background: #fff;
+  padding: .45rem .8rem; font: inherit; font-size: .92rem; font-weight: 700; color: var(--gd);
+  text-decoration: none; display: inline-flex; align-items: center;
+}
+.t-chip[aria-pressed="true"], .t-chip[aria-current="page"] {
+  background: var(--g); border-color: var(--g); color: #fff;
+}
+.t-cuenta { margin: 0; font-weight: 700; }
+.t-vacio { padding: 1rem; border: 1px dashed #cfc8b8; border-radius: 12px; }
+.t-seccion { margin: 1.4rem 0 0; }
+.t-seccion > h2 { margin-bottom: .2rem; }
+.t-seccion > .t-sec-lead { margin-top: 0; }
+.t-cat { margin: 1rem 0 0; scroll-margin-top: 5.5rem; }
+.t-cat h3 { margin-bottom: .45rem; font-size: 1.2rem; }
+.t-cat h3 a { color: inherit; }
+.t-grid { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+.t-card {
+  display: flex; flex-direction: column; gap: .45rem;
+  padding: .9rem; border: 1px solid #e5e0d5; border-radius: 14px; background: #fff;
+}
+.t-card h3, .t-card h2 { margin: 0; font-size: 1.08rem; line-height: 1.3; }
+.t-card h3 a, .t-card h2 a { color: var(--gd); text-decoration: none; }
+.t-card h3 a:hover, .t-card h2 a:hover { text-decoration: underline; }
+.t-marca {
+  display: flex; align-items: flex-end; min-height: 72px; padding: .7rem .8rem;
+  border-radius: 10px; background: #e7f0e4; color: var(--gd); font-weight: 800; line-height: 1.2;
+}
+.t-card[data-sec="comida"] .t-marca { background: #f8efd4; }
+.t-card[data-sec="descanso"] .t-marca { background: #f3e6d4; }
+.t-card[data-sec="corral"] .t-marca { background: #e4eee8; }
+.t-card[data-sec="cria"] .t-marca { background: #fde8d4; }
+.t-card[data-sec="salud"] .t-marca { background: #e5eef6; }
+.t-card[data-sec="taller"] .t-marca { background: #eee8df; }
+.t-por-que { margin: 0; line-height: 1.45; }
+.t-estrellas { margin: 0; display: flex; flex-wrap: wrap; gap: .35rem .6rem; align-items: center; font-weight: 700; }
+.t-stars { position: relative; display: inline-block; font-size: 1.05rem; letter-spacing: .04em; line-height: 1; }
+.t-stars-base { color: #ddd; }
+.t-stars-fill {
+  position: absolute; left: 0; top: 0; overflow: hidden; white-space: nowrap;
+  width: var(--p); color: var(--gold); 
+}
+a.t-amazon { margin-top: auto; display: flex; justify-content: center; width: 100%; text-align: center; }
+.t-ficha h1 { font-size: clamp(1.55rem, 5vw, 2.15rem); line-height: 1.2; }
+.t-bloque { margin: 1rem 0; }
+.t-bloque h2 { font-size: 1.25rem; margin-bottom: .35rem; }
+.t-relacionados { padding: 0; margin: .4rem 0 0; list-style: none; }
+.t-relacionados li { margin: .35rem 0; }
+.t-compra {
+  margin: 1rem 0; padding: 1rem; border-radius: 14px; background: #f7f4ea; border: 1px solid #e5e0d5;
+}
+.ebook-venta, .t-seccion, .t-cat { scroll-margin-top: 5.5rem; }
+@media (min-width: 720px) {
+  .ebook-venta { grid-template-columns: minmax(180px, 220px) 1fr; gap: 1rem 1.4rem; align-items: start; padding: 1.2rem 1.3rem; }
+  .t-grid { grid-template-columns: 1fr 1fr; }
+  .t-chips { flex-wrap: wrap; overflow: visible; }
+}
+@media (min-width: 1040px) {
+  .t-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .ebook-venta, .t-seccion, .t-cat { scroll-margin-top: 9.5rem; }
+}
