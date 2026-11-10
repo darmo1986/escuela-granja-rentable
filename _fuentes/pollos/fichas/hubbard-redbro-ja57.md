@@ -1,44 +1,61 @@
-# Pollo Hubbard Redbro y JA57 (gama Premium)
+# Hubbard Redbro
 
+## Origen
 
-Pollos de color y crecimiento más lento de la gama Premium de Hubbard. El Redbro se usa en programas de bienestar, como el European Chicken Commitment (ECC). La JA57 es una hembra reproductora de esa gama. [1][2][3]
+El Hubbard REDBRO es una línea de pollos de engorde de crecimiento más lento perteneciente a la gama Premium de Hubbard.
 
-## Datos rápidos del pollo
-| Dato | Valor |
-|---|---|
-| Días a sacrificio (Redbro) | 46,0–46,9 días para 2.500 g, en un estudio económico de la Universidad de Wageningen (Países Bajos, 2021) [1] |
-| Peso | 2.500 g de peso vivo medio [1] |
-| Conversión (Redbro) | 1,73, frente a 1,57 del Ross 308 en el mismo estudio [1] |
-| Mortalidad (Redbro) | 2,7 % (Ross 308: 3,5 %) [1] |
-| Crecimiento | Intermedio o lento [1][3] |
-| Tipo de granja | Nave con menos densidad (12,3–14,5 aves/m² en el estudio) y, según el programa, acceso exterior [1] |
-| JA57 (reproductora) | 235,7 huevos por gallina a 65 semanas (objetivo de reproductoras, no dato del pollo) [2] |
+Fue introducida oficialmente en 2021 y desarrollada específicamente para programas de producción relacionados con un mayor bienestar animal.
 
-## Cuidados
-- Menos densidad que el broiler convencional: 12,3 aves/m² sin aclareo frente a 20,5 en el estudio. [1]
-- Sin guía de manejo del pollo Redbro revisada: el PDF de objetivos del broiler no se pudo descargar.
+Entre ellos figuran Better Chicken Commitment (BCC), European Chicken Commitment (ECC) y Global Animal Partnership (GAP).
 
-## Carácter
-Sin dato fiable.
+También cuenta con acreditaciones para determinados programas de bienestar animal en Europa, Norteamérica y Reino Unido.
 
-## Aspecto físico
-Pollo de plumaje de color (rojizo). La descripción oficial del pollo no se pudo leer. La foto es de pollos Redbro en un parque, según la ficha del archivo en Wikimedia Commons; no es una foto oficial de Hubbard.
+## Crecimiento y peso
 
-## Sensibilidad a enfermedades
-En el estudio tuvo menos mortalidad que el Ross 308 (2,7 % frente a 3,5 %). [1] Ante cualquier problema de salud, consulta a un veterinario.
+Hubbard publicó en julio de 2026 los siguientes objetivos para aves mixtas criadas en interior:
 
-## Para qué tipo de granjas se usa más
-Programas de pollo de bienestar (ECC/BCC), nave de baja densidad, y semi-extensivo según el mercado. [1][3]
+| Edad    | Peso vivo | Conversión alimenticia |
+| ------- | --------- | ---------------------- |
+| 35 días | 1,705 kg  | 1,58                   |
+| 42 días | 2,203 kg  | 1,67                   |
+| 46 días | 2,491 kg  | 1,73                   |
+| 49 días | 2,701 kg  | 1,77                   |
+| 56 días | 3,170 kg  | 1,91                   |
+| 63 días | 3,608 kg  | 2,07                   |
+| 70 días | 4,021 kg  | 2,24                   |
+
+Estas cifras corresponden a objetivos oficiales para crianza en interior y no deben interpretarse como resultados garantizados de una granja.
+
+## Alimentación
+
+Su conversión alimenticia es diferente de la de las líneas convencionales de crecimiento rápido.
+
+Por ejemplo, a los 42 días presenta una conversión objetivo de 1,67, mientras que a los 70 días alcanza 2,24.
+
+Estos datos deben tenerse en cuenta al calcular las necesidades de alimento para un ciclo de engorde más prolongado.
+
+## Tipo de granja ideal
+
+Granjas orientadas a producir pollo de crecimiento más lento y a trabajar bajo programas de bienestar animal como BCC o ECC.
+
+Es una opción especialmente relevante para productores que necesitan una genética acreditada para estos sistemas.
 
 ## Ventajas
-Cumple los criterios del ECC según el estudio, y tiene menos mortalidad. [1]
+
+- Crecimiento más lento.
+- Desarrollado específicamente para programas de bienestar animal.
+- Acreditaciones para distintos mercados internacionales.
+- Objetivos oficiales de rendimiento hasta los 70 días.
+- Orientación a mercados de pollo de mayor bienestar con un coste que Hubbard presenta como asequible.
 
 ## Desventajas
-Tarda unos 6 días más que el Ross 308 en llegar a 2,5 kg, gasta más pienso por kilo y caben menos pollos por nave. [1]
+
+- Crece más lentamente que las líneas convencionales de engorde rápido.
+- Su conversión alimenticia objetivo es más elevada que la de los broilers convencionales recogidos en estos archivos.
+- Los ciclos de engorde pueden ser más prolongados cuando se buscan pesos comerciales elevados.
 
 ## Fuentes
-1. Van Horne y Vissers (Wageningen University & Research), «Economics of slow growing broilers», memo para Eurogroup for Animals, 21 dic 2022, tabla 1. Copia leída en https://www.greenme.it/wp-content/uploads/2023/07/studio_polli.pdf
-2. Hubbard, «PS Performance Objectives – JA57 (ENFRES)», biblioteca https://www.hubbardbreeders.com/library : 235,7 huevos a 65 semanas. El PS de Redbro da 215,9.
-3. Hubbard, «Hubbard Premium: Slow & Intermediate Growth Breeds». https://www.hubbardbreeders.com/hubbard-premium
 
-Falta: los objetivos oficiales del broiler Redbro (el PDF devolvía una página HTML). Una cifra de búsqueda (2,5 kg en unos 40 días, conversión 1,62) no se ha podido verificar y no se usa.
+- [Hubbard — REDBRO, objetivos de rendimiento, julio de 2026](https://www.hubbardbreeders.com/library?pdf=13804\).
+- [Hubbard — Folleto REDBRO, febrero de 2026](https://www.hubbardbreeders.com/library?pdf=3886\).
+- [Hubbard — Premium BCC/ECC](https://www.hubbardbreeders.com/hubbard-premium/premium-bcc-ecc).

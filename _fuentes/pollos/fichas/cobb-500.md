@@ -1,39 +1,58 @@
-# Pollo Cobb 500
+# Cobb 500
 
+## Origen
 
-Broiler blanco de Cobb-Vantress, el gran rival del Ross 308 en las naves de engorde. [1]
+El Cobb 500 es una línea comercial de pollos de engorde desarrollada por Cobb Genetics, también conocida como Cobb-Vantress.
 
-## Datos rápidos del pollo
-| Dato | Valor |
-|---|---|
-| Días a sacrificio | Objetivos de 35 a 56 días [1] |
-| Peso (mixto) | 2.521 g a 35 d · 3.278 g a 42 d · 4.001 g a 49 d · 4.641 g a 56 d [1] |
-| Conversión | 1,441 a 35 d · 1,555 a 42 d · 1,686 a 49 d · 1,842 a 56 d [1] |
-| Crecimiento | Rápido [1] |
-| Tipo de granja | Nave de engorde intensivo [1] |
+Es uno de los productos principales de la compañía, con una trayectoria comercial superior a 40 años.
 
-## Cuidados
-El suplemento de Cobb da los objetivos de peso y pienso. Para el manejo diario hay que seguir la guía de manejo de Cobb, que no se ha revisado aquí. Buenas reglas generales de broiler rápido: buena cama, agua y comedero accesibles, sin hacinamiento, y no pasar de 8 semanas en granja pequeña. [1][2]
+Cobb lo presenta como una línea seleccionada por su crecimiento constante, uniformidad y buena conversión alimenticia.
 
-## Carácter
-Sin dato fiable.
+## Aspecto
 
-## Aspecto físico
-Pollo blanco de cuerpo ancho. Las fotos oficiales de Cobb son © y solo sirven de referencia. [3]
+Una de sus características productivas más destacadas es la uniformidad del lote, un aspecto importante cuando se desea obtener pollos de pesos similares durante el engorde.
 
-## Sensibilidad a enfermedades
-Como todo broiler rápido, si se alarga el engorde aumentan las cojeras, el estrés por calor y los problemas de corazón. [2] Ante cualquier problema de salud, consulta a un veterinario.
+## Crecimiento y peso
 
-## Para qué tipo de granjas se usa más
-Engorde industrial en nave. [1]
+Objetivos oficiales publicados por Cobb en 2022 para aves mixtas:
+
+| Edad    | Peso vivo | Conversión alimenticia |
+| ------- | --------- | ---------------------- |
+| 35 días | 2,521 kg  | 1,441                  |
+| 42 días | 3,278 kg  | 1,555                  |
+| 49 días | 4,001 kg  | 1,686                  |
+| 56 días | 4,641 kg  | 1,842                  |
+
+Son objetivos de la empresa genética y no resultados garantizados en todas las explotaciones.
+
+## Alimentación
+
+Cobb destaca la eficiencia de conversión como una de las principales cualidades de esta línea.
+
+Su suplemento oficial de rendimiento incluye recomendaciones de nutrición que deben utilizarse junto con la guía de manejo.
+
+A los 42 días presenta una conversión objetivo de 1,555.
+
+## Tipo de granja ideal
+
+Granjas de engorde comercial que buscan crecimiento constante, lotes uniformes y una producción eficiente.
+
+Cobb destaca especialmente su utilidad para mercados de pollos de menor peso.
 
 ## Ventajas
-En los objetivos 2022 es el más pesado a igual edad de esta lista (por ejemplo, 3.278 g a 42 días). [1]
+
+- Crecimiento rápido.
+- Buena uniformidad entre aves.
+- Conversión alimenticia competitiva.
+- Rendimiento constante en condiciones comerciales.
+- Buena viabilidad del lote, según Cobb.
 
 ## Desventajas
-Su conversión es algo peor que la del Ross 308 a igual edad (1,555 frente a 1,531 a 42 días). Necesita manejo intensivo. [1]
+
+- Los resultados dependen de las condiciones de producción y del cumplimiento de las recomendaciones de manejo y alimentación.
+- La conversión alimenticia aumenta con la edad: de 1,441 a los 35 días a 1,842 a los 56 días.
 
 ## Fuentes
-1. Cobb-Vantress, «2022 Cobb500 Broiler Performance & Nutrition Supplement» (as hatched, métrico). https://www.cobb-vantress.com/assets/Cobb-Files/product-guides/5502e86566/2022-Cobb500-Broiler-Performance-Nutrition-Supplement.pdf (copia leída desde un espejo: el PDF oficial no se descargó directamente).
-2. Penn State Extension. https://extension.psu.edu/a-quick-guide-to-raising-pastured-broilers
-3. Cobb Genetics, página de producto Cobb 500. https://cobbgenetics.com/products/cobb-500 (fotos ©).
+
+- [Cobb Genetics — Cobb 500](https://www.cobbgenetics.com/products/cobb-500).
+- [Cobb — Broiler Performance and Nutrition Supplement 2022](https://www.cobbgenetics.com/assets/Cobb-Files/2022-Cobb500-Broiler-Performance-Nutrition-Supplement.pdf).

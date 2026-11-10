@@ -1,54 +1,39 @@
 {
-  "perfiles": {
-    "blanco": {
-      "alt": "Pollo de engorde blanco de tipo comercial (imagen ilustrativa)",
-      "pie": "Pollo de engorde blanco de tipo comercial (imagen ilustrativa)",
-      "foto": "img/pollos/broiler-blanco-comercial.webp",
-      "w": 1600,
-      "h": 900,
-      "credito": {"envato": true},
-      "video": "img/razas/broiler-blanco-comercial.mp4",
-      "poster": "img/pollos/broiler-blanco-comercial.webp",
-      "vw": 1280,
-      "vh": 720,
-      "video_alt": "Pollo de engorde blanco de tipo comercial (imagen ilustrativa, no corresponde a la línea concreta)",
-      "video_titulo": "Vídeo ilustrativo",
-      "video_credito": {"envato": true}
-    }
-  },
   "fichas": {
     "ross-708": {
       "nombre": "Ross 708",
       "h1": "Pollo Ross 708",
-      "perfil": "blanco"
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de un pollo blanco sobre viruta en una nave de engorde"
     },
     "cobb-500": {
       "nombre": "Cobb 500",
       "h1": "Pollo Cobb 500",
-      "perfil": "blanco"
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de un pollo blanco de perfil sobre la cama de una nave"
     },
     "arbor-acres-plus": {
       "nombre": "Arbor Acres Plus",
       "h1": "Pollo Arbor Acres Plus",
-      "perfil": "blanco"
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de un pollo blanco de frente, con otros pollos blancos al fondo"
     },
     "indian-river": {
       "nombre": "Indian River",
       "h1": "Pollo Indian River",
-      "perfil": "blanco"
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de un pollo blanco entre el lote, con bebederos rojos al fondo"
     },
     "hubbard-efficiency-plus": {
       "nombre": "Hubbard Efficiency Plus",
       "h1": "Pollo Hubbard Efficiency Plus",
-      "perfil": "blanco"
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de un pollo blanco junto a comederos en una nave"
     },
     "hubbard-redbro-ja57": {
-      "nombre": "Hubbard Redbro y JA57",
-      "h1": "Pollo Hubbard Redbro y JA57 (gama Premium)",
+      "nombre": "Hubbard Redbro",
+      "h1": "Pollo Hubbard Redbro",
       "alt": "Pollos Redbro de plumaje rojizo descansando sobre la hierba",
-      "foto": "img/pollos/hubbard-redbro-ja57.webp",
-      "w": 1600,
-      "h": 1067,
       "credito": {
         "autor": "StaryDzicur",
         "licencia": "CC BY-SA 4.0",
@@ -58,41 +43,49 @@
     },
     "sasso": {
       "nombre": "Sasso",
-      "h1": "Pollo Sasso (Hendrix Genetics)",
+      "h1": "Pollo Sasso",
       "alt": "Pollos Sasso de plumaje marrón en un corral, con cañas al fondo",
-      "foto": "img/pollos/sasso.webp",
-      "w": 1200,
-      "h": 1600,
       "credito": {
         "autor": "Judgefloro",
         "licencia": "dominio público",
         "fuente": "https://commons.wikimedia.org/wiki/File:04529jfBonga_Menor_Mayor_Farms_Roads_Bustos_Bulacanfvf_18.JPG"
-      },
-      "foto2": "img/pollos/sasso-2.webp",
-      "alt2": "Grupo de pollos Sasso de plumaje marrón en un corral de tierra",
-      "w2": 1600,
-      "h2": 1200,
-      "credito2": {
-        "autor": "Judgefloro",
-        "licencia": "dominio público",
-        "fuente": "https://commons.wikimedia.org/wiki/File:04529jfBonga_Menor_Mayor_Farms_Roads_Bustos_Bulacanfvf_22.JPG"
       }
     },
     "kuroiler": {
       "nombre": "Kuroiler",
       "h1": "Pollo Kuroiler",
-      "alt": "Pollos Kuroiler en primer plano sobre la tierra, uno de plumaje claro moteado y otro oscuro",
-      "foto": "img/pollos/kuroiler-poster.webp",
-      "w": 1280,
-      "h": 720,
-      "credito": {"envato": true},
-      "video": "img/razas/kuroiler.mp4",
-      "poster": "img/pollos/kuroiler-poster.webp",
-      "vw": 1280,
-      "vh": 720,
-      "video_alt": "Pollos Kuroiler en primer plano sobre la tierra",
-      "video_titulo": "Vídeo del Kuroiler",
-      "video_credito": {"envato": true}
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de pollos de plumaje castaño y moteado junto a un comedero"
+    },
+    "rowan-ranger": {
+      "nombre": "Rowan Range (Rustic Rowan)",
+      "h1": "Pollo Rowan Range (Rustic Rowan)",
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de dos pollos de plumaje claro y rojizo sobre hierba"
+    },
+    "freedom-ranger": {
+      "nombre": "Freedom Ranger",
+      "h1": "Pollo Freedom Ranger",
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de pollos de plumaje castaño en un prado"
+    },
+    "label-rouge": {
+      "nombre": "Label Rouge",
+      "h1": "Pollo Label Rouge",
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de pollos rojizos con plumas blancas en la cola, sobre hierba"
+    },
+    "campero-ue": {
+      "nombre": "Campero UE",
+      "h1": "Pollo Campero UE",
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de un lote de pollos castaños en un prado con árboles"
+    },
+    "campero-inta": {
+      "nombre": "Campero INTA",
+      "h1": "Pollo Campero INTA",
+      "ilustrativa": true,
+      "alt": "Imagen ilustrativa de pollos de plumaje moteado en un parque con hierba"
     }
   }
 }

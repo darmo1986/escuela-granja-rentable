@@ -1,42 +1,107 @@
-# Pollo Sasso (Hendrix Genetics)
+# Sasso
 
+## Origen
 
-Genética francesa de pollos de color y crecimiento lento para Label Rouge, ecológico y campero. Los machos Gris Cendré y T44NI se cruzan con la hembra SA51A. [1][2]
+Sasso es una marca de genética avícola perteneciente a Hendrix Genetics, especializada en pollos de color destinados a sistemas de cría tradicional.
 
-## Datos rápidos (Gris Cendré × SA51A, pienso label)
-| Dato | Valor |
-|---|---|
-| Días a sacrificio | Tabla de 1 a 84 días [1] |
-| Peso (mixto) | 1.320 g a 56 d · 1.780 g a 70 d · 2.000 g a 77 d · 2.200 g a 84 d [1] |
-| Conversión | 2,11 a 56 d · 2,44 a 70 d · 2,66 a 77 d · 2,90 a 84 d [1] |
-| Crecimiento | Lento [1] |
-| Tipo de granja | Tradicional, Label Rouge, ecológica o «fermier» al aire libre [1] |
+No corresponde a una única raza de pollo, sino a diferentes líneas de machos y hembras que pueden combinarse para obtener aves con características productivas distintas.
 
-Con pienso estándar y la hembra SA31A crece más: 2.154 g a 70 d (conversión 2,60). [1]
+La marca comercializa productos destinados a granjas tradicionales, producción campera, ecológica y programas de calidad como Label Rouge.
 
-## Cuidados
-Sasso lo presenta como ave de poco manejo. Los datos dependen del pienso (label o estándar). [1]
+## Aspecto
 
-## Carácter
-Sin dato fiable.
+Entre sus líneas documentadas destacan:
 
-## Aspecto físico
-Gris Cendré: pluma gris ceniza, piel y patas blancas. T44NI: cuello desnudo, pluma roja, piel y patas amarillas. [1][2]
+Gris Cendré: macho de crecimiento lento, con plumaje gris ceniza, piel blanca y patas blancas.
 
-## Sensibilidad a enfermedades
-Sasso habla de buena viabilidad y rusticidad, sin cifras. [2] Ante cualquier problema de salud, consulta a un veterinario.
+T44NI: macho de crecimiento lento, cuello desnudo, plumaje rojo, piel amarilla y patas amarillas.
 
-## Para qué tipo de granjas se usa más
-Pollo de corral, Label Rouge y ecológico. [1]
+Ruby XL (XL44): macho pesado de plumaje rojo, seleccionado para combinar rusticidad, eficiencia alimenticia y calidad de carne.
+
+## Crecimiento y peso
+
+Los resultados dependen del macho, de la hembra reproductora y del tipo de alimentación.
+
+### Gris Cendré × SA51A
+
+Con pienso tipo label, para aves mixtas:
+
+| Edad    | Peso vivo | Conversión |
+| ------- | --------- | ---------- |
+| 56 días | 1,320 kg  | 2,11       |
+| 70 días | 1,780 kg  | 2,44       |
+| 77 días | 2,000 kg  | 2,66       |
+| 84 días | 2,200 kg  | 2,90       |
+
+A los 84 días, los machos alcanzan un objetivo de 2,430 kg y las hembras 1,960 kg.
+
+### T44NI × SA51A
+
+Con pienso tipo label, para aves mixtas:
+
+| Edad    | Peso vivo | Conversión |
+| ------- | --------- | ---------- |
+| 56 días | 1,450 kg  | 2,11       |
+| 70 días | 1,950 kg  | 2,44       |
+| 77 días | 2,180 kg  | 2,66       |
+| 84 días | 2,400 kg  | 2,90       |
+
+A los 84 días, los machos presentan un objetivo de 2,601 kg y las hembras de 2,099 kg.
+
+### Ruby XL × SA51A
+
+Para aves mixtas:
+
+| Edad    | Peso vivo | Conversión |
+| ------- | --------- | ---------- |
+| 56 días | 2,143 kg  | 2,32       |
+| 70 días | 2,800 kg  | 2,42       |
+| 84 días | 3,344 kg  | 2,66       |
+
+A los 84 días, los machos alcanzan un objetivo de 3,779 kg y las hembras de 2,910 kg.
+
+Las cifras son objetivos de Sasso en condiciones normales de explotación, no pesos garantizados.
+
+## Alimentación
+
+Sasso publica resultados diferentes según el tipo de pienso y el cruzamiento.
+
+Por ejemplo, para el Gris Cendré:
+
+- Con hembra SA51A y pienso label: 2,200 kg a los 84 días y conversión de 2,90.
+- Con hembra SA31A y pienso estándar: 2,154 kg a los 70 días y conversión de 2,60.
+
+En el Ruby XL también se observan diferencias según la hembra utilizada. Con SA31A, el objetivo a los 84 días es 3,637 kg y conversión 2,60, frente a 3,344 kg y conversión 2,66 con SA51A.
+
+Por ello, conviene utilizar siempre la tabla correspondiente al cruzamiento concreto que se esté criando.
+
+## Tipo de granja ideal
+
+Las líneas Sasso documentadas están orientadas a distintos sistemas:
+
+- Gris Cendré: granjas tradicionales, producción ecológica, Label Rouge y sistemas que buscan aves de doble propósito.
+- T44NI: explotaciones tradicionales y camperas que valoran la rusticidad y la adaptación al aire libre.
+- Ruby XL: granjas domésticas y camperas interesadas en pollos de mayor peso.
 
 ## Ventajas
-Carne muy sabrosa según Sasso, y vale para doble propósito. [1]
+
+- Diferentes líneas para distintos objetivos productivos.
+- Variedad de colores y características físicas.
+- Opciones para producción tradicional, campera y ecológica.
+- Gris Cendré orientado al doble propósito.
+- T44NI destacado por Sasso por su rusticidad y adaptación al aire libre.
+- Ruby XL con buen potencial de peso y calidad de carne, según el fabricante.
 
 ## Desventajas
-Conversión alta (2,9 a 84 días) y ciclos largos. [1]
+
+- El ritmo de crecimiento y la conversión varían considerablemente entre cruzamientos.
+- Las líneas de crecimiento lento necesitan ciclos más largos para alcanzar determinados pesos.
+- Los objetivos de conversión de algunos cruzamientos son superiores a los de los broilers comerciales de crecimiento rápido.
+- No se puede utilizar una única tabla de peso y consumo para todos los pollos Sasso.
 
 ## Fuentes
-1. Sasso Poultry (Hendrix Genetics), «Gris Cendré». https://europe.sasso-poultry.com/en/europe-products/colored-chickens/light-male-breeders/gris-cendre/ : tablas de peso y conversión.
-2. Sasso Poultry, «T44NI». https://europe.sasso-poultry.com/en/europe-products/colored-chickens/light-male-breeders/t44ni/
 
-Falta: la tabla oficial del clásico «Sasso rojo» XL451 (XL44 × SA51A). Gallsa (España) lo vende, pero su ficha PDF no se ha leído.
+- [Sasso Poultry — Web oficial europea](https://europe.sasso-poultry.com/en/).
+- [Sasso — Gris Cendré](https://europe.sasso-poultry.com/en/europe-products/colored-chickens/light-male-breeders/gris-cendre/).
+- [Sasso — T44NI](https://europe.sasso-poultry.com/en/europe-products/colored-chickens/light-male-breeders/t44ni/).
+- [Sasso — Ruby XL](https://europe.sasso-poultry.com/en/europe-products/colored-chickens/heavy-male-breeders/ruby-xl/).
