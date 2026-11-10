@@ -336,6 +336,19 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
         f'<script type="application/ld+json">{ld(obj)}</script>' for obj in datos_ld
     )
     stripe = stripe_js() + "\n" if con_stripe else ""
+    # /tienda/ sigue recibiendo anclas y vueltas de pago de los ebooks.
+    redir_ebooks = ""
+    if rel == "tienda/index.html":
+        redir_ebooks = """<script>
+(function () {
+  var q = location.search;
+  var h = location.hash;
+  var ids = {"#ebooks":"","#pienso-hacer":"#pienso-hacer","#pienso-elegir":"#pienso-elegir","#guia-empezar":"#guia-empezar","#alimenta-ponedoras":"#alimenta-ponedoras","#gallinas":"#gallinas"};
+  var pago = /(?:^|[?&])stripe_(?:session|cancelado)=/.test(q);
+  if (pago || Object.prototype.hasOwnProperty.call(ids, h)) location.replace("/ebooks/" + q + (ids[h] || ""));
+})();
+</script>
+"""
     html = f'''<!doctype html>
 <html lang="es">
 <head>
@@ -344,7 +357,7 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <title>{esc(titulo)}</title>
 <meta name="description" content="{esc(descripcion)}">
 <link rel="canonical" href="{esc(canonical)}">
-<meta name="robots" content="index,follow">
+{redir_ebooks}<meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(descripcion)}">
