@@ -16,7 +16,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from textos import CLAVES, NOMBRE_PUBLICO, SECCIONES  # noqa: E402
-from pulir import AVISO_VET, EXCLUIR, FUSION, REDIR_FIJAS, VET_CATS, preparar, problemas_de_texto  # noqa: E402
+from pulir import AVISO_FICHA, AVISO_VET, EXCLUIR, FUSION, REDIR_FIJAS, VET_CATS, preparar, problemas_de_texto  # noqa: E402
 
 SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
@@ -212,6 +212,7 @@ def armar(filas):
             "claves": (CLAVES[cat_csv] + " " + CLAVES.get(origen, "")).strip(),
             "unico_42": asin in SOLO_SI_UNICOS,
             "vet": vet,
+            "aviso_vet": vet or asin in AVISO_FICHA,
         })
     if fallos:
         raise SystemExit("\n".join(fallos[:40]))
@@ -503,7 +504,7 @@ def cuerpo_producto(p, vecinos, raiz):
     )
     extra = f'''<section class="t-bloque"><h2>También en {esc(p["categoria"])}</h2>
 <ul class="t-relacionados">{relacionados}</ul></section>''' if relacionados else ""
-    aviso = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if p["vet"] else ""
+    aviso = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if p.get("aviso_vet") else ""
     titulo_que = "Qué es" if p["vet"] else "Qué es y para qué sirve"
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · <a href="{cat_href}">{esc(p["categoria"])}</a> · {esc(p["titulo"])}</p>
 <article class="t-ficha">

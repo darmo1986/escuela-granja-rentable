@@ -8,6 +8,9 @@ AVISO_VET = (
 )
 FRASE_VET = "Se usa solo si te lo indica tu veterinario y según la etiqueta."
 
+# Estas fichas de pienso llevan el recuadro, sin cambiar su texto.
+AVISO_FICHA = {"B09QZ2NW52", "B08Q6KQMYZ", "B0874Y98GQ"}
+
 # Categorías de un solo producto → categoría donde se muestran.
 FUSION = {
     "Manejo e identificación": "Herramientas de granja",
