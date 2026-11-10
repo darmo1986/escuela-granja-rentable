@@ -22,7 +22,34 @@ FUSION = {
     "Protección": "Puertas automáticas y cierres",
 }
 
-# Se quitan del catálogo. El valor es el ASIN que se queda, o None si la ficha redirige a la categoría.
+# URLs ya publicadas en el borrador que cambian de sitio. Se reescriben en cada generación.
+REDIR_FIJAS = {
+    "blu-kote-de-dr-naylor-en-spray-de-bomba-4-oz": "/tienda/p/blu-kote-de-dr-naylor-pulverizador-de-4-oz/",
+    "elector-psp-control-de-insectos-en-locales-237-ml": "/tienda/p/elector-psp-frasco-de-237-ml/",
+    "hierbas-secas-maqihan-para-el-nidal-de-ponedoras-10-oz": "/tienda/p/hierbas-secas-maqihan-para-el-nidal-bolsa-de-10-oz/",
+    "kit-rojo-de-6-bocas-para-comedero-de-cubo": "/tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/",
+    "malla-hardware-cloth-1-2-de-60-x-50-ft-para-corrales-altos": "/tienda/p/malla-hardware-cloth-de-1-2-pulgada-36-pulgadas-por-100-pies/",
+    "nutri-drench-para-aves-suplemento-de-recuperacion-rapida-4-oz": "/tienda/p/nutri-drench-para-aves-frasco-de-4-oz/",
+    "percha-metalica-cuadrada-petsfit-para-8-a-10-gallinas": "/tienda/p/percha-petsfit-de-metal-y-madera-para-8-a-10-gallinas/",
+    "gordon-s-permethrin-10-para-ganado-y-locales-1-cuarto": "/tienda/p/permetrina-gordon-s-permethrin-10-envase-de-1-cuarto/",
+    "pienso-medicado-de-arranque-manna-pro-para-pollitos-5-lb": "/tienda/p/pienso-de-arranque-manna-pro-bolsa-de-5-lb-etiqueta-medicada/",
+    "pienso-medicado-purina-start-grow-en-migaja-saco-25-lb": "/tienda/p/pienso-purina-start-grow-en-migaja-saco-de-25-lb-etiqueta-medicada/",
+    "polvo-insecticida-prozap-para-huerto-y-aves-2-lb": "/tienda/p/polvo-prozap-garden-poultry-dust-bote-de-2-lb/",
+    "probioticos-durvet-healthy-flock-para-gallinas": "/tienda/p/probioticos-durvet-healthy-flock-para-aves/",
+    "puerta-automatica-solar-de-gallinero-con-mando-y-pantalla": "/tienda/p/puerta-automatica-solar-de-gallinero-con-mando-de-6-modos-y-pantalla/",
+    "puerta-automatica-solar-de-gallinero-marron-con-sensor-de-luz": "/tienda/p/puerta-automatica-solar-para-gallinero-con-temporizador-y-sensor-de-luz/",
+    "sav-a-chick-electrolitos-y-probioticos-18-sobres": "/tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/",
+    "spray-insecticida-para-aves-martin-s-pen-32-oz": "/tienda/p/spray-martin-s-pen-para-aves-botella-de-32-oz/",
+    "vetericyn-plus-spray-para-heridas-de-gallinas-8-oz": "/tienda/p/spray-vetericyn-plus-para-aves-frasco-de-8-oz/",
+    "tierra-de-diatomeas-harris-10-lb-con-espolvoreador": "/tienda/p/tierra-de-diatomeas-harris-de-10-lb-con-espolvoreador/",
+    "vetrx-poultry-remedy-frasco-de-2-oz": "/tienda/p/vetrx-para-aves-de-corral-frasco-de-2-oz/",
+    "vinagre-de-manzana-bragg-ecologico-con-madre-1-galon": "/tienda/p/vinagre-de-manzana-bragg-ecologico-crudo-con-madre-1-galon/",
+    "vitaminas-y-electrolitos-durvet-para-aves-3-sobres-5-g": "/tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-3-sobres/",
+    "vitaminas-y-electrolitos-durvet-para-aves-6-sobres-5-g": "/tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/",
+    "vitaminas-y-electrolitos-rooster-booster-con-lactobacilos": "/tienda/p/vitaminas-y-electrolitos-rooster-booster-con-lactobacilos-8-oz/",
+}
+
+# Se quitan del catálogo. El valor es el ASIN que se queda.
 EXCLUIR = {
     "B0BH2QQT9K": "B0FK27D1G7",
     "B0CJBJ26VY": "B0CWXWX52L",

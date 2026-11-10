@@ -16,7 +16,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from textos import CLAVES, NOMBRE_PUBLICO, SECCIONES  # noqa: E402
-from pulir import AVISO_VET, EXCLUIR, FUSION, VET_CATS, preparar, problemas_de_texto  # noqa: E402
+from pulir import AVISO_VET, EXCLUIR, FUSION, REDIR_FIJAS, VET_CATS, preparar, problemas_de_texto  # noqa: E402
 
 SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
@@ -644,6 +644,10 @@ def escribir(productos):
                 f"/tienda/c/{slug_nuevo}/",
                 nombre_cat(destino),
             )
+    for slug_viejo, href in REDIR_FIJAS.items():
+        if f"tienda/p/{slug_viejo}/" == href:
+            continue
+        pagina_movida(f"tienda/p/{slug_viejo}/index.html", href, "la ficha nueva")
     (RAIZ / "tienda" / "producto.html").write_text(
         """<!doctype html>
 <html lang="es">
