@@ -42,11 +42,11 @@
    "opciones": [
     "75 – 80 %",
     "30 – 35 %",
-    "55 – 60 %",
+    "58–60 %",
     "90 – 95 %"
    ],
    "respuesta": 2,
-   "explicacion": "55–60 % los primeros 18 días; en los últimos 3 días se sube a 65–70 % para ablandar la cáscara."
+   "explicacion": "58–60 % los días 1–18 y ≥ 65 % en la eclosión"
   },
   {
    "id": 4,
@@ -150,7 +150,7 @@
     "Dejar de voltear y subir la humedad"
    ],
    "respuesta": 3,
-   "explicacion": "Días 19–21: sin volteo, humedad 65–70 % y mínima apertura para no perder calor ni humedad."
+   "explicacion": "58–60 % los días 1–18 y ≥ 65 % en la eclosión"
   },
   {
    "id": 12,
