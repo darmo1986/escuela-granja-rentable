@@ -1,0 +1,98 @@
+{
+  "perfiles": {
+    "blanco": {
+      "alt": "Pollo de engorde blanco de tipo comercial (imagen ilustrativa)",
+      "pie": "Pollo de engorde blanco de tipo comercial (imagen ilustrativa)",
+      "foto": "img/pollos/broiler-blanco-comercial.webp",
+      "w": 1600,
+      "h": 900,
+      "credito": {"envato": true},
+      "video": "img/razas/broiler-blanco-comercial.mp4",
+      "poster": "img/pollos/broiler-blanco-comercial.webp",
+      "vw": 1280,
+      "vh": 720,
+      "video_alt": "Pollo de engorde blanco de tipo comercial (imagen ilustrativa, no corresponde a la línea concreta)",
+      "video_titulo": "Vídeo ilustrativo",
+      "video_credito": {"envato": true}
+    }
+  },
+  "fichas": {
+    "ross-708": {
+      "nombre": "Ross 708",
+      "h1": "Pollo Ross 708",
+      "perfil": "blanco"
+    },
+    "cobb-500": {
+      "nombre": "Cobb 500",
+      "h1": "Pollo Cobb 500",
+      "perfil": "blanco"
+    },
+    "arbor-acres-plus": {
+      "nombre": "Arbor Acres Plus",
+      "h1": "Pollo Arbor Acres Plus",
+      "perfil": "blanco"
+    },
+    "indian-river": {
+      "nombre": "Indian River",
+      "h1": "Pollo Indian River",
+      "perfil": "blanco"
+    },
+    "hubbard-efficiency-plus": {
+      "nombre": "Hubbard Efficiency Plus",
+      "h1": "Pollo Hubbard Efficiency Plus",
+      "perfil": "blanco"
+    },
+    "hubbard-redbro-ja57": {
+      "nombre": "Hubbard Redbro y JA57",
+      "h1": "Pollo Hubbard Redbro y JA57 (gama Premium)",
+      "alt": "Pollos Redbro de plumaje rojizo descansando sobre la hierba",
+      "foto": "img/pollos/hubbard-redbro-ja57.webp",
+      "w": 1600,
+      "h": 1067,
+      "credito": {
+        "autor": "StaryDzicur",
+        "licencia": "CC BY-SA 4.0",
+        "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "fuente": "https://commons.wikimedia.org/wiki/File:Kury_podczas_odpoczynku_na_wolnym_wybiegu..jpg"
+      }
+    },
+    "sasso": {
+      "nombre": "Sasso",
+      "h1": "Pollo Sasso (Hendrix Genetics)",
+      "alt": "Pollos Sasso de plumaje marrón en un corral, con cañas al fondo",
+      "foto": "img/pollos/sasso.webp",
+      "w": 1200,
+      "h": 1600,
+      "credito": {
+        "autor": "Judgefloro",
+        "licencia": "dominio público",
+        "fuente": "https://commons.wikimedia.org/wiki/File:04529jfBonga_Menor_Mayor_Farms_Roads_Bustos_Bulacanfvf_18.JPG"
+      },
+      "foto2": "img/pollos/sasso-2.webp",
+      "alt2": "Grupo de pollos Sasso de plumaje marrón en un corral de tierra",
+      "w2": 1600,
+      "h2": 1200,
+      "credito2": {
+        "autor": "Judgefloro",
+        "licencia": "dominio público",
+        "fuente": "https://commons.wikimedia.org/wiki/File:04529jfBonga_Menor_Mayor_Farms_Roads_Bustos_Bulacanfvf_22.JPG"
+      }
+    },
+    "kuroiler": {
+      "nombre": "Kuroiler",
+      "h1": "Pollo Kuroiler",
+      "alt": "Pollos Kuroiler en primer plano sobre la tierra, uno de plumaje claro moteado y otro oscuro",
+      "foto": "img/pollos/kuroiler-poster.webp",
+      "w": 1280,
+      "h": 720,
+      "credito": {"envato": true},
+      "video": "img/razas/kuroiler.mp4",
+      "poster": "img/pollos/kuroiler-poster.webp",
+      "vw": 1280,
+      "vh": 720,
+      "video_alt": "Pollos Kuroiler en primer plano sobre la tierra",
+      "video_titulo": "Vídeo del Kuroiler",
+      "video_credito": {"envato": true}
+    }
+  }
+}
