@@ -9,6 +9,11 @@
   font-size: 1rem; line-height: 1.45;
 }
 .t-aviso strong { color: var(--gd); }
+.t-vet {
+  margin: .7rem 0 1rem; padding: .85rem 1rem;
+  border: 2px solid #8a3b12; border-radius: 12px; background: #fff6ee;
+  font-weight: 700; line-height: 1.45;
+}
 .t-ebooks { margin: 0 0 1.6rem; }
 .t-ebooks > h2 { margin-bottom: .35rem; }
 .t-nota { margin: .2rem 0 .8rem; color: var(--muted, #4d5a50); }

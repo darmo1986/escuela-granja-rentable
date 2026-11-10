@@ -15,7 +15,8 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from textos import CLAVES, NOMBRE_PUBLICO, PARA, SECCIONES, TEXTOS  # noqa: E402
+from textos import CLAVES, NOMBRE_PUBLICO, SECCIONES  # noqa: E402
+from pulir import AVISO_VET, EXCLUIR, FUSION, VET_CATS, preparar, problemas_de_texto  # noqa: E402
 
 SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
@@ -142,6 +143,13 @@ def cargar():
     for fila in filas:
         asin = fila["ASIN"].strip()
         cat = fila["categoria"].strip()
+        if asin in EXCLUIR:
+            excluidos.append({
+                "asin": asin,
+                "categoria": cat,
+                "motivo": f"duplicado de {EXCLUIR[asin]}: mismas estrellas y reseñas; se queda el otro",
+            })
+            continue
         if asin in SOLO_SI_UNICOS and len(por_cat[cat]) != 1:
             excluidos.append({
                 "asin": asin,
@@ -157,40 +165,26 @@ def cargar():
 
 def armar(filas):
     secciones = {cat: (sid, titulo) for sid, titulo, cats in SECCIONES for cat in cats}
-    if set(secciones) != set(PARA) or set(secciones) != set(CLAVES):
-        raise SystemExit("SECCIONES, PARA y CLAVES no cubren las mismas categorías")
-    vistos = set()
+    if set(secciones) != set(CLAVES):
+        raise SystemExit("SECCIONES y CLAVES no cubren las mismas categorías")
+    for origen, destino in FUSION.items():
+        if destino not in secciones:
+            raise SystemExit(f"La fusión {origen} → {destino} no existe")
     productos = []
     slugs = {}
+    fallos = []
     for fila in filas:
         asin = fila["ASIN"].strip()
-        cat_csv = fila["categoria"].strip()
+        origen = fila["categoria"].strip()
+        cat_csv = FUSION.get(origen, origen)
         if cat_csv not in secciones:
             raise SystemExit(f"Categoría sin sección: {cat_csv}")
         cat = nombre_cat(cat_csv)
-        if asin in TEXTOS:
-            titulo = TEXTOS[asin]["titulo"].strip()
-            explicacion = list(TEXTOS[asin]["explicacion"])
-            recomendacion = list(TEXTOS[asin]["recomendacion"])
-            origen = "escrito"
-        else:
-            titulo = fila["titulo_seo"].strip()
-            if not titulo:
-                raise SystemExit(f"Sin título y sin texto escrito: {asin}")
-            explicacion, recomendacion = partir(fila["por_que_lo_recomendamos"])
-            origen = "catalogo"
-            if len(explicacion) < 2:
-                explicacion.append(f"En la granja se usa para {PARA[cat_csv]}.")
-                origen = "catalogo+frase"
-            if len(recomendacion) < 2:
-                recomendacion.append("No se paga en esta web: el botón abre Amazon, donde se ve el precio.")
-                origen = "catalogo+frase"
-        if not (2 <= len(explicacion) <= 4 and 2 <= len(recomendacion) <= 4):
-            raise SystemExit(f"{asin}: frases {len(explicacion)}/{len(recomendacion)}")
-        for frase in explicacion + recomendacion:
-            if not frase.endswith((".", "!", "?")):
-                raise SystemExit(f"{asin}: frase sin cierre: {frase}")
-        base = slugify(titulo)
+        texto = preparar(fila)
+        vet = texto["vet"] or cat_csv in VET_CATS
+        fallos.extend(problemas_de_texto(
+            asin, texto["titulo"], texto["explicacion"], texto["recomendacion"], vet))
+        base = slugify(texto["titulo"])
         slug = base
         n = 2
         while slug in slugs:
@@ -201,9 +195,10 @@ def armar(filas):
         productos.append({
             "asin": asin,
             "slug": slug,
-            "titulo": titulo,
+            "titulo": texto["titulo"],
             "nombre": re.sub(r"\s+", " ", fila["nombre"]).strip(),
             "categoria_csv": cat_csv,
+            "categoria_origen": origen,
             "categoria": cat,
             "categoria_slug": slugify(cat),
             "seccion_id": sid,
@@ -211,12 +206,15 @@ def armar(filas):
             "estrellas": float(fila["valoracion"].replace(",", ".")),
             "resenas": int(fila["resenas"]),
             "url": fila["url_afiliado"].strip(),
-            "explicacion": explicacion,
-            "recomendacion": recomendacion,
-            "origen": origen,
-            "claves": CLAVES[cat_csv],
+            "explicacion": texto["explicacion"],
+            "recomendacion": texto["recomendacion"],
+            "origen": texto["origen"],
+            "claves": (CLAVES[cat_csv] + " " + CLAVES.get(origen, "")).strip(),
             "unico_42": asin in SOLO_SI_UNICOS,
+            "vet": vet,
         })
+    if fallos:
+        raise SystemExit("\n".join(fallos[:40]))
     productos.sort(key=lambda p: (-p["estrellas"], -p["resenas"], p["titulo"]))
     return productos
 
@@ -472,12 +470,14 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
             elif any(p["categoria_csv"] == cat_csv for p in productos):
                 otros.append(f'<a class="t-chip" href="{raiz}tienda/c/{slugify(nombre)}/">{esc(nombre)}</a>')
     cards = "\n".join(tarjeta(p, raiz, "h2") for p in grupo)
+    aviso_cat = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if cat in VET_CATS else ""
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · {esc(cat)}</p>
 <header class="t-hero">
 <p class="kicker">Tienda</p>
 <h1>{esc(cat)}</h1>
 <p class="t-lead">{len(grupo)} productos, ordenados por estrellas y reseñas. El precio se ve en Amazon.</p>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
+{aviso_cat}
 <p><a class="btn sec" href="{raiz}tienda/">Ver toda la tienda</a> <a class="btn sec" href="{raiz}ebooks/">Ebooks a 3,00 USD</a></p>
 </header>
 <div class="t-filtros">
@@ -503,14 +503,17 @@ def cuerpo_producto(p, vecinos, raiz):
     )
     extra = f'''<section class="t-bloque"><h2>También en {esc(p["categoria"])}</h2>
 <ul class="t-relacionados">{relacionados}</ul></section>''' if relacionados else ""
+    aviso = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if p["vet"] else ""
+    titulo_que = "Qué es" if p["vet"] else "Qué es y para qué sirve"
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · <a href="{cat_href}">{esc(p["categoria"])}</a> · {esc(p["titulo"])}</p>
 <article class="t-ficha">
 <p class="kicker">{esc(p["categoria"])}</p>
 <h1>{esc(p["titulo"])}</h1>
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 {estrellas_html(p)}
+{aviso}
 <section class="t-bloque" data-explicacion>
-<h2>Qué es y para qué sirve</h2>
+<h2>{titulo_que}</h2>
 {ps(p["explicacion"])}
 </section>
 <section class="t-bloque" data-recomendacion>
@@ -531,7 +534,32 @@ def meta_producto(p):
     return recortar(" ".join(p["explicacion"][:2]) + " Precio en Amazon, no en esta web.")
 
 
+def pagina_movida(rel, href, texto):
+    html = f'''<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tienda | Granja Rentable</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{SITIO}{href}">
+<meta http-equiv="refresh" content="0;url={href}">
+</head>
+<body>
+<p>Esta página se ha movido a <a href="{href}">{esc(texto)}</a>.</p>
+</body>
+</html>
+'''
+    destino = RAIZ / rel
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(html, encoding="utf-8")
+
+
 def escribir(productos):
+    viejos = {}
+    ruta_cat = RAIZ / "tienda" / "catalogo.json"
+    if ruta_cat.is_file():
+        viejos = {item["asin"]: item["slug"] for item in json.loads(ruta_cat.read_text(encoding="utf-8"))}
     viejo = RAIZ / "tienda" / "p"
     if viejo.exists():
         shutil.rmtree(viejo)
@@ -588,6 +616,34 @@ def escribir(productos):
             cuerpo_producto(p, vecinos, "../../../"),
             datos_p,
         )
+    por_asin = {p["asin"]: p for p in productos}
+    for asin, slug_viejo in viejos.items():
+        if asin in EXCLUIR:
+            queda = EXCLUIR[asin]
+            if queda in por_asin:
+                href = f"/tienda/p/{por_asin[queda]['slug']}/"
+                texto = por_asin[queda]["titulo"]
+                if slug_viejo == por_asin[queda]["slug"]:
+                    continue
+            else:
+                href = "/tienda/"
+                texto = "la tienda"
+            pagina_movida(f"tienda/p/{slug_viejo}/index.html", href, texto)
+        elif asin in por_asin and slug_viejo != por_asin[asin]["slug"]:
+            pagina_movida(
+                f"tienda/p/{slug_viejo}/index.html",
+                f"/tienda/p/{por_asin[asin]['slug']}/",
+                por_asin[asin]["titulo"],
+            )
+    for origen, destino in FUSION.items():
+        slug_viejo = slugify(nombre_cat(origen))
+        slug_nuevo = slugify(nombre_cat(destino))
+        if slug_viejo != slug_nuevo:
+            pagina_movida(
+                f"tienda/c/{slug_viejo}/index.html",
+                f"/tienda/c/{slug_nuevo}/",
+                nombre_cat(destino),
+            )
     (RAIZ / "tienda" / "producto.html").write_text(
         """<!doctype html>
 <html lang="es">
@@ -674,11 +730,25 @@ def comprobar(productos, urls, precios_decimales):
                     for item in o:
                         walk(item)
             walk(datos)
-        if rel != "tienda/producto.html":
-            if 'content="index,follow"' not in html:
-                errores.append(f"{rel}: no es indexable")
-            if "Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos" not in html:
-                errores.append(f"{rel}: falta el aviso de afiliado")
+        if 'content="noindex' in html:
+            if 'rel="canonical"' not in html or 'http-equiv="refresh"' not in html:
+                errores.append(f"{rel}: la redirección no tiene canónica")
+            continue
+        if 'content="index,follow"' not in html:
+            errores.append(f"{rel}: no es indexable")
+        if "Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos" not in html:
+            errores.append(f"{rel}: falta el aviso de afiliado")
+        baja = html.lower()
+        for frase in (
+            "antes de publicar", "conviene revisar", "cambió de vendedor",
+            "sin afirmar un resultado", "como indica el nombre",
+            "el nombre lo describe", "en la granja se usa para",
+            "no se paga en esta web",
+        ):
+            if frase in baja:
+                errores.append(f"{rel}: texto prohibido «{frase}»")
+        if "<p>UU.</p>" in html or "<p>según la ficha.</p>" in html:
+            errores.append(f"{rel}: párrafo cortado")
         for tag in re.findall(r"<a\b[^>]*>", html):
             hm = re.search(r'href="([^"]*)"', tag)
             if not hm:
@@ -712,7 +782,7 @@ def comprobar(productos, urls, precios_decimales):
         if "/tienda/p/" in rel:
             nexp = len(re.findall(r'<section class="t-bloque" data-explicacion>([\s\S]*?)</section>', html)[0].split("<p>")) - 1
             nrec = len(re.findall(r'<section class="t-bloque" data-recomendacion>([\s\S]*?)</section>', html)[0].split("<p>")) - 1
-            if not (2 <= nexp <= 4 and 2 <= nrec <= 4):
+            if not (1 <= nexp <= 4 and 1 <= nrec <= 4):
                 errores.append(f"{rel}: frases {nexp}/{nrec}")
             if "<h1>" not in html or 'rel="canonical"' not in html or "og:title" not in html:
                 errores.append(f"{rel}: falta SEO")
