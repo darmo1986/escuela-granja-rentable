@@ -185,13 +185,40 @@ def md_a_html(cuerpo, esc):
     return "\n".join(out)
 
 
-def rutas_foto(slug):
-    base = f"img/pollos/{slug}"
+def rutas_foto(slug, medio=None):
+    foto = (medio or {}).get("foto") or f"img/pollos/{slug}.webp"
+    base = foto[:-5] if foto.endswith(".webp") else foto
     return {
-        "foto": f"{base}.webp",
+        "foto": foto,
         "foto800": f"{base}-800.webp",
         "foto_og": f"{base}-og.webp",
     }
+
+
+def bloque_video(medio, credito_html, esc):
+    if not medio.get("video"):
+        return ""
+    return (
+        f'<h2>{esc(medio["video_titulo"])}</h2>\n'
+        f'<figure class="enf-fig raza-video">\n'
+        f'<video controls muted playsinline preload="none" width="{medio["vw"]}" height="{medio["vh"]}" '
+        f'poster="../{medio["poster"]}" aria-label="{esc(medio["video_alt"])}" '
+        f'style="width:100%;height:auto;border-radius:12px;background:#000">\n'
+        f'<source src="../{medio["video"]}" type="video/mp4">\n</video>\n'
+        f'<figcaption>{esc(medio["video_alt"])}. {credito_html(medio["video_credito"], "Vídeo")}</figcaption>\n'
+        f"</figure>"
+    )
+
+
+def figura_extra(medio, dims, credito_html, esc):
+    foto = medio["foto2"]
+    w, h = dims[foto]
+    return (
+        f'<figure class="enf-fig raza-foto">\n'
+        f'<img src="../{foto}" width="{w}" height="{h}" alt="{esc(medio["alt2"])}" decoding="async" '
+        f'style="width:100%;height:auto;border-radius:12px">\n'
+        f"<figcaption>{credito_html(medio['credito2'])}</figcaption>\n</figure>"
+    )
 
 
 def leyenda(medio, credito_html):
@@ -210,13 +237,28 @@ def etiqueta_img(src, src800, w, h, alt, esc, prioridad):
 
 
 def figura(slug, medio, dims, credito_html, esc):
-    rutas = rutas_foto(slug)
+    rutas = rutas_foto(slug, medio)
     w, h = dims[rutas["foto"]]
-    return (
+    html = (
         f'<figure class="enf-fig raza-foto">\n'
         + etiqueta_img(f'../{rutas["foto"]}', f'../{rutas["foto800"]}', w, h, medio["alt"], esc, ' fetchpriority="high"')
         + f"\n<figcaption>{leyenda(medio, credito_html)}</figcaption>\n</figure>"
     )
+    if medio.get("foto2"):
+        html += "\n" + figura_extra(medio, dims, credito_html, esc)
+    return html
+
+
+def marcar_menu_pollos(html):
+    """Deja el menú «Fichas de razas» y marca Pollos como página actual."""
+    viejo = '<button class="nav-redes nav-tools nav-fichas" type="button" data-nav="razas" aria-haspopup="true"'
+    nuevo = '<button class="nav-redes nav-tools nav-fichas" type="button" data-nav="razas" aria-current="page" aria-haspopup="true"'
+    if viejo in html:
+        html = html.replace(viejo, nuevo, 1)
+    enlace = '<a data-nav="razas-pollos" href="'
+    if enlace in html and '<a data-nav="razas-pollos" aria-current="page" href="' not in html:
+        html = html.replace(enlace, '<a data-nav="razas-pollos" aria-current="page" href="', 1)
+    return html
 
 
 def pagina(slug, cuerpo, medio, dims, piezas, razas):
@@ -227,7 +269,7 @@ def pagina(slug, cuerpo, medio, dims, piezas, razas):
     url = f"{SITIO}/pollos/{slug}.html"
     titulo = f"{h1}: peso, conversión y manejo | Granja Rentable"
     desc = razas.meta_desc(razas.intro(cuerpo))
-    rutas = rutas_foto(slug)
+    rutas = rutas_foto(slug, medio)
     img_abs = f"{SITIO}/{rutas['foto_og']}"
     ld = {
         "@context": "https://schema.org", "@type": "Article",
@@ -245,13 +287,18 @@ def pagina(slug, cuerpo, medio, dims, piezas, razas):
         {"@type": "ListItem", "position": 4, "name": nombre, "item": url},
     ]}
     texto = md_a_html(cuerpo, esc)
+    video = bloque_video(medio, razas.credito_html, esc)
+    if video and "<h2>Fuentes</h2>" in texto:
+        texto = texto.replace("<h2>Fuentes</h2>", video + "\n<h2>Fuentes</h2>", 1)
+    elif video:
+        texto += "\n" + video
     pie = pie.replace(
         '<li><a href="../razas.html">Líneas de aves</a></li>',
         '<li><a href="../razas.html">Líneas de aves</a></li>\n'
         '<li><a href="../pollos-engorde.html">Pollos de engorde</a></li>',
         1,
     )
-    return f"""<!doctype html>
+    pagina_html = f"""<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -295,6 +342,7 @@ def pagina(slug, cuerpo, medio, dims, piezas, razas):
 <p><a class="btn sec" href="../pollos-engorde.html">Ver los pollos de engorde</a> <a class="btn gold" href="../curso.html">Ir al curso gratis</a></p>
 </article>
 </main>{pie}"""
+    return marcar_menu_pollos(pagina_html)
 
 
 def extracto(texto, meta_desc):
@@ -305,8 +353,9 @@ def tarjetas(fichas, medios, dims, razas):
     html = []
     for slug in ORDEN:
         m = medios[slug]
-        rutas = rutas_foto(slug)
+        rutas = rutas_foto(slug, m)
         w, h = dims[rutas["foto"]]
+        extra = " · con vídeo" if m.get("video") else ""
         html.append(
             f'<article class="raza">\n<div class="raza-media"><figure>\n'
             f'<a href="pollos/{slug}.html">'
@@ -314,7 +363,7 @@ def tarjetas(fichas, medios, dims, razas):
             + f"</a>\n<figcaption>{leyenda(m, razas.credito_html)}</figcaption>\n</figure></div>\n"
             f'<div class="raza-body">\n<h3><a href="pollos/{slug}.html">{razas.esc(m["nombre"])}</a></h3>\n'
             f"<p>{razas.esc(extracto(razas.intro(fichas[slug]), razas.meta_desc))}</p>\n"
-            f'<p class="fine"><a href="pollos/{slug}.html">Ver la ficha</a></p>\n</div>\n</article>'
+            f'<p class="fine"><a href="pollos/{slug}.html">Ver la ficha{extra}</a></p>\n</div>\n</article>'
         )
     return "\n".join(html)
 
@@ -380,7 +429,7 @@ def indice(razas_html, fichas, medios, dims, razas):
         '<li><a href="pollos-engorde.html" aria-current="page">Pollos de engorde</a></li>',
         1,
     )
-    return html
+    return marcar_menu_pollos(html)
 
 
 def enlazar_razas(texto):
@@ -452,15 +501,25 @@ def comprobar(medios, fichas, dims):
         errores.append("se coló " + ", ".join(str(p.relative_to(RAIZ)) for p in prohibida))
     for slug in ORDEN:
         m = medios[slug]
-        rutas = rutas_foto(slug)
+        rutas = rutas_foto(slug, m)
         html = (RAIZ / "pollos" / f"{slug}.html").read_text(encoding="utf-8")
         main = html.split("<main", 1)[1].split("</main>", 1)[0]
         if PROHIBIDA in html or "ChatGPT" in html or "utm_source" in html:
             errores.append(f"{slug}: queda una marca interna o un parámetro de campaña")
         if re.search(r"pendiente|sin dato", html, re.I):
             errores.append(f"{slug}: aparece «pendiente» o «sin dato»")
-        if "<video" in main:
-            errores.append(f"{slug}: la ficha nueva no lleva vídeo")
+        if m.get("video"):
+            if f'src="../{m["video"]}"' not in main or f'poster="../{m["poster"]}"' not in main:
+                errores.append(f"{slug}: falta el vídeo o el póster")
+            if 'playsinline preload="none"' not in main:
+                errores.append(f"{slug}: el vídeo no lleva los atributos de las fichas")
+            if not (RAIZ / m["video"]).is_file() or not (RAIZ / m["poster"]).is_file():
+                errores.append(f"{slug}: falta el archivo de vídeo o el póster")
+        elif "<video" in main:
+            errores.append(f"{slug}: tiene vídeo sin ficha de medios")
+        if m.get("foto2"):
+            if f'src="../{m["foto2"]}"' not in main or not (RAIZ / m["foto2"]).is_file():
+                errores.append(f"{slug}: falta la segunda foto")
         for rel in (rutas["foto"], rutas["foto800"], rutas["foto_og"]):
             if not (RAIZ / rel).is_file():
                 errores.append(f"{slug}: falta {rel}")
@@ -485,7 +544,11 @@ def comprobar(medios, fichas, dims):
                 if "Wikimedia" in pie or "Envato" in pie or "CC BY" in pie:
                     errores.append(f"{slug}: la imagen generada lleva crédito de foto real")
             else:
-                if m["credito"]["autor"] not in pie or m["credito"]["licencia"] not in pie:
+                cred = m["credito"]
+                if cred.get("envato"):
+                    if "Envato Elements" not in pie:
+                        errores.append(f"{slug}: falta el crédito de Envato")
+                elif cred.get("autor") not in pie or cred.get("licencia") not in pie:
                     errores.append(f"{slug}: falta el crédito de autor o la licencia")
                 if "Imagen ilustrativa" in pie:
                     errores.append(f"{slug}: la foto real no debe rotularse como ilustrativa")
@@ -493,6 +556,8 @@ def comprobar(medios, fichas, dims):
             errores.append(f"{slug}: falta JSON-LD")
         if "pollos-engorde.html" not in html:
             errores.append(f"{slug}: se rompió el enlace al índice")
+        if "Fichas de razas" not in html or 'data-nav="razas-pollos" aria-current="page"' not in html:
+            errores.append(f"{slug}: falta el menú Fichas de razas o el enlace a Pollos")
         if slug == "hubbard-redbro-ja57" and re.search(r"JA57|ja57", plano(main)):
             errores.append("redbro: el texto mezcla la JA57")
         visible = plano(main)
@@ -511,6 +576,8 @@ def comprobar(medios, fichas, dims):
     indice_html = (RAIZ / "pollos-engorde.html").read_text(encoding="utf-8")
     if "ocho fichas" in indice_html.lower() or "Imagen ilustrativa" not in indice_html:
         errores.append("el índice no refleja las trece fichas o el rótulo de las imágenes")
+    if "Fichas de razas" not in indice_html or 'data-nav="razas-pollos" aria-current="page"' not in indice_html:
+        errores.append("el índice perdió el menú Fichas de razas")
     if '"@type": "ItemList"' not in indice_html:
         errores.append("el índice no tiene JSON-LD de la lista")
     for slug in ORDEN:
@@ -547,12 +614,19 @@ def main():
         fichas[slug] = ruta.read_text(encoding="utf-8")
         if not fichas[slug].lstrip().startswith("# "):
             raise SystemExit(f"{slug}: la ficha no tiene H1")
-        for rel in rutas_foto(slug).values():
+        rutas = rutas_foto(slug, medios[slug])
+        for rel in rutas.values():
             archivo = RAIZ / rel
             if not archivo.is_file():
                 raise SystemExit(f"falta {rel}")
-            dims[rel] = Image.open(archivo).size
-        og = dims[rutas_foto(slug)["foto_og"]]
+            if rel.endswith(".webp"):
+                dims[rel] = Image.open(archivo).size
+        if medios[slug].get("foto2"):
+            extra = RAIZ / medios[slug]["foto2"]
+            if not extra.is_file():
+                raise SystemExit(f"falta {medios[slug]['foto2']}")
+            dims[medios[slug]["foto2"]] = Image.open(extra).size
+        og = dims[rutas["foto_og"]]
         if og != (1200, 630):
             raise SystemExit(f"{slug}: la og mide {og}, hace falta 1200×630")
     piezas = razas.piezas_plantilla()

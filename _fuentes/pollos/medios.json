@@ -49,13 +49,28 @@
         "autor": "Judgefloro",
         "licencia": "dominio público",
         "fuente": "https://commons.wikimedia.org/wiki/File:04529jfBonga_Menor_Mayor_Farms_Roads_Bustos_Bulacanfvf_18.JPG"
+      },
+      "foto2": "img/pollos/sasso-2.webp",
+      "alt2": "Grupo de pollos Sasso de plumaje marrón en un corral de tierra",
+      "credito2": {
+        "autor": "Judgefloro",
+        "licencia": "dominio público",
+        "fuente": "https://commons.wikimedia.org/wiki/File:04529jfBonga_Menor_Mayor_Farms_Roads_Bustos_Bulacanfvf_22.JPG"
       }
     },
     "kuroiler": {
       "nombre": "Kuroiler",
       "h1": "Pollo Kuroiler",
-      "ilustrativa": true,
-      "alt": "Imagen ilustrativa de pollos de plumaje castaño y moteado junto a un comedero"
+      "alt": "Pollos Kuroiler en primer plano sobre la tierra, uno de plumaje claro moteado y otro oscuro",
+      "foto": "img/pollos/kuroiler-poster.webp",
+      "credito": {"envato": true},
+      "video": "img/razas/kuroiler.mp4",
+      "poster": "img/pollos/kuroiler-poster.webp",
+      "vw": 1280,
+      "vh": 720,
+      "video_alt": "Pollos Kuroiler en primer plano sobre la tierra",
+      "video_titulo": "Vídeo del Kuroiler",
+      "video_credito": {"envato": true}
     },
     "rowan-ranger": {
       "nombre": "Rowan Range (Rustic Rowan)",
