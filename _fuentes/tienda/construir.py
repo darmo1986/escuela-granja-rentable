@@ -249,18 +249,35 @@ def botones_amazon(p):
     return f'<div class="t-acciones">\n{boton_amazon(p)}\n{boton_resenas(p)}\n</div>'
 
 
+def cargar_descripciones_largas():
+    """Textos aprobados, cruzados por ASIN. No se reescriben."""
+    ruta = Path(__file__).resolve().parent / "descripciones-largas.json"
+    datos = json.loads(ruta.read_text(encoding="utf-8"))
+    return {item["asin"]: item["descripcion_larga"] for item in datos}
+
+
 def html_descripcion_larga(texto):
-    """Pinta ## y ### si hay texto. Vacío no añade nada a la página."""
+    """Pinta ##, ### y listas. Vacío no añade nada. El HTML se escapa."""
     texto = (texto or "").strip()
     if not texto:
         return ""
     bloques = []
     parrafo = []
+    lista = []
 
-    def volcar():
+    def volcar_parrafo():
         if parrafo:
             bloques.append("<p>" + esc(" ".join(parrafo)) + "</p>")
             parrafo.clear()
+
+    def volcar_lista():
+        if lista:
+            bloques.append("<ul>" + "".join(f"<li>{esc(item)}</li>" for item in lista) + "</ul>")
+            lista.clear()
+
+    def volcar():
+        volcar_parrafo()
+        volcar_lista()
 
     for linea in texto.splitlines():
         linea = linea.strip()
@@ -270,9 +287,13 @@ def html_descripcion_larga(texto):
         elif linea.startswith("## "):
             volcar()
             bloques.append(f"<h2>{esc(linea[3:].strip())}</h2>")
+        elif linea.startswith("- "):
+            volcar_parrafo()
+            lista.append(linea[2:].strip())
         elif not linea:
             volcar()
         else:
+            volcar_lista()
             parrafo.append(linea)
     volcar()
     if not bloques:
@@ -594,17 +615,16 @@ def pagina_movida(rel, href, texto):
 
 def escribir(productos):
     viejos = {}
-    largas = {}
     ruta_cat = RAIZ / "tienda" / "catalogo.json"
     if ruta_cat.is_file():
         datos_previos = json.loads(ruta_cat.read_text(encoding="utf-8"))
         viejos = {item["asin"]: item["slug"] for item in datos_previos}
-        for item in datos_previos:
-            texto = item.get("descripcion_larga")
-            if isinstance(texto, str) and texto.strip():
-                largas[item["asin"]] = texto.strip()
+    largas = cargar_descripciones_largas()
+    faltan = [p["asin"] for p in productos if not isinstance(largas.get(p["asin"]), str) or not largas[p["asin"]].strip()]
+    if faltan:
+        raise SystemExit(f"Faltan descripciones largas: {', '.join(faltan[:12])}")
     for p in productos:
-        p["descripcion_larga"] = largas.get(p["asin"], "")
+        p["descripcion_larga"] = largas[p["asin"]]
     viejo = RAIZ / "tienda" / "p"
     if viejo.exists():
         shutil.rmtree(viejo)
@@ -786,7 +806,11 @@ def comprobar(productos, urls, precios_decimales):
             errores.append(f"{rel}: no es indexable")
         if "Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos" not in html:
             errores.append(f"{rel}: falta el aviso de afiliado")
-        baja = html.lower()
+        baja = re.sub(
+            r'<section class="t-larga" data-descripcion-larga>[\s\S]*?</section>',
+            "",
+            html,
+        ).lower()
         for frase in (
             "antes de publicar", "conviene revisar", "cambió de vendedor",
             "sin afirmar un resultado", "como indica el nombre",
@@ -852,6 +876,15 @@ def comprobar(productos, urls, precios_decimales):
             pintada = "data-descripcion-larga" in html
             if tiene != pintada:
                 errores.append(f"{rel}: la descripción larga no coincide con el catálogo")
+            if pintada:
+                if html.find("data-descripcion-larga") > html.find('class="t-compra"'):
+                    errores.append(f"{rel}: la descripción larga queda después del botón")
+                trozo = re.search(
+                    r'<section class="t-larga" data-descripcion-larga>([\s\S]*?)</section>', html)
+                if not trozo or "<h2>" not in trozo.group(1) or "<ul>" not in trozo.group(1):
+                    errores.append(f"{rel}: la descripción larga no pinta títulos o listas")
+                if trozo and ("<script" in trozo.group(1).lower() or "## " in trozo.group(1)):
+                    errores.append(f"{rel}: la descripción larga no está escapada")
             if f'href="{ "../../../ebooks/" }"' not in html and 'href="../../../ebooks/"' not in html:
                 errores.append(f"{rel}: falta el enlace a ebooks")
     if vistos != asins:
@@ -868,6 +901,12 @@ def comprobar(productos, urls, precios_decimales):
         errores.append("El catálogo público lleva un precio")
     if any("descripcion_larga" not in item for item in catalogo):
         errores.append("Al catálogo le falta descripcion_larga")
+    con_texto = [item for item in catalogo if isinstance(item.get("descripcion_larga"), str) and item["descripcion_larga"].strip()]
+    if len(con_texto) != len(productos):
+        errores.append(f"Descripciones largas {len(con_texto)} de {len(productos)}")
+    fuente = cargar_descripciones_largas()
+    if any(item["descripcion_larga"] != fuente.get(item["asin"]) for item in catalogo):
+        errores.append("El catálogo no conserva el texto aprobado de la descripción larga")
     if any(clave in item for item in catalogo for clave in ("estrellas", "resenas", "valoracion_fecha")):
         errores.append("El catálogo público todavía lleva valoraciones")
     cita = re.compile(r"valorad|valoraci|estrella|★|ratingValue|Muy valorado", re.I)
@@ -880,9 +919,11 @@ def comprobar(productos, urls, precios_decimales):
             errores.append(f"El sello no puede publicarse en {ruta.relative_to(RAIZ)}")
         if cita.search(texto) or resen.search(texto.replace("Ver las reseñas en Amazon", "")):
             errores.append(f"Queda una valoración en {ruta.relative_to(RAIZ)}")
-    muestra = html_descripcion_larga("## Qué incluye\n\nUna frase.\n\n### Detalle\n\nOtra.")
+    muestra = html_descripcion_larga("## Qué incluye\n\nUna frase.\n\n### Detalle\n\nOtra.\n\n- Uno\n- <b>Dos</b>")
     if "<h2>Qué incluye</h2>" not in muestra or "<h3>Detalle</h3>" not in muestra or "<p>Una frase.</p>" not in muestra:
         errores.append("La descripción larga no pinta los subtítulos")
+    if "<ul><li>Uno</li><li>&lt;b&gt;Dos&lt;/b&gt;</li></ul>" not in muestra:
+        errores.append("La descripción larga no pinta las listas escapadas")
     if html_descripcion_larga("") or html_descripcion_larga("  \n"):
         errores.append("Una descripción vacía no debería pintar nada")
     return errores
