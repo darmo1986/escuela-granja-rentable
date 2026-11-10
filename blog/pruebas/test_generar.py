@@ -180,6 +180,23 @@ class Generador(unittest.TestCase):
         self.assertIn(">Artículos<", (self.tmp / "index.html").read_text(encoding="utf-8"))
         self.assertIn("https://granjarentable.com/blog/", (self.tmp / "sitemap.xml").read_text(encoding="utf-8"))
 
+    def test_sitemap_conserva_la_tienda_y_quita_producto_fisico(self):
+        self.tmp.joinpath("sitemap.xml").write_text(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+            "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n"
+            "<url><loc>https://granjarentable.com/</loc></url>\n"
+            "<url><loc>https://granjarentable.com/tienda/</loc></url>\n"
+            "<url><loc>https://granjarentable.com/tienda/p/comedero-de-pedal/</loc></url>\n"
+            "<url><loc>https://granjarentable.com/producto/viejo.html</loc></url>\n"
+            "</urlset>\n",
+            encoding="utf-8")
+        post(self.tmp, "2026-11-02-ok.md", borrador="false")
+        self.assertEqual(generar.generar(self.tmp), [])
+        sitemap = (self.tmp / "sitemap.xml").read_text(encoding="utf-8")
+        self.assertIn("https://granjarentable.com/tienda/</loc>", sitemap)
+        self.assertIn("https://granjarentable.com/tienda/p/comedero-de-pedal/</loc>", sitemap)
+        self.assertNotIn("https://granjarentable.com/producto/viejo.html", sitemap)
+
     def test_tres_posts_indexan_la_categoria(self):
         for i, dia in enumerate(("2026-11-01", "2026-11-02", "2026-11-03"), start=1):
             post(self.tmp, f"{dia}-salud-{i}.md", categoria="salud", fecha=dia, borrador="false",

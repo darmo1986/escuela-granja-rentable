@@ -127,8 +127,8 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
   }
   .nav-shop .nav-label::after, .nav-redes .nav-label::after, .nav-tools .nav-label::after { content: " ▾"; font-size: .85em; }
   .nav-parent, .nav a.nav-extra { display: none; }
-  /* 8 entradas (con Herramientas y Premium) tienen que caber enteras desde 1040 px.
-     La barra no pasa de 1240 px, así que la letra no vuelve a 1.05 rem. */
+  /* 8 entradas visibles (con Tienda). La barra no pasa de 1240 px,
+     así que la letra no vuelve a 1.05 rem. */
   .nav-label { font-size: .78rem; white-space: nowrap; }
   .nav-ico, .nav-ico svg { width: 18px; height: 18px; }
   .nav-sub {
