@@ -212,7 +212,7 @@ def armar(filas):
     return productos
 
 
-_CITA_VALORACION = re.compile(r"estrella|reseñ|valoraci|★", re.I)
+_CITA_VALORACION = re.compile(r"estrella|reseñ|valorad|valoraci|★", re.I)
 
 
 def sin_valoracion(frases):
@@ -552,7 +552,6 @@ def cuerpo_producto(p, vecinos, raiz):
 <article class="t-ficha">
 <p class="kicker">{esc(p["categoria"])}</p>
 <h1>{esc(p["titulo"])}</h1>
-<img class="t-sello" src="{raiz}img/sello-recomendado-granja-rentable.svg" width="88" height="88" alt="Sello Muy recomendable por Granja Rentable">
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 {aviso}
 {seccion_texto("data-explicacion", titulo_que, p["explicacion"])}
@@ -845,8 +844,8 @@ def comprobar(productos, urls, precios_decimales):
                 errores.append(f"{rel}: falta SEO")
             if "Ver precio en Amazon" not in html or "Ver las reseñas en Amazon" not in html:
                 errores.append(f"{rel}: falta un botón de Amazon")
-            if 'alt="Sello Muy recomendable por Granja Rentable"' not in html:
-                errores.append(f"{rel}: falta el sello")
+            if "t-sello" in html or "sello-recomendado-granja-rentable" in html:
+                errores.append(f"{rel}: el sello no puede publicarse en esta rama")
             slug = rel.split("/")[2] if rel.startswith("tienda/p/") else ""
             producto = next((p for p in productos if p["slug"] == slug), None)
             tiene = bool(producto and (producto.get("descripcion_larga") or "").strip())
@@ -871,12 +870,14 @@ def comprobar(productos, urls, precios_decimales):
         errores.append("Al catálogo le falta descripcion_larga")
     if any(clave in item for item in catalogo for clave in ("estrellas", "resenas", "valoracion_fecha")):
         errores.append("El catálogo público todavía lleva valoraciones")
-    cita = re.compile(r"valoraci|estrella|★|ratingValue|Muy valorado", re.I)
+    cita = re.compile(r"valorad|valoraci|estrella|★|ratingValue|Muy valorado", re.I)
     resen = re.compile(r"reseñ", re.I)
-    for ruta in (RAIZ / "tienda").rglob("*"):
-        if ruta.suffix.lower() not in {".html", ".css", ".js", ".json"}:
-            continue
+    rutas = [p for p in (RAIZ / "tienda").rglob("*") if p.suffix.lower() in {".html", ".css", ".js", ".json"}]
+    rutas.append(RAIZ / "tienda.html")
+    for ruta in rutas:
         texto = ruta.read_text(encoding="utf-8")
+        if "t-sello" in texto or "sello-recomendado-granja-rentable" in texto:
+            errores.append(f"El sello no puede publicarse en {ruta.relative_to(RAIZ)}")
         if cita.search(texto) or resen.search(texto.replace("Ver las reseñas en Amazon", "")):
             errores.append(f"Queda una valoración en {ruta.relative_to(RAIZ)}")
     muestra = html_descripcion_larga("## Qué incluye\n\nUna frase.\n\n### Detalle\n\nOtra.")
