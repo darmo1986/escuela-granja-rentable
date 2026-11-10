@@ -22,7 +22,7 @@ SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
-VERSION = "20261110b"
+VERSION = "20261110c"
 
 
 def esc(texto):
@@ -64,14 +64,6 @@ def partir(texto):
 
 def nombre_cat(csv_nombre):
     return NOMBRE_PUBLICO.get(csv_nombre, csv_nombre)
-
-
-def miles(n):
-    return f"{int(n):,}".replace(",", ".")
-
-
-def nota(valor):
-    return f"{float(valor):.1f}".replace(".", ",")
 
 
 def ld(obj):
@@ -182,8 +174,10 @@ def armar(filas):
         cat = nombre_cat(cat_csv)
         texto = preparar(fila)
         vet = texto["vet"] or cat_csv in VET_CATS
+        explicacion = sin_valoracion(texto["explicacion"])
+        recomendacion = sin_valoracion(texto["recomendacion"])
         fallos.extend(problemas_de_texto(
-            asin, texto["titulo"], texto["explicacion"], texto["recomendacion"], vet))
+            asin, texto["titulo"], explicacion, recomendacion, vet))
         base = slugify(texto["titulo"])
         slug = base
         n = 2
@@ -203,12 +197,9 @@ def armar(filas):
             "categoria_slug": slugify(cat),
             "seccion_id": sid,
             "seccion": seccion,
-            "estrellas": float(fila["valoracion"].replace(",", ".")),
-            "resenas": int(fila["resenas"]),
-            "valoracion_fecha": fecha_iso(fila.get("fecha_verificacion") or ""),
             "url": fila["url_afiliado"].strip(),
-            "explicacion": texto["explicacion"],
-            "recomendacion": texto["recomendacion"],
+            "explicacion": explicacion,
+            "recomendacion": recomendacion,
             "origen": texto["origen"],
             "claves": (CLAVES[cat_csv] + " " + CLAVES.get(origen, "")).strip(),
             "unico_42": asin in SOLO_SI_UNICOS,
@@ -217,40 +208,25 @@ def armar(filas):
         })
     if fallos:
         raise SystemExit("\n".join(fallos[:40]))
-    productos.sort(key=lambda p: (-p["estrellas"], -p["resenas"], p["titulo"]))
+    productos.sort(key=lambda p: p["titulo"].casefold())
     return productos
 
 
-def fecha_iso(texto):
-    coincidencia = re.search(r"(\d{4})-(\d{2})-(\d{2})", texto or "")
-    if not coincidencia:
-        raise SystemExit(f"Sin fecha de valoración en «{texto}»")
-    return coincidencia.group(0)
+_CITA_VALORACION = re.compile(r"estrella|reseñ|valoraci|★", re.I)
 
 
-MESES = ("ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic")
+def sin_valoracion(frases):
+    return [f for f in frases if f and not _CITA_VALORACION.search(f)]
 
 
-def fecha_visible(iso):
-    anio, mes, _dia = iso.split("-")
-    return f"{MESES[int(mes) - 1]} {anio}"
-
-
-def estrellas_html(p, grande=False):
-    pct = max(0, min(100, p["estrellas"] / 5 * 100))
-    clase = "t-estrellas t-estrellas-grande" if grande else "t-estrellas"
-    etiqueta = '<span class="t-muy">Muy valorado</span>' if p["estrellas"] >= 4.5 else ""
-    fecha = ""
-    if p.get("valoracion_fecha"):
-        fecha = f'<p class="t-fecha">Valoración en Amazon a fecha de {esc(fecha_visible(p["valoracion_fecha"]))}</p>'
+def seccion_texto(atributo, titulo, frases):
+    if not frases:
+        return ""
     return (
-        f'<div class="{clase}">'
-        f'<span class="t-stars" style="--p:{pct:.0f}%" aria-hidden="true">'
-        f'<span class="t-stars-base">★★★★★</span>'
-        f'<span class="t-stars-fill">★★★★★</span></span> '
-        f'<span class="t-nota-num"><strong>{nota(p["estrellas"])}</strong> de 5</span>'
-        f'<span class="t-resenas">{miles(p["resenas"])} reseñas</span>'
-        f'{etiqueta}{fecha}</div>'
+        f'<section class="t-bloque" {atributo}>\n'
+        f"<h2>{esc(titulo)}</h2>\n"
+        f"{ps(frases)}\n"
+        f"</section>"
     )
 
 
@@ -322,8 +298,7 @@ def tarjeta(p, raiz, nivel):
     return f'''<article class="t-card" data-t-card data-cat="{esc(p["categoria_slug"])}" data-sec="{esc(p["seccion_id"])}" data-q="{data_q(p)}">
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 <{nivel}><a href="{href}">{esc(p["titulo"])}</a></{nivel}>
-{estrellas_html(p)}
-<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>
+{f'<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>' if p["recomendacion"] else ""}
 {botones_amazon(p)}
 <p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
 </article>'''
@@ -510,7 +485,7 @@ def cuerpo_portada(productos, raiz):
 </section>
 <section id="amazon" aria-labelledby="amazon-titulo">
 <h2 id="amazon-titulo">Material en Amazon</h2>
-<p class="t-nota">Ordenado dentro de cada categoría por estrellas y, a igualdad, por número de reseñas. No publicamos el precio: cambia y Amazon pide verlo en su ficha.</p>
+<p class="t-nota">No publicamos el precio: cambia y Amazon pide verlo en su ficha.</p>
 <div class="t-filtros">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar</label>
@@ -543,7 +518,7 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 <header class="t-hero">
 <p class="kicker">Tienda</p>
 <h1>{esc(cat)}</h1>
-<p class="t-lead">{len(grupo)} productos, ordenados por estrellas y reseñas. El precio se ve en Amazon.</p>
+<p class="t-lead">{len(grupo)} productos. El precio se ve en Amazon.</p>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 {aviso_cat}
 <p><a class="btn sec" href="{raiz}tienda/">Ver toda la tienda</a> <a class="btn sec" href="{raiz}ebooks/">Ebooks a 3,00 USD</a></p>
@@ -577,17 +552,11 @@ def cuerpo_producto(p, vecinos, raiz):
 <article class="t-ficha">
 <p class="kicker">{esc(p["categoria"])}</p>
 <h1>{esc(p["titulo"])}</h1>
-{estrellas_html(p, grande=True)}
+<img class="t-sello" src="{raiz}img/sello-recomendado-granja-rentable.svg" width="88" height="88" alt="Sello Muy recomendable por Granja Rentable">
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 {aviso}
-<section class="t-bloque" data-explicacion>
-<h2>{titulo_que}</h2>
-{ps(p["explicacion"])}
-</section>
-<section class="t-bloque" data-recomendacion>
-<h2>Por qué lo recomendamos</h2>
-{ps(p["recomendacion"])}
-</section>
+{seccion_texto("data-explicacion", titulo_que, p["explicacion"])}
+{seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
 {html_descripcion_larga(p.get("descripcion_larga"))}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
@@ -665,7 +634,7 @@ def escribir(productos):
         curl = f"{SITIO}/tienda/c/{cslug}/"
         ctitulo = f"{cat} | Tienda | Granja Rentable"
         cdesc = recortar(
-            f"{cat}: {len(grupo)} productos de avicultura enlazados a Amazon, ordenados por valoraciones. "
+            f"{cat}: {len(grupo)} productos de avicultura enlazados a Amazon. "
             "El precio se ve en Amazon, no en esta web."
         )
         datos_c = [
@@ -752,9 +721,6 @@ def escribir(productos):
             "categoria": p["categoria"],
             "categoria_slug": p["categoria_slug"],
             "seccion": p["seccion"],
-            "estrellas": p["estrellas"],
-            "resenas": p["resenas"],
-            "valoracion_fecha": p["valoracion_fecha"],
             "descripcion_larga": p.get("descripcion_larga") or "",
             "url_afiliado": p["url"],
             "explicacion": p["explicacion"],
@@ -866,16 +832,21 @@ def comprobar(productos, urls, precios_decimales):
             if ancla and f'id="{ancla}"' not in destino.read_text(encoding="utf-8"):
                 errores.append(f"{rel}: ancla rota {href}")
         if "/tienda/p/" in rel:
-            nexp = len(re.findall(r'<section class="t-bloque" data-explicacion>([\s\S]*?)</section>', html)[0].split("<p>")) - 1
-            nrec = len(re.findall(r'<section class="t-bloque" data-recomendacion>([\s\S]*?)</section>', html)[0].split("<p>")) - 1
-            if not (1 <= nexp <= 4 and 1 <= nrec <= 4):
+            def nfrases(atributo):
+                coincidencias = re.findall(
+                    rf'<section class="t-bloque" {atributo}>([\s\S]*?)</section>', html)
+                if not coincidencias:
+                    return 0
+                return len(coincidencias[0].split("<p>")) - 1
+            nexp, nrec = nfrases("data-explicacion"), nfrases("data-recomendacion")
+            if nexp > 4 or nrec > 4:
                 errores.append(f"{rel}: frases {nexp}/{nrec}")
             if "<h1>" not in html or 'rel="canonical"' not in html or "og:title" not in html:
                 errores.append(f"{rel}: falta SEO")
             if "Ver precio en Amazon" not in html or "Ver las reseñas en Amazon" not in html:
                 errores.append(f"{rel}: falta un botón de Amazon")
-            if "Valoración en Amazon a fecha de" not in html:
-                errores.append(f"{rel}: falta la fecha de la valoración")
+            if 'alt="Sello Muy recomendable por Granja Rentable"' not in html:
+                errores.append(f"{rel}: falta el sello")
             slug = rel.split("/")[2] if rel.startswith("tienda/p/") else ""
             producto = next((p for p in productos if p["slug"] == slug), None)
             tiene = bool(producto and (producto.get("descripcion_larga") or "").strip())
@@ -896,8 +867,18 @@ def comprobar(productos, urls, precios_decimales):
     bruto = json.dumps(catalogo, ensure_ascii=False)
     if "precio_usd" in bruto or re.search(r"\$\s*\d", bruto):
         errores.append("El catálogo público lleva un precio")
-    if any("descripcion_larga" not in item or "valoracion_fecha" not in item for item in catalogo):
-        errores.append("Al catálogo le falta descripcion_larga o valoracion_fecha")
+    if any("descripcion_larga" not in item for item in catalogo):
+        errores.append("Al catálogo le falta descripcion_larga")
+    if any(clave in item for item in catalogo for clave in ("estrellas", "resenas", "valoracion_fecha")):
+        errores.append("El catálogo público todavía lleva valoraciones")
+    cita = re.compile(r"valoraci|estrella|★|ratingValue|Muy valorado", re.I)
+    resen = re.compile(r"reseñ", re.I)
+    for ruta in (RAIZ / "tienda").rglob("*"):
+        if ruta.suffix.lower() not in {".html", ".css", ".js", ".json"}:
+            continue
+        texto = ruta.read_text(encoding="utf-8")
+        if cita.search(texto) or resen.search(texto.replace("Ver las reseñas en Amazon", "")):
+            errores.append(f"Queda una valoración en {ruta.relative_to(RAIZ)}")
     muestra = html_descripcion_larga("## Qué incluye\n\nUna frase.\n\n### Detalle\n\nOtra.")
     if "<h2>Qué incluye</h2>" not in muestra or "<h3>Detalle</h3>" not in muestra or "<p>Una frase.</p>" not in muestra:
         errores.append("La descripción larga no pinta los subtítulos")

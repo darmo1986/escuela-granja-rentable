@@ -15,7 +15,6 @@ exclude:
   - "**/README.md"
   - "**/LEEME.md"
   - LEEME.md
-  - PLAN-REFRESCO-ESTRELLAS.md
   - js/apodo-pruebas.js
   - apps-script/Codigo.gs
   - apps-script/*.html
