@@ -88,7 +88,7 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "20261109b"
+VERSION_ACTIVOS = "20261110d"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -964,7 +964,7 @@ EBOOK_TITULAR = {
 
 
 def precio_banner(clave):
-    """No hay un pack a la venta. Cada una de las cuatro guías cuesta 3 USD."""
+    """No hay un pack a la venta. Cada guía de este banner cuesta 3 USD."""
     if clave == "pack":
         return "3 USD cada una"
     return "3 USD"

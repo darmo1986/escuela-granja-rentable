@@ -22,7 +22,7 @@ SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
-VERSION = "20261110c"
+VERSION = "20261110d"
 
 
 def esc(texto):
@@ -105,13 +105,9 @@ def pie_de(raiz):
     return pie.replace("@@RAIZ@@", raiz).strip("\n")
 
 
-def ebooks_html(raiz):
-    src = (RAIZ / "ebooks" / "index.html").read_text(encoding="utf-8")
-    partes = re.findall(r'<section class="ebook-venta"[\s\S]*?</section>', src)
-    if len(partes) != 4:
-        raise SystemExit(f"Esperaba 4 ebooks y hay {len(partes)}")
-    html = "\n".join(partes).replace("../", raiz)
-    return html
+def banner_ebooks(raiz):
+    """La tienda ya no vende ebooks. Un enlace lleva a /ebooks/."""
+    return f'<aside class="t-ebooks-banner">\n<a href="{raiz}ebooks/">Nuestros ebooks a 3 USD →</a>\n</aside>'
 
 
 def stripe_js():
@@ -363,9 +359,9 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <link rel="icon" href="{raiz}favicon.ico">
 <link rel="icon" href="{raiz}img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="{raiz}img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="{raiz}css/estilo.css?v=20261109b">
+<link rel="stylesheet" href="{raiz}css/estilo.css?v=20261110d">
 <link rel="stylesheet" href="{raiz}tienda/tienda.css?v={VERSION}">
-<script src="{raiz}js/boot.js?v=20261109b"></script>
+<script src="{raiz}js/boot.js?v=20261110d"></script>
 {scripts_ld}
 </head>
 <body data-root="{raiz}">
@@ -413,10 +409,10 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 {wa}
-<script src="{raiz}js/config.js?v=20261109b"></script>
+<script src="{raiz}js/config.js?v=20261110d"></script>
 <script src="{raiz}js/catalogo.js"></script>
-<script src="{raiz}js/app.js?v=20261109b"></script>
-<script src="{raiz}js/site.js?v=20261109b"></script>
+<script src="{raiz}js/app.js?v=20261110d"></script>
+<script src="{raiz}js/site.js?v=20261110d"></script>
 <script defer src="{raiz}tienda/tienda.js?v={VERSION}"></script>
 </body>
 </html>
@@ -474,15 +470,10 @@ def cuerpo_portada(productos, raiz):
 <header class="t-hero">
 <p class="kicker">Tienda</p>
 <h1>Tienda de Granja Rentable</h1>
-<p class="t-lead">Arriba, los ebooks que se pagan en esta web. Debajo, material de avicultura enlazado a Amazon. Ahí no hay carrito: el botón abre Amazon.</p>
+<p class="t-lead">Material de avicultura enlazado a Amazon. No hay carrito: el botón abre Amazon.</p>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 </header>
-<section class="t-ebooks" id="ebooks" aria-labelledby="ebooks-titulo">
-<h2 id="ebooks-titulo">Ebooks a 3,00 USD</h2>
-<p class="t-nota">Estos cuatro se pagan aquí, con tarjeta. No son enlaces de Amazon. El precio no cambia: 3,00 USD cada uno.</p>
-<p class="ebook-usd">Los precios de esta página están en dólares de Estados Unidos (USD). Si eliges España, el importe sigue en USD: no lo pasamos a euros y no cambia el impuesto.</p>
-{ebooks_html(raiz)}
-</section>
+{banner_ebooks(raiz)}
 <section id="amazon" aria-labelledby="amazon-titulo">
 <h2 id="amazon-titulo">Material en Amazon</h2>
 <p class="t-nota">No publicamos el precio: cambia y Amazon pide verlo en su ficha.</p>
@@ -592,6 +583,37 @@ def pagina_movida(rel, href, texto):
     destino.write_text(html, encoding="utf-8")
 
 
+def pagina_redirect_tienda():
+    """/tienda.html es el duplicado antiguo. Manda a /tienda/ o, si el ancla era un ebook, a /ebooks/."""
+    html = """<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico">
+<title>Tienda · Granja Rentable</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://granjarentable.com/tienda/">
+<script>
+(function () {
+  var q = location.search;
+  var h = location.hash;
+  var ids = {"#ebooks":"","#pienso-hacer":"#pienso-hacer","#pienso-elegir":"#pienso-elegir","#guia-empezar":"#guia-empezar","#alimenta-ponedoras":"#alimenta-ponedoras","#gallinas":"#gallinas"};
+  var pago = /(?:^|[?&])stripe_(?:session|cancelado)=/.test(q);
+  if (pago || Object.prototype.hasOwnProperty.call(ids, h)) location.replace("/ebooks/" + q + (ids[h] || ""));
+  else location.replace("/tienda/" + q + h);
+})();
+</script>
+<meta http-equiv="refresh" content="0;url=/tienda/">
+</head>
+<body>
+<p>La tienda está en <a href="/tienda/">/tienda/</a>. Los ebooks, en <a href="/ebooks/">/ebooks/</a>.</p>
+</body>
+</html>
+"""
+    (RAIZ / "tienda.html").write_text(html, encoding="utf-8")
+
+
 def escribir(productos):
     viejos = {}
     largas = {}
@@ -616,18 +638,17 @@ def escribir(productos):
         for cat_csv in cats:
             visual.extend(p for p in productos if p["categoria_csv"] == cat_csv)
     portada = cuerpo_portada(visual, "../")
-    titulo = "Tienda de avicultura: ebooks y Amazon | Granja Rentable"
+    titulo = "Tienda de avicultura | Granja Rentable"
     descripcion = recortar(
-        "Ebooks de Granja Rentable a 3,00 USD, pagados en esta web, y material de avicultura enlazado a Amazon. "
-        "La compra de Amazon no se hace aquí."
+        "Material de avicultura enlazado a Amazon. La compra se hace en Amazon, no en esta web."
     )
     canon = f"{SITIO}/tienda/"
     datos = [
         migas([("Inicio", SITIO + "/"), ("Tienda", canon)]),
         lista("Tienda de Granja Rentable", visual),
     ]
-    pagina("tienda/index.html", titulo, descripcion, canon, portada, datos, con_stripe=True)
-    pagina("tienda.html", titulo, descripcion, canon, cuerpo_portada(visual, ""), datos, con_stripe=True)
+    pagina("tienda/index.html", titulo, descripcion, canon, portada, datos, con_stripe=False)
+    pagina_redirect_tienda()
     for cat, grupo in por_cat.items():
         cslug = grupo[0]["categoria_slug"]
         curl = f"{SITIO}/tienda/c/{cslug}/"
