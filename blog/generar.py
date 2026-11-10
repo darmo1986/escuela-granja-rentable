@@ -964,9 +964,9 @@ EBOOK_TITULAR = {
 
 
 def precio_banner(clave):
-    """No hay un pack a la venta. Cada guía cuesta 3 USD."""
+    """No hay un pack a la venta. Cada una de las cuatro guías cuesta 3 USD."""
     if clave == "pack":
-        return "Ebooks a 3 USD"
+        return "3 USD cada una"
     return "3 USD"
 
 
@@ -983,7 +983,11 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
     id_ebook = id_banner("ebook", ebook_clave)
     enlace = con_utm_interno(raiz_url + href, id_ebook)
-    guia = f"{titulo} · 4 guías en PDF" if ebook_clave == "pack" else f"Ebook en PDF: {titulo}"
+    guia = (
+        f"{titulo} · 4 guías en PDF a 3 USD cada una"
+        if ebook_clave == "pack"
+        else f"Ebook en PDF: {titulo}"
+    )
     bloque = (
         f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
         f'<a class="banner-ebook-ficha" href="{esc(enlace)}">'

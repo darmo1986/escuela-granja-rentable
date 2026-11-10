@@ -20,12 +20,12 @@
       "pregunta": "En una incubadora de aire quieto, ¿dónde se mide la temperatura y qué valor se recomienda?",
       "opciones": [
         "En el suelo de la máquina, a 35 °C",
-        "Arriba del huevo, unos 101–102 °F (≈ 38,3–38,9 °C)",
+        "Arriba del huevo, ≈ 38,9 °C (102 °F)",
         "Fuera de la incubadora, a 25 °C",
         "No hace falta termómetro"
       ],
       "correcta": 1,
-      "explicacion": "En aire quieto hay capas de calor; se mide a la altura de la parte alta del huevo, ~101–102 °F."
+      "explicacion": "En aire quieto hay capas de calor; se mide arriba del huevo, ≈ 38,9 °C (102 °F)."
     },
     {
       "id": 3,
