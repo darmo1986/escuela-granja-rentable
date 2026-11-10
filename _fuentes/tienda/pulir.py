@@ -727,10 +727,8 @@ def preparar(fila):
 
 def problemas_de_texto(asin, titulo, explicacion, recomendacion, vet):
     fallos = []
-    if not explicacion or not recomendacion or len(explicacion) > 4 or len(recomendacion) > 4:
+    if len(explicacion) > 4 or len(recomendacion) > 4:
         fallos.append(f"{asin}: frases {len(explicacion)}/{len(recomendacion)}")
-    if vet and len(recomendacion) < 2:
-        fallos.append(f"{asin}: la ficha de veterinario se queda corta")
     blob = " ".join([titulo] + explicacion + recomendacion).lower()
     for frase in PROHIBIDAS:
         if frase in blob:

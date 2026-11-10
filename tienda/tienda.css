@@ -94,14 +94,11 @@ button[data-stripe-ebook][disabled] { opacity: .55; cursor: not-allowed; }
 .t-card[data-sec="salud"] .t-marca { background: #e5eef6; }
 .t-card[data-sec="taller"] .t-marca { background: #eee8df; }
 .t-por-que { margin: 0; line-height: 1.45; }
-.t-estrellas { margin: 0; display: flex; flex-wrap: wrap; gap: .35rem .6rem; align-items: center; font-weight: 700; }
-.t-stars { position: relative; display: inline-block; font-size: 1.05rem; letter-spacing: .04em; line-height: 1; }
-.t-stars-base { color: #ddd; }
-.t-stars-fill {
-  position: absolute; left: 0; top: 0; overflow: hidden; white-space: nowrap;
-  width: var(--p); color: var(--gold); 
-}
-a.t-amazon { margin-top: auto; display: flex; justify-content: center; width: 100%; text-align: center; }
+.t-acciones { display: flex; flex-direction: column; gap: .5rem; margin-top: auto; }
+a.t-amazon, a.t-resenas { display: flex; justify-content: center; width: 100%; text-align: center; margin-top: 0; }
+.t-larga { margin: 1.2rem 0; }
+.t-larga h2 { font-size: 1.25rem; margin: 1rem 0 .35rem; }
+.t-larga h3 { font-size: 1.05rem; margin: .8rem 0 .3rem; }
 .t-ficha h1 { font-size: clamp(1.55rem, 5vw, 2.15rem); line-height: 1.2; }
 .t-bloque { margin: 1rem 0; }
 .t-bloque h2 { font-size: 1.25rem; margin-bottom: .35rem; }
