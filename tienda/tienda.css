@@ -94,14 +94,35 @@ button[data-stripe-ebook][disabled] { opacity: .55; cursor: not-allowed; }
 .t-card[data-sec="salud"] .t-marca { background: #e5eef6; }
 .t-card[data-sec="taller"] .t-marca { background: #eee8df; }
 .t-por-que { margin: 0; line-height: 1.45; }
-.t-estrellas { margin: 0; display: flex; flex-wrap: wrap; gap: .35rem .6rem; align-items: center; font-weight: 700; }
-.t-stars { position: relative; display: inline-block; font-size: 1.05rem; letter-spacing: .04em; line-height: 1; }
+.t-estrellas {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .55rem;
+  margin: .15rem 0 .2rem; font-weight: 800;
+}
+.t-estrellas-grande { margin: .35rem 0 .8rem; }
+.t-estrellas-grande .t-stars { font-size: 1.7rem; }
+.t-estrellas-grande .t-nota-num { font-size: 1.35rem; }
+.t-estrellas-grande .t-resenas { font-size: 1.05rem; }
+.t-stars { position: relative; display: inline-block; font-size: 1.25rem; letter-spacing: .04em; line-height: 1; }
 .t-stars-base { color: #ddd; }
 .t-stars-fill {
   position: absolute; left: 0; top: 0; overflow: hidden; white-space: nowrap;
-  width: var(--p); color: var(--gold); 
+  width: var(--p); color: var(--gold);
 }
-a.t-amazon { margin-top: auto; display: flex; justify-content: center; width: 100%; text-align: center; }
+.t-nota-num strong { font-size: 1.15em; }
+.t-muy {
+  display: inline-flex; align-items: center; min-height: 1.6rem;
+  padding: .1rem .55rem; border-radius: 999px;
+  background: var(--gold); color: var(--gold-ink);
+  font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+}
+.t-fecha {
+  width: 100%; margin: 0; font-size: .82rem; font-weight: 500; color: #5c665c;
+}
+.t-acciones { display: flex; flex-direction: column; gap: .5rem; margin-top: auto; }
+a.t-amazon, a.t-resenas { display: flex; justify-content: center; width: 100%; text-align: center; margin-top: 0; }
+.t-larga { margin: 1.2rem 0; }
+.t-larga h2 { font-size: 1.25rem; margin: 1rem 0 .35rem; }
+.t-larga h3 { font-size: 1.05rem; margin: .8rem 0 .3rem; }
 .t-ficha h1 { font-size: clamp(1.55rem, 5vw, 2.15rem); line-height: 1.2; }
 .t-bloque { margin: 1rem 0; }
 .t-bloque h2 { font-size: 1.25rem; margin-bottom: .35rem; }
