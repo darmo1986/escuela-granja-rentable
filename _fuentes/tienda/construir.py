@@ -470,7 +470,7 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
             elif any(p["categoria_csv"] == cat_csv for p in productos):
                 otros.append(f'<a class="t-chip" href="{raiz}tienda/c/{slugify(nombre)}/">{esc(nombre)}</a>')
     cards = "\n".join(tarjeta(p, raiz, "h2") for p in grupo)
-    aviso_cat = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if cat in VET_CATS else ""
+    aviso_cat = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if cat in VET_CATS or cat == "Pienso" else ""
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · {esc(cat)}</p>
 <header class="t-hero">
 <p class="kicker">Tienda</p>
