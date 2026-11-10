@@ -5,9 +5,10 @@ descripcion: "Aprende a elegir el alimento inicial de los pollitos según su des
 categoria: "alimentacion"
 fecha: "2026-11-07"
 borrador: false
-imagen: "img/blog/alimento-casero-vs-balanceado.webp"
-imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
-imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
+imagen: "img/blog/pienso-iniciador-pollitos.webp"
+imagen_og: "img/blog/pienso-iniciador-pollitos-og.webp"
+imagen_alt: "Pollitos de engorde de una semana alrededor de un comedero de tolva con pienso en migaja"
+imagen_credito: "Foto: Shadow Ayush, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Broiler_chicks_around_a_week_old.jpg)"
 ---
 
 Antes de traer pollitos a casa, compra el alimento adecuado para su destino productivo. Un pollito de futura ponedora y uno seleccionado para engorde no deben recibir un programa idéntico simplemente porque tengan la misma edad.

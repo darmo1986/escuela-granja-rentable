@@ -8,7 +8,8 @@ borrador: false
 autor: "Equipo editorial de Granja Rentable"
 imagen: "img/blog/agua-gallinas-ponedoras-bebederos.webp"
 imagen_og: "img/blog/agua-gallinas-ponedoras-bebederos-og.webp"
-imagen_alt: "Gallinas marrones bebiendo de un bebedero de campana rojo colgado, con depósito transparente y el fondo verde desenfocado"
+imagen_alt: "Bebederos de tetina caseros con depósitos y tuberías, y gallinas en un gallinero con paja"
+imagen_credito: "Foto: Hugh1975, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bebederos01.jpg)"
 relacionados:
   - agua-gallinas-ponedoras
   - agua-verano-gallinas-calidad-cantidad

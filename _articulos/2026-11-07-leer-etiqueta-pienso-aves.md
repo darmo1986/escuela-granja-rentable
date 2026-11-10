@@ -5,9 +5,10 @@ descripcion: "Comprueba especie, fase, uso, composición y conservación antes d
 categoria: "alimentacion"
 fecha: "2026-11-07"
 borrador: false
-imagen: "img/blog/alimento-casero-vs-balanceado.webp"
-imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
-imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
+imagen: "img/blog/leer-etiqueta-pienso-aves.webp"
+imagen_og: "img/blog/leer-etiqueta-pienso-aves-og.webp"
+imagen_alt: "Etiqueta en español de un pienso completo para gallinas ponedoras, con análisis y aditivos"
+imagen_credito: "Foto: Hugh1975, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Composicion_pienso_gallinas.jpg)"
 ---
 
 Dos sacos del mismo peso pueden tener finalidades diferentes. Antes de comparar cuál cuesta menos, confirma que ambos sirven para las aves que vas a alimentar y que se utilizan de la misma manera.

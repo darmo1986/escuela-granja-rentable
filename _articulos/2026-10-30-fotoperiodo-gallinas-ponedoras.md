@@ -5,9 +5,10 @@ descripcion: "Cuántas horas de luz necesita una ponedora, cómo subirlas sin es
 categoria: ponedoras
 fecha: 2026-10-30
 borrador: false
-imagen: img/blog/fotoperiodo-ponedoras.webp
-imagen_og: img/blog/fotoperiodo-ponedoras-og.webp
-imagen_alt: "Gallinas ponedoras dentro del gallinero al amanecer, con luz cálida entrando por la ventana"
+imagen: "img/blog/fotoperiodo-gallinas-ponedoras.webp"
+imagen_og: "img/blog/fotoperiodo-gallinas-ponedoras-og.webp"
+imagen_alt: "Nave avícola con filas de lámparas LED en el techo, pollitos en el suelo y líneas de bebederos"
+imagen_credito: "Foto: Happydept, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Agro-oven_led.jpg)"
 guia: empezar
 fuentes:
   - "Práctica habitual en avicultura de puesta: 14 a 16 horas de luz total al día"

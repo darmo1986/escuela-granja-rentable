@@ -8,7 +8,8 @@ actualizado: 2026-11-01
 borrador: false
 imagen: "img/blog/calendario-vacunacion-gallinas.webp"
 imagen_og: "img/blog/calendario-vacunacion-gallinas-og.webp"
-imagen_alt: "Veterinario vacunando gallinas con jeringa en granja"
+imagen_alt: "Veterinaria con jeringa vacuna a una gallina que sostiene un hombre, sin frasco ni dosis a la vista"
+imagen_credito: "Foto: Zane Ecklund, U.S. Navy, dominio público ([PD-USGov-Military-Navy](https://commons.wikimedia.org/wiki/Template:PD-USGov-Military-Navy)), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:US_Navy_100908-N-7680E-261_Army_Capt._Rebecca_Carden_vaccinates_a_Guatemalan_man%27s_chicken_during_a_veterinary_mission.jpg)"
 ---
 
 ## Calendario de vacunación para gallinas ponedoras

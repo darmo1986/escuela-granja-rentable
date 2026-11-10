@@ -5,9 +5,10 @@ descripcion: "Cómo proteger a tus gallinas del calor fuerte y del amoníaco de 
 categoria: salud
 fecha: 2026-10-08
 borrador: false
-imagen: "img/blog/calor-tropical-amoniaco-gallinero.webp"
-imagen_og: "img/blog/calor-tropical-amoniaco-gallinero-og.webp"
-imagen_alt: "Gallinas marrones a la sombra con agua fresca en un gallinero ventilado, fondo verde desenfocado"
+imagen: "img/blog/calor-tropical-amoniaco-gallinero-foto.webp"
+imagen_og: "img/blog/calor-tropical-amoniaco-gallinero-foto-og.webp"
+imagen_alt: "Pollos blancos apiñados a la sombra de un túnel de lona, junto a un bebedero de campana rojo"
+imagen_credito: "Foto: Geoffrey McKim, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Chickens_seeking_shade.jpg)"
 ---
 
 ## Dos enemigos que llegan juntos

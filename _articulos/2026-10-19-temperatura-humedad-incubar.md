@@ -9,7 +9,8 @@ borrador: false
 producto: incubadora-24egg-dual
 imagen: "img/blog/temperatura-humedad-incubar.webp"
 imagen_og: "img/blog/temperatura-humedad-incubar-og.webp"
-imagen_alt: "Termómetro e higrómetro dentro de incubadora mostrando temperatura y humedad"
+imagen_alt: "Incubadora de madera con pantalla digital a 37,9 °C y huevos en la bandeja de la ventana"
+imagen_credito: "Foto: Miguelito tbk, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Incubadora_casera_paso_a_paso_(56).jpg)"
 relacionados:
   - incubacion-dia-a-dia
   - por-que-no-nacen-errores-incubacion

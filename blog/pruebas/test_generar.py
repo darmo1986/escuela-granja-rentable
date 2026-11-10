@@ -555,6 +555,33 @@ class Generador(unittest.TestCase):
             {"slug": "criar-codornices-desde-cero", "categoria": "ponedoras"})
         self.assertEqual(clave, "pack")
 
+    def test_credito_bajo_la_foto(self):
+        post(self.tmp, "2026-11-02-con-credito.md", borrador="false",
+             imagen_credito=("Foto: Alex Ford, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/), "
+                             "[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Incubadora_(56).jpg)"))
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "con-credito.html").read_text(encoding="utf-8")
+        self.assertIn("<figcaption>Foto: Alex Ford, ", html)
+        self.assertIn(
+            'href="https://creativecommons.org/licenses/by/2.0/" rel="license noopener" target="_blank">CC BY 2.0</a>',
+            html)
+        self.assertIn(
+            'href="https://commons.wikimedia.org/wiki/File:Incubadora_(56).jpg" rel="noopener" target="_blank"',
+            html)
+        self.assertNotIn("<figcaption>", (self.tmp / "blog" / "index.html").read_text(encoding="utf-8"))
+        post(self.tmp, "2026-11-03-url-con-broiler.md", borrador="false",
+             imagen="img/blog/otra.webp", imagen_og="img/blog/otra-og.webp",
+             imagen_credito=("Foto: Shadow Ayush, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), "
+                             "[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Broiler_chicks_around_a_week_old.jpg)"))
+        self.assertEqual(generar.generar(self.tmp), [])
+        html_url = (self.tmp / "blog" / "url-con-broiler.html").read_text(encoding="utf-8")
+        self.assertIn("Broiler_chicks_around_a_week_old.jpg", html_url)
+        self.assertIn("Foto: Shadow Ayush,", html_url)
+        post(self.tmp, "2026-11-04-sin-pie.md", borrador="false",
+             imagen="img/blog/pie.webp", imagen_og="img/blog/pie-og.webp")
+        self.assertEqual(generar.generar(self.tmp), [])
+        self.assertNotIn("<figcaption>", (self.tmp / "blog" / "sin-pie.html").read_text(encoding="utf-8"))
+
 
 class ConfiguracionReal(unittest.TestCase):
     """js/config.js del repositorio: Amazon como relleno detrás del ebook, sin redes de anuncios."""

@@ -5,9 +5,10 @@ descripcion: "Números en mano: qué proteína, calcio y energía aporta lo case
 categoria: alimentacion
 fecha: 2026-10-06
 borrador: false
-imagen: "img/blog/alimento-casero-vs-balanceado.webp"
-imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
-imagen_alt: "Gallina marrón comiendo grano y verduras en un comedero de granja, fondo verde desenfocado"
+imagen: "img/blog/alimento-casero-vs-balanceado-foto.webp"
+imagen_og: "img/blog/alimento-casero-vs-balanceado-foto-og.webp"
+imagen_alt: "Gallinas de varios colores picando maíz y grano suelto en el suelo del corral"
+imagen_credito: "Foto: Rbreidbrown, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Backyard_heritage_chickens_eating_kitchen_food_waste.jpg)"
 ---
 
 ## La pregunta que todos se hacen

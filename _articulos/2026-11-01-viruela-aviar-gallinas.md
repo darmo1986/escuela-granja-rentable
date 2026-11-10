@@ -5,9 +5,10 @@ descripcion: "Viruela aviar: costras en cresta y barbillas, placas en la boca y 
 categoria: salud
 fecha: 2026-11-01
 borrador: false
-imagen: "img/blog/gallinas-criollas.webp"
-imagen_og: "img/blog/gallinas-criollas-og.webp"
-imagen_alt: "Gallinas marrones picoteando en hierba verde al aire libre, en un corral de traspatio"
+imagen: "img/blog/viruela-aviar-gallinas.webp"
+imagen_og: "img/blog/viruela-aviar-gallinas-og.webp"
+imagen_alt: "Gallo blanco con costras oscuras en la cresta y el resto del lote blanco al fondo"
+imagen_credito: "Foto: Lucyin, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ploketes_volantes_cok_parintrece.jpg)"
 ---
 
 Costras oscuras en la cresta, las barbillas o alrededor de los ojos, sobre todo al final del verano y en otoño, cuando hay más mosquitos. Así suele presentarse la viruela aviar en los corrales familiares. La forma de la piel suele ser leve, pero hay otra forma, en la boca y la tráquea, que puede asfixiar a las aves.

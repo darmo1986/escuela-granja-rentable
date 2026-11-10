@@ -35,7 +35,7 @@ MARCA_PAGINA = "<!-- pagina-generada: blog -->"
 
 CLAVES = {
     "titulo", "titulo_seo", "descripcion", "categoria", "fecha", "leccion",
-    "producto", "imagen", "imagen_alt", "imagen_og", "video", "red",
+    "producto", "imagen", "imagen_alt", "imagen_credito", "imagen_og", "video", "red",
     "fuentes", "borrador", "guia", "actualizado", "relacionados", "autor",
     "noindex",
 }
@@ -635,6 +635,10 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
     imagen_og = campo(datos, "imagen_og")
     imagen_alt = campo(datos, "imagen_alt")
     exigir_limpio(imagen_alt, origen, "imagen_alt")
+    if isinstance(datos.get("imagen_credito"), list):
+        raise Fallo(f"{origen}: imagen_credito tiene que ser un texto, no una lista.")
+    imagen_credito = campo(datos, "imagen_credito")
+    imagen_credito_html = render_credito(imagen_credito, origen) if imagen_credito else ""
     se_publica = (not borrador) or incluir_borradores
     if imagen or se_publica:
         if not imagen:
@@ -671,6 +675,7 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
         "imagen_800": imagen_800,
         "imagen_og": imagen_og,
         "imagen_alt": imagen_alt,
+        "imagen_credito_html": imagen_credito_html,
         "autor": autor,
         "noindex": noindex,
         "faq": extraer_faq(cuerpo),
@@ -1049,6 +1054,50 @@ def url_post(slug):
     return "/blog/" + slug + ".html"
 
 
+def render_credito(texto, origen):
+    """«Foto: autor, licencia» con enlaces Markdown. Las URLs pueden llevar paréntesis."""
+    if not isinstance(texto, str) or not texto.strip():
+        raise Fallo(f"{origen}: imagen_credito tiene que ser un texto.")
+    if marca_reservada(texto):
+        raise Fallo(f"{origen}: imagen_credito lleva una marca reservada. Quítale las arrobas dobles.")
+    partes = []
+    sueltos = []
+    i = 0
+    n = len(texto)
+    while i < n:
+        if texto[i] == "[":
+            fin_txt = texto.find("]", i + 1)
+            if fin_txt != -1 and fin_txt + 1 < n and texto[fin_txt + 1] == "(":
+                j = fin_txt + 2
+                depth = 1
+                while j < n and depth:
+                    if texto[j] == "(":
+                        depth += 1
+                    elif texto[j] == ")":
+                        depth -= 1
+                    j += 1
+                if depth == 0:
+                    visible = texto[i + 1:fin_txt]
+                    url = texto[fin_txt + 2:j - 1].strip()
+                    if (not visible.strip() or any(c.isspace() for c in url)
+                            or enlace_rechazado(url) or not url.startswith("https://")):
+                        raise Fallo(f"{origen}: imagen_credito tiene un enlace que no vale.")
+                    if texto_prohibido(visible) or texto_prohibido(url) or VOCABULARIO.search(visible):
+                        raise Fallo(f"{origen}: imagen_credito nombra eBay, Mercado Libre, campid, «pollo de carne» o «broiler».")
+                    bajo = url.lower()
+                    rel = "license noopener" if ("creativecommons.org" in bajo or "/template:pd-" in bajo) else "noopener"
+                    partes.append(f'<a href="{esc(url)}" rel="{rel}" target="_blank">{esc(visible)}</a>')
+                    i = j
+                    continue
+        partes.append(esc(texto[i]))
+        sueltos.append(texto[i])
+        i += 1
+    plano = "".join(sueltos)
+    if texto_prohibido(plano) or VOCABULARIO.search(plano):
+        raise Fallo(f"{origen}: imagen_credito nombra eBay, Mercado Libre, campid, «pollo de carne» o «broiler».")
+    return "".join(partes)
+
+
 def attrs_srcset(raiz, post):
     chica = post.get("imagen_800") or ""
     if not chica:
@@ -1138,8 +1187,11 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     cabeza = (f'<header class="page-hero post-head">\n{migas}\n'
               f'<p class="kicker">{esc(CATS[post["categoria"]]["nombre"])}</p>\n'
               f'<h1>{esc(post["titulo"])}</h1>\n<p class="post-meta">{meta}</p>\n{nota}\n</header>')
+    credito = ""
+    if post.get("imagen_credito_html"):
+        credito = f'<figcaption>{post["imagen_credito_html"]}</figcaption>'
     foto = (f'<figure class="post-foto"><img src="{esc(raiz + post["imagen"])}" alt="{esc(post["imagen_alt"])}"'
-            f'{attrs_srcset(raiz, post)} width="1200" height="675"></figure>')
+            f'{attrs_srcset(raiz, post)} width="1200" height="675">{credito}</figure>')
     guia_href, guia_titulo, _ = GUIAS[post["guia"]]
     guia = (f'<p>La guía fija de este tema es <a href="{raiz}{esc(guia_href)}">{esc(guia_titulo)}</a>.</p>')
     fuentes = ""

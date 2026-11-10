@@ -8,7 +8,8 @@ actualizado: 2026-11-01
 borrador: false
 imagen: "img/blog/criar-pollitos-30-dias.webp"
 imagen_og: "img/blog/criar-pollitos-30-dias-og.webp"
-imagen_alt: "Pollitos sanos de 30 días creciendo en criadora de granja"
+imagen_alt: "Pollitos Wyandotte en una criadora, con comedero, bebedero y un recipiente de grit"
+imagen_credito: "Foto: Frank Vincentz, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kluse_-_Wyandotten_ssg_5_Tage_03_ies.jpg)"
 ---
 
 ## Cómo criar pollitos recién nacidos: guía de los primeros 30 días

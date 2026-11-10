@@ -5,9 +5,10 @@ descripcion: "Qué pasa dentro del huevo cada día de la incubación: desarrollo
 categoria: incubacion
 fecha: 2026-10-12
 borrador: false
-imagen: "img/blog/incubacion-dia-a-dia.webp"
-imagen_og: "img/blog/incubacion-dia-a-dia-og.webp"
-imagen_alt: "Gallina marrón en primer plano a la derecha mirando huevos en una incubadora casera de granja, fondo verde desenfocado"
+imagen: "img/blog/incubacion-dia-a-dia-foto.webp"
+imagen_og: "img/blog/incubacion-dia-a-dia-foto-og.webp"
+imagen_alt: "Huevos marcados a mano con círculos y puntos sobre las varillas de volteo de una incubadora"
+imagen_credito: "Foto: Santeri Viinamäki, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Eggs_in_incubator.jpg)"
 ---
 
 ## 21 días que se viven con el calendario en la mano
