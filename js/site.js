@@ -77,7 +77,7 @@
     "suplemento": "ebooks/",
     "criadora-calor": "ebooks/",
     "curso-avicultura": "curso.html",
-    "ebook-guia-avicultura": "ebooks/",
+    "ebook-guia-avicultura": "producto/ebook-guia-avicultura.html",
     "app-pollos-engorde": "app.html"
   };
 
@@ -430,11 +430,22 @@
 
   var navBtn = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
-  if (nav && location.hash === "#menu") {
+  if (nav && (location.hash === "#menu" || location.hash === "#fichas")) {
     nav.classList.add("is-open");
     if (navBtn) {
       navBtn.setAttribute("aria-expanded", "true");
       navBtn.textContent = "Cerrar";
+    }
+  }
+  if (nav && location.hash === "#fichas") {
+    var fichas = document.getElementById("nav-razas");
+    var caja = fichas && fichas.closest(".nav-drop");
+    if (caja) {
+      caja.classList.add("is-open");
+      caja.classList.remove("is-dismissed");
+      caja.querySelectorAll(".nav-parent, .nav-redes").forEach(function (b) {
+        b.setAttribute("aria-expanded", "true");
+      });
     }
   }
   if (navBtn && nav) {
@@ -477,11 +488,29 @@
         });
       });
     }
+    function marcarDesplegable(drop, abierto) {
+      if (!drop) return;
+      drop.querySelectorAll(".nav-parent, .nav-redes").forEach(function (b) {
+        b.setAttribute("aria-expanded", abierto ? "true" : "false");
+      });
+    }
     function soltarDesplegable(ev) {
       var drop = ev.target.closest && ev.target.closest(".nav-drop");
       if (!drop || !nav.contains(drop)) return;
-      if (ev.type === "focusin" && ev.target.closest(".nav-redes, .nav-parent")) return;
+      if (ev.type === "focusin" && ev.target.closest(".nav-redes, .nav-parent")) {
+        if (!drop.classList.contains("is-dismissed")) marcarDesplegable(drop, true);
+        return;
+      }
       drop.classList.remove("is-dismissed");
+      marcarDesplegable(drop, true);
+    }
+    function cerrarSiSale(ev) {
+      var drop = ev.target.closest && ev.target.closest(".nav-drop");
+      if (!drop || !nav.contains(drop)) return;
+      var destino = ev.relatedTarget;
+      if (destino && drop.contains(destino)) return;
+      if (drop.classList.contains("is-open")) return;
+      marcarDesplegable(drop, false);
     }
     function botonVisible(drop) {
       var botones = drop.querySelectorAll(".nav-redes, .nav-parent");
@@ -492,7 +521,9 @@
       return botones[0] || null;
     }
     nav.addEventListener("mouseover", soltarDesplegable);
+    nav.addEventListener("mouseout", cerrarSiSale);
     nav.addEventListener("focusin", soltarDesplegable);
+    nav.addEventListener("focusout", cerrarSiSale);
     document.addEventListener("keydown", function (ev) {
       if (ev.key !== "Escape") return;
       if (nav.classList.contains("is-open")) {
