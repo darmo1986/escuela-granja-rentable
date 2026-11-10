@@ -201,6 +201,9 @@ def armar(filas):
             "unico_42": asin in SOLO_SI_UNICOS,
             "vet": vet,
             "aviso_vet": vet or asin in AVISO_FICHA,
+            "imagen_oficial": (fila.get("imagen_oficial") or "").strip(),
+            "imagen_ancho": (fila.get("imagen_ancho") or "").strip(),
+            "imagen_alto": (fila.get("imagen_alto") or "").strip(),
         })
     if fallos:
         raise SystemExit("\n".join(fallos[:40]))
@@ -226,10 +229,35 @@ def seccion_texto(atributo, titulo, frases):
     )
 
 
-def boton_amazon(p):
+def html_foto_tarjeta(p):
+    """Foto oficial dentro del enlace de afiliado. Vacío si imagen_oficial no está rellena.
+
+    La URL tiene que venir de SiteStripe o de la Creators/PA-API. No se descarga
+    ni se guarda el archivo: la licencia de Amazon no permite cachear la imagen.
+    """
+    url = (p.get("imagen_oficial") or "").strip()
+    if not url:
+        return ""
+    if not url.startswith("https://") or any(c.isspace() for c in url):
+        raise SystemExit(f"{p['asin']}: imagen_oficial tiene que ser una URL https")
+    baja = url.lower()
+    if baja.startswith("data:") or "img/tienda/" in baja or "/img/tienda/" in baja:
+        raise SystemExit(f"{p['asin']}: imagen_oficial no puede ser un archivo de este sitio")
+    attrs = [f'src="{esc(url)}"', f'alt="{esc(p["titulo"])}"']
+    ancho = str(p.get("imagen_ancho") or "").strip()
+    alto = str(p.get("imagen_alto") or "").strip()
+    if ancho or alto:
+        if not (ancho.isdigit() and alto.isdigit() and int(ancho) > 0 and int(alto) > 0):
+            raise SystemExit(f"{p['asin']}: imagen_ancho e imagen_alto tienen que ser píxeles enteros")
+        attrs.append(f'width="{int(ancho)}"')
+        attrs.append(f'height="{int(alto)}"')
+    return '<span class="t-foto"><img ' + " ".join(attrs) + ' loading="lazy" decoding="async"></span>'
+
+
+def boton_amazon(p, foto=""):
     return (
         f'<a class="btn gold t-amazon" href="{esc(p["url"])}" rel="sponsored nofollow noopener" target="_blank">'
-        f'Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>'
+        f'{foto}Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>'
     )
 
 
@@ -241,8 +269,23 @@ def boton_resenas(p):
     )
 
 
-def botones_amazon(p):
-    return f'<div class="t-acciones">\n{boton_amazon(p)}\n{boton_resenas(p)}\n</div>'
+def botones_amazon(p, foto=""):
+    return f'<div class="t-acciones">\n{boton_amazon(p, foto)}\n{boton_resenas(p)}\n</div>'
+
+
+ENLACE_BLOG = {
+    "B07Y36FWTT": "/blog/govee-h5075-higrometro-bluetooth-limites.html",
+}
+
+
+def marcar_blog(html, asin):
+    href = ENLACE_BLOG.get(asin)
+    if not href:
+        return html
+    return html.replace(
+        "Ya está en nuestro blog.",
+        f'<a href="{href}">Ya está en nuestro blog.</a>',
+    )
 
 
 def html_descripcion_larga(texto):
@@ -291,13 +334,14 @@ def data_q(p):
 def tarjeta(p, raiz, nivel):
     href = f"{raiz}tienda/p/{p['slug']}/"
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
-    return f'''<article class="t-card" data-t-card data-cat="{esc(p["categoria_slug"])}" data-sec="{esc(p["seccion_id"])}" data-q="{data_q(p)}">
+    html = f'''<article class="t-card" data-t-card data-cat="{esc(p["categoria_slug"])}" data-sec="{esc(p["seccion_id"])}" data-q="{data_q(p)}">
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 <{nivel}><a href="{href}">{esc(p["titulo"])}</a></{nivel}>
 {f'<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>' if p["recomendacion"] else ""}
-{botones_amazon(p)}
+{botones_amazon(p, html_foto_tarjeta(p))}
 <p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
 </article>'''
+    return marcar_blog(html, p["asin"])
 
 
 def migas(items):
@@ -336,6 +380,22 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
         f'<script type="application/ld+json">{ld(obj)}</script>' for obj in datos_ld
     )
     stripe = stripe_js() + "\n" if con_stripe else ""
+    if rel == "tienda/index.html" and not stripe:
+        stripe = "\n"
+    redir = ""
+    if rel == "tienda/index.html":
+        redir = (
+            "<script>\n"
+            "(function () {\n"
+            "  var q = location.search;\n"
+            "  var h = location.hash;\n"
+            '  var ids = {"#ebooks":"","#pienso-hacer":"#pienso-hacer","#pienso-elegir":"#pienso-elegir","#guia-empezar":"#guia-empezar","#alimenta-ponedoras":"#alimenta-ponedoras","#gallinas":"#gallinas"};\n'
+            "  var pago = /(?:^|[?&])stripe_(?:session|cancelado)=/.test(q);\n"
+            '  if (pago || Object.prototype.hasOwnProperty.call(ids, h)) location.replace("/ebooks/" + q + (ids[h] || ""));\n'
+            "})();\n"
+            "</script>\n"
+            "\n"
+        )
     html = f'''<!doctype html>
 <html lang="es">
 <head>
@@ -344,7 +404,7 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <title>{esc(titulo)}</title>
 <meta name="description" content="{esc(descripcion)}">
 <link rel="canonical" href="{esc(canonical)}">
-<meta name="robots" content="index,follow">
+{redir}<meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(descripcion)}">
@@ -413,7 +473,7 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <script src="{raiz}js/catalogo.js"></script>
 <script src="{raiz}js/app.js?v=20261110d"></script>
 <script src="{raiz}js/site.js?v=20261110d"></script>
-<script defer src="{raiz}tienda/tienda.js?v={VERSION}"></script>
+<script defer src="{raiz}tienda/tienda.js?v=20261110c"></script>
 </body>
 </html>
 '''
@@ -546,7 +606,7 @@ def cuerpo_producto(p, vecinos, raiz):
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 {aviso}
 {seccion_texto("data-explicacion", titulo_que, p["explicacion"])}
-{seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
+{marcar_blog(seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"]), p["asin"])}
 {html_descripcion_larga(p.get("descripcion_larga"))}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
@@ -746,6 +806,9 @@ def escribir(productos):
             "explicacion": p["explicacion"],
             "recomendacion": p["recomendacion"],
             "claves": p["claves"].split(),
+            "imagen_oficial": p.get("imagen_oficial") or "",
+            "imagen_ancho": p.get("imagen_ancho") or "",
+            "imagen_alto": p.get("imagen_alto") or "",
         })
     (RAIZ / "tienda" / "catalogo.json").write_text(
         json.dumps(publico, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -851,6 +914,33 @@ def comprobar(productos, urls, precios_decimales):
                 continue
             if ancla and f'id="{ancla}"' not in destino.read_text(encoding="utf-8"):
                 errores.append(f"{rel}: ancla rota {href}")
+        if "img/tienda/" in html or re.search(r"m\.media-amazon\.com|images-na\.ssl-images-amazon|ws-na\.amazon-adsystem", html):
+            errores.append(f"{rel}: hay una imagen de Amazon guardada o un enlace de imagen copiado a mano")
+        if 'class="t-card"' in html and 'content="noindex' not in html:
+            for tarjeta_html in re.findall(r'<article class="t-card"[\s\S]*?</article>', html):
+                enlace = re.search(
+                    r'<a class="btn gold t-amazon" href="([^"]+)" rel="sponsored nofollow noopener" target="_blank">([\s\S]*?)</a>',
+                    tarjeta_html,
+                )
+                if not enlace:
+                    errores.append(f"{rel}: tarjeta sin enlace de Amazon")
+                    continue
+                asin_m = re.search(r"/dp/([A-Z0-9]{10})", enlace.group(1))
+                if not asin_m:
+                    continue
+                asin = asin_m.group(1)
+                producto = next((item for item in productos if item["asin"] == asin), None)
+                oficial = (producto or {}).get("imagen_oficial") or ""
+                cuerpo = enlace.group(2)
+                if not oficial:
+                    if 'class="t-foto"' in tarjeta_html or "<img " in cuerpo:
+                        errores.append(f"{rel}: {asin} no tiene imagen_oficial y aun así lleva foto")
+                    continue
+                esperada = html_foto_tarjeta(producto)
+                if not cuerpo.startswith(esperada):
+                    errores.append(f"{rel}: la foto de {asin} no está dentro del enlace de afiliado")
+                if 'alt="' not in esperada or 'loading="lazy"' not in esperada or 'decoding="async"' not in esperada:
+                    errores.append(f"{rel}: atributos de imagen incompletos en {asin}")
         if "/tienda/p/" in rel:
             def nfrases(atributo):
                 coincidencias = re.findall(
@@ -906,6 +996,28 @@ def comprobar(productos, urls, precios_decimales):
         errores.append("La descripción larga no pinta los subtítulos")
     if html_descripcion_larga("") or html_descripcion_larga("  \n"):
         errores.append("Una descripción vacía no debería pintar nada")
+    carpeta_fotos = RAIZ / "img" / "tienda"
+    if carpeta_fotos.exists() and any(carpeta_fotos.iterdir()):
+        errores.append("img/tienda no puede guardar imágenes de producto")
+    vacia = html_foto_tarjeta({
+        "asin": "B000000000", "titulo": "Prueba", "imagen_oficial": "",
+        "imagen_ancho": "", "imagen_alto": "",
+    })
+    if vacia:
+        errores.append("Sin imagen_oficial no debería pintarse una foto")
+    prueba = html_foto_tarjeta({
+        "asin": "B000000000", "titulo": "Prueba",
+        "imagen_oficial": "https://ejemplo.invalid/foto.jpg",
+        "imagen_ancho": "400", "imagen_alto": "500",
+    })
+    if not all(trozo in prueba for trozo in (
+        'src="https://ejemplo.invalid/foto.jpg"', 'alt="Prueba"',
+        'width="400"', 'height="500"', 'loading="lazy"', 'decoding="async"',
+        'class="t-foto"',
+    )):
+        errores.append("La foto oficial no conserva los atributos")
+    if "m.media-amazon.com" in prueba or "img/tienda/" in prueba:
+        errores.append("La prueba de la foto no puede usar una imagen de Amazon ni un archivo local")
     return errores
 
 
