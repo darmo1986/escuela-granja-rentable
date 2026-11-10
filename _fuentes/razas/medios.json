@@ -1,0 +1,212 @@
+{
+ "andaluza-azul": {
+  "nombre": "Andaluza azul",
+  "alt": "Gallina Andaluza azul de plumaje gris azulado ribeteado, de pie sobre tierra",
+  "credito": {
+   "autor": "Костюшко",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Andalusian_gallus_(hen).jpg"
+  }
+ },
+ "araucana": {
+  "nombre": "Araucana",
+  "alt": "Cabeza de gallo Araucana con los mechones de plumas junto a las orejas",
+  "credito": {
+   "autor": "LeGrkery",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Kopstudie_araucana_toeven.JPG"
+  }
+ },
+ "australorp": {
+  "nombre": "Australorp",
+  "alt": "Gallina Australorp negra con cresta roja sobre tierra seca",
+  "credito": {
+   "envato": true
+  },
+  "video": true,
+  "video_alt": "Gallina Australorp negra caminando y picoteando",
+  "video_credito": {
+   "envato": true
+  }
+ },
+ "barnevelder": {
+  "nombre": "Barnevelder",
+  "alt": "Gallina Barnevelder de doble ribete marrón y negro junto a una valla",
+  "credito": {
+   "autor": "Daharja",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:28_7_lizziecoop.jpg"
+  }
+ },
+ "brahma": {
+  "nombre": "Brahma",
+  "alt": "Gallo Brahma claro, blanco con esclavina y cola negras y patas emplumadas",
+  "credito": {
+   "envato": true
+  },
+  "video": true,
+  "video_alt": "Gallina Brahma leonada con patas emplumadas en movimiento",
+  "video_credito": {
+   "envato": true
+  }
+ },
+ "castellana-negra": {
+  "nombre": "Castellana negra",
+  "alt": "Gallina Castellana negra de plumaje negro brillante junto a un muro de piedra",
+  "credito": {
+   "autor": "Joseluisyustos",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Hembra_raza_aviar_castellana_negra.jpg",
+   "nota": "modificada: recortada la franja inferior"
+  }
+ },
+ "cream-legbar": {
+  "nombre": "Cream Legbar",
+  "alt": "Gallina Cream Legbar con moño, de pie sobre la hierba",
+  "credito": {
+   "autor": "Kringln",
+   "licencia": "CC0",
+   "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Adult_Cream_Legbar_Hen.jpg"
+  }
+ },
+ "cuello-desnudo": {
+  "nombre": "Cuello desnudo",
+  "alt": "Gallina de cuello desnudo de plumaje rojizo, de perfil sobre fondo blanco",
+  "credito": {
+   "envato": true
+  }
+ },
+ "leghorn": {
+  "nombre": "Leghorn",
+  "alt": "Gallina Leghorn blanca con cresta roja, de pie",
+  "credito": {
+   "autor": "Stephen Ausmus, USDA ARS",
+   "licencia": "dominio público",
+   "fuente": "https://commons.wikimedia.org/wiki/File:ARS-White_Leghorn_hen.jpg"
+  }
+ },
+ "marans": {
+  "nombre": "Marans",
+  "alt": "Gallina Marans negra con tinte cobrizo en el cuello, sobre la hierba",
+  "credito": {
+   "envato": true
+  },
+  "video": true,
+  "video_alt": "Gallo y gallinas Marans cobre negro en el campo",
+  "video_credito": {
+   "envato": true
+  }
+ },
+ "menorquina": {
+  "nombre": "Menorquina",
+  "alt": "Gallina Menorquina negra con orejilla blanca grande",
+  "credito": {
+   "autor": "Camille Gillet",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Poule_Minorque_noire_1.jpg"
+  }
+ },
+ "new-hampshire": {
+  "nombre": "New Hampshire",
+  "alt": "Gallo New Hampshire de plumaje rojo castaño en un patio",
+  "credito": {
+   "autor": "Fxnick",
+   "licencia": "dominio público",
+   "fuente": "https://commons.wikimedia.org/wiki/File:NHred.JPG"
+  }
+ },
+ "orpington": {
+  "nombre": "Orpington",
+  "alt": "Gallina Orpington leonada, grande y de plumaje esponjoso, sobre la hierba",
+  "credito": {
+   "envato": true
+  }
+ },
+ "plymouth-rock": {
+  "nombre": "Plymouth Rock",
+  "alt": "Gallina Plymouth Rock barrada, con rayas blancas y negras, sobre la hierba",
+  "credito": {
+   "envato": true
+  },
+  "video": true,
+  "video_alt": "Gallina Plymouth Rock barrada en movimiento",
+  "video_credito": {
+   "envato": true
+  }
+ },
+ "prat": {
+  "nombre": "Gallina del Prat",
+  "alt": "Grupo de gallinas del Prat leonadas en un corral de cría",
+  "credito": {
+   "autor": "Preconsat",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:PratPotaBlava.JPG"
+  }
+ },
+ "rhode-island-red": {
+  "nombre": "Rhode Island Red",
+  "alt": "Gallina Rhode Island Red de plumaje rojo oscuro sobre la hierba",
+  "credito": {
+   "envato": true
+  }
+ },
+ "sedosa-silkie": {
+  "nombre": "Sedosa (Silkie)",
+  "alt": "Gallinas Sedosas (Silkie) oscuras de plumaje esponjoso en un prado",
+  "credito": {
+   "envato": true
+  },
+  "video": true,
+  "video_alt": "Gallina Sedosa (Silkie) en movimiento",
+  "video_credito": {
+   "envato": true
+  }
+ },
+ "sussex": {
+  "nombre": "Sussex",
+  "alt": "Gallina Sussex armiñada, blanca con collar negro listado y cola negra",
+  "credito": {
+   "autor": "Officially_Mr_X",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Light_Sussex_Chicken.JPG"
+  },
+  "video": true,
+  "video_alt": "Gallina Sussex armiñada acicalándose al sol",
+  "video_credito": {
+   "envato": true
+  }
+ },
+ "welsummer": {
+  "nombre": "Welsummer",
+  "alt": "Gallina Welsummer de plumaje marrón rojizo dentro de un gallinero",
+  "credito": {
+   "autor": "Uikitireza",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Poule_Welsumer_dor%C3%A9_rouill%C3%A9.jpg"
+  }
+ },
+ "wyandotte": {
+  "nombre": "Wyandotte",
+  "alt": "Gallinas Wyandotte plateadas ribeteadas buscando comida en el suelo",
+  "credito": {
+   "envato": true
+  },
+  "video": true,
+  "video_alt": "Gallina Wyandotte plateada ribeteada en primer plano",
+  "video_credito": {
+   "autor": "USDA (Kirsten Strough)",
+   "licencia": "dominio público",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Animals_(20210505-FPAC-KLS-001).webm",
+   "nota": "recortado"
+  }
+ }
+}
