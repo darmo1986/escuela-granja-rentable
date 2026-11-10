@@ -77,7 +77,7 @@
     "suplemento": "ebooks/",
     "criadora-calor": "ebooks/",
     "curso-avicultura": "curso.html",
-    "ebook-guia-avicultura": "producto/ebook-guia-avicultura.html",
+    "ebook-guia-avicultura": "ebooks/",
     "app-pollos-engorde": "app.html"
   };
 

@@ -16,7 +16,13 @@ class EbooksVenta(unittest.TestCase):
         self.menu = MENU.read_text(encoding="utf-8")
 
     def test_cinco_ebooks_a_tres_y_premium_a_29(self):
-        self.assertIn("Los cinco ebooks cuestan 3,00 USD; el Premium, 29 €.", self.html)
+        self.assertIn("Los cinco ebooks cuestan 3,00 USD. Y si quieres ayuda personal, el asesoramiento Premium cuesta 29 € al mes.", self.html)
+        self.assertIn('href="../premium.html"', self.html)
+        self.assertNotIn("No hay portada", self.html)
+        self.assertNotIn("guia-avicultura", self.html)
+        self.assertNotIn("dado de alta", self.html)
+        self.assertNotIn("Apps Script", self.html)
+        self.assertIn("Próximamente. Todavía no está a la venta.", self.html)
         self.assertNotIn("Los cuatro", self.html)
         self.assertNotIn("los cuatro", self.html)
         self.assertEqual(len(re.findall(r'<p class="precio">3,00 USD</p>', self.html)), 5)

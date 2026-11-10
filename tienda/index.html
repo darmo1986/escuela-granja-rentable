@@ -10,7 +10,7 @@
 (function () {
   var q = location.search;
   var h = location.hash;
-  var ids = {"#ebooks":"","#pienso-hacer":"#pienso-hacer","#pienso-elegir":"#pienso-elegir","#guia-empezar":"#guia-empezar","#alimenta-ponedoras":"#alimenta-ponedoras","#gallinas":"#gallinas","#guia-avicultura":"#guia-avicultura"};
+  var ids = {"#ebooks":"","#pienso-hacer":"#pienso-hacer","#pienso-elegir":"#pienso-elegir","#guia-empezar":"#guia-empezar","#alimenta-ponedoras":"#alimenta-ponedoras","#gallinas":"#gallinas"};
   var pago = /(?:^|[?&])stripe_(?:session|cancelado)=/.test(q);
   if (pago || Object.prototype.hasOwnProperty.call(ids, h)) location.replace("/ebooks/" + q + (ids[h] || ""));
 })();
@@ -132,7 +132,7 @@
 <p class="t-aviso"><strong>Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. La compra se hace en Amazon, no en esta web.</strong></p>
 </header>
 <aside class="t-ebooks-banner">
-<a href="../ebooks/">Nuestros ebooks a 3 USD → /ebooks/</a>
+<a href="../ebooks/">Nuestros ebooks a 3 USD →</a>
 </aside>
 <section id="amazon" aria-labelledby="amazon-titulo">
 <h2 id="amazon-titulo">Material en Amazon</h2>

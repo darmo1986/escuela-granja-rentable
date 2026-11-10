@@ -107,7 +107,7 @@ def pie_de(raiz):
 
 def banner_ebooks(raiz):
     """La tienda ya no vende ebooks. Un enlace lleva a /ebooks/."""
-    return f'<aside class="t-ebooks-banner">\n<a href="{raiz}ebooks/">Nuestros ebooks a 3 USD → /ebooks/</a>\n</aside>'
+    return f'<aside class="t-ebooks-banner">\n<a href="{raiz}ebooks/">Nuestros ebooks a 3 USD →</a>\n</aside>'
 
 
 def stripe_js():
@@ -598,7 +598,7 @@ def pagina_redirect_tienda():
 (function () {
   var q = location.search;
   var h = location.hash;
-  var ids = {"#ebooks":"","#pienso-hacer":"#pienso-hacer","#pienso-elegir":"#pienso-elegir","#guia-empezar":"#guia-empezar","#alimenta-ponedoras":"#alimenta-ponedoras","#gallinas":"#gallinas","#guia-avicultura":"#guia-avicultura"};
+  var ids = {"#ebooks":"","#pienso-hacer":"#pienso-hacer","#pienso-elegir":"#pienso-elegir","#guia-empezar":"#guia-empezar","#alimenta-ponedoras":"#alimenta-ponedoras","#gallinas":"#gallinas"};
   var pago = /(?:^|[?&])stripe_(?:session|cancelado)=/.test(q);
   if (pago || Object.prototype.hasOwnProperty.call(ids, h)) location.replace("/ebooks/" + q + (ids[h] || ""));
   else location.replace("/tienda/" + q + h);
