@@ -4,7 +4,7 @@ titulo_seo: "Harris Farms Nurture Right 360: guía de compra"
 descripcion: "Compara la Nurture Right 360 por manejo, requisitos y funciones; conoce sus límites y qué confirmar antes de comprarla."
 categoria: incubacion
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/harris-farms-nurture-right-360-incubadora.webp"
 imagen_og: "img/blog/harris-farms-nurture-right-360-incubadora-og.webp"

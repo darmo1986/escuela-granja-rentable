@@ -4,7 +4,7 @@ titulo_seo: "Brinsea EcoGlow 600: placa de calor para pollitos"
 descripcion: "Revisa capacidad anunciada, montaje y límites de la EcoGlow 600; corregimos cómo valorar el calor de una placa radiante."
 categoria: engorde
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/brinsea-ecoglow-safety-600-opinion.webp"
 imagen_og: "img/blog/brinsea-ecoglow-safety-600-opinion-og.webp"

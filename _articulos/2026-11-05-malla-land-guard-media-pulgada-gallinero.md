@@ -4,7 +4,7 @@ titulo_seo: "Malla Land Guard de 1/2 pulgada: qué verificar"
 descripcion: "Qué confirmar de la malla Land Guard antes de comprar y cómo comparar abertura, calibre, dimensiones y montaje."
 categoria: ponedoras
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/land-guard-19-gauge-hardware-cloth-qt070.webp"
 imagen_og: "img/blog/land-guard-19-gauge-hardware-cloth-qt070-og.webp"

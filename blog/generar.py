@@ -1096,6 +1096,8 @@ def bloque_curso(raiz):
 
 
 def relacionados(post, publicados):
+    # Un artículo noindex (borrador visible o ficha retirada) no sale en relacionados.
+    publicados = [p for p in publicados if not p.get("noindex")]
     por_slug = {p["slug"]: p for p in publicados}
     elegidos = []
     vistos = {post["slug"]}

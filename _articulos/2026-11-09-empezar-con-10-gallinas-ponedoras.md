@@ -285,21 +285,21 @@ También debes valorar tu tiempo de trabajo y repartir el coste de los equipos a
 
 Si vas a vender huevos, revisa además los requisitos legales, fiscales y sanitarios de tu actividad.
 
-### Plantilla para calcular tus propios costes
+### Plantilla para rellenar con tus datos
 
 | Concepto | Importe real | Periodo o criterio |
 | --- | --- | --- |
-| Compra de gallinas | Pendiente | Inversión inicial |
-| Construcción y cerramientos | Pendiente | Inversión inicial |
-| Comederos y bebederos | Pendiente | Vida útil del equipo |
-| Pienso | Pendiente | Consumo del periodo |
-| Agua | Pendiente | Consumo del periodo |
-| Electricidad | Pendiente | Consumo del periodo |
-| Cama y limpieza | Pendiente | Consumo del periodo |
-| Sanidad y reposición | Pendiente | Coste registrado o provisión justificada |
-| Envases y transporte | Pendiente | Ventas y entregas |
-| Tiempo de trabajo | Pendiente | Horas registradas |
-| Otros costes e impuestos aplicables | Pendiente | Según actividad |
+| Compra de gallinas | Tu dato | Inversión inicial |
+| Construcción y cerramientos | Tu dato | Inversión inicial |
+| Comederos y bebederos | Tu dato | Vida útil del equipo |
+| Pienso | Tu dato | Consumo del periodo |
+| Agua | Tu dato | Consumo del periodo |
+| Electricidad | Tu dato | Consumo del periodo |
+| Cama y limpieza | Tu dato | Consumo del periodo |
+| Sanidad y reposición | Tu dato | Coste registrado o provisión justificada |
+| Envases y transporte | Tu dato | Ventas y entregas |
+| Tiempo de trabajo | Tu dato | Horas registradas |
+| Otros costes e impuestos aplicables | Tu dato | Según actividad |
 
 La tabla se rellena con tus datos. No contiene precios supuestos ni beneficios inventados.
 

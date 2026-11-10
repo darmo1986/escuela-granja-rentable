@@ -4,7 +4,7 @@ titulo_seo: "Manna Pro Fresh Flakes: cama de pino para aves"
 descripcion: "Cómo usar las virutas Fresh Flakes y qué comparar con otras camas antes de elegir formato y calcular el coste."
 categoria: engorde
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/manna-pro-fresh-flakes-cama-pino-engorde.webp"
 imagen_og: "img/blog/manna-pro-fresh-flakes-cama-pino-engorde-og.webp"

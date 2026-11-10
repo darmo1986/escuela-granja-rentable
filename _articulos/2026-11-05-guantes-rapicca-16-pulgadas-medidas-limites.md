@@ -4,7 +4,7 @@ titulo_seo: "Guantes RAPICCA de 16 pulgadas: medidas y límites"
 descripcion: "Qué declara RAPICCA sobre la manga y el cuidado de sus guantes, y cómo evaluar el ajuste sin asumir protección absoluta."
 categoria: salud
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/rapicca-guantes-16-pulgadas-revision.webp"
 imagen_og: "img/blog/rapicca-guantes-16-pulgadas-revision-og.webp"

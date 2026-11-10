@@ -10,7 +10,6 @@ imagen: "img/blog/agua-gallinas-ponedoras-bebederos.webp"
 imagen_og: "img/blog/agua-gallinas-ponedoras-bebederos-og.webp"
 imagen_alt: "Gallinas marrones bebiendo de un bebedero de campana rojo colgado, con depósito transparente y el fondo verde desenfocado"
 relacionados:
-  - agua-gallinas-ponedoras
   - agua-verano-gallinas-calidad-cantidad
 ---
 
@@ -455,4 +454,4 @@ Después de instalarlo, mide el agua utilizada, revisa los puntos de bebida y re
 
 **Nota editorial:** Esta guía no sustituye un análisis de calidad de agua, una evaluación veterinaria ni las obligaciones sanitarias aplicables en cada localidad.
 
-Otras guías del mismo tema: [bebederos y errores frecuentes](agua-gallinas-ponedoras.html) y [agua en verano: calidad y cantidad](agua-verano-gallinas-calidad-cantidad.html).
+Otra guía del mismo tema: [agua en verano: calidad y cantidad](agua-verano-gallinas-calidad-cantidad.html).

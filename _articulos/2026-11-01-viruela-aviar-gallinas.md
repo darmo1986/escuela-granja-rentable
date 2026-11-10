@@ -52,7 +52,7 @@ Según el Manual Merck:
 
 El Manual Merck indica que **no hay tratamiento específico eficaz** y que la mejor forma de controlarla es la vacunación. Ningún remedio casero cura la viruela aviar; untar las costras con productos caseros puede empeorar las heridas. Lo que sí puedes hacer:
 
-- **Controlar los mosquitos:** elimina el agua estancada (bebederos viejos, neumáticos, cubos), vacía y limpia los bebederos a diario y valora mallas mosquiteras en el dormidero. Más ideas en nuestra guía sobre el [agua de las gallinas](https://granjarentable.com/blog/agua-gallinas-ponedoras.html).
+- **Controlar los mosquitos:** elimina el agua estancada (bebederos viejos, neumáticos, cubos), vacía y limpia los bebederos a diario y valora mallas mosquiteras en el dormidero. Más ideas en nuestra guía sobre el [agua de las gallinas](https://granjarentable.com/blog/agua-gallinas-ponedoras-bebederos.html).
 - **Evitar heridas:** controla el [picaje](https://granjarentable.com/blog/picaje-ponedoras.html), no amontones aves y separa a los gallos que pelean.
 - **Separar a las aves con costras** y recoger y retirar la cama donde caen.
 - **Limpiar y desinfectar** el gallinero después de un brote, retirando el polvo y las costras.

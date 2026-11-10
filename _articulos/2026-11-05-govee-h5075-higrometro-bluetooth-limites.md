@@ -4,7 +4,7 @@ titulo_seo: "Govee H5075: higrómetro Bluetooth y límites"
 descripcion: "Revisa precisión, conexión, almacenamiento y límites ambientales del Govee H5075 antes de elegir un monitor interior."
 categoria: engorde
 fecha: 2026-11-05
-borrador: false
+borrador: true
 noindex: true
 imagen: "img/blog/govee-h5075-engorde-analisis.webp"
 imagen_og: "img/blog/govee-h5075-engorde-analisis-og.webp"

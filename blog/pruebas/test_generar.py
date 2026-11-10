@@ -461,6 +461,24 @@ class Generador(unittest.TestCase):
         cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
         self.assertNotIn("pasos.html", cat)
 
+    def test_noindex_no_entra_en_relacionados(self):
+        post(self.tmp, "2026-11-02-visible.md", borrador="false", leccion="", producto="",
+             titulo="Artículo visible de incubación", titulo_seo="Artículo visible de incubación")
+        post(self.tmp, "2026-11-03-oculto.md", borrador="false", noindex=True, leccion="", producto="",
+             titulo="Artículo oculto de incubación", titulo_seo="Artículo oculto de incubación",
+             fecha="2026-11-03", imagen="img/blog/oculto.webp", imagen_og="img/blog/oculto-og.webp",
+             relacionados=["visible"])
+        post(self.tmp, "2026-11-04-otro.md", borrador="false", leccion="", producto="",
+             titulo="Otro artículo visible de salud", titulo_seo="Otro artículo visible de salud",
+             fecha="2026-11-04", categoria="salud",
+             imagen="img/blog/otro-salud.webp", imagen_og="img/blog/otro-salud-og.webp")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "visible.html").read_text(encoding="utf-8")
+        self.assertNotIn("oculto.html", html)
+        self.assertIn("otro.html", html)
+        oculto = (self.tmp / "blog" / "oculto.html").read_text(encoding="utf-8")
+        self.assertNotIn("oculto.html", oculto.split("Artículos relacionados", 1)[-1])
+
     def test_sin_adsense_y_banner_que_permanece(self):
         post(self.tmp, "2026-11-09-banner.md", borrador="false", leccion="", producto="",
              categoria="incubacion", titulo="Artículo con banner de incubación",
