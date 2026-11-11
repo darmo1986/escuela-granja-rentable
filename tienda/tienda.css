@@ -103,6 +103,11 @@ button[data-stripe-ebook][disabled] { opacity: .55; cursor: not-allowed; }
 .t-card[data-sec="salud"] .t-marca { background: #e5eef6; }
 .t-card[data-sec="taller"] .t-marca { background: #eee8df; }
 .t-por-que { margin: 0; line-height: 1.45; }
+.t-foto { margin: 0; }
+.t-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+.t-foto figcaption { margin-top: .35rem; font-size: .85rem; line-height: 1.35; color: var(--muted, #4d5a50); }
+.t-ficha .t-foto { margin: .8rem 0 1rem; }
+.t-ficha .t-foto img { max-width: 640px; }
 .t-acciones { display: flex; flex-direction: column; gap: .5rem; margin-top: auto; }
 a.t-amazon, a.t-resenas { display: flex; justify-content: center; width: 100%; text-align: center; margin-top: 0; }
 .t-larga { margin: 1.2rem 0; }

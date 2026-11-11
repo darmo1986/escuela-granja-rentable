@@ -711,6 +711,7 @@ def preparar(fila):
             "recomendacion": list(dato["recomendacion"]),
             "origen": "reescrito",
             "vet": bool(dato.get("vet")),
+            "imagen": (fila.get("imagen") or "").strip(),
         }
     titulo = fila["titulo_seo"].strip()
     explicacion, recomendacion = partir(fila["por_que_lo_recomendamos"])
@@ -722,6 +723,7 @@ def preparar(fila):
         "recomendacion": recomendacion,
         "origen": "catalogo",
         "vet": False,
+        "imagen": (fila.get("imagen") or "").strip(),
     }
 
 
