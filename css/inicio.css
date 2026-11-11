@@ -3,3 +3,24 @@
 @media(min-width:600px){.gr-paths{grid-template-columns:1fr 1fr}.gr-articles{grid-template-columns:repeat(3,minmax(0,1fr))}.gr-article>a>div{padding:20px}.gr-article h3{font-size:1.15rem}.gr-directory{grid-template-columns:1fr 1fr}}
 @media(min-width:900px){.gr-hero{grid-template-columns:1.2fr .8fr;min-height:460px}.gr-hero-copy{padding:48px 40px}.gr-hero-photo{min-height:100%}.gr-quick{grid-template-columns:repeat(4,1fr)}.gr-quick a:nth-child(n){border-bottom:0;border-right:1px solid #e6e4d7}.gr-quick a:last-child{border-right:0}.gr-paths{grid-template-columns:repeat(4,minmax(0,1fr))}.gr-path{padding:23px}.gr-course{grid-template-columns:1.2fr 1fr;align-items:center;padding:40px}.gr-tools{grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}.gr-video{grid-template-columns:1.5fr 1fr;padding:40px;gap:50px}.gr-bottom{grid-template-columns:1.4fr 1fr;gap:60px;align-items:center}.gr-directory{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gr-path{transition:none}}
+
+/* Hero rotativo de la home: 9 diapositivas, 5 s, en bucle.
+   Sin JS las 9 se muestran una detrás de otra; con JS solo la
+   activa es visible (el resto queda oculta y fuera del tabulador). */
+.gr-hero{position:relative}
+.gr-hero-viewport{display:grid}
+.gr-slide{display:grid;color:#fff;text-decoration:none}
+.gr-slide:hover{color:#fff}
+.gr-slide .gr-hero-title{font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.08;letter-spacing:-.045em;color:#fff;margin:0 0 22px;font-weight:800}
+.gr-slide .gr-hero-title span{color:#e7c76d}
+.gr-hero-ctrl{display:none}
+.gr-hero.js-hero .gr-slide{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
+.gr-hero.js-hero .gr-slide.is-active{opacity:1;visibility:visible;transition:opacity .5s ease;z-index:1}
+.gr-hero.js-hero .gr-hero-ctrl{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 16px 18px}
+.gr-hero-dots{display:flex;gap:8px;align-items:center}
+.gr-hero-dots button{width:12px;height:12px;border-radius:50%;border:2px solid #e4c66b;background:transparent;cursor:pointer;padding:0}
+.gr-hero-dots button[aria-current="true"]{background:#e4c66b}
+.gr-hero-arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(9,34,20,.55);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gr-hero-arrow:hover,.gr-hero-arrow:focus-visible{background:#e4c66b;color:#103e27;border-color:#e4c66b;outline:none}
+@media(min-width:900px){.gr-hero{grid-template-columns:1fr}.gr-slide{grid-template-columns:1.2fr .8fr;min-height:460px}.gr-slide .gr-hero-copy{padding:48px 40px}}
+@media(prefers-reduced-motion:reduce){.gr-hero.js-hero .gr-slide{transition:none}}
