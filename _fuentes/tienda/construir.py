@@ -196,6 +196,7 @@ def armar(filas):
             "url": fila["url_afiliado"].strip(),
             "explicacion": explicacion,
             "recomendacion": recomendacion,
+            "imagen": texto.get("imagen") or "",
             "origen": texto["origen"],
             "claves": (CLAVES[cat_csv] + " " + CLAVES.get(origen, "")).strip(),
             "unico_42": asin in SOLO_SI_UNICOS,
@@ -288,12 +289,24 @@ def data_q(p):
     return esc(normalizar(blob))
 
 
+def figura_imagen(p, raiz):
+    if not p.get("imagen"):
+        return ""
+    return (
+        f'<figure class="t-foto"><img src="{raiz}{esc(p["imagen"])}" '
+        f'alt="{esc(p["titulo"])}" loading="lazy">'
+        f"<figcaption>Ilustración generada con IA</figcaption></figure>"
+    )
+
+
 def tarjeta(p, raiz, nivel):
     href = f"{raiz}tienda/p/{p['slug']}/"
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
+    foto = figura_imagen(p, raiz)
+    foto = f"{foto}\n" if foto else ""
     return f'''<article class="t-card" data-t-card data-cat="{esc(p["categoria_slug"])}" data-sec="{esc(p["seccion_id"])}" data-q="{data_q(p)}">
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
-<{nivel}><a href="{href}">{esc(p["titulo"])}</a></{nivel}>
+{foto}<{nivel}><a href="{href}">{esc(p["titulo"])}</a></{nivel}>
 {f'<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>' if p["recomendacion"] else ""}
 {botones_amazon(p)}
 <p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
@@ -552,11 +565,13 @@ def cuerpo_producto(p, vecinos, raiz):
 <ul class="t-relacionados">{relacionados}</ul></section>''' if relacionados else ""
     aviso = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if p.get("aviso_vet") else ""
     titulo_que = "Qué es" if p["vet"] else "Qué es y para qué sirve"
+    foto = figura_imagen(p, raiz)
+    foto = f"{foto}\n" if foto else ""
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · <a href="{cat_href}">{esc(p["categoria"])}</a> · {esc(p["titulo"])}</p>
 <article class="t-ficha">
 <p class="kicker">{esc(p["categoria"])}</p>
 <h1>{esc(p["titulo"])}</h1>
-<div class="t-marca"><span>{esc(p["categoria"])}</span></div>
+{foto}<div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 {aviso}
 {seccion_texto("data-explicacion", titulo_que, p["explicacion"])}
 {seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
@@ -747,7 +762,7 @@ def escribir(productos):
     )
     publico = []
     for p in productos:
-        publico.append({
+        item = {
             "asin": p["asin"],
             "slug": p["slug"],
             "titulo": p["titulo"],
@@ -759,7 +774,10 @@ def escribir(productos):
             "explicacion": p["explicacion"],
             "recomendacion": p["recomendacion"],
             "claves": p["claves"].split(),
-        })
+        }
+        if p.get("imagen"):
+            item["imagen"] = p["imagen"]
+        publico.append(item)
     (RAIZ / "tienda" / "catalogo.json").write_text(
         json.dumps(publico, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     urls = [canon]
