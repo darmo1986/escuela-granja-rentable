@@ -283,7 +283,8 @@
       "agua",
       "congelada",
       "gallinas"
-    ]
+    ],
+    "imagen": "img/productos/base-antihielo-universal-k-h-de-80-w-para-bebederos-y-cubos.webp"
   },
   {
     "asin": "B000HHQDPM",
@@ -317,7 +318,8 @@
       "agua",
       "congelada",
       "gallinas"
-    ]
+    ],
+    "imagen": "img/productos/base-calefactora-farm-innovators-para-bebederos-metalicos-125-w.webp"
   },
   {
     "asin": "B0DFBMQTQV",
@@ -408,7 +410,8 @@
       "agua",
       "congelada",
       "gallinas"
-    ]
+    ],
+    "imagen": "img/productos/bebedero-calefactado-farm-innovators-hb-60p-con-tetinas-2-gal.webp"
   },
   {
     "asin": "B0GN41C1MQ",
@@ -440,7 +443,8 @@
       "gallinas",
       "galon",
       "fuente"
-    ]
+    ],
+    "imagen": "img/productos/bebedero-colgante-farm-tuff-de-5-galones-para-aves.webp"
   },
   {
     "asin": "B006ZUNKL0",
@@ -470,7 +474,8 @@
       "agua",
       "gallinas",
       "galon"
-    ]
+    ],
+    "imagen": "img/productos/bebedero-colgante-harris-farms-de-3-5-galones-para-gallinas.webp"
   },
   {
     "asin": "B089781CS8",
@@ -500,7 +505,8 @@
       "agua",
       "gallinas",
       "galon"
-    ]
+    ],
+    "imagen": "img/productos/bebedero-colgante-little-giant-de-5-galones-pack-de-2.webp"
   },
   {
     "asin": "B00P9EJLSO",
@@ -530,7 +536,8 @@
       "agua",
       "gallinas",
       "galon"
-    ]
+    ],
+    "imagen": "img/productos/bebedero-colgante-little-giant-ppf7-de-7-galones.webp"
   },
   {
     "asin": "B07RB7GLJH",
@@ -564,7 +571,8 @@
       "gallinas",
       "aves",
       "automatico"
-    ]
+    ],
+    "imagen": "img/productos/bebedero-elevado-rentacoop-de-2-galones-con-copas-y-tetinas.webp"
   },
   {
     "asin": "B016AFYT4Q",
@@ -598,7 +606,8 @@
       "gallinas",
       "aves",
       "automatico"
-    ]
+    ],
+    "imagen": "img/productos/bebedero-rentacoop-de-5-galones-con-4-copas-y-tetinas.webp"
   },
   {
     "asin": "B078YGGTGJ",
@@ -1026,7 +1035,8 @@
       "pedal",
       "cubo",
       "antirratas"
-    ]
+    ],
+    "imagen": "img/productos/comedero-colgante-de-canaleta-para-aves-6-x-3-5-cuartos.webp"
   },
   {
     "asin": "B006ZUNIR6",
@@ -1062,7 +1072,8 @@
       "pedal",
       "cubo",
       "antirratas"
-    ]
+    ],
+    "imagen": "img/productos/comedero-colgante-galvanizado-harris-farms-de-15-libras.webp"
   },
   {
     "asin": "B00TXW0UQK",
@@ -1096,7 +1107,8 @@
       "pedal",
       "cubo",
       "antirratas"
-    ]
+    ],
+    "imagen": "img/productos/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas.webp"
   },
   {
     "asin": "B00TXX20GW",
@@ -1130,7 +1142,8 @@
       "pedal",
       "cubo",
       "antirratas"
-    ]
+    ],
+    "imagen": "img/productos/comedero-de-pedal-grandpa-s-feeders-40-lb-para-mas-gallinas.webp"
   },
   {
     "asin": "B07MQW8MQK",
@@ -1165,7 +1178,8 @@
       "pedal",
       "cubo",
       "antirratas"
-    ]
+    ],
+    "imagen": "img/productos/comedero-de-pedal-rentacoop-25-lb-antirratas.webp"
   },
   {
     "asin": "B0CNTBGTYR",
@@ -1386,7 +1400,8 @@
       "gallinas",
       "aves",
       "automatico"
-    ]
+    ],
+    "imagen": "img/productos/copas-bebedero-automaticas-lil-clucker-para-gallinas-5-uds.webp"
   },
   {
     "asin": "B0G2LRS8VS",
@@ -1478,7 +1493,8 @@
       "pedal",
       "cubo",
       "antirratas"
-    ]
+    ],
+    "imagen": "img/productos/cuatro-bocas-para-comedero-de-cubo-con-sierra-de-corona.webp"
   },
   {
     "asin": "B00SRS5H46",
@@ -2708,7 +2724,8 @@
       "juego",
       "gallinas",
       "galon"
-    ]
+    ],
+    "imagen": "img/productos/juego-de-comedero-y-bebedero-de-3-galones.webp"
   },
   {
     "asin": "B09BDB4DNS",
@@ -3210,7 +3227,8 @@
       "deposito",
       "agua",
       "riego"
-    ]
+    ],
+    "imagen": "img/productos/manguera-flexzilla-5-8-x-50-ft-con-pistola-de-6-chorros.webp"
   },
   {
     "asin": "B08X9WNZX3",
@@ -4762,7 +4780,8 @@
       "gallinas",
       "aves",
       "automatico"
-    ]
+    ],
+    "imagen": "img/productos/set-rentacoop-bebedero-elevado-2-gal-y-comedero-de-10-lb.webp"
   },
   {
     "asin": "B01LVWREWJ",
@@ -5254,6 +5273,7 @@
       "deposito",
       "agua",
       "riego"
-    ]
+    ],
+    "imagen": "img/productos/valvula-de-flotador-gallagher-de-1-para-abrevaderos.webp"
   }
 ]
