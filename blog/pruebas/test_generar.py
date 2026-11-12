@@ -461,6 +461,26 @@ class Generador(unittest.TestCase):
         cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
         self.assertNotIn("pasos.html", cat)
 
+    def test_ofertas_arriba_persisten_y_respetan_destinos(self):
+        from html import unescape
+        import json
+        original = '<head></head><body><main><h1>Guía</h1></main></body>'
+        primero = generar.colocar_banners('index.html', original, RAIZ)
+        segundo = generar.colocar_banners('index.html', primero, RAIZ)
+        self.assertEqual(segundo.count('data-promo-carousel'), 1)
+        self.assertRegex(segundo, r'<main>\s*<section class="promo-carousel"')
+        datos = json.loads(unescape(re.search(r'data-ofertas="([^"]+)"', segundo).group(1)))
+        self.assertEqual(len({x['id'] for x in datos}), len(datos))
+        self.assertTrue(any(x['tipo'] == 'amazon' for x in datos))
+        self.assertTrue(any(x['href'].endswith('#pienso-hacer') for x in datos))
+        for oferta in datos:
+            if oferta['tipo'] == 'amazon':
+                self.assertIn('amazon.com/dp/', oferta['href'])
+                self.assertIn('tag=granjarentabl-20', oferta['href'])
+                self.assertNotIn('utm_', oferta['href'])
+            self.assertTrue((RAIZ / oferta['imagen']).is_file())
+        self.assertLess(segundo.index('js/ofertas.js'), segundo.index('js/registro-banners.js'))
+
     def test_noindex_no_entra_en_relacionados(self):
         post(self.tmp, "2026-11-02-visible.md", borrador="false", leccion="", producto="",
              titulo="Artículo visible de incubación", titulo_seo="Artículo visible de incubación")
@@ -548,7 +568,7 @@ class Generador(unittest.TestCase):
         self.assertNotIn("ca-pub-5311145772953700", portada)
         self.assertIn('data-banner="ebook-pack"', portada)
         self.assertIn("Guías prácticas para tu granja", portada)
-        self.assertNotIn("Empieza tu granja", portada)
+        self.assertNotIn("Empieza tu granja", portada.split("<div data-promo-items>", 1)[1].split("</aside>", 1)[0])
         self.assertIn('img/logo-oscuro.svg" alt=""', portada)
         self.assertIn("Compra ya", portada)
         self.assertIn("utm_campaign=ebook-pack", portada)
