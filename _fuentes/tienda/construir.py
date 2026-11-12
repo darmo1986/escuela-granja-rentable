@@ -518,6 +518,21 @@ def cuerpo_portada(productos, raiz):
 </section>'''
 
 
+def guia_pollitos(p, raiz):
+    """Enlaza las guías de manejo desde la categoría y sus fichas."""
+    if p.get("categoria_slug") != "kits-comederos-y-bebederos-de-pollitos":
+        return ""
+    return f'''<section class="t-bloque" data-guia-pollitos>
+<h2>Antes de elegir el equipo de tus pollitos</h2>
+<p>Comprueba el acceso al alimento y al agua, la estabilidad del montaje, el desmontaje para limpiar y el espacio que ocupará en la criadora. Confirma en el anuncio del vendedor la edad y el tamaño de aves indicados para el modelo.</p>
+<ul>
+<li><a href="{raiz}blog/comedero-para-pollitos-como-elegir.html">Cómo elegir un comedero para pollitos</a>: revisa medidas y registra los derrames.</li>
+<li><a href="{raiz}blog/agua-gallinas-ponedoras-bebederos.html">Agua y bebederos, con apartado para pollitos</a>: comprueba el acceso, la limpieza y las pérdidas.</li>
+<li><a href="{raiz}blog/pienso-iniciador-pollitos.html">Cómo elegir el pienso iniciador</a>: compara la etiqueta y el precio por kilogramo.</li>
+</ul>
+</section>'''
+
+
 def cuerpo_categoria(cat, grupo, productos, raiz):
     otros = []
     for sid, _titulo, cats in SECCIONES:
@@ -540,6 +555,7 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 {aviso_cat}
 <p><a class="btn sec" href="{raiz}tienda/">Ver toda la tienda</a> <a class="btn sec" href="{raiz}ebooks/">Ebooks a 3,00 USD</a></p>
 </header>
+{guia_pollitos(grupo[0], raiz)}
 <div class="t-filtros">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar en {esc(cat)}</label>
@@ -588,6 +604,7 @@ def cuerpo_producto(p, vecinos, raiz):
 {seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
 {html_descripcion_larga(p.get("descripcion_larga"))}
 {guia_bebederos(p, raiz)}
+{guia_pollitos(p, raiz)}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 {botones_amazon(p)}
