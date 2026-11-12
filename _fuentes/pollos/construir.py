@@ -342,7 +342,7 @@ def indice(razas_html, fichas, medios, razas):
 <p class="split"><a class="btn sec" href="razas.html#razas-gallinas">Razas de gallinas</a> <a class="btn sec" href="razas.html#gallos">Gallos y reproducción</a> <a class="btn gold" href="curso.html">Ir al curso gratis</a></p>
 </section>
 <aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
-{razas.buscador_y_indice([(f"pollos/{slug}.html", medios[slug]["nombre"]) for slug in ORDEN], "Cobb 500", "Ir directamente a una línea de pollos")}
+{razas.buscador_y_indice([(f"pollos/{slug}.html", medios[slug]["nombre"]) for slug in ORDEN], "crecimiento lento", "Ir directamente a una línea de pollos")}
 <div id="lista-fichas" class="raza-grid" data-fichas-lista>
 {tarjetas(fichas, medios, razas)}
 </div>
