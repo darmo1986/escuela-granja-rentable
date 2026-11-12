@@ -29,6 +29,8 @@ El alimento debe poder ser recogido por un pico pequeño. Revisa el tamaño de l
 
 Al principio, observa varios momentos de alimentación. Coloca el comedero donde puedan encontrarlo y acceder a él sin dificultad. Al crecer, adapta el equipo para evitar que lo ensucien o lo vacíen sobre la cama. Puedes usar el [registro de desperdicio de pienso](reducir-desperdicio-pienso.html).
 
+Si también estás preparando el equipo, consulta cómo [elegir un comedero para pollitos](comedero-para-pollitos-como-elegir.html) y qué revisar en los [bebederos para pollitos](agua-gallinas-ponedoras-bebederos.html).
+
 ## Cuándo cambiar de fase
 
 No conviertas una edad leída en internet en una regla para todos los pollitos. Las guías de recría de futuras ponedoras y los programas de engorde tienen objetivos distintos. Utiliza la pauta del producto y la información del proveedor del lote.
