@@ -143,6 +143,46 @@ Ningún tipo es automáticamente el mejor para todas las explotaciones.
 
 Si ya tienes claro qué sistema necesita tu gallinero, consulta la [comparativa de bebederos de tetina y colgantes](../comparativas/comparativa-bebederos-tetina-vs-colgante.html). Allí puedes contrastar formatos y capacidades del catálogo, revisar las fichas y decidir qué opción encaja con tu instalación antes de ir a Amazon.
 
+## Bebederos para pollitos: qué cambia respecto a las adultas
+
+Un bebedero que funciona con gallinas adultas puede resultar inaccesible para pollitos. El equipo debe adaptarse a su tamaño: la guía de Jacquie Jacob, de la Universidad de Kentucky, destaca la elección de bases apropiadas, especialmente para aves pequeñas, para reducir que se empapen y enfríen.
+
+### Antes de comprar: compara estas cuatro cosas
+
+| Comprobación | Qué debes mirar |
+| --- | --- |
+| Acceso | Tamaño de la base y posibilidad de llegar al agua |
+| Apoyo | Estabilidad del recipiente lleno en la criadora |
+| Limpieza | Acceso al depósito, base y uniones al desmontarlo |
+| Compatibilidad | Edad y tamaño de aves indicados por el fabricante |
+
+La capacidad del depósito no indica por sí sola cuántos pollitos pueden beber. Compara las dimensiones y las instrucciones del modelo con tu instalación. Si una ficha solo informa de litros, falta información para decidir.
+
+### Prueba el montaje y observa a los pollitos
+
+Como comprobación práctica, llena y monta el bebedero antes de recibir el lote. Revisa que se mantenga estable y que suministre agua sin pérdidas visibles. Después observa que los pollitos pueden acercarse y beber; revisar únicamente el nivel del depósito deja esa comprobación pendiente.
+
+Cuando ajustes la altura durante el crecimiento, vuelve a observar el acceso. En sistemas de válvula, comprueba también su funcionamiento siguiendo el manual. La sección de instalación de esta misma guía explica cómo supervisar un cambio de sistema.
+
+### Limpieza diaria y registro de incidencias
+
+La Universidad de Maryland recomienda limpiar los bebederos y renovar el agua diariamente. Si se ensucia antes, corrígelo en ese momento. Los pollitos deben tener acceso continuo a agua limpia.
+
+Puedes llevar este registro para identificar tareas pendientes:
+
+| Revisión | Qué anotar |
+| --- | --- |
+| Acceso | Si observaste a los pollitos beber o necesitas comprobarlo |
+| Recipiente | Suciedad encontrada y limpieza realizada |
+| Suministro | Rellenado, obstrucciones o pérdidas observadas |
+| Entorno | Cama húmeda y corrección aplicada |
+
+Este registro es una herramienta de organización; no permite calcular cuánto ha bebido cada pollito ni diagnosticar enfermedades.
+
+Para completar el equipo, consulta la [guía de pienso iniciador para pollitos](pienso-iniciador-pollitos.html). Si buscas comparar sistemas del catálogo, la [comparativa de tetinas y bebederos colgantes](../comparativas/comparativa-bebederos-tetina-vs-colgante.html) sirve como punto de partida: confirma siempre que el modelo concreto sea adecuado para pollitos.
+
+**Fuentes de este apartado:** [Jacquie Jacob, University of Kentucky — Brooding poultry hatchlings](https://poultry.extension.org/articles/poultry-management/brooding-poultry-hatchlings/) y [Jonathan Moyle, University of Maryland Extension — Housing Requirements](https://www.extension.umd.edu/resource/housing-requirements). Consultadas el 12 de noviembre de 2026. Las tablas son herramientas editoriales propias para aplicar las comprobaciones.
+
 ## 4. Cómo elegir un bebedero para diez gallinas
 
 Antes de comprar, revisa las condiciones de tu instalación.
