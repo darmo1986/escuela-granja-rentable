@@ -235,9 +235,9 @@ def boton_amazon(p):
 
 
 def boton_resenas(p):
-    href = f"https://www.amazon.com/dp/{p['asin']}?tag=granjarentabl-20"
+    href = f"https://www.amazon.com/product-reviews/{p['asin']}?tag=granjarentabl-20"
     return (
-        f'<a class="btn sec t-resenas" href="{esc(href)}" rel="sponsored nofollow noopener" target="_blank">'
+        f'<a class="btn sec t-resenas" href="{esc(href)}" rel="nofollow sponsored noopener" target="_blank">'
         f'Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>'
     )
 
