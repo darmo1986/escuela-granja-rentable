@@ -250,6 +250,15 @@ def pagina(slug, cuerpo, medio, piezas, razas):
 <h1>{esc(h1)}</h1>
 {fotos}
 {texto}
+<section class="panel" aria-labelledby="prepara-tu-lote">
+<h2 id="prepara-tu-lote">Del objetivo de la línea a las cuentas de tu lote</h2>
+<p>Usa la ficha como punto de partida y prepara el seguimiento de tu propia granja.</p>
+<ul>
+<li><a href="../blog/alimentacion-pollos-engorde-fases.html">Revisa la alimentación de los pollos de engorde por fases</a> y el programa del proveedor de tus aves.</li>
+<li><a href="../calculadora.html">Prepara el presupuesto en la calculadora</a> con tus precios y cantidades.</li>
+<li><a href="../app.html">Registra tu lote de pollos</a> para llevar el seguimiento de tu producción.</li>
+</ul>
+</section>
 <p class="enf-aviso">Información orientativa sobre la línea. Para salud, vacunas o tratamientos, consulta a un veterinario.</p>
 <p><a class="btn sec" href="../pollos-engorde.html">Ver los pollos de engorde</a> <a class="btn gold" href="../curso.html">Ir al curso gratis</a></p>
 </article>
