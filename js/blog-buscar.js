@@ -18,6 +18,20 @@
   entries = entries.map(function (entry) {
     return { data: entry, search: normalize(entry.titulo + ' ' + entry.descripcion + ' ' + entry.categoria) };
   });
+  function saveQuery() {
+    try {
+      var url = new URL(window.location.href);
+      var query = input.value.trim();
+      if (query) url.searchParams.set('q', query);
+      else url.searchParams.delete('q');
+      if (url.href !== window.location.href) window.history.replaceState(window.history.state, '', url.href);
+    } catch (error) { /* La búsqueda sigue funcionando si el navegador impide actualizar la URL. */ }
+  }
+  function restoreQuery() {
+    try { input.value = new URL(window.location.href).searchParams.get('q') || ''; }
+    catch (error) { input.value = ''; }
+    search();
+  }
   function search() {
     var term = normalize(input.value);
     results.replaceChildren();
@@ -59,8 +73,10 @@
       results.appendChild(article);
     });
   }
-  form.addEventListener('submit', function (event) { event.preventDefault(); search(); });
-  input.addEventListener('input', search);
-  clear.addEventListener('click', function () { input.value = ''; search(); input.focus(); });
+  form.addEventListener('submit', function (event) { event.preventDefault(); search(); saveQuery(); });
+  input.addEventListener('input', function () { search(); saveQuery(); });
+  clear.addEventListener('click', function () { input.value = ''; search(); saveQuery(); input.focus(); });
+  window.addEventListener('popstate', restoreQuery);
+  restoreQuery();
   form.hidden = false;
 })();
