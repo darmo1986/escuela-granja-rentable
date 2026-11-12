@@ -235,9 +235,9 @@ def boton_amazon(p):
 
 
 def boton_resenas(p):
-    href = f"https://www.amazon.com/product-reviews/{p['asin']}?tag=granjarentabl-20"
+    href = f"https://www.amazon.com/dp/{p['asin']}?tag=granjarentabl-20"
     return (
-        f'<a class="btn sec t-resenas" href="{esc(href)}" rel="nofollow sponsored noopener" target="_blank">'
+        f'<a class="btn sec t-resenas" href="{esc(href)}" rel="sponsored nofollow noopener" target="_blank">'
         f'Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>'
     )
 
@@ -556,6 +556,17 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 </div>'''
 
 
+def guia_bebederos(p, raiz):
+    """Conserva el recorrido del piloto al regenerar sus tres fichas."""
+    if p["asin"] not in {"B016AFYT4Q", "B07RB7GLJH", "B00P9EJLSO"}:
+        return ""
+    return f'''<section class="t-bloque" data-guia-bebederos>
+<h2>Antes de elegir tu bebedero</h2>
+<p>Revisa el suministro y la limpieza en la <a href="{raiz}blog/agua-gallinas-ponedoras-bebederos.html">guía de agua y bebederos para gallinas</a>.
+Para contrastar formatos y capacidades, consulta la <a href="{raiz}comparativas/comparativa-bebederos-tetina-vs-colgante.html">comparativa de tetinas, copas y bebederos colgantes</a>.</p>
+</section>'''
+
+
 def cuerpo_producto(p, vecinos, raiz):
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
     relacionados = "\n".join(
@@ -576,6 +587,7 @@ def cuerpo_producto(p, vecinos, raiz):
 {seccion_texto("data-explicacion", titulo_que, p["explicacion"])}
 {seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
 {html_descripcion_larga(p.get("descripcion_larga"))}
+{guia_bebederos(p, raiz)}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 {botones_amazon(p)}

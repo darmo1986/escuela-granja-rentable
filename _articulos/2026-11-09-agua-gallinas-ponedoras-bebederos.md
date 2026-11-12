@@ -141,6 +141,8 @@ Son recipientes alargados que permiten beber a varias aves.
 
 Ningún tipo es automáticamente el mejor para todas las explotaciones.
 
+Si ya tienes claro qué sistema necesita tu gallinero, consulta la [comparativa de bebederos de tetina y colgantes](../comparativas/comparativa-bebederos-tetina-vs-colgante.html). Allí puedes contrastar formatos y capacidades del catálogo, revisar las fichas y decidir qué opción encaja con tu instalación antes de ir a Amazon.
+
 ## 4. Cómo elegir un bebedero para diez gallinas
 
 Antes de comprar, revisa las condiciones de tu instalación.

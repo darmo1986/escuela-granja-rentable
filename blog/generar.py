@@ -979,7 +979,7 @@ def html_ilustracion(raiz_url, clave):
     )
 
 
-def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
+def html_banner_estatico(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
     id_ebook = id_banner("ebook", ebook_clave)
     enlace = con_utm_interno(raiz_url + href, id_ebook)
@@ -1013,16 +1013,60 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     return bloque
 
 
+def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
+    """Ofertas propias y de afiliación; el contenido inicial funciona sin JS."""
+    ofertas = []
+    claves = list(dict.fromkeys([ebook_clave, "alimenta", "elegir", "hacer", "empezar"]))
+    for clave in claves:
+        titulo, href = EBOOK_POR_CLAVE[clave]
+        ofertas.append({"id": id_banner("ebook", clave), "tipo": "ebook",
+                        "titulo": EBOOK_TITULAR[clave], "descripcion": titulo,
+                        "href": raiz_url + href, "precio": precio_banner(clave),
+                        "imagen": raiz_url + "img/banners/" + EBOOK_ILUSTRACION[clave] + ".webp",
+                        "alt": EBOOK_ALT[clave]})
+    imagenes = {
+        "comedero": "comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas.webp",
+        "bebedero": "copas-bebedero-automaticas-lil-clucker-para-gallinas-5-uds.webp",
+    }
+    if tag:
+        for tema in dict.fromkeys([amazon_tema, "comedero", "bebedero"]):
+            if tema not in imagenes:
+                continue
+            nombre, asin = AMAZON_POR_TEMA[tema]
+            ofertas.append({"id": id_banner("amazon", tema), "tipo": "amazon",
+                            "titulo": nombre, "descripcion": "Consulta la versión, el precio y el envío en Amazon.com.",
+                            "href": f"https://www.amazon.com/dp/{asin}?tag={tag}",
+                            "precio": "Ver precio en Amazon.com",
+                            "imagen": raiz_url + "img/productos/" + imagenes[tema], "alt": nombre})
+    datos = esc(json.dumps(ofertas, ensure_ascii=False))
+    inicial = html_banner_estatico(raiz_url, ebook_clave, amazon_tema, tag, precio)
+    return (f'<section class="promo-carousel" data-promo-carousel data-ofertas="{datos}" '
+            'aria-label="Ebooks y material para tu granja">'
+            '<div data-promo-items>' + inicial + '</div>'
+            '<div class="promo-controls" data-promo-controls hidden>'
+            '<button type="button" data-promo-prev aria-label="Oferta anterior">Anterior</button>'
+            '<span data-promo-status aria-live="off"></span>'
+            '<button type="button" data-promo-pause>Pausar</button>'
+            '<button type="button" data-promo-next aria-label="Oferta siguiente">Siguiente</button>'
+            '</div></section>')
+
+
 def pagina_con_banner(rel):
     return rel == "index.html" or (rel.startswith("blog/") and rel.endswith(".html"))
 
 
 def asegurar_script_banners(html, rel):
-    if "js/registro-banners.js" in html or "</body>" not in html:
+    if "</body>" not in html:
         return html
-    src = f"{raiz_de(rel)}js/registro-banners.js?v={VERSION_ACTIVOS}"
-    etiqueta = f'<script defer src="{src}"></script>'
-    return html.replace("</body>", etiqueta + "\n</body>", 1)
+    raiz = raiz_de(rel)
+    if "js/registro-banners.js" not in html:
+        html = html.replace("</body>", f'<script defer src="{raiz}js/registro-banners.js?v={VERSION_ACTIVOS}"></script>\n</body>', 1)
+    html = re.sub(r'<script[^>]*src="[^"\n]*js/ofertas.js[^>]*></script>\n?', '', html)
+    if "js/ofertas.js" not in html:
+        html = re.sub(r'(<script[^>]*src="[^"\n]*js/registro-banners.js[^>]*>)', lambda m: f'<script defer src="{raiz}js/ofertas.js?v=20261112"></script>\n' + m.group(1), html, count=1)
+    if "css/ofertas.css" not in html:
+        html = html.replace("</head>", f'<link rel="stylesheet" href="{raiz}css/ofertas.css?v=20261112">\n</head>', 1)
+    return html
 
 
 def colocar_banners(rel, html, raiz, post=None):
@@ -1033,15 +1077,12 @@ def colocar_banners(rel, html, raiz, post=None):
     _titulo, href = EBOOK_POR_CLAVE[clave]
     banner = html_banner(raiz_de(rel), clave, amazon_tema, etiqueta_amazon(raiz),
                          precio_catalogo(raiz, href))
-    if re.search(r'<aside class="banner-ebook"', html):
-        html, n = re.subn(
-            r'<aside class="banner-ebook"[\s\S]*?</aside>'
-            r'(?:<aside class="banner-amazon"[\s\S]*?</aside>)?',
-            lambda _: banner, html, count=1)
-        if n != 1:
-            return html
-    else:
-        html = html.replace("</main>", banner + "\n</main>", 1)
+    # Quita el contenedor previo completo y los banners heredados, sin duplicarlos.
+    html = re.sub(r'<section class="promo-carousel"[\s\S]*?</section>', '', html)
+    html = re.sub(r'<aside class="banner-ebook"[\s\S]*?</aside>'
+                  r'(?:<aside class="banner-amazon"[\s\S]*?</aside>)?', '', html)
+    # Dentro de main, antes del contenido principal; no sustituye anuncios externos.
+    html = re.sub(r'(<main\b[^>]*>)', lambda m: m.group(1) + "\n" + banner, html, count=1)
     return asegurar_script_banners(html, rel)
 
 
@@ -1118,10 +1159,10 @@ def relacionados(post, publicados):
 
 
 RECURSOS_ARTICULO = {
-    "alimentacion-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Ebook de Granja Rentable</small><br><a href=\"../ebooks/\">Cómo elegir el pienso</a></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
-    "agua-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
-    "criar-pollitos-30-dias": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
-    "como-elegir-incubadora": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B0793HHZ1L?tag=granjarentabl-20\">Incubadora Nurture Right 360</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>"
+    "alimentacion-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Ebook de Granja Rentable</small><br><a href=\"../ebooks/\">Cómo elegir el pienso</a></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "agua-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "criar-pollitos-30-dias": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "como-elegir-incubadora": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B0793HHZ1L?tag=granjarentabl-20\">Incubadora Nurture Right 360</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>"
 }
 
 
