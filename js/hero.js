@@ -1,4 +1,4 @@
-/* Destacados de portada: curso, tienda, ebooks y artículos, cada cinco segundos. */
+/* Destacados de portada: curso, razas, ebooks y artículos, cada cinco segundos. */
 (function () {
   'use strict';
   var hero = document.querySelector('[data-hero]');
@@ -6,7 +6,9 @@
   var slides = Array.from(hero.querySelectorAll('[data-slide]'));
   var dots = Array.from(hero.querySelectorAll('[data-hero-dot]'));
   if (slides.length < 2) return;
-  var current = 0, timer, manual = false;
+  var current = slides.findIndex(function (slide) { return slide.classList.contains('is-active'); });
+  if (current < 0) current = 0;
+  var timer, manual = false;
   var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var pause = hero.querySelector('[data-hero-pause]');
   hero.classList.add('js-hero');
@@ -36,5 +38,5 @@
   hero.addEventListener('focusout', function () { setTimeout(schedule, 0); });
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', schedule);
-  show(0);
+  show(current);
 })();
