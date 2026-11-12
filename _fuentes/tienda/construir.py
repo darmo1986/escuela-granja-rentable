@@ -556,6 +556,17 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 </div>'''
 
 
+def guia_bebederos(p, raiz):
+    """Conserva el recorrido del piloto al regenerar sus tres fichas."""
+    if p["asin"] not in {"B016AFYT4Q", "B07RB7GLJH", "B00P9EJLSO"}:
+        return ""
+    return f'''<section class="t-bloque" data-guia-bebederos>
+<h2>Antes de elegir tu bebedero</h2>
+<p>Revisa el suministro y la limpieza en la <a href="{raiz}blog/agua-gallinas-ponedoras-bebederos.html">guía de agua y bebederos para gallinas</a>.
+Para contrastar formatos y capacidades, consulta la <a href="{raiz}comparativas/comparativa-bebederos-tetina-vs-colgante.html">comparativa de tetinas, copas y bebederos colgantes</a>.</p>
+</section>'''
+
+
 def cuerpo_producto(p, vecinos, raiz):
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
     relacionados = "\n".join(
@@ -576,6 +587,7 @@ def cuerpo_producto(p, vecinos, raiz):
 {seccion_texto("data-explicacion", titulo_que, p["explicacion"])}
 {seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
 {html_descripcion_larga(p.get("descripcion_larga"))}
+{guia_bebederos(p, raiz)}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 {botones_amazon(p)}
