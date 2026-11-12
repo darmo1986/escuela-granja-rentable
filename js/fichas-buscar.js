@@ -10,17 +10,20 @@
   var empty = form.querySelector('[data-fichas-vacio]');
   var cards = Array.from(grid.children).filter(function (card) { return card.classList.contains('raza'); });
   function normalize(text) {
-    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
   }
   var entries = cards.map(function (card) {
     var heading = card.querySelector('h3');
-    return { card: card, name: normalize(heading ? heading.textContent : '') };
+    var description = card.querySelector('.raza-body > p');
+    var name = normalize(heading ? heading.textContent : '');
+    return { card: card, name: name.replace(/\s+/g, ''), search: normalize(name + ' ' + (description ? description.textContent : '')) };
   });
   function filter() {
     var term = normalize(input.value);
+    var words = term ? term.split(/\s+/) : [];
     var visible = 0;
     entries.forEach(function (entry) {
-      var match = !term || entry.name.indexOf(term) !== -1;
+      var match = !term || words.every(function (word) { return entry.search.indexOf(word) !== -1; }) || entry.name.indexOf(term.replace(/\s+/g, '')) !== -1;
       entry.card.hidden = !match;
       if (match) visible += 1;
     });
