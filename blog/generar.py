@@ -1410,6 +1410,29 @@ def actualizar_sitemap(texto, entradas):
     return texto.replace("</urlset>", extra + "</urlset>")
 
 
+def buscador_blog(posts):
+    """Busca títulos y descripciones de artículos públicos en todas las páginas."""
+    indice = [
+        {"titulo": p["titulo"], "descripcion": p["descripcion"],
+         "categoria": CATS[p["categoria"]]["nombre"],
+         "href": f"/blog/{p['slug']}.html"}
+        for p in posts if p.get("publicar") and not p.get("noindex")
+    ]
+    if not indice:
+        return ""
+    return ('''<form class="panel blog-buscador" role="search" aria-label="Buscar en todo el blog" data-blog-buscar hidden>
+<label for="buscar-articulo">Buscar en todo el blog</label>
+<p id="buscar-articulo-ayuda">Escribe un tema: pollitos, puesta, alimentación, incubación…</p>
+<div class="blog-buscador-campos"><input id="buscar-articulo" type="search" autocomplete="off" aria-describedby="buscar-articulo-ayuda" aria-controls="resultados-articulos"><button class="btn sec" type="button" data-blog-limpiar>Volver al listado</button></div>
+<p role="status" aria-live="polite" aria-atomic="true" data-blog-estado></p>
+</form>
+<div id="resultados-articulos" data-blog-resultados hidden></div>
+'''
+            + '<script type="application/json" data-blog-indice>'
+            + json_seguro(indice) + '</script>\n'
+            + '<script defer src="../js/blog-buscar.js?v=20261112"></script>\n')
+
+
 def planificar(raiz, incluir_borradores=False):
     raiz = Path(raiz)
     if (raiz / ".nojekyll").exists():
@@ -1477,7 +1500,8 @@ def planificar(raiz, incluir_borradores=False):
             hero,
             anuncio("banner", activo),
             categorias_nav(""),
-            listado(visibles, numero, cortes),
+            buscador_blog(visibles),
+            '<div data-blog-listado>\n' + listado(visibles, numero, cortes) + "\n</div>",
             bloque_guias("../"),
             bloque_curso("../"),
             anuncio("rect", activo),
@@ -1485,7 +1509,7 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo_pagina, descripcion_pagina, canonical,
             "index,follow" if visibles else "noindex,follow", "website",
-            og_portada, "Logo de Granja Rentable", ld_blog(), contenido, menu_html, pie_html)
+            og_portada, "Logo de Granja Rentable", ld_blog() + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">', contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in visibles if p["categoria"] == clave]
         indexable = len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX
@@ -1502,13 +1526,14 @@ def planificar(raiz, incluir_borradores=False):
         else:
             rejilla = '<p class="blog-vacio">Todavía no hay artículos publicados en esta categoría.</p>'
         contenido = "\n".join(parte for parte in [
-            hero, anuncio("banner", con_anuncios), categorias_nav(clave), rejilla,
+            hero, anuncio("banner", con_anuncios), categorias_nav(clave),
+            buscador_blog(visibles), '<div data-blog-listado>\n' + rejilla + "\n</div>",
             bloque_guias("../"), bloque_curso("../"), anuncio("rect", con_anuncios),
         ] if parte)
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
-            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta),
+            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta) + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">',
             contenido, menu_html, pie_html)
     for post in publicados:
         rel = f"blog/{post['slug']}.html"

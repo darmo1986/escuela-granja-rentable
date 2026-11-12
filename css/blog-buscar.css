@@ -1,0 +1,10 @@
+.blog-buscador { margin:1rem 0; }
+.blog-buscador[hidden], [data-blog-listado][hidden], [data-blog-resultados][hidden] { display:none !important; }
+.blog-buscador label { display:block; font-weight:700; }
+.blog-buscador-campos { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; }
+.blog-buscador input { flex:1 1 15rem; min-width:0; max-width:100%; padding:.8rem; box-sizing:border-box; font:inherit; color:inherit; background:#fff; border:1px solid #58715e; border-radius:.5rem; }
+.blog-buscador input:focus-visible { outline:3px solid #b78920; outline-offset:2px; }
+.blog-buscador [role="status"]:empty { display:none; }
+.blog-resultado { margin:1rem 0; overflow-wrap:anywhere; }
+.blog-resultado h2 { margin:.4rem 0; }
+@media (max-width:480px) { .blog-buscador input, .blog-buscador button { width:100%; flex-basis:100%; } }
