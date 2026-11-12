@@ -164,11 +164,11 @@
 <li><a href="razas/wyandotte.html">Wyandotte</a></li>
 </ul></nav>
 </details>
-<form class="panel fichas-buscador" role="search" aria-label="Buscar fichas por nombre" data-fichas-buscar hidden>
-<label for="buscar-ficha">Buscar por nombre</label>
-<div class="fichas-buscador-campos"><input id="buscar-ficha" type="search" placeholder="Por ejemplo: Brahma" autocomplete="off" aria-controls="lista-fichas" aria-describedby="resultado-fichas"><button class="btn sec" type="button" data-fichas-limpiar>Mostrar todas</button></div>
+<form class="panel fichas-buscador" role="search" aria-label="Buscar fichas por nombre o características" data-fichas-buscar hidden>
+<label for="buscar-ficha">Buscar por nombre o características</label>
+<div class="fichas-buscador-campos"><input id="buscar-ficha" type="search" placeholder="Por ejemplo: doble propósito" autocomplete="off" aria-controls="lista-fichas" aria-describedby="resultado-fichas"><button class="btn sec" type="button" data-fichas-limpiar>Mostrar todas</button></div>
 <p id="resultado-fichas" role="status" aria-live="polite" aria-atomic="true"></p>
-<p data-fichas-vacio hidden>No hay fichas con ese nombre. Prueba con otro o pulsa «Mostrar todas».</p>
+<p data-fichas-vacio hidden>No hay fichas que coincidan. Prueba con menos palabras o pulsa «Mostrar todas».</p>
 </form>
 <div id="lista-fichas" class="raza-grid" data-fichas-lista>
 <article class="raza">
@@ -563,5 +563,5 @@
 <script src="js/app.js?v=20261110d"></script>
 <script src="js/catalogo.js"></script>
 <script src="js/site.js?v=20261110d"></script>
-<script defer src="js/fichas-buscar.js?v=20261112"></script>
+<script defer src="js/fichas-buscar.js?v=20261113"></script>
 </body></html>
