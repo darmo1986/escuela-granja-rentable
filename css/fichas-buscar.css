@@ -1,0 +1,8 @@
+.fichas-buscador { margin:1rem 0; }
+.fichas-buscador[hidden], [data-fichas-vacio][hidden], [data-fichas-lista] > .raza[hidden] { display:none !important; }
+.fichas-buscador label { display:block; font-weight:700; margin-bottom:.5rem; }
+.fichas-buscador-campos { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; }
+.fichas-buscador input { flex:1 1 15rem; min-width:0; max-width:100%; box-sizing:border-box; padding:.8rem; font:inherit; color:inherit; border:1px solid #58715e; border-radius:.5rem; background:#fff; }
+.fichas-buscador input:focus-visible { outline:3px solid #b78920; outline-offset:2px; }
+.fichas-buscador [role="status"] { margin:.75rem 0 0; }
+@media (max-width:480px) { .fichas-buscador input, .fichas-buscador button { width:100%; flex-basis:100%; } }
