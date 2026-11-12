@@ -12,3 +12,5 @@
 .promo-controls button,.gr-hero-ctrl [data-hero-pause]{min-height:44px;padding:7px 14px;border:1px solid #c9ba82;border-radius:22px;background:#fffdf6;color:#163e27;font-weight:700;cursor:pointer}
 .promo-card a:focus-visible,.promo-controls button:focus-visible{outline:3px solid #1f5e2e;outline-offset:3px}
 @media(max-width:600px){.promo-carousel{padding:0 10px}.promo-card>a{grid-template-columns:minmax(0,30%) minmax(0,1fr)}.promo-copy{padding:14px 12px;gap:6px}.promo-copy p:not(.promo-title){font-size:.85rem}.promo-copy small{font-size:.7rem}.promo-card img{max-height:none}.promo-cta{padding:7px 10px;font-size:.85rem}.promo-controls{gap:5px}.promo-controls button{padding:6px 10px;font-size:.8rem}}
+
+@media(max-width:600px){.promo-card{height:220px}.promo-card>a{height:100%}.promo-card img{height:220px;max-height:220px;object-fit:contain}}

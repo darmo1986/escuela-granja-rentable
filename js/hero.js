@@ -1,4 +1,4 @@
-/* Destacados de portada: curso, tienda y ebooks, cada cinco segundos. */
+/* Destacados de portada: curso, tienda, ebooks y artículos, cada cinco segundos. */
 (function () {
   'use strict';
   var hero = document.querySelector('[data-hero]');
