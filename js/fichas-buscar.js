@@ -1,0 +1,35 @@
+/* Filtro local de fichas. Sin peticiones ni recogida de búsquedas. */
+(function () {
+  'use strict';
+  var form = document.querySelector('[data-fichas-buscar]');
+  var grid = document.querySelector('[data-fichas-lista]');
+  if (!form || !grid) return;
+  var input = form.querySelector('input');
+  var clear = form.querySelector('[data-fichas-limpiar]');
+  var status = form.querySelector('[role="status"]');
+  var empty = form.querySelector('[data-fichas-vacio]');
+  var cards = Array.from(grid.children).filter(function (card) { return card.classList.contains('raza'); });
+  function normalize(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+  var entries = cards.map(function (card) {
+    var heading = card.querySelector('h3');
+    return { card: card, name: normalize(heading ? heading.textContent : '') };
+  });
+  function filter() {
+    var term = normalize(input.value);
+    var visible = 0;
+    entries.forEach(function (entry) {
+      var match = !term || entry.name.indexOf(term) !== -1;
+      entry.card.hidden = !match;
+      if (match) visible += 1;
+    });
+    status.textContent = visible + ' de ' + cards.length + ' fichas';
+    empty.hidden = visible !== 0;
+  }
+  form.addEventListener('submit', function (event) { event.preventDefault(); filter(); });
+  input.addEventListener('input', filter);
+  clear.addEventListener('click', function () { input.value = ''; filter(); input.focus(); });
+  filter();
+  form.hidden = false;
+})();

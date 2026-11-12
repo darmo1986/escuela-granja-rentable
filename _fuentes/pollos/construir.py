@@ -297,9 +297,12 @@ def indice(razas_html, fichas, medios, razas):
         raise SystemExit(f"descripción del índice demasiado larga ({len(desc)})")
     url = f"{SITIO}/pollos-engorde.html"
     html = razas_html
-    titulo_viejo = "Razas de gallinas y líneas de aves | Granja Rentable"
-    desc_vieja = ("Fichas de 20 razas de gallinas (Leghorn, Sussex, Brahma, Marans, Castellana negra…) "
-                  "y de las líneas ISA Brown, Lohmann, Hy-Line, Ross 308 y Cobb 500.")
+    titulo_actual = re.search(r"<title>(.*?)</title>", html, re.S)
+    descripcion_actual = re.search(r'<meta name="description" content="([^"]+)">', html)
+    if not titulo_actual or not descripcion_actual:
+        raise SystemExit("faltan título o descripción en razas.html")
+    titulo_viejo = titulo_actual.group(1)
+    desc_vieja = descripcion_actual.group(1)
     if html.count(titulo_viejo) != 3 or html.count(desc_vieja) != 3:
         raise SystemExit("la cabecera de razas.html no tiene las 3 repeticiones de título y descripción")
     html = html.replace(titulo_viejo, titulo).replace(desc_vieja, desc)
@@ -336,10 +339,11 @@ def indice(razas_html, fichas, medios, razas):
 <h1>Pollos de engorde</h1>
 <p>Ocho fichas con los días, el peso, la conversión y el tipo de granja que salen de las guías de las casas de genética o de los estudios citados. Si no hay una cifra fiable, la ficha lo dice y no se inventa otra.</p>
 <p>En las cinco fichas de broiler blanco, la foto y el vídeo son de un pollo de engorde blanco de tipo comercial (imagen ilustrativa). No corresponden a la línea concreta.</p>
-<p class="split"><a class="btn sec" href="razas.html">Ver las razas de gallinas</a> <a class="btn gold" href="curso.html">Ir al curso gratis</a></p>
+<p class="split"><a class="btn sec" href="razas.html#razas-gallinas">Razas de gallinas</a> <a class="btn sec" href="razas.html#gallos">Gallos y reproducción</a> <a class="btn gold" href="curso.html">Ir al curso gratis</a></p>
 </section>
 <aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
-<div class="raza-grid">
+{razas.buscador_y_indice([(f"pollos/{slug}.html", medios[slug]["nombre"]) for slug in ORDEN], "Cobb 500", "Ir directamente a una línea de pollos")}
+<div id="lista-fichas" class="raza-grid" data-fichas-lista>
 {tarjetas(fichas, medios, razas)}
 </div>
 </main>"""
