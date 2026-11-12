@@ -4,6 +4,7 @@ titulo_seo: "Pienso iniciador para pollitos: cómo elegirlo"
 descripcion: "Aprende a elegir el alimento inicial de los pollitos según su destino, la etiqueta y la presentación, evitando cambios por reglas universales."
 categoria: "alimentacion"
 fecha: "2026-11-07"
+actualizado: "2026-11-12"
 borrador: false
 imagen: "img/blog/alimento-casero-vs-balanceado.webp"
 imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
@@ -40,6 +41,35 @@ Prepara una ficha con cuatro datos: alimento actual, fase siguiente, criterio de
 - Elegir únicamente por el porcentaje de proteína, ignorando el resto del programa.
 - Diluir el alimento con grandes cantidades de grano sin una formulación calculada.
 - Comprar más cantidad de la que puedas conservar en buenas condiciones.
+
+## Lista para comparar dos sacos en la tienda
+
+Anota estos datos de cada opción antes de comparar el precio:
+
+| Dato que debes copiar | Saco A | Saco B |
+| --- | --- | --- |
+| Especie y destino productivo indicados | Por completar | Por completar |
+| Fase o edad de uso según la etiqueta | Por completar | Por completar |
+| Alimento completo o complementario | Por completar | Por completar |
+| Presentación y tamaño del alimento | Por completar | Por completar |
+| Peso neto y precio del saco | Por completar | Por completar |
+| Lote, fecha e instrucciones de conservación | Por completar | Por completar |
+
+Calcula **precio por kilogramo = precio del saco ÷ kilogramos del saco**. Ejemplo ficticio: un saco de 10 kg a 8 unidades monetarias cuesta 0,80 por kg; uno de 25 kg a 18 cuesta 0,72 por kg. Esta diferencia solo compara el precio: primero confirma que ambos productos corresponden al mismo uso. Tampoco demuestra que el saco grande sea mejor compra si no puedes conservarlo o utilizarlo a tiempo.
+
+Si falta una indicación importante, pide la ficha del fabricante antes de decidir. Puedes ampliar la revisión con la guía para [leer la etiqueta del pienso](leer-etiqueta-pienso-aves.html).
+
+## Un registro para distinguir uso y desperdicio
+
+Durante siete días, utiliza la misma báscula y anota cuánto añades y cuánto alimento aprovechable queda al cerrar el día. Separa los restos retirados y los derrames que puedas pesar. Este ejercicio organiza tus datos; no prescribe cuánto debe comer un pollito.
+
+| Día y lote | Aves presentes | Alimento al inicio (g) | Añadido (g) | Alimento al final (g) | Restos y derrames retirados (g) |
+| --- | --- | --- | --- | --- | --- |
+| Por completar | Por completar | Por completar | Por completar | Por completar | Por completar |
+
+**Alimento desaparecido del comedero = alimento al inicio + añadido − alimento al final**. No lo llames consumo real: también puede incluir desperdicio que no hayas recuperado. No cuentes dos veces un resto retirado; debe quedar fuera del alimento final y anotado por separado.
+
+Ejemplo ficticio: empiezas con 100 g, añades 500 g y terminas con 80 g. Han desaparecido 520 g. Si recuperas y pesas 40 g de derrames, quedan 480 g sin explicar por esos derrames; no son una medición exacta de lo ingerido si hay otras pérdidas. Compara tus jornadas con las mismas condiciones de registro y anota cualquier cambio de saco, comedero o número de aves.
 
 ## Preguntas frecuentes
 
