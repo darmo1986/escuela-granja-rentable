@@ -219,11 +219,11 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
 
 def buscador_y_indice(items, ejemplo, etiqueta):
     enlaces = "\n".join(f'<li><a href="{esc(ruta)}">{esc(nombre)}</a></li>' for ruta, nombre in items)
-    return f"""<form class="panel fichas-buscador" role="search" aria-label="Buscar fichas por nombre" data-fichas-buscar hidden>
-<label for="buscar-ficha">Buscar por nombre</label>
+    return f"""<form class="panel fichas-buscador" role="search" aria-label="Buscar fichas por nombre o características" data-fichas-buscar hidden>
+<label for="buscar-ficha">Buscar por nombre o características</label>
 <div class="fichas-buscador-campos"><input id="buscar-ficha" type="search" placeholder="Por ejemplo: {esc(ejemplo)}" autocomplete="off" aria-controls="lista-fichas" aria-describedby="resultado-fichas"><button class="btn sec" type="button" data-fichas-limpiar>Mostrar todas</button></div>
 <p id="resultado-fichas" role="status" aria-live="polite" aria-atomic="true"></p>
-<p data-fichas-vacio hidden>No hay fichas con ese nombre. Prueba con otro o pulsa «Mostrar todas».</p>
+<p data-fichas-vacio hidden>No hay fichas que coincidan. Prueba con menos palabras o pulsa «Mostrar todas».</p>
 </form>
 <details class="panel ficha-indice">
 <summary>{esc(etiqueta)}</summary>
@@ -250,7 +250,7 @@ def bloque_hub(fichas, medios, dims):
     return ('<!-- razas:inicio -->\n<section id="razas-gallinas">\n<h2>Razas de gallinas: 20 fichas</h2>\n'
             '<p>Origen, aptitud, peso, puesta, color del huevo, carácter y clima de cada raza, con sus fuentes. '
             'Las características son tendencias de raza, no garantías para cada ave.</p>\n'
-            + buscador_y_indice([(f"razas/{slug}.html", medios[slug]["nombre"]) for slug, _, _ in sorted(fichas, key=lambda f: medios[f[0]]["nombre"].lower())], "Brahma", "Ir directamente a una raza")
+            + buscador_y_indice([(f"razas/{slug}.html", medios[slug]["nombre"]) for slug, _, _ in sorted(fichas, key=lambda f: medios[f[0]]["nombre"].lower())], "doble propósito", "Ir directamente a una raza")
             + '<div id="lista-fichas" class="raza-grid" data-fichas-lista>\n' + "\n".join(tarjetas) + '\n</div>\n</section>\n<!-- razas:fin -->')
 
 
