@@ -598,6 +598,52 @@ OVERRIDES = {
 }
 
 
+# Criterios de selección de los conjuntos para pollitos.
+OVERRIDES.update({
+    "B0CNTBGTYR": {
+        "titulo": "Comedero de pollitos 0,8 gal con bebedero y 3 alturas",
+        "explicacion": [
+            "Comedero de llenado superior de 0,8 galones y bebedero de 0,4 galones con altura regulable."
+        ],
+        "recomendacion": [
+            "Lo recomendamos para comparar un conjunto de comedero y bebedero con altura regulable.",
+            "Comprueba las medidas de la base, las posiciones de ajuste y el acceso de tus pollitos."
+        ]
+    },
+    "B0DKN6TZB6": {
+        "titulo": "Comedero y bebedero para pollitos Hen's Choice",
+        "explicacion": [
+            "Juego de comedero y bebedero para pollitos, de Hen's Choice.",
+            "El comedero es de 6,5 libras y el bebedero de 1,5 litros."
+        ],
+        "recomendacion": [
+            "Lo recomendamos para comparar alimentación y bebida en un mismo conjunto.",
+            "Confirma sus medidas, el montaje y la edad de uso indicada por el fabricante."
+        ]
+    },
+    "B0DYFDV3ND": {
+        "titulo": "Kit de iniciación para pollitos Little Giant (comedero, bebedero y lámpara)",
+        "explicacion": [
+            "Kit Little Giant con comedero, bebedero, lámpara y otros accesorios para criar pollitos."
+        ],
+        "recomendacion": [
+            "Lo recomendamos para comparar un kit con varios accesorios de cría.",
+            "Revisa las piezas incluidas y las instrucciones de instalación de cada una antes de comprar."
+        ]
+    },
+    "B0BBPQD6NP": {
+        "titulo": "Set de comedero y bebedero para pollitos 2 en 1",
+        "explicacion": [
+            "Comedero de 0,3 galones y bebedero de 0,4 galones para la criadora."
+        ],
+        "recomendacion": [
+            "Lo recomendamos para comparar un conjunto de comedero y bebedero para la criadora.",
+            "Comprueba que ambos recipientes encajen en el espacio disponible y en la edad de uso indicada por el fabricante."
+        ]
+    }
+})
+
+
 def proteger(texto):
     texto = re.sub(r"EE\. UU\.(?=\s+[A-ZÁÉÍÓÚÑ])", "EE·UU.", texto)
     texto = re.sub(r"EE\.UU\.(?=\s+[A-ZÁÉÍÓÚÑ])", "EE·UU.", texto)
@@ -747,3 +793,4 @@ def problemas_de_texto(asin, titulo, explicacion, recomendacion, vet):
             if palabra in blob:
                 fallos.append(f"{asin}: término clínico «{palabra}»")
     return fallos
+
