@@ -52,17 +52,17 @@ GUIAS = {
     "empezar": (
         "guia-empezar.html",
         "Carne, huevos o genética",
-        "Un solo camino al empezar, y el alimento como la mayor parte del coste. Sale de L01.",
+        "Compara la producción de huevos, pollos de engorde y reproducción. Elige una actividad y prepara tu presupuesto antes de comprar aves.",
     ),
     "espacio": (
         "guia-espacio.html",
         "Espacio por ave",
-        "Patio, suelo, pollos de engorde y campero con las cifras de L02, y la calculadora al lado.",
+        "Organiza el alojamiento según las aves y el sistema de cría. Consulta la guía y usa la calculadora para planificar tu espacio.",
     ),
     "incubadora": (
         "guia-incubadora.html",
         "Incubadora y días",
-        "21, 17 y 28 días según L03. Son plazos orientativos, no una garantía de nacimientos.",
+        "Consulta los plazos de incubación de cada especie y qué preparar antes de cargar los huevos. Los días son orientativos y no garantizan nacimientos.",
     ),
 }
 MESES = (
@@ -1125,8 +1125,8 @@ def bloque_guias(raiz):
     for clave in ("empezar", "espacio", "incubadora"):
         href, titulo, texto = GUIAS[clave]
         piezas.append(f"<article><h2><a href=\"{esc(raiz + href)}\">{esc(titulo)}</a></h2><p>{esc(texto)}</p></article>")
-    return ("<section class=\"blog-guias\">\n<p class=\"kicker\">Para empezar</p>\n<h2>Guías fijas</h2>\n"
-            "<p>Las guías no cambian de sitio. Los artículos las enlazan.</p>\n<div class=\"guia-list\">\n"
+    return ("<section class=\"blog-guias\">\n<p class=\"kicker\">Para empezar</p>\n<h2>Elige tu siguiente paso</h2>\n"
+            "<p>Si empiezas desde cero, compara las actividades. Si ya tienes aves, revisa el espacio o prepara tu próxima incubación.</p>\n<div class=\"guia-list\">\n"
             + "\n".join(piezas) + "\n</div>\n</section>")
 
 
