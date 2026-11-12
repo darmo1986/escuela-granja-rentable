@@ -5,9 +5,10 @@ descripcion: "Organiza la comida de pollitos, pollitas y gallinas adultas con ac
 categoria: "alimentacion"
 fecha: "2026-11-07"
 borrador: false
-imagen: "img/blog/alimento-casero-vs-balanceado.webp"
-imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
-imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
+imagen: "img/blog/alimentacion-aves-edades-mezcladas.webp"
+imagen_og: "img/blog/alimentacion-aves-edades-mezcladas-og.webp"
+imagen_alt: "Gallina barrada junto a pollitos de varios colores picando fruta en el suelo"
+imagen_credito: "Foto: Oziomachibuzo, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_Mother%27s_Strength.jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 Cuando conviven pollitos, pollitas y gallinas en puesta, un único comedero resulta cómodo para quien cuida el gallinero. Sin embargo, no garantiza que cada grupo reciba la formulación que necesita. La solución empieza por identificar grupos y controlar quién llega a cada alimento.

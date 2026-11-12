@@ -5,9 +5,10 @@ descripcion: "Organiza inicio, crecimiento y acabado en pollos de engorde sin me
 categoria: "alimentacion"
 fecha: "2026-11-07"
 borrador: false
-imagen: "img/blog/alimento-casero-vs-balanceado.webp"
-imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
-imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
+imagen: "img/blog/alimentacion-pollos-engorde-fases.webp"
+imagen_og: "img/blog/alimentacion-pollos-engorde-fases-og.webp"
+imagen_alt: "Pollos de engorde blancos comiendo en una línea de comederos de plato rojos dentro de una nave"
+imagen_credito: "Foto: Bob Nichols, USDA, dominio público ([PD-USGov-USDA](https://commons.wikimedia.org/wiki/Template:PD-USGov-USDA)) y [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:20130822-OC-RBN-2964_(9682284804).jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 Organizar el alimento de los pollos de engorde consiste en mantener un programa coherente desde la llegada hasta la salida del lote. Los nombres inicio, crecimiento y acabado ayudan a orientarse, pero no sustituyen las instrucciones concretas del fabricante.

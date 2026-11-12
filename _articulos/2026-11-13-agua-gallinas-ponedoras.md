@@ -7,10 +7,11 @@ fecha: 2026-10-13
 borrador: true
 imagen: "img/blog/agua-gallinas-ponedoras.webp"
 imagen_og: "img/blog/agua-gallinas-ponedoras-og.webp"
-imagen_alt: "Gallinas marrones en primer plano a la derecha bebiendo agua fresca en un bebedero de campana, fondo verde desenfocado"
+imagen_alt: "Gallinas ponedoras en un corral junto a un bebedero de plato rojo con agua"
 relacionados:
   - agua-gallinas-ponedoras-bebederos
   - agua-verano-gallinas-calidad-cantidad
+imagen_credito: "Foto: Smoobs, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Strange_drinking_position.jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 ## El nutriente que más se descuida

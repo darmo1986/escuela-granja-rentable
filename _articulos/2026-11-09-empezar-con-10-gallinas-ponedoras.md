@@ -6,13 +6,14 @@ categoria: ponedoras
 fecha: 2026-11-09
 borrador: false
 autor: "Equipo editorial de Granja Rentable"
-imagen: "img/blog/cuantas-gallinas-30-huevos.webp"
-imagen_og: "img/blog/cuantas-gallinas-30-huevos-og.webp"
-imagen_alt: "Bandada de gallinas ponedoras marrones en un corral verde con una caja de huevos frescos en primer plano"
+imagen: "img/blog/empezar-con-10-gallinas-ponedoras.webp"
+imagen_og: "img/blog/empezar-con-10-gallinas-ponedoras-og.webp"
+imagen_alt: "Lote de gallinas ponedoras pardas en el corral de una granja pequeña"
 relacionados:
   - cuanto-cuesta-producir-docena-huevos
   - alimentacion-gallinas-por-etapas
   - agua-gallinas-ponedoras-bebederos
+imagen_credito: "Foto: Sinikka Halme, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Free-range_chickens_on_Ross%C3%B6_Orust_Sweden_01.jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 ¿Quieres empezar a criar gallinas para obtener huevos, pero no sabes cuánto espacio necesitas, qué debes comprar o si realmente te saldrá rentable?

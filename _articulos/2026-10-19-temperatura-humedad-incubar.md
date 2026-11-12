@@ -9,7 +9,7 @@ borrador: false
 producto: incubadora-24egg-dual
 imagen: "img/blog/temperatura-humedad-incubar.webp"
 imagen_og: "img/blog/temperatura-humedad-incubar-og.webp"
-imagen_alt: "Termómetro e higrómetro dentro de incubadora mostrando temperatura y humedad"
+imagen_alt: "Incubadora de madera con pantalla digital a 37,9 °C y huevos en la bandeja de la ventana"
 relacionados:
   - incubacion-dia-a-dia
   - por-que-no-nacen-errores-incubacion
@@ -17,6 +17,7 @@ relacionados:
 fuentes:
   - "Lección L03 de Granja Rentable, que cita a la MSU: aire forzado 37,8 °C, aire quieto unos 38,9 °C arriba del huevo, humedad 58–60 % los días 1–18, 65 % o más los últimos 3 días, unos 12 % de pérdida de peso al día 18, volteo hasta el día 18"
   - "Lección L03: 21 días la gallina, 17 la codorniz, 28 el pato y 28 el pavo (MSU). La fecha de esta web solo suma esos días"
+imagen_credito: "Foto: Miguelito tbk, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Incubadora_casera_paso_a_paso_(56).jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 ## La respuesta corta

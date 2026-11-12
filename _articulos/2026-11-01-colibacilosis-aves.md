@@ -5,9 +5,10 @@ descripcion: "Colibacilosis aviar: la E. coli que aprovecha el mal ambiente, el 
 categoria: salud
 fecha: 2026-11-01
 borrador: false
-imagen: "img/blog/cuanto-cuesta-criar-100-pollos.webp"
-imagen_og: "img/blog/cuanto-cuesta-criar-100-pollos-og.webp"
-imagen_alt: "Lote de pollos de engorde blancos sobre cama de viruta dentro de una nave"
+imagen: "img/blog/colibacilosis-aves.webp"
+imagen_og: "img/blog/colibacilosis-aves-og.webp"
+imagen_alt: "Persona atendiendo pollitos de varios colores en un gallinero pequeño con viruta, bebederos y comederos"
+imagen_credito: "Foto: Oliversamson1, [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Farmer_Caring_for_Young_Chicks_in_a_Small_Poultry_House.jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 La colibacilosis es probablemente la infección bacteriana más corriente en gallinas y pollos de engorde, y casi siempre es una señal de que algo más va mal: mala ventilación, cama húmeda, agua sucia, una incubación descuidada u otra enfermedad que ha bajado las defensas. Por eso se previene mucho mejor de lo que se trata.

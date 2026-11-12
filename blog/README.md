@@ -19,6 +19,14 @@ Hacen falta dos archivos propios, en formato webp:
 
 En el repositorio: **Add file → Upload files**. Elige la carpeta `img/blog`. El nombre va en minúsculas, con guiones, sin espacios.
 
+### Crédito de la fotografía
+
+El campo opcional `imagen_credito` coloca el autor, la licencia y la procedencia bajo la fotografía. Admite enlaces Markdown con HTTPS, incluidos nombres de archivo con paréntesis. Describe en el crédito las adaptaciones de tamaño o encuadre.
+
+```yaml
+imagen_credito: "Foto: Shadow Ayush, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Broiler_chicks_around_a_week_old.jpg). Imagen adaptada de tamaño y encuadre."
+```
+
 ## 2. El texto
 
 **Add file → Create new file.** La ruta es:

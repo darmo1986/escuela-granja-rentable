@@ -8,7 +8,8 @@ borrador: false
 producto: incubadora-24egg-dual
 imagen: "img/blog/como-elegir-incubadora.webp"
 imagen_og: "img/blog/como-elegir-incubadora-og.webp"
-imagen_alt: "Incubadora moderna con display digital y huevos de gallina en su interior"
+imagen_alt: "Incubadora de porexpán con dos ventanas, una luz naranja encendida y huevos visibles dentro"
+imagen_credito: "Foto: Alex Ford, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Small_Chicken_Egg_Incubator.jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 ## Cómo elegir una incubadora de huevos en 2026
