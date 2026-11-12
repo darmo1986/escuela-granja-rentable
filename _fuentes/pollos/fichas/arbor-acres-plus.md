@@ -1,39 +1,65 @@
-# Pollo Arbor Acres Plus
+# Arbor Acres Plus
 
+## Origen
 
-Broiler blanco de Aviagen con marca Arbor Acres. [1]
+El Arbor Acres Plus es una línea comercial de pollos de engorde perteneciente a Aviagen.
 
-## Datos rápidos del pollo
-| Dato | Valor |
-|---|---|
-| Días a sacrificio | Objetivos de 42 a 56 días [1] |
-| Peso (mixto) | 2.981 g a 42 d · 3.649 g a 49 d · 4.263 g a 56 d [1] |
-| Conversión | 1,548 a 42 d · 1,680 a 49 d · 1,810 a 56 d [1] |
-| Crecimiento | Rápido [1] |
-| Tipo de granja | Nave de engorde intensivo [1] |
+Arbor Acres es una marca con más de 80 años de trayectoria en genética avícola. Su línea Plus constituye uno de sus productos principales.
 
-## Cuidados
-Los mismos de un broiler rápido de Aviagen: confort térmico, control del buche y del peso a 7 días, y bioseguridad. [1][2]
+Está seleccionada para combinar buen crecimiento, eficiencia alimenticia, viabilidad y rendimiento al procesado.
 
-## Carácter
-Sin dato fiable.
+## Aspecto
 
-## Aspecto físico
-Pollo blanco de engorde. Sin foto libre que lo identifique.
+Existen dos versiones comerciales:
 
-## Sensibilidad a enfermedades
-No hay datos propios de la línea. Como broiler rápido, tiene los mismos riesgos si se alarga el engorde. [3] Ante cualquier problema de salud, consulta a un veterinario.
+- Arbor Acres Plus: ave de emplume rápido.
+- Arbor Acres Plus S: versión de emplume lento que permite distinguir el sexo por las características de las plumas, con hembras de emplume rápido y machos de emplume lento.
 
-## Para qué tipo de granjas se usa más
-Engorde industrial en nave. En qué países se usa más: sin dato fiable. [1]
+Ambas versiones presentan objetivos similares de crecimiento, conversión alimenticia y rendimiento cárnico.
+
+## Crecimiento y peso
+
+Objetivos oficiales de Aviagen de 2022 para aves mixtas:
+
+| Edad    | Peso vivo | Conversión alimenticia |
+| ------- | --------- | ---------------------- |
+| 35 días | 2,287 kg  | 1,416                  |
+| 42 días | 2,981 kg  | 1,548                  |
+| 49 días | 3,649 kg  | 1,680                  |
+| 56 días | 4,263 kg  | 1,810                  |
+
+Los resultados corresponden a condiciones adecuadas de manejo y alimentación.
+
+## Alimentación
+
+La selección genética de esta línea busca mantener una buena conversión alimenticia durante el engorde.
+
+Las versiones Plus y Plus S tienen las mismas necesidades nutricionales, según Aviagen.
+
+A los 42 días, el objetivo de conversión es 1,548.
+
+## Tipo de granja ideal
+
+Granjas comerciales de producción de carne que necesitan un crecimiento eficiente y un buen rendimiento de canal.
+
+También resulta interesante para explotaciones que desean utilizar el sexado por pluma mediante la versión Plus S.
 
 ## Ventajas
-Pesos y conversión parecidos a los del Ross 308. [1][2]
+
+- Buen potencial de crecimiento.
+- Conversión alimenticia eficiente.
+- Buen rendimiento en el procesado.
+- Dos versiones comerciales con diferente velocidad de emplume.
+- Posibilidad de sexado por pluma en Plus S.
+- Buena viabilidad, según la empresa genética.
 
 ## Desventajas
-Mismas exigencias de nave y pienso que cualquier broiler rápido. [1]
+
+- Los objetivos de crecimiento dependen de unas condiciones adecuadas de manejo.
+- La conversión alimenticia aumenta de 1,416 a los 35 días a 1,810 a los 56 días.
 
 ## Fuentes
-1. Aviagen, «Arbor Acres Plus Broiler Performance Objectives 2022». https://aviagen.com/assets/Tech_Center/AA_Broiler/ArborAcres-BroilerPerformanceObjectives2022-EN.pdf
-2. Aviagen, Ross 308 PO 2022. https://aviagen.com/assets/Tech_Center/Ross_Broiler/RossxRoss308-BroilerPerformanceObjectives2022-EN.pdf
-3. Penn State Extension. https://extension.psu.edu/a-quick-guide-to-raising-pastured-broilers
+
+- [Aviagen — Arbor Acres](https://aviagen.com/eu/brands/arbor-acres).
+- [Aviagen — Arbor Acres Plus](https://aviagen.com/eu/brands/arbor-acres/products/arbor-acres-plus).
+- [Aviagen — Arbor Acres Plus y Plus S, objetivos 2022](https://aviagen.com/assets/Tech_Center/AA_Broiler/ArborAcres-BroilerPerformanceObjectives2022-EN.pdf).

@@ -1,39 +1,53 @@
-# Pollo Ross 708
+# Ross 708
 
+## Origen
 
-Broiler blanco de Aviagen orientado a más rendimiento de carne, sobre todo en pollo pesado para despiece. [1]
+El Ross 708 es una línea comercial de pollos de engorde (broilers) perteneciente a la marca Ross, de la empresa de genética avícola Aviagen.
 
-## Datos rápidos del pollo
-| Dato | Valor |
-|---|---|
-| Días a sacrificio | Objetivos publicados de 42 a 56 días [1] |
-| Peso (mixto) | 2.862 g a 42 d · 3.514 g a 49 d · 4.122 g a 56 d [1] |
-| Conversión | 1,512 a 42 d · 1,642 a 49 d · 1,771 a 56 d [1] |
-| Crecimiento | Rápido [1] |
-| Tipo de granja | Nave de engorde intensivo [1] |
+Está orientado a la producción de carne, especialmente a mercados que demandan pollos de mayor peso y un elevado rendimiento cárnico. Aviagen destaca su utilidad para la producción de carne deshuesada.
 
-## Cuidados
-Mismos consejos de manejo que el resto de broilers rápidos de Aviagen: confort térmico, control del buche y del peso a 7 días, y bioseguridad. [1][2]
+## Aspecto
 
-## Carácter
-Sin dato fiable de carácter.
+Su selección genética está orientada a obtener aves con un elevado rendimiento de carne y buenas características para el procesado.
 
-## Aspecto físico
-Pollo blanco de crecimiento rápido. La guía no da más descripción. [1]
+## Crecimiento y peso
 
-## Sensibilidad a enfermedades
-Como en todo broiler rápido, el engorde largo trae riesgo de cojeras y problemas de corazón. [3] Ante cualquier problema de salud, consulta a un veterinario.
+Según los objetivos oficiales de Aviagen publicados en 2022, para lotes mixtos de machos y hembras:
 
-## Para qué tipo de granjas se usa más
-Integradoras y granjas de engorde en nave que venden pollo pesado o despiece. [1]
+| Edad    | Peso vivo | Conversión alimenticia |
+| ------- | --------- | ---------------------- |
+| 35 días | 2,191 kg  | 1,382                  |
+| 42 días | 2,862 kg  | 1,512                  |
+| 49 días | 3,514 kg  | 1,642                  |
+| 56 días | 4,122 kg  | 1,771                  |
+
+Estas cifras son objetivos de rendimiento bajo buenas condiciones de crianza, nutrición y manejo. No representan pesos garantizados.
+
+## Alimentación
+
+La eficiencia alimenticia es una de las características destacadas de esta línea, especialmente cuando las aves se crían hasta pesos elevados.
+
+Por ejemplo, a los 42 días, su objetivo de conversión es 1,512, lo que equivale aproximadamente a 1,512 kg de alimento por kilogramo de peso vivo producido, según el método de cálculo empleado por Aviagen.
+
+## Tipo de granja ideal
+
+Granjas dedicadas al engorde comercial que buscan producir pollos pesados y obtener un elevado rendimiento de carne.
+
+Resulta especialmente interesante para productores que comercializan aves destinadas al despiece y a la obtención de carne deshuesada.
 
 ## Ventajas
-Crecimiento y conversión de broiler industrial. [1]
+
+- Alto potencial de producción cárnica.
+- Buen rendimiento cuando se buscan pesos elevados.
+- Conversión alimenticia competitiva.
+- Orientación a mercados que demandan carne deshuesada.
 
 ## Desventajas
-Pesa algo menos que el Ross 308 a la misma edad según los objetivos de 2022 (por ejemplo, 2.862 g frente a 2.998 g a 42 días). La guía no da su rendimiento de pechuga en estos datos. [1][2]
+
+- Para alcanzar los objetivos publicados es necesario mantener buenas condiciones de manejo, ambiente y nutrición.
+- La conversión alimenticia aumenta conforme avanza el engorde: pasa de 1,382 a los 35 días a 1,771 a los 56 días.
 
 ## Fuentes
-1. Aviagen, «Ross 708 Broiler Performance Objectives 2022» (as-hatched). https://aviagen.com/assets/Tech_Center/Ross_Broiler/RossxRoss708-BroilerPerformanceObjectives2022-EN.pdf : pesos y conversión.
-2. Aviagen, Ross 308 Performance Objectives 2022. https://aviagen.com/assets/Tech_Center/Ross_Broiler/RossxRoss308-BroilerPerformanceObjectives2022-EN.pdf : comparación y consejos de manejo.
-3. Penn State Extension. https://extension.psu.edu/a-quick-guide-to-raising-pastured-broilers
+
+- [Aviagen — Ross 708, ficha oficial](https://aviagen.com/na/brands/ross/products/ross-708).
+- [Aviagen — Ross 708 Broiler Performance Objectives 2022](https://aviagen.com/assets/Tech_Center/Ross_Broiler/RossxRoss708-BroilerPerformanceObjectives2022-EN.pdf).

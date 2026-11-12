@@ -89,5 +89,3 @@ Para vacunas, enfermedades o tratamientos, consulta a un veterinario.
 1. The Poultry Club of Great Britain, «Autosexing: Cream Legbar». https://www.poultryclub.org/breeds/chickens/soft-feather-light/autosexing-cream-legbar/ : origen en Cambridge, Pease, cruce con Araucana para el huevo azul.
 2. Oklahoma State University, «Legbar Chickens». https://breeds.okstate.edu/poultry/chickens/legbar-chickens : Punnett y Pease, fecha de 1958, gallo unos 3 kg y gallina unos 2 kg, 4 huevos medianos por semana, mansa y clueca, busca bien su comida, sexado por el plumón.
 3. Rare Breeds Survival Trust, «Cream Legbar». https://www.rbst.org.uk/watchlist-breed/cream-legbar/ : 180–200 huevos azules, verdes u oliva al año, activa, resistente, come poco, rara vez clueca, autosexable, aves que perdieron el gen crema, estandarizada en 1958.
-
-Nota: la búsqueda web atribuye al Cream Legbar Club pesos de 3,40 kg (gallo) y 2,70 kg (gallina), pero no se pudo verificar en su web (creamlegbarclub.com dio error 521). No se usan.
