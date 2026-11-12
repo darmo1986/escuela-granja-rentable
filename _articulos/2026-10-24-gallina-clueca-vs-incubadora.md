@@ -7,15 +7,16 @@ fecha: 2026-10-24
 borrador: false
 leccion: l03
 producto: incubadora-24egg-dual
-imagen: img/blog/gallina-clueca.webp
-imagen_alt: "Gallina clueca marrón echada sobre huevos en un nido de paja dentro del gallinero"
-imagen_og: img/blog/gallina-clueca-og.webp
+imagen: "img/blog/gallina-clueca-vs-incubadora.webp"
+imagen_alt: "Gallina clueca de plumaje moteado empollando en un nido de paja, con un huevo debajo"
+imagen_og: "img/blog/gallina-clueca-vs-incubadora-og.webp"
 video: ""
 red: ""
 guia: incubadora
 fuentes:
   - "Lección L03 del curso gratis de Granja Rentable"
   - "Guías de manejo de incubación de las principales estirpes camperas"
+imagen_credito: "Foto: Cleur Monie, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_broody_hen_on_a_nest.jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
 ## La respuesta corta

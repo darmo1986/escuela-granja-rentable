@@ -32,3 +32,6 @@ ol.steps li { margin: .45em 0; }
 .post-foto { margin: 0 0 14px; }
 .post-foto img { width: 100%; max-width: 42rem; height: auto; border-radius: 16px; aspect-ratio: 16 / 9; object-fit: cover; background: #f4f1e8; }
 .blog-vacio { background: #fff; border-radius: 16px; padding: 16px 18px; border: 1px solid var(--line); }
+
+.post-foto figcaption { margin: 6px 0 0; max-width: 42rem; color: var(--muted); font-size: .875rem; line-height: 1.5; }
+.post-foto figcaption a { color: var(--gm); }

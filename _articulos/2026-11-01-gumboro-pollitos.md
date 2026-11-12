@@ -5,9 +5,10 @@ descripcion: "Enfermedad de Gumboro o bursitis infecciosa: por qué baja las def
 categoria: salud
 fecha: 2026-11-01
 borrador: false
-imagen: "img/blog/criar-pollitos-30-dias.webp"
-imagen_og: "img/blog/criar-pollitos-30-dias-og.webp"
-imagen_alt: "Pollitos de varios colores bajo una lámpara de calor, con bebedero y comedero sobre cama de viruta"
+imagen: "img/blog/gumboro-pollitos.webp"
+imagen_og: "img/blog/gumboro-pollitos-og.webp"
+imagen_alt: "Pollitos de engorde de pocos días sobre la viruta de una criadora, sin medicamentos a la vista"
+imagen_credito: "Foto: Earthdirt, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cornish_Rock_broiler_chicks.JPG) Imagen adaptada de tamaño y encuadre."
 ---
 
 La enfermedad de Gumboro, o bursitis infecciosa, es un problema típico de las primeras semanas de vida. A veces se ve claramente: pollitos postrados, con diarrea acuosa y plumas sucias alrededor de la cloaca. Otras veces no se ve nada, pero el lote queda con las defensas bajas y empieza a enfermar de todo. Por eso conviene conocerla aunque nunca la hayas oído nombrar.
