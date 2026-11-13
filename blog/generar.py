@@ -45,6 +45,7 @@ CATEGORIAS = (
     ("incubacion", "Incubación", "incubacion", "incubadora"),
     ("salud", "Salud", "salud", "espacio"),
     ("alimentacion", "Alimentación", "alimentacion", "empezar"),
+    ("negocios", "Negocios con gallinas", "negocios-con-gallinas", "empezar"),
 )
 CATS = {c[0]: {"nombre": c[1], "slug": c[2], "guia": c[3]} for c in CATEGORIAS}
 SLUGS_CAT = {c[2] for c in CATEGORIAS}
@@ -576,7 +577,7 @@ def normalizar(raiz, ruta, datos, cuerpo, origen, catalogo, incluir_borradores):
     exigir_limpio(descripcion, origen, "la descripcion")
     cat = campo(datos, "categoria")
     if cat not in CATS:
-        raise Fallo(f"{origen}: categoria tiene que ser ponedoras, engorde, incubacion, salud o alimentacion.")
+        raise Fallo(f"{origen}: categoria tiene que ser ponedoras, engorde, incubacion, salud, alimentacion o negocios.")
     if "fecha" not in datos or not str(datos.get("fecha", "")).strip():
         raise Fallo(f"{origen}: falta la fecha.")
     fecha = a_fecha(datos["fecha"], origen, "fecha")
@@ -891,7 +892,8 @@ def ebook_y_amazon(rel, post=None):
     if rel in ("index.html", "blog/index.html") or rel.startswith("blog/pagina-"):
         return "pack", None
     if rel in ("blog/gallinas-ponedoras.html", "blog/pollos-de-engorde.html",
-               "blog/incubacion.html", "blog/salud.html", "blog/alimentacion.html"):
+               "blog/incubacion.html", "blog/salud.html", "blog/alimentacion.html",
+               "blog/negocios-con-gallinas.html"):
         return "pack", None
     blob = rel.lower()
     if post:
@@ -1526,7 +1528,7 @@ def planificar(raiz, incluir_borradores=False):
         return [str(exc)], {}, []
     catalogo = cargar_catalogo(raiz)
     titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
-    descripcion_blog = ("Artículos cortos sobre gallinas ponedoras, pollos de engorde, incubación, salud y alimentación, "
+    descripcion_blog = ("Artículos sobre gallinas ponedoras, pollos de engorde, incubación, salud, alimentación y negocios, "
                         "con guías prácticas y fuentes para ampliar la información.")
     og_portada = LOGO
     cortes = repartir_posts(len(visibles), POR_PAGINA) if visibles else [(0, 0)]
@@ -1542,7 +1544,7 @@ def planificar(raiz, incluir_borradores=False):
         else:
             titulo_pagina = f"Artículos de avicultura, página {numero} | Granja Rentable"
             descripcion_pagina = (f"Página {numero} de los artículos de avicultura de Granja Rentable: "
-                                  "gallinas, pollos, incubación, salud y alimentación.")
+                                  "gallinas, pollos, incubación, salud, alimentación y negocios.")
             h1 = f"Artículos de avicultura, página {numero}"
             lead = (f"Página {numero}. Textos cortos y prácticos para tu granja. "
                     "Encontrarás explicaciones prácticas y sus fuentes de información.")
@@ -1685,4 +1687,3 @@ def main(argv):
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
-
