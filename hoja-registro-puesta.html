@@ -26,12 +26,21 @@
 <script src="js/boot.js?v=20261110d"></script>
 <style>
 .hoja-acciones{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.hoja-semana table{min-width:760px}
+.hoja-semana caption{text-align:left;font-weight:700;margin-bottom:8px}
+.hoja-semana:focus-visible{outline:3px solid var(--g);outline-offset:3px}
 .hoja-check{list-style:none;padding:0}
 .hoja-check li{margin:8px 0}
 @media print{
   header,.foot,.wa-float,.no-print{display:none !important}
   body{background:#fff}
   a{color:inherit;text-decoration:none}
+  .hoja-semana{overflow:visible}
+  .hoja-semana table{min-width:0;width:100%;table-layout:fixed;font-size:8pt}
+  .hoja-semana th,.hoja-semana td{position:static;padding:5px 3px;overflow-wrap:anywhere}
+  .hoja-semana tbody td{height:26px}
+  .hoja-semana tr{break-inside:avoid}
+  .hoja-cuenta{display:none !important}
 }
 </style>
 </head>
@@ -127,35 +136,43 @@
 <h1>Hoja de registro de puesta y pienso</h1>
 <p>Una semana en blanco para anotar aves, huevos enteros, rotos y kilos de pienso. La descarga no pide el correo y no crea una cuenta.</p>
 <p class="hoja-acciones no-print"><a class="btn gold" href="descargas/hoja-registro-puesta.csv" download>Descargar CSV</a> <button class="btn sec" type="button" onclick="window.print()">Imprimir esta hoja</button></p>
-<p>El archivo CSV trae los siete días y las columnas vacías. Ábrelo en tu hoja de cálculo. Si las columnas salen juntas, indica que el separador es la coma. Esta página no guarda lo que escribas.</p>
+<p class="no-print">El archivo CSV trae los siete días y las columnas vacías. Ábrelo en tu hoja de cálculo. Si las columnas salen juntas, indica que el separador es la coma. Esta página no guarda lo que escribas.</p>
 </section>
 <section class="panel">
-<h2>La cuenta, cuando la semana esté llena</h2>
-<p>Escribe aquí el precio por kilo de este saco: __________ . Lo pones tú. Esta hoja no trae un precio.</p>
-<ul class="steps">
-<li>Huevos vendibles del periodo = huevos enteros. Los rotos no entran.</li>
-<li>Docenas = huevos vendibles ÷ 12.</li>
-<li>Coste del pienso = kilos echados × precio por kilo.</li>
-<li>Coste de pienso por docena = coste del pienso ÷ docenas.</li>
-</ul>
-<p>Eso es el pienso, no el beneficio. Faltan las aves, la cama, la luz y tu tiempo. L01 cita a la FAO: el alimento suele ser el 60–80 % del coste de insumos. No apliques ese porcentaje como si fuera tu factura. Si una semana no tiene huevos enteros, no dividas.</p>
-<p>Un ejemplo ya resuelto, marcado como cuenta de práctica y no como lote real, está en <a href="blog/registros-granja-avicola.html">qué anotar en la granja</a>. Cuando tengas tus números, pásalos a la <a href="calculadoras.html#coste-docena">calculadora de coste por docena</a>.</p>
-</section>
-<section class="panel">
-<h2>Semana</h2>
-<div class="tabla"><table>
-<thead><tr><th>Día</th><th>Aves vivas</th><th>Huevos enteros</th><th>Rotos</th><th>Kilos de pienso</th><th>Agua revisada</th><th>Nota</th></tr></thead>
+<h2 id="semana-titulo">Semana</h2>
+<p>Lote: ____________________ · Del __________ al __________ · Moneda: __________</p>
+<p>Pienso en comederos al empezar: ______ kg · Al terminar: ______ kg.</p>
+<p id="semana-ayuda" class="no-print">En pantallas estrechas, desplaza la tabla lateralmente. También puedes enfocarla con el teclado y usar las flechas. Para escribir, descarga el CSV o imprime la hoja.</p>
+<div class="tabla hoja-semana" role="region" aria-labelledby="semana-titulo" aria-describedby="semana-ayuda" tabindex="0"><table>
+<caption>Registro diario del mismo lote: siete días</caption>
+<thead><tr><th scope="col">Día</th><th scope="col">Aves vivas al empezar</th><th scope="col">Huevos enteros</th><th scope="col">Rotos o no aptos</th><th scope="col">Kg de pienso añadidos</th><th scope="col">Precio por kg</th><th scope="col">Agua revisada</th><th scope="col">Nota</th></tr></thead>
 <tbody>
-<tr><td>Lunes</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Martes</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Miércoles</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Jueves</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Viernes</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Sábado</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Domingo</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th scope="row">Lunes</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th scope="row">Martes</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th scope="row">Miércoles</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th scope="row">Jueves</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th scope="row">Viernes</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th scope="row">Sábado</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th scope="row">Domingo</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
 </tbody>
 </table></div>
+<p>Huevos aprovechables: ______ · Rotos o no aptos: ______ · Pienso añadido: ______ kg · Pienso utilizado: ______ kg.</p>
+<p><strong>Al cerrar la semana:</strong> suma los huevos y los kilos añadidos. No sumes las aves vivas ni los precios por kilo: describe los cambios de lote y de precio en las notas.</p>
+</section>
+<section class="panel hoja-cuenta">
+<h2>La cuenta, cuando la semana esté llena</h2>
+<p>Anota el pienso que repones, su precio por kilo y los huevos aprovechables del mismo lote y periodo. Usa siempre la misma moneda. En las notas, apunta derrames, cambios de saco y alimento que quede en los comederos al empezar y terminar.</p>
+<ul class="steps">
+<li><strong>Pienso utilizado:</strong> remanente inicial + kilos añadidos − remanente final. Incluye el desperdicio que se ha pagado; no equivale solo a lo que comieron las aves. Si solo conoces las reposiciones, identifica el resultado como una estimación.</li>
+<li><strong>Coste del pienso:</strong> kilos utilizados × precio por kilo. Si utilizas sacos con precios distintos, calcula el coste de cada cantidad y suma los importes; no sumes los precios por kilo.</li>
+<li><strong>Docenas aprovechables:</strong> huevos enteros aptos para el destino previsto ÷ 12. No son necesariamente huevos vendidos. Separa los rotos y los no aptos.</li>
+<li><strong>Coste de pienso por docena:</strong> coste del pienso del periodo ÷ docenas aprovechables. Si no hay huevos aprovechables, registra el gasto y deja este cociente sin calcular.</li>
+</ul>
+<p><strong>Ejemplo ficticio de práctica:</strong> 14 kg utilizados a 0,50 por kg cuestan 7,00. Si se obtienen 60 huevos aprovechables, son 5 docenas y el pienso cuesta 1,40 por docena. Los importes están en una misma moneda a elección; no representan precios, consumos ni resultados reales de una granja.</p>
+<p>Esta cuenta cubre solo el pienso. El coste completo puede incluir aves, cama, agua, electricidad, envases, transporte, instalaciones y trabajo. Los ingresos corresponden a las ventas; el beneficio exige descontar los costes que correspondan al mismo periodo.</p>
+<p class="hoja-acciones no-print"><a class="btn gold" href="calculadoras.html#coste-docena">Calcular mi coste de pienso</a> <a class="btn sec" href="blog/cuanto-cuesta-producir-docena-huevos.html">Revisar el coste completo</a></p>
+<p>También puedes consultar <a href="blog/registros-granja-avicola.html">qué anotar en la granja</a> para organizar otros registros.</p>
 </section>
 <section class="panel">
 <h2>Revisión del día</h2>
@@ -164,9 +181,9 @@
 <li>☐ Pienso en el comedero y seco. Lo que cae a la cama no cuenta como comido.</li>
 <li>☐ Huevos recogidos. Los rotos, en su columna.</li>
 <li>☐ Nidos revisados. L01 cita un ponedero cada 4 o 5 gallinas (Virginia Tech).</li>
-<li>☐ Si un ave está apartada, coja o con la cresta pálida, anótalo. Si sigue, llama al veterinario. No escribas un medicamento ni una dosis.</li>
+<li>☐ Si un ave está apartada, coja o con la cresta pálida, anótalo. Solicita valoración veterinaria si presenta signos de enfermedad; si son graves o hay bajas, no esperes a cerrar el registro semanal.</li>
 </ul>
-<p>Si la puesta cae, el orden de revisión está en <a href="blog/por-que-mis-gallinas-no-ponen-huevos.html">por qué no ponen</a>. La ración, en <a href="blog/alimentacion-gallinas-ponedoras.html">qué comen las ponedoras</a>. Las guías escritas están en <a href="ebooks/">Ebooks</a>; esta hoja no cambia su precio.</p>
+<p>Si la puesta cae, el orden de revisión está en <a href="blog/por-que-mis-gallinas-no-ponen-huevos.html">por qué no ponen</a>. La ración, en <a href="blog/alimentacion-gallinas-ponedoras.html">qué comen las ponedoras</a>. Si necesitas ampliar la formación, puedes consultar las <a href="ebooks/">guías de pago en PDF</a>. Esta hoja y la calculadora son gratuitas.</p>
 </section>
 </main>
 <footer class="foot">
