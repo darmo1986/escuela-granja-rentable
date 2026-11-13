@@ -49,3 +49,13 @@
  .gr-home-search-fields input,.gr-home-search-fields .btn{flex-basis:100%;width:100%}
 }
 
+
+/* Accesos persistentes: no dependen de la diapositiva visible. */
+.gr-quick strong{display:block;font-size:1rem;line-height:1.3}
+.gr-quick small{display:block;font-size:.78rem;font-weight:500;line-height:1.4;margin-top:4px;color:#52634d}
+.gr-quick a:focus-visible,.gr-jump a:focus-visible{outline:3px solid #17452b;outline-offset:-3px;background:#eaf1e5}
+.gr-jump{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:20px 0 0;font-size:.88rem}
+.gr-jump>span{font-weight:700;color:#52634d}
+.gr-jump a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #dcded0;border-radius:999px;background:#fffdf8;font-weight:700;text-underline-offset:3px}
+#problemas-titulo,#herramientas-titulo,#video-titulo{scroll-margin-top:160px}
+@media(max-width:599px){.gr-quick a{align-items:flex-start;min-height:84px}.gr-jump{gap:6px}.gr-jump a{padding:8px 10px}}
