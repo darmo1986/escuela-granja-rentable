@@ -953,18 +953,23 @@
     /* Intención de pago: clic en un enlace de pago o en WhatsApp.
        No se frena la navegación: el envío va con keepalive y en segundo plano. */
     document.addEventListener("click", function (ev) {
-      var t = ev.target && ev.target.closest ? ev.target.closest("a") : null;
-      if (!t) return;
+      var t = ev.target && ev.target.closest ? ev.target.closest("a, button[data-stripe-ebook]") : null;
+      if (!t || t.disabled) return;
+      var ebook = t.getAttribute("data-stripe-ebook");
+      if (ebook) {
+        var casilla = document.querySelector('[data-ebook-check="' + ebook + '"]');
+        if (!casilla || !casilla.checked) return;
+      }
       var href = t.href || "";
-      var esPago = t.hasAttribute("data-checkout") || t.classList.contains("js-comprar");
+      var esPago = !!ebook || t.hasAttribute("data-checkout") || t.classList.contains("js-comprar");
       var esWhats = href.indexOf("wa.me/") > -1;
       if (!esPago && !esWhats) return;
 
       var producto = "";
       var canal = "";
       if (esPago) {
-        canal = "pago";
-        producto = t.getAttribute("data-producto") || "Pago";
+        canal = "tienda";
+        producto = ebook || t.getAttribute("data-producto") || "Pago";
       } else {
         canal = "whatsapp";
         var m = /[?&]text=([^&]+)/.exec(href);
@@ -983,7 +988,7 @@
       /* Aviso al correo vía la aplicación de formularios (Apps Script):
          solo surte efecto con el Codigo.gs actualizado (tipo «compra»). */
       var endpoint = (GR.formEndpoint || "").trim();
-      if (endpoint) {
+      if (endpoint && !ebook) {
         try {
           var cuerpo = new URLSearchParams({
             tipo: "compra", interes: producto, origen: ruta
