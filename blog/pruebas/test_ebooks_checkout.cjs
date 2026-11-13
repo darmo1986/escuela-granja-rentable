@@ -17,8 +17,9 @@ function setup() {
     };
   }
   const location = {search: '', href: ''};
+  const events = {};
   const document = {
-    querySelectorAll(selector) {return products.map(product => elements[product][selector === '[data-ebook-check]' ? 'box' : 'button']);},
+    querySelectorAll(selector) {return products.map(product => elements[product][selector === '[data-ebook-check]' ? 'box' : selector === '[data-stripe-mensaje]' ? 'message' : 'button']);},
     querySelector(selector) {
       const product = selector.match(/="(.*?)"/)[1];
       const type = selector.includes('data-ebook-check') ? 'box' : selector.includes('data-stripe-ebook') ? 'button' : 'message';
@@ -26,15 +27,15 @@ function setup() {
     }
   };
   vm.runInNewContext(script, {
-    document, window: {location}, URLSearchParams, Date,
+    document, window: {location, addEventListener(name, fn) {events[name] = fn;}}, URLSearchParams, Date,
     localStorage: {setItem() {}}, sessionStorage: {setItem() {}},
     fetch(url, options) {return new Promise((resolve, reject) => requests.push({data: JSON.parse(options.body), resolve, reject}));}
   });
-  return {elements, requests, location};
+  return {elements, requests, location, events};
 }
 const settle = () => new Promise(resolve => setImmediate(resolve));
 (async () => {
-  const {elements, requests, location} = setup();
+  const {elements, requests, location, events} = setup();
   const first = elements[products[0]], second = elements[products[1]];
   assert(products.every(product => elements[product].button.disabled));
   first.button.click();
@@ -64,5 +65,11 @@ const settle = () => new Promise(resolve => setImmediate(resolve));
   await settle();
   assert.equal(location.href, 'https://checkout.stripe.com/test');
   assert(products.every(product => elements[product].button.disabled));
+  events.pageshow({persisted: false});
+  assert(second.button.disabled);
+  events.pageshow({persisted: true});
+  assert(first.button.disabled);
+  assert.equal(second.button.disabled, false);
+  assert(second.message.textContent.includes('Has vuelto al catálogo'));
   console.log('Checkout comprobado con solicitudes simuladas, concurrencia, fallos y reintento.');
 })().catch(error => {console.error(error);process.exitCode = 1;});

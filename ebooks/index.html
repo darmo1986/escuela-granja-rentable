@@ -290,6 +290,16 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
     caja.addEventListener("change", actualizarBotones);
   });
   actualizarBotones();
+  window.addEventListener("pageshow", function (evento) {
+    if (!evento.persisted) return;
+    pagoEnCurso = false;
+    actualizarBotones();
+    document.querySelectorAll("[data-stripe-mensaje]").forEach(function (aviso) {
+      if (aviso.textContent === "Redirigiendo a la página de pago seguro…") {
+        aviso.textContent = "Has vuelto al catálogo. Revisa el estado de tu pago antes de iniciar otra compra.";
+      }
+    });
+  });
   document.querySelectorAll("[data-stripe-ebook]").forEach(function (boton) {
     boton.addEventListener("click", function () {
       if (pagoEnCurso) return;
