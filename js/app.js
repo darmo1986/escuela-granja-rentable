@@ -5,13 +5,20 @@ const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p
 const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
 /* Piloto: un banner 300×250 en artículos, siempre con consentimiento nuevo. */
 function adsOn(){return !!(window.ads && window.ads.activo === true);}
+let adsterraObserver=null;
+function retirarPiloto(){
+  if(adsterraObserver){adsterraObserver.disconnect();adsterraObserver=null;}
+  document.querySelectorAll('[data-adsterra-pilot]').forEach(el=>el.remove());
+}
 function ocultarHuecos(){
+  retirarPiloto();
   document.documentElement.classList.remove('ad-ok');
   document.querySelectorAll('.ad-inline,[data-adsterra-pilot]').forEach(el=>el.remove());
 }
 if(!adsOn())ocultarHuecos();
 function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === true);}
 function mountAdsterraPilot(){
+  if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
   if(document.querySelector('[data-adsterra-pilot]'))return;
   if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return;
   const article=document.querySelector('main .post-body');
@@ -32,7 +39,7 @@ function mountAdsterraPilot(){
   box.append(label,frame);
   article.appendChild(box);
   const mount=()=>{
-    if(box.dataset.loaded || !adsOn() || esPremiumLocal())return;
+    if(!box.isConnected || box.dataset.loaded || !adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
     let accepted=false;
     try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
     if(!accepted)return;
@@ -40,15 +47,16 @@ function mountAdsterraPilot(){
     frame.srcdoc='<!doctype html><html><head><meta name="referrer" content="no-referrer"></head><body style="margin:0"><script>var atOptions={key:"4c10efc097372233b52ed4f05e0a6ab8",format:"iframe",height:250,width:300,params:{}};<\/script><script src="https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8"><\/script></body></html>';
   };
   if('IntersectionObserver' in window){
-    const io=new IntersectionObserver(entries=>{
-      if(entries.some(e=>e.isIntersecting)){io.disconnect();mount();}
+    adsterraObserver=new IntersectionObserver(entries=>{
+      if(entries.some(e=>e.isIntersecting)){
+        if(adsterraObserver){adsterraObserver.disconnect();adsterraObserver=null;}
+        mount();
+      }
     },{rootMargin:'100px'});
-    io.observe(box);
+    adsterraObserver.observe(box);
   }else mount();
 }
-/* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
-   gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
-   html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
+/* Se comprueba Premium antes de montar y antes de cargar el anuncio. */
 function esPremiumLocal(){
   if (typeof window.GR_esPremium === 'function' && window.GR_esPremium()) return true;
   var u = window.GRAuth && window.GRAuth.usuarioActual;
@@ -66,7 +74,7 @@ function quitarAnuncios(){
   if (b) b.remove();
   var nota = document.getElementById('cookie-note');
   if (nota) nota.remove();
-  document.querySelectorAll('[data-adsterra-pilot]').forEach(el=>el.remove());
+  retirarPiloto();
   window.__adsLoaded = 1;
 }
 window.GR_quitarAnuncios = quitarAnuncios;
@@ -98,7 +106,7 @@ function paginaSinAnuncios(){
 }
 function loadAds(){
   if(paginaSinAnuncios()){quitarAnuncios();return;}
-  if(!adsOn()){ocultarHuecos();return;}
+  if(!adsOn() || !adsConfigured()){ocultarHuecos();return;}
   if(esPremiumLocal()){ quitarAnuncios(); return; }
   if(window.__adsLoaded)return;
   window.__adsLoaded=1;
@@ -193,15 +201,23 @@ function arrancarAnuncios(){
     else decidirAnuncios();
   }, 12000);
 }
+/* Una retirada en otra pestaña elimina también el anuncio de esta página. */
+window.addEventListener('storage',e=>{
+  if(e.key!==CK && e.key!==null)return;
+  let accepted=false;
+  try{accepted=localStorage.getItem(CK)==='si';}catch(err){}
+  if(!accepted){retirarPiloto();window.__adsLoaded=0;document.documentElement.classList.remove('ad-ok');}
+});
 arrancarAnuncios();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
   if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
   localStorage.removeItem(CK);
+  retirarPiloto();
+  window.__adsLoaded=0;
   document.documentElement.classList.remove('ad-ok');
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
-  if(window.__adsLoaded){location.reload();return;}
   if(!adsConfigured()){ alert('Ahora mismo este sitio no usa cookies publicitarias.'); return; }
   const prev=document.getElementById('cookie-banner');
   if(prev) prev.remove();
