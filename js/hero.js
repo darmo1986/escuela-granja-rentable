@@ -9,14 +9,14 @@
   var current = slides.findIndex(function (slide) { return slide.classList.contains('is-active'); });
   if (current < 0) current = 0;
   var initial = current;
-  var timer, manual = null;
+  var timer, manual = null, visible = true;
   var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var pause = hero.querySelector('[data-hero-pause]');
   function paused() { return manual === null ? motion.matches : manual; }
   hero.classList.add('js-hero');
   function schedule() {
     clearTimeout(timer);
-    if (!paused() && !document.hidden && !hero.matches(':hover, :focus-within')) {
+    if (visible && !paused() && !document.hidden && !hero.matches(':hover, :focus-within')) {
       timer = setTimeout(function () { show(current + 1); }, 5000);
     }
   }
@@ -40,6 +40,24 @@
   hero.addEventListener('focusout', function () { setTimeout(schedule, 0); });
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', function () { show(current); });
+  hero.addEventListener('keydown', function (event) {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    manual = true;
+    // Mantener el foco en un control visible si la diapositiva actual se oculta.
+    if (slides.some(function (slide) { return slide.contains(document.activeElement); })) {
+      var next = (current + (event.key === 'ArrowRight' ? 1 : -1) + slides.length) % slides.length;
+      dots[next].focus();
+    }
+    show(current + (event.key === 'ArrowRight' ? 1 : -1));
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      schedule();
+    }).observe(hero);
+  }
   window.addEventListener('gr-pais', function () { show(initial); });
   show(initial);
 })();

@@ -365,6 +365,13 @@ class Generador(unittest.TestCase):
         self.assertIn(f"css/estilo.css?v={generar.VERSION_ACTIVOS}", html)
         self.assertIn(f"js/boot.js?v={generar.VERSION_ACTIVOS}", html)
 
+    def test_piloto_no_activa_huecos_heredados(self):
+        (self.tmp / "js").mkdir(exist_ok=True)
+        (self.tmp / "js" / "config.js").write_text("window.ads = { activo: true, adsterraPilot: true };", encoding="utf-8")
+        self.assertFalse(generar.anuncios_activos(self.tmp))
+        html = generar.poner_version('<link href="css/inicio.css?v=antigua"><script src="js/hero.js?v=antigua"></script>')
+        self.assertEqual(html.count('v=' + generar.VERSION_PORTADA), 2)
+
     def test_version_con_letras_se_sustituye(self):
         html = generar.poner_version('<link href="css/estilo.css?v=20261109a"><script src="js/app.js?v=1"></script>')
         self.assertIn(f"css/estilo.css?v={generar.VERSION_ACTIVOS}\"", html)
@@ -628,14 +635,14 @@ class Generador(unittest.TestCase):
 
 
 class ConfiguracionReal(unittest.TestCase):
-    """js/config.js del repositorio: Amazon como relleno detrás del ebook, sin redes de anuncios."""
+    """Amazon de relleno y piloto aislado sin huecos publicitarios heredados."""
 
-    def test_amazon_con_etiqueta_y_anuncios_apagados(self):
+    def test_amazon_y_piloto_sin_huecos_heredados(self):
         self.assertEqual(generar.etiqueta_amazon(RAIZ), "granjarentabl-20")
         self.assertFalse(generar.anuncios_activos(RAIZ))
         config = (RAIZ / "js" / "config.js").read_text(encoding="utf-8").lower()
         self.assertNotIn("adsbygoogle", config)
-        self.assertNotIn("adsterra", config)
+        self.assertRegex(config, r"adsterrapilot\s*:\s*true")
 
     def test_hueco_amazon_va_detras_del_ebook(self):
         html = (RAIZ / "blog" / "incubacion-dia-a-dia.html").read_text(encoding="utf-8")

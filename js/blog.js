@@ -1,10 +1,12 @@
 /* Artículos: el video carga al pulsar.
-   No hay red de anuncios de terceros: se ocultan los huecos viejos. */
+   El piloto de publicidad lo controla app.js después del consentimiento. */
 (function () {
+  if (!(window.ads && window.ads.activo === true)) {
   if (typeof window.GR_quitarAnuncios === "function") window.GR_quitarAnuncios();
   else {
     document.documentElement.classList.add("ad-off");
     document.documentElement.classList.remove("ad-ok");
+  }
   }
   document.querySelectorAll(".yt-facade[data-yt]").forEach(function (b) {
     b.addEventListener("click", function () {
@@ -51,4 +53,5 @@
     });
   }
 })();
+
 

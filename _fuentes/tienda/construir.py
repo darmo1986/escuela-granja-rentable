@@ -544,6 +544,25 @@ def orientacion_comederos(cat, raiz):
 </section>'''
 
 
+def orientacion_seguridad(cat, raiz):
+    """Conecta la necesidad de seguridad con criterios y mantenimiento."""
+    criterios = {
+        "Malla y vallas": ("Antes de elegir la malla", "Anota medidas, abertura, diámetro de alambre y soporte de fijación. Distingue una red de cubierta de una malla metálica para cerramientos; revisa el uso que declara cada ficha."),
+        "Puertas automáticas y cierres": ("Antes de elegir el cierre", "Mide el paso y el espacio de montaje. En una puerta automática revisa alimentación, programación, apertura manual y mantenimiento según sus instrucciones. Automatizar no sustituye comprobar el cierre."),
+        "Almacenaje de pienso": ("Antes de elegir el recipiente", "Calcula cuánto alimento guardas y mide el lugar disponible. Revisa cierre, material, acceso para limpieza y uso previsto. La capacidad nominal no demuestra por sí sola protección frente a roedores."),
+    }
+    if cat not in criterios:
+        return ""
+    titulo, texto = criterios[cat]
+    return f'''<section class="t-bloque" data-orientacion-seguridad aria-labelledby="seguridad-elegir-titulo">
+<h2 id="seguridad-elegir-titulo">{esc(titulo)}</h2>
+<p>{esc(texto)}</p>
+<p>Empieza por la <a href="{raiz}blog/corral-anti-depredadores.html">revisión de puerta, malla, suelo y techo del gallinero</a>. Anota el punto débil antes de valorar una compra.</p>
+<p><a href="{raiz}lista.html">Organiza las revisiones en tu lista y calendario</a>. Si detectas una rotura, no esperes a la próxima revisión programada.</p>
+<p>El catálogo reúne productos con funciones diferentes. Comprueba sus instrucciones y compatibilidad; la presencia en esta categoría no garantiza que un equipo resuelva tu problema.</p>
+</section>'''
+
+
 def cuerpo_categoria(cat, grupo, productos, raiz):
     otros = []
     for sid, _titulo, cats in SECCIONES:
@@ -578,6 +597,7 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 </header>
 {guia_pollitos(grupo[0], raiz)}
 {orientacion_comederos(cat, raiz)}
+{orientacion_seguridad(cat, raiz)}
 {inicio_catalogo}
 <div class="t-filtros">
 <div class="t-buscar">

@@ -95,6 +95,7 @@ TITULO_MAX_EXTRA = {
 }
 VERSION_ACTIVOS = "20261113herramientas"
 VERSION_BANNERS = "20261113banners"
+VERSION_PORTADA = "20261113orientacion"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -793,6 +794,8 @@ def poner_version(html):
             "js/ofertas.js", "js/registro-banners.js",
             "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css", "js/calculadoras.js", "js/lista.js", "js/guias.js", "js/auth.js"):
         version = VERSION_BANNERS if nombre in {"js/ofertas.js", "js/registro-banners.js"} else VERSION_ACTIVOS
+        if nombre in {"css/inicio.css", "js/hero.js"}:
+            version = VERSION_PORTADA
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
             rf'\1?v={version}"',
@@ -848,6 +851,8 @@ def anuncios_activos(raiz):
     """True solo si el interruptor de js/config.js está en true.
 
     Con false, o si falta el archivo, el blog no pinta huecos de anuncio.
+    El piloto Adsterra crea su único iframe desde app.js tras el consentimiento;
+    no debe activar los huecos heredados de cabecera y lateral.
     """
     ruta = Path(raiz) / "js" / "config.js"
     try:
@@ -856,6 +861,8 @@ def anuncios_activos(raiz):
         return False
     coincidencia = re.search(r"window\.ads\s*=\s*\{([^}]*)\}", texto)
     if not coincidencia:
+        return False
+    if re.search(r"\badsterraPilot\s*:\s*true\b", coincidencia.group(1)):
         return False
     return re.search(r"\bactivo\s*:\s*true\b", coincidencia.group(1)) is not None
 
