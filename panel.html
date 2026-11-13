@@ -61,7 +61,7 @@
 </main>
 <footer class="foot">
 <div class="wrap">
-<p class="fine">Panel interno de Granja Rentable. Una <strong>intención de compra</strong> es el clic en un enlace de pago o en un WhatsApp de producto: todavía no es una venta. La venta confirmada de un ebook la registra Stripe.</p>
+<p class="fine">Panel interno de Granja Rentable. Una <strong>intención de compra</strong> es el clic en un botón de ebook, un enlace de pago o un WhatsApp de producto: todavía no es una venta. La venta confirmada de un ebook la registra Stripe.</p>
 </div>
 </footer>
 
@@ -115,7 +115,7 @@
       "<tr><th>Cloudflare Web Analytics (estadísticas sin cookies)</th><td>" +
         (cfOk ? "<span class='panel-estado activo'>Activo</span> — token puesto en js/config.js." : "<span class='panel-estado pendiente'>Pendiente</span> — falta crear el sitio en Cloudflare → Analytics → Web Analytics y pegar el token en js/config.js (GR.analitica.cfToken).") + "</td></tr>" +
       "<tr><th>Aviso por correo al pulsar un enlace de pago</th><td><span class='panel-estado pendiente'>Pendiente</span> — hay que pegar el Codigo.gs actualizado en Apps Script y redesplegar la aplicación web. Hasta entonces, las intenciones se ven aquí y en la revisión diaria.</td></tr>" +
-      "<tr><th>Venta confirmada (pago en Stripe)</th><td>El aviso de venta de verdad lo manda Stripe: en su panel, Ajustes, Correos, activa el aviso de pago correcto. Esta web no ve los pagos.</td></tr>" +
+      "<tr><th>Venta confirmada (pago en Stripe)</th><td>El aviso de venta de verdad lo manda Stripe: en su panel, Ajustes, Correos, activa el aviso de pago correcto. Los contadores de este panel recogen clics. Consulta en Stripe los pagos confirmados y sus reembolsos.</td></tr>" +
       "</table>";
   }
 
@@ -123,7 +123,7 @@
     var html = "";
     if ((d.intenciones_hoy || 0) > 0) {
       html += "<div class='panel-alarma'>🛒 Hoy hay " + d.intenciones_hoy +
-        " intención(es) de pago. Mira la lista de abajo: alguien ha pulsado un enlace de pago o un WhatsApp.</div>";
+        " intención(es) de pago. Mira la lista de abajo: alguien ha pulsado un botón de ebook, un enlace de pago o un WhatsApp.</div>";
     }
     var sinDatos = !(d.visitas_30d || 0) && !(d.intenciones_7d || 0) &&
       !(d.top_rutas_7d && d.top_rutas_7d.length) &&
@@ -161,7 +161,7 @@
         html += "<tr><td>" + fechaHora(i.creado) + "</td><td>" + esc(i.producto) + "</td><td>" +
           (i.pais ? esc(i.pais) : "—") + "</td><td>" +
           "<span class='panel-canal " + (esWa ? "wa" : "pago") + "'>" +
-          (esWa ? "WhatsApp" : "Pago") + "</span></td></tr>";
+          (esWa ? "Clic en WhatsApp" : "Clic de pago") + "</span></td></tr>";
       });
       html += "</table>";
     } else {
