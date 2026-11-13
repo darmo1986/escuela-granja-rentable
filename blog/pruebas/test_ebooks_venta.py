@@ -16,7 +16,7 @@ class EbooksVenta(unittest.TestCase):
         self.menu = MENU.read_text(encoding="utf-8")
 
     def test_cinco_ebooks_a_tres_y_premium_a_29(self):
-        self.assertIn("Los cinco ebooks cuestan 3,00 USD. Y si quieres ayuda personal, el asesoramiento Premium cuesta 29 € al mes.", self.html)
+        self.assertIn("Cada ebook disponible cuesta 3,00 USD. Y si quieres ayuda personal, el asesoramiento Premium cuesta 29 € al mes.", self.html)
         self.assertIn('href="../premium.html"', self.html)
         self.assertNotIn("No hay portada", self.html)
         self.assertNotIn("guia-avicultura", self.html)
