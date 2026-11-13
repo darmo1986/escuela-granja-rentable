@@ -47,6 +47,7 @@ CATEGORIAS = (
     ("alimentacion", "Alimentación", "alimentacion", "empezar"),
     ("negocios", "Negocios con gallinas", "negocios-con-gallinas", "empezar"),
     ("codornices", "Cuidados de codornices", "cuidados-codornices", "empezar"),
+    ("gallos", "Gallos: cuidados y manejo", "gallos", "empezar"),
 )
 CATS = {c[0]: {"nombre": c[1], "slug": c[2], "guia": c[3]} for c in CATEGORIAS}
 SLUGS_CAT = {c[2] for c in CATEGORIAS}
