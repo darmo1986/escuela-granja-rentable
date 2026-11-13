@@ -576,6 +576,17 @@ Para contrastar formatos y capacidades, consulta la <a href="{raiz}comparativas/
 </section>'''
 
 
+def guia_comederos(p, raiz):
+    """Vuelve desde las tres fichas del recorrido a los criterios y el registro."""
+    if p["asin"] not in {"B00TXW0UQK", "B00TXX20GW", "B07MQW8MQK"}:
+        return ""
+    return f'''<section class="t-bloque" data-guia-comederos>
+<h2>Compara antes de elegir tu comedero</h2>
+<p>Revisa el acceso al pedal, la adaptación y la limpieza en la <a href="{raiz}tsr/tsr-comederos-antirratas.html">guía para elegir un comedero de pedal</a>. Contrasta capacidades y límites en la <a href="{raiz}comparativas/comparativa-comederos-pedal-antirratas.html">comparativa de los tres modelos</a>.</p>
+<p>Antes de atribuir un ahorro al equipo, sigue la <a href="{raiz}blog/reducir-desperdicio-pienso.html">guía para registrar el desperdicio</a> y anota tus datos en la <a href="{raiz}hoja-registro-puesta.html">hoja semanal gratuita</a>. Esta comparación es documental: no hemos probado físicamente el producto.</p>
+</section>'''
+
+
 def cuerpo_producto(p, vecinos, raiz):
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
     relacionados = "\n".join(
@@ -597,6 +608,7 @@ def cuerpo_producto(p, vecinos, raiz):
 {seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
 {html_descripcion_larga(p.get("descripcion_larga"))}
 {guia_bebederos(p, raiz)}
+{guia_comederos(p, raiz)}
 {guia_pollitos(p, raiz)}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>

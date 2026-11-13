@@ -87,6 +87,18 @@ PROHIBIDAS = (
 
 # Textos que no pueden salir del CSV: salud, vacíos o correcciones puntuales.
 OVERRIDES = {
+    "B00TXW0UQK": {
+        "explicacion": ["Comedero de pedal con capacidad nominal de 20 libras, según el catálogo."],
+        "recomendacion": ["Puede encajar si buscas una tolva de pedal de esta capacidad y puedes supervisar la adaptación del lote.", "Comprueba el acceso de las aves más pequeñas. No hemos medido su ahorro ni su eficacia frente a roedores."],
+    },
+    "B00TXX20GW": {
+        "explicacion": ["Comedero de pedal con capacidad nominal de 40 libras, según el catálogo."],
+        "recomendacion": ["Permite comparar una capacidad nominal mayor que la versión de 20 libras.", "Comprueba el espacio de instalación y el acceso al pedal. La capacidad no determina por sí sola la autonomía ni cuántas aves pueden comer a la vez."],
+    },
+    "B07MQW8MQK": {
+        "explicacion": ["Comedero de pedal RentACoop con capacidad nominal de 25 libras, según el catálogo."],
+        "recomendacion": ["Ofrece una capacidad nominal intermedia entre los modelos de 20 y 40 libras de esta comparación.", "Consulta el manual y comprueba el uso de cada ave. No hemos medido ahorro ni garantizamos ausencia de desperdicio o roedores."],
+    },
     "B000R71WMQ": {
         "titulo": "Vinagre de manzana Bragg ecológico, crudo, con madre (1 galón)",
         "explicacion": [

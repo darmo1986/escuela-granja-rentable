@@ -54,3 +54,16 @@ Validación local: 507 botones heredados retirados en 203 HTML; 507 botones prin
 No se prueba con esto que Amazon entregue el producto, que los enlaces conviertan ni que haya comisiones: el objetivo es un destino coherente y verificable en el código. Los informes comerciales, el ensayo visual en móvil y la aprobación de publicación siguen pendientes.
 
 Comprobación adicional del origen: tras generar primero el blog (para disponer de los artículos enlazados), el generador de tienda completa sus 169 productos y 33 categorías con comprobación interna de enlaces, tag y schema correcta. Sus 237 HTML no contienen botones heredados y la limpieza no los modifica. Esta regeneración completa se realiza solo en otra copia de comprobación: no se incluyen sus cambios editoriales incidentales en el PR.
+
+
+## Fichas conectadas con el recorrido de comederos
+
+Carencia verificada en la base e262dd7: las tres fichas de comederos no enlazaban a la guía, la comparación ni el registro del desperdicio. Sus textos conservaban absolutos de eficacia retirados de la guía. Se completa el mismo PR, sin abrir otro lote.
+
+Se añade un bloque antes del botón comercial en las tres fichas: guía de elección, comparación de los tres modelos, registro del desperdicio y hoja semanal gratuita. El generador de tienda conserva ese bloque y no lo añade a otros ASIN. Se mantienen los títulos, las URLs, el tag, las imágenes y todos los demás datos del catálogo.
+
+Los textos de explicación y recomendación se corrigen en pulir.py y se reflejan en las fichas, las tarjetas de portada/categoría de tienda y el catálogo público. Solo cambian estos dos campos en tres de los 169 productos; no se copian al catálogo público los precios o valoraciones históricos del CSV. Se distingue capacidad nominal de autonomía, acceso y resultados no medidos. Las fuentes documentales de la tanda siguen siendo las indicaciones de los fabricantes citadas arriba; no se añade experiencia de uso propia ni una afirmación de ahorro.
+
+Comprobación del recorrido: siete páginas, 469 enlaces y tres fichas, sin errores. Incluye enlaces de ida y vuelta, destinos y anclas locales, bloque único antes de la compra, coincidencia de textos con la fuente y el catálogo y ausencia del bloque en un ASIN ajeno. Tras regenerar la tienda completa en otra copia, el mismo verificador vuelve a aprobar. El generador conserva sus 169 productos y 33 categorías y pasa su comprobación interna de enlaces, tag y schema. Las 58 pruebas Python y el piloto de agua (cinco páginas y 389 enlaces) también aprueban. Auditoría de 500 páginas sin nuevos enlaces internos inexistentes.
+
+Hipótesis: permitir que quien llegue a una ficha desde buscadores pueda volver a los criterios y al registro antes de comprar. No se conocen todavía sesiones, clics ni ventas atribuibles que permitan cuantificar el efecto. Riesgo: más enlaces en la ficha; revisar claridad y longitud en móvil antes de publicar. Sin servicios ni gastos de pago nuevos. Siguiente prueba, después de la aprobación: recorrer las tres fichas en móvil y comprobar que se puede comparar y volver al registro; medir el recorrido solo con acceso autorizado. Continúan pendientes la revisión visual y la aprobación de publicación.
