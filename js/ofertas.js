@@ -45,12 +45,13 @@
     });
     items.replaceChildren.apply(items, slides);
     panel.classList.add('promo-ready'); controls.hidden = false;
-    var index = 0, timer, manual = false, onScreen = true;
+    var index = 0, timer, manual = null, onScreen = true;
     var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     var pause = panel.querySelector('[data-promo-pause]');
+    function paused() { return manual === null ? motion.matches : manual; }
     function schedule() {
       clearTimeout(timer);
-      if (!manual && !motion.matches && onScreen && !document.hidden && !panel.matches(':hover, :focus-within')) {
+      if (!paused() && onScreen && !document.hidden && !panel.matches(':hover, :focus-within')) {
         timer = setTimeout(function () { show(index + 1); }, 5000);
       }
     }
@@ -62,17 +63,18 @@
         card.inert = i !== index;
       });
       panel.querySelector('[data-promo-status]').textContent = (index + 1) + ' / ' + slides.length;
-      pause.textContent = manual ? 'Reanudar' : 'Pausar';
-      pause.setAttribute('aria-pressed', String(manual));
+      pause.textContent = paused() ? 'Reanudar' : 'Pausar';
+      pause.setAttribute('aria-pressed', String(paused()));
+      document.dispatchEvent(new Event('gr-promo-change'));
       schedule();
     }
     panel.querySelector('[data-promo-prev]').onclick = function () { show(index - 1); };
     panel.querySelector('[data-promo-next]').onclick = function () { show(index + 1); };
-    pause.onclick = function () { manual = !manual; show(index); };
+    pause.onclick = function () { manual = !paused(); show(index); };
     ['mouseenter', 'mouseleave', 'focusin'].forEach(function (event) { panel.addEventListener(event, schedule); });
     panel.addEventListener('focusout', function () { setTimeout(schedule, 0); });
     document.addEventListener('visibilitychange', schedule);
-    motion.addEventListener('change', schedule);
+    motion.addEventListener('change', function () { show(index); });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) { onScreen = entries[0].isIntersecting; schedule(); }).observe(panel);
     }

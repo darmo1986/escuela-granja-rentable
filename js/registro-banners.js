@@ -60,17 +60,30 @@
   }
 
   if ("IntersectionObserver" in window) {
+    var visibles = new Set();
+    function registrarVisible(nodo) {
+      if (!visibles.has(nodo) || nodo.closest('[aria-hidden="true"], [inert]')) return;
+      var id = idDe(nodo);
+      if (!id || vistos[id]) return;
+      vistos[id] = true;
+      observador.unobserve(nodo);
+      visibles.delete(nodo);
+      enviar(id, "impresion");
+    }
     var observador = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (entrada) {
-        if (!entrada.isIntersecting || entrada.intersectionRatio < 0.5) return;
-        var id = idDe(entrada.target);
-        if (!id || vistos[id]) return;
-        vistos[id] = true;
-        observador.unobserve(entrada.target);
-        enviar(id, "impresion");
+        if (!entrada.isIntersecting || entrada.intersectionRatio < 0.5) {
+          visibles.delete(entrada.target);
+          return;
+        }
+        visibles.add(entrada.target);
+        registrarVisible(entrada.target);
       });
     }, { threshold: [0.5] });
     banners.forEach(function (nodo) { observador.observe(nodo); });
+    document.addEventListener("gr-promo-change", function () {
+      banners.forEach(registrarVisible);
+    });
   }
 
   document.addEventListener("click", function (ev) {
