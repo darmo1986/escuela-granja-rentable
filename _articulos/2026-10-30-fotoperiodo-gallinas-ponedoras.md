@@ -1,48 +1,58 @@
 ---
 titulo: "Fotoperiodo en ponedoras: luz y puesta"
 titulo_seo: "Fotoperiodo en ponedoras: luz y puesta"
-descripcion: "Cuántas horas de luz necesita una ponedora, cómo subirlas sin estresarla y qué bombilla usar para que no baje la puesta en invierno."
+descripcion: "Revisa las horas de luz de tus ponedoras, registra los cambios de puesta y planifica la iluminación según la edad y el manejo del lote."
 categoria: ponedoras
 fecha: 2026-10-30
+actualizado: 2026-11-13
 borrador: false
 imagen: "img/blog/fotoperiodo-gallinas-ponedoras.webp"
 imagen_og: "img/blog/fotoperiodo-gallinas-ponedoras-og.webp"
 imagen_alt: "Nave avícola con filas de lámparas LED en el techo, pollitos en el suelo y líneas de bebederos"
 guia: empezar
 fuentes:
-  - "Práctica habitual en avicultura de puesta: 14 a 16 horas de luz total al día"
+  - "University of Minnesota Extension: Caring for chickens in cold weather"
+  - "Oklahoma State University Extension: Backyard Flock Production"
+  - "Hendrix Genetics: Lighting program as a tool to manage sexual maturity"
 imagen_credito: "Foto: Happydept, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Agro-oven_led.jpg) Imagen adaptada de tamaño y encuadre."
 ---
 
-Cuando los días se acortan, la puesta baja. No es que la gallina esté enferma ni que el pienso haya empeorado: es la luz. La ponedora lee las horas de luz como una señal, y con menos de 12 horas su cuerpo entiende que toca descansar.
+Cuando se acortan los días, las horas de luz pueden influir en la puesta. Para interpretar una bajada, revisa también la edad, la muda, el acceso al agua, el alimento y los cambios de manejo. Anotar lo que ocurre en tu lote ayuda a decidir qué comprobar primero.
 
-## Cuántas horas necesita una ponedora
+## Cuántas horas de luz reciben realmente
 
-El objetivo son **14 a 16 horas de luz total al día**, sumando la natural y la artificial. Por encima de 16 no se gana nada y se gasta electricidad; por debajo de 12, la puesta cae semana a semana.
+Cuenta la luz natural y la artificial sin sumar dos veces los periodos que coinciden. Oklahoma State University sitúa alrededor de **16 horas diarias** la máxima eficiencia de puesta y señala que 12 a 14 pueden ser suficientes para un lote de traspatio, con menor eficiencia. Son referencias de manejo que debes adaptar al lote y a su programa de recría. Consulta la guía técnica de la estirpe y los datos del proveedor antes de modificar el horario.
 
-- Con 12 horas o menos: la puesta baja de forma clara.
-- Con 14 horas: la puesta se mantiene estable en la mayoría de las razas.
-- Con 16 horas: el máximo habitual en producción, útil en pleno invierno.
+**Ejemplo ficticio de cálculo**. El gallinero tiene luz natural de 07:00 a 18:00, once horas. Una lámpara encendida de 05:00 a 08:00 añade dos horas antes del amanecer. El total es trece horas, porque el tramo de 07:00 a 08:00 coincide con la luz natural. Este ejemplo explica la cuenta y no prescribe un horario para tus aves.
 
-## Cómo subir las horas sin estresarlas
+## Recría y puesta necesitan programas coordinados
 
-El error clásico es pasar de golpe de 11 a 16 horas. El cambio brusco estresa al lote y puede adelantar una muda. Hazlo así:
+Hendrix Genetics explica que el momento de estimular con luz influye en la madurez sexual y en el tamaño del huevo. Durante la recría, el aumento de la duración del día debe corresponder al momento previsto para la estimulación. Durante la puesta, su pauta general es evitar disminuciones de esa duración.
 
-- Sube **30 minutos cada 2 o 3 días** hasta llegar a tu objetivo.
-- Añade la luz **por la mañana**, no por la noche: así el anochecer sigue siendo natural y las aves buscan la percha con calma.
-- Usa un temporizador. La regularidad importa más que la potencia: cada día a la misma hora.
-- Una bombilla cálida de unos 10 W LED por cada 10 m² suele bastar; se busca una luz suave, no un foco de obra.
+Si compras pollitas recriadas, pide la edad, el programa de luz recibido y las indicaciones para el traslado. Coordina el horario del nuevo gallinero con el proveedor. La fecha del calendario por sí sola no permite elegir cuándo estimular un lote.
 
-## Los errores que veo cada invierno
+## Instalación y rutina en el gallinero
 
-- **Encender la luz de golpe en diciembre.** La gallina ya lleva semanas bajando y el cambio brusco no recupera lo perdido; la luz se planifica en otoño.
-- **Dejar noches con luz accidental.** Un foco de seguridad que entra por la ventana también cuenta como luz y desordena el reloj del lote.
-- **Olvidar el agua y el pienso.** Más horas despierta significan más horas comiendo: revisa que tengan alimento desde que se enciende la luz.
+La extensión de la Universidad de Minnesota propone aproximadamente 14 horas diarias para favorecer la producción en invierno. Recomienda añadir iluminación por la mañana para que las aves conserven el anochecer natural y puedan acomodarse en las perchas. Un temporizador facilita mantener el horario previsto.
 
-La luz no hace milagros: sin buena alimentación y sin agua limpia, ni con 16 horas pondrán bien. Pero con lo básico cubierto, el fotoperiodo es la diferencia entre un invierno sin huevos y una puesta que se mantiene.
+Comprueba la iluminación en los lugares donde están las aves. La potencia en vatios de una bombilla no describe por sí sola la luz que llega al suelo, los comederos o las perchas. Influyen la distribución, la altura y las sombras. Utiliza equipos adecuados para el ambiente del gallinero y revisa su seguridad eléctrica con un profesional cuando sea necesario.
+
+## Qué registrar antes de cambiar el horario
+
+| Dato | Cómo anotarlo |
+|---|---|
+| Lote | Edad aproximada, procedencia y número de hembras |
+| Luz | Amanecer, anochecer y horario real del temporizador |
+| Puesta | Huevos recogidos cada día y aves presentes |
+| Cambios | Traslado, muda, alimento o incidencias de agua |
+| Observaciones | Actividad, consumo y signos que requieran atención |
+
+Mantén el registro después de cualquier ajuste acordado. Una variación de huevos tras cambiar la luz puede coincidir con otros cambios del lote. Evita atribuir el resultado a una sola causa sin revisarlos.
+
+Si la bajada es brusca, aparecen bajas o las aves muestran signos de enfermedad, solicita valoración veterinaria. Puedes ampliar el registro de manejo con la [guía de agua y bebederos](agua-gallinas-ponedoras-bebederos.html) y revisar la [muda de las gallinas](muda-gallinas-otono.html).
 
 ## Fuentes
 
-- Hy-Line International: "Brown Commercial Layers – Performance Standards" (programa de luz: incrementos de 30 min hasta 16 h; pico de puesta con 14–15 h de luz). https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf
-- Hy-Line International: "Technical Update – Lighting for Brown Egg Layers" (actualización técnica de iluminación). https://www.hyline.com/Upload/Resources/TU%20HLB10%20ENG.pdf
-- FAO: "Small-scale poultry production", cap. 4 (manejo, alojamiento, luz, sanidad). https://www.fao.org/4/y5169e/y5169e05.htm
+- [University of Minnesota Extension — Caring for chickens in cold weather](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/caring-for-chickens-in-cold-weather).
+- [Oklahoma State University Extension — Backyard Flock Production](https://extension.okstate.edu/fact-sheets/backyard-flock-production).
+- [Hendrix Genetics — Lighting program as a tool to manage sexual maturity and adjust egg size to market requirements](https://layinghens.hendrix-genetics.com/en/articles/lighting-program-tool-manage-sexual-maturity-and-adjust-egg-size-market-requirements/).
