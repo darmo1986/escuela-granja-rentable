@@ -8,3 +8,10 @@
 .blog-resultado { margin:1rem 0; overflow-wrap:anywhere; }
 .blog-resultado h2 { margin:.4rem 0; }
 @media (max-width:480px) { .blog-buscador input, .blog-buscador button { width:100%; flex-basis:100%; } }
+
+/* Filtros nativos: teclado, lectores de pantalla y pantallas estrechas. */
+.blog-buscador-tema { margin:1rem 0 .5rem; max-width:28rem; }
+.blog-buscador select { display:block; width:100%; min-width:0; min-height:48px; box-sizing:border-box; margin-top:.5rem; padding:.75rem; border:1px solid #58715e; border-radius:.5rem; font:inherit; color:inherit; background:#fff; }
+.blog-buscador select:focus-visible, .blog-buscar-sugerencias button:focus-visible { outline:3px solid #b78920; outline-offset:2px; }
+.blog-buscar-sugerencias { display:flex; flex-wrap:wrap; gap:.75rem; margin:1rem 0; }
+.blog-buscar-sugerencias .btn { min-height:44px; white-space:normal; overflow-wrap:anywhere; }

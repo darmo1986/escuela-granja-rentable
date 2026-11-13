@@ -96,6 +96,7 @@ TITULO_MAX_EXTRA = {
 VERSION_ACTIVOS = "20261113herramientas"
 VERSION_BANNERS = "20261113banners"
 VERSION_PORTADA = "20261113orientacion"
+VERSION_BUSCADOR = "20261113buscador"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -796,6 +797,8 @@ def poner_version(html):
         version = VERSION_BANNERS if nombre in {"js/ofertas.js", "js/registro-banners.js"} else VERSION_ACTIVOS
         if nombre in {"css/inicio.css", "js/hero.js"}:
             version = VERSION_PORTADA
+        if nombre in {"js/blog-buscar.js", "css/blog-buscar.css"}:
+            version = VERSION_BUSCADOR
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
             rf'\1?v={version}"',

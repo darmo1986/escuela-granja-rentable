@@ -59,3 +59,6 @@
 .gr-jump a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #dcded0;border-radius:999px;background:#fffdf8;font-weight:700;text-underline-offset:3px}
 #problemas-titulo,#herramientas-titulo,#video-titulo{scroll-margin-top:160px}
 @media(max-width:599px){.gr-quick a{align-items:flex-start;min-height:84px}.gr-jump{gap:6px}.gr-jump a{padding:8px 10px}}
+
+/* Recorridos editoriales: disponibles también sin JavaScript. */
+.gr-routes h2{max-width:760px}.gr-route-grid{display:grid;gap:14px;margin-top:24px}.gr-route{border:1px solid #bdcbb4;border-radius:14px;background:#fffdf8;padding:0 20px;color:#334c39;min-width:0;scroll-margin-top:160px}.gr-route summary{padding:20px 0;min-height:56px;font-weight:750;font-size:1.05rem;cursor:pointer;color:#173f26;overflow-wrap:anywhere}.gr-route[open] summary{border-bottom:1px solid #dcded0}.gr-route p{font-size:.93rem;line-height:1.6}.gr-route ol{padding-left:24px;margin-bottom:22px}.gr-route li{padding-left:4px;margin:12px 0;line-height:1.55}.gr-route a{color:#245e30;text-underline-offset:3px;overflow-wrap:anywhere}.gr-route a:focus-visible,.gr-route summary:focus-visible{outline:3px solid #7c5700;outline-offset:4px;border-radius:3px}@media(min-width:760px){.gr-route-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}}
