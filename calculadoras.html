@@ -120,6 +120,7 @@
 <p>Para el lote completo (huevos, carne o doble propósito) está la <a href="calculadora.html">calculadora de rentabilidad</a>. La <a href="hoja-registro-puesta.html">hoja de puesta y pienso</a> se descarga sin correo. Si vienes de un vídeo, elige el <a href="youtube/">recurso de ese vídeo</a>. Las guías escritas están en <a href="ebooks/">Ebooks</a>; su precio no se calcula aquí.</p>
 </section>
 
+<nav class="herramientas-nav" aria-label="Elegir calculadora"><a href="#espacio">Espacio por ave</a><a href="#coste-docena">Pienso por docena</a><a href="#sacos">Comparar sacos</a><a href="#nacimiento">Fecha de nacimiento</a></nav>
 <div class="calc-grid">
 <section class="panel calc" id="espacio">
 <h2>Espacio</h2>
@@ -179,6 +180,8 @@
 <label>Día en que pones los huevos<input name="fecha" type="date" required></label>
 <button class="btn gold" type="submit">Calcular fecha</button>
 <p id="calc-eclosion-out" class="calc-out" role="status"></p>
+<button class="btn sec" type="button" id="calc-eclosion-calendario" hidden>Descargar estas fechas en calendario (.ics)</button>
+<p class="fine">El archivo incluye dos eventos de día completo: inicio y nacimiento orientativo. Descárgalo e impórtalo en tu calendario; esta web no accede a tu cuenta ni programa avisos por sí sola.</p>
 </form>
 </section>
 </div>
@@ -240,3 +243,4 @@
 <script src="js/calculadoras.js"></script>
 <script src="js/site.js?v=20261110d"></script>
 </body></html>
+

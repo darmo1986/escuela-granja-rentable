@@ -1,8 +1,8 @@
 (function(){
 const root=document.body.dataset.root||'';
 const PK='gr_progreso',CK='gr_consent';
-const prog=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}};
-const save=p=>{localStorage.setItem(PK,JSON.stringify(p));if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);};
+const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p!=='object'||Array.isArray(p))return{};const clean={};Object.keys(p).forEach(id=>{const item=p[id];if(item&&typeof item==='object'&&!Array.isArray(item))clean[id]=item;});return clean;}catch(e){return{}}};
+const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
 /* ── Consentimiento. La web no carga redes de anuncios de terceros. ── */
 function adsOn(){return false;}
 function ocultarHuecos(){
@@ -182,19 +182,23 @@ function paintProgress(){
   const lis=[...document.querySelectorAll('.lesson.ok')];
   if(!lis.length)return;
   let n=0,next=null;
-  lis.forEach((li,i)=>{const id=li.dataset.id,st=li.querySelector('.st');
+  lis.forEach((li,i)=>{const id=li.dataset.id,st=li.querySelector('.st'),a=li.querySelector('a');
+    li.classList.remove('done','locked');
+    if(a){if(a.getAttribute('href'))a.dataset.lessonHref=a.getAttribute('href');if(a.dataset.lessonHref)a.setAttribute('href',a.dataset.lessonHref);a.removeAttribute('aria-disabled');if(a.title==='Aprueba antes la lección anterior')a.removeAttribute('title');}
     if(passed(id)){n++;li.classList.add('done');st.textContent='✔ '+prog()[id].mejor+' pts';}
-    else if(i>0&&!passed(lis[i-1].dataset.id)){li.classList.add('locked');st.textContent='🔒';const a=li.querySelector('a');if(a){a.removeAttribute('href');a.setAttribute('aria-disabled','true');a.title='Aprueba antes la lección anterior';}}
-    else if(!next)next=li;
+    else if(lis.slice(0,i).some(prev=>!passed(prev.dataset.id))){li.classList.add('locked');st.textContent='🔒';if(a){a.removeAttribute('href');a.setAttribute('aria-disabled','true');a.title='Aprueba antes la lección anterior';}}
+    else {st.textContent='';if(!next)next=li;}
   });
   const tot=lis.length;
   const bar=document.getElementById('pbar'),txt=document.getElementById('ptxt');
   if(bar)bar.style.width=(100*n/tot)+'%';
   if(txt)txt.textContent='Progreso: '+n+' de '+tot+' lecciones aprobadas'+(passed('final')?' · Examen final aprobado 🎓':'');
   const fb=document.getElementById('finalbtn');
-  if(fb&&n<tot){fb.textContent='🔒 Examen final (aprueba todas las lecciones)';fb.removeAttribute('href');fb.classList.add('dis');}
+  if(fb){if(!fb.dataset.label){fb.dataset.label=fb.textContent;fb.dataset.href=fb.getAttribute('href')||'examen-final.html';}fb.classList.toggle('dis',n<tot);if(n<tot){fb.textContent='🔒 Examen final (aprueba todas las lecciones)';fb.removeAttribute('href');fb.setAttribute('aria-disabled','true');}else{fb.textContent=fb.dataset.label;fb.setAttribute('href',fb.dataset.href);fb.removeAttribute('aria-disabled');}}
   const b=document.getElementById('continuar');
   if(!b)return;
+  if(!b.dataset.label){b.dataset.label=b.textContent;b.dataset.href=b.getAttribute('href')||'lecciones/l01.html';}
+  b.textContent=b.dataset.label;b.href=b.dataset.href;
   if(n&&next){const a=next.querySelector('a');b.textContent='Continuar: '+next.querySelector('.code').textContent;if(a)b.href=a.getAttribute('href');}
   else if(n===tot){b.textContent=passed('final')?'¡Curso completado! 🎓':'Ir al examen final';b.href='examen-final.html';}
 }
@@ -202,13 +206,15 @@ function paintLocks(){
   const req=document.querySelector('[data-requires]');
   if(!req||!req.dataset.requires)return;
   const need=req.dataset.requires.split(' ').filter(Boolean);
-  if(need.some(id=>!passed(id))){
-    const msg=req.querySelector('.lock-msg'); if(msg) msg.hidden=false;
-    req.querySelectorAll('.lockable').forEach(e=>{e.remove();});
-  }
+  const locked=need.some(id=>!passed(id));
+  const msg=req.querySelector('.lock-msg');if(msg)msg.hidden=!locked;
+  req.querySelectorAll('.lockable').forEach(e=>{e.hidden=locked;});
+  if(locked)req.querySelectorAll('.lockable video, .lockable audio').forEach(e=>e.pause());
+  req.querySelectorAll('.lockable iframe').forEach(e=>{if(locked&&e.getAttribute('src')){e.dataset.lockedSrc=e.getAttribute('src');e.removeAttribute('src');}else if(!locked&&e.dataset.lockedSrc){e.setAttribute('src',e.dataset.lockedSrc);delete e.dataset.lockedSrc;}});
 }
 function bindQuizzes(scope){
   (scope||document).querySelectorAll('.quiz').forEach(q=>{
+    if(q.hidden)return;
     if(q.dataset.bound)return;
     q.dataset.bound='1';
     const w=q.querySelector('.qwrap'),pass=+q.dataset.pass,key=q.dataset.key;
@@ -225,9 +231,10 @@ function bindQuizzes(scope){
           if(sin&&!confirm('Te faltan '+sin+' preguntas por responder. ¿Corregir igualmente?'))return;
           let ok=0;blocks.forEach((b,n)=>{const ops=qs[n].ops,ch=b.querySelector('input:checked');b.querySelectorAll('input').forEach(i=>{i.disabled=true;if(ops[+i.value].ok)i.parentNode.classList.add('right');});
             if(ch&&ops[+ch.value].ok)ok++;else{if(ch)ch.parentNode.classList.add('wrong');b.querySelector('.exp').hidden=false;}});
-          const ap=ok>=pass,pr=prog(),o=pr[key]||{mejor:0,aprobado:false};o.mejor=Math.max(o.mejor,ok);o.aprobado=o.aprobado||ap;o.fecha=new Date().toISOString();pr[key]=o;save(pr);
+          const ap=ok>=pass,pr=prog(),o=pr[key]||{mejor:0,aprobado:false};o.mejor=Math.max(o.mejor,ok);o.aprobado=o.aprobado||ap;o.fecha=new Date().toISOString();pr[key]=o;const guardadoLocal=save(pr);
           const r=w.querySelector('.res');r.className='res result '+(ap?'pass':'fail');
           r.innerHTML=(ap?'🎉 ¡Aprobado! ':'Casi… ')+ok+' de '+blocks.length+' aciertos (necesitas '+pass+'). '+(ap?'':'Repasa las explicaciones de las falladas y vuelve a intentarlo.')+'<br><button class="btn retry" style="margin-top:8px">Repetir test</button>';
+          if(!guardadoLocal){const nota=document.createElement('p');nota.textContent='No se ha podido guardar una copia del progreso en este navegador.';r.appendChild(nota);}
           r.querySelector('.retry').onclick=()=>{render();q.scrollIntoView();};
           w.querySelector('.corr').remove();r.scrollIntoView({behavior:'smooth',block:'center'});
         };
@@ -393,6 +400,9 @@ async function mountFinalVideos(){
 paintProgress();
 paintLocks();
 bindQuizzes();
+function refrescarProgreso(){paintProgress();paintLocks();bindQuizzes();}
+window.addEventListener('gr-progreso',refrescarProgreso);
+window.addEventListener('storage',function(event){if(event.key===PK||event.key===null)refrescarProgreso();});
 (async function(){
   await promoteFromJson();
   paintProgress();
@@ -403,3 +413,4 @@ bindQuizzes();
   bindQuizzes();
 })();
 })();
+
