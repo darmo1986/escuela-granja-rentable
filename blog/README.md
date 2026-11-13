@@ -62,7 +62,7 @@ El texto va aquí, en párrafos.
 - Una idea por línea.
 ```
 
-`categoria` es una de estas: `ponedoras`, `engorde`, `incubacion`, `salud`, `alimentacion`, `negocios`. En la web se leen **Gallinas ponedoras**, **Pollos de engorde**, **Incubación**, **Salud**, **Alimentación** y **Negocios con gallinas**.
+`categoria` es una de estas: `ponedoras`, `engorde`, `incubacion`, `salud`, `alimentacion`, `negocios`, `codornices`. En la web se leen **Gallinas ponedoras**, **Pollos de engorde**, **Incubación**, **Salud**, **Alimentación**, **Negocios con gallinas** y **Cuidados de codornices**.
 
 Di siempre **pollos de engorde**. No uses «pollo de carne» ni «broiler».
 
