@@ -23,6 +23,7 @@ exclude:
   - blog/plantillas
   - blog/pruebas
   - blog/generar.py
+  - blog/verificar_publicacion.py
   - blog/README.md
   - vendor/bundle
   - vendor/cache
