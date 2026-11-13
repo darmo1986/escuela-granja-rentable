@@ -20,8 +20,8 @@
 <link rel="icon" href="../favicon.ico">
 <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="../css/estilo.css?v=20261110d">
-<script src="../js/boot.js?v=20261110d"></script>
+<link rel="stylesheet" href="../css/estilo.css?v=20261113herramientas">
+<script src="../js/boot.js?v=20261113herramientas"></script>
 <style>
 .ebook-venta{display:grid;grid-template-columns:minmax(200px,240px) 1fr;gap:1.15rem 1.75rem;align-items:start;margin:1.5rem 0;padding:1.35rem 1.4rem;border:1px solid #e5e0d5;border-radius:12px;background:#FFFEF9}
 .ebook-venta img{width:100%;height:auto;border-radius:8px}
@@ -93,7 +93,7 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
 <div class="nav-sub" id="nav-razas">
 <a data-nav="razas-gallinas" href="../razas.html#razas-gallinas"><span class="nav-label">Gallinas</span></a>
 <a data-nav="razas-pollos" href="../pollos-engorde.html"><span class="nav-label">Pollos</span></a>
-<span class="nav-soon"><span class="nav-label">Gallos (próximamente)</span></span>
+<a data-nav="razas-gallos" href="../razas.html#gallos"><span class="nav-label">Gallos</span></a>
 </div>
 </div>
 
@@ -134,6 +134,7 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
 <main id="contenido">
 <p class="crumb"><a href="../index.html">Inicio</a> · Ebooks</p>
 <h1>Ebooks de Granja Rentable</h1>
+<p id="ebook-estado" role="status"></p>
 <p>Cada ebook disponible cuesta 3,00 USD. Y si quieres ayuda personal, el asesoramiento Premium cuesta 29 € al mes. En una compra desde Canarias el precio de 3,00 USD incluye el tipo general del IGIC, el 7 %. Pagas con tarjeta en la página de Stripe y el ebook llega al correo que indicas (si no lo ves, revisa la carpeta de spam).</p>
 <p class="ebook-usd">Si eliges España, el importe sigue en USD: no lo pasamos a euros y no cambia el impuesto. El asesoramiento Premium no es un ebook: son 29 € al mes.</p>
 
@@ -344,10 +345,16 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
         "No pudimos confirmar el pago. Inténtalo de nuevo recargando la página.");
     });
   } else if (params.get("stripe_cancelado")) {
-    mensajeDe("guia-empezar", "Pago cancelado: no se ha cobrado nada.");
-    mensajeDe("alimenta-ponedoras", "Pago cancelado: no se ha cobrado nada.");
-    mensajeDe("pienso-hacer", "Pago cancelado: no se ha cobrado nada.");
-    mensajeDe("pienso-elegir", "Pago cancelado: no se ha cobrado nada.");
+    var productoCancelado = null;
+    try { productoCancelado = sessionStorage.getItem("stripeEbookProducto"); } catch (e) {}
+    var productosDisponibles = Array.from(document.querySelectorAll("[data-stripe-ebook]"))
+      .map(function (boton) { return boton.getAttribute("data-stripe-ebook"); });
+    var aviso = "Has vuelto de la página de pago sin completar la compra. Si tienes dudas sobre un cargo, contacta con nosotros antes de repetir el pago.";
+    if (productosDisponibles.indexOf(productoCancelado) !== -1) {
+      mensajeDe(productoCancelado, aviso);
+    } else {
+      document.getElementById("ebook-estado").textContent = aviso;
+    }
   }
 })();
 </script>
@@ -401,9 +408,9 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
 <p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 <a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
-<script src="../js/config.js?v=20261110d"></script>
+<script src="../js/config.js?v=20261113herramientas"></script>
 <script src="../js/catalogo.js"></script>
-<script src="../js/app.js?v=20261110d"></script>
-<script src="../js/site.js?v=20261110d"></script>
+<script src="../js/app.js?v=20261113herramientas"></script>
+<script src="../js/site.js?v=20261113herramientas"></script>
 </body>
 </html>
