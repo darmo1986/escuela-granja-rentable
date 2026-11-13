@@ -1,0 +1,53 @@
+import importlib.util
+import tempfile
+import unittest
+from pathlib import Path
+
+spec = importlib.util.spec_from_file_location('verificador', Path(__file__).resolve().parents[1] / 'verificar_publicacion.py')
+v = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(v)
+
+
+class Publicacion(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.raiz = Path(self.tmp.name)
+        self.activos = ''.join(f'<script src="js/{x}.js?v=prueba"></script>' for x in ['config','app','site'])
+        self.home = '<a href="razas.html" data-slide class="gr-slide is-active">Razas</a><section aria-labelledby="recientes-titulo"><article class="gr-article">Nuevo</article></section>' + self.activos
+        (self.raiz / 'index.html').write_text(self.home)
+        (self.raiz / 'blog').mkdir()
+        (self.raiz / 'blog/tema.html').write_text(self.activos)
+        (self.raiz / 'blog/gallos.html').write_text('Categoría')
+        self.posts = [{'slug':'tema','publicar':True}]
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def errores(self):
+        return v.verificar_salida(self.raiz, 'prueba', self.posts, ['gallos'])
+
+    def test_salida_valida(self):
+        self.assertEqual(self.errores(), [])
+
+    def test_rechaza_portada_sin_generar(self):
+        (self.raiz / 'index.html').write_text('<a href="razas.html" data-slide class="is-active">Razas</a><script src="js/site.js"></script>')
+        errores = self.errores()
+        self.assertTrue(any('novedades' in e for e in errores))
+        self.assertTrue(any('versión común' in e for e in errores))
+
+    def test_rechaza_articulo_o_categoria_ausente(self):
+        (self.raiz / 'blog/tema.html').unlink()
+        (self.raiz / 'blog/gallos.html').unlink()
+        self.assertEqual(len(self.errores()), 2)
+
+    def test_rechaza_fuentes_internas_publicadas(self):
+        (self.raiz / '_fuentes').mkdir()
+        self.assertTrue(any('fuente interna' in e for e in self.errores()))
+
+    def test_rechaza_curso_como_primer_destacado(self):
+        (self.raiz / 'index.html').write_text(self.home.replace('href="razas.html"', 'href="curso.html"'))
+        self.assertTrue(any('Razas' in e for e in self.errores()))
+
+
+if __name__ == '__main__':
+    unittest.main()

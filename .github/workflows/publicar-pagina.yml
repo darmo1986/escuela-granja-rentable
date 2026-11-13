@@ -1,6 +1,7 @@
 name: Publicar la web
 
 # Publica solo _site/. No hace commit a main, así que no hay carrera con otro push.
+# Pages > Source debe estar en GitHub Actions; publicar desde main lanzaría una segunda compilación sin generar el blog.
 # Se dispara con cada push a main y, a mano, con workflow_dispatch desde main.
 on:
   push:
@@ -36,6 +37,9 @@ jobs:
         with:
           source: ./
           destination: ./_site
+
+      - name: Verificar la salida construida
+        run: python3 blog/verificar_publicacion.py _site
 
       - name: Subir el sitio
         uses: actions/upload-pages-artifact@v3
