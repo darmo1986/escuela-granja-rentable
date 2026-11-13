@@ -1,4 +1,4 @@
-// Edge Function: deployment pending approval of platform auth configuration.
+// Edge Function: platform auth configuration authorized for this endpoint.
 // Every route validates identity or Stripe signature. No secrets in the website.
 const env = (key: string) => Deno.env.get(key) || '';
 const origin = 'https://granjarentable.com';

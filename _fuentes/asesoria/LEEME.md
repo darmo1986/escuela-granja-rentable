@@ -27,13 +27,12 @@ sin despliegue ni altas reales. `GR.asesoria.activa` permanece en false.
 
 1. Aplicar `supabase/migrations/20261113221000_asesoria.sql` sobre un proyecto
    con las migraciones de cuenta y panel existentes. Verificar administrador.
-2. Despliegue pendiente de aprobación específica de configuración: la revisión
-   automática bloqueó incluir `supabase/config.toml` con `verify_jwt=false`.
-   Ese archivo NO forma parte del borrador remoto y no se ha desplegado.
-   La función nueva verifica cada sesión con Auth y cada webhook con HMAC de
-   Stripe; aun así, la plataforma requiere autorización expresa para desactivar
-   su verificación JWT en este endpoint. Resolver esa aprobación antes de
-   desplegar o activar cobros; no aplicar una vía alternativa para eludirla.
+2. Desplegar la Edge Function `asesoria` con `supabase/config.toml`.
+   El propietario autorizó expresamente el ajuste `verify_jwt=false` para este
+   endpoint en la conversación del 13 de noviembre de 2026. La función verifica
+   cada sesión con Supabase Auth y cada webhook con HMAC de Stripe antes de
+   ejecutar operaciones. La autorización permite incluir esta configuración;
+   no acredita un despliegue ni pruebas reales de pagos y correo.
 3. Configurar en el servidor, sin subir secretos a Git:
    - SUPABASE_URL, SUPABASE_ANON_KEY y SUPABASE_SERVICE_ROLE_KEY (entorno Edge).
    - STRIPE_SECRET_KEY y STRIPE_WEBHOOK_SECRET.
@@ -106,3 +105,11 @@ anatomically correct birds; illustrative scene, not a claimed owner portrait.
 PDF-lib 1.17.1 se sirve localmente, con su licencia MIT incluida. El PDF descarga
 texto con saltos de página y fecha de revisión. Caracteres fuera de la fuente
 Helvetica WinAnsi se sustituyen por `?`; los acentos del español se conservan.
+
+## Continuación tras autorización de configuración
+
+Configuración incluida en el borrador con autorización expresa. No se ha
+modificado ningún endpoint desplegado. En este entorno no están configuradas
+las credenciales de administración Supabase, Stripe ni Resend, ni el remitente
+y destinatario administrador. Por ello siguen pendientes el despliegue, el
+webhook y los ensayos reales. No copiar claves al repositorio ni al chat.
