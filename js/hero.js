@@ -1,4 +1,4 @@
-/* Destacados de portada: curso, razas, ebooks y artículos, cada cinco segundos. */
+/* Destacados de portada: razas, curso, ebooks y artículos, cada cinco segundos. */
 (function () {
   'use strict';
   var hero = document.querySelector('[data-hero]');
@@ -8,6 +8,7 @@
   if (slides.length < 2) return;
   var current = slides.findIndex(function (slide) { return slide.classList.contains('is-active'); });
   if (current < 0) current = 0;
+  var initial = current;
   var timer, manual = false;
   var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var pause = hero.querySelector('[data-hero-pause]');
@@ -38,5 +39,6 @@
   hero.addEventListener('focusout', function () { setTimeout(schedule, 0); });
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', schedule);
-  show(current);
+  window.addEventListener('gr-pais', function () { show(initial); });
+  show(initial);
 })();

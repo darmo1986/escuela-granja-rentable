@@ -398,9 +398,9 @@
     }
     var p = PAISES[pais];
 
-    applyFeatured();
-    applySkus();
-    writeProductJsonLd();
+    // El contenido y los recursos son comunes a todos los países.
+    // El selector conserva el país y emite gr-pais para los enlaces de Amazon.
+    // No aplicar aquí el catálogo antiguo: ocultaba bloques según disponibilidad regional.
 
     document.querySelectorAll("[data-checkout]").forEach(function (a) {
       a.href = storeUrl(a.getAttribute("data-checkout-hash") || "");
