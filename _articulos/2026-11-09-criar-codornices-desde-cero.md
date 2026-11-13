@@ -2,7 +2,7 @@
 titulo: "Codornices para principiantes: empezar y calcular costes"
 titulo_seo: "Codornices para principiantes: empezar y calcular costes"
 descripcion: "Las codornices japonesas pueden poner muy jóvenes. Aprende alojamiento, alimentación, incubación y cómo calcular los costes."
-categoria: ponedoras
+categoria: codornices
 fecha: 2026-11-09
 borrador: false
 autor: "Equipo editorial de Granja Rentable"
@@ -13,6 +13,8 @@ relacionados:
   - empezar-con-10-gallinas-ponedoras
   - cuanto-cuesta-producir-docena-huevos
 ---
+
+Esta guía general se completa con nuestra [serie de cuidados de codornices](cuidados-codornices.html): criadora, alimentación, agua, alojamiento, limpieza y salud.
 
 ¿Estás pensando en criar codornices para producir huevos, pero no sabes qué instalaciones necesitan, qué comen o cuánto dinero hace falta para empezar?
 
