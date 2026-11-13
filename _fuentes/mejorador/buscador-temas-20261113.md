@@ -58,3 +58,21 @@ ni medición de búsquedas, visitas, conversiones o ingresos en producción. Las
 búsquedas siguen limitadas a títulos, descripciones y categorías públicas;
 no recorren el cuerpo completo de los artículos. La calidad de los filtros no
 acredita mejoras SEO ni aprobación publicitaria.
+
+## Recorridos por objetivo añadidos
+
+La biblioteca ofrece ocho recorridos desplegables de tres pasos: primera granja,
+pollitos, puesta, alimentación, gallinero, costes, codornices y pollos de engorde.
+Conectan guías existentes con herramientas concretas (registro, lista y
+calculadoras). Se conservan las 18 tarjetas y su buscador, colocados después de
+los recorridos. Los enlaces y desplegables son HTML nativo y funcionan sin JS.
+El diseño declara una columna en móvil y dos desde 760 px, con foco visible.
+No se añaden afirmaciones técnicas, comerciales ni datos de producción.
+
+Comprobación de esta ampliación: 48 pruebas Python (generador, ebooks, búsqueda
+y lectura), pruebas Node de búsqueda temática con el índice real de 95 artículos
+y biblioteca aprobadas. Plan completo de 502 salidas válido; comprobados los
+24 destinos, incluidos los dos fragmentos de calculadoras, y conservación de
+recorridos al regenerar. Revisión visual pendiente: Chromium del sistema no
+arranca y falta el ejecutable de Playwright. No se afirma un aumento de tráfico
+ni posicionamiento; la propuesta sigue sin fusionar ni publicar.
