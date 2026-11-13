@@ -1,7 +1,7 @@
 /* Interruptor de publicidad. false = no se pintan huecos de anuncio.
    amazonTag = etiqueta de afiliado de Amazon. Con etiqueta, el generador pinta el hueco de Amazon detrás del banner del ebook (relleno). No depende de activo.
-   La web no carga redes de anuncios de terceros. */
-window.ads = { activo: false, amazonTag: "granjarentabl-20" };
+   Piloto de un banner 300×250, solo en artículos y tras aceptar. */
+window.ads = { activo: true, adsterraPilot: true, amazonTag: "granjarentabl-20" };
 
 /* El curso y los ebooks van primero. */
 window.GR = {
@@ -75,3 +75,4 @@ window.GR_PAISES = {
   CR: { nombre: "Costa Rica" },
   PA: { nombre: "Panamá" }
 };
+

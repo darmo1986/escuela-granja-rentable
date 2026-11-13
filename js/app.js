@@ -1,19 +1,62 @@
 (function(){
 const root=document.body.dataset.root||'';
-const PK='gr_progreso',CK='gr_consent';
+const PK='gr_progreso',CK='gr_adsterra_consent_v1';
 const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p!=='object'||Array.isArray(p))return{};const clean={};Object.keys(p).forEach(id=>{const item=p[id];if(item&&typeof item==='object'&&!Array.isArray(item))clean[id]=item;});return clean;}catch(e){return{}}};
 const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
-/* ── Consentimiento. La web no carga redes de anuncios de terceros. ── */
-function adsOn(){return false;}
+/* Piloto: un banner 300×250 en artículos, siempre con consentimiento nuevo. */
+function adsOn(){return !!(window.ads && window.ads.activo === true);}
+let adsterraObserver=null;
+function retirarPiloto(){
+  if(adsterraObserver){adsterraObserver.disconnect();adsterraObserver=null;}
+  document.querySelectorAll('[data-adsterra-pilot]').forEach(el=>el.remove());
+}
 function ocultarHuecos(){
+  retirarPiloto();
   document.documentElement.classList.remove('ad-ok');
-  document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
+  document.querySelectorAll('.ad-inline,[data-adsterra-pilot]').forEach(el=>el.remove());
 }
 if(!adsOn())ocultarHuecos();
-function adsConfigured(){return false;}
-/* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
-   gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
-   html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
+function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === true);}
+function mountAdsterraPilot(){
+  if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
+  if(document.querySelector('[data-adsterra-pilot]'))return;
+  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return;
+  const article=document.querySelector('main .post-body');
+  if(!article || article.textContent.trim().length<1500)return;
+  const box=document.createElement('aside');
+  box.dataset.adsterraPilot='1';
+  box.setAttribute('aria-label','Publicidad');
+  box.style.cssText='margin:24px auto;width:300px;max-width:100%;text-align:center;overflow:hidden';
+  const label=document.createElement('p');
+  label.textContent='Publicidad';
+  label.style.cssText='margin:0 0 4px;font-size:12px';
+  const frame=document.createElement('iframe');
+  frame.title='Publicidad de Adsterra';
+  frame.width='300';frame.height='250';
+  frame.setAttribute('sandbox','allow-scripts');
+  frame.setAttribute('referrerpolicy','no-referrer');
+  frame.style.cssText='border:0;display:block;width:300px;height:250px;max-width:100%';
+  box.append(label,frame);
+  article.appendChild(box);
+  const mount=()=>{
+    if(!box.isConnected || box.dataset.loaded || !adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
+    let accepted=false;
+    try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
+    if(!accepted)return;
+    box.dataset.loaded='1';
+    frame.srcdoc='<!doctype html><html><head><meta name="referrer" content="no-referrer"></head><body style="margin:0"><script>var atOptions={key:"4c10efc097372233b52ed4f05e0a6ab8",format:"iframe",height:250,width:300,params:{}};<\/script><script src="https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8"><\/script></body></html>';
+  };
+  if('IntersectionObserver' in window){
+    adsterraObserver=new IntersectionObserver(entries=>{
+      if(entries.some(e=>e.isIntersecting)){
+        if(adsterraObserver){adsterraObserver.disconnect();adsterraObserver=null;}
+        mount();
+      }
+    },{rootMargin:'100px'});
+    adsterraObserver.observe(box);
+  }else mount();
+}
+/* Se comprueba Premium antes de montar y antes de cargar el anuncio. */
 function esPremiumLocal(){
   if (typeof window.GR_esPremium === 'function' && window.GR_esPremium()) return true;
   var u = window.GRAuth && window.GRAuth.usuarioActual;
@@ -31,6 +74,7 @@ function quitarAnuncios(){
   if (b) b.remove();
   var nota = document.getElementById('cookie-note');
   if (nota) nota.remove();
+  retirarPiloto();
   window.__adsLoaded = 1;
 }
 window.GR_quitarAnuncios = quitarAnuncios;
@@ -50,6 +94,7 @@ var ADS_RUTAS_SIN = {
   '/enfermedades/categoria/parasitarias.html':1
 };
 function paginaSinAnuncios(){
+  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
   if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;
   var robots=document.querySelector('meta[name="robots"]');
   if(robots && /noindex/i.test(robots.getAttribute('content')||''))return true;
@@ -61,17 +106,19 @@ function paginaSinAnuncios(){
 }
 function loadAds(){
   if(paginaSinAnuncios()){quitarAnuncios();return;}
-  if(!adsOn()){ocultarHuecos();return;}
+  if(!adsOn() || !adsConfigured()){ocultarHuecos();return;}
   if(esPremiumLocal()){ quitarAnuncios(); return; }
+  if(window.__adsLoaded)return;
   window.__adsLoaded=1;
+  mountAdsterraPilot();
 }
-function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
+function consentimientoEstricto(){return true;}
 function banner(){
   if(!adsOn() || esPremiumLocal())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Este sitio no carga redes de anuncios de terceros. La cuenta, si entras, se guarda aparte en este navegador. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Si aceptas, cargamos un banner de Adsterra para financiar las guías. Adsterra recibe tu IP y datos técnicos del navegador al servir el anuncio. Puedes rechazarlo y seguir leyendo. Tu cuenta funciona por separado. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
@@ -154,15 +201,23 @@ function arrancarAnuncios(){
     else decidirAnuncios();
   }, 12000);
 }
+/* Una retirada en otra pestaña elimina también el anuncio de esta página. */
+window.addEventListener('storage',e=>{
+  if(e.key!==CK && e.key!==null)return;
+  let accepted=false;
+  try{accepted=localStorage.getItem(CK)==='si';}catch(err){}
+  if(!accepted){retirarPiloto();window.__adsLoaded=0;document.documentElement.classList.remove('ad-ok');}
+});
 arrancarAnuncios();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
   if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
   localStorage.removeItem(CK);
+  retirarPiloto();
+  window.__adsLoaded=0;
   document.documentElement.classList.remove('ad-ok');
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
-  if(window.__adsLoaded){location.reload();return;}
   if(!adsConfigured()){ alert('Ahora mismo este sitio no usa cookies publicitarias.'); return; }
   const prev=document.getElementById('cookie-banner');
   if(prev) prev.remove();
@@ -413,4 +468,5 @@ window.addEventListener('storage',function(event){if(event.key===PK||event.key==
   bindQuizzes();
 })();
 })();
+
 
