@@ -526,6 +526,23 @@ def guia_pollitos(p, raiz):
 </section>'''
 
 
+def orientacion_comederos(cat, raiz):
+    """Orienta por necesidad antes del catálogo, solo en esta categoría."""
+    if cat != "Comederos":
+        return ""
+    return f'''<section class="t-bloque" data-orientacion-comederos aria-labelledby="orientacion-comederos-titulo">
+<h2 id="orientacion-comederos-titulo">Elige según tu lote y tu problema</h2>
+<p>Empieza por lo que necesitas resolver. Las guías y el registro son gratuitos; puedes consultarlos antes de valorar un cambio de equipo.</p>
+<nav aria-label="Guías para elegir comederos"><ul>
+<li><strong>Crías pollitos:</strong> consulta <a href="{raiz}blog/comedero-para-pollitos-como-elegir.html">cómo elegir un comedero para pollitos</a> antes de comparar modelos para adultas.</li>
+<li><strong>Encuentras pienso en el suelo:</strong> sigue la <a href="{raiz}blog/reducir-desperdicio-pienso.html">guía para identificar y registrar las pérdidas</a>.</li>
+<li><strong>Estás valorando un pedal:</strong> revisa los <a href="{raiz}tsr/tsr-comederos-antirratas.html">criterios de elección y adaptación</a> y la <a href="{raiz}comparativas/comparativa-comederos-pedal-antirratas.html">comparación de tres modelos</a>.</li>
+<li><strong>Quieres comparar tu propio manejo:</strong> utiliza la <a href="{raiz}hoja-registro-puesta.html">hoja semanal gratuita de puesta y pienso</a>.</li>
+</ul></nav>
+<p id="comederos-buscar-ayuda">En el catálogo de abajo, busca por marca, modelo o formato. Si escribes varias palabras, se muestran los productos que coinciden con todas. Encontrar un producto no demuestra que sea adecuado para tu lote.</p>
+</section>'''
+
+
 def cuerpo_categoria(cat, grupo, productos, raiz):
     otros = []
     for sid, _titulo, cats in SECCIONES:
@@ -538,6 +555,7 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
             elif any(p["categoria_csv"] == cat_csv for p in productos):
                 otros.append(f'<a class="t-chip" href="{raiz}tienda/c/{slugify(nombre)}/">{esc(nombre)}</a>')
     cards = "\n".join(tarjeta(p, raiz, "h2") for p in grupo)
+    ayuda_busqueda = ' aria-describedby="comederos-buscar-ayuda"' if cat == "Comederos" else ""
     aviso_cat = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if cat in VET_CATS or cat == "Pienso" else ""
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · {esc(cat)}</p>
 <header class="t-hero">
@@ -549,10 +567,11 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 <p><a class="btn sec" href="{raiz}tienda/">Ver toda la tienda</a> <a class="btn sec" href="{raiz}ebooks/">Ebooks a 3,00 USD</a></p>
 </header>
 {guia_pollitos(grupo[0], raiz)}
+{orientacion_comederos(cat, raiz)}
 <div class="t-filtros">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar en {esc(cat)}</label>
-<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre o palabra clave" autocomplete="off">
+<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre o palabra clave" autocomplete="off"{ayuda_busqueda}>
 </div>
 <div class="t-chips" aria-label="Categorías de esta sección">
 {"".join(otros)}
@@ -719,6 +738,9 @@ def escribir(productos):
             f"{cat}: {len(grupo)} productos de avicultura enlazados a Amazon. "
             "El precio se ve en Amazon, no en esta web."
         )
+        if cat == "Comederos":
+            ctitulo = "Comederos para gallinas: cómo elegir | Granja Rentable"
+            cdesc = "Compara comederos para gallinas según tu lote: guías de pollitos, desperdicio y pedal, fichas de equipo y registro gratuito de pienso."
         datos_c = [
             migas([("Inicio", SITIO + "/"), ("Tienda", canon), (cat, curl)]),
             lista(cat, grupo),

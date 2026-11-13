@@ -11,6 +11,7 @@ GUIA = 'tsr/tsr-comederos-antirratas.html'
 COMPARATIVA = 'comparativas/comparativa-comederos-pedal-antirratas.html'
 ARTICULO = 'blog/reducir-desperdicio-pienso.html'
 HOJA = 'hoja-registro-puesta.html'
+CATEGORIA = 'tienda/c/comederos/index.html'
 
 
 def comprobar():
@@ -23,7 +24,7 @@ def comprobar():
     if productos.keys() != ASINS:
         raise ValueError('Faltan productos del recorrido en el origen')
     fichas = {asin: f"tienda/p/{p['slug']}/index.html" for asin, p in productos.items()}
-    rutas = [GUIA, COMPARATIVA, ARTICULO, HOJA] + list(fichas.values())
+    rutas = [GUIA, COMPARATIVA, ARTICULO, HOJA, CATEGORIA] + list(fichas.values())
     documentos = {rel: (RAIZ / rel).read_text() for rel in rutas}
     arboles = {rel: Enlaces(html) for rel, html in documentos.items()}
 
@@ -31,7 +32,9 @@ def comprobar():
         return any(destino(RAIZ / origen, a['href']) == (RAIZ / objetivo, '') for a in arboles[origen].enlaces)
 
     for origen, objetivo in [(GUIA, COMPARATIVA), (COMPARATIVA, GUIA),
-                            (ARTICULO, GUIA), (GUIA, ARTICULO), (ARTICULO, HOJA)] + [
+                            (ARTICULO, GUIA), (GUIA, ARTICULO), (ARTICULO, HOJA),
+                            (CATEGORIA, GUIA), (CATEGORIA, COMPARATIVA),
+                            (CATEGORIA, ARTICULO), (CATEGORIA, HOJA)] + [
             par for ficha in fichas.values() for par in [(COMPARATIVA, ficha),
                 (ficha, COMPARATIVA), (ficha, GUIA), (ficha, ARTICULO), (ficha, HOJA)]]:
         if not conecta(origen, objetivo):
@@ -58,6 +61,16 @@ def comprobar():
                 errores.append(f'{rel}: catálogo distinto del origen en {campo}')
     if tienda.guia_comederos({'asin': 'OTRO'}, '../../../'):
         errores.append('El bloque se añade fuera de los tres ASIN previstos')
+    categoria = documentos[CATEGORIA]
+    if (categoria.count('data-orientacion-comederos') != 1
+            or tienda.orientacion_comederos('Comederos', '../../../') not in categoria):
+        errores.append('La orientación de categoría está duplicada o difiere del generador')
+    elif categoria.index('data-orientacion-comederos') > categoria.index('class="t-filtros"'):
+        errores.append('La orientación debe aparecer antes de los filtros y productos')
+    if 'aria-describedby="comederos-buscar-ayuda"' not in categoria:
+        errores.append('El buscador no tiene su explicación asociada')
+    if tienda.orientacion_comederos('Bebederos normales', '../../../'):
+        errores.append('La orientación invade otra categoría')
     fuente = (RAIZ / '_articulos/2026-11-07-reducir-desperdicio-pienso.md').read_text()
     if '../' + GUIA not in fuente or '../' + COMPARATIVA not in fuente:
         errores.append('Faltan los enlaces en el Markdown fuente')
