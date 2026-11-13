@@ -278,15 +278,21 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
     if (el) el.textContent = texto;
   }
   var CONSENT_VERSION = "digital-inmediato-v1";
+  var pagoEnCurso = false;
+  function actualizarBotones() {
+    document.querySelectorAll("[data-ebook-check]").forEach(function (caja) {
+      var id = caja.getAttribute("data-ebook-check");
+      var boton = document.querySelector('[data-stripe-ebook="' + id + '"]');
+      if (boton) boton.disabled = pagoEnCurso || !caja.checked;
+    });
+  }
   document.querySelectorAll("[data-ebook-check]").forEach(function (caja) {
-    var id = caja.getAttribute("data-ebook-check");
-    var botonCaja = document.querySelector('[data-stripe-ebook="' + id + '"]');
-    function sync() { if (botonCaja) botonCaja.disabled = !caja.checked; }
-    caja.addEventListener("change", sync);
-    sync();
+    caja.addEventListener("change", actualizarBotones);
   });
+  actualizarBotones();
   document.querySelectorAll("[data-stripe-ebook]").forEach(function (boton) {
     boton.addEventListener("click", function () {
+      if (pagoEnCurso) return;
       var clave = boton.getAttribute("data-stripe-ebook");
       var caja = document.querySelector('[data-ebook-check="' + clave + '"]');
       if (!caja || !caja.checked) {
@@ -296,7 +302,8 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
       }
       var marca = { version: CONSENT_VERSION, producto: clave, en: new Date().toISOString() };
       try { localStorage.setItem("gr_ebook_consent_" + clave, JSON.stringify(marca)); } catch (e2) {}
-      boton.disabled = true;
+      pagoEnCurso = true;
+      actualizarBotones();
       mensajeDe(clave, "Redirigiendo a la página de pago seguro…");
       try { sessionStorage.setItem("stripeEbookProducto", clave); } catch (e) {}
       llamarScript({ tipo: "stripe-ebook", accion: "crear", producto: clave, consentimiento: CONSENT_VERSION, consentimiento_en: marca.en })
@@ -308,7 +315,8 @@ button[data-stripe-ebook][disabled],button.ebook-pagar[disabled]{opacity:.55;cur
           throw new Error((d && d.error) || "no_se_pudo_crear_la_sesion");
         })
         .catch(function () {
-          boton.disabled = false;
+          pagoEnCurso = false;
+          actualizarBotones();
           mensajeDe(clave, "No se pudo iniciar el pago con tarjeta. Inténtalo de nuevo.");
         });
     });
