@@ -30,6 +30,11 @@ class Buscador(unittest.TestCase):
         self.assertEqual([p["categoria"] for p in self.indice(html)], ["Alimentación", "Incubación"])
         self.assertEqual(self.indice(html)[0]["descripcion"], "Compara etiquetas")
 
+    def test_negocios_aparece_en_busqueda_y_navegacion(self):
+        html = g.buscador_blog([entrada('venta-pollitos', categoria='negocios')])
+        self.assertEqual(self.indice(html)[0]['categoria'], 'Negocios con gallinas')
+        self.assertIn('negocios-con-gallinas.html', g.categorias_nav('negocios'))
+
     def test_texto_no_cierra_el_script(self):
         titulo = "</script><b>Texto</b>"
         html = g.buscador_blog([entrada(titulo=titulo)])
