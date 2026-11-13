@@ -554,12 +554,30 @@ def orientacion_seguridad(cat, raiz):
     if cat not in criterios:
         return ""
     titulo, texto = criterios[cat]
+    conservacion = (f'<p>Para organizar el contenido y la rotación, consulta <a href="{raiz}blog/almacenar-pienso-gallinas.html">cómo conservar el pienso</a> y el <a href="{raiz}youtube/alimentacion.html">recorrido de alimentación</a>.</p>' if cat == "Almacenaje de pienso" else "")
     return f'''<section class="t-bloque" data-orientacion-seguridad aria-labelledby="seguridad-elegir-titulo">
 <h2 id="seguridad-elegir-titulo">{esc(titulo)}</h2>
 <p>{esc(texto)}</p>
+{conservacion}
 <p>Empieza por la <a href="{raiz}blog/corral-anti-depredadores.html">revisión de puerta, malla, suelo y techo del gallinero</a>. Anota el punto débil antes de valorar una compra.</p>
 <p><a href="{raiz}lista.html">Organiza las revisiones en tu lista y calendario</a>. Si detectas una rotura, no esperes a la próxima revisión programada.</p>
 <p>El catálogo reúne productos con funciones diferentes. Comprueba sus instrucciones y compatibilidad; la presencia en esta categoría no garantiza que un equipo resuelva tu problema.</p>
+</section>'''
+
+
+def orientacion_alimentacion(cat, raiz):
+    """Ayuda a entrar al catálogo de pienso desde una guía y unas cuentas."""
+    if cat != "Pienso":
+        return ""
+    return f'''<section class="t-bloque" data-orientacion-alimentacion aria-labelledby="pienso-elegir-titulo">
+<h2 id="pienso-elegir-titulo">Revisa la etiqueta antes de comparar sacos</h2>
+<p>Esta categoría incluye referencias de arranque y de puesta. No son alternativas intercambiables solo por aparecer en la misma lista. Comprueba destino e instrucciones de cada ficha y consulta el aviso veterinario de esta página cuando corresponda.</p>
+<ol>
+<li>Empieza por <a href="{raiz}blog/leer-etiqueta-pienso-aves.html">cómo leer la etiqueta del pienso</a>.</li>
+<li>Con productos apropiados para tu caso, compara <a href="{raiz}calculadoras.html#sacos">precio por kilo</a>. Esta cuenta no evalúa la composición.</li>
+<li>Revisa <a href="{raiz}blog/almacenar-pienso-gallinas.html">conservación y rotación del alimento</a> antes de elegir el tamaño del saco.</li>
+</ol>
+<p>Si vienes del canal, sigue el <a href="{raiz}youtube/alimentacion.html">recorrido de alimentación y cuentas</a>. La hoja de registro y las calculadoras son gratuitas.</p>
 </section>'''
 
 
@@ -598,6 +616,7 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 {guia_pollitos(grupo[0], raiz)}
 {orientacion_comederos(cat, raiz)}
 {orientacion_seguridad(cat, raiz)}
+{orientacion_alimentacion(cat, raiz)}
 {inicio_catalogo}
 <div class="t-filtros">
 <div class="t-buscar">

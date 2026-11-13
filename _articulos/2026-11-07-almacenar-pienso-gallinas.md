@@ -5,6 +5,7 @@ descripcion: "Organiza la rotación del pienso, evita humedad y roedores y apren
 categoria: "alimentacion"
 fecha: "2026-11-07"
 borrador: false
+actualizado: 2026-11-13
 imagen: "img/blog/alimento-casero-vs-balanceado.webp"
 imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
 imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
@@ -54,3 +55,9 @@ No uses otro grupo como destino de alimento deteriorado o sospechoso.
 ## Fuente
 
 [Alabama Cooperative Extension: nutrición de pequeñas bandadas](https://www.aces.edu/blog/topics/farming/nutrition-for-backyard-chicken-flocks/) explica riesgos de almacenamiento, humedad y deterioro. Para reducir sobrantes fuera del almacén, sigue la [guía de desperdicio en comederos](reducir-desperdicio-pienso.html).
+
+## Prepara la próxima compra con tus registros
+
+Anota cuántos kilos utilizas y el espacio que tienes antes de comparar recipientes en [almacenaje de pienso](../tienda/c/almacenaje-de-pienso/). Revisa primero la [etiqueta del alimento](leer-etiqueta-pienso-aves.html) para conservar las condiciones de uso del producto concreto.
+
+Para continuar desde el vídeo, el [recorrido de alimentación](../youtube/alimentacion.html) reúne el registro gratuito y las calculadoras. El tamaño del recipiente no sustituye las instrucciones de conservación.

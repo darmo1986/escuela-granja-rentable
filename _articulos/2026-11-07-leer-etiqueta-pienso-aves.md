@@ -5,6 +5,7 @@ descripcion: "Comprueba especie, fase, uso, composición y conservación antes d
 categoria: "alimentacion"
 fecha: "2026-11-07"
 borrador: false
+actualizado: 2026-11-13
 imagen: "img/blog/leer-etiqueta-pienso-aves.webp"
 imagen_og: "img/blog/leer-etiqueta-pienso-aves-og.webp"
 imagen_alt: "Etiqueta en español de un pienso completo para gallinas ponedoras, con análisis y aditivos"
@@ -55,3 +56,9 @@ Describen principalmente la presentación. Hay que revisar también la formulaci
 ## Fuente y conservación
 
 [Alabama Cooperative Extension: alimentación de ponedoras](https://www.aces.edu/blog/topics/farming/backyard-small-poultry-flock-management-series-feeding-the-laying-hen/) describe componentes del alimento y cuestiones de composición. Continúa con [cómo almacenar el pienso](almacenar-pienso-gallinas.html). Esta página es una guía de compra, no una descripción exhaustiva de obligaciones legales de etiquetado.
+
+## De la etiqueta a una decisión
+
+Con los datos de dos sacos, abre la [comparación de precio por kilo](../calculadoras.html#sacos). Para revisar referencias de la tienda, entra en [pienso por etapa y uso](../tienda/c/pienso/) y comprueba cada ficha antes de elegir.
+
+Si llegaste desde un vídeo, el [recorrido de alimentación](../youtube/alimentacion.html) conecta etiqueta, registro, cuentas y equipo. No necesitas comprar para usar esos recursos.
