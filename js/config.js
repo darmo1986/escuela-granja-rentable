@@ -37,6 +37,10 @@ window.GR = {
      rellena el campo con ese nombre. La regla compartida es public.apodo_ok
      y GRAuth.apodo.
      El reto de /preguntas no tiene premio. */
+  asesoria: {
+    activa: false, // Abrir solo tras migración y pruebas de pago, permisos y correo.
+    endpoint: "https://apdcgizpgguhmbgzsymx.supabase.co/functions/v1/asesoria"
+  },
   comunidad: {
     supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",

@@ -772,6 +772,7 @@
       (ultimoError ? '<p class="auth-error">' + esc(ultimoError) + "</p>" : "") +
       '<form id="cuenta-apodo"><label>Apodo del ranking<input name="apodo" maxlength="40" value="' + esc(usuarioActual.nombre) + '" autocomplete="nickname"></label><button class="btn sec" type="submit">Guardar apodo</button></form>' +
       '<p><button type="button" class="btn sec" id="cuenta-salir">Salir</button></p>' +
+      '<p><a class="btn gold" href="' + esc(urlDe("asesoria.html")) + '">Mi acompañamiento Premium</a></p>' +
       "<h2>Curso</h2><p>El curso es gratis. Si entras, tu avance se guarda en tu cuenta. Llevas " + leccionesAprobadas(bloque.curso) + " lecciones aprobadas.</p>" +
       "<h2>Cálculos</h2>" + (calcs ? "<ul>" + calcs + "</ul>" : "<p>Todavía no guardaste ninguno. En la calculadora, el botón «Guardar en mi cuenta».</p>") +
       "<h2>Fichas guardadas</h2>" + (favs ? "<ul>" + favs + "</ul>" : "<p>En una ficha de enfermedades, «Guardar ficha».</p>");
@@ -861,6 +862,7 @@
   }
 
   window.GRAuth = {
+    cliente: prepararNube,
     demo: modoDemo,
     usuario: function () { return usuarioActual; },
     apodo: apodoValido,
