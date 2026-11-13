@@ -44,6 +44,15 @@ class Publicacion(unittest.TestCase):
         (self.raiz / '_fuentes').mkdir()
         self.assertTrue(any('fuente interna' in e for e in self.errores()))
 
+    def test_rechaza_resenas_heredadas_en_la_tienda_construida(self):
+        tienda = self.raiz / 'tienda/p/modelo'
+        tienda.mkdir(parents=True)
+        pagina = tienda / 'index.html'
+        pagina.write_text('<a href="https://www.amazon.com/product-reviews/B00P9EJLSO?tag=granjarentabl-20">Amazon</a>')
+        self.assertTrue(any('product-reviews' in e for e in self.errores()))
+        pagina.write_text('<a href="https://www.amazon.com/dp/B00P9EJLSO?tag=granjarentabl-20">Amazon</a>')
+        self.assertEqual(self.errores(), [])
+
     def test_rechaza_curso_como_primer_destacado(self):
         (self.raiz / 'index.html').write_text(self.home.replace('href="razas.html"', 'href="curso.html"'))
         self.assertTrue(any('Razas' in e for e in self.errores()))

@@ -38,4 +38,19 @@ Hipótesis: un recorrido más claro entre desperdicio, registro y elección de e
 
 Tras aprobación y publicación, comprobar páginas y enlaces reales. Con conexiones autorizadas, registrar una referencia y comparar periodos equivalentes (por ejemplo, 28 días, ampliando si faltan datos): consultas y clics en Search Console; clics afiliados con denominador disponible; ventas e ingresos en Amazon. Un clic no es una venta. Calcular beneficio descontando costes reales, incluidas herramientas, producción y comisiones aplicables. Sin acceso a esos informes no se afirma una mejora de tráfico o ingresos.
 
-Siguiente tarea propuesta: resolver `product-reviews` en origen y su comprobación antes de ampliar más comparativas. No se fusiona ni publica #119 sin aprobación específica. Reversión: revertir los commits aprobados y regenerar el blog, comprobando solapamientos con cambios posteriores.
+La corrección de `product-reviews` se prepara en la ampliación descrita abajo. Tras publicarla con aprobación, la siguiente tarea será comprobar destinos reales y recuperar métricas autorizadas antes de ampliar más comparativas. No se fusiona ni publica #119 sin aprobación específica. Reversión: revertir los commits aprobados y regenerar el blog, comprobando solapamientos con cambios posteriores.
+
+
+## Nueva corrección preparada: destinos Amazon en origen
+
+Se elimina el segundo botón de reseñas del generador de tienda y se conserva «Ver precio en Amazon», dirigido al producto con el mismo ASIN y tag. No se promete abrir una pestaña de opiniones ni se convierte una URL de reseñas en otro botón duplicado.
+
+El despliegue propuesto ejecuta `_fuentes/tienda/limpiar_destinos.py` antes de generar el blog. Es una migración acotada de los HTML heredados: solo retira el botón `t-resenas` cuando el mismo bloque conserva un `t-amazon` al mismo ASIN, ambos con el identificador aprobado y atributos esperados. Ante un patrón distinto, se detiene antes de escribir ningún archivo. Así conserva textos, imágenes y trabajo editorial que una regeneración indiscriminada de tienda podría sustituir. No consulta Amazon ni envía datos.
+
+Validación local: 507 botones heredados retirados en 203 HTML; 507 botones principales conservados con los mismos atributos. Segunda ejecución: cero cambios. Después de la limpieza y generación del blog, el piloto de agua aprueba cinco páginas y 389 enlaces, sin errores. Se resuelve en esta salida local el fallo documentado en la sección anterior; la web publicada no cambia mientras el PR sea borrador.
+
+58 pruebas Python aprobadas, incluidas discrepancia de ASIN, tag y host, atributos inesperados, contenido ajeno intacto, repetición sin cambios, validación completa antes de escribir y rechazo de enlaces heredados en la salida construida. El verificador de publicación ahora revisa todos los HTML de tienda para impedir que se publique el patrón `product-reviews`.
+
+No se prueba con esto que Amazon entregue el producto, que los enlaces conviertan ni que haya comisiones: el objetivo es un destino coherente y verificable en el código. Los informes comerciales, el ensayo visual en móvil y la aprobación de publicación siguen pendientes.
+
+Comprobación adicional del origen: tras generar primero el blog (para disponer de los artículos enlazados), el generador de tienda completa sus 169 productos y 33 categorías con comprobación interna de enlaces, tag y schema correcta. Sus 237 HTML no contienen botones heredados y la limpieza no los modifica. Esta regeneración completa se realiza solo en otra copia de comprobación: no se incluyen sus cambios editoriales incidentales en el PR.

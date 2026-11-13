@@ -234,16 +234,9 @@ def boton_amazon(p):
     )
 
 
-def boton_resenas(p):
-    href = f"https://www.amazon.com/product-reviews/{p['asin']}?tag=granjarentabl-20"
-    return (
-        f'<a class="btn sec t-resenas" href="{esc(href)}" rel="nofollow sponsored noopener" target="_blank">'
-        f'Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>'
-    )
-
-
 def botones_amazon(p):
-    return f'<div class="t-acciones">\n{boton_amazon(p)}\n{boton_resenas(p)}\n</div>'
+    # Un único destino comercial: la ficha de producto, sin prometer una pestaña de reseñas.
+    return f'<div class="t-acciones">\n{boton_amazon(p)}\n</div>'
 
 
 def html_descripcion_larga(texto):
@@ -888,9 +881,8 @@ def comprobar(productos, urls, precios_decimales):
                     if "amazon.com" not in href or "tag=granjarentabl-20" not in href:
                         errores.append(f"{rel}: Amazon sin tag {href}")
                     if "/product-reviews/" in href:
-                        if 'rel="nofollow sponsored noopener"' not in tag or 'target="_blank"' not in tag:
-                            errores.append(f"{rel}: rel de reseñas incorrecto")
-                    elif 'rel="sponsored nofollow noopener"' not in tag or 'target="_blank"' not in tag:
+                        errores.append(f"{rel}: destino de reseñas heredado")
+                    if 'rel="sponsored nofollow noopener"' not in tag or 'target="_blank"' not in tag:
                         errores.append(f"{rel}: rel o target incorrecto")
                     m_asin = re.search(r"/dp/([A-Z0-9]{10})", href)
                     if m_asin:
@@ -923,7 +915,7 @@ def comprobar(productos, urls, precios_decimales):
                 errores.append(f"{rel}: frases {nexp}/{nrec}")
             if "<h1>" not in html or 'rel="canonical"' not in html or "og:title" not in html:
                 errores.append(f"{rel}: falta SEO")
-            if "Ver precio en Amazon" not in html or "Ver las reseñas en Amazon" not in html:
+            if "Ver precio en Amazon" not in html:
                 errores.append(f"{rel}: falta un botón de Amazon")
             if "t-sello" in html or "sello-recomendado-granja-rentable" in html:
                 errores.append(f"{rel}: el sello no puede publicarse en esta rama")
@@ -959,7 +951,7 @@ def comprobar(productos, urls, precios_decimales):
         texto = ruta.read_text(encoding="utf-8")
         if "t-sello" in texto or "sello-recomendado-granja-rentable" in texto:
             errores.append(f"El sello no puede publicarse en {ruta.relative_to(RAIZ)}")
-        if cita.search(texto) or resen.search(texto.replace("Ver las reseñas en Amazon", "")):
+        if cita.search(texto) or resen.search(texto):
             errores.append(f"Queda una valoración en {ruta.relative_to(RAIZ)}")
     muestra = html_descripcion_larga("## Qué incluye\n\nUna frase.\n\n### Detalle\n\nOtra.")
     if "<h2>Qué incluye</h2>" not in muestra or "<h3>Detalle</h3>" not in muestra or "<p>Una frase.</p>" not in muestra:
