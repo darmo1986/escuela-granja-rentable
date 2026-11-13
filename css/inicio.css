@@ -18,8 +18,10 @@
 .gr-hero.js-hero .gr-slide.is-active{opacity:1;visibility:visible;transition:opacity .5s ease;z-index:1}
 .gr-hero.js-hero .gr-hero-ctrl{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 16px 18px}
 .gr-hero-dots{display:flex;gap:8px;align-items:center}
-.gr-hero-dots button{width:12px;height:12px;border-radius:50%;border:2px solid #e4c66b;background:transparent;cursor:pointer;padding:0}
-.gr-hero-dots button[aria-current="true"]{background:#e4c66b}
+.gr-hero-dots button{width:44px;height:44px;border-radius:50%;border:0;background:transparent;cursor:pointer;padding:0;display:grid;place-items:center}
+.gr-hero-dots button::before{content:"";width:12px;height:12px;border:2px solid #e4c66b;border-radius:50%}
+.gr-hero-dots button[aria-current="true"]::before{background:#e4c66b}
+.gr-hero-dots button:focus-visible{outline:2px solid #fff;box-shadow:none;outline-offset:0}
 .gr-hero-arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(9,34,20,.55);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .gr-hero-arrow:hover,.gr-hero-arrow:focus-visible{background:#e4c66b;color:#103e27;border-color:#e4c66b;outline:none}
 @media(min-width:900px){.gr-hero{grid-template-columns:1fr}.gr-slide{grid-template-columns:1.2fr .8fr;min-height:460px}.gr-slide .gr-hero-copy{padding:48px 40px}}
@@ -27,3 +29,23 @@
 
 /* Portada compacta en móvil: texto legible e imagen sin ocupar toda la pantalla. */
 @media(max-width:599px){.gr-slide{grid-template-rows:1fr 200px}.gr-slide .gr-hero-copy{padding:26px 22px}.gr-slide .gr-hero-title,.gr-hero h1{font-size:1.85rem;line-height:1.12}.gr-hero .gr-lead{font-size:1rem;line-height:1.5}.gr-slide .gr-actions{margin:20px 0 12px}.gr-slide .gr-hero-photo{height:200px;min-height:0}.gr-slide .gr-hero-photo img{height:200px}.gr-quick a{padding:14px 12px}}
+
+/* Buscar desde la portada, con envío nativo al índice común del blog. */
+.gr-home-search { margin:28px 0 0; padding:24px; border:1px solid #dcded0; background:#fffdf8; border-radius:16px; }
+.gr-home-search label { display:block; font-weight:800; color:#173f26; font-size:1.15rem; }
+.gr-home-search p { color:#52634d; font-size:.92rem; }
+.gr-home-search-fields { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+.gr-home-search input { flex:1 1 240px; min-width:0; min-height:48px; font:inherit; padding:12px; border:1px solid #8c9f7c; border-radius:10px; background:#fff; color:#173f26; }
+.gr-home-search .btn { min-height:48px; }
+.gr-search-topics { display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:12px; }
+.gr-search-topics a { padding:8px 0; font-size:.88rem; font-weight:700; text-underline-offset:4px; }
+@media(max-width:599px){
+ .gr-hero.js-hero .gr-hero-ctrl{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:4px 12px}
+ .gr-hero-dots{grid-column:1/-1;grid-row:1;justify-content:center;gap:4px}
+ [data-hero-prev]{grid-column:1;grid-row:2}
+ [data-hero-pause]{grid-column:2;grid-row:2;justify-self:center;min-height:44px}
+ [data-hero-next]{grid-column:3;grid-row:2}
+ .gr-home-search{padding:20px}
+ .gr-home-search-fields input,.gr-home-search-fields .btn{flex-basis:100%;width:100%}
+}
+

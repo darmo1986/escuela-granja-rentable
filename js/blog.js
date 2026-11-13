@@ -19,4 +19,36 @@
       b.replaceWith(f);
     });
   });
+  var actions = document.querySelector('[data-post-acciones]');
+  if (actions) {
+    var status = actions.querySelector('[data-post-estado]');
+    var field;
+    actions.hidden = false;
+    actions.querySelector('[data-post-imprimir]').addEventListener('click', function () { window.print(); });
+    actions.querySelector('[data-post-copiar]').addEventListener('click', async function () {
+      var canonical = document.querySelector('link[rel="canonical"]');
+      var url = (canonical ? canonical.href : location.origin + location.pathname) + location.hash;
+      try {
+        if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('clipboard unavailable');
+        await navigator.clipboard.writeText(url);
+        status.textContent = 'Enlace copiado. Ya puedes compartir el artículo.';
+        if (field) field.hidden = true;
+      } catch (error) {
+        if (!field) {
+          field = document.createElement('input');
+          field.type = 'text';
+          field.readOnly = true;
+          field.setAttribute('aria-label', 'Enlace del artículo para copiar');
+          field.className = 'post-enlace';
+          actions.appendChild(field);
+        }
+        field.value = url;
+        field.hidden = false;
+        field.focus();
+        field.select();
+        status.textContent = 'El navegador no ha permitido copiar. Copia el enlace seleccionado.';
+      }
+    });
+  }
 })();
+

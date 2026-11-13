@@ -18,6 +18,20 @@
     var name = normalize(heading ? heading.textContent : '');
     return { card: card, name: name.replace(/\s+/g, ''), search: normalize(name + ' ' + (description ? description.textContent : '')) };
   });
+  function saveQuery() {
+    try {
+      var url = new URL(window.location.href);
+      var query = input.value.trim();
+      if (query) url.searchParams.set('q', query);
+      else url.searchParams.delete('q');
+      if (url.href !== window.location.href) window.history.replaceState(window.history.state, '', url.href);
+    } catch (error) { /* El filtro sigue disponible si el navegador impide modificar la URL. */ }
+  }
+  function restoreQuery() {
+    try { input.value = (new URL(window.location.href).searchParams.get('q') || '').slice(0,120); }
+    catch (error) { input.value = ''; }
+    filter();
+  }
   function filter() {
     var term = normalize(input.value);
     var words = term ? term.split(/\s+/) : [];
@@ -30,9 +44,12 @@
     status.textContent = visible + ' de ' + cards.length + ' fichas';
     empty.hidden = visible !== 0;
   }
-  form.addEventListener('submit', function (event) { event.preventDefault(); filter(); });
-  input.addEventListener('input', filter);
-  clear.addEventListener('click', function () { input.value = ''; filter(); input.focus(); });
-  filter();
+  input.maxLength = 120;
+  form.addEventListener('submit', function (event) { event.preventDefault(); filter(); saveQuery(); });
+  input.addEventListener('input', function () { filter(); saveQuery(); });
+  clear.addEventListener('click', function () { input.value = ''; filter(); saveQuery(); input.focus(); });
+  window.addEventListener('popstate', restoreQuery);
+  restoreQuery();
   form.hidden = false;
 })();
+

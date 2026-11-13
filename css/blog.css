@@ -35,3 +35,33 @@ ol.steps li { margin: .45em 0; }
 
 .post-foto figcaption { margin: 6px 0 0; max-width: 42rem; color: var(--muted); font-size: .875rem; line-height: 1.5; }
 .post-foto figcaption a { color: var(--gm); }
+
+/* Lectura, navegación por apartados y herramientas del artículo. */
+.post-indice { max-width:42rem; margin:1rem 0; padding:1rem 1.25rem; border:1px solid var(--line); border-radius:14px; background:var(--paper); }
+.post-indice summary { cursor:pointer; font-weight:800; color:var(--gd); padding:.4rem 0; }
+.post-indice ol { padding-left:1.25rem; margin:.6rem 0 0; }
+.post-indice li { padding:.25rem 0; }
+.post-indice a { display:inline-block; padding:.25rem 0; text-underline-offset:3px; }
+.post-indice-nivel-3 { margin-left:1rem; font-size:.93rem; }
+.post-body h2[id], .post-body h3[id] { scroll-margin-top:10rem; }
+.post-acciones { max-width:42rem; display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin:1rem 0; }
+.post-acciones .btn { min-height:44px; }
+.post-acciones [role="status"] { flex-basis:100%; font-size:.9rem; overflow-wrap:anywhere; }
+.post-acciones [role="status"]:empty { display:none; }
+.post-enlace { width:100%; min-width:0; min-height:44px; padding:.7rem; font:inherit; border:1px solid var(--gm); border-radius:8px; }
+.post-volver { margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--line); }
+@media print {
+  @page { margin:16mm; }
+  .promo-carousel, .banner-ebook, .banner-amazon, [data-recursos-granja], .post-indice, .post-acciones, .post-cta, .post-volver, .post-relacionados, .yt-facade { display:none !important; }
+  .post-head, .post-foto, .post-body { max-width:none; }
+  .post-foto img { width:auto; max-width:100%; max-height:65mm; object-fit:contain; }
+  .post-body { border:0; box-shadow:none; padding:0; }
+  .post-body .tabla { max-width:none; overflow:visible; }
+  .post-body .tabla::after { display:none; }
+  .tabla table { width:100%; table-layout:auto; }
+  .tabla th, .tabla td { position:static !important; overflow-wrap:anywhere; }
+  .post-body h2, .post-body h3 { break-after:avoid; }
+  .post-body tr, .post-foto { break-inside:avoid; }
+  a { color:inherit; }
+}
+
