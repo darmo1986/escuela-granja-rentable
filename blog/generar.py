@@ -93,7 +93,7 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "20261113lectura"
+VERSION_ACTIVOS = "20261113herramientas"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -789,7 +789,7 @@ def poner_version(html):
     for nombre in (
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
             "js/site.js", "js/app.js", "js/config.js", "js/hero.js", "css/inicio.css",
-            "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css"):
+            "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css", "js/calculadoras.js", "js/lista.js", "js/guias.js", "js/auth.js"):
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
             rf'\1?v={VERSION_ACTIVOS}"',
@@ -1763,4 +1763,5 @@ def main(argv):
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
+
 

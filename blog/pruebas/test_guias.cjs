@@ -1,0 +1,14 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
+const events={},input={value:'',addEventListener(k,f){events[k]=f;},focus(){this.focused=true;}},clear={addEventListener(k,f){this.click=f;}},status={},empty={};
+const cards=['Gallos: convivencia y reproducción','Cuidados de codornices','Negocios con gallinas'].map(textContent=>({textContent,hidden:false}));
+const w={addEventListener(k,f){events[k]=f;}};
+const location={href:'https://granjarentable.com/guias.html?pais=MX&q=codornices#contenido'};
+const history={state:{keep:1},replaceState(state,title,url){this.state=state;location.href=url;}};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../../js/guias.js'),'utf8'),{window:w,URL,location,history,document:{getElementById:id=>id==='buscar-guia'?input:id==='resultado-guias'?status:empty,querySelector:()=>clear,querySelectorAll:()=>cards}});
+assert.deepEqual(cards.map(c=>c.hidden),[true,false,true]);assert.equal(status.textContent,'1 guía disponible');
+input.value='GALLOS, reproducción';events.input();assert.deepEqual(cards.map(c=>c.hidden),[false,true,true]);
+assert.equal(new URL(location.href).searchParams.get('pais'),'MX');assert.equal(new URL(location.href).hash,'#contenido');assert.equal(history.state.keep,1);
+clear.click();assert(cards.every(c=>!c.hidden));assert.equal(new URL(location.href).searchParams.has('q'),false);assert(input.focused);
+location.href='https://granjarentable.com/guias.html?q=negocios';events.popstate();assert.deepEqual(cards.map(c=>c.hidden),[true,true,false]);
+history.replaceState=()=>{throw Error('blocked');};input.value='inexistente';events.input();assert.equal(empty.hidden,false);
+console.log('OK: biblioteca, tildes y puntuación, búsqueda compartida, historial, limpiar y URL bloqueada.');

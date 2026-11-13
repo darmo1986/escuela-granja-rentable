@@ -836,6 +836,11 @@
     if (window.GRAuth) return;
     var s = document.createElement("script");
     s.src = root + "js/auth.js";
+    try {
+      var source = document.currentScript;
+      var version = source && source.src && new URL(source.src, document.baseURI).searchParams.get("v");
+      if (version) s.src += "?v=" + encodeURIComponent(version);
+    } catch (e) {}
     document.body.appendChild(s);
   })();
 
@@ -993,3 +998,4 @@
     }, true);
   } catch (e) {}
 })();
+

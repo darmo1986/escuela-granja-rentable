@@ -308,6 +308,7 @@
       var local = leerJson("gr_progreso", {});
       var junto = mezclarCurso(local, bloque.curso);
       try { localStorage.setItem("gr_progreso", JSON.stringify(junto)); } catch (e) {}
+      try { window.dispatchEvent(new CustomEvent("gr-progreso")); } catch (e) {}
       bloque.curso = junto;
       guardarDatos(id, bloque);
       pintarCuenta();
@@ -875,3 +876,4 @@
   };
   avisar();
 })();
+
