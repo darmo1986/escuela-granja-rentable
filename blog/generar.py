@@ -94,6 +94,7 @@ TITULO_MAX_EXTRA = {
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
 VERSION_ACTIVOS = "20261113herramientas"
+VERSION_BANNERS = "20261113banners"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -789,10 +790,12 @@ def poner_version(html):
     for nombre in (
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
             "js/site.js", "js/app.js", "js/config.js", "js/hero.js", "css/inicio.css",
+            "js/ofertas.js", "js/registro-banners.js",
             "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css", "js/calculadoras.js", "js/lista.js", "js/guias.js", "js/auth.js"):
+        version = VERSION_BANNERS if nombre in {"js/ofertas.js", "js/registro-banners.js"} else VERSION_ACTIVOS
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
-            rf'\1?v={VERSION_ACTIVOS}"',
+            rf'\1?v={version}"',
             html)
     return html
 
@@ -1072,13 +1075,13 @@ def asegurar_script_banners(html, rel):
         return html
     raiz = raiz_de(rel)
     if "js/registro-banners.js" not in html:
-        html = html.replace("</body>", f'<script defer src="{raiz}js/registro-banners.js?v={VERSION_ACTIVOS}"></script>\n</body>', 1)
+        html = html.replace("</body>", f'<script defer src="{raiz}js/registro-banners.js?v={VERSION_BANNERS}"></script>\n</body>', 1)
     html = re.sub(r'<script[^>]*src="[^"\n]*js/ofertas.js[^>]*></script>\n?', '', html)
     if "js/ofertas.js" not in html:
-        html = re.sub(r'(<script[^>]*src="[^"\n]*js/registro-banners.js[^>]*>)', lambda m: f'<script defer src="{raiz}js/ofertas.js?v=20261112"></script>\n' + m.group(1), html, count=1)
+        html = re.sub(r'(<script[^>]*src="[^"\n]*js/registro-banners.js[^>]*>)', lambda m: f'<script defer src="{raiz}js/ofertas.js?v={VERSION_BANNERS}"></script>\n' + m.group(1), html, count=1)
     if "css/ofertas.css" not in html:
         html = html.replace("</head>", f'<link rel="stylesheet" href="{raiz}css/ofertas.css?v=20261112">\n</head>', 1)
-    return html
+    return poner_version(html)
 
 
 def colocar_banners(rel, html, raiz, post=None):

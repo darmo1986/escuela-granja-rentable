@@ -480,6 +480,12 @@ class Generador(unittest.TestCase):
                 self.assertNotIn('utm_', oferta['href'])
             self.assertTrue((RAIZ / oferta['imagen']).is_file())
         self.assertLess(segundo.index('js/ofertas.js'), segundo.index('js/registro-banners.js'))
+        for archivo in ["ofertas.js", "registro-banners.js"]:
+            self.assertIn(f"js/{archivo}?v={generar.VERSION_BANNERS}", segundo)
+        antiguo = segundo.replace(f"js/registro-banners.js?v={generar.VERSION_BANNERS}", "js/registro-banners.js?v=antiguo")
+        actualizado = generar.colocar_banners("index.html", antiguo, RAIZ)
+        self.assertIn(f"js/registro-banners.js?v={generar.VERSION_BANNERS}", actualizado)
+        self.assertNotIn("v=antiguo", actualizado)
 
     def test_noindex_no_entra_en_relacionados(self):
         post(self.tmp, "2026-11-02-visible.md", borrador="false", leccion="", producto="",
