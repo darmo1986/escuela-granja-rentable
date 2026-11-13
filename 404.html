@@ -19,6 +19,7 @@
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
 <link rel="stylesheet" href="css/estilo.css?v=20261110d">
 <script src="js/boot.js?v=20261110d"></script>
+<link rel="stylesheet" href="css/blog-buscar.css?v=20261113buscador">
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -32,6 +33,11 @@
 <p class="eyebrow">Error 404</p>
 <h1>No encontramos esta página</h1>
 <p class="lead">Puede que el enlace haya cambiado. Continúa por una de estas secciones para encontrar lo que necesitas.</p>
+<form class="panel blog-buscador" role="search" action="blog/" method="get" aria-label="Buscar un artículo desde una página no encontrada">
+<label for="buscar-desde-404">¿Qué estabas buscando?</label>
+<p id="buscar-404-ayuda">Escribe el tema, por ejemplo: gallinero, pienso o pollitos.</p>
+<div class="blog-buscador-campos"><input id="buscar-desde-404" name="q" type="search" maxlength="120" required aria-describedby="buscar-404-ayuda" placeholder="Busca en los artículos gratuitos"><button class="btn gold" type="submit">Buscar artículos →</button></div>
+</form>
 <nav aria-label="Continuar navegando">
 <p class="split"><a class="btn gold" href="index.html">Volver al inicio</a> <a class="btn sec" href="blog/">Buscar un artículo</a> <a class="btn sec" href="razas.html">Explorar razas</a></p>
 </nav>
