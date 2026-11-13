@@ -1,16 +1,51 @@
 (function(){
 const root=document.body.dataset.root||'';
-const PK='gr_progreso',CK='gr_consent';
+const PK='gr_progreso',CK='gr_adsterra_consent_v1';
 const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p!=='object'||Array.isArray(p))return{};const clean={};Object.keys(p).forEach(id=>{const item=p[id];if(item&&typeof item==='object'&&!Array.isArray(item))clean[id]=item;});return clean;}catch(e){return{}}};
 const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
-/* ── Consentimiento. La web no carga redes de anuncios de terceros. ── */
-function adsOn(){return false;}
+/* Piloto: un banner 300×250 en artículos, siempre con consentimiento nuevo. */
+function adsOn(){return !!(window.ads && window.ads.activo === true);}
 function ocultarHuecos(){
   document.documentElement.classList.remove('ad-ok');
-  document.querySelectorAll('.ad-inline').forEach(el=>el.remove());
+  document.querySelectorAll('.ad-inline,[data-adsterra-pilot]').forEach(el=>el.remove());
 }
 if(!adsOn())ocultarHuecos();
-function adsConfigured(){return false;}
+function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === true);}
+function mountAdsterraPilot(){
+  if(document.querySelector('[data-adsterra-pilot]'))return;
+  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return;
+  const article=document.querySelector('main .post-body');
+  if(!article || article.textContent.trim().length<1500)return;
+  const box=document.createElement('aside');
+  box.dataset.adsterraPilot='1';
+  box.setAttribute('aria-label','Publicidad');
+  box.style.cssText='margin:24px auto;width:300px;max-width:100%;text-align:center;overflow:hidden';
+  const label=document.createElement('p');
+  label.textContent='Publicidad';
+  label.style.cssText='margin:0 0 4px;font-size:12px';
+  const frame=document.createElement('iframe');
+  frame.title='Publicidad de Adsterra';
+  frame.width='300';frame.height='250';
+  frame.setAttribute('sandbox','allow-scripts');
+  frame.setAttribute('referrerpolicy','no-referrer');
+  frame.style.cssText='border:0;display:block;width:300px;height:250px;max-width:100%';
+  box.append(label,frame);
+  article.appendChild(box);
+  const mount=()=>{
+    if(box.dataset.loaded || !adsOn() || esPremiumLocal())return;
+    let accepted=false;
+    try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
+    if(!accepted)return;
+    box.dataset.loaded='1';
+    frame.srcdoc='<!doctype html><html><head><meta name="referrer" content="no-referrer"></head><body style="margin:0"><script>var atOptions={key:"4c10efc097372233b52ed4f05e0a6ab8",format:"iframe",height:250,width:300,params:{}};<\/script><script src="https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8"><\/script></body></html>';
+  };
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      if(entries.some(e=>e.isIntersecting)){io.disconnect();mount();}
+    },{rootMargin:'100px'});
+    io.observe(box);
+  }else mount();
+}
 /* Premium (PR #17) y consentimiento por zona (PR #16) se comprueban antes de cargar nada.
    gr_premium solo vale con gr_premium_hasta en el futuro. El hueco del anuncio no se borra:
    html.ad-off lo oculta y, si se muestra, el alto ya está reservado. */
@@ -31,6 +66,7 @@ function quitarAnuncios(){
   if (b) b.remove();
   var nota = document.getElementById('cookie-note');
   if (nota) nota.remove();
+  document.querySelectorAll('[data-adsterra-pilot]').forEach(el=>el.remove());
   window.__adsLoaded = 1;
 }
 window.GR_quitarAnuncios = quitarAnuncios;
@@ -50,6 +86,7 @@ var ADS_RUTAS_SIN = {
   '/enfermedades/categoria/parasitarias.html':1
 };
 function paginaSinAnuncios(){
+  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
   if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;
   var robots=document.querySelector('meta[name="robots"]');
   if(robots && /noindex/i.test(robots.getAttribute('content')||''))return true;
@@ -63,15 +100,17 @@ function loadAds(){
   if(paginaSinAnuncios()){quitarAnuncios();return;}
   if(!adsOn()){ocultarHuecos();return;}
   if(esPremiumLocal()){ quitarAnuncios(); return; }
+  if(window.__adsLoaded)return;
   window.__adsLoaded=1;
+  mountAdsterraPilot();
 }
-function consentimientoEstricto(){return document.documentElement.dataset.ads!=='libre';}
+function consentimientoEstricto(){return true;}
 function banner(){
   if(!adsOn() || esPremiumLocal())return;
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Este sitio no carga redes de anuncios de terceros. La cuenta, si entras, se guarda aparte en este navegador. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Si aceptas, cargamos un banner de Adsterra para financiar las guías. Adsterra recibe tu IP y datos técnicos del navegador al servir el anuncio. Puedes rechazarlo y seguir leyendo. Tu cuenta funciona por separado. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }
@@ -413,4 +452,5 @@ window.addEventListener('storage',function(event){if(event.key===PK||event.key==
   bindQuizzes();
 })();
 })();
+
 
