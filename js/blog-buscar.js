@@ -15,8 +15,8 @@
   function normalize(text) {
     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
   }
-  entries = entries.map(function (entry) {
-    return { data: entry, search: normalize(entry.titulo + ' ' + entry.descripcion + ' ' + entry.categoria) };
+  entries = entries.map(function (entry, index) {
+    return { data: entry, index: index, title: normalize(entry.titulo), category: normalize(entry.categoria), search: normalize(entry.titulo + ' ' + entry.descripcion + ' ' + entry.categoria) };
   });
   function saveQuery() {
     try {
@@ -28,7 +28,7 @@
     } catch (error) { /* La búsqueda sigue funcionando si el navegador impide actualizar la URL. */ }
   }
   function restoreQuery() {
-    try { input.value = new URL(window.location.href).searchParams.get('q') || ''; }
+    try { input.value = (new URL(window.location.href).searchParams.get('q') || '').slice(0, 120); }
     catch (error) { input.value = ''; }
     search();
   }
@@ -45,6 +45,16 @@
     var matches = entries.filter(function (entry) {
       return words.every(function (word) { return entry.search.indexOf(word) !== -1; });
     });
+    function relevance(entry) {
+      var score = entry.title === term ? 1000 : entry.title.indexOf(term) !== -1 ? 200 : 0;
+      words.forEach(function (word) {
+        if (entry.title.split(' ').indexOf(word) !== -1) score += 30;
+        else if (entry.title.indexOf(word) !== -1) score += 15;
+        if (entry.category.indexOf(word) !== -1) score += 5;
+      });
+      return score;
+    }
+    matches.sort(function (a, b) { return relevance(b) - relevance(a) || a.index - b.index; });
     listing.hidden = true;
     results.hidden = false;
     status.textContent = matches.length + (matches.length === 1 ? ' artículo encontrado' : ' artículos encontrados') + ' en todo el blog.';
@@ -80,3 +90,4 @@
   restoreQuery();
   form.hidden = false;
 })();
+

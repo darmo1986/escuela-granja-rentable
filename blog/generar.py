@@ -15,7 +15,9 @@ import json
 import os
 import re
 import sys
+import unicodedata
 from datetime import date
+from html import unescape
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -91,7 +93,7 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "20261113global"
+VERSION_ACTIVOS = "20261113lectura"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -786,7 +788,8 @@ def limpiar_whatsapp(html):
 def poner_version(html):
     for nombre in (
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
-            "js/site.js", "js/app.js", "js/config.js"):
+            "js/site.js", "js/app.js", "js/config.js", "js/hero.js", "css/inicio.css",
+            "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css"):
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
             rf'\1?v={VERSION_ACTIVOS}"',
@@ -1219,12 +1222,48 @@ RECURSOS_ARTICULO = {
 }
 
 
+def texto_visible(html):
+    return unescape(re.sub(r"<[^>]+>", " ", html))
+
+
+def minutos_lectura(html):
+    return max(1, (len(texto_visible(html).split()) + 199) // 200)
+
+
+def indice_articulo(html):
+    """Anclas estables y únicas; el índice funciona también sin JavaScript."""
+    entradas = []
+    usados = set(re.findall(r'\bid="([^"]+)"', html))
+    def encabezado(m):
+        nivel, contenido = m.groups()
+        texto = " ".join(texto_visible(contenido).split())
+        simple = unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode()
+        base = "apartado-" + (re.sub(r"[^a-z0-9]+", "-", simple.lower()).strip("-") or "tema")
+        ancla = base
+        n = 2
+        while ancla in usados:
+            ancla = f"{base}-{n}"
+            n += 1
+        usados.add(ancla)
+        entradas.append((nivel, texto, ancla))
+        return f'<h{nivel} id="{ancla}" tabindex="-1">{contenido}</h{nivel}>'
+    cuerpo = re.sub(r"<h([23])>(.*?)</h\1>", encabezado, html, flags=re.S)
+    if len(entradas) < 2:
+        return cuerpo, ""
+    enlaces = "".join(f'<li class="post-indice-nivel-{nivel}"><a href="#{ancla}">{esc(texto)}</a></li>'
+                      for nivel, texto, ancla in entradas)
+    indice = ('<details class="post-indice" open><summary>En este artículo</summary>'
+              '<nav aria-label="Apartados del artículo"><ol>' + enlaces + '</ol></nav></details>')
+    return cuerpo, indice
+
+
 def html_post(post, publicados, catalogo, raiz_sitio, activo):
     raiz = "../"
     migas = (f'<p class="crumbs"><a href="{raiz}index.html">Inicio</a> › '
              f'<a href="/blog/">Artículos</a> › '
              f'<a href="{esc(CATS[post["categoria"]]["slug"])}.html">{esc(CATS[post["categoria"]]["nombre"])}</a></p>')
     meta = fecha_larga(post["fecha"]) + " · " + esc(post.get("autor") or AUTOR)
+    meta += f' · Lectura aprox.: {minutos_lectura(post["html"])} min'
     if post["actualizado"] != post["fecha"]:
         meta += " · Revisado el " + fecha_larga(post["actualizado"])
     if post["leccion"]:
@@ -1266,14 +1305,47 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     cerca = relacionados(post, publicados)
     bloque_cerca = ""
     if cerca:
-        bloque_cerca = ('<section>\n<p class="kicker">Sigue leyendo</p>\n<h2>Artículos relacionados</h2>\n<div class="pgrid">\n'
+        bloque_cerca = ('<section class="post-relacionados">\n<p class="kicker">Sigue leyendo</p>\n<h2>Artículos relacionados</h2>\n<div class="pgrid">\n'
                         + "\n".join(tarjeta(p, raiz) for p in cerca) + "\n</div>\n</section>")
     recursos = RECURSOS_ARTICULO.get(post["slug"], "")
     if recursos:
         recursos += '<script defer src="../js/recursos-articulo.js"></script>'
+    cuerpo, indice = indice_articulo(post["html"])
+    controles = ('<div class="post-acciones" data-post-acciones hidden>'
+                 '<button class="btn sec" type="button" data-post-copiar>Copiar enlace</button>'
+                 '<button class="btn sec" type="button" data-post-imprimir>Imprimir artículo</button>'
+                 '<span role="status" aria-live="polite" data-post-estado></span></div>')
     return (cabeza + "\n" + anuncio("banner", activo) + "\n" + foto + "\n"
-            + '<div class="panel prose post-body">\n' + post["html"] + "\n" + video + "\n" + recursos + "\n" + guia + "\n" + red + "\n" + fuentes
+            + controles + "\n" + indice + '\n<div class="panel prose post-body">\n' + cuerpo + "\n" + video + "\n" + recursos + "\n" + guia + "\n" + red + "\n" + fuentes
+            + '\n<p class="post-volver"><a href="#contenido">Volver al inicio del artículo ↑</a></p>'
             + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
+
+
+def actualizar_portada(html, posts):
+    """Las novedades se renuevan en la misma publicación que los artículos."""
+    if "<!-- inicio-articulos:inicio -->" not in html:
+        return html
+    elegidos = [p for p in posts if p.get("publicar") and not p.get("noindex")][:3]
+    tarjetas = []
+    for p in elegidos:
+        tarjetas.append(
+            f'<article class="gr-article"><a href="blog/{esc(p["slug"])}.html">'
+            f'<img src="{esc(p["imagen"])}" alt="{esc(p["imagen_alt"])}"{attrs_srcset("", p)} '
+            'width="1200" height="675" loading="lazy" decoding="async"><div>'
+            f'<p class="gr-kicker">{esc(CATS[p["categoria"]]["nombre"])}</p>'
+            f'<h3>{esc(p["titulo"])}</h3><p>{esc(p["descripcion"])}</p>'
+            f'<span class="gr-card-link">Leer · {minutos_lectura(p["html"])} min aprox. →</span>'
+            '</div></a></article>')
+    bloque = ""
+    if tarjetas:
+        bloque = ('<section class="gr-section" aria-labelledby="recientes-titulo">'
+                  '<div class="gr-section-head"><div><p class="gr-kicker">SIGUE APRENDIENDO</p>'
+                  '<h2 id="recientes-titulo">Últimos artículos</h2></div>'
+                  '<a href="blog/">Ver todos los artículos →</a></div>'
+                  '<div class="gr-articles">' + "".join(tarjetas) + '</div></section>')
+    return re.sub(r'<!-- inicio-articulos:inicio -->.*?<!-- inicio-articulos:fin -->',
+                  lambda _: '<!-- inicio-articulos:inicio -->\n' + bloque + '\n<!-- inicio-articulos:fin -->',
+                  html, count=1, flags=re.S)
 
 
 # Destino si algún texto aún nombra una ficha. Lo físico va a los ebooks.
@@ -1525,6 +1597,8 @@ def planificar(raiz, incluir_borradores=False):
     try:
         for rel, ruta in paginas_html(raiz):
             nuevo, _ = aplicar_menu(ruta.read_text(encoding="utf-8"), rel, menu_html, pie_html, hay_posts)
+            if rel == "index.html":
+                nuevo = actualizar_portada(nuevo, visibles)
             archivos[rel] = nuevo
     except Fallo as exc:
         return [str(exc)], {}, []
@@ -1689,3 +1763,4 @@ def main(argv):
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
+
