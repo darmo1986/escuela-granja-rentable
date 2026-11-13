@@ -23,6 +23,7 @@ AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras q
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
 VERSION = "20261110d"
+VERSION_BUSCADOR = "20261113a"
 
 
 def esc(texto):
@@ -432,7 +433,7 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <script src="{raiz}js/catalogo.js"></script>
 <script src="{raiz}js/app.js?v=20261110d"></script>
 <script src="{raiz}js/site.js?v=20261110d"></script>
-<script defer src="{raiz}tienda/tienda.js?v={VERSION}"></script>
+<script defer src="{raiz}tienda/tienda.js?v={VERSION_BUSCADOR}"></script>
 </body>
 </html>
 '''
@@ -556,18 +557,28 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
                 otros.append(f'<a class="t-chip" href="{raiz}tienda/c/{slugify(nombre)}/">{esc(nombre)}</a>')
     cards = "\n".join(tarjeta(p, raiz, "h2") for p in grupo)
     ayuda_busqueda = ' aria-describedby="comederos-buscar-ayuda"' if cat == "Comederos" else ""
+    acceso_catalogo = (f'<p><a class="btn" href="#catalogo-comederos">Ver los {len(grupo)} comederos</a></p>'
+                       if cat == "Comederos" else "")
+    inicio_catalogo = ('<section class="t-cat" id="catalogo-comederos" tabindex="-1" aria-label="Catálogo de comederos">'
+                       if cat == "Comederos" else "")
+    fin_catalogo = '</section>' if cat == "Comederos" else ""
+    sin_resultados = ('<div class="t-vacio" data-t-vacio hidden><p>Ningún comedero coincide con tu búsqueda. Prueba una sola palabra, como «pedal», o una marca.</p>'
+                     '<button class="btn sec" type="button" data-t-limpiar>Limpiar búsqueda</button></div>'
+                     if cat == "Comederos" else '<p class="t-vacio" data-t-vacio hidden>Ningún producto de esta categoría coincide.</p>')
     aviso_cat = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if cat in VET_CATS or cat == "Pienso" else ""
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · {esc(cat)}</p>
 <header class="t-hero">
 <p class="kicker">Tienda</p>
 <h1>{esc(cat)}</h1>
 <p class="t-lead">{len(grupo)} productos. El precio se ve en Amazon.</p>
+{acceso_catalogo}
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 {aviso_cat}
 <p><a class="btn sec" href="{raiz}tienda/">Ver toda la tienda</a> <a class="btn sec" href="{raiz}ebooks/">Ebooks a 3,00 USD</a></p>
 </header>
 {guia_pollitos(grupo[0], raiz)}
 {orientacion_comederos(cat, raiz)}
+{inicio_catalogo}
 <div class="t-filtros">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar en {esc(cat)}</label>
@@ -578,10 +589,11 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 </div>
 <p class="t-cuenta" data-t-cuenta aria-live="polite">{len(grupo)} productos</p>
 </div>
-<p class="t-vacio" data-t-vacio hidden>Ningún producto de esta categoría coincide.</p>
+{sin_resultados}
 <div class="t-grid" data-t-bloque>
 {cards}
-</div>'''
+</div>
+{fin_catalogo}'''
 
 
 def guia_bebederos(p, raiz):

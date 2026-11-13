@@ -69,6 +69,12 @@ def comprobar():
         errores.append('La orientación debe aparecer antes de los filtros y productos')
     if 'aria-describedby="comederos-buscar-ayuda"' not in categoria:
         errores.append('El buscador no tiene su explicación asociada')
+    acceso = 'href="#catalogo-comederos"'
+    catalogo_destino = '<section class="t-cat" id="catalogo-comederos" tabindex="-1" aria-label="Catálogo de comederos">'
+    if (categoria.count(acceso) != 1 or categoria.count(catalogo_destino) != 1
+            or not categoria.index(acceso) < categoria.index('data-orientacion-comederos')
+            < categoria.index(catalogo_destino) < categoria.index('class="t-filtros"')):
+        errores.append('Falta el acceso directo al catálogo antes de la orientación o su destino accesible')
     if tienda.orientacion_comederos('Bebederos normales', '../../../'):
         errores.append('La orientación invade otra categoría')
     fuente = (RAIZ / '_articulos/2026-11-07-reducir-desperdicio-pienso.md').read_text()

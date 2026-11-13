@@ -5,6 +5,7 @@
   var chips = document.querySelectorAll("[data-t-filtro]");
   var vacio = document.querySelector("[data-t-vacio]");
   var cuenta = document.querySelector("[data-t-cuenta]");
+  var limpiar = document.querySelector("[data-t-limpiar]");
   var filtro = "todas";
 
   function aplicar() {
@@ -25,6 +26,11 @@
   }
 
   caja.addEventListener("input", aplicar);
+  if (limpiar) limpiar.addEventListener("click", function () {
+    caja.value = "";
+    aplicar();
+    caja.focus();
+  });
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
       filtro = chip.getAttribute("data-t-filtro") || "todas";
