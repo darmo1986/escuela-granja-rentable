@@ -28,6 +28,7 @@
 <script src="js/boot.js?v=20261110d"></script>
 <link rel="stylesheet" href="css/inicio.css?v=20261114curso">
 <link rel="stylesheet" href="css/ofertas.css?v=20261112">
+<script defer src="js/hero.js?v=20261114aves"></script>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -116,7 +117,9 @@
 </header>
 <p id="ref-note" class="ref-note" hidden></p>
 <main id="contenido" class="home-renovada">
-<section class="gr-hero gr-start" id="empieza-aqui" aria-labelledby="inicio-titulo">
+<section class="gr-hero" id="empieza-aqui" data-hero aria-label="Destacados de Granja Rentable">
+<div class="gr-hero-viewport">
+<div class="gr-slide is-active" data-slide>
 <div class="gr-hero-copy">
 <p class="gr-kicker">EMPIEZA AQUÍ · CURSO GRATIS</p>
 <h1 id="inicio-titulo">Empieza tu granja<br><span>con las cuentas claras.</span></h1>
@@ -126,6 +129,16 @@
 <p class="gr-start-account">Tu progreso se guarda en este navegador. La cuenta es opcional para guardarlo también en tu perfil.</p>
 </div>
 <div class="gr-hero-photo"><img src="img/inicio-curso.webp" alt="Gallinas ponedoras en un gallinero" width="800" height="450" fetchpriority="high" decoding="async"></div>
+</div>
+<div class="gr-slide" data-slide>
+<div class="gr-hero-copy"><p class="gr-kicker">CUADERNO DE AVES</p>
+<h2 class="gr-hero-title">¿Cómo va tu lote?</h2>
+<p class="gr-lead">Anota pesajes y huevos, consulta la referencia de tu estirpe y lleva al día las vacunas.</p>
+<div class="gr-actions"><a class="btn gold" href="https://granja-rentable-cuaderno-aves.diligentcandy2.chatgpt.site/">Abrir el Cuaderno de aves →</a></div>
+<p class="gr-hero-note">Gratis · Sin cuenta · Guardado en tu navegador</p></div>
+<div class="gr-hero-photo"><img src="img/inicio-curso.webp" alt="" width="800" height="450"></div>
+</div></div>
+<div class="gr-hero-ctrl"><button class="gr-hero-arrow" data-hero-prev aria-label="Anterior">‹</button><div class="gr-hero-dots"><button data-hero-dot aria-label="Mostrar el curso"></button><button data-hero-dot aria-label="Mostrar el Cuaderno de aves"></button></div><button data-hero-pause>Pausar</button><button class="gr-hero-arrow" data-hero-next aria-label="Siguiente">›</button></div>
 </section>
 <section class="gr-calculator-intro" aria-labelledby="calcular-inicio-titulo">
 <div><h2 id="calcular-inicio-titulo">¿Ya tienes aves o estás haciendo números?</h2><p>Comprueba cómo influyen el alimento, la puesta y el precio de venta en tus resultados.</p></div>
