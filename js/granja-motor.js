@@ -23,6 +23,8 @@
   // Sin aves se valoran incluso los huevos del nido al máximo de mercado para no
   // declarar una quiebra prematura porque el precio de hoy sea bajo.
   function isBankrupt(s){return count(s)===0&&s.money+(s.eggs+Math.floor(s.nest))*.34+1e-8<Math.min(...Object.values(breeds).map(b=>b.price));}
+  function henSaleValue(h){return breeds[h.breed].price*.45*clamp(1-(h.age-180)/1200,.15,1)*h.health/100;}
+  function farmValue(s){const birds=s.hens.reduce((sum,h)=>sum+h.count*henSaleValue(h),0),eggs=(s.eggs+Math.floor(s.nest))*s.eggPrice;return {cash:s.money,birds,eggs,total:s.money+birds+eggs};}
   function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
   function log(s,t){s.log.unshift('Día '+s.day+': '+t);s.log=s.log.slice(0,12);}
   function count(s){return s.hens.reduce((n,h)=>n+h.count,0);}
@@ -82,7 +84,7 @@
     if(type==='buyHen'){const b=breeds[value];if(!b)return 'Raza desconocida.';if(count(s)>=s.capacity)return 'Amplía el gallinero antes de comprar más aves.';if(!spend(s,b.price))return 'Saldo insuficiente.';s.hens.push({breed:value,count:1,age:lifecycle.purchaseAge,health:100,quarantine:3,isolated:false});return 'Compraste una pollita '+b.name+' próxima a la puesta. Tres días de observación separados en el juego.';}
     if(type==='isolate'){const h=s.hens[Number(value)];if(!h)return 'Lote no disponible.';h.isolated=!h.isolated;return h.isolated?'Lote separado para observación. Revisa cuidados y consulta.':'Lote reunido. Comprueba antes su recuperación.';}
     if(type==='repair'){const n=s.defenders.filter(d=>d.health<100).length;if(!n)return 'Tus defensores están en buen estado.';if(!spend(s,n*5))return 'Saldo insuficiente.';s.defenders.forEach(d=>d.health=100);return 'Defensores recuperados. Coste: 5 € por defensor.';}
-    if(type==='sellHen'){const i=Number(value),h=s.hens[i];if(!Number.isInteger(i)||!h||!h.count)return 'Lote no disponible.';const n=breeds[h.breed].price*.45*clamp(1-(h.age-180)/1200,.15,1)*h.health/100;h.count--;s.hens=s.hens.filter(h=>h.count);s.money+=n;s.income+=n;return 'Vendiste una gallina por '+n.toFixed(2)+' € de juego.';}
+    if(type==='sellHen'){const i=Number(value),h=s.hens[i];if(!Number.isInteger(i)||!h||!h.count)return 'Lote no disponible.';const n=henSaleValue(h);h.count--;s.hens=s.hens.filter(h=>h.count);s.money+=n;s.income+=n;return 'Vendiste una gallina por '+n.toFixed(2)+' € de juego.';}
     if(type==='expand'){if(s.capacity>=40)return 'Capacidad máxima de esta versión: 40 aves.';if(!spend(s,prices.expand))return 'Saldo insuficiente.';s.capacity+=10;return 'Gallinero ampliado en diez plazas.';}
     if(type==='upgrade'){
       if(value==='fence'){if(s.upgrades.fence===3)return 'La malla ya está al máximo.';if(!spend(s,prices.fence[s.upgrades.fence]))return 'Saldo insuficiente.';s.upgrades.fence++;return 'Malla reforzada al nivel '+s.upgrades.fence+'.';}
@@ -104,6 +106,6 @@
       syncEggs(s);s.log=s.log.filter(t=>typeof t==='string').slice(0,12);if(s.last>now)s.last=now;return s;
     }catch(_){return fresh(now);}
   }
-  const api={DAY,HOUR,breeds,prices,difficulties,lifecycle,ageFactor,lifeStage,retired,productionStatus,isBankrupt,fresh,advance,action,restore,count,threats,eggCapacity};if(typeof module==='object'&&module.exports)module.exports=api;else root.GranjaMotor=api;
+  const api={DAY,HOUR,breeds,prices,difficulties,lifecycle,ageFactor,lifeStage,retired,productionStatus,isBankrupt,henSaleValue,farmValue,fresh,advance,action,restore,count,threats,eggCapacity};if(typeof module==='object'&&module.exports)module.exports=api;else root.GranjaMotor=api;
 })(typeof globalThis==='object'?globalThis:this);
 
