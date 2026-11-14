@@ -212,3 +212,15 @@ Ambas anotaciones incluyen texto editorial revisado y límites concretos. Perman
 - Gorilla GCR-4: dos ruedas, cuatro pies cúbicos, 300 libras y no remolcable. El enlace Amazon del fabricante redirigió al ASIN B08B43QY61; esta coincidencia mejora la identidad del modelo, pero las consultas posteriores quedaron bloqueadas y no se confirma precio ni stock actual.
 
 Validación: seis ASIN únicos pertenecientes al grupo de 78; tres consejos por ficha; precio, estrellas, reseñas y disponibilidad actuales vacíos; publicación desactivada. Sin nuevas imágenes, fusión ni publicación.
+
+## Segunda tanda: siete contrastes parciales
+
+`contrastes-parciales-07.json` complementa los textos 44, 47, 58, 62, 77, 81 y 100. Usar su descripción revisada y sus comprobaciones junto a los consejos iniciales. Fuentes oficiales leídas para RESTMO, WORKPRO, Bates, TR Industrial, GROWNEER y PERWIN.
+
+Avance de identidad: GROWNEER muestra explícitamente B073F1VMHS como SKU del paquete de cien piquetas de seis pulgadas. No equivale a oferta ni stock actual de Amazon.
+
+Discrepancias registradas: lanza RESTMO de 16 pulgadas y mercado UK frente al título de 15 pulgadas; dos juegos WORKPRO de siete piezas con códigos distintos; capacidades diferentes en cortatubos Bates; cantidades y resistencias diferentes entre variantes de bridas. No se copia la temperatura de TR Industrial porque la equivalencia Celsius/Fahrenheit es inconsistente. La funda y el material exacto del PERWIN siguen pendientes.
+
+Esta tanda suma siete anotaciones a las seis anteriores y las dos previas: quince candidatos del grupo de 78 tienen contraste parcial adicional. Se mantienen los 22 borradores anteriores y los 78 pendientes de contraste completo/equivalencia. Cien candidatos totales, cero nuevos datos comerciales actuales completos, cero nuevos productos publicados de la selección.
+
+Validación: siete ASIN únicos, todos del grupo de 78 y distintos de las anotaciones previas; fuentes y límites por ficha; publicación desactivada. No se fusiona ni se alteran páginas públicas.
