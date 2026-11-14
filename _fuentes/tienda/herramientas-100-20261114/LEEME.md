@@ -199,3 +199,16 @@ El 14/11/2026 se probó el formulario público de Canopy con B087RNQDFC. Respond
 Se incorporan anotaciones en los textos n.º 1 y 4 de `fichas-iniciales-78.json`. Fiskars: el extracto indexado del catálogo oficial 2020 identifica el Xact europeo 1027044; el PDF no pudo abrirse y no acredita equivalencia con el ASIN estadounidense. VEVOR: se leyó la ficha oficial europea CY-SF13, SKU ZCLQPLHJ36INUFPURV0; declara 37 púas, cabezal de 915 mm y 1,6 kg, pendientes de equivalencia con B0CGCM233N. Se distingue la longitud del mango de las dimensiones totales.
 
 Ambas anotaciones incluyen texto editorial revisado y límites concretos. Permanecen dentro de los 78 textos pendientes: no se incrementa el total de 22 borradores anteriores con fuentes. La correspondencia de variantes y los datos comerciales actuales siguen sin verificar. Cero nuevas imágenes y cero productos publicados en esta continuación.
+
+## Seis contrastes parciales adicionales
+
+`contrastes-parciales-06.json` complementa los textos n.º 30, 31, 43, 49, 50 y 86 del grupo de 78, con fuente oficial leída, descripción revisada, tres consejos y límites individuales. Al revisar estas seis fichas, usar la versión de ese complemento. No añade productos ni convierte el total en 28 fichas completas: se mantienen los 22 borradores anteriores y los 78 pendientes, ahora con seis anotaciones adicionales a las dos previas.
+
+- 3M 91252: ventilación indirecta; imagen oficial 91252H1-DC-10 rotulada 10/case. Confirmar cantidad del anuncio.
+- NoCry OverSpecs+: montura abierta, sin sellado de polvo ni antivaho en la versión transparente de la comparativa. No confundir con Seal o Pro Anti-Fog. Medir gafas graduadas.
+- Camco EvoFlex2: referencia oficial 22579 de 50 pies; distinguirla de EvoFlex 22596 y de las dimensiones del paquete.
+- Zep: la ficha reúne varias presentaciones; HDPRO1PK3 aparece en texto pero la selección principal es HDPRO36. Falta verificar el paquete Amazon.
+- PetraTools HD101: manguera 52 pulgadas, lanza 16 pulgadas, dos boquillas y válvula de despresurización. Metadatos HD100 y cuerpo HD101: dejar constancia y verificar variante.
+- Gorilla GCR-4: dos ruedas, cuatro pies cúbicos, 300 libras y no remolcable. El enlace Amazon del fabricante redirigió al ASIN B08B43QY61; esta coincidencia mejora la identidad del modelo, pero las consultas posteriores quedaron bloqueadas y no se confirma precio ni stock actual.
+
+Validación: seis ASIN únicos pertenecientes al grupo de 78; tres consejos por ficha; precio, estrellas, reseñas y disponibilidad actuales vacíos; publicación desactivada. Sin nuevas imágenes, fusión ni publicación.
