@@ -3,17 +3,19 @@ const source=fs.readFileSync(require('node:path').join(__dirname,'../../js/app.j
 function run({consent,oldConsent,premium=false,active=true,configured=true,lazy=false,path='/blog/guia.html'}={}){
  const nodes=[],store=new Map(),events={},observers=[];if(consent)store.set('gr_adsterra_consent_v1',consent);if(oldConsent)store.set('gr_consent','si');
  class El{constructor(tag){this.tag=tag;this.dataset={};this.attrs={};this.children=[];this.textContent='';this.style={};this.isConnected=true;}append(...xs){this.children.push(...xs);nodes.push(...xs);}appendChild(x){this.append(x);}setAttribute(k,v){this.attrs[k]=v;}getAttribute(k){return this.attrs[k];}remove(){this.isConnected=false;const i=nodes.indexOf(this);if(i>=0)nodes.splice(i,1);}addEventListener(){}querySelector(){return null;}querySelectorAll(){return [];} }
- const article=new El('article');article.textContent='a'.repeat(2000);
- const doc={body:new El('body'),documentElement:{dataset:{ads:'libre'},classList:{add(){},remove(){}},getAttribute(){return null;}},createElement:t=>new El(t),getElementById:id=>nodes.find(n=>n.id===id),querySelector:s=>s==='main .post-body'?article:s==='[data-adsterra-pilot]'?nodes.find(n=>n.dataset.adsterraPilot):null,querySelectorAll:s=>s.includes('data-adsterra-pilot')?nodes.filter(n=>n.dataset.adsterraPilot):[]};doc.body.dataset.root='';
+ const middle=new El('div');const article=new El('article');article.textContent='a'.repeat(2000);
+ const doc={body:new El('body'),documentElement:{dataset:{ads:'libre'},classList:{add(){},remove(){}},getAttribute(){return null;}},createElement:t=>new El(t),getElementById:id=>id==='publicidad-portada-media'&&path==='/'?middle:nodes.find(n=>n.id===id),querySelector:s=>(s==='main'||(s==='main .post-body'&&path.startsWith('/blog/')))?article:s==='[data-adsterra-pilot]'?nodes.find(n=>n.dataset.adsterraPilot):null,querySelectorAll:s=>s.includes('data-adsterra-pilot')?nodes.filter(n=>n.dataset.adsterraPilot):[]};doc.body.dataset.root='';
  const win={ads:{activo:active,adsterraPilot:configured},GR_esPremium:()=>premium,addEventListener(name,fn){(events[name]??=[]).push(fn);},removeEventListener(){}};
  const ctx={window:win,document:doc,location:{pathname:path,search:'',reload(){}},localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v),removeItem:k=>store.delete(k)},sessionStorage:{getItem(){return null},removeItem(){}},setTimeout(){},Date,URLSearchParams,alert(){}};if(lazy){
   win.IntersectionObserver=function(){};
   ctx.IntersectionObserver=function(callback){this.callback=callback;this.observe=()=>{};this.disconnected=false;this.disconnect=()=>{this.disconnected=true;};observers.push(this);};
  }
  vm.runInNewContext(source,ctx);
- return {nodes,article,win,store,observers,storage(){for(const fn of events.storage||[])fn({key:'gr_adsterra_consent_v1'});}};
+ return {nodes,middle,article,win,store,observers,storage(){for(const fn of events.storage||[])fn({key:'gr_adsterra_consent_v1'});}};
 }
 for(const args of [{},{oldConsent:true},{consent:'no'},{consent:'si',premium:true},{consent:'si',active:false},{consent:'si',path:'/privacidad.html'}]){const s=run(args);assert.equal(s.article.children.length,0,JSON.stringify(args));}
+for(const path of ['/','/tienda/','/curso.html'])assert.equal(run({consent:'si',path}).article.children.length,1,path);
+const home=run({consent:'si',path:'/',lazy:true});assert.equal(home.middle.children.length,1);assert.equal(home.observers.length,2);home.observers[0].callback([{isIntersecting:true}]);assert.equal(home.observers[1].disconnected,false);assert.equal(home.article.children[0].children[1].srcdoc,undefined);
 let s=run({consent:'si'});assert.equal(s.article.children.length,1);let box=s.article.children[0],frame=box.children[1];assert.equal(frame.attrs.sandbox,'allow-scripts');assert.equal(frame.attrs.referrerpolicy,'no-referrer');assert.match(frame.srcdoc,/bauval.org\/22\/4c10efc097372233b52ed4f05e0a6ab8/);assert.equal(frame.width,'300');assert.equal(frame.height,'250');s.win.testAds.loadAds();assert.equal(s.article.children.length,1);s.win.GR_quitarAnuncios();assert.equal(s.nodes.filter(n=>n.dataset.adsterraPilot).length,0);
 for(const args of [{consent:'si',lazy:true},{consent:'si',lazy:true,configured:false}]){
  const state=run(args);
