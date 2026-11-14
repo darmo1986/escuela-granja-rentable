@@ -795,7 +795,7 @@ def escribir(productos):
     portada = cuerpo_portada(visual, "../")
     titulo = "Tienda de avicultura | Granja Rentable"
     descripcion = recortar(
-        "Material de avicultura enlazado a Amazon. La compra se hace en Amazon, no en esta web."
+        "Explora material para gallinas y pollos: bebederos, comederos, incubación y gallineros. Guías para elegir y enlaces a Amazon, donde se compra."
     )
     canon = f"{SITIO}/tienda/"
     datos = [
