@@ -5,9 +5,10 @@ const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p
 const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
 /* Piloto: un banner 300×250 en artículos, siempre con consentimiento nuevo. */
 function adsOn(){return !!(window.ads && window.ads.activo === true);}
-let adsterraObserver=null;
+const adsterraObservers=new Set();
 function retirarPiloto(){
-  if(adsterraObserver){adsterraObserver.disconnect();adsterraObserver=null;}
+  adsterraObservers.forEach(observer=>observer.disconnect());
+  adsterraObservers.clear();
   document.querySelectorAll('[data-adsterra-pilot]').forEach(el=>el.remove());
 }
 function ocultarHuecos(){
@@ -20,9 +21,17 @@ function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === tr
 function mountAdsterraPilot(){
   if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
   if(document.querySelector('[data-adsterra-pilot]'))return;
-  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return;
+  const home=document.querySelector('main.home-renovada');
+  if(home){
+    const tools=home.querySelector('.gr-tools');
+    if(tools)insertAdsterraBanner(tools,'afterend');
+    insertAdsterraBanner(home,'beforeend');
+    return;
+  }
   const article=document.querySelector('main .post-body');
-  if(!article || article.textContent.trim().length<1500)return;
+  if(article && article.textContent.trim().length>=1500)insertAdsterraBanner(article,'beforeend');
+}
+function insertAdsterraBanner(target,position){
   const box=document.createElement('aside');
   box.dataset.adsterraPilot='1';
   box.setAttribute('aria-label','Publicidad');
@@ -37,7 +46,7 @@ function mountAdsterraPilot(){
   frame.setAttribute('referrerpolicy','no-referrer');
   frame.style.cssText='border:0;display:block;width:300px;height:250px;max-width:100%';
   box.append(label,frame);
-  article.appendChild(box);
+  target.insertAdjacentElement(position,box);
   const mount=()=>{
     if(!box.isConnected || box.dataset.loaded || !adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
     let accepted=false;
@@ -47,13 +56,15 @@ function mountAdsterraPilot(){
     frame.srcdoc='<!doctype html><html><head><meta name="referrer" content="no-referrer"></head><body style="margin:0"><script>var atOptions={key:"4c10efc097372233b52ed4f05e0a6ab8",format:"iframe",height:250,width:300,params:{}};<\/script><script src="https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8"><\/script></body></html>';
   };
   if('IntersectionObserver' in window){
-    adsterraObserver=new IntersectionObserver(entries=>{
+    const observer=new IntersectionObserver(entries=>{
       if(entries.some(e=>e.isIntersecting)){
-        if(adsterraObserver){adsterraObserver.disconnect();adsterraObserver=null;}
+        observer.disconnect();
+        adsterraObservers.delete(observer);
         mount();
       }
     },{rootMargin:'100px'});
-    adsterraObserver.observe(box);
+    adsterraObservers.add(observer);
+    observer.observe(box);
   }else mount();
 }
 /* Se comprueba Premium antes de montar y antes de cargar el anuncio. */
@@ -94,7 +105,8 @@ var ADS_RUTAS_SIN = {
   '/enfermedades/categoria/parasitarias.html':1
 };
 function paginaSinAnuncios(){
-  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
+  const home=location.pathname==='/' || location.pathname==='/index.html';
+  if(!home && !/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
   if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;
   var robots=document.querySelector('meta[name="robots"]');
   if(robots && /noindex/i.test(robots.getAttribute('content')||''))return true;
