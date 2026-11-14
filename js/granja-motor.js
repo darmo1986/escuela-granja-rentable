@@ -4,6 +4,44 @@
   const breeds={brown:{name:'Ponedoras marrones',price:18,lay:.85,feed:.12,resilience:.9},leghorn:{name:'Leghorn',price:20,lay:.9,feed:.11,resilience:.85},sussex:{name:'Sussex',price:24,lay:.65,feed:.14,resilience:1.1}};
   const prices={egg:.25,feed:.48,youngFeed:.60,calcium:1.50,feeder:12,waterer:10,water:.02,clean:2,care:8,fence:[35,80,150],roof:95,scarecrow:18,dog:90,guard:150,expand:75,storage:[45,110],access:25,footbath:12};
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+  // Agricultura: precios, rendimientos, receta y duración son reglas ficticias.
+  const cropRules={land:250,mill:180,maxUpgrades:10,growHours:144,seedPack:10,seedPrice:{corn:4,oats:3},waterPerPlot:4,yieldPerPlot:8,recipe:{corn:3,oats:2,output:10,complementKg:5,layerCost:2.2,youngCost:2.6}};
+  function freshCrops(){return {land:false,level:0,mill:false,seeds:{corn:0,oats:0},grain:{corn:0,oats:0},active:null};}
+  function cropStatus(s){
+    const c=s.crops||freshCrops(),plots=c.land?1+c.level:0,active=c.active;
+    const hoursLeft=active?Math.max(0,active.readyHour-s.hour):0,r=cropRules.recipe;
+    const hasGrain=c.grain.corn>=r.corn&&c.grain.oats>=r.oats;
+    return {owned:c.land,level:c.level,plots,nextUpgradeCost:c.land&&c.level<cropRules.maxUpgrades?40+20*c.level:null,canImprove:c.land&&c.level<cropRules.maxUpgrades,mill:c.mill,seeds:{...c.seeds},grain:{...c.grain},active:active?{...active}:null,ready:Boolean(active&&hoursLeft===0),hoursLeft,daysLeft:Math.ceil(hoursLeft/24),yieldKg:active?active.yieldKg:plots*cropRules.yieldPerPlot,plantCost:{seeds:plots,water:plots*cropRules.waterPerPlot},canMill:{layer:c.mill&&hasGrain&&s.money+1e-8>=r.layerCost,young:c.mill&&hasGrain&&s.money+1e-8>=r.youngCost},recipe:{...r}};
+  }
+  function restoreCrops(raw,hour){
+    const c=freshCrops();if(!raw||typeof raw!=='object')return c;
+    c.land=raw.land===true;c.level=c.land&&Number.isInteger(raw.level)&&raw.level>=0&&raw.level<=cropRules.maxUpgrades?raw.level:0;c.mill=c.land&&raw.mill===true;
+    for(const type of ['corn','oats']){if(Number.isSafeInteger(raw.seeds?.[type])&&raw.seeds[type]>=0)c.seeds[type]=raw.seeds[type];if(Number.isFinite(raw.grain?.[type])&&raw.grain[type]>=0)c.grain[type]=raw.grain[type];}
+    const a=raw.active;if(c.land&&a&&Object.hasOwn(cropRules.seedPrice,a.type)&&Number.isInteger(a.startHour)&&a.startHour>=0&&a.startHour<=hour&&a.readyHour===a.startHour+cropRules.growHours&&Number.isInteger(a.plots)&&a.plots>=1&&a.plots<=1+c.level&&a.yieldKg===a.plots*cropRules.yieldPerPlot&&a.seedsUsed===a.plots&&a.waterUsed===a.plots*cropRules.waterPerPlot)c.active={type:a.type,startHour:a.startHour,readyHour:a.readyHour,plots:a.plots,yieldKg:a.yieldKg,seedsUsed:a.seedsUsed,waterUsed:a.waterUsed};
+    return c;
+  }
+  function cropAction(s,type,value){
+    if(!['buyLand','improveLand','buyMill','buySeed','plantCrop','harvestCrop','millFeed'].includes(type))return null;
+    if(!s.crops)s.crops=freshCrops();const c=s.crops,status=cropStatus(s),r=cropRules.recipe;
+    if(type==='buyLand'){if(c.land)return 'Ya tienes terreno de cultivo.';if(!spend(s,cropRules.land))return 'Saldo insuficiente para comprar terreno.';c.land=true;return 'Terreno comprado: una parcela de cultivo y hasta diez mejoras adicionales.';}
+    if(type==='buySeed'){if(!Object.hasOwn(cropRules.seedPrice,value))return 'Semilla desconocida.';if(!spend(s,cropRules.seedPrice[value]))return 'Saldo insuficiente para semillas.';c.seeds[value]+=cropRules.seedPack;return 'Compraste diez unidades de semilla de '+(value==='corn'?'maíz.':'avena.');}
+    if(!c.land)return 'Compra primero un terreno de cultivo.';
+    if(type==='improveLand'){if(!status.canImprove)return 'El terreno ya tiene sus diez mejoras adicionales.';if(!spend(s,status.nextUpgradeCost))return 'Saldo insuficiente para ampliar el cultivo.';c.level++;return 'Mejora '+c.level+'/10: ahora puedes sembrar '+(1+c.level)+' parcelas. La siembra en curso conserva su rendimiento original.';}
+    if(type==='buyMill'){if(c.mill)return 'Ya tienes la máquina de procesado.';if(!spend(s,cropRules.mill))return 'Saldo insuficiente para la máquina.';c.mill=true;return 'Máquina comprada: procesa maíz y avena junto con un complemento comprado. No sustituye la compra directa de pienso.';}
+    if(type==='plantCrop'){
+      if(!Object.hasOwn(cropRules.seedPrice,value))return 'Cultivo desconocido.';if(c.active)return 'Ya hay una siembra en curso: recoge la cosecha antes de sembrar otra.';
+      const plots=status.plots,seeds=plots,water=plots*cropRules.waterPerPlot;if(c.seeds[value]<seeds)return 'Semillas insuficientes para sembrar todas las parcelas.';if(s.water+1e-8<water)return 'Agua insuficiente para el riego inicial.';
+      c.seeds[value]-=seeds;s.water=Math.max(0,s.water-water);c.active={type:value,startHour:s.hour,readyHour:s.hour+cropRules.growHours,plots,yieldKg:plots*cropRules.yieldPerPlot,seedsUsed:seeds,waterUsed:water};
+      return 'Siembra de '+(value==='corn'?'maíz':'avena')+' iniciada. Cosecha en seis días simulados: dos días reales con reloj ×3. El riego y las semillas ya están descontados.';
+    }
+    if(type==='harvestCrop'){if(!c.active)return 'No hay cultivo para cosechar.';if(!status.ready)return 'La cosecha aún no está lista: faltan '+status.hoursLeft+' horas simuladas.';const crop=c.active;c.grain[crop.type]+=crop.yieldKg;c.active=null;return 'Cosechaste '+crop.yieldKg+' kg de '+(crop.type==='corn'?'maíz.':'avena.')+' Necesitas ambas especies y la máquina para preparar pienso de juego con complemento comprado.';}
+    if(type==='millFeed'){
+      if(!['layer','young'].includes(value))return 'Destino de pienso desconocido.';if(!c.mill)return 'Necesitas comprar la máquina antes de procesar.';if(c.grain.corn<r.corn||c.grain.oats<r.oats)return 'Grano insuficiente: cada lote requiere '+r.corn+' kg de maíz y '+r.oats+' kg de avena.';
+      const cost=value==='young'?r.youngCost:r.layerCost;if(!spend(s,cost))return 'Saldo insuficiente para el complemento comprado.';c.grain.corn-=r.corn;c.grain.oats-=r.oats;s[value==='young'?'youngFeed':'feed']+=r.output;
+      return 'Preparaste '+r.output+' kg de pienso '+(value==='young'?'para jóvenes':'de ponedoras')+' con ambos granos y '+r.complementKg+' kg de complemento comprado por '+cost.toFixed(2)+' €. Receta abstracta de juego, no una fórmula de alimentación real.';
+    }
+    return null;
+  }
   // Edades y curva ficticias para el juego; no son una garantía biológica.
   const difficulties={facil:300,normal:180,dificil:80};
   const lifecycle={purchaseAge:145,start:150,peak:210,decline:450,end:1650};
@@ -28,7 +66,7 @@
   function isBankrupt(s){return count(s)===0&&farmValue(s).total<=1e-8;}
   function henSaleValue(h){return breeds[h.breed].price*.45*clamp(1-(h.age-180)/1200,.15,1)*h.health/100;}
   function farmValue(s){const birds=s.hens.reduce((sum,h)=>sum+h.count*henSaleValue(h),0),eggs=(s.eggs+Math.floor(s.nest))*s.eggPrice;return {cash:s.money,birds,eggs,total:s.money+birds+eggs};}
-  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,youngFeed:4,calcium:1,facilities:{feeder:1,waterer:1},water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
+  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,youngFeed:4,calcium:1,crops:freshCrops(),facilities:{feeder:1,waterer:1},water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
   function log(s,t){s.log.unshift('Día '+s.day+': '+t);s.log=s.log.slice(0,12);}
   function count(s){return s.hens.reduce((n,h)=>n+h.count,0);}
   function random(s){s.seed=(Math.imul(s.seed,1664525)+1013904223)>>>0;return s.seed/4294967296;}
@@ -95,6 +133,7 @@
   }
   function action(s,type,value){
     if(isBankrupt(s))return 'Partida terminada por quiebra: no quedan aves, dinero ni huevos con valor de venta. Puedes reiniciar.';
+    const cropResult=cropAction(s,type,value);if(cropResult!==null)return cropResult;
     if(type==='pause'){s.paused=!s.paused;s.last=Date.now();return s.paused?'Granja pausada: no transcurre tiempo ni hay pérdidas durante la ausencia.':'Granja activa: vuelve el reloj ×3.';}
     if(type==='closeDoor'){s.doorClosed=true;return 'Puerta cerrada: la próxima visita queda fuera. No necesitas contratar un guardián para rechazarla.';}
     if(type==='collect'){prepareNest(s);const n=Math.min(Math.floor(s.nest+1e-9),Math.max(0,eggCapacity(s)-s.eggs));if(!n)return 'No hay huevos enteros o el almacén está lleno.';collectNest(s,n);return 'Has recogido '+n+' huevos.';}
@@ -134,9 +173,10 @@
       if(s.sceneLayout!==undefined)s.sceneLayout=Object.fromEntries(Object.entries(s.sceneLayout&&typeof s.sceneLayout==='object'?s.sceneLayout:{}).filter(([k,v])=>/^(feeder-[0-7]|waterer-[0-7]|nest|footbath|clean)$/.test(k)&&v&&Number.isFinite(v.x)&&Number.isFinite(v.y)).slice(0,19).map(([k,v])=>[k,{x:clamp(v.x,14,86),y:clamp(v.y,24,82)}]));
       if(!Object.hasOwn(difficulties,s.difficulty))s.difficulty='normal';
       if(s.nestLots!==undefined&&(!Array.isArray(s.nestLots)||s.nestLots.some(l=>!Number.isFinite(l.count)||l.count<=0||!Number.isFinite(l.day)||l.day<0||l.day>s.day)))return fresh(now);
+      s.crops=restoreCrops(s.crops,s.hour);
       prepareNest(s);syncEggs(s);s.log=s.log.filter(t=>typeof t==='string').slice(0,12);if(s.last>now)s.last=now;return s;
     }catch(_){return fresh(now);}
   }
-  const api={DAY,HOUR,breeds,prices,difficulties,lifecycle,ageFactor,lifeStage,needsYoungFeed,retired,productionStatus,equipmentAccess,isBankrupt,henSaleValue,farmValue,fresh,advance,action,restore,count,threats,eggCapacity};if(typeof module==='object'&&module.exports)module.exports=api;else root.GranjaMotor=api;
+  const api={DAY,HOUR,breeds,prices,cropRules,cropStatus,difficulties,lifecycle,ageFactor,lifeStage,needsYoungFeed,retired,productionStatus,equipmentAccess,isBankrupt,henSaleValue,farmValue,fresh,advance,action,restore,count,threats,eggCapacity};if(typeof module==='object'&&module.exports)module.exports=api;else root.GranjaMotor=api;
 })(typeof globalThis==='object'?globalThis:this);
 
