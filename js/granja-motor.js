@@ -13,13 +13,13 @@
   function retired(h){return h.age>=lifecycle.end;}
   function equipmentAccess(s){const n=count(s),f=s.facilities||{feeder:1,waterer:1};return {feed:n?Math.min(1,f.feeder*6/n):1,water:n?Math.min(1,f.waterer*6/n):1};}
   function productionStatus(s,h){
-    const factor=ageFactor(h.age),eggsPerDay=h.count*breeds[h.breed].lay*factor*h.health/100*(h.isolated?.65:1);
+    const factor=ageFactor(h.age),access=equipmentAccess(s),eggsPerDay=h.count*breeds[h.breed].lay*factor*h.health/100*(h.isolated?.65:1)*Math.min(access.feed,access.water)*(s.calcium<=0?.8:1);
     if(retired(h))return {reason:'age',message:'Fin de puesta por edad: puedes vender este lote o conservarlo; seguirá necesitando alimento y agua.',eggsPerDay:0};
     if(s.water<=0)return {reason:'water',message:'Puesta detenida por falta de agua; no es fin de puesta por edad.',eggsPerDay:0};
     if((needsYoungFeed(h)?s.youngFeed:s.feed)<=0)return {reason:'feed',message:needsYoungFeed(h)?'Falta pienso para jóvenes. Revisa la reserva del lote.':'Puesta detenida por falta de pienso de ponedoras; no es fin de puesta por edad.',eggsPerDay:0};
-    const access=equipmentAccess(s);if(access.feed<1||access.water<1)return {reason:'equipment',message:'Acceso insuficiente: cada comedero y bebedero atiende seis aves en el juego. Coloca más equipos.',eggsPerDay:eggsPerDay*Math.min(access.feed,access.water)};
+    if(access.feed<1||access.water<1)return {reason:'equipment',message:'Acceso insuficiente: cada comedero y bebedero atiende seis aves en el juego. Coloca más equipos.',eggsPerDay};
     if(h.age<lifecycle.start)return {reason:'young',message:'Pollitas próximas al inicio de puesta: consumen pienso para jóvenes.',eggsPerDay:0};
-    if(s.calcium<=0)return {reason:'calcium',message:'Reserva de calcio agotada: se reduce la producción aprovechable en el juego.',eggsPerDay:eggsPerDay*.8};
+    if(s.calcium<=0)return {reason:'calcium',message:'Reserva de calcio agotada: se reduce la producción aprovechable en el juego.',eggsPerDay};
     if(h.health<99)return {reason:'health',message:'Puesta reducida por salud; puede recuperarse con los cuidados.',eggsPerDay};
     return {reason:'laying',message:lifeStage(h)==='vieja'?'Puesta descendente por edad.':lifeStage(h)==='joven'?'La puesta está aumentando.':'Etapa adulta de buena producción.',eggsPerDay};
   }
@@ -58,8 +58,9 @@
     const fedLayer=needed===0?1:Math.min(access.feed,s.feed/needed),fedYoung=youngNeeded===0?1:Math.min(access.feed,s.youngFeed/youngNeeded),watered=water===0?1:Math.min(access.water,s.water/water),mineral=calciumNeeded===0?1:Math.min(1,s.calcium/calciumNeeded);
     s.feed=Math.max(0,s.feed-needed*fedLayer);s.youngFeed=Math.max(0,s.youngFeed-youngNeeded*fedYoung);s.calcium=Math.max(0,s.calcium-calciumNeeded);s.water=Math.max(0,s.water-water*watered);
     for(const h of s.hens){
-      const wasRetired=retired(h),fed=needsYoungFeed(h)?fedYoung:fedLayer;
+      const wasRetired=retired(h),wasYoung=needsYoungFeed(h),fed=needsYoungFeed(h)?fedYoung:fedLayer;
       h.age+=1/24;h.quarantine=Math.max(0,(h.quarantine||0)-1/24);
+      if(wasYoung&&!needsYoungFeed(h))log(s,'El lote empieza la puesta: ahora consume pienso de ponedoras. Revisa esa reserva y el calcio.');
       const deficit=(1-fed)*2+(1-watered)*3+(s.hygiene<45?(45-s.hygiene)/100:0);
       h.health=clamp(h.health+(deficit? -deficit/breeds[h.breed].resilience:.12),0,100);
       if(!wasRetired&&retired(h))log(s,breeds[h.breed].name+': fin de puesta por edad. Puedes vender el lote o conservarlo con sus cuidados.');
@@ -130,7 +131,7 @@
       if(s.youngFeed===undefined){const total=count(s),share=total?s.hens.filter(needsYoungFeed).reduce((n,h)=>n+h.count,0)/total:0;s.youngFeed=s.feed*share;s.feed-=s.youngFeed;}
       if(s.calcium===undefined)s.calcium=1;
       if(!Number.isFinite(s.youngFeed)||s.youngFeed<0||!Number.isFinite(s.calcium)||s.calcium<0)return fresh(now);
-      if(s.sceneLayout!==undefined)s.sceneLayout=Object.fromEntries(Object.entries(s.sceneLayout&&typeof s.sceneLayout==='object'?s.sceneLayout:{}).filter(([k,v])=>/^(feeder-[0-7]|waterer-[0-7]|nest|footbath|clean)$/.test(k)&&v&&Number.isFinite(v.x)&&Number.isFinite(v.y)).slice(0,19).map(([k,v])=>[k,{x:clamp(v.x,7,93),y:clamp(v.y,24,82)}]));
+      if(s.sceneLayout!==undefined)s.sceneLayout=Object.fromEntries(Object.entries(s.sceneLayout&&typeof s.sceneLayout==='object'?s.sceneLayout:{}).filter(([k,v])=>/^(feeder-[0-7]|waterer-[0-7]|nest|footbath|clean)$/.test(k)&&v&&Number.isFinite(v.x)&&Number.isFinite(v.y)).slice(0,19).map(([k,v])=>[k,{x:clamp(v.x,14,86),y:clamp(v.y,24,82)}]));
       if(!Object.hasOwn(difficulties,s.difficulty))s.difficulty='normal';
       if(s.nestLots!==undefined&&(!Array.isArray(s.nestLots)||s.nestLots.some(l=>!Number.isFinite(l.count)||l.count<=0||!Number.isFinite(l.day)||l.day<0||l.day>s.day)))return fresh(now);
       prepareNest(s);syncEggs(s);s.log=s.log.filter(t=>typeof t==='string').slice(0,12);if(s.last>now)s.last=now;return s;
