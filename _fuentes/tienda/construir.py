@@ -475,35 +475,39 @@ def cuerpo_portada(productos, raiz):
     cats_orden = []
     for sid, titulo, cats in SECCIONES:
         vistos = []
+        opciones_grupo = []
         for cat_csv in cats:
             grupo = [p for p in por_sec[sid] if p["categoria_csv"] == cat_csv]
             if not grupo:
                 continue
             vistos.append((cat_csv, grupo))
             cat = nombre_cat(cat_csv)
-            opciones.append(
+            opciones_grupo.append(
                 f'<option value="{esc(slugify(cat))}">{esc(cat)} ({len(grupo)})</option>'
             )
+        if opciones_grupo:
+            opciones.append(f'<optgroup label="{esc(titulo)}">{"".join(opciones_grupo)}</optgroup>')
         cats_orden.append((sid, titulo, vistos))
     bloques = []
     for sid, titulo, grupos in cats_orden:
         if not grupos:
             continue
         partes = [f'<section class="t-seccion" id="{esc(sid)}" data-t-bloque>', f"<h2>{esc(titulo)}</h2>"]
+        partes.append('<div class="t-grid">')
         for cat_csv, grupo in grupos:
             cat = nombre_cat(cat_csv)
             cslug = slugify(cat)
-            cards = "\n".join(tarjeta(p, raiz, "h3") for p in grupo)
-            partes.append(
-                f'''<section class="t-cat" id="c-{esc(cslug)}" data-t-bloque>
-<h3><a href="{raiz}tienda/c/{cslug}/">{esc(cat)}</a></h3>
-<div class="t-grid">
-{cards}
-</div>
-</section>'''
-            )
+            cards = [tarjeta(p, raiz, "h3") for p in grupo]
+            # Conserva los enlaces antiguos a una categoría, sobre su primera ficha.
+            cards[0] = cards[0].replace('class="t-card"', f'class="t-card" id="c-{esc(cslug)}"', 1)
+            partes.extend(cards)
+        partes.append('</div>')
         partes.append("</section>")
         bloques.append("\n".join(partes))
+    familias = "".join(
+        f'<a href="{raiz}tienda/#{esc(sid)}"><strong>{esc(titulo)}</strong><span>{len(por_sec[sid])} referencias</span></a>'
+        for sid, titulo, _cats in SECCIONES if por_sec[sid]
+    )
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · Tienda</p>
 <header class="t-hero">
 <p class="kicker">Equipo para tu granja</p>
@@ -511,10 +515,8 @@ def cuerpo_portada(productos, raiz):
 <p class="t-lead">Busca por tarea, compara las fichas y comprueba medidas y compatibilidad antes de comprar. La compra, el precio y el envío se consultan en Amazon.</p>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 </header>
-<nav class="t-rutas" aria-label="Elegir por necesidad">
-<a href="?cat=comederos#amazon"><strong>Comida y agua</strong><span>Empieza por los comederos y filtra el resto del equipo.</span></a>
-<a href="?q=pollitos#amazon"><strong>Preparar la cría</strong><span>Busca material para pollitos y comprueba su función.</span></a>
-<a href="?cat=malla-y-vallas#amazon"><strong>Revisar el recinto</strong><span>Compara cierres y materiales con las medidas de tu instalación.</span></a>
+<nav class="t-rutas" aria-label="Familias de material">
+{familias}
 </nav>
 <section id="amazon" aria-labelledby="amazon-titulo">
 <h2 id="amazon-titulo">Encuentra y compara material</h2>
