@@ -22,7 +22,7 @@
 <link rel="icon" href="../../../img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../img/favicon.png" sizes="64x64" type="image/png">
 <link rel="stylesheet" href="../../../css/estilo.css?v=20261110d">
-<link rel="stylesheet" href="../../../tienda/tienda.css?v=20261110d">
+<link rel="stylesheet" href="../../../tienda/tienda.css?v=20261114tienda">
 <script src="../../../js/boot.js?v=20261110d"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://granjarentable.com/"},{"@type":"ListItem","position":2,"name":"Tienda","item":"https://granjarentable.com/tienda/"},{"@type":"ListItem","position":3,"name":"Ropa y protección","item":"https://granjarentable.com/tienda/c/ropa-y-proteccion/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Ropa y protección","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"name":"Guantes de nitrilo COOLJOB 8 mil con agarre, 100 uds.","url":"https://granjarentable.com/tienda/p/guantes-de-nitrilo-cooljob-8-mil-con-agarre-100-uds/"},{"@type":"ListItem","position":2,"name":"Guantes de nitrilo desechables 6 mil, negros, sin látex","url":"https://granjarentable.com/tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/"},{"@type":"ListItem","position":3,"name":"Guantes de piel HydraHyde Wells Lamont repelentes al agua","url":"https://granjarentable.com/tienda/p/guantes-de-piel-hydrahyde-wells-lamont-repelentes-al-agua/"},{"@type":"ListItem","position":4,"name":"Guantes de piel premium Wells Lamont 1129","url":"https://granjarentable.com/tienda/p/guantes-de-piel-premium-wells-lamont-1129/"},{"@type":"ListItem","position":5,"name":"Guantes de piel Wells Lamont (2 pares)","url":"https://granjarentable.com/tienda/p/guantes-de-piel-wells-lamont-2-pares/"},{"@type":"ListItem","position":6,"name":"Guantes de trabajo de piel Wells Lamont con puño ajustable","url":"https://granjarentable.com/tienda/p/guantes-de-trabajo-de-piel-wells-lamont-con-puno-ajustable/"},{"@type":"ListItem","position":7,"name":"Respirador desechable 3M 8210 N95, paquete de 2","url":"https://granjarentable.com/tienda/p/respirador-desechable-3m-8210-n95-paquete-de-2/"},{"@type":"ListItem","position":8,"name":"Respirador desechable 3M 8210 N95, paquete de 20","url":"https://granjarentable.com/tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/"}]}</script>
@@ -75,7 +75,7 @@
 <div class="nav-sub" id="nav-razas">
 <a data-nav="razas-gallinas" href="../../../razas.html#razas-gallinas"><span class="nav-label">Gallinas</span></a>
 <a data-nav="razas-pollos" href="../../../pollos-engorde.html"><span class="nav-label">Pollos</span></a>
-<span class="nav-soon"><span class="nav-label">Gallos (próximamente)</span></span>
+<a data-nav="razas-gallos" href="../../../razas.html#gallos"><span class="nav-label">Gallos</span></a>
 </div>
 </div>
 
@@ -119,103 +119,97 @@
 <p class="kicker">Tienda</p>
 <h1>Ropa y protección</h1>
 <p class="t-lead">8 productos. El precio se ve en Amazon.</p>
+
 <p class="t-aviso"><strong>Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. La compra se hace en Amazon, no en esta web.</strong></p>
 
 <p><a class="btn sec" href="../../../tienda/">Ver toda la tienda</a> <a class="btn sec" href="../../../ebooks/">Ebooks a 3,00 USD</a></p>
+<p><a href="#t-buscar">Ir al buscador de esta categoría ↓</a></p>
 </header>
-<div class="t-filtros">
+
+
+
+
+<section class="t-ayuda" aria-label="Antes de elegir"><h2>Qué comprobar antes de comprar</h2><ul><li>Comprueba talla y ajuste con las medidas del fabricante.</li><li>Verifica la protección indicada para el riesgo concreto, sin deducirla del aspecto.</li><li>Revisa lavado, recambio y compatibilidad con el resto del equipo.</li></ul></section>
+
+<form class="t-filtros" data-t-form role="search">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar en Ropa y protección</label>
-<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre o palabra clave" autocomplete="off">
+<input id="t-buscar" name="q" data-t-buscar type="search" maxlength="120" placeholder="Nombre o palabra clave" autocomplete="off">
 </div>
 <div class="t-chips" aria-label="Categorías de esta sección">
 <a class="t-chip" href="../../../tienda/c/herramientas-de-granja/">Herramientas de granja</a><a class="t-chip" href="../../../tienda/c/ropa-y-proteccion/" aria-current="page">Ropa y protección</a><a class="t-chip" href="../../../tienda/c/medicion/">Medición</a><a class="t-chip" href="../../../tienda/c/energia-e-iluminacion/">Energía e iluminación</a><a class="t-chip" href="../../../tienda/c/camaras-y-luz-nocturna/">Cámaras y luz nocturna</a>
 </div>
-<p class="t-cuenta" data-t-cuenta aria-live="polite">8 productos</p>
-</div>
-<p class="t-vacio" data-t-vacio hidden>Ningún producto de esta categoría coincide.</p>
+<div class="t-controles"><button type="submit" class="btn">Buscar</button><button class="btn sec" type="button" data-t-limpiar>Limpiar búsqueda</button></div>
+<p class="t-cuenta" data-t-cuenta role="status" aria-live="polite" aria-atomic="true">8 productos</p>
+</form>
+<div class="t-vacio" data-t-vacio hidden><p>Ningún producto de esta categoría coincide. Prueba una palabra más general o una marca.</p></div>
 <div class="t-grid" data-t-bloque>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de nitrilo cooljob 8 mil con agarre, 100 uds. ropa y proteccion herramientas, ropa y energia cooljob 8 mil disposable nitrile gloves, diamond textured grip for cleaning, dying, cooking, waterproof, 100 count, m-xl guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b0dg5jllvr guantes desechables de nitrilo de 8 mil, con textura de diamante, impermeables, caja de 100 unidades (tallas m-xl). los recomendamos cuando hace falta mas resistencia, por ejemplo al limpiar o tratar animales.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de nitrilo cooljob 8 mil con agarre, 100 uds. ropa y proteccion herramientas, ropa y energia cooljob 8 mil disposable nitrile gloves, diamond textured grip for cleaning, dying, cooking, waterproof, 100 count, m-xl guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b0dg5jllvr guantes desechables de nitrilo de 8 mil, con textura de diamante, impermeables, caja de 100 unidades (tallas m-xl). puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/guantes-de-nitrilo-cooljob-8-mil-con-agarre-100-uds/">Guantes de nitrilo COOLJOB 8 mil con agarre, 100 uds.</a></h2>
-<p class="t-por-que">Los recomendamos cuando hace falta más resistencia, por ejemplo al limpiar o tratar animales.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0DG5JLLVR?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B0DG5JLLVR?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/guantes-de-nitrilo-cooljob-8-mil-con-agarre-100-uds/">Ver ficha y criterios<span class="sr">: Guantes de nitrilo COOLJOB 8 mil con agarre, 100 uds.</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0DG5JLLVR?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de nitrilo desechables 6 mil, negros, sin latex ropa y proteccion herramientas, ropa y energia disposable nitrile exam gloves - 6-mil, black, heavy duty, latex free, food safe for cooking guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b0br7qtxsv guantes desechables de nitrilo de 6 mil, negros y sin latex. la ficha los presenta como aptos para alimentos. los recomendamos para limpiar el gallinero y manejar el pienso.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de nitrilo desechables 6 mil, negros, sin latex ropa y proteccion herramientas, ropa y energia disposable nitrile exam gloves - 6-mil, black, heavy duty, latex free, food safe for cooking guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b0br7qtxsv guantes desechables de nitrilo de 6 mil, negros y sin latex. la ficha los presenta como aptos para alimentos. puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/">Guantes de nitrilo desechables 6 mil, negros, sin látex</a></h2>
-<p class="t-por-que">Los recomendamos para limpiar el gallinero y manejar el pienso.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0BR7QTXSV?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B0BR7QTXSV?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/">Ver ficha y criterios<span class="sr">: Guantes de nitrilo desechables 6 mil, negros, sin látex</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0BR7QTXSV?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de piel hydrahyde wells lamont repelentes al agua ropa y proteccion herramientas, ropa y energia wells lamont men's slip-on hydrahyde leather work gloves guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b079rjf6mk guantes de piel hydrahyde para trabajos con humedad. los recomendamos para limpiar bebederos y trabajar en el corral con barro.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de piel hydrahyde wells lamont repelentes al agua ropa y proteccion herramientas, ropa y energia wells lamont men's slip-on hydrahyde leather work gloves guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b079rjf6mk guantes de piel hydrahyde para trabajos con humedad. puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/guantes-de-piel-hydrahyde-wells-lamont-repelentes-al-agua/">Guantes de piel HydraHyde Wells Lamont repelentes al agua</a></h2>
-<p class="t-por-que">Los recomendamos para limpiar bebederos y trabajar en el corral con barro.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B079RJF6MK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B079RJF6MK?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/guantes-de-piel-hydrahyde-wells-lamont-repelentes-al-agua/">Ver ficha y criterios<span class="sr">: Guantes de piel HydraHyde Wells Lamont repelentes al agua</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B079RJF6MK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de piel premium wells lamont 1129 ropa y proteccion herramientas, ropa y energia wells lamont premium leather work gloves (1129) guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b07qjshdpq guantes de piel de gama alta de wells lamont. los recomendamos para tareas duras en la granja y el vallado.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de piel premium wells lamont 1129 ropa y proteccion herramientas, ropa y energia wells lamont premium leather work gloves (1129) guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b07qjshdpq guantes de piel de gama alta de wells lamont. puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/guantes-de-piel-premium-wells-lamont-1129/">Guantes de piel premium Wells Lamont 1129</a></h2>
-<p class="t-por-que">Los recomendamos para tareas duras en la granja y el vallado.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B07QJSHDPQ?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B07QJSHDPQ?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/guantes-de-piel-premium-wells-lamont-1129/">Ver ficha y criterios<span class="sr">: Guantes de piel premium Wells Lamont 1129</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B07QJSHDPQ?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de piel wells lamont (2 pares) ropa y proteccion herramientas, ropa y energia wells lamont men's cowhide leather work gloves bundle (2 pairs) guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b01ga7jyye pack de 2 pares de guantes de piel de vaca. los recomendamos para trabajar con malla y alambre sin cortarse.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de piel wells lamont (2 pares) ropa y proteccion herramientas, ropa y energia wells lamont men's cowhide leather work gloves bundle (2 pairs) guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b01ga7jyye pack de 2 pares de guantes de piel de vaca. puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/guantes-de-piel-wells-lamont-2-pares/">Guantes de piel Wells Lamont (2 pares)</a></h2>
-<p class="t-por-que">Los recomendamos para trabajar con malla y alambre sin cortarse.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B01GA7JYYE?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B01GA7JYYE?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/guantes-de-piel-wells-lamont-2-pares/">Ver ficha y criterios<span class="sr">: Guantes de piel Wells Lamont (2 pares)</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B01GA7JYYE?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de trabajo de piel wells lamont con puno ajustable ropa y proteccion herramientas, ropa y energia wells lamont work gloves men and women, cowhide leather work gloves, adjustable wrist guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b00004r9rz guantes de piel de vaca con puno ajustable, para hombre y mujer. los recomendamos como guante diario para limpiar el gallinero y manejar malla.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="guantes de trabajo de piel wells lamont con puno ajustable ropa y proteccion herramientas, ropa y energia wells lamont work gloves men and women, cowhide leather work gloves, adjustable wrist guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b00004r9rz guantes de piel de vaca con puno ajustable, para hombre y mujer. puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/guantes-de-trabajo-de-piel-wells-lamont-con-puno-ajustable/">Guantes de trabajo de piel Wells Lamont con puño ajustable</a></h2>
-<p class="t-por-que">Los recomendamos como guante diario para limpiar el gallinero y manejar malla.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B00004R9RZ?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B00004R9RZ?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/guantes-de-trabajo-de-piel-wells-lamont-con-puno-ajustable/">Ver ficha y criterios<span class="sr">: Guantes de trabajo de piel Wells Lamont con puño ajustable</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B00004R9RZ?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="respirador desechable 3m 8210 n95, paquete de 2 ropa y proteccion herramientas, ropa y energia 3m n95 particulate respirator 8210, disposable respirator, 2-pack guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b001g8wrbu respirador desechable 3m modelo 8210, tipo n95, en paquete de 2. es un respirador de particulas para el trabajo, no un producto veterinario. lo recomendamos para el polvo de la cama y del pienso. el paquete trae dos unidades.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="respirador desechable 3m 8210 n95, paquete de 2 ropa y proteccion herramientas, ropa y energia 3m n95 particulate respirator 8210, disposable respirator, 2-pack guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b001g8wrbu respirador desechable 3m modelo 8210, tipo n95, en paquete de 2. es un respirador de particulas para el trabajo, no un producto veterinario. puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-2/">Respirador desechable 3M 8210 N95, paquete de 2</a></h2>
-<p class="t-por-que">Lo recomendamos para el polvo de la cama y del pienso. El paquete trae dos unidades.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B001G8WRBU?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B001G8WRBU?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-2/">Ver ficha y criterios<span class="sr">: Respirador desechable 3M 8210 N95, paquete de 2</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B001G8WRBU?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="respirador desechable 3m 8210 n95, paquete de 20 ropa y proteccion herramientas, ropa y energia 3m particulate disposable respirator 8210, n95, pack of 20, niosh approved guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b008mcuzzs respirador desechable 3m 8210, tipo n95, en caja de 20. la ficha lo marca como aprobado por niosh. lo recomendamos cuando hace falta una caja de recambio y no solo un par. es el mismo modelo 8210, en formato de 20.">
+<article class="t-card" data-t-card data-cat="ropa-y-proteccion" data-sec="taller" data-q="respirador desechable 3m 8210 n95, paquete de 20 ropa y proteccion herramientas, ropa y energia 3m particulate disposable respirator 8210, n95, pack of 20, niosh approved guante bota ropa mascarilla respirador granja guante bota ropa mascarilla respirador granja b008mcuzzs respirador desechable 3m 8210, tipo n95, en caja de 20. la ficha lo marca como aprobado por niosh. puede encajar si conoces la tarea, la talla y el tipo de proteccion que necesitas.">
 <div class="t-marca"><span>Ropa y protección</span></div>
 <h2><a href="../../../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/">Respirador desechable 3M 8210 N95, paquete de 20</a></h2>
-<p class="t-por-que">Lo recomendamos cuando hace falta una caja de recambio y no solo un par. Es el mismo modelo 8210, en formato de 20.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B008MCUZZS?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B008MCUZZS?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si conoces la tarea, la talla y el tipo de protección que necesitas.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/">Ver ficha y criterios<span class="sr">: Respirador desechable 3M 8210 N95, paquete de 20</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B008MCUZZS?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/ropa-y-proteccion/">Ropa y protección</a></p>
 </article>
 </div>
+
 </main>
 <footer class="foot">
 <div class="wrap foot-grid">
@@ -271,6 +265,6 @@
 <script src="../../../js/catalogo.js"></script>
 <script src="../../../js/app.js?v=20261110d"></script>
 <script src="../../../js/site.js?v=20261110d"></script>
-<script defer src="../../../tienda/tienda.js?v=20261110d"></script>
+<script defer src="../../../tienda/tienda.js?v=20261114tienda"></script>
 </body>
 </html>

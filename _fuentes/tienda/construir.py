@@ -10,20 +10,22 @@ import re
 import shutil
 import sys
 import unicodedata
+from urllib.parse import urlsplit
 from collections import defaultdict
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from textos import CLAVES, NOMBRE_PUBLICO, SECCIONES  # noqa: E402
+from editorial import CRITERIOS, enriquecer  # noqa: E402
 from pulir import AVISO_FICHA, AVISO_VET, EXCLUIR, FUSION, REDIR_FIJAS, VET_CATS, preparar, problemas_de_texto  # noqa: E402
 
 SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
-VERSION = "20261110d"
-VERSION_BUSCADOR = "20261113a"
+VERSION = "20261114tienda"
+VERSION_BUSCADOR = "20261114tienda"
 
 
 def esc(texto):
@@ -206,6 +208,8 @@ def armar(filas):
         })
     if fallos:
         raise SystemExit("\n".join(fallos[:40]))
+    for producto in productos:
+        enriquecer(producto)
     productos.sort(key=lambda p: p["titulo"].casefold())
     return productos
 
@@ -247,6 +251,7 @@ def html_descripcion_larga(texto):
         return ""
     bloques = []
     parrafo = []
+    lista_abierta = False
 
     def volcar():
         if parrafo:
@@ -255,6 +260,16 @@ def html_descripcion_larga(texto):
 
     for linea in texto.splitlines():
         linea = linea.strip()
+        if lista_abierta and linea and not linea.startswith("- "):
+            bloques.append("</ul>")
+            lista_abierta = False
+        if linea.startswith("- "):
+            volcar()
+            if not lista_abierta:
+                bloques.append("<ul>")
+                lista_abierta = True
+            bloques.append(f"<li>{esc(linea[2:])}</li>")
+            continue
         if linea.startswith("### "):
             volcar()
             bloques.append(f"<h3>{esc(linea[4:].strip())}</h3>")
@@ -266,6 +281,8 @@ def html_descripcion_larga(texto):
         else:
             parrafo.append(linea)
     volcar()
+    if lista_abierta:
+        bloques.append("</ul>")
     if not bloques:
         return ""
     return '<section class="t-larga" data-descripcion-larga>\n' + "\n".join(bloques) + "\n</section>"
@@ -302,7 +319,8 @@ def tarjeta(p, raiz, nivel):
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 {foto}<{nivel}><a href="{href}">{esc(p["titulo"])}</a></{nivel}>
 {f'<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>' if p["recomendacion"] else ""}
-{botones_amazon(p)}
+<div class="t-acciones"><a class="btn sec t-detalle" href="{href}">Ver ficha y criterios<span class="sr">: {esc(p["titulo"])}</span></a>
+{boton_amazon(p)}</div>
 <p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
 </article>'''
 
@@ -450,7 +468,7 @@ def recortar(texto, limite=158):
 
 
 def cuerpo_portada(productos, raiz):
-    chips = ['<button type="button" class="t-chip" data-t-filtro="todas" aria-pressed="true">Todas</button>']
+    opciones = ['<option value="todas">Todas las categorías</option>']
     por_sec = defaultdict(list)
     for p in productos:
         por_sec[p["seccion_id"]].append(p)
@@ -463,8 +481,8 @@ def cuerpo_portada(productos, raiz):
                 continue
             vistos.append((cat_csv, grupo))
             cat = nombre_cat(cat_csv)
-            chips.append(
-                f'<button type="button" class="t-chip" data-t-filtro="{esc(slugify(cat))}" aria-pressed="false">{esc(cat)} ({len(grupo)})</button>'
+            opciones.append(
+                f'<option value="{esc(slugify(cat))}">{esc(cat)} ({len(grupo)})</option>'
             )
         cats_orden.append((sid, titulo, vistos))
     bloques = []
@@ -488,28 +506,35 @@ def cuerpo_portada(productos, raiz):
         bloques.append("\n".join(partes))
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · Tienda</p>
 <header class="t-hero">
-<p class="kicker">Tienda</p>
-<h1>Tienda de Granja Rentable</h1>
-<p class="t-lead">Material de avicultura enlazado a Amazon. No hay carrito: el botón abre Amazon.</p>
+<p class="kicker">Equipo para tu granja</p>
+<h1>Elige el material que necesita tu lote</h1>
+<p class="t-lead">Busca por tarea, compara las fichas y comprueba medidas y compatibilidad antes de comprar. La compra, el precio y el envío se consultan en Amazon.</p>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 </header>
-{banner_ebooks(raiz)}
+<nav class="t-rutas" aria-label="Elegir por necesidad">
+<a href="?cat=comederos#amazon"><strong>Comida y agua</strong><span>Empieza por los comederos y filtra el resto del equipo.</span></a>
+<a href="?q=pollitos#amazon"><strong>Preparar la cría</strong><span>Busca material para pollitos y comprueba su función.</span></a>
+<a href="?cat=malla-y-vallas#amazon"><strong>Revisar el recinto</strong><span>Compara cierres y materiales con las medidas de tu instalación.</span></a>
+</nav>
 <section id="amazon" aria-labelledby="amazon-titulo">
-<h2 id="amazon-titulo">Material en Amazon</h2>
-<p class="t-nota">No publicamos el precio: cambia y Amazon pide verlo en su ficha.</p>
-<div class="t-filtros">
+<h2 id="amazon-titulo">Encuentra y compara material</h2>
+<p class="t-nota">{len(productos)} referencias con ficha. Las imágenes marcadas como ilustración no acreditan el aspecto ni los accesorios de la variante vendida.</p>
+<form class="t-filtros" data-t-form role="search">
 <div class="t-buscar">
-<label class="t-buscar-etq" for="t-buscar">Buscar</label>
-<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre, categoría o palabra clave" autocomplete="off">
+<label class="t-buscar-etq" for="t-buscar">¿Qué necesitas?</label>
+<input id="t-buscar" name="q" data-t-buscar type="search" maxlength="120" placeholder="Por ejemplo: nidal, bebedero o pollitos" autocomplete="off" aria-describedby="t-buscar-ayuda">
+<p class="t-nota" id="t-buscar-ayuda">Admite varias palabras, marcas y ASIN. También «ponedero» o «nido» para buscar nidales.</p>
 </div>
-<div class="t-chips" role="group" aria-label="Filtrar por categoría">
-{"".join(chips)}
+<div class="t-categoria"><label class="t-buscar-etq" for="t-categoria">Categoría</label>
+<select id="t-categoria" name="cat" data-t-categoria>{"".join(opciones)}</select>
 </div>
-<p class="t-cuenta" data-t-cuenta aria-live="polite">{len(productos)} productos</p>
-</div>
-<p class="t-vacio" data-t-vacio hidden>Ningún producto coincide con esa búsqueda.</p>
+<div class="t-controles"><button type="submit" class="btn">Buscar</button><button type="button" class="btn sec" data-t-limpiar>Limpiar filtros</button></div>
+<p class="t-cuenta" data-t-cuenta role="status" aria-live="polite" aria-atomic="true">{len(productos)} productos</p>
+</form>
+<div class="t-vacio" data-t-vacio hidden><h3>No encontramos esa combinación</h3><p>Prueba una palabra más general o cambia de categoría.</p><button type="button" class="btn sec" data-t-ampliar hidden>Buscar en toda la tienda</button></div>
 {"".join(bloques)}
-</section>'''
+</section>
+<aside class="t-ayuda"><h2>Primero resuelve la duda de manejo</h2><p>Antes de elegir equipo puedes consultar las <a href="{raiz}blog/">guías gratuitas</a> y las <a href="{raiz}calculadoras.html">calculadoras</a>. Si prefieres una guía en PDF, consulta el contenido y el precio de los <a href="{raiz}ebooks/">ebooks propios</a>.</p></aside>'''
 
 
 def guia_pollitos(p, raiz):
@@ -599,9 +624,9 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
     inicio_catalogo = ('<section class="t-cat" id="catalogo-comederos" tabindex="-1" aria-label="Catálogo de comederos">'
                        if cat == "Comederos" else "")
     fin_catalogo = '</section>' if cat == "Comederos" else ""
-    sin_resultados = ('<div class="t-vacio" data-t-vacio hidden><p>Ningún comedero coincide con tu búsqueda. Prueba una sola palabra, como «pedal», o una marca.</p>'
-                     '<button class="btn sec" type="button" data-t-limpiar>Limpiar búsqueda</button></div>'
-                     if cat == "Comederos" else '<p class="t-vacio" data-t-vacio hidden>Ningún producto de esta categoría coincide.</p>')
+    sin_resultados = '<div class="t-vacio" data-t-vacio hidden><p>Ningún producto de esta categoría coincide. Prueba una palabra más general o una marca.</p></div>'
+    criterio_cat = CRITERIOS[cat]
+    orientacion = '<section class="t-ayuda" aria-label="Antes de elegir"><h2>Qué comprobar antes de comprar</h2><ul>' + ''.join(f'<li>{esc(t)}</li>' for t in criterio_cat['comprobar']) + '</ul></section>'
     aviso_cat = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if cat in VET_CATS or cat == "Pienso" else ""
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · {esc(cat)}</p>
 <header class="t-hero">
@@ -612,22 +637,25 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 {aviso_cat}
 <p><a class="btn sec" href="{raiz}tienda/">Ver toda la tienda</a> <a class="btn sec" href="{raiz}ebooks/">Ebooks a 3,00 USD</a></p>
+<p><a href="#t-buscar">Ir al buscador de esta categoría ↓</a></p>
 </header>
 {guia_pollitos(grupo[0], raiz)}
 {orientacion_comederos(cat, raiz)}
 {orientacion_seguridad(cat, raiz)}
 {orientacion_alimentacion(cat, raiz)}
+{orientacion}
 {inicio_catalogo}
-<div class="t-filtros">
+<form class="t-filtros" data-t-form role="search">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar en {esc(cat)}</label>
-<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre o palabra clave" autocomplete="off"{ayuda_busqueda}>
+<input id="t-buscar" name="q" data-t-buscar type="search" maxlength="120" placeholder="Nombre o palabra clave" autocomplete="off"{ayuda_busqueda}>
 </div>
 <div class="t-chips" aria-label="Categorías de esta sección">
 {"".join(otros)}
 </div>
-<p class="t-cuenta" data-t-cuenta aria-live="polite">{len(grupo)} productos</p>
-</div>
+<div class="t-controles"><button type="submit" class="btn">Buscar</button><button class="btn sec" type="button" data-t-limpiar>Limpiar búsqueda</button></div>
+<p class="t-cuenta" data-t-cuenta role="status" aria-live="polite" aria-atomic="true">{len(grupo)} productos</p>
+</form>
 {sin_resultados}
 <div class="t-grid" data-t-bloque>
 {cards}
@@ -748,17 +776,10 @@ def pagina_redirect_tienda():
 
 def escribir(productos):
     viejos = {}
-    largas = {}
     ruta_cat = RAIZ / "tienda" / "catalogo.json"
     if ruta_cat.is_file():
         datos_previos = json.loads(ruta_cat.read_text(encoding="utf-8"))
         viejos = {item["asin"]: item["slug"] for item in datos_previos}
-        for item in datos_previos:
-            texto = item.get("descripcion_larga")
-            if isinstance(texto, str) and texto.strip():
-                largas[item["asin"]] = texto.strip()
-    for p in productos:
-        p["descripcion_larga"] = largas.get(p["asin"], "")
     viejo = RAIZ / "tienda" / "p"
     if viejo.exists():
         shutil.rmtree(viejo)
@@ -880,7 +901,10 @@ def escribir(productos):
             "url_afiliado": p["url"],
             "explicacion": p["explicacion"],
             "recomendacion": p["recomendacion"],
-            "claves": p["claves"].split(),
+            "claves": sorted(set(p["claves"].split())),
+            "encaje": p["encaje"],
+            "comprobar_compra": p["comprobar_compra"],
+            "consejos_uso": p["consejos_uso"],
         }
         if p.get("imagen"):
             item["imagen"] = p["imagen"]
@@ -895,7 +919,7 @@ def escribir(productos):
     ruta = RAIZ / "sitemap.xml"
     texto = ruta.read_text(encoding="utf-8")
     bloque_sm = "<!-- tienda-afiliados:inicio -->\n" + "\n".join(
-        f"<url><loc>{u}</loc><lastmod>2026-11-10</lastmod></url>" for u in urls
+        f"<url><loc>{u}</loc><lastmod>2026-11-14</lastmod></url>" for u in urls
     ) + "\n<!-- tienda-afiliados:fin -->"
     if "<!-- tienda-afiliados:inicio -->" in texto:
         texto = re.sub(
@@ -973,11 +997,13 @@ def comprobar(productos, urls, precios_decimales):
                     if m_asin:
                         vistos.add(m_asin.group(1))
                 continue
-            base = href.split("#", 1)[0]
-            ancla = href.split("#", 1)[1] if "#" in href else ""
-            if not base or base.startswith(("mailto:", "tel:", "javascript:")):
+            enlace = urlsplit(href)
+            base, ancla = enlace.path, enlace.fragment
+            if enlace.scheme in {"mailto", "tel", "javascript"}:
                 continue
-            if base.startswith("/"):
+            if not base:
+                destino = archivo
+            elif base.startswith("/"):
                 destino = RAIZ / base.lstrip("/")
             else:
                 destino = (archivo.parent / base).resolve()

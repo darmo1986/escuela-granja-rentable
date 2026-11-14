@@ -57,6 +57,20 @@ button[data-stripe-ebook][disabled] { opacity: .55; cursor: not-allowed; }
   background: #fff; border: 1px solid #e5e0d5; border-radius: 14px;
   display: flex; flex-direction: column; gap: .7rem;
 }
+.t-rutas { display: grid; gap: .75rem; margin: 1.2rem 0 1.8rem; }
+.t-rutas a { display: grid; gap: .4rem; padding: 1rem; border: 1px solid #ccd9ca; border-radius: 14px; color: var(--gd); background: #f3f6f1; text-decoration: none; }
+.t-rutas a:hover { border-color: var(--g); background: #e7f0e4; }
+.t-rutas strong { font-size: 1.12rem; }
+.t-rutas span { color: #425047; line-height: 1.5; }
+.t-rutas a:focus-visible, .t-card a:focus-visible, .t-filtros button:focus-visible, .t-filtros select:focus-visible { outline: 3px solid var(--g); outline-offset: 3px; }
+.t-filtros > *, .t-grid > *, .t-rutas > * { min-width: 0; }
+.t-categoria select { width: 100%; max-width: 100%; min-height: 48px; padding: .7rem .6rem; border: 1.5px solid #cfc8b8; border-radius: 10px; background: #fff; color: #26372b; font: inherit; }
+.t-controles { display: flex; flex-wrap: wrap; gap: .6rem; }
+.t-controles .btn { min-height: 48px; margin: 0; cursor: pointer; }
+.t-ayuda { margin: 1.4rem 0; padding: 1.1rem; background: #f3f6f1; border-left: 4px solid var(--g); border-radius: 0 12px 12px 0; line-height: 1.6; }
+.t-ayuda h2 { margin: 0 0 .6rem; font-size: 1.2rem; }
+.t-ayuda li + li, .t-larga li + li { margin-top: .55rem; }
+#amazon, #t-buscar { scroll-margin-top: 10rem; }
 .t-buscar-etq { display: block; font-weight: 800; margin-bottom: .35rem; }
 .t-buscar input {
   width: 100%; min-height: 48px; padding: .7rem .85rem;
@@ -89,6 +103,13 @@ button[data-stripe-ebook][disabled] { opacity: .55; cursor: not-allowed; }
   display: flex; flex-direction: column; gap: .45rem;
   padding: .9rem; border: 1px solid #e5e0d5; border-radius: 14px; background: #fff;
 }
+.t-card { box-shadow: 0 3px 14px rgb(31 64 36 / 5%); overflow-wrap: anywhere; }
+.t-card > p:last-child { margin: .2rem 0 0; font-size: .9rem; }
+.t-card .t-marca { min-height: 0; align-self: flex-start; font-size: .85rem; padding: .35rem .65rem; border-radius: 999px; }
+.t-card .t-acciones { padding-top: .5rem; }
+.t-detalle { display: flex; justify-content: center; width: 100%; text-align: center; }
+.t-ficha { max-width: 900px; margin-inline: auto; }
+.t-ficha .t-compra { max-width: 640px; }
 .t-card h3, .t-card h2 { margin: 0; font-size: 1.08rem; line-height: 1.3; }
 .t-card h3 a, .t-card h2 a { color: var(--gd); text-decoration: none; }
 .t-card h3 a:hover, .t-card h2 a:hover { text-decoration: underline; }
@@ -123,6 +144,9 @@ a.t-amazon, a.t-resenas { display: flex; justify-content: center; width: 100%; t
 }
 .ebook-venta, .t-seccion, .t-cat { scroll-margin-top: 5.5rem; }
 @media (min-width: 720px) {
+  .t-rutas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .t-filtros { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: start; }
+  .t-filtros .t-chips, .t-filtros .t-controles, .t-filtros .t-cuenta { grid-column: 1 / -1; }
   .ebook-venta { grid-template-columns: minmax(180px, 220px) 1fr; gap: 1rem 1.4rem; align-items: start; padding: 1.2rem 1.3rem; }
   .t-grid { grid-template-columns: 1fr 1fr; }
   .t-chips { flex-wrap: wrap; overflow: visible; }
