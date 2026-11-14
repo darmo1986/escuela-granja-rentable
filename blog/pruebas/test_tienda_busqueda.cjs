@@ -32,6 +32,11 @@ const fueraDeNidales=e.visibles().filter(d=>d.cat!=='nidales-y-cama');
 assert.equal(fueraDeNidales.length,1);
 assert.match(fueraDeNidales[0].q,/nidal/);
 for(const q of ['PONEDEROS','nidos','nidal']) {e.buscar(q);assert.deepEqual(e.visibles().map(d=>d.q),nidales);}
+for (const [singular, plural] of [['termómetro','termómetros'], ['higrómetro','higrómetros'], ['criadora','criadoras'], ['bombilla','bombillas'], ['ovoscopio','ovoscopios'], ['incubadora','incubadoras'], ['percha','perchas']]) {
+  e.buscar(singular); const esperados=e.visibles().map(d=>d.q);
+  assert.ok(esperados.length>0, singular+' debe encontrar productos');
+  e.buscar(plural); assert.deepEqual(e.visibles().map(d=>d.q),esperados,plural+' debe coincidir con '+singular);
+}
 e.buscar('comedero para pollitos');
 assert.ok(e.visibles().length>0);
 assert.ok(e.visibles().length<169);
