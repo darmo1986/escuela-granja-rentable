@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuaderno de granja | Granja Rentable</title>
+<meta name="description" content="Lleva tus lotes de pollos, pesadas, tareas y cuentas desde el navegador, con copias descargables.">
+<meta name="robots" content="noindex,follow"><meta name="theme-color" content="#174b32">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+<script type="module" src="app.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al cuaderno</a>
+<header><a class="brand" href="../app.html">GRANJA RENTABLE<span>Cuaderno de granja · web</span></a><button id="theme" aria-label="Cambiar tema">Claro / oscuro</button></header>
+<div class="layout"><aside><nav aria-label="Cuaderno" id="nav"></nav><p class="local-label">Tu cuaderno, en este navegador.<br>Sin cuenta obligatoria.</p><a href="../app.html">Volver a Registro de pollos</a></aside>
+<main id="main" tabindex="-1"><div id="storage-status" role="status">Abriendo el cuaderno…</div><p id="offline-status" class="muted"></p><div id="content"></div></main></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="editor" aria-labelledby="dialog-title"><form id="edit-form"><div class="dialog-head"><h2 id="dialog-title"></h2><button type="button" data-close aria-label="Cerrar">×</button></div><div id="fields"></div><p id="form-error" role="alert"></p><div class="actions"><button type="button" data-close>Cancelar</button><button type="submit" class="primary">Guardar</button></div></form></dialog>
+<dialog id="restore" aria-labelledby="restore-title"><h2 id="restore-title">Revisar restauración</h2><div id="restore-preview"></div><p>Reemplazará el cuaderno de este navegador. Antes se conservará una copia del estado actual en este dispositivo.</p><div class="actions"><button id="restore-cancel">Cancelar</button><button id="restore-confirm" class="primary">Reemplazar y restaurar</button></div></dialog>
+<noscript>Activa JavaScript para abrir el cuaderno. Puedes seguir consultando la <a href="../app.html">página de Registro de pollos</a>.</noscript>
+</body></html>
