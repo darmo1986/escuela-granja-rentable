@@ -1,0 +1,3576 @@
+{
+  "fecha": "2026-11-14",
+  "objetivo": "Cien referencias adicionales para uso primario o secundario en granjas avícolas.",
+  "productos_seleccionados": 100,
+  "categorias": {
+    "Rastrillos": 8,
+    "Horcas y recambios": 8,
+    "Limpieza de instalaciones": 6,
+    "Guantes": 4,
+    "Gafas de trabajo": 5,
+    "Botas de trabajo": 3,
+    "Protección auditiva": 1,
+    "Iluminación auxiliar": 5,
+    "Mangueras y accesorios": 7,
+    "Pulverizadores vacíos": 4,
+    "Poda y mantenimiento exterior": 5,
+    "Herramientas de corte y reparación": 8,
+    "Malla y reparación de cercados": 6,
+    "Cierres y pestillos": 6,
+    "Fijaciones auxiliares": 6,
+    "Transporte de materiales": 7,
+    "Juegos de herramientas": 4,
+    "Suelo y herramientas manuales": 7
+  },
+  "base_publica_productos": 169,
+  "nuevos_publicados": 0,
+  "limite": "Valoraciones, reseñas y precios proceden de informes secundarios de marzo a agosto de 2026, no de una verificación comercial actual en Amazon. No confirman stock, entrega ni variante vendida hoy. Las referencias fotográficas sirven para preparar futuras imágenes IA; no son imágenes propias ni se añaden a la tienda.",
+  "productos": [
+    {
+      "numero": 1,
+      "asin": "B087RNQDFC",
+      "titulo_propuesto": "Rastrillo de mano Fiskars Xact",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 1458,
+      "precio_usd_fuente": 8.79,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/41rYjlDFNKL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B087RNQDFC?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 2,
+      "asin": "B0BGPQM7P8",
+      "titulo_propuesto": "Rastrillo Walensee de 17 púas y mango de 63 pulgadas",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 1926,
+      "precio_usd_fuente": 23.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/51iHMVJ3n6L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0BGPQM7P8?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 2040,
+          "url": "https://www.desertcart.co.za/products/494761860-walensee-heavy-duty-dual-sided-bow-rake-63-stainless-steel"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.3
+      ]
+    },
+    {
+      "numero": 3,
+      "asin": "B0D8B6BCMW",
+      "titulo_propuesto": "Rastrillo metálico de 17 púas y 63 pulgadas",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 698,
+      "precio_usd_fuente": 23.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/91ncrgk1t-L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0D8B6BCMW?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 4,
+      "asin": "B0CGCM233N",
+      "titulo_propuesto": "Rastrillo VEVOR de aluminio con cabezal de 36 pulgadas",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 512,
+      "precio_usd_fuente": 39.9,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/41CTimxj8wL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0CGCM233N?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 5,
+      "asin": "B0FD9V33ND",
+      "titulo_propuesto": "Rastrillo escarificador con mango de 74 pulgadas",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 241,
+      "precio_usd_fuente": 29.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71fF9DS8t9L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0FD9V33ND?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 6,
+      "asin": "B0FD9VDNBS",
+      "titulo_propuesto": "Rastrillo de doble cara de 17 púas y 68 pulgadas",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 349,
+      "precio_usd_fuente": 24.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61zkHVCTBLL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0FD9VDNBS?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 7,
+      "asin": "B0BZMXK6YL",
+      "titulo_propuesto": "Rastrillo nivelador de 30 por 10 pulgadas",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 973,
+      "precio_usd_fuente": 46.97,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/91yQoresN7L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0BZMXK6YL?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 871,
+          "url": "https://www.desertcart.in/products/535644324-lawn-leveling-rake-30x10-inch-professional-grade-lawn-leveler-tool"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 8,
+      "asin": "B0C8945NKT",
+      "titulo_propuesto": "Rastrillo metálico con cabezal extensible de 8 a 17 pulgadas",
+      "categoria_propuesta": "Rastrillos",
+      "utilidad_en_granja": "Preparar y mantener suelos y zonas exteriores de la granja.",
+      "comprobar_antes_de_elegir": "Elegir el cabezal para el material: hojas, tierra o nivelación; no todos sirven para retirar cama pesada.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 1888,
+      "precio_usd_fuente": 21.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bow-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61f1D-k+4RL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C8945NKT?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 2019,
+          "url": "https://www.desertcart.in/products/577082677-oliynedy-adjustable-metal-leaf-rake-30-70-inch-garden-rakes"
+        },
+        {
+          "valoracion": 4.4,
+          "resenas": 1567,
+          "url": "https://www.desertcart.in/products/577082677-oliynedy-adjustable-metal-leaf-rake-30-70-inch-garden-rakes-for-lawns-heavy-duty-leaves-with-expandable-head-8-17-yard-women-kids-rake-for-gardening-rv-camping"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.4
+      ]
+    },
+    {
+      "numero": 9,
+      "asin": "B0B45HCHY3",
+      "titulo_propuesto": "Horca de cavar de cuatro púas y 45 pulgadas",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 518,
+      "precio_usd_fuente": 29.99,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/41VWf2CfgiL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0B45HCHY3?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 10,
+      "asin": "B0FL17DW2L",
+      "titulo_propuesto": "Horca COSITA de diez púas para cama y estiércol",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 90,
+      "precio_usd_fuente": 34.99,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61LmgTkEkPL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0FL17DW2L?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 11,
+      "asin": "B0FB5HXLBK",
+      "titulo_propuesto": "Horca VEVOR de 18 púas con mango de fibra",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 64,
+      "precio_usd_fuente": 36.99,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61gdWlupD-L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0FB5HXLBK?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 67,
+          "url": "https://www.desertcart.in/products/735602835-vevor-manure-fork-18-angled-tines-61-fiberglass-plastic-muck"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 12,
+      "asin": "B0FBB9L583",
+      "titulo_propuesto": "Seis cabezales VEVOR de recambio para horca de 18 púas",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 90,
+      "precio_usd_fuente": 52.9,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81FKg+FXEmL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0FBB9L583?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 89,
+          "url": "https://www.desertcart.com.kw/products/770664688-vevor-6pcs-manure-fork-replacement-head-18-angled-tines-horse-manure-fork-head-durable-plastic-pitchfork-heads-horse-mulch-rake-for-picking-up-stable-stall-muck-grass-hay-cleaning-farm-work"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.4
+      ]
+    },
+    {
+      "numero": 13,
+      "asin": "B000HHS9S6",
+      "titulo_propuesto": "Cabezal de recambio Little Giant DuraFork",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 653,
+      "precio_usd_fuente": 19.99,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81BUe5yST7L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B000HHS9S6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 14,
+      "asin": "B003DTZLAE",
+      "titulo_propuesto": "Cabezal de recambio Little Giant DuraPitch II con cesta",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 651,
+      "precio_usd_fuente": 29.99,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81pNzuieFzL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B003DTZLAE?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 15,
+      "asin": "B0CQQBZN3L",
+      "titulo_propuesto": "Horca KOLEIYA de cinco púas y 57 pulgadas",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 260,
+      "precio_usd_fuente": 35.99,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/51-TCp4L9gL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0CQQBZN3L?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 16,
+      "asin": "B0CVVHKZRX",
+      "titulo_propuesto": "Horca de cinco púas con mango de fibra de 58 pulgadas",
+      "categoria_propuesta": "Horcas y recambios",
+      "utilidad_en_granja": "Mover cama, paja y material de compostaje.",
+      "comprobar_antes_de_elegir": "Confirmar si se vende la herramienta completa o solo el cabezal y su unión con el mango.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 275,
+      "precio_usd_fuente": 35.99,
+      "periodo_datos_fuente": "2026-08",
+      "fuente": "https://www.asinsight.com/report/US/manure-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/41X0kStW5jL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0CVVHKZRX?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 17,
+      "asin": "B00006ICOE",
+      "titulo_propuesto": "Recogedor industrial Rubbermaid de plástico",
+      "categoria_propuesta": "Limpieza de instalaciones",
+      "utilidad_en_granja": "Retirar residuos y agua de superficies de trabajo.",
+      "comprobar_antes_de_elegir": "Comprobar el ancho, el tipo de suelo y que las superficies permitan limpiar y secar la herramienta.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 4290,
+      "precio_usd_fuente": 1.95,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/dust-pan",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61EQyhk14iL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B00006ICOE?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 4594,
+          "url": "https://jamaica.desertcart.com/products/57819378-rubbermaid-commercial-products-heavy-duty-dustpan"
+        },
+        {
+          "valoracion": 4.7,
+          "resenas": 4677,
+          "url": "https://antigua.desertcart.com/products/10012594-rubbermaid-commercial-products-heavy-duty-dust-pan-charcoal-12-25"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.7
+      ]
+    },
+    {
+      "numero": 18,
+      "asin": "B08Z9ZLLVX",
+      "titulo_propuesto": "Escoba O-Cedar Pet Pro con recogedor de apoyo",
+      "categoria_propuesta": "Limpieza de instalaciones",
+      "utilidad_en_granja": "Retirar residuos y agua de superficies de trabajo.",
+      "comprobar_antes_de_elegir": "Comprobar el ancho, el tipo de suelo y que las superficies permitan limpiar y secar la herramienta.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 16793,
+      "precio_usd_fuente": 13.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/dust-pan",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71vOqarmGOL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08Z9ZLLVX?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 16697,
+          "url": "https://www.desertcart.us/products/371112669-pet-pro-broom-and-step-on-dustpan-powercorner-red"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 19,
+      "asin": "B0C5JVX1WW",
+      "titulo_propuesto": "Escoba O-Cedar One Sweep con recogedor",
+      "categoria_propuesta": "Limpieza de instalaciones",
+      "utilidad_en_granja": "Retirar residuos y agua de superficies de trabajo.",
+      "comprobar_antes_de_elegir": "Comprobar el ancho, el tipo de suelo y que las superficies permitan limpiar y secar la herramienta.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 6232,
+      "precio_usd_fuente": 12.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/dust-pan",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61MHjW5B1QL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C5JVX1WW?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 6689,
+          "url": "https://www.desertcart.co.uk/products/539625088-one-sweep-broom-with-step-on-dustpan-remove-99-one"
+        },
+        {
+          "valoracion": 4.5,
+          "resenas": 6468,
+          "url": "https://jamaica.desertcart.com/products/540613777"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.5
+      ]
+    },
+    {
+      "numero": 20,
+      "asin": "B0C6XTNXL8",
+      "titulo_propuesto": "Cepillo de suelo con mango largo y raspador",
+      "categoria_propuesta": "Limpieza de instalaciones",
+      "utilidad_en_granja": "Retirar residuos y agua de superficies de trabajo.",
+      "comprobar_antes_de_elegir": "Comprobar el ancho, el tipo de suelo y que las superficies permitan limpiar y secar la herramienta.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 3521,
+      "precio_usd_fuente": 24.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/broom",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61wKOMptjML._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C6XTNXL8?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 4372,
+          "url": "https://belize.desertcart.com/products/545221887-air-u-floor-scrub-brush-with-long-handle-3-in"
+        },
+        {
+          "valoracion": 4.4,
+          "resenas": 2530,
+          "url": "https://device.report/air-u/3-in-1"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.4
+      ]
+    },
+    {
+      "numero": 21,
+      "asin": "B0C8NFNZN8",
+      "titulo_propuesto": "Rasqueta de goma para retirar agua del suelo",
+      "categoria_propuesta": "Limpieza de instalaciones",
+      "utilidad_en_granja": "Retirar residuos y agua de superficies de trabajo.",
+      "comprobar_antes_de_elegir": "Comprobar el ancho, el tipo de suelo y que las superficies permitan limpiar y secar la herramienta.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 1066,
+      "precio_usd_fuente": 19.99,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/floor-squeegee",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/51hd+xxvTmL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C8NFNZN8?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 1344,
+          "url": "https://www.desertcart.com.my/products/626107104-cleanhome-rubber-floor-squeegee-for-concrete-tile-metal-aluminium-heavy"
+        },
+        {
+          "valoracion": 4.5,
+          "resenas": 1294,
+          "url": "https://angola.desertcart.com/products/571609470-cleanhome-rubber-floor-squeegee-with-extendable-long-handle"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.5
+      ]
+    },
+    {
+      "numero": 22,
+      "asin": "B08TMMYK6P",
+      "titulo_propuesto": "Cepillo Yocada de suelo con mango telescópico",
+      "categoria_propuesta": "Limpieza de instalaciones",
+      "utilidad_en_granja": "Retirar residuos y agua de superficies de trabajo.",
+      "comprobar_antes_de_elegir": "Comprobar el ancho, el tipo de suelo y que las superficies permitan limpiar y secar la herramienta.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 6441,
+      "precio_usd_fuente": 17.99,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/floor-squeegee",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61fdWKbx0vL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08TMMYK6P?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 6682,
+          "url": "https://www.desertcart.tw/products/278315563-yocada-floor-scrub-brush-telescopic-handle-2-in-1-scrape"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.4
+      ]
+    },
+    {
+      "numero": 23,
+      "asin": "B0BPNNPF83",
+      "titulo_propuesto": "Guantes WZQH de cuero para trabajo",
+      "categoria_propuesta": "Guantes",
+      "utilidad_en_granja": "Comparar guantes para manipulación y tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Elegir talla y material según la tarea; comprobar compatibilidad específica con los productos usados.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 11014,
+      "precio_usd_fuente": 9.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/work-gloves",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81XWaebPCNL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0BPNNPF83?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 25911,
+          "url": "https://www.desertcart.in/products/515081800-leather-work-gloves-for-men-or-women-gardening-welding-coffee"
+        },
+        {
+          "valoracion": 4.7,
+          "resenas": 12035,
+          "url": "https://www.desertcart.pt/products/515362944-leather-work-gloves-for-men-or-women-gardening-welding-coffee"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.7
+      ]
+    },
+    {
+      "numero": 24,
+      "asin": "B0797N2YW1",
+      "titulo_propuesto": "Guantes HANDLANDY de trabajo con función táctil",
+      "categoria_propuesta": "Guantes",
+      "utilidad_en_granja": "Comparar guantes para manipulación y tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Elegir talla y material según la tarea; comprobar compatibilidad específica con los productos usados.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 8553,
+      "precio_usd_fuente": 9.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/work-gloves",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/7165dcMshhL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0797N2YW1?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 15746,
+          "url": "https://www.desertcart.jp/products/73744008-handlandy-work-gloves-for-men-women-utility-mechanic-working-gloves-touch-screen-flexible-yard-work-gloves"
+        },
+        {
+          "valoracion": 4.5,
+          "resenas": 8780,
+          "url": "https://jamaica.desertcart.com/products/73744008-handlandy-work-gloves-for-men-and-women-utility-mechanic-working"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.5
+      ]
+    },
+    {
+      "numero": 25,
+      "asin": "B07MLWK6MS",
+      "titulo_propuesto": "Seis pares de guantes COOLJOB de jardinería",
+      "categoria_propuesta": "Guantes",
+      "utilidad_en_granja": "Comparar guantes para manipulación y tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Elegir talla y material según la tarea; comprobar compatibilidad específica con los productos usados.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 24690,
+      "precio_usd_fuente": 13.47,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/work-gloves",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81hjDCxtn-L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07MLWK6MS?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": null,
+          "url": "https://best2buy.reviews/ozero-cowhide-leather-work-gloves-flexible-grip-durable-protection-for-gardening-projects-idfzag"
+        },
+        {
+          "valoracion": 4.7,
+          "resenas": 12929,
+          "url": "https://papua.desertcart.com/products/472988882-cooljob-gardening-gloves-for-women-6-pairs-breathable-rubber-coated"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.7
+      ]
+    },
+    {
+      "numero": 26,
+      "asin": "B0C3SSXL4K",
+      "titulo_propuesto": "Guantes desechables Inspire de nitrilo negro de 6 mil",
+      "categoria_propuesta": "Guantes",
+      "utilidad_en_granja": "Comparar guantes para manipulación y tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Elegir talla y material según la tarea; comprobar compatibilidad específica con los productos usados.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 15620,
+      "precio_usd_fuente": 16.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/work-gloves",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71u2II-WKSL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C3SSXL4K?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 9711,
+          "url": "https://www.desertcart.in/products/681781014-inspire-black-nitrile-gloves-heavy-duty-6-mil-nitrile-original"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 27,
+      "asin": "B01A12J3GI",
+      "titulo_propuesto": "Gafas cerradas DEWALT DPG82 Concealer",
+      "categoria_propuesta": "Gafas de trabajo",
+      "utilidad_en_granja": "Comparar protección ocular para tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Comprobar marcado y manual de la variante y el ajuste con gafas graduadas u otros equipos.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 56711,
+      "precio_usd_fuente": 12.59,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/safety-glasses",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71dkYvW25kL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01A12J3GI?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 57138,
+          "url": "https://www.desertcart.in/products/24277113-dewalt-dpg82-concealer-anti-fog-dual-mold-safety-goggle-1"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ],
+      "contraste_fabricante": {
+        "url": "https://www.dewalt.com/en-us/product/dpg82/concealer",
+        "modelo": "DPG82",
+        "alcance": "Ficha del fabricante localizada; verificar el marcado y el ajuste de la variante vendida.",
+        "consultado": "2026-11-14",
+        "limite": "Identifica modelo o familia; no confirma el destino, variante o stock actual en Amazon."
+      }
+    },
+    {
+      "numero": 28,
+      "asin": "B07GB8Y11G",
+      "titulo_propuesto": "Gafas transparentes NoCry con patillas ajustables",
+      "categoria_propuesta": "Gafas de trabajo",
+      "utilidad_en_granja": "Comparar protección ocular para tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Comprobar marcado y manual de la variante y el ajuste con gafas graduadas u otros equipos.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 50523,
+      "precio_usd_fuente": 13.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/safety-glasses",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71aPH9chVnL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07GB8Y11G?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 13547,
+          "url": "https://www.desertcart.com.cy/products/262621390-nocry-unisex-eyearmor-safety-glasses-pack-of-1"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 29,
+      "asin": "B0BGSFQJF6",
+      "titulo_propuesto": "Gafas transparentes TICONN de trabajo",
+      "categoria_propuesta": "Gafas de trabajo",
+      "utilidad_en_granja": "Comparar protección ocular para tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Comprobar marcado y manual de la variante y el ajuste con gafas graduadas u otros equipos.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 2212,
+      "precio_usd_fuente": 14.95,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/safety-glasses",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61lX6YX++4L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0BGSFQJF6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 1310,
+          "url": "https://www.desertcart.in/products/550368312-ticonn-12-pack-clear-safety-glasses-for-men-safety-goggles"
+        },
+        {
+          "valoracion": 4.8,
+          "resenas": 1345,
+          "url": "https://aruba.desertcart.com/products/524754209-ticonn-clear-safety-glasses-for-men-and-women-ansi-z87"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.8
+      ]
+    },
+    {
+      "numero": 30,
+      "asin": "B00467C7AE",
+      "titulo_propuesto": "Gafas 3M 91252H1-DC-10 contra salpicaduras",
+      "categoria_propuesta": "Gafas de trabajo",
+      "utilidad_en_granja": "Comparar protección ocular para tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Comprobar marcado y manual de la variante y el ajuste con gafas graduadas u otros equipos.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 2528,
+      "precio_usd_fuente": 4.49,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/safety-goggles",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61r70ZF9TZL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B00467C7AE?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 2576,
+          "url": "https://bahamas.desertcart.com/products/278845440-3m-chemical-splash-impact-goggle"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 31,
+      "asin": "B071RSM598",
+      "titulo_propuesto": "Sobregafas NoCry para llevar sobre gafas graduadas",
+      "categoria_propuesta": "Gafas de trabajo",
+      "utilidad_en_granja": "Comparar protección ocular para tareas de mantenimiento.",
+      "comprobar_antes_de_elegir": "Comprobar marcado y manual de la variante y el ajuste con gafas graduadas u otros equipos.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 33597,
+      "precio_usd_fuente": 16.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/safety-goggles",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71HP3EXqzaL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B071RSM598?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 20636,
+          "url": "https://www.desertcart.in/products/51675341-nocry-over-glasses-safety-glasses-with-clear-anti-scratch-wraparound"
+        },
+        {
+          "valoracion": 4.6,
+          "resenas": 20666,
+          "url": "https://www.desertcart.co.uk/products/51675341-nocry-over-glasses-safety-glasses-with-clear-anti-scratch-wraparound"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.6
+      ]
+    },
+    {
+      "numero": 32,
+      "asin": "B001280CHU",
+      "titulo_propuesto": "Botas Dunlop Chesapeake de PVC",
+      "categoria_propuesta": "Botas de trabajo",
+      "utilidad_en_granja": "Disponer de calzado específico para la zona de trabajo.",
+      "comprobar_antes_de_elegir": "Confirmar talla, tipo de puntera y compatibilidad del material con la limpieza prevista.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 15679,
+      "precio_usd_fuente": 22.2,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/waterproof-boots",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71x5Fb2H9WL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B001280CHU?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 4077,
+          "url": "https://www.desertcart.ma/products/159575546-chesapeake-rubber-boots-for-men-and-women-plain-toe-black"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 33,
+      "asin": "B09JV7MYLH",
+      "titulo_propuesto": "Botas industriales Tingley de puntera normal",
+      "categoria_propuesta": "Botas de trabajo",
+      "utilidad_en_granja": "Disponer de calzado específico para la zona de trabajo.",
+      "comprobar_antes_de_elegir": "Confirmar talla, tipo de puntera y compatibilidad del material con la limpieza prevista.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 1562,
+      "precio_usd_fuente": 16.59,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/waterproof-boots",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61UeR5QS7rL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B09JV7MYLH?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 34,
+      "asin": "B0CGXF2B8N",
+      "titulo_propuesto": "Botines impermeables de cubierta para trabajo exterior",
+      "categoria_propuesta": "Botas de trabajo",
+      "utilidad_en_granja": "Disponer de calzado específico para la zona de trabajo.",
+      "comprobar_antes_de_elegir": "Confirmar talla, tipo de puntera y compatibilidad del material con la limpieza prevista.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 2006,
+      "precio_usd_fuente": 34.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/waterproof-boots",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71rZic8v5WL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0CGXF2B8N?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 2377,
+          "url": "https://armenia.desertcart.com/products/591352736-mens-deck-boots-waterproof-non-slip-ankle-rain-boots-fishing"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.3
+      ]
+    },
+    {
+      "numero": 35,
+      "asin": "B07MNZ7C1M",
+      "titulo_propuesto": "Orejeras ProCase para reducción de ruido",
+      "categoria_propuesta": "Protección auditiva",
+      "utilidad_en_granja": "Comparar equipos para trabajos con maquinaria ruidosa.",
+      "comprobar_antes_de_elegir": "Confirmar el marcado, la atenuación declarada y el ajuste para la tarea y el equipo utilizado.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 22365,
+      "precio_usd_fuente": 11.99,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/ear-protection",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/613vw7DXilL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07MNZ7C1M?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 27340,
+          "url": "https://www.desertcart.in/products/253314398-noise-reduction-ear-muffs"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.4
+      ]
+    },
+    {
+      "numero": 36,
+      "asin": "B08D66HCXW",
+      "titulo_propuesto": "Dos linternas frontales recargables LHKNL",
+      "categoria_propuesta": "Iluminación auxiliar",
+      "utilidad_en_granja": "Iluminar inspecciones y reparaciones puntuales.",
+      "comprobar_antes_de_elegir": "Confirmar alimentación, batería y cargador incluidos y condiciones de uso en exterior.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 35904,
+      "precio_usd_fuente": 19.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/head-lamp",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71DxWxvCwlL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08D66HCXW?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": null,
+          "url": "https://device.report/lhknl/tg-t069"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 37,
+      "asin": "B0052MILZM",
+      "titulo_propuesto": "Linterna de trabajo DEWALT DCL040 de 20 V",
+      "categoria_propuesta": "Iluminación auxiliar",
+      "utilidad_en_granja": "Iluminar inspecciones y reparaciones puntuales.",
+      "comprobar_antes_de_elegir": "Confirmar alimentación, batería y cargador incluidos y condiciones de uso en exterior.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 10959,
+      "precio_usd_fuente": 31.79,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/head-lamp",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/51RLPCcaqML._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0052MILZM?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": null,
+          "url": "https://device.report/dewalt/dcl040"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ],
+      "contraste_fabricante": {
+        "url": "https://www.dewalt.com/en-us/product/dcl040/20v-max-led-work-light",
+        "modelo": "DCL040",
+        "alcance": "Ficha del fabricante: linterna de batería; se indica herramienta sola. Confirmar el contenido del paquete de Amazon.",
+        "consultado": "2026-11-14",
+        "limite": "Identifica modelo o familia; no confirma el destino, variante o stock actual en Amazon."
+      }
+    },
+    {
+      "numero": 38,
+      "asin": "B01DNDMSLY",
+      "titulo_propuesto": "Linterna frontal recargable Lepro con cinco modos",
+      "categoria_propuesta": "Iluminación auxiliar",
+      "utilidad_en_granja": "Iluminar inspecciones y reparaciones puntuales.",
+      "comprobar_antes_de_elegir": "Confirmar alimentación, batería y cargador incluidos y condiciones de uso en exterior.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 19614,
+      "precio_usd_fuente": 9.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/head-lamp",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71ukFWJn3RL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01DNDMSLY?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 19529,
+          "url": "https://www.desertcart.sg/products/851328167-le-head-torch-rechargeable-super-bright-led-headlamp-waterproof-red"
+        },
+        {
+          "valoracion": 4.7,
+          "resenas": null,
+          "url": "https://spottingpro.com/best-headlamps/"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.7
+      ]
+    },
+    {
+      "numero": 39,
+      "asin": "B083JWX9PK",
+      "titulo_propuesto": "Linterna frontal Energizer PRO-260",
+      "categoria_propuesta": "Iluminación auxiliar",
+      "utilidad_en_granja": "Iluminar inspecciones y reparaciones puntuales.",
+      "comprobar_antes_de_elegir": "Confirmar alimentación, batería y cargador incluidos y condiciones de uso en exterior.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 8823,
+      "precio_usd_fuente": 13.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/head-lamp",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71dYTF5-dGL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B083JWX9PK?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 8919,
+          "url": "https://www.desertcart.in/products/181004137-energizer-pro-260-led-headlamp-ipx4-water-resistant-headlamps-high"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 40,
+      "asin": "B0BLVT2Y9N",
+      "titulo_propuesto": "Linterna frontal recargable Blukar de ocho modos",
+      "categoria_propuesta": "Iluminación auxiliar",
+      "utilidad_en_granja": "Iluminar inspecciones y reparaciones puntuales.",
+      "comprobar_antes_de_elegir": "Confirmar alimentación, batería y cargador incluidos y condiciones de uso en exterior.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 20589,
+      "precio_usd_fuente": 15.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/head-lamp",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71cXxSbw7LL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0BLVT2Y9N?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 20190,
+          "url": "https://www.desertcart.com.cy/products/707129982-blukarled-headlamp-rechargeable-2000l-high-lumen-super-bright-dimmable-headlight-flashlight-with-motion-sensor-8-modes-spotlight-floodlight-ipx5-waterproof-for-camping-hiking-running-fishing-2-pack"
+        },
+        {
+          "valoracion": 4.6,
+          "resenas": null,
+          "url": "https://www.hiking-boots.net/showroom/blukar-1/produits-services/led-headlamp-rechargeable2000l-high-lumen-super-bright-dimmable-headlight-flashlight-with-motion-sensor-8-modesspotlightfloodlightipx5-waterproof-for-campinghikingrunningfishing-2-pack-black-2-pack"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.6
+      ]
+    },
+    {
+      "numero": 41,
+      "asin": "B003TFE7ZM",
+      "titulo_propuesto": "Manguera Flexzilla de 5/8 pulgadas y 50 pies",
+      "categoria_propuesta": "Mangueras y accesorios",
+      "utilidad_en_granja": "Organizar el suministro y el uso de agua en instalaciones.",
+      "comprobar_antes_de_elegir": "Comprobar roscas, longitud y uso admitido; no atribuir aptitud para agua de bebida sin confirmación del fabricante.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 101357,
+      "precio_usd_fuente": 39.97,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-hose",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71oERUaDzWL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B003TFE7ZM?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 102993,
+          "url": "https://www.desertcart.in/products/749281949-flexzilla-garden-hose-5-8-in-x-50-ft-lightweight"
+        },
+        {
+          "valoracion": 4.4,
+          "resenas": 91129,
+          "url": "https://d2-products.com/product/flexzilla-garden-hose-5-8-in-x-50-ft/"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.4
+      ]
+    },
+    {
+      "numero": 42,
+      "asin": "B004ME11FS",
+      "titulo_propuesto": "Manguera Camco TastePURE de 25 pies",
+      "categoria_propuesta": "Mangueras y accesorios",
+      "utilidad_en_granja": "Organizar el suministro y el uso de agua en instalaciones.",
+      "comprobar_antes_de_elegir": "Comprobar roscas, longitud y uso admitido; no atribuir aptitud para agua de bebida sin confirmación del fabricante.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 17554,
+      "precio_usd_fuente": 13.97,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-hose",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81gVG2iuj8L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B004ME11FS?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 17365,
+          "url": "https://www.desertcart.in/products/306719642-camco-tastepure-drinking-water-hose-for-rv-25-feet-white"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 43,
+      "asin": "B09Z6VPFWD",
+      "titulo_propuesto": "Manguera Camco EvoFlex2 de 50 pies",
+      "categoria_propuesta": "Mangueras y accesorios",
+      "utilidad_en_granja": "Organizar el suministro y el uso de agua en instalaciones.",
+      "comprobar_antes_de_elegir": "Comprobar roscas, longitud y uso admitido; no atribuir aptitud para agua de bebida sin confirmación del fabricante.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 1618,
+      "precio_usd_fuente": 23.97,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-hose",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/91O2uN9vbpL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B09Z6VPFWD?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 44,
+      "asin": "B08QVK1GXV",
+      "titulo_propuesto": "Pistola de riego RESTMO metálica de siete patrones",
+      "categoria_propuesta": "Mangueras y accesorios",
+      "utilidad_en_granja": "Organizar el suministro y el uso de agua en instalaciones.",
+      "comprobar_antes_de_elegir": "Comprobar roscas, longitud y uso admitido; no atribuir aptitud para agua de bebida sin confirmación del fabricante.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 13290,
+      "precio_usd_fuente": 16.49,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-hose-nozzle",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61laUzUydeL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08QVK1GXV?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 12635,
+          "url": "https://device.report/restmo/o-hn-2"
+        },
+        {
+          "valoracion": 4.5,
+          "resenas": null,
+          "url": "https://device.report/restmo/b08qvk1gxv"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.5
+      ]
+    },
+    {
+      "numero": 45,
+      "asin": "B09W1Y21Y2",
+      "titulo_propuesto": "Soporte mural metálico PeoMev para manguera",
+      "categoria_propuesta": "Mangueras y accesorios",
+      "utilidad_en_granja": "Organizar el suministro y el uso de agua en instalaciones.",
+      "comprobar_antes_de_elegir": "Comprobar roscas, longitud y uso admitido; no atribuir aptitud para agua de bebida sin confirmación del fabricante.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 10164,
+      "precio_usd_fuente": 9.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/hose-reel",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71Q+dHbif3L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B09W1Y21Y2?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 8987,
+          "url": "https://www.desertcart.in/products/503650904-peomev-metal-garden-hose-holder-heavy-duty-hose-hanger-wall"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 46,
+      "asin": "B0C1G82F7Z",
+      "titulo_propuesto": "Soporte de suelo VyGrow para manguera con cuatro piquetas",
+      "categoria_propuesta": "Mangueras y accesorios",
+      "utilidad_en_granja": "Organizar el suministro y el uso de agua en instalaciones.",
+      "comprobar_antes_de_elegir": "Comprobar roscas, longitud y uso admitido; no atribuir aptitud para agua de bebida sin confirmación del fabricante.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 1203,
+      "precio_usd_fuente": 29.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/hose-reel",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61JFaDcBY5L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C1G82F7Z?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 1123,
+          "url": "https://www.desertcart.in/products/665508265-vygrow-garden-hose-holder-freestanding-heavy-duty-water-hose-holder"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 47,
+      "asin": "B09FXL84H6",
+      "titulo_propuesto": "Lanza de riego RESTMO de quince pulgadas",
+      "categoria_propuesta": "Mangueras y accesorios",
+      "utilidad_en_granja": "Organizar el suministro y el uso de agua en instalaciones.",
+      "comprobar_antes_de_elegir": "Comprobar roscas, longitud y uso admitido; no atribuir aptitud para agua de bebida sin confirmación del fabricante.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 4916,
+      "precio_usd_fuente": 28.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-hose",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61c4UzyfLtL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B09FXL84H6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 3558,
+          "url": "https://www.desertcart.in/products/417201147-restmo-watering-wand-heavy-duty-15-inch-long-hose-nozzle"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.3
+      ]
+    },
+    {
+      "numero": 48,
+      "asin": "B000E28UQU",
+      "titulo_propuesto": "Pulverizador manual Chapin 20004 de un galón",
+      "categoria_propuesta": "Pulverizadores vacíos",
+      "utilidad_en_granja": "Comparar equipos de aplicación para mantenimiento de instalaciones.",
+      "comprobar_antes_de_elegir": "Confirmar compatibilidad de juntas y boquilla con el producto que se vaya a aplicar.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 79745,
+      "precio_usd_fuente": 15.49,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pump-sprayer",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71oqfMsZf6L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B000E28UQU?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 105307,
+          "url": "https://www.desertcart.com.my/products/673947-chapin-20004-surespray-1-gallon-pump-sprayer-for-lawn-garden"
+        },
+        {
+          "valoracion": 4.5,
+          "resenas": 89625,
+          "url": "https://d2-products.com/product/chapin-20000-made-in-usa-1-gallon-lawn-and-garden-pump-pressured-sprayer/"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.5
+      ]
+    },
+    {
+      "numero": 49,
+      "asin": "B0F2G7L4JB",
+      "titulo_propuesto": "Tres botellas pulverizadoras ZEP de 32 onzas",
+      "categoria_propuesta": "Pulverizadores vacíos",
+      "utilidad_en_granja": "Comparar equipos de aplicación para mantenimiento de instalaciones.",
+      "comprobar_antes_de_elegir": "Confirmar compatibilidad de juntas y boquilla con el producto que se vaya a aplicar.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 3940,
+      "precio_usd_fuente": 7.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pump-sprayer",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71VCeOsFnoL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0F2G7L4JB?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 5034,
+          "url": "https://www.desertcart.ae/products/724756133-professional-sprayer-bottle-32-oz-pack-of-3-hdpro1-versatile"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 50,
+      "asin": "B0CKRSTX76",
+      "titulo_propuesto": "Pulverizador Petratools HD101 de un galón",
+      "categoria_propuesta": "Pulverizadores vacíos",
+      "utilidad_en_granja": "Comparar equipos de aplicación para mantenimiento de instalaciones.",
+      "comprobar_antes_de_elegir": "Confirmar compatibilidad de juntas y boquilla con el producto que se vaya a aplicar.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 4313,
+      "precio_usd_fuente": 24.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pump-sprayer",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/714qkq9LCfL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0CKRSTX76?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 4264,
+          "url": "https://device.report/petra/pt-1112"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 51,
+      "asin": "B08B42QKDW",
+      "titulo_propuesto": "Pulverizador Flo-Master Hudson 24101 de un galón",
+      "categoria_propuesta": "Pulverizadores vacíos",
+      "utilidad_en_granja": "Comparar equipos de aplicación para mantenimiento de instalaciones.",
+      "comprobar_antes_de_elegir": "Confirmar compatibilidad de juntas y boquilla con el producto que se vaya a aplicar.",
+      "valoracion_fuente": 4.3,
+      "resenas_fuente": 17757,
+      "precio_usd_fuente": 17.84,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pump-sprayer",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/51yGOBYrNuL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08B42QKDW?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": null,
+          "url": "https://device.report/flo-master-by-hudson/24101"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.3
+      ]
+    },
+    {
+      "numero": 52,
+      "asin": "B00002N66H",
+      "titulo_propuesto": "Tijeras de poda Fiskars de corte bypass",
+      "categoria_propuesta": "Poda y mantenimiento exterior",
+      "utilidad_en_granja": "Mantener vegetación de caminos, cierres y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro de corte, repuestos y acceso cómodo al mecanismo de bloqueo.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 51664,
+      "precio_usd_fuente": 12.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pruning-shears",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/712oOsznuxL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B00002N66H?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 50075,
+          "url": "https://www.desertcart.in/products/52466167-fiskars-91095935-bypass-pruner-731645-self-cleaning-sap-groove-prevents"
+        },
+        {
+          "valoracion": 4.6,
+          "resenas": 50744,
+          "url": "https://www.desertcart.com.sa/products/274732496-fiskars-bypass-pruning-shears-5-8-inch-cut-capacity-garden"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.6
+      ]
+    },
+    {
+      "numero": 53,
+      "asin": "B000BX1IB6",
+      "titulo_propuesto": "Tijera cortarramas Fiskars de 28 pulgadas",
+      "categoria_propuesta": "Poda y mantenimiento exterior",
+      "utilidad_en_granja": "Mantener vegetación de caminos, cierres y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro de corte, repuestos y acceso cómodo al mecanismo de bloqueo.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 13058,
+      "precio_usd_fuente": 19.97,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pruning-shears",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61pFXu5ytLL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B000BX1IB6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": 12455,
+          "url": "https://device.report/fiskars/391461-1003"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ]
+    },
+    {
+      "numero": 54,
+      "asin": "B00023RYS6",
+      "titulo_propuesto": "Tijeras de poda Felco F2",
+      "categoria_propuesta": "Poda y mantenimiento exterior",
+      "utilidad_en_granja": "Mantener vegetación de caminos, cierres y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro de corte, repuestos y acceso cómodo al mecanismo de bloqueo.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 31408,
+      "precio_usd_fuente": 74.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pruning-shears",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/714pwTwVQvL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B00023RYS6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": 14272,
+          "url": "https://www.desertcart.in/products/48445985-felco-2-pruning-secateurs-25-mm-cutting-diameter-for-large"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ],
+      "contraste_fabricante": {
+        "url": "https://www.felco.com/products/felco-2",
+        "modelo": "FELCO 2",
+        "alcance": "Ficha del fabricante: tijera bypass para mano derecha y mano grande. La longitud declarada es 215 mm; no copiar sin revisar la longitud distinta del título comercial.",
+        "consultado": "2026-11-14",
+        "limite": "Identifica modelo o familia; no confirma el destino, variante o stock actual en Amazon."
+      }
+    },
+    {
+      "numero": 55,
+      "asin": "B01JZFC9QS",
+      "titulo_propuesto": "Tijeras de poda gonicc GPPS-1003",
+      "categoria_propuesta": "Poda y mantenimiento exterior",
+      "utilidad_en_granja": "Mantener vegetación de caminos, cierres y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro de corte, repuestos y acceso cómodo al mecanismo de bloqueo.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 37540,
+      "precio_usd_fuente": 14.95,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/garden-shears",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71N9JNtg+iL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01JZFC9QS?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 32233,
+          "url": "https://www.desertcart.in/products/217833415-gonicc-premium-quality-forged-titanium-garden-pruner-gpps-1003-comfortable"
+        },
+        {
+          "valoracion": 4.6,
+          "resenas": 33545,
+          "url": "https://www.desertcart.com.my/products/33143111-gonicc-8-professional-premium-bypass-titanium-pruning-shears-gpps-1003"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.6
+      ]
+    },
+    {
+      "numero": 56,
+      "asin": "B001KVZTSG",
+      "titulo_propuesto": "Tijeras de setos Fiskars Power-Lever extensibles",
+      "categoria_propuesta": "Poda y mantenimiento exterior",
+      "utilidad_en_granja": "Mantener vegetación de caminos, cierres y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro de corte, repuestos y acceso cómodo al mecanismo de bloqueo.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 2996,
+      "precio_usd_fuente": 25.5,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/pruning-shears",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71XUF4se2WL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B001KVZTSG?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 3180,
+          "url": "https://www.desertcart.com.sa/products/96439355-fiskars-fis91696935j-fiskars-telescoping-hedge-shear"
+        },
+        {
+          "valoracion": 4.6,
+          "resenas": 2841,
+          "url": "https://www.desertcart.lk/products/256662058-fiskars91696935j-25-33-inch-power-lever-extendable-hedge-shear-9169-8-5"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.6
+      ]
+    },
+    {
+      "numero": 57,
+      "asin": "B073YG65N2",
+      "titulo_propuesto": "Pelacables y crimpadora WGGE WG-015",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 16645,
+      "precio_usd_fuente": 9.29,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wire-cutters",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61OtPfu3CzL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B073YG65N2?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 16898,
+          "url": "https://device.report/wgge/wg-015"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 58,
+      "asin": "B0105SSMRO",
+      "titulo_propuesto": "Juego WORKPRO de siete alicates",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 18215,
+      "precio_usd_fuente": 26.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wire-cutters",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61OGQ1zlFHL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0105SSMRO?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 18153,
+          "url": "https://www.desertcart.in/products/22009022-7-piece-workpro-pliers-set-with-groove-joint-long-nose"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 59,
+      "asin": "B07GDDF5JB",
+      "titulo_propuesto": "Tijeras HURRICANE de aviación de corte recto",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 4432,
+      "precio_usd_fuente": 13.39,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wire-cutters",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/716j-Zh4H-L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07GDDF5JB?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": null,
+          "url": "https://www.shopabunda.com/products/waytrim-large-chicken-coop-metal-chicken-run-for-10-chickens-with-anti-uv-cover-heavy-duty-outdoor-walk-in-chicken-pen-for-poultry-duck-rabbit-9-8-l-x-6-6-w-x-6-4-h"
+        },
+        {
+          "valoracion": 4.6,
+          "resenas": 4584,
+          "url": "https://bahamas.desertcart.com/products/120490029-hurricane-10-inch-aviation-tin-snips-straight-cut-metal-shears"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.6
+      ]
+    },
+    {
+      "numero": 60,
+      "asin": "B000JNNWQ2",
+      "titulo_propuesto": "Pelacables IRWIN Vise-Grip 2078309",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 21307,
+      "precio_usd_fuente": 11.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bolt-cutters",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/51lhMe8zrEL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B000JNNWQ2?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 21320,
+          "url": "https://www.desertcart.in/products/1098139-irwin-vise-grip-wire-stripping-tool-wire-cutter-8-inch"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 61,
+      "asin": "B015W3BAW6",
+      "titulo_propuesto": "Cortapernos WORKPRO W017004A de 14 pulgadas",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 14344,
+      "precio_usd_fuente": 15.24,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bolt-cutters",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61aWSWzKq4L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B015W3BAW6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 14519,
+          "url": "https://www.desertcart.in/products/43043294-w017004a-bolt-cutter-bi-material-handle-with-soft-rubber-grip"
+        },
+        {
+          "valoracion": 4.5,
+          "resenas": null,
+          "url": "https://best2buy.reviews/workpro-w017004a-heavy-duty-bolt-cutter-for-cutting-chain-padlocks-and-other-hard-metals-idbvmj"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.5
+      ]
+    },
+    {
+      "numero": 62,
+      "asin": "B09BVXZBLN",
+      "titulo_propuesto": "Cortatubos Bates de carraca para PVC",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 3569,
+      "precio_usd_fuente": 9.95,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bolt-cutters",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71RwJBHlYNL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B09BVXZBLN?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 3709,
+          "url": "https://www.desertcart.in/products/459389063-bates-pvc-pipe-cutter-cuts-up-to-1-5-8"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 63,
+      "asin": "B09PYHS642",
+      "titulo_propuesto": "Mini sierra KATA de diez pulgadas con tres hojas",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 1898,
+      "precio_usd_fuente": 9.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/bolt-cutters",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61dfhhuyzqL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B09PYHS642?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 1586,
+          "url": "https://www.desertcart.jp/products/440919824-kata-10-inch-aluminum-frame-compact-hand-operate-mini-hack"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.4
+      ]
+    },
+    {
+      "numero": 64,
+      "asin": "B08PFK8YWQ",
+      "titulo_propuesto": "Alicates CRAFTSMAN CMHT81645 de punta larga",
+      "categoria_propuesta": "Herramientas de corte y reparación",
+      "utilidad_en_granja": "Realizar pequeñas reparaciones de instalaciones y accesorios.",
+      "comprobar_antes_de_elegir": "Comprobar material y diámetro de corte admitidos; un cortacables no equivale a un cortapernos.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 3978,
+      "precio_usd_fuente": 12.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fencing-pliers",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61o3iWa5gnL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08PFK8YWQ?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": 3799,
+          "url": "https://zambia.desertcart.com/products/393992769-craftsman-cmht-81645-8-in-long-nose-pliers-chrome"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ],
+      "contraste_fabricante": {
+        "url": "https://www.craftsman.com/en-us/product/cmht81645/craftsman-8-inch-long-nose-pliers",
+        "modelo": "CMHT81645",
+        "alcance": "Ficha del fabricante: alicates de punta larga de ocho pulgadas; confirmar referencia y variante.",
+        "consultado": "2026-11-14",
+        "limite": "Identifica modelo o familia; no confirma el destino, variante o stock actual en Amazon."
+      }
+    },
+    {
+      "numero": 65,
+      "asin": "B00I7PCF3K",
+      "titulo_propuesto": "Alicates DEWALT P7DW con mil anillas",
+      "categoria_propuesta": "Malla y reparación de cercados",
+      "utilidad_en_granja": "Montar y reparar mallas y elementos de cercado.",
+      "comprobar_antes_de_elegir": "Comprobar compatibilidad con el alambre o soporte, y que las uniones queden firmes sin puntas expuestas.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 3339,
+      "precio_usd_fuente": 36.97,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fencing-pliers",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71Sgc4V+6oS._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B00I7PCF3K?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 3446,
+          "url": "https://www.desertcart.hr/products/5598768-dewalt-hog-ring-pliers-kit-includes-pliers-and-1000-ring"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 66,
+      "asin": "B0C65DS667",
+      "titulo_propuesto": "Alicates WORKPRO de junta deslizante de ocho pulgadas",
+      "categoria_propuesta": "Malla y reparación de cercados",
+      "utilidad_en_granja": "Montar y reparar mallas y elementos de cercado.",
+      "comprobar_antes_de_elegir": "Comprobar compatibilidad con el alambre o soporte, y que las uniones queden firmes sin puntas expuestas.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 884,
+      "precio_usd_fuente": 8.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fencing-pliers",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61+rMvzG0HL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C65DS667?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 67,
+      "asin": "B07VFVY7DR",
+      "titulo_propuesto": "Tenazas Bates para extracción de clavos",
+      "categoria_propuesta": "Malla y reparación de cercados",
+      "utilidad_en_granja": "Montar y reparar mallas y elementos de cercado.",
+      "comprobar_antes_de_elegir": "Comprobar compatibilidad con el alambre o soporte, y que las uniones queden firmes sin puntas expuestas.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 6849,
+      "precio_usd_fuente": 8.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fencing-pliers",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61O0YmQkwkL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07VFVY7DR?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 6920,
+          "url": "https://gambia.desertcart.com/products/158325636-bates-nail-puller-7-inch-steel-end-cutting-pliers"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 68,
+      "asin": "B0CF5364ZM",
+      "titulo_propuesto": "Cortacables DISEN para trabajos de cercado",
+      "categoria_propuesta": "Malla y reparación de cercados",
+      "utilidad_en_granja": "Montar y reparar mallas y elementos de cercado.",
+      "comprobar_antes_de_elegir": "Comprobar compatibilidad con el alambre o soporte, y que las uniones queden firmes sin puntas expuestas.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 567,
+      "precio_usd_fuente": 16.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fencing-pliers",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/616qz3OI-OL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0CF5364ZM?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 468,
+          "url": "https://aruba.desertcart.com/products/557556748-disen-wire-cutters-heavy-duty-cutting-up-to-3-16"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 69,
+      "asin": "B09VP4YTPQ",
+      "titulo_propuesto": "Doscientas grapas galvanizadas en U para cercado",
+      "categoria_propuesta": "Malla y reparación de cercados",
+      "utilidad_en_granja": "Montar y reparar mallas y elementos de cercado.",
+      "comprobar_antes_de_elegir": "Comprobar compatibilidad con el alambre o soporte, y que las uniones queden firmes sin puntas expuestas.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 1238,
+      "precio_usd_fuente": 5.16,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fence-staples",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81vcBlQgLuL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B09VP4YTPQ?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 1313,
+          "url": "https://jamaica.desertcart.com/products/434078296-steel-wire-fencing-staples-200-pcs-galvanized-u-shaped-fasteners"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 70,
+      "asin": "B0CP7W5BY6",
+      "titulo_propuesto": "Cincuenta fijaciones Insaga de acero inoxidable para malla",
+      "categoria_propuesta": "Malla y reparación de cercados",
+      "utilidad_en_granja": "Montar y reparar mallas y elementos de cercado.",
+      "comprobar_antes_de_elegir": "Comprobar compatibilidad con el alambre o soporte, y que las uniones queden firmes sin puntas expuestas.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 346,
+      "precio_usd_fuente": 18.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fence-staples",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71faf1E-SiL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0CP7W5BY6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 71,
+      "asin": "B004AZ8IDW",
+      "titulo_propuesto": "Pestillo automático National Hardware N184-861",
+      "categoria_propuesta": "Cierres y pestillos",
+      "utilidad_en_granja": "Comparar cierres para puertas de instalaciones y zonas de acceso.",
+      "comprobar_antes_de_elegir": "Comprobar sentido de apertura, soporte y posibilidad de bloqueo; no asumir que un cierre simple resiste depredadores.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 1612,
+      "precio_usd_fuente": 6.48,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/gate-latch",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61gkOj--fxL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B004AZ8IDW?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 1461,
+          "url": "https://antigua.desertcart.com/products/349193398-national-hardware-n184-861-bpb21-automatic-gate-latch-in-black"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 72,
+      "asin": "B076CYQDDS",
+      "titulo_propuesto": "Cierre basculante Alise de acero inoxidable de cuatro pulgadas",
+      "categoria_propuesta": "Cierres y pestillos",
+      "utilidad_en_granja": "Comparar cierres para puertas de instalaciones y zonas de acceso.",
+      "comprobar_antes_de_elegir": "Comprobar sentido de apertura, soporte y posibilidad de bloqueo; no asumir que un cierre simple resiste depredadores.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 1575,
+      "precio_usd_fuente": 8.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/gate-latch",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61C+6e6GBiL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B076CYQDDS?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 73,
+      "asin": "B0854B4353",
+      "titulo_propuesto": "Pestillo de gravedad automático para poste",
+      "categoria_propuesta": "Cierres y pestillos",
+      "utilidad_en_granja": "Comparar cierres para puertas de instalaciones y zonas de acceso.",
+      "comprobar_antes_de_elegir": "Comprobar sentido de apertura, soporte y posibilidad de bloqueo; no asumir que un cierre simple resiste depredadores.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 2377,
+      "precio_usd_fuente": 18.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/gate-latch",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/51Yn2cadIQL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0854B4353?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 2423,
+          "url": "https://www.desertcart.in/products/195023089-self-locking-gate-latch-heavy-duty-for-wood-gate-steel"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 74,
+      "asin": "B0D4Y37VGL",
+      "titulo_propuesto": "Pasador deslizante para puerta con orificio de candado",
+      "categoria_propuesta": "Cierres y pestillos",
+      "utilidad_en_granja": "Comparar cierres para puertas de instalaciones y zonas de acceso.",
+      "comprobar_antes_de_elegir": "Comprobar sentido de apertura, soporte y posibilidad de bloqueo; no asumir que un cierre simple resiste depredadores.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 425,
+      "precio_usd_fuente": 7.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/gate-latch",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81Kedq59QIL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0D4Y37VGL?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 75,
+      "asin": "B01N030SXM",
+      "titulo_propuesto": "Cierre con llave National Hardware LokkLatch N346-201",
+      "categoria_propuesta": "Cierres y pestillos",
+      "utilidad_en_granja": "Comparar cierres para puertas de instalaciones y zonas de acceso.",
+      "comprobar_antes_de_elegir": "Comprobar sentido de apertura, soporte y posibilidad de bloqueo; no asumir que un cierre simple resiste depredadores.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 1880,
+      "precio_usd_fuente": 36.07,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/gate-latch",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/610JToCFpGL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01N030SXM?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 1842,
+          "url": "https://www.desertcart.in/products/325415371-national-hardware-v6201-ltch-blk-n346-201-4-9-16"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ],
+      "contraste_fabricante": {
+        "url": "https://www.national-hardware.com/p/6201-lokklatch?model=N346-201",
+        "modelo": "N346-201",
+        "alcance": "Ficha del fabricante: cierre con llave y ajuste horizontal y vertical; comprobar montaje y contenido.",
+        "consultado": "2026-11-14",
+        "limite": "Identifica modelo o familia; no confirma el destino, variante o stock actual en Amazon."
+      }
+    },
+    {
+      "numero": 76,
+      "asin": "B07SD4KSSG",
+      "titulo_propuesto": "Gancho con hembrilla Raswik de cuatro pulgadas",
+      "categoria_propuesta": "Cierres y pestillos",
+      "utilidad_en_granja": "Comparar cierres para puertas de instalaciones y zonas de acceso.",
+      "comprobar_antes_de_elegir": "Comprobar sentido de apertura, soporte y posibilidad de bloqueo; no asumir que un cierre simple resiste depredadores.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 17383,
+      "precio_usd_fuente": 9.98,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/gate-latch",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/31bQZNbjY6L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07SD4KSSG?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": 17466,
+          "url": "https://aruba.desertcart.com/products/152597592-4-privacy-hook-and-eye-gate-door-latch-easy-barn"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ]
+    },
+    {
+      "numero": 77,
+      "asin": "B01018DC96",
+      "titulo_propuesto": "Cien bridas TR Industrial negras resistentes a UV",
+      "categoria_propuesta": "Fijaciones auxiliares",
+      "utilidad_en_granja": "Organizar accesorios y fijaciones secundarias.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro, material y exposición exterior; reservar la fijación estructural para el sistema adecuado.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 27630,
+      "precio_usd_fuente": 7.89,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/zip-ties",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/618hL6BlSmL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01018DC96?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 26164,
+          "url": "https://www.desertcart.ec/products/276939984"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 78,
+      "asin": "B0C2Z4L3S6",
+      "titulo_propuesto": "Cuatrocientas bridas ANOSON de tamaños surtidos",
+      "categoria_propuesta": "Fijaciones auxiliares",
+      "utilidad_en_granja": "Organizar accesorios y fijaciones secundarias.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro, material y exposición exterior; reservar la fijación estructural para el sistema adecuado.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 17960,
+      "precio_usd_fuente": 5.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/zip-ties",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81QjAjamInL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0C2Z4L3S6?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 18709,
+          "url": "https://antigua.desertcart.com/products/533915937-zip-ties-assorted-sizes-4-6-8-12-400-pack"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 79,
+      "asin": "B0DK2TBQQ5",
+      "titulo_propuesto": "Bridas de doce pulgadas con dentado de doble cara",
+      "categoria_propuesta": "Fijaciones auxiliares",
+      "utilidad_en_granja": "Organizar accesorios y fijaciones secundarias.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro, material y exposición exterior; reservar la fijación estructural para el sistema adecuado.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 1537,
+      "precio_usd_fuente": 9.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/zip-ties",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81WaiUExj8L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0DK2TBQQ5?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": 1649,
+          "url": "https://www.desertcart.in/products/687106393-zip-ties-heavy-duty-12-inch-v-shaped-toothed-double"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ]
+    },
+    {
+      "numero": 80,
+      "asin": "B07Z1SH6B5",
+      "titulo_propuesto": "Cincuenta piquetas FEED GARDEN galvanizadas de seis pulgadas",
+      "categoria_propuesta": "Fijaciones auxiliares",
+      "utilidad_en_granja": "Organizar accesorios y fijaciones secundarias.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro, material y exposición exterior; reservar la fijación estructural para el sistema adecuado.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 11132,
+      "precio_usd_fuente": 8.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fence-staples",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71Q-B08lopL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07Z1SH6B5?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 81,
+      "asin": "B073F1VMHS",
+      "titulo_propuesto": "Cien piquetas GROWNEER galvanizadas de seis pulgadas",
+      "categoria_propuesta": "Fijaciones auxiliares",
+      "utilidad_en_granja": "Organizar accesorios y fijaciones secundarias.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro, material y exposición exterior; reservar la fijación estructural para el sistema adecuado.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 10837,
+      "precio_usd_fuente": 14.02,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fence-staples",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71heXxUfsuL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B073F1VMHS?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 82,
+      "asin": "B0796NN5YY",
+      "titulo_propuesto": "Seis mosquetones sprookber de acero inoxidable",
+      "categoria_propuesta": "Fijaciones auxiliares",
+      "utilidad_en_granja": "Organizar accesorios y fijaciones secundarias.",
+      "comprobar_antes_de_elegir": "Comprobar diámetro, material y exposición exterior; reservar la fijación estructural para el sistema adecuado.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 13917,
+      "precio_usd_fuente": 9.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/carabiner",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61ekuw4dcUL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0796NN5YY?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 9677,
+          "url": "https://cayman.desertcart.com/products/269856044-sprookber-stainless-steel-spring-snap-hook-carabiner-304-stainless-steel"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 83,
+      "asin": "B01BECQAWO",
+      "titulo_propuesto": "Carro basculante Gorilla Carts GOR4PS de cuatro pies cúbicos",
+      "categoria_propuesta": "Transporte de materiales",
+      "utilidad_en_granja": "Transportar sacos, cama y otros materiales dentro de la granja.",
+      "comprobar_antes_de_elegir": "Comprobar anchura de paso, terreno y límites separados de transporte y basculación del manual.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 30550,
+      "precio_usd_fuente": 123.49,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wheel-barrow",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61aFol2qrXL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01BECQAWO?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 16021,
+          "url": "https://www.desertcart.com.cy/products/272082208-gorilla-carts-600-lb-poly-garden-dump-cart-4-cu"
+        },
+        {
+          "valoracion": 4.7,
+          "resenas": 30614,
+          "url": "https://aruba.desertcart.com/products/24448933-gorilla-carts-poly-garden-dump-cart-with-steel-frame-and-10-in-pneumatic-tires-600-pound-capacity-black"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.7
+      ],
+      "contraste_fabricante": {
+        "url": "https://gorillamade.com/product/gor4ps-gor4ps-c/",
+        "modelo": "GOR4PS",
+        "alcance": "Ficha del fabricante: carro con caja de cuatro pies cúbicos y basculación. El manual distingue carga de transporte y carga de basculación.",
+        "consultado": "2026-11-14",
+        "limite": "Identifica modelo o familia; no confirma el destino, variante o stock actual en Amazon."
+      }
+    },
+    {
+      "numero": 84,
+      "asin": "B01BECQE52",
+      "titulo_propuesto": "Carro basculante Gorilla Carts de cinco pies cúbicos",
+      "categoria_propuesta": "Transporte de materiales",
+      "utilidad_en_granja": "Transportar sacos, cama y otros materiales dentro de la granja.",
+      "comprobar_antes_de_elegir": "Comprobar anchura de paso, terreno y límites separados de transporte y basculación del manual.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 30550,
+      "precio_usd_fuente": 153.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wheel-barrow",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71CqNwf1NBL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01BECQE52?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": null,
+          "url": "https://fado.vn/us/amazon/gorilla-carts-poly-dump-cart-800-lb-capacity-5-cu-ft-gray-800-lb-capacity-poly-dump-cart-with-quick-release-dump-bed-for-gardeners-and-landscapers-hauling-soil-mulch-or-rock-B01BECQE52.html"
+        },
+        {
+          "valoracion": 4.7,
+          "resenas": 30664,
+          "url": "https://brunei.desertcart.com/products/27744716-gorilla-carts-poly-dump-cart-800-lb-capacity-5-cu"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.7
+      ]
+    },
+    {
+      "numero": 85,
+      "asin": "B01BECQF6K",
+      "titulo_propuesto": "Carro basculante Gorilla Carts de seis pies cúbicos",
+      "categoria_propuesta": "Transporte de materiales",
+      "utilidad_en_granja": "Transportar sacos, cama y otros materiales dentro de la granja.",
+      "comprobar_antes_de_elegir": "Comprobar anchura de paso, terreno y límites separados de transporte y basculación del manual.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 30366,
+      "precio_usd_fuente": 199.99,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/wheelbarrow",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71dB7q3FOAL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01BECQF6K?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": null,
+          "url": "https://best2buy.reviews/heavy-duty-foldable-beach-wagon-with-big-wheels-liteleph-230l-collapsible-wagons-carts-idfxpz"
+        },
+        {
+          "valoracion": 4.8,
+          "resenas": 11199,
+          "url": "https://www.desertcart.in/products/284685100-gorilla-carts-heavy-duty-poly-yard-dump-cart-2-in"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.8
+      ]
+    },
+    {
+      "numero": 86,
+      "asin": "B08B43QY61",
+      "titulo_propuesto": "Carro Gorilla Carts GCR-4 de dos ruedas",
+      "categoria_propuesta": "Transporte de materiales",
+      "utilidad_en_granja": "Transportar sacos, cama y otros materiales dentro de la granja.",
+      "comprobar_antes_de_elegir": "Comprobar anchura de paso, terreno y límites separados de transporte y basculación del manual.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 3247,
+      "precio_usd_fuente": 99.0,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wheel-barrow",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71HylV7dSTL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08B43QY61?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 3282,
+          "url": "https://www.desertcart.co.uk/products/213011745-gorilla-carts-poly-dump-cart-2-wheel-garden-wagon-4"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 87,
+      "asin": "B01H683DIO",
+      "titulo_propuesto": "Carretilla Best Choice Products de dos ruedas",
+      "categoria_propuesta": "Transporte de materiales",
+      "utilidad_en_granja": "Transportar sacos, cama y otros materiales dentro de la granja.",
+      "comprobar_antes_de_elegir": "Comprobar anchura de paso, terreno y límites separados de transporte y basculación del manual.",
+      "valoracion_fuente": 4.3,
+      "resenas_fuente": 5276,
+      "precio_usd_fuente": 99.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wheel-barrow",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61iw34qNn3L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01H683DIO?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.3,
+          "resenas": 5383,
+          "url": "https://www.desertcart.com.eg/products/30018635-dual-wheel-home-utility-yard-wheelbarrow-garden-cart-w-built"
+        },
+        {
+          "valoracion": 4.4,
+          "resenas": 5293,
+          "url": "https://www.desertcart.co.za/products/30018635-best-choice-products-dual-wheel-home-utility-yard-wheelbarrow-garden"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.3,
+        4.4
+      ]
+    },
+    {
+      "numero": 88,
+      "asin": "B0DT9DRVXJ",
+      "titulo_propuesto": "Carro VEVOR metálico con laterales desmontables",
+      "categoria_propuesta": "Transporte de materiales",
+      "utilidad_en_granja": "Transportar sacos, cama y otros materiales dentro de la granja.",
+      "comprobar_antes_de_elegir": "Comprobar anchura de paso, terreno y límites separados de transporte y basculación del manual.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 3130,
+      "precio_usd_fuente": 76.49,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/wheel-barrow",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/711mb6Tsu5L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0DT9DRVXJ?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": 3873,
+          "url": "https://www.desertcart.in/products/722441300-vevor-500-lbs-steel-garden-cart-heavy-duty-garden-wagon-cart-pullable-on-wheels-metal-yard-utility-wagon-carts-with-10-all-terrain-tires-mesh-removable-sides-and-180-rotating-handle"
+        },
+        {
+          "valoracion": 4.7,
+          "resenas": 520,
+          "url": "https://www.desertcart.in/products/722441300-vevor-500-lbs-steel-garden-cart-heavy-duty-garden-wagon"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.7
+      ]
+    },
+    {
+      "numero": 89,
+      "asin": "B0BHL8NLFJ",
+      "titulo_propuesto": "Carro basculante BILT HARD de cuatro pies cúbicos",
+      "categoria_propuesta": "Transporte de materiales",
+      "utilidad_en_granja": "Transportar sacos, cama y otros materiales dentro de la granja.",
+      "comprobar_antes_de_elegir": "Comprobar anchura de paso, terreno y límites separados de transporte y basculación del manual.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 1699,
+      "precio_usd_fuente": 99.99,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/wheelbarrow",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61K+pqzcKyL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0BHL8NLFJ?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.5,
+          "resenas": null,
+          "url": "https://device.report/bilt-hard/gcb-1101"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "numero": 90,
+      "asin": "B00GMXFK3G",
+      "titulo_propuesto": "Juego DEWALT FlexTorq DWA2T40IR de cuarenta puntas",
+      "categoria_propuesta": "Juegos de herramientas",
+      "utilidad_en_granja": "Reunir herramientas para mantenimiento habitual.",
+      "comprobar_antes_de_elegir": "Comprobar medidas, alimentación y accesorios incluidos; en equipos eléctricos, confirmar tensión del cargador.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 47464,
+      "precio_usd_fuente": 21.57,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/tool-set",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81pUPSsAegL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B00GMXFK3G?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 46208,
+          "url": "https://www.desertcart.com.au/products/47984806-dewalt-impact-ready-flextorq-screwdriver-bit-set-40-pieces-dwa2t40ir"
+        },
+        {
+          "valoracion": 4.8,
+          "resenas": 46252,
+          "url": "https://www.desertcart.co.uk/products/256575186-dewalt-screwdriver-bit-set-impact-ready-flextorq-40-piece-dwa2t40ir"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.8
+      ]
+    },
+    {
+      "numero": 91,
+      "asin": "B00IJ0ALYS",
+      "titulo_propuesto": "Kit DEWALT DCK240C2 de taladro y atornillador",
+      "categoria_propuesta": "Juegos de herramientas",
+      "utilidad_en_granja": "Reunir herramientas para mantenimiento habitual.",
+      "comprobar_antes_de_elegir": "Comprobar medidas, alimentación y accesorios incluidos; en equipos eléctricos, confirmar tensión del cargador.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 60344,
+      "precio_usd_fuente": 149.0,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/tool-set",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81XPDrUh9sL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B00IJ0ALYS?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": null,
+          "url": "https://device.report/dewalt/b00ij0alys"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ]
+    },
+    {
+      "numero": 92,
+      "asin": "B01BHJE0J4",
+      "titulo_propuesto": "Maletín DEWALT DWMT75049 de 192 piezas",
+      "categoria_propuesta": "Juegos de herramientas",
+      "utilidad_en_granja": "Reunir herramientas para mantenimiento habitual.",
+      "comprobar_antes_de_elegir": "Comprobar medidas, alimentación y accesorios incluidos; en equipos eléctricos, confirmar tensión del cargador.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 7970,
+      "precio_usd_fuente": 164.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/tool-set",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/81XYDGRrRXL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01BHJE0J4?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": 7731,
+          "url": "https://www.desertcart.co.il/products/50821502-mechanics-tool-set-sae-and-metric-1-2-1-4"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ]
+    },
+    {
+      "numero": 93,
+      "asin": "B07G9LKCML",
+      "titulo_propuesto": "Juego WORKPRO de seis alicates y llave ajustable",
+      "categoria_propuesta": "Juegos de herramientas",
+      "utilidad_en_granja": "Reunir herramientas para mantenimiento habitual.",
+      "comprobar_antes_de_elegir": "Comprobar medidas, alimentación y accesorios incluidos; en equipos eléctricos, confirmar tensión del cargador.",
+      "valoracion_fuente": 4.6,
+      "resenas_fuente": 2827,
+      "precio_usd_fuente": 22.79,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/fencing-pliers",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61308kaDTOL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B07G9LKCML?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.6,
+          "resenas": 2899,
+          "url": "https://brunei.desertcart.com/products/100818118-workpro-large-pliers-and-wrench-set-6-piece-10-water"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.6,
+        4.6
+      ]
+    },
+    {
+      "numero": 94,
+      "asin": "B001D1FFZA",
+      "titulo_propuesto": "Arrancador de malas hierbas Grampa's Weeder",
+      "categoria_propuesta": "Suelo y herramientas manuales",
+      "utilidad_en_granja": "Mantener pequeñas áreas de suelo, plantaciones y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar longitud y agarre para el trabajo previsto y separar las herramientas usadas en zonas distintas.",
+      "valoracion_fuente": 4.5,
+      "resenas_fuente": 67189,
+      "precio_usd_fuente": 35.96,
+      "periodo_datos_fuente": "2026-06",
+      "fuente": "https://www.asinsight.com/report/US/garden-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/718DYJIqv4L._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B001D1FFZA?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 63848,
+          "url": "https://www.desertcart.in/products/61763777"
+        },
+        {
+          "valoracion": 4.5,
+          "resenas": 67642,
+          "url": "https://www.desertcart.jp/products/69753389-grampas-weeder-the-original-stand-up-weed-puller-tool-with-long-handle-made-with-real-bamboo-4-claw-steel-head-design-easily-remove-weeds-without-bending-pulling-or-kneeling"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.5
+      ]
+    },
+    {
+      "numero": 95,
+      "asin": "B0030MIHAU",
+      "titulo_propuesto": "Arrancador Fiskars de cuatro garras con mango largo",
+      "categoria_propuesta": "Suelo y herramientas manuales",
+      "utilidad_en_granja": "Mantener pequeñas áreas de suelo, plantaciones y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar longitud y agarre para el trabajo previsto y separar las herramientas usadas en zonas distintas.",
+      "valoracion_fuente": 4.4,
+      "resenas_fuente": 29933,
+      "precio_usd_fuente": 48.98,
+      "periodo_datos_fuente": "2026-06",
+      "fuente": "https://www.asinsight.com/report/US/garden-rake",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/61zif1JQAwL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0030MIHAU?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.4,
+          "resenas": 29545,
+          "url": "https://www.desertcart.in/products/617911-fiskars-deluxe-stand-up-weed-puller-tool-4-serrated-stainless"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.4,
+        4.4
+      ]
+    },
+    {
+      "numero": 96,
+      "asin": "B004S0PGUC",
+      "titulo_propuesto": "Cultivador de mano Fiskars Ergo",
+      "categoria_propuesta": "Suelo y herramientas manuales",
+      "utilidad_en_granja": "Mantener pequeñas áreas de suelo, plantaciones y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar longitud y agarre para el trabajo previsto y separar las herramientas usadas en zonas distintas.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 2039,
+      "precio_usd_fuente": 8.94,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/41wzOUzoLuL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B004S0PGUC?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 2081,
+          "url": "https://www.desertcart.in/products/333462540-ergo-cultivator-heavy-duty-gardening-hand-tool-with-hang-hole"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.7
+      ],
+      "contraste_fabricante": {
+        "url": "https://cuix-prod.fiskars.com/en-us/gardening-and-yard-care/products/cultivating-tools/ergo-cultivator-300s-384240-1007",
+        "modelo": "Ergo Cultivator 300S / 384240-1007",
+        "alcance": "Ficha estadounidense del fabricante localizada para la familia Ergo; comprobar equivalencia exacta con el ASIN y variante antes de publicarla.",
+        "consultado": "2026-11-14",
+        "limite": "Identifica modelo o familia; no confirma el destino, variante o stock actual en Amazon."
+      }
+    },
+    {
+      "numero": 97,
+      "asin": "B004S0PGPM",
+      "titulo_propuesto": "Paleta de mano Fiskars de aluminio",
+      "categoria_propuesta": "Suelo y herramientas manuales",
+      "utilidad_en_granja": "Mantener pequeñas áreas de suelo, plantaciones y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar longitud y agarre para el trabajo previsto y separar las herramientas usadas en zonas distintas.",
+      "valoracion_fuente": 4.7,
+      "resenas_fuente": 14179,
+      "precio_usd_fuente": 6.29,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/shovel",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71t68gVD+KL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B004S0PGPM?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.7,
+          "resenas": 11196,
+          "url": "https://www.desertcart.com.sa/products/342373002-fiskars-ergo-scratch-trowel-garden-tool-7022"
+        },
+        {
+          "valoracion": 4.8,
+          "resenas": 8232,
+          "url": "https://www.desertcart.co.il/products/342373002-ergo-scratch-trowel-garden-tool-7022"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.7,
+        4.8
+      ]
+    },
+    {
+      "numero": 98,
+      "asin": "B08C253V48",
+      "titulo_propuesto": "Pala dosificadora Garden Weasel Potting Scoop",
+      "categoria_propuesta": "Suelo y herramientas manuales",
+      "utilidad_en_granja": "Mantener pequeñas áreas de suelo, plantaciones y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar longitud y agarre para el trabajo previsto y separar las herramientas usadas en zonas distintas.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 1169,
+      "precio_usd_fuente": 13.99,
+      "periodo_datos_fuente": "2026-03",
+      "fuente": "https://www.asinsight.com/report/US/shovel",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71-u4bCUHhL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B08C253V48?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    },
+    {
+      "numero": 99,
+      "asin": "B01MUXL5V8",
+      "titulo_propuesto": "Juego Fiskars de paleta, trasplantador y cultivador",
+      "categoria_propuesta": "Suelo y herramientas manuales",
+      "utilidad_en_granja": "Mantener pequeñas áreas de suelo, plantaciones y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar longitud y agarre para el trabajo previsto y separar las herramientas usadas en zonas distintas.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 1345,
+      "precio_usd_fuente": 24.95,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71PleuJ7lyL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B01MUXL5V8?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [
+        {
+          "valoracion": 4.8,
+          "resenas": 1421,
+          "url": "https://www.desertcart.in/products/836112356-fiskars-3-piece-garden-hand-tools-set-w-trowel-transplanter"
+        }
+      ],
+      "intervalo_valoracion_otro_comercio": [
+        4.8,
+        4.8
+      ]
+    },
+    {
+      "numero": 100,
+      "asin": "B0BCK7NRBH",
+      "titulo_propuesto": "Cuchillo de jardín PERWIN Hori Hori con funda",
+      "categoria_propuesta": "Suelo y herramientas manuales",
+      "utilidad_en_granja": "Mantener pequeñas áreas de suelo, plantaciones y perímetro.",
+      "comprobar_antes_de_elegir": "Comprobar longitud y agarre para el trabajo previsto y separar las herramientas usadas en zonas distintas.",
+      "valoracion_fuente": 4.8,
+      "resenas_fuente": 3037,
+      "precio_usd_fuente": 17.99,
+      "periodo_datos_fuente": "2026-07",
+      "fuente": "https://www.asinsight.com/report/US/garden-fork",
+      "consultado": "2026-11-14",
+      "tipo_fuente": "informe_secundario_fechado",
+      "referencia_foto_comercial": "https://m.media-amazon.com/images/I/71rS+m9pqHL._AC_UY512_.jpg",
+      "url_afiliado_propuesto": "https://www.amazon.com/dp/B0BCK7NRBH?tag=granjarentabl-20",
+      "destino_amazon_comprobado": false,
+      "stock_amazon_actual": null,
+      "valoracion_amazon_actual": null,
+      "imagen_ia": null,
+      "publicable": false,
+      "estado": "preseleccion_editorial_pendiente_verificacion_actual",
+      "busqueda_individual_realizada": true,
+      "contraste_otra_fuente": [],
+      "intervalo_valoracion_otro_comercio": null
+    }
+  ],
+  "resumen_contrastes": {
+    "busquedas_individuales": 100,
+    "con_valoracion_en_otro_comercio": 79,
+    "con_referencia_fabricante": 7,
+    "reserva_por_discrepancia": 4,
+    "amazon_actual_verificado": 0
+  },
+  "limite_contrastes": "El segundo contraste procede de otros comercios y de resultados indexados con antigüedad variable. Puede reflejar otro mercado o agrupaciones de variantes. No convierte las cifras en una valoración actual de Amazon.com ni confirma stock.",
+  "reservas_por_discrepancia": [
+    {
+      "asin": "B0051U7W32",
+      "intervalo_valoraciones_observadas": [
+        4.2,
+        4.5
+      ],
+      "fuente_indicio_bajo": "https://www.desertcart.co.uk/products/80221689-macks-ear-care-ultra-soft-foam-earplugs-50-pair",
+      "motivo": "Existe una cifra inferior al mínimo preferente de 4,3 en el contraste; se reserva y se sustituye hasta aclararlo."
+    },
+    {
+      "asin": "B01LWYWH43",
+      "intervalo_valoraciones_observadas": [
+        3.9,
+        4.6
+      ],
+      "fuente_indicio_bajo": "https://antigua.desertcart.com/products/355989486-dr-meter-noise-cancelling-headphones-for-adults-kids-adjustable-hearing",
+      "motivo": "Existe una cifra inferior al mínimo preferente de 4,3 en el contraste; se reserva y se sustituye hasta aclararlo."
+    },
+    {
+      "asin": "B073Q6PBD3",
+      "intervalo_valoraciones_observadas": [
+        4.2,
+        4.7
+      ],
+      "fuente_indicio_bajo": "https://bahrain.desertcart.com/products/255940864-innav8-water-hose-nozzle-sprayer-10-spray-patterns-thumb-control",
+      "motivo": "Existe una cifra inferior al mínimo preferente de 4,3 en el contraste; se reserva y se sustituye hasta aclararlo."
+    },
+    {
+      "asin": "B08YRLZCPJ",
+      "intervalo_valoraciones_observadas": [
+        4,
+        4.5
+      ],
+      "fuente_indicio_bajo": "https://bahamas.desertcart.com/products/403904419-egofine-46-pieces-1-4-inch-drive-ratchet-wrench-socket",
+      "motivo": "Existe una cifra inferior al mínimo preferente de 4,3 en el contraste; se reserva y se sustituye hasta aclararlo."
+    }
+  ]
+}
