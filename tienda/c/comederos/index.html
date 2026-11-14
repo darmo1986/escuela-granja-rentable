@@ -22,7 +22,7 @@
 <link rel="icon" href="../../../img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../img/favicon.png" sizes="64x64" type="image/png">
 <link rel="stylesheet" href="../../../css/estilo.css?v=20261110d">
-<link rel="stylesheet" href="../../../tienda/tienda.css?v=20261110d">
+<link rel="stylesheet" href="../../../tienda/tienda.css?v=20261114tienda">
 <script src="../../../js/boot.js?v=20261110d"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://granjarentable.com/"},{"@type":"ListItem","position":2,"name":"Tienda","item":"https://granjarentable.com/tienda/"},{"@type":"ListItem","position":3,"name":"Comederos","item":"https://granjarentable.com/tienda/c/comederos/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Comederos","numberOfItems":9,"itemListElement":[{"@type":"ListItem","position":1,"name":"Comedero colgante de canaleta para aves, 6 x 3,5 cuartos","url":"https://granjarentable.com/tienda/p/comedero-colgante-de-canaleta-para-aves-6-x-3-5-cuartos/"},{"@type":"ListItem","position":2,"name":"Comedero colgante galvanizado Harris Farms de 15 libras","url":"https://granjarentable.com/tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/"},{"@type":"ListItem","position":3,"name":"Comedero de pedal Grandpa's Feeders 20 lb antirratas","url":"https://granjarentable.com/tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/"},{"@type":"ListItem","position":4,"name":"Comedero de pedal Grandpa's Feeders 40 lb para más gallinas","url":"https://granjarentable.com/tienda/p/comedero-de-pedal-grandpa-s-feeders-40-lb-para-mas-gallinas/"},{"@type":"ListItem","position":5,"name":"Comedero de pedal RentACoop 25 lb antirratas","url":"https://granjarentable.com/tienda/p/comedero-de-pedal-rentacoop-25-lb-antirratas/"},{"@type":"ListItem","position":6,"name":"Cuatro bocas para comedero de cubo, con sierra de corona","url":"https://granjarentable.com/tienda/p/cuatro-bocas-para-comedero-de-cubo-con-sierra-de-corona/"},{"@type":"ListItem","position":7,"name":"Juego de comedero y bebedero de 3 galones","url":"https://granjarentable.com/tienda/p/juego-de-comedero-y-bebedero-de-3-galones/"},{"@type":"ListItem","position":8,"name":"Kit de 4 bocas para comedero de cubo","url":"https://granjarentable.com/tienda/p/kit-de-4-bocas-para-comedero-de-cubo/"},{"@type":"ListItem","position":9,"name":"Kit de comedero automático de 6 puertos, sin desperdicio","url":"https://granjarentable.com/tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/"}]}</script>
@@ -75,7 +75,7 @@
 <div class="nav-sub" id="nav-razas">
 <a data-nav="razas-gallinas" href="../../../razas.html#razas-gallinas"><span class="nav-label">Gallinas</span></a>
 <a data-nav="razas-pollos" href="../../../pollos-engorde.html"><span class="nav-label">Pollos</span></a>
-<span class="nav-soon"><span class="nav-label">Gallos (próximamente)</span></span>
+<a data-nav="razas-gallos" href="../../../razas.html#gallos"><span class="nav-label">Gallos</span></a>
 </div>
 </div>
 
@@ -123,7 +123,9 @@
 <p class="t-aviso"><strong>Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. La compra se hace en Amazon, no en esta web.</strong></p>
 
 <p><a class="btn sec" href="../../../tienda/">Ver toda la tienda</a> <a class="btn sec" href="../../../ebooks/">Ebooks a 3,00 USD</a></p>
+<p><a href="#t-buscar">Ir al buscador de esta categoría ↓</a></p>
 </header>
+
 <section class="t-bloque" data-orientacion-comederos aria-labelledby="orientacion-comederos-titulo">
 <h2 id="orientacion-comederos-titulo">Elige según tu lote y tu problema</h2>
 <p>Empieza por lo que necesitas resolver. Las guías y el registro son gratuitos; puedes consultarlos antes de valorar un cambio de equipo.</p>
@@ -135,116 +137,102 @@
 </ul></nav>
 <p id="comederos-buscar-ayuda">En el catálogo de abajo, busca por marca, modelo o formato. Si escribes varias palabras, se muestran los productos que coinciden con todas. Encontrar un producto no demuestra que sea adecuado para tu lote.</p>
 </section>
+
+
+<section class="t-ayuda" aria-label="Antes de elegir"><h2>Qué comprobar antes de comprar</h2><ul><li>Comprueba el acceso al alimento y el tamaño de las aberturas, especialmente para aves pequeñas.</li><li>Distingue capacidad de almacenamiento de espacio disponible para comer a la vez.</li><li>Revisa montaje, piezas incluidas y acceso de limpieza antes de comparar formatos.</li></ul></section>
 <section class="t-cat" id="catalogo-comederos" tabindex="-1" aria-label="Catálogo de comederos">
-<div class="t-filtros">
+<form class="t-filtros" data-t-form role="search">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar en Comederos</label>
-<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre o palabra clave" autocomplete="off" aria-describedby="comederos-buscar-ayuda">
+<input id="t-buscar" name="q" data-t-buscar type="search" maxlength="120" placeholder="Nombre o palabra clave" autocomplete="off" aria-describedby="comederos-buscar-ayuda">
 </div>
 <div class="t-chips" aria-label="Categorías de esta sección">
 <a class="t-chip" href="../../../tienda/c/comederos/" aria-current="page">Comederos</a><a class="t-chip" href="../../../tienda/c/pienso/">Pienso</a><a class="t-chip" href="../../../tienda/c/golosinas-e-insectos/">Golosinas e insectos</a><a class="t-chip" href="../../../tienda/c/grit-y-concha-de-ostra/">Grit y concha de ostra</a><a class="t-chip" href="../../../tienda/c/almacenaje-de-pienso/">Almacenaje de pienso</a><a class="t-chip" href="../../../tienda/c/kits-comederos-y-bebederos-de-pollitos/">Kits, comederos y bebederos de pollitos</a>
 </div>
-<p class="t-cuenta" data-t-cuenta aria-live="polite">9 productos</p>
-</div>
-<div class="t-vacio" data-t-vacio hidden><p>Ningún comedero coincide con tu búsqueda. Prueba una sola palabra, como «pedal», o una marca.</p><button class="btn sec" type="button" data-t-limpiar>Limpiar búsqueda</button></div>
+<div class="t-controles"><button type="submit" class="btn">Buscar</button><button class="btn sec" type="button" data-t-limpiar>Limpiar búsqueda</button></div>
+<p class="t-cuenta" data-t-cuenta role="status" aria-live="polite" aria-atomic="true">9 productos</p>
+</form>
+<div class="t-vacio" data-t-vacio hidden><p>Ningún producto de esta categoría coincide. Prueba una palabra más general o una marca.</p></div>
 <div class="t-grid" data-t-bloque>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero colgante de canaleta para aves, 6 x 3,5 cuartos comederos comida y comederos goat feeders hanging poultry feeder trough for livestock, 6*3.5 quart black black 6*3.5 quart comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b0cpwlmmxk comedero colgante en forma de canaleta, de 6 por 3,5 cuartos, en color negro. la ficha lo ofrece para aves y tambien lo nombra para cabras y otro ganado. lo recomendamos como canaleta colgante de esa medida. sirve para el pienso de las aves en un gancho, no como tolva cerrada.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero colgante de canaleta para aves, 6 x 3,5 cuartos comederos goat feeders hanging poultry feeder trough for livestock, 6*3.5 quart black black 6*3.5 quart comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b0cpwlmmxk comedero colgante en forma de canaleta, de 6 por 3,5 cuartos, en color negro. la ficha lo ofrece para aves y tambien lo nombra para cabras y otro ganado. puede encajar si buscas un formato de alimentacion que puedas instalar y adaptar al tamano de tus aves.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/comedero-colgante-de-canaleta-para-aves-6-x-3-5-cuartos.webp" alt="Comedero colgante de canaleta para aves, 6 x 3,5 cuartos" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/comedero-colgante-de-canaleta-para-aves-6-x-3-5-cuartos/">Comedero colgante de canaleta para aves, 6 x 3,5 cuartos</a></h2>
-<p class="t-por-que">Lo recomendamos como canaleta colgante de esa medida. Sirve para el pienso de las aves en un gancho, no como tolva cerrada.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0CPWLMMXK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B0CPWLMMXK?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/comedero-colgante-de-canaleta-para-aves-6-x-3-5-cuartos/">Ver ficha y criterios<span class="sr">: Comedero colgante de canaleta para aves, 6 x 3,5 cuartos</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0CPWLMMXK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero colgante galvanizado harris farms de 15 libras comederos comida y comederos harris farms 1000293 galvanized hanging poultry feeder, 15 lbs, metal 15 lb poultry feeder comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b006zunir6 comedero colgante de metal galvanizado, de harris farms, modelo 1000293. la capacidad de la ficha es de 15 libras. lo recomendamos como comedero de metal para colgar en el gallinero. no es un comedero de pedal: el pienso queda en la tolva galvanizada.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero colgante galvanizado harris farms de 15 libras comederos harris farms 1000293 galvanized hanging poultry feeder, 15 lbs, metal 15 lb poultry feeder comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b006zunir6 comedero colgante de metal galvanizado, de harris farms, modelo 1000293. la capacidad de la ficha es de 15 libras. puede encajar si buscas un formato de alimentacion que puedas instalar y adaptar al tamano de tus aves.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/comedero-colgante-galvanizado-harris-farms-de-15-libras.webp" alt="Comedero colgante galvanizado Harris Farms de 15 libras" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/">Comedero colgante galvanizado Harris Farms de 15 libras</a></h2>
-<p class="t-por-que">Lo recomendamos como comedero de metal para colgar en el gallinero. No es un comedero de pedal: el pienso queda en la tolva galvanizada.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B006ZUNIR6?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B006ZUNIR6?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/">Ver ficha y criterios<span class="sr">: Comedero colgante galvanizado Harris Farms de 15 libras</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B006ZUNIR6?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero de pedal grandpa's feeders 20 lb antirratas comederos comida y comederos grandpas feeders automatic chicken feeder - 20 lbs no waste poultry feeder, rat proof &amp; rodent proof treadle chicken feeder, galvanized steel with lid, feeds 6 chickens up to 10 days comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b00txw0uqk comedero de pedal con capacidad nominal de 20 libras, segun el catalogo. puede encajar si buscas una tolva de pedal de esta capacidad y puedes supervisar la adaptacion del lote. comprueba el acceso de las aves mas pequenas. no hemos medido su ahorro ni su eficacia frente a roedores.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero de pedal grandpa's feeders 20 lb antirratas comederos grandpas feeders automatic chicken feeder - 20 lbs no waste poultry feeder, rat proof &amp; rodent proof treadle chicken feeder, galvanized steel with lid, feeds 6 chickens up to 10 days comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b00txw0uqk comedero de pedal con capacidad nominal de 20 libras, segun el catalogo. puede encajar si buscas una tolva de pedal de esta capacidad y puedes supervisar la adaptacion del lote. comprueba el acceso de las aves mas pequenas. no hemos medido su ahorro ni su eficacia frente a roedores.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas.webp" alt="Comedero de pedal Grandpa's Feeders 20 lb antirratas" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/">Comedero de pedal Grandpa's Feeders 20 lb antirratas</a></h2>
 <p class="t-por-que">Puede encajar si buscas una tolva de pedal de esta capacidad y puedes supervisar la adaptación del lote. Comprueba el acceso de las aves más pequeñas. No hemos medido su ahorro ni su eficacia frente a roedores.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B00TXW0UQK?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/">Ver ficha y criterios<span class="sr">: Comedero de pedal Grandpa's Feeders 20 lb antirratas</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero de pedal grandpa's feeders 40 lb para mas gallinas comederos comida y comederos grandpas feeders automatic chicken feeder - 40 lbs no waste poultry feeder, rat proof &amp; rodent proof treadle chicken feeder, galvanized steel with lid, feeds 6-12 chickens up to 10 days comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b00txx20gw comedero de pedal con capacidad nominal de 40 libras, segun el catalogo. permite comparar una capacidad nominal mayor que la version de 20 libras. comprueba el espacio de instalacion y el acceso al pedal. la capacidad no determina por si sola la autonomia ni cuantas aves pueden comer a la vez.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero de pedal grandpa's feeders 40 lb para mas gallinas comederos grandpas feeders automatic chicken feeder - 40 lbs no waste poultry feeder, rat proof &amp; rodent proof treadle chicken feeder, galvanized steel with lid, feeds 6-12 chickens up to 10 days comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b00txx20gw comedero de pedal con capacidad nominal de 40 libras, segun el catalogo. permite comparar una capacidad nominal mayor que la version de 20 libras. comprueba el espacio de instalacion y el acceso al pedal. la capacidad no determina por si sola la autonomia ni cuantas aves pueden comer a la vez.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/comedero-de-pedal-grandpa-s-feeders-40-lb-para-mas-gallinas.webp" alt="Comedero de pedal Grandpa's Feeders 40 lb para más gallinas" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/comedero-de-pedal-grandpa-s-feeders-40-lb-para-mas-gallinas/">Comedero de pedal Grandpa's Feeders 40 lb para más gallinas</a></h2>
 <p class="t-por-que">Permite comparar una capacidad nominal mayor que la versión de 20 libras. Comprueba el espacio de instalación y el acceso al pedal. La capacidad no determina por sí sola la autonomía ni cuántas aves pueden comer a la vez.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B00TXX20GW?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B00TXX20GW?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/comedero-de-pedal-grandpa-s-feeders-40-lb-para-mas-gallinas/">Ver ficha y criterios<span class="sr">: Comedero de pedal Grandpa's Feeders 40 lb para más gallinas</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B00TXX20GW?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero de pedal rentacoop 25 lb antirratas comederos comida y comederos rentacoop automatic treadle chicken feeder, rat proof no waste, 25 lb comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b07mqw8mqk comedero de pedal rentacoop con capacidad nominal de 25 libras, segun el catalogo. ofrece una capacidad nominal intermedia entre los modelos de 20 y 40 libras de esta comparacion. consulta el manual y comprueba el uso de cada ave. no hemos medido ahorro ni garantizamos ausencia de desperdicio o roedores.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="comedero de pedal rentacoop 25 lb antirratas comederos rentacoop automatic treadle chicken feeder, rat proof no waste, 25 lb comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b07mqw8mqk comedero de pedal rentacoop con capacidad nominal de 25 libras, segun el catalogo. ofrece una capacidad nominal intermedia entre los modelos de 20 y 40 libras de esta comparacion. consulta el manual y comprueba el uso de cada ave. no hemos medido ahorro ni garantizamos ausencia de desperdicio o roedores.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/comedero-de-pedal-rentacoop-25-lb-antirratas.webp" alt="Comedero de pedal RentACoop 25 lb antirratas" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/comedero-de-pedal-rentacoop-25-lb-antirratas/">Comedero de pedal RentACoop 25 lb antirratas</a></h2>
 <p class="t-por-que">Ofrece una capacidad nominal intermedia entre los modelos de 20 y 40 libras de esta comparación. Consulta el manual y comprueba el uso de cada ave. No hemos medido ahorro ni garantizamos ausencia de desperdicio o roedores.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B07MQW8MQK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B07MQW8MQK?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/comedero-de-pedal-rentacoop-25-lb-antirratas/">Ver ficha y criterios<span class="sr">: Comedero de pedal RentACoop 25 lb antirratas</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B07MQW8MQK?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="cuatro bocas para comedero de cubo, con sierra de corona comederos comida y comederos 4pack no waste chicken feeder ports, chicken feeder cups for bucket 4 port with holesaw comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b0g3qpl9cc paquete de 4 bocas para comedero de cubo. incluye una sierra de corona para abrir los agujeros del cubo. lo recomendamos si vas a taladrar el cubo y quieres la sierra en el mismo pedido. la ficha lo presenta como de poco desperdicio.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="cuatro bocas para comedero de cubo, con sierra de corona comederos 4pack no waste chicken feeder ports, chicken feeder cups for bucket 4 port with holesaw comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b0g3qpl9cc paquete de 4 bocas para comedero de cubo. incluye una sierra de corona para abrir los agujeros del cubo. puede encajar si buscas un formato de alimentacion que puedas instalar y adaptar al tamano de tus aves.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/cuatro-bocas-para-comedero-de-cubo-con-sierra-de-corona.webp" alt="Cuatro bocas para comedero de cubo, con sierra de corona" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/cuatro-bocas-para-comedero-de-cubo-con-sierra-de-corona/">Cuatro bocas para comedero de cubo, con sierra de corona</a></h2>
-<p class="t-por-que">Lo recomendamos si vas a taladrar el cubo y quieres la sierra en el mismo pedido. La ficha lo presenta como de poco desperdicio.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0G3QPL9CC?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B0G3QPL9CC?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/cuatro-bocas-para-comedero-de-cubo-con-sierra-de-corona/">Ver ficha y criterios<span class="sr">: Cuatro bocas para comedero de cubo, con sierra de corona</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0G3QPL9CC?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="juego de comedero y bebedero de 3 galones comederos comida y comederos chicken feeder and waterer set 3 gallon, end coop mess tangerine comedero tolva pienso alimento gallinas pedal cubo antirratas comedero bebedero juego gallinas galon b0h5j3f9xd juego de comedero y bebedero para gallinas, de 3 galones. el color de esta variante es mandarina. lo recomendamos como pareja de comedero y bebedero de esa capacidad.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="juego de comedero y bebedero de 3 galones comederos chicken feeder and waterer set 3 gallon, end coop mess tangerine comedero tolva pienso alimento gallinas pedal cubo antirratas comedero bebedero juego gallinas galon b0h5j3f9xd juego de comedero y bebedero para gallinas, de 3 galones. el color de esta variante es mandarina. puede encajar si buscas un formato de alimentacion que puedas instalar y adaptar al tamano de tus aves.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/juego-de-comedero-y-bebedero-de-3-galones.webp" alt="Juego de comedero y bebedero de 3 galones" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/juego-de-comedero-y-bebedero-de-3-galones/">Juego de comedero y bebedero de 3 galones</a></h2>
-<p class="t-por-que">Lo recomendamos como pareja de comedero y bebedero de esa capacidad.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0H5J3F9XD?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B0H5J3F9XD?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/juego-de-comedero-y-bebedero-de-3-galones/">Ver ficha y criterios<span class="sr">: Juego de comedero y bebedero de 3 galones</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0H5J3F9XD?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="kit de 4 bocas para comedero de cubo comederos comida y comederos diy chicken feeder no waste automatic poultry feed kit for buckets, 4 ports comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b09bdb4dns kit de 4 bocas para convertir un cubo en comedero de gallinas. la ficha lo presenta como comedero automatico de poco desperdicio. lo recomendamos para armar el comedero en un cubo que ya tengas. trae cuatro bocas, no el cubo.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="kit de 4 bocas para comedero de cubo comederos diy chicken feeder no waste automatic poultry feed kit for buckets, 4 ports comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b09bdb4dns kit de 4 bocas para convertir un cubo en comedero de gallinas. la ficha lo presenta como comedero automatico de poco desperdicio. puede encajar si buscas un formato de alimentacion que puedas instalar y adaptar al tamano de tus aves.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/kit-de-4-bocas-para-comedero-de-cubo.webp" alt="Kit de 4 bocas para comedero de cubo" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/kit-de-4-bocas-para-comedero-de-cubo/">Kit de 4 bocas para comedero de cubo</a></h2>
-<p class="t-por-que">Lo recomendamos para armar el comedero en un cubo que ya tengas. Trae cuatro bocas, no el cubo.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B09BDB4DNS?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B09BDB4DNS?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/kit-de-4-bocas-para-comedero-de-cubo/">Ver ficha y criterios<span class="sr">: Kit de 4 bocas para comedero de cubo</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B09BDB4DNS?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
-<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="kit de comedero automatico de 6 puertos, sin desperdicio comederos comida y comederos chicken feeders no waste, diy automatic poultry feeder - 6 ports red comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b0fk27d1g7 kit de 6 puertos rojos para montar un comedero automatico en un cubo. pensado para que no se desperdicie pienso. lo recomendamos para reducir el desperdicio y mantener el pienso mas limpio.">
+<article class="t-card" data-t-card data-cat="comederos" data-sec="comida" data-q="kit de comedero automatico de 6 puertos, sin desperdicio comederos chicken feeders no waste, diy automatic poultry feeder - 6 ports red comedero tolva pienso alimento gallinas pedal cubo antirratas comedero tolva pienso alimento gallinas pedal cubo antirratas b0fk27d1g7 kit de 6 puertos rojos para montar un comedero automatico en un cubo. pensado para que no se desperdicie pienso. puede encajar si buscas un formato de alimentacion que puedas instalar y adaptar al tamano de tus aves.">
 <div class="t-marca"><span>Comederos</span></div>
 <figure class="t-foto"><img src="../../../img/productos/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio.webp" alt="Kit de comedero automático de 6 puertos, sin desperdicio" loading="lazy"><figcaption>Ilustración generada con IA</figcaption></figure>
 <h2><a href="../../../tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/">Kit de comedero automático de 6 puertos, sin desperdicio</a></h2>
-<p class="t-por-que">Lo recomendamos para reducir el desperdicio y mantener el pienso más limpio.</p>
-<div class="t-acciones">
-<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0FK27D1G7?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-<a class="btn sec t-resenas" href="https://www.amazon.com/product-reviews/B0FK27D1G7?tag=granjarentabl-20" rel="nofollow sponsored noopener" target="_blank">Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>
-</div>
+<p class="t-por-que">Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves.</p>
+<div class="t-acciones"><a class="btn sec t-detalle" href="../../../tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/">Ver ficha y criterios<span class="sr">: Kit de comedero automático de 6 puertos, sin desperdicio</span></a>
+<a class="btn gold t-amazon" href="https://www.amazon.com/dp/B0FK27D1G7?tag=granjarentabl-20" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a></div>
 <p><a href="../../../tienda/c/comederos/">Comederos</a></p>
 </article>
 </div>
@@ -304,6 +292,6 @@
 <script src="../../../js/catalogo.js"></script>
 <script src="../../../js/app.js?v=20261110d"></script>
 <script src="../../../js/site.js?v=20261110d"></script>
-<script defer src="../../../tienda/tienda.js?v=20261113a"></script>
+<script defer src="../../../tienda/tienda.js?v=20261114tienda"></script>
 </body>
 </html>
