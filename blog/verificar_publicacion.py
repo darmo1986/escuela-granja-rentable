@@ -4,6 +4,7 @@ import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit
 
 
 class Destacados(HTMLParser):
@@ -15,6 +16,20 @@ class Destacados(HTMLParser):
         datos = dict(attrs)
         if self.primero is None and tag == 'a' and 'data-slide' in datos:
             self.primero = datos
+
+
+class EnlacesAmazon(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.heredados = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag != 'a':
+            return
+        href = dict(attrs).get('href', '')
+        url = urlsplit(href)
+        if url.hostname in {'www.amazon.com', 'amazon.com'} and url.path.startswith('/product-reviews/'):
+            self.heredados.append(href)
 
 
 def verificar_salida(destino, version, posts, categorias):
@@ -51,6 +66,11 @@ def verificar_salida(destino, version, posts, categorias):
         for asset in ['config', 'app', 'site']:
             if not re.search(r'js/' + asset + r'\.js\?v=' + re.escape(version) + r'["\']', texto):
                 errores.append(str(pagina.relative_to(destino)) + ': versión común ausente en ' + asset + '.js')
+    for pagina in (destino / 'tienda').rglob('*.html'):
+        enlaces = EnlacesAmazon()
+        enlaces.feed(pagina.read_text(encoding='utf-8'))
+        if enlaces.heredados:
+            errores.append(str(pagina.relative_to(destino)) + ': quedan destinos product-reviews heredados')
     for privado in ['_articulos', '_fuentes', 'blog/plantillas', 'blog/pruebas', 'blog/generar.py', 'blog/verificar_publicacion.py']:
         if (destino / privado).exists():
             errores.append('El sitio construido contiene una fuente interna: ' + privado)

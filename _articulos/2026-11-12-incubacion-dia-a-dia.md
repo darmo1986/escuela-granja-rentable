@@ -1,7 +1,7 @@
 ---
 titulo: "Incubación día a día: del día 1 al 21"
 titulo_seo: "Incubación día a día: del día 1 al 21"
-descripcion: "Qué pasa dentro del huevo cada día de la incubación: desarrollo, miraje los días 7, 14 y 18, fin del volteo y nacimiento sin abrir la incubadora."
+descripcion: "Organiza una tanda de huevos de gallina: preparación, controles, ovoscopia, fin del volteo y registro de nacimientos."
 categoria: incubacion
 fecha: 2026-10-12
 borrador: false
@@ -9,61 +9,68 @@ imagen: "img/blog/incubacion-dia-a-dia-foto.webp"
 imagen_og: "img/blog/incubacion-dia-a-dia-foto-og.webp"
 imagen_alt: "Huevos marcados a mano con círculos y puntos sobre las varillas de volteo de una incubadora"
 imagen_credito: "Foto: Santeri Viinamäki, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Eggs_in_incubator.jpg) Imagen adaptada de tamaño y encuadre."
+actualizado: 2026-11-13
+autor: "Equipo editorial de Granja Rentable"
 ---
 
-## 21 días que se viven con el calendario en la mano
+Una tanda necesita un calendario compartido por sus huevos y un registro de lo que ocurre. Para gallina se utiliza como referencia un periodo de unos 21 días, pero la fecha no prueba por sí sola la viabilidad de un huevo ni garantiza cuándo nacerá un pollito.
 
-Incubar huevos de gallina dura 21 días, y cada fase tiene su tarea. Quien abre la incubadora a cada rato, olvida el volteo o sube la humedad antes de tiempo suele tener el mismo resultado: menos nacimientos de los que el huevo permitía. Este artículo es el calendario completo, día a día, para que sepas qué está pasando dentro del huevo y qué tienes que hacer tú en cada momento.
+Esta guía organiza las tareas de una tanda de gallina. No traslades el calendario a codornices, patos u otras especies, y utiliza las instrucciones de tu modelo para los ajustes del equipo.
 
-Las cifras de este calendario son las de la lección L03, que cita a la MSU, para huevo de gallina. En aire forzado, la más habitual en casa: ≈ 37,8 °C (100 °F) constantes, humedad del 58–60 % los días 1 a 18 y ≥ 65 % los últimos 3 días, y volteo de 3 a 5 veces al día hasta el día 18. En aire quieto la temperatura es ≈ 38,9 °C (102 °F, arriba del huevo). No mezcles las dos referencias.
+## Antes de empezar: define qué significa el día 1
 
-## Antes del día 1: el huevo manda
+Registra la fecha y hora de carga y cómo vas a contar los días. Conserva ese criterio al programar la parada del volteo. Anota especie, procedencia, tiempo de almacenamiento conocido y número de huevos colocados. No presentes como fértiles todos los huevos solo porque se vendan para incubar.
 
-Ningún calendario arregla un huevo malo. Incuba solo huevos fértiles, de cáscara entera y limpia, sin grietas ni deformaciones, y de gallinas sanas y bien alimentadas. Los huevos guardan mejor con la punta fina hacia abajo, en un lugar fresco, y no conviene incubar huevos de más de 7 días: a partir de ahí la fertilidad y el nacimiento bajan de forma clara.
+Pon en marcha el equipo limpio y vacío siguiendo el manual. Comprueba la lectura de los instrumentos y el mecanismo de volteo antes de cargar. Si aún estás eligiendo aparato, consulta [cómo comparar incubadoras](como-elegir-incubadora.html).
 
-Antes de meter los huevos, pon la incubadora en marcha vacía al menos unas horas, mejor un día entero, hasta que la temperatura sea estable. Un termómetro de confianza dentro, a la altura de los huevos, vale más que la pantalla de la incubadora: si los dos no coinciden, manda el termómetro.
+## Referencias de ajuste y su límite
 
-## El calendario, fase a fase
+Mississippi State publica para gallina una referencia de **100 °F, unos 37,8 °C, en aire forzado**, y **102 °F, unos 38,9 °C, en aire quieto**. En aire quieto destaca la importancia de medir a la altura adecuada del huevo. No son dos alternativas para intercambiar dentro de un mismo aparato.
 
-| Días | Qué pasa dentro del huevo | Qué haces tú |
+En su guía de factores de incubación, la universidad indica humedad relativa de **58–60 %** durante la primera fase y **65 % o más** para el nacimiento. Son referencias de esa guía técnica; contrástalas con las instrucciones de tu modelo. Humedad relativa y lectura de termómetro de bulbo húmedo no son la misma unidad.
+
+No tapes entradas de aire para corregir una lectura de humedad sin revisar el manual: ventilación y humedad son factores distintos que deben controlarse conjuntamente.
+
+## Calendario de tareas para una tanda
+
+| Momento | Comprobación principal | Qué registrar |
 | --- | --- | --- |
-| 1 a 3 | Empieza el desarrollo: se forman las primeras estructuras y los vasos sanguíneos | Temperatura estable a ≈ 37,8 °C (100 °F, aire forzado), humedad 58–60 %, volteo 3-5 veces al día |
-| 4 a 6 | El embrión crece rápido y se distingue el ojo y el latido | Igual que antes; no abras más de lo necesario |
-| 7 | Primer miraje: se ven vasos en forma de araña en los fértiles | Miraje: retira los claros (sin desarrollo) y los de anillo de sangre |
-| 8 a 13 | El embrión ocupa cada vez más huevo; se forman plumas y pico | Volteo constante; vigila que la pérdida de peso vaya por el 12-14 % al día 18 |
-| 14 | Segundo miraje: el huevo fértil está oscuro salvo la cámara de aire | Miraje: confirma desarrollo y retira los detenidos |
-| 15 a 17 | El pollito se coloca con la cabeza hacia la cámara de aire | Últimos días de volteo; prepara la nacedora o la zona de nacimiento |
-| 18 | Último miraje y fin del volteo: el huevo pasa a posición de nacimiento | Deja de voltear, sube la humedad a ≥ 65 % y no abras más |
-| 19 a 21 | El pollito pica la cáscara, descansa, gira y nace | No abras, no ayudes, espera: el nacimiento lleva horas y es normal |
+| Antes de la carga | Equipo limpio, lecturas verificadas y volteo operativo | Fecha, especie, equipo y huevos colocados |
+| Días 1–6 | Funcionamiento, ajustes y observación externa | Lecturas, reposiciones y cualquier incidencia |
+| En torno al día 7 | Ovoscopia cuando corresponda al programa | Identificación del huevo y observación, sin forzar un diagnóstico |
+| Días 8–13 | Continuidad de condiciones y volteo | Cambios respecto al control anterior |
+| En torno al día 14 | Revisión del desarrollo con el procedimiento elegido | Observaciones y decisiones justificadas |
+| Días 15–17 | Preparar la fase de nacimiento y la criadora | Fecha y hora previstas para la transición |
+| En torno al día 18 | Detener el volteo y aplicar el programa de nacimiento | Ajustes realizados y huevos que continúan |
+| Días 19–21 | Observar el nacimiento evitando aperturas innecesarias | Nacimientos y problemas observados |
+| Al cerrar la tanda | Traslado conforme al manejo indicado y limpieza del equipo | Resultado y tareas para la próxima tanda |
 
-## El miraje: tres fechas, no más
+El calendario organiza el trabajo; no permite identificar por una imagen todos los procesos internos del embrión. Las condiciones y las observaciones deben acompañar a cada fecha.
 
-El miraje se hace con una luz potente en un cuarto oscuro, los días 7, 14 y 18. El día 7, un huevo fértil muestra una red de vasos en forma de araña; uno claro, sin nada, no va a desarrollarse y conviene retirarlo para que no se estropee dentro. El día 14, el huevo fértil está casi todo oscuro y solo se ve clara la cámara de aire en la punta gorda. El día 18, el último miraje confirma que el pollito está colocado y la cámara de aire es grande: es la señal de que la pérdida de peso, entre el 12 y el 14 % desde el inicio, ha ido bien.
+## Ovoscopia: anota lo que ves y lo que no puedes saber
 
-Mirar todos los días no ayuda: cada apertura enfría los huevos y alarga el proceso. Tres mirajes bien hechos dan toda la información que necesitas.
+La publicación *The Avian Embryo* de Mississippi State explica el desarrollo y muestra cambios de la cámara de aire a lo largo de la incubación. La [guía de ovoscopia](ovoscopia-huevos-fertilizados.html) desarrolla la observación con luz.
 
-## El volteo y la humedad: los dos errores clásicos
+Un huevo que parece claro no demuestra siempre infertilidad: influyen la fecha, visibilidad y experiencia de quien observa. Si no sabes interpretar una observación, consulta antes de descartar. Tampoco una cámara de aire grande permite confirmar por sí sola una pérdida exacta de peso o la correcta posición del pollito.
 
-El volteo evita que el embrión se pegue a la cáscara. De 3 a 5 veces al día, en ángulos de unos 45 grados a cada lado, hasta el día 18, es suficiente. Si tu incubadora voltea sola, comprueba al menos una vez al día que el mecanismo se mueve de verdad: un volteo parado varios días se nota en el nacimiento.
+Para conocer pérdida de peso necesitas pesajes comparables del mismo huevo. **Pérdida relativa = (peso inicial − peso posterior) ÷ peso inicial × 100.** El cálculo describe lo medido; no fija por sí mismo qué valor es adecuado para esa tanda.
 
-La humedad se mide con higrómetro, no a ojo. Los días 1 a 18, la humedad es del 58–60 % (L03, MSU). El huevo de gallina debe perder el 12-14 % de su peso hasta el día 18, que es lo que necesita la cámara de aire para que el pollito pueda respirar y girar al nacer. Subir la humedad antes del día 18 deja pollitos grandes y blandos que no pueden girar; bajarla demasiado los deja pegados a la cáscara. En los últimos tres días, la humedad es ≥ 65 % (L03).
+## Nacimiento: planifica antes de llegar al final
 
-## Los últimos tres días: no abrir
+La guía de factores de incubación indica dejar de voltear durante los tres días previos al nacimiento y evitar aperturas que hagan perder humedad. Prepara las tareas y el traslado con antelación para no improvisar mientras nacen.
 
-Del día 18 en adelante, la regla es una: no abrir la incubadora. El pollito pica primero la membrana y respira aire de la cámara, descansa horas, y luego empieza a girar picando la cáscara en círculo. Ese proceso dura horas y parece lento, pero es normal: el pollito está absorbiendo el vitelo, que es su alimento para las primeras horas de vida.
+Si aparece una avería, olor anormal o un problema de bienestar, no interpretes «no abrir» como obligación de ignorarlo: pide orientación adecuada al problema y al modelo. No se ofrece aquí una técnica de extracción de pollitos ni un plazo universal para intervenir. Ante dificultades, busca ayuda con experiencia y atención veterinaria cuando corresponda.
 
-Ayudar a un pollito a salir a la fuerza es el error más frecuente y el más caro: la mayoría de los pollitos ayudados antes de tiempo no sobreviven, porque aún no han absorbido el vitelo o porque sangran por vasos que todavía están activos. Solo se interviene si un pollito lleva muchas horas atascado en la misma posición y con la membrana seca y pegada, y aun así con cuidado y sin tirar de la cáscara.
+Ten lista la [criadora del primer mes](criar-pollitos-30-dias.html), con acceso a agua y alimento apropiados. Comprueba que cada pollito los utiliza: disponer de recipientes no demuestra que todos hayan comido o bebido.
 
-## Al nacer: calor, agua y calma
+## Mide el resultado sin confundir los denominadores
 
-Deja que los pollitos se sequen dentro de la incubadora antes de pasarlos a la criadora: el plumón seco es la señal. La criadora debe estar lista a 32-35 °C la primera semana, con agua fresca y alimento de inicio, y con espacio para que los pollitos se aparten del calor si lo necesitan. No hace falta enseñarles a comer uno a uno: con agua y alimento a su alcance y un ambiente cálido, empiezan solos en pocas horas.
+**Nacimientos sobre huevos colocados (%) = pollitos nacidos ÷ huevos colocados × 100.**
 
-## Huevos de distintos días: no mezclar tandas
+Ejemplo ficticio: 18 nacimientos entre 24 huevos colocados equivalen al 75 %. Es una cuenta, no el rendimiento prometido de una incubadora. No lo llames porcentaje sobre huevos fértiles si no has determinado cuáles lo eran.
 
-Un error frecuente es meter huevos en la incubadora varios días después de haber empezado la tanda, para aprovechar el hueco. El problema es que el calendario ya no coincide: cuando los primeros llegan al día 18 y necesitan humedad alta y nada de volteo, los segundos todavía necesitan volteo y humedad baja. Una de las dos tandas sale perdiendo siempre.
+Conserva registros de varias tandas. Si cambias huevos, equipo y ajustes a la vez, no atribuyas la diferencia a una sola causa. Una tanda con buen resultado tampoco verifica por sí sola un aparato para todas las condiciones.
 
-Si vas a incubar en varias tandas, que cada tanda tenga su propio calendario y, si puedes, su propia incubadora o al menos su propia nacedora para los últimos tres días. Y si un huevo llega tarde, mejor esperar a la siguiente tanda que forzar una mezcla: 21 días de espera cuestan menos que una tanda entera a medias.
+## Fuentes y alcance
 
-Anota cada incubación: fecha de inicio, número de huevos, fértiles en cada miraje, nacidos y problemas. Con dos o tres tandas anotadas, tu propio calendario vale más que cualquier tabla: sabrás si tu incubadora pierde peso demasiado rápido, si tu volteo falla o si tus huevos llegan demasiado viejos.
-
-Si quieres repasar las bases antes de tu primera tanda, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) explica la incubación paso a paso.
+[Mississippi State: factores de incubación](https://cto.extension.msstate.edu/agriculture/livestock/poultry/important-incubation-factors) y [The Avian Embryo](https://extension.msstate.edu/publications/the-avian-embryo). Las referencias de temperatura, humedad y manejo corresponden a esas publicaciones y deben contrastarse con el manual. El calendario de registro y los ejemplos de cálculo son una elaboración editorial, no datos de una tanda realizada por Granja Rentable.

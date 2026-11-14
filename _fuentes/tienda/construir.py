@@ -23,6 +23,7 @@ AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras q
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
 VERSION = "20261110d"
+VERSION_BUSCADOR = "20261113a"
 
 
 def esc(texto):
@@ -234,16 +235,9 @@ def boton_amazon(p):
     )
 
 
-def boton_resenas(p):
-    href = f"https://www.amazon.com/product-reviews/{p['asin']}?tag=granjarentabl-20"
-    return (
-        f'<a class="btn sec t-resenas" href="{esc(href)}" rel="nofollow sponsored noopener" target="_blank">'
-        f'Ver las reseñas en Amazon<span class="sr"> (se abre en Amazon)</span></a>'
-    )
-
-
 def botones_amazon(p):
-    return f'<div class="t-acciones">\n{boton_amazon(p)}\n{boton_resenas(p)}\n</div>'
+    # Un único destino comercial: la ficha de producto, sin prometer una pestaña de reseñas.
+    return f'<div class="t-acciones">\n{boton_amazon(p)}\n</div>'
 
 
 def html_descripcion_larga(texto):
@@ -439,7 +433,7 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <script src="{raiz}js/catalogo.js"></script>
 <script src="{raiz}js/app.js?v=20261110d"></script>
 <script src="{raiz}js/site.js?v=20261110d"></script>
-<script defer src="{raiz}tienda/tienda.js?v={VERSION}"></script>
+<script defer src="{raiz}tienda/tienda.js?v={VERSION_BUSCADOR}"></script>
 </body>
 </html>
 '''
@@ -533,6 +527,60 @@ def guia_pollitos(p, raiz):
 </section>'''
 
 
+def orientacion_comederos(cat, raiz):
+    """Orienta por necesidad antes del catálogo, solo en esta categoría."""
+    if cat != "Comederos":
+        return ""
+    return f'''<section class="t-bloque" data-orientacion-comederos aria-labelledby="orientacion-comederos-titulo">
+<h2 id="orientacion-comederos-titulo">Elige según tu lote y tu problema</h2>
+<p>Empieza por lo que necesitas resolver. Las guías y el registro son gratuitos; puedes consultarlos antes de valorar un cambio de equipo.</p>
+<nav aria-label="Guías para elegir comederos"><ul>
+<li><strong>Crías pollitos:</strong> consulta <a href="{raiz}blog/comedero-para-pollitos-como-elegir.html">cómo elegir un comedero para pollitos</a> antes de comparar modelos para adultas.</li>
+<li><strong>Encuentras pienso en el suelo:</strong> sigue la <a href="{raiz}blog/reducir-desperdicio-pienso.html">guía para identificar y registrar las pérdidas</a>.</li>
+<li><strong>Estás valorando un pedal:</strong> revisa los <a href="{raiz}tsr/tsr-comederos-antirratas.html">criterios de elección y adaptación</a> y la <a href="{raiz}comparativas/comparativa-comederos-pedal-antirratas.html">comparación de tres modelos</a>.</li>
+<li><strong>Quieres comparar tu propio manejo:</strong> utiliza la <a href="{raiz}hoja-registro-puesta.html">hoja semanal gratuita de puesta y pienso</a>.</li>
+</ul></nav>
+<p id="comederos-buscar-ayuda">En el catálogo de abajo, busca por marca, modelo o formato. Si escribes varias palabras, se muestran los productos que coinciden con todas. Encontrar un producto no demuestra que sea adecuado para tu lote.</p>
+</section>'''
+
+
+def orientacion_seguridad(cat, raiz):
+    """Conecta la necesidad de seguridad con criterios y mantenimiento."""
+    criterios = {
+        "Malla y vallas": ("Antes de elegir la malla", "Anota medidas, abertura, diámetro de alambre y soporte de fijación. Distingue una red de cubierta de una malla metálica para cerramientos; revisa el uso que declara cada ficha."),
+        "Puertas automáticas y cierres": ("Antes de elegir el cierre", "Mide el paso y el espacio de montaje. En una puerta automática revisa alimentación, programación, apertura manual y mantenimiento según sus instrucciones. Automatizar no sustituye comprobar el cierre."),
+        "Almacenaje de pienso": ("Antes de elegir el recipiente", "Calcula cuánto alimento guardas y mide el lugar disponible. Revisa cierre, material, acceso para limpieza y uso previsto. La capacidad nominal no demuestra por sí sola protección frente a roedores."),
+    }
+    if cat not in criterios:
+        return ""
+    titulo, texto = criterios[cat]
+    conservacion = (f'<p>Para organizar el contenido y la rotación, consulta <a href="{raiz}blog/almacenar-pienso-gallinas.html">cómo conservar el pienso</a> y el <a href="{raiz}youtube/alimentacion.html">recorrido de alimentación</a>.</p>' if cat == "Almacenaje de pienso" else "")
+    return f'''<section class="t-bloque" data-orientacion-seguridad aria-labelledby="seguridad-elegir-titulo">
+<h2 id="seguridad-elegir-titulo">{esc(titulo)}</h2>
+<p>{esc(texto)}</p>
+{conservacion}
+<p>Empieza por la <a href="{raiz}blog/corral-anti-depredadores.html">revisión de puerta, malla, suelo y techo del gallinero</a>. Anota el punto débil antes de valorar una compra.</p>
+<p><a href="{raiz}lista.html">Organiza las revisiones en tu lista y calendario</a>. Si detectas una rotura, no esperes a la próxima revisión programada.</p>
+<p>El catálogo reúne productos con funciones diferentes. Comprueba sus instrucciones y compatibilidad; la presencia en esta categoría no garantiza que un equipo resuelva tu problema.</p>
+</section>'''
+
+
+def orientacion_alimentacion(cat, raiz):
+    """Ayuda a entrar al catálogo de pienso desde una guía y unas cuentas."""
+    if cat != "Pienso":
+        return ""
+    return f'''<section class="t-bloque" data-orientacion-alimentacion aria-labelledby="pienso-elegir-titulo">
+<h2 id="pienso-elegir-titulo">Revisa la etiqueta antes de comparar sacos</h2>
+<p>Esta categoría incluye referencias de arranque y de puesta. No son alternativas intercambiables solo por aparecer en la misma lista. Comprueba destino e instrucciones de cada ficha y consulta el aviso veterinario de esta página cuando corresponda.</p>
+<ol>
+<li>Empieza por <a href="{raiz}blog/leer-etiqueta-pienso-aves.html">cómo leer la etiqueta del pienso</a>.</li>
+<li>Con productos apropiados para tu caso, compara <a href="{raiz}calculadoras.html#sacos">precio por kilo</a>. Esta cuenta no evalúa la composición.</li>
+<li>Revisa <a href="{raiz}blog/almacenar-pienso-gallinas.html">conservación y rotación del alimento</a> antes de elegir el tamaño del saco.</li>
+</ol>
+<p>Si vienes del canal, sigue el <a href="{raiz}youtube/alimentacion.html">recorrido de alimentación y cuentas</a>. La hoja de registro y las calculadoras son gratuitas.</p>
+</section>'''
+
+
 def cuerpo_categoria(cat, grupo, productos, raiz):
     otros = []
     for sid, _titulo, cats in SECCIONES:
@@ -545,31 +593,46 @@ def cuerpo_categoria(cat, grupo, productos, raiz):
             elif any(p["categoria_csv"] == cat_csv for p in productos):
                 otros.append(f'<a class="t-chip" href="{raiz}tienda/c/{slugify(nombre)}/">{esc(nombre)}</a>')
     cards = "\n".join(tarjeta(p, raiz, "h2") for p in grupo)
+    ayuda_busqueda = ' aria-describedby="comederos-buscar-ayuda"' if cat == "Comederos" else ""
+    acceso_catalogo = (f'<p><a class="btn" href="#catalogo-comederos">Ver los {len(grupo)} comederos</a></p>'
+                       if cat == "Comederos" else "")
+    inicio_catalogo = ('<section class="t-cat" id="catalogo-comederos" tabindex="-1" aria-label="Catálogo de comederos">'
+                       if cat == "Comederos" else "")
+    fin_catalogo = '</section>' if cat == "Comederos" else ""
+    sin_resultados = ('<div class="t-vacio" data-t-vacio hidden><p>Ningún comedero coincide con tu búsqueda. Prueba una sola palabra, como «pedal», o una marca.</p>'
+                     '<button class="btn sec" type="button" data-t-limpiar>Limpiar búsqueda</button></div>'
+                     if cat == "Comederos" else '<p class="t-vacio" data-t-vacio hidden>Ningún producto de esta categoría coincide.</p>')
     aviso_cat = f'<p class="t-vet">{esc(AVISO_VET)}</p>' if cat in VET_CATS or cat == "Pienso" else ""
     return f'''<p class="crumb"><a href="{raiz}index.html">Inicio</a> · <a href="{raiz}tienda/">Tienda</a> · {esc(cat)}</p>
 <header class="t-hero">
 <p class="kicker">Tienda</p>
 <h1>{esc(cat)}</h1>
 <p class="t-lead">{len(grupo)} productos. El precio se ve en Amazon.</p>
+{acceso_catalogo}
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 {aviso_cat}
 <p><a class="btn sec" href="{raiz}tienda/">Ver toda la tienda</a> <a class="btn sec" href="{raiz}ebooks/">Ebooks a 3,00 USD</a></p>
 </header>
 {guia_pollitos(grupo[0], raiz)}
+{orientacion_comederos(cat, raiz)}
+{orientacion_seguridad(cat, raiz)}
+{orientacion_alimentacion(cat, raiz)}
+{inicio_catalogo}
 <div class="t-filtros">
 <div class="t-buscar">
 <label class="t-buscar-etq" for="t-buscar">Buscar en {esc(cat)}</label>
-<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre o palabra clave" autocomplete="off">
+<input id="t-buscar" data-t-buscar type="search" placeholder="Nombre o palabra clave" autocomplete="off"{ayuda_busqueda}>
 </div>
 <div class="t-chips" aria-label="Categorías de esta sección">
 {"".join(otros)}
 </div>
 <p class="t-cuenta" data-t-cuenta aria-live="polite">{len(grupo)} productos</p>
 </div>
-<p class="t-vacio" data-t-vacio hidden>Ningún producto de esta categoría coincide.</p>
+{sin_resultados}
 <div class="t-grid" data-t-bloque>
 {cards}
-</div>'''
+</div>
+{fin_catalogo}'''
 
 
 def guia_bebederos(p, raiz):
@@ -580,6 +643,17 @@ def guia_bebederos(p, raiz):
 <h2>Antes de elegir tu bebedero</h2>
 <p>Revisa el suministro y la limpieza en la <a href="{raiz}blog/agua-gallinas-ponedoras-bebederos.html">guía de agua y bebederos para gallinas</a>.
 Para contrastar formatos y capacidades, consulta la <a href="{raiz}comparativas/comparativa-bebederos-tetina-vs-colgante.html">comparativa de tetinas, copas y bebederos colgantes</a>.</p>
+</section>'''
+
+
+def guia_comederos(p, raiz):
+    """Vuelve desde las tres fichas del recorrido a los criterios y el registro."""
+    if p["asin"] not in {"B00TXW0UQK", "B00TXX20GW", "B07MQW8MQK"}:
+        return ""
+    return f'''<section class="t-bloque" data-guia-comederos>
+<h2>Compara antes de elegir tu comedero</h2>
+<p>Revisa el acceso al pedal, la adaptación y la limpieza en la <a href="{raiz}tsr/tsr-comederos-antirratas.html">guía para elegir un comedero de pedal</a>. Contrasta capacidades y límites en la <a href="{raiz}comparativas/comparativa-comederos-pedal-antirratas.html">comparativa de los tres modelos</a>.</p>
+<p>Antes de atribuir un ahorro al equipo, sigue la <a href="{raiz}blog/reducir-desperdicio-pienso.html">guía para registrar el desperdicio</a> y anota tus datos en la <a href="{raiz}hoja-registro-puesta.html">hoja semanal gratuita</a>. Esta comparación es documental: no hemos probado físicamente el producto.</p>
 </section>'''
 
 
@@ -604,6 +678,7 @@ def cuerpo_producto(p, vecinos, raiz):
 {seccion_texto("data-recomendacion", "Por qué lo recomendamos", p["recomendacion"])}
 {html_descripcion_larga(p.get("descripcion_larga"))}
 {guia_bebederos(p, raiz)}
+{guia_comederos(p, raiz)}
 {guia_pollitos(p, raiz)}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
@@ -714,6 +789,9 @@ def escribir(productos):
             f"{cat}: {len(grupo)} productos de avicultura enlazados a Amazon. "
             "El precio se ve en Amazon, no en esta web."
         )
+        if cat == "Comederos":
+            ctitulo = "Comederos para gallinas: cómo elegir | Granja Rentable"
+            cdesc = "Compara comederos para gallinas según tu lote: guías de pollitos, desperdicio y pedal, fichas de equipo y registro gratuito de pienso."
         datos_c = [
             migas([("Inicio", SITIO + "/"), ("Tienda", canon), (cat, curl)]),
             lista(cat, grupo),
@@ -888,9 +966,8 @@ def comprobar(productos, urls, precios_decimales):
                     if "amazon.com" not in href or "tag=granjarentabl-20" not in href:
                         errores.append(f"{rel}: Amazon sin tag {href}")
                     if "/product-reviews/" in href:
-                        if 'rel="nofollow sponsored noopener"' not in tag or 'target="_blank"' not in tag:
-                            errores.append(f"{rel}: rel de reseñas incorrecto")
-                    elif 'rel="sponsored nofollow noopener"' not in tag or 'target="_blank"' not in tag:
+                        errores.append(f"{rel}: destino de reseñas heredado")
+                    if 'rel="sponsored nofollow noopener"' not in tag or 'target="_blank"' not in tag:
                         errores.append(f"{rel}: rel o target incorrecto")
                     m_asin = re.search(r"/dp/([A-Z0-9]{10})", href)
                     if m_asin:
@@ -923,7 +1000,7 @@ def comprobar(productos, urls, precios_decimales):
                 errores.append(f"{rel}: frases {nexp}/{nrec}")
             if "<h1>" not in html or 'rel="canonical"' not in html or "og:title" not in html:
                 errores.append(f"{rel}: falta SEO")
-            if "Ver precio en Amazon" not in html or "Ver las reseñas en Amazon" not in html:
+            if "Ver precio en Amazon" not in html:
                 errores.append(f"{rel}: falta un botón de Amazon")
             if "t-sello" in html or "sello-recomendado-granja-rentable" in html:
                 errores.append(f"{rel}: el sello no puede publicarse en esta rama")
@@ -959,7 +1036,7 @@ def comprobar(productos, urls, precios_decimales):
         texto = ruta.read_text(encoding="utf-8")
         if "t-sello" in texto or "sello-recomendado-granja-rentable" in texto:
             errores.append(f"El sello no puede publicarse en {ruta.relative_to(RAIZ)}")
-        if cita.search(texto) or resen.search(texto.replace("Ver las reseñas en Amazon", "")):
+        if cita.search(texto) or resen.search(texto):
             errores.append(f"Queda una valoración en {ruta.relative_to(RAIZ)}")
     muestra = html_descripcion_larga("## Qué incluye\n\nUna frase.\n\n### Detalle\n\nOtra.")
     if "<h2>Qué incluye</h2>" not in muestra or "<h3>Detalle</h3>" not in muestra or "<p>Una frase.</p>" not in muestra:

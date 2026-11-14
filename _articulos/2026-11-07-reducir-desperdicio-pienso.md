@@ -4,7 +4,7 @@ titulo_seo: "Cómo reducir el desperdicio de pienso en el gallinero"
 descripcion: "Mide derrames y ajusta comederos sin dejar aves sin acceso al alimento. Un registro de siete días para identificar pérdidas reales."
 categoria: "alimentacion"
 fecha: "2026-11-07"
-actualizado: "2026-11-08"
+actualizado: "2026-11-13"
 borrador: false
 imagen: "img/blog/reducir-desperdicio-pienso.webp"
 imagen_og: "img/blog/reducir-desperdicio-pienso-og.webp"
@@ -55,3 +55,10 @@ Dejar aves sin comer no es corregir desperdicios. Verifica acceso suficiente y u
 [Universidad de Minnesota: criar pollitas](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-layer-chicks-and-pullets). Si crías para engorde, separa pérdidas e ingesta antes de interpretar la [conversión alimenticia](conversion-alimenticia-pollos-engorde.html).
 
 Cuando ya sepas los kilos que sí se comieron, pasa tu precio a la [calculadora de coste por docena](../calculadoras.html#coste-docena) o compara dos sacos en [precio por kilo](../calculadoras.html#sacos). Si el vídeo era de ahorro de pienso, el destino es [desde YouTube: alimentación](../youtube/alimentacion.html). La guía general de la ración está en [qué comen las ponedoras](alimentacion-gallinas-ponedoras.html).
+
+
+## Si estás valorando un comedero de pedal
+
+Antes de cambiar el equipo, registra dónde se pierde pienso y comprueba si un ajuste del comedero actual resuelve el problema. Si necesitas comparar opciones, consulta los [criterios para elegir un comedero de pedal](../tsr/tsr-comederos-antirratas.html) y la [comparación de tres modelos del catálogo](../comparativas/comparativa-comederos-pedal-antirratas.html). La capacidad por sí sola no demuestra un ahorro ni la adecuación a todas tus aves.
+
+La [hoja semanal de puesta y pienso](../hoja-registro-puesta.html) es gratuita. Anota la fecha de cualquier cambio y distingue el gasto de pienso de los demás costes de producción.

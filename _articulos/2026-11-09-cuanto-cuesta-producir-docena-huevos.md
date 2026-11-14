@@ -5,6 +5,7 @@ descripcion: "Calcula cuánto cuesta producir una docena de huevos con tus datos
 categoria: ponedoras
 fecha: 2026-11-09
 borrador: false
+actualizado: 2026-11-13
 autor: "Equipo editorial de Granja Rentable"
 imagen: "img/blog/costo-granja-avicola.webp"
 imagen_og: "img/blog/costo-granja-avicola-og.webp"
@@ -462,6 +463,10 @@ Con esa información podrás detectar desperdicios, revisar precios, comparar ca
 En **Granja Rentable** queremos ayudarte a tomar decisiones con datos, no con promesas.
 
 [**Ver los ebooks de Granja Rentable**](https://granjarentable.com/ebooks/) para aprender más sobre alimentación, gallineros, manejo de ponedoras y economía de pequeñas explotaciones avícolas.
+
+## Continúa desde tus registros
+
+Para separar el desembolso de apertura de los gastos de producción, utiliza la [guía de presupuesto inicial](costo-granja-avicola.html). El [recorrido de costes desde YouTube](../youtube/costes.html) reúne la hoja de registro y las calculadoras. La [calculadora de rentabilidad](../calculadora.html) usa supuestos que debes sustituir por los de tu lote.
 
 ## Fuentes técnicas y metodología
 

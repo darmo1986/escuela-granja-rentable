@@ -1,67 +1,82 @@
 ---
 titulo: "Cómo criar pollitos: guía de los primeros 30 días"
 titulo_seo: "Cómo criar pollitos: guía de los primeros 30 días"
-descripcion: "Todo lo que necesita un pollito recién nacido: temperatura, cama, agua, comida y vacunas durante sus primeros 30 días de vida."
+descripcion: "Prepara la criadora y registra calor, agua, alimento y cama durante el primer mes, ajustando el manejo al lote."
 categoria: engorde
 fecha: 2026-10-22
-actualizado: 2026-11-01
+actualizado: 2026-11-13
 borrador: false
 imagen: "img/blog/criar-pollitos-30-dias.webp"
 imagen_og: "img/blog/criar-pollitos-30-dias-og.webp"
 imagen_alt: "Pollitos Wyandotte en una criadora, con comedero, bebedero y un recipiente de grit"
 imagen_credito: "Foto: Frank Vincentz, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kluse_-_Wyandotten_ssg_5_Tage_03_ies.jpg) Imagen adaptada de tamaño y encuadre."
+autor: "Equipo editorial de Granja Rentable"
 ---
 
-## Cómo criar pollitos recién nacidos: guía de los primeros 30 días
+El primer mes necesita una criadora preparada y un seguimiento que permita detectar fallos. Una tabla de temperaturas puede orientar, pero no sustituye observar a los pollitos ni seguir las instrucciones del sistema de calefacción y del proveedor del lote.
 
-Los primeros 30 días deciden si tendrás un lote de pollos de engorde fuerte y parejo o bajas constantes. Esta guía te lleva semana a semana. Cría los pollitos en su propio espacio: no los mezcles con gallinas ponedoras ni con aves adultas.
+Esta guía se refiere a pollitos de gallina. Distingue el programa de alimentación de pollos de engorde del de futuras ponedoras y mantén a las aves jóvenes en un espacio separado de las adultas.
 
-### Preparar la criadora antes de que lleguen
+## Antes de recibirlos: prueba la criadora sin aves
 
-Monta la criadora **24 horas antes** de que lleguen los pollitos:
+Arranca el sistema con antelación para comprobar su funcionamiento. La Universidad de Minnesota recomienda prepararlo el día anterior. Verifica que puedes medir la temperatura a la altura de los pollitos y que existe una zona a la que puedan apartarse del calor.
 
-- **Lámpara de calor** o placa térmica a 35 °C en la zona caliente.
-- **Cama de viruta** seca de 5 cm (nunca papel de periódico: resbalan y se lesionan las patas).
-- **Bebederos** con agua tibia y **comederos** con pienso de iniciación ya puestos.
-- Zona caliente y zona más fresca para que ellos elijan dónde estar.
+| Comprobación | Qué debe quedar resuelto |
+| --- | --- |
+| Calefacción | Equipo estable y montado según su manual, sin cables o piezas accesibles que puedan causar daños |
+| Agua | Bebedero accesible, estable y que suministre agua al accionarlo si tiene válvula |
+| Alimento | Pienso de inicio apropiado para el destino del lote, con instrucciones del fabricante disponibles |
+| Cama | Material seco, absorbente y una superficie que permita caminar sin resbalar |
+| Aire | Renovación sin que una corriente incida directamente sobre los pollitos |
+| Seguimiento | Termómetro, libreta y contacto del proveedor o veterinario |
 
-### Semana 1 (días 1-7): calor y observación
+Un recipiente lleno no prueba que el pollito pueda beber. Comprueba el punto de acceso y observa su utilización. La [guía de comederos para pollitos](comedero-para-pollitos-como-elegir.html) ayuda a revisar el otro equipo antes de comprar más material.
 
-- Temperatura: **35 °C** bajo la lámpara.
-- Agua limpia y tibia desde el primer momento, sin añadirle nada que no te haya indicado el veterinario.
-- Pienso de iniciación a libre disposición, siempre.
-- Revisa 3-4 veces al día: pollitos activos y repartidos = todo bien.
+## Calor durante las cuatro semanas
 
-### Semana 2 (días 8-14): bajando la temperatura
+Minnesota propone como referencia inicial **90–95 °F, aproximadamente 32–35 °C**, y una reducción gradual de unos **5 °F, aproximadamente 2,8 °C, por semana**. Son referencias de crianza, no consignas universales para cualquier aparato o ambiente. En una placa, por ejemplo, sigue sus instrucciones de altura y uso; no traslades sin más una lectura bajo lámpara a otro sistema.
 
-- Baja a **32 °C**.
-- Cambia la cama si está húmeda: la humedad trae coccidiosis.
-- Ya puedes ponerles un palito bajo para que empiecen a subirse (desarrolla las patas).
+| Etapa | Qué revisar antes de cambiar el ajuste |
+| --- | --- |
+| Días 1–7 | Distribución del lote, acceso al agua y alimento y lectura en la zona de cría |
+| Días 8–14 | Necesidad de ajuste gradual, cama y funcionamiento de bebederos |
+| Días 15–21 | Espacio disponible, diferencias de tamaño y acceso de los más pequeños |
+| Días 22–30 | Emplume, ambiente real y necesidad de calor; no decidir solo por la fecha |
 
-### Semana 3 (días 15-21): empiezan las plumas
+La distribución aporta información: amontonarse bajo el calor o alejarse de él puede señalar incomodidad térmica. Comprueba también agua, aire y funcionamiento del equipo. Un lote repartido no permite descartar por sí solo una enfermedad.
 
-- Baja a **29 °C**.
-- Aparecen las plumas de las alas. Es normal que se vean "despeinados".
-- Amplía el espacio: ya necesitan el doble que al nacer.
+## Una revisión que puedas repetir
 
-### Semana 4 (días 22-30): casi independientes
+Al comienzo y al final de tu jornada, y adicionalmente cuando cambien las condiciones, anota qué encuentras. Durante la recepción, cambios de equipo o tiempo extremo necesitarás comprobaciones más frecuentes. Ajusta el seguimiento al riesgo del alojamiento; no uses un número de visitas como garantía de que todo funciona.
 
-- Baja a **26 °C**. Si el clima es bueno, puedes apagar la lámpara de día.
-- Cambia poco a poco a pienso de crecimiento.
-- A partir del día 25-30, con buen tiempo, pueden salir al exterior en un corral protegido.
+1. Mira al conjunto y después a los pollitos que se quedan apartados.
+2. Comprueba agua disponible en el punto donde beben y registra fugas.
+3. Comprueba el alimento y si todos pueden alcanzarlo.
+4. Revisa zonas mojadas, cama apelmazada y ventilación.
+5. Anota el cambio realizado y vuelve a observar su efecto.
 
-### Agua: las reglas de oro
+No impongas un litro diario por diez pollitos como consumo mínimo ni como reserva suficiente. El uso cambia con edad, dieta, ambiente y derrames. Mantén suministro accesible y registra cuánto utilizas; agua repuesta y agua bebida no son necesariamente lo mismo.
 
-1. **Siempre limpia y fresca.** Cambia el agua a diario como mínimo.
-2. Bebederos bajos para que lleguen, pero que no se metan dentro y se mojen.
-3. Un litro de agua por cada 10 pollitos al día, como mínimo.
+## Alimentación sin cambios automáticos por cumpleaños
 
-### Vacunas en el primer mes
+Usa un alimento completo destinado a la fase y al tipo de ave. La guía de Minnesota para pollos de engorde diferencia su programa del de pollitas de puesta. No cambies siempre a crecimiento en la cuarta semana: comprueba la etiqueta, el programa del proveedor y el destino del lote.
 
-- Al comprar los pollitos, pregunta qué vacunas traen hechas desde la incubadora y pide el papel.
-- El veterinario te dirá qué vacunas y cuándo, según tu zona.
-- Apunta cada vacunación: fecha, lote y quién la aplicó.
+No sustituyas el alimento completo por sobras como dieta principal. Para planificar fases consulta [alimentación de pollos de engorde](alimentacion-pollos-engorde-fases.html) o [alimentación por etapas](alimentacion-gallinas-por-etapas.html), según corresponda.
 
-### Señales de alarma
+## Registro diario de incidencias
 
-Ve al veterinario o aísla al pollito si ves: ojos cerrados e hinchados, diarrea con sangre, cojera, plumas erizadas todo el día o que deja de comer. Actuar el primer día marca la diferencia.
+| Fecha y edad | Lectura y punto de medida | Agua y alimento | Cama y comportamiento | Cambio y revisión posterior |
+| --- | --- | --- | --- | --- |
+| Ejemplo ficticio, día 9 | Anotar tu lectura, sin copiar una consigna | Fuga en un bebedero | Zona húmeda debajo | Reparar, retirar cama mojada y volver a comprobar |
+
+La columna final permite distinguir observar un problema de comprobar que quedó resuelto. No hace falta atribuir una mejora a un producto: registra qué cambió y cuándo.
+
+## Vacunas, salidas y señales de alarma
+
+Pide al proveedor el historial sanitario y conserva la documentación. El calendario de vacunación depende de origen, destino y riesgos locales: acuerda las decisiones con un veterinario.
+
+Salir al exterior o retirar la calefacción no es un paso obligatorio al cumplir 25 o 30 días. Valora las aves, las condiciones ambientales y la protección de la instalación. Si observas debilidad marcada, dificultad respiratoria, falta de ingesta o bajas, solicita ayuda veterinaria; no esperes al siguiente cambio de semana.
+
+## Fuentes y alcance
+
+[Universidad de Minnesota: pollitas de puesta](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-layer-chicks-and-pullets) y [pollos de engorde](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-chickens-for-meat). Referencias para calor, observación, alojamiento y alimentación. La lista de recepción y la hoja de seguimiento son una propuesta editorial para organizar comprobaciones, no un ensayo de crianza ni un calendario veterinario.

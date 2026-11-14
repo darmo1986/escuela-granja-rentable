@@ -26,6 +26,9 @@ jobs:
       - name: Bajar el repositorio
         uses: actions/checkout@v4
 
+      - name: Limpiar botones heredados de Amazon
+        run: python3 _fuentes/tienda/limpiar_destinos.py
+
       - name: Generar Artículos y el menú
         run: python3 blog/generar.py
 

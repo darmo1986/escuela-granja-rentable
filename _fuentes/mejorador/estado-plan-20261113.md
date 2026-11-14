@@ -1,0 +1,116 @@
+# Continuación del plan de YouTube — 13 de noviembre de 2026
+
+Base publicada: 483c83972285e3112179f3997ae5e961b99b8114. Se continúa en el PR #119, conservando sus cambios de curso y registro semanal. No se publica esta tanda.
+
+## Plan recuperado y criterio
+
+Se ha leído íntegramente `plan-granja-rentable.md` (12/11/2026), que sintetiza veinte vídeos de Romuald Fons y Sam Oh/Ahrefs, y `REVISION-DARMO.md`. El plan no equivale a veinte expertos ni a una revisión exhaustiva de todas sus afirmaciones. No se ha vuelto a visionar ni verificado íntegramente cada vídeo.
+
+Se conserva la secuencia: inventario → piloto de agua/bebederos → comederos → medición disponible. El piloto de agua fue publicado mediante #87 y se conserva. Portada y navegación ya recibieron cambios posteriores; no se vuelven a crear. El curso y la hoja semanal de #119 siguen pendientes de revisión. No se tocan otras ramas abiertas.
+
+Aplicación elegida: mejorar contenido existente y conectar problema → criterios de elección → comparación → ficha, sin crear URLs. La carencia observable es una guía de comederos que mostraba jerga interna («TSR», intención de compra) y absolutos de eficacia, y una comparación que asociaba capacidad con tamaños de lote sin justificarlo. No hay una fuente de volumen de búsquedas ni datos de Search Console recuperados: la prioridad se basa en esas carencias, no en una afirmación de alta demanda.
+
+## Preparado en el mismo borrador
+
+- Artículo fuente de desperdicio: enlaces contextuales a guía, comparativa y hoja gratuita. Actualizado a 13/11. El HTML del artículo lo genera el flujo existente.
+- Guía de comederos: acceso, adaptación, instalación, limpieza y observación del problema antes de comprar. Se retiran «a prueba de ratas y sin desperdicio» y la jerga interna.
+- Comparativa: conserva los tres ASIN, capacidades nominales y URLs; sustituye recomendaciones vagas por comprobaciones y límites. Tabla con desplazamiento propio, foco, título y cabeceras de fila. No se declara verificada visualmente en móvil.
+- Fuentes del fabricante y alcance documental: sin ensayo físico, cifras de ahorro ni existencias inventadas. No se modifica catálogo, tag ni destino Amazon.com. Se mantienen enlaces internos a las tres fichas.
+
+Estas dos páginas de equipo son HTML estático; no tienen un generador propio. Se ha ejecutado el generador del blog y comprobado que conserva su contenido y genera los enlaces nuevos del artículo. No se incluyen sus cambios incidentales en otras páginas.
+
+## Fuentes consultadas
+
+- https://grandpasfeeders.com/pages/faq — entrenamiento y precaución sobre aves pequeñas; son indicaciones del fabricante, no una prueba nuestra.
+- https://rentacoop.com/blogs/instructions/25-lb-treadle-chicken-feeder-instructions — página de instrucciones para 25 lb; se verifica la existencia del recurso, no se afirma haber reproducido todo su vídeo.
+- https://developers.google.com/search/docs/fundamentals/creating-helpful-content — utilidad y valor propio.
+- https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews — criterios de decisión, límites y recursos útiles. No avala estos productos ni garantiza posicionamiento.
+
+## Comprobaciones y deuda anterior
+
+52 pruebas Python aprobadas. Auditoría de 500 páginas generadas sin referencias internas inexistentes ni anclas rotas; los 86 avisos de descripción y dos de canónica corresponden a las mismas redirecciones/páginas noindex ya documentadas. La revisión visual de móvil e impresión continúa pendiente.
+
+El verificador del piloto de agua NO aprueba: rechaza tres enlaces `product-reviews` de sus fichas. Se reproduce el mismo fallo sobre la copia de la versión publicada, sin estos cambios. No se presenta como un fallo nuevo ni como una comprobación aprobada. Inventario local de tienda: 507 referencias `product-reviews` en 203 archivos HTML, en la versión del código revisada. No es una comprobación HTTP de Amazon ni prueba que todos esos destinos devuelvan error. El generador de tienda sigue emitiendo ese patrón; debe corregirse como tarea separada y verificarse tras regenerar, conservando etiqueta comercial y un texto de enlace fiel al destino.
+
+## Hipótesis, recursos y siguiente prueba
+
+Hipótesis: un recorrido más claro entre desperdicio, registro y elección de equipo puede ayudar a decidir y evitar compras inadecuadas. Sin tasa de conversión, ventas, comisiones ni beneficio atribuibles verificados. No se han añadido servicios, dependencias ni gastos de pago.
+
+Tras aprobación y publicación, comprobar páginas y enlaces reales. Con conexiones autorizadas, registrar una referencia y comparar periodos equivalentes (por ejemplo, 28 días, ampliando si faltan datos): consultas y clics en Search Console; clics afiliados con denominador disponible; ventas e ingresos en Amazon. Un clic no es una venta. Calcular beneficio descontando costes reales, incluidas herramientas, producción y comisiones aplicables. Sin acceso a esos informes no se afirma una mejora de tráfico o ingresos.
+
+La corrección de `product-reviews` se prepara en la ampliación descrita abajo. Tras publicarla con aprobación, la siguiente tarea será comprobar destinos reales y recuperar métricas autorizadas antes de ampliar más comparativas. No se fusiona ni publica #119 sin aprobación específica. Reversión: revertir los commits aprobados y regenerar el blog, comprobando solapamientos con cambios posteriores.
+
+
+## Nueva corrección preparada: destinos Amazon en origen
+
+Se elimina el segundo botón de reseñas del generador de tienda y se conserva «Ver precio en Amazon», dirigido al producto con el mismo ASIN y tag. No se promete abrir una pestaña de opiniones ni se convierte una URL de reseñas en otro botón duplicado.
+
+El despliegue propuesto ejecuta `_fuentes/tienda/limpiar_destinos.py` antes de generar el blog. Es una migración acotada de los HTML heredados: solo retira el botón `t-resenas` cuando el mismo bloque conserva un `t-amazon` al mismo ASIN, ambos con el identificador aprobado y atributos esperados. Ante un patrón distinto, se detiene antes de escribir ningún archivo. Así conserva textos, imágenes y trabajo editorial que una regeneración indiscriminada de tienda podría sustituir. No consulta Amazon ni envía datos.
+
+Validación local: 507 botones heredados retirados en 203 HTML; 507 botones principales conservados con los mismos atributos. Segunda ejecución: cero cambios. Después de la limpieza y generación del blog, el piloto de agua aprueba cinco páginas y 389 enlaces, sin errores. Se resuelve en esta salida local el fallo documentado en la sección anterior; la web publicada no cambia mientras el PR sea borrador.
+
+58 pruebas Python aprobadas, incluidas discrepancia de ASIN, tag y host, atributos inesperados, contenido ajeno intacto, repetición sin cambios, validación completa antes de escribir y rechazo de enlaces heredados en la salida construida. El verificador de publicación ahora revisa todos los HTML de tienda para impedir que se publique el patrón `product-reviews`.
+
+No se prueba con esto que Amazon entregue el producto, que los enlaces conviertan ni que haya comisiones: el objetivo es un destino coherente y verificable en el código. Los informes comerciales, el ensayo visual en móvil y la aprobación de publicación siguen pendientes.
+
+Comprobación adicional del origen: tras generar primero el blog (para disponer de los artículos enlazados), el generador de tienda completa sus 169 productos y 33 categorías con comprobación interna de enlaces, tag y schema correcta. Sus 237 HTML no contienen botones heredados y la limpieza no los modifica. Esta regeneración completa se realiza solo en otra copia de comprobación: no se incluyen sus cambios editoriales incidentales en el PR.
+
+
+## Fichas conectadas con el recorrido de comederos
+
+Carencia verificada en la base e262dd7: las tres fichas de comederos no enlazaban a la guía, la comparación ni el registro del desperdicio. Sus textos conservaban absolutos de eficacia retirados de la guía. Se completa el mismo PR, sin abrir otro lote.
+
+Se añade un bloque antes del botón comercial en las tres fichas: guía de elección, comparación de los tres modelos, registro del desperdicio y hoja semanal gratuita. El generador de tienda conserva ese bloque y no lo añade a otros ASIN. Se mantienen los títulos, las URLs, el tag, las imágenes y todos los demás datos del catálogo.
+
+Los textos de explicación y recomendación se corrigen en pulir.py y se reflejan en las fichas, las tarjetas de portada/categoría de tienda y el catálogo público. Solo cambian estos dos campos en tres de los 169 productos; no se copian al catálogo público los precios o valoraciones históricos del CSV. Se distingue capacidad nominal de autonomía, acceso y resultados no medidos. Las fuentes documentales de la tanda siguen siendo las indicaciones de los fabricantes citadas arriba; no se añade experiencia de uso propia ni una afirmación de ahorro.
+
+Comprobación del recorrido: siete páginas, 469 enlaces y tres fichas, sin errores. Incluye enlaces de ida y vuelta, destinos y anclas locales, bloque único antes de la compra, coincidencia de textos con la fuente y el catálogo y ausencia del bloque en un ASIN ajeno. Tras regenerar la tienda completa en otra copia, el mismo verificador vuelve a aprobar. El generador conserva sus 169 productos y 33 categorías y pasa su comprobación interna de enlaces, tag y schema. Las 58 pruebas Python y el piloto de agua (cinco páginas y 389 enlaces) también aprueban. Auditoría de 500 páginas sin nuevos enlaces internos inexistentes.
+
+Hipótesis: permitir que quien llegue a una ficha desde buscadores pueda volver a los criterios y al registro antes de comprar. No se conocen todavía sesiones, clics ni ventas atribuibles que permitan cuantificar el efecto. Riesgo: más enlaces en la ficha; revisar claridad y longitud en móvil antes de publicar. Sin servicios ni gastos de pago nuevos. Siguiente prueba, después de la aprobación: recorrer las tres fichas en móvil y comprobar que se puede comparar y volver al registro; medir el recorrido solo con acceso autorizado. Continúan pendientes la revisión visual y la aprobación de publicación.
+
+
+## Orientación de la categoría de comederos
+
+Se aplica el punto del plan sobre categorías que ayudan a decidir: la categoría existente mostraba su recuento y productos, sin conectar con las guías del recorrido. Se añade orientación antes de filtros y tarjetas con cuatro necesidades: criar pollitos, identificar pérdidas, valorar un pedal y registrar el manejo. Se enlazan las guías, comparación y hoja gratuitas ya existentes. No se crean páginas ni URLs nuevas.
+
+El título y la descripción de esta categoría se hacen específicos de comederos para gallinas y de los recursos que contiene. El buscador se asocia mediante aria-describedby a una explicación de su comportamiento real: varias palabras se combinan como condición de coincidencia de todas ellas. No se cambia JavaScript ni se añaden herramientas de seguimiento. El generador limita la orientación y la mejora de metadatos a la categoría Comederos; las demás categorías conservan sus plantillas actuales.
+
+Validación: 58 pruebas Python aprobadas. El recorrido ampliado aprueba ocho páginas y 562 enlaces. El verificador exige un único bloque idéntico al generador antes de los filtros, sus destinos y la explicación asociada al buscador, y comprueba que no aparece para una categoría ajena. La regeneración completa conserva las mejoras y completa 169 productos en 33 categorías con sus comprobaciones internas correctas; los verificadores de comederos y bebederos también aprueban después.
+
+Hipótesis: orientar al visitante hacia el contenido que necesita antes de elegir equipo puede facilitar una visita cualificada. No se afirma volumen de búsquedas ni mejora de CTR, posición, ventas o beneficio. Esfuerzo acotado a categoría, generador, verificador y documentación; sin coste externo añadido. Riesgo: la introducción desplaza las tarjetas hacia abajo, por lo que sigue siendo necesaria la revisión visual en móvil. Tras la aprobación, comprobar ese recorrido en producción y medir solo con informes autorizados. No se publica esta ampliación.
+
+
+## Acceso directo al catálogo sin recorrer toda la orientación
+
+Se mantiene el criterio del plan de facilitar la navegación de la categoría existente. La orientación añadida precede al buscador y a las tarjetas: quien ya sabe qué busca tenía que atravesarla completa. Se añade «Ver los 9 comederos» junto al recuento inicial. El enlace salta a un destino único que agrupa buscador y productos, admite foco y reutiliza el margen de desplazamiento de la tienda para su cabecera. Las guías permanecen visibles. El recuento del botón se obtiene del grupo de productos en el generador; se limita a Comederos. No cambia JavaScript, catálogo ni destinos comerciales.
+
+Validación de esta ampliación: 58 pruebas Python aprobadas; recorrido de comederos, ocho páginas y 563 enlaces; piloto de agua, cinco páginas y 389 enlaces. Regeneración de tienda completa comprobada con los mismos verificadores y persistencia del acceso directo. No se incluyen cambios incidentales de la regeneración. El verificador revisa que enlace y destino sean únicos y estén en el orden previsto.
+
+Límite visual: se intentó abrir la vista previa local con el navegador disponible; devolvió ERR_CONNECTION_REFUSED. No se declara inspección visual móvil ni funcionamiento del salto observado en navegador. Continúa pendiente comprobar cabecera, foco y longitud en un móvil antes de publicar. Hipótesis: reducir el desplazamiento para acceder al catálogo sin perder la orientación; no se atribuyen resultados comerciales. La tanda sigue en el PR #119 en borrador, sin fusión ni publicación.
+
+
+## Recuperación de búsquedas sin resultados — preparación local
+
+Problema observado en el código: al buscar en la categoría Comederos sin coincidencias, solo aparece un aviso; no se ofrece una acción directa de recuperación. Aplicación propia del criterio de navegación útil del plan: el aviso explica que se puede probar una palabra o marca y ofrece «Limpiar búsqueda». El botón borra la consulta, recalcula tarjetas y recuento y devuelve el foco al buscador. Solo esta categoría emite el control; el código compartido admite las páginas que no lo tienen. Se actualiza la versión del recurso JavaScript en el generador y la categoría editada para evitar usar la copia anterior en caché. No se cambian URLs, fichas, catálogo ni etiquetas comerciales.
+
+Validación: sintaxis JavaScript correcta; ejecución de su lógica con un DOM simulado comprobando tildes, coincidencia, cero resultados, recuperación, recuento, foco y páginas sin botón. Las 58 pruebas Python pasan. Regeneración completa en una copia desechable: 169 productos y 33 categorías; recorridos de comederos (ocho páginas, 563 enlaces) y bebederos (cinco páginas, 389 enlaces) sin errores; botón único limitado a Comederos y versión del script actualizada. Ajuste final de plantilla para conservar el aviso anterior en otras categorías; coincidencia del aviso de Comederos entre fuente y HTML comprobada. No se incluyen cambios incidentales de la generación.
+
+Límites: la ejecución con DOM simulado no es una revisión visual ni una prueba de teléfono físico. Persiste la limitación de vista previa ya documentada. No hay métricas que permitan atribuir mejoras comerciales. El envío anterior a GitHub fue rechazado por la revisión automática por falta de autorización explícita para ese destino; no se ha reintentado ni empleado otra vía. Tanto el acceso directo anterior como esta recuperación permanecen en commits locales, pendientes de autorización para incorporarse al PR #119. La web pública no cambia.
+
+
+## Comparativa con acceso a cada ficha desde su fila
+
+Carencia observable: la tabla identifica los modelos, pero obliga a bajar hasta los recursos relacionados para abrir sus fichas. Los enlaces comerciales del listado final se muestran solo con códigos ASIN. Se aplica el criterio del plan de conectar comparación y ficha con nombres reconocibles: cada nombre de la primera columna enlaza a su ficha; el listado comercial identifica marca y capacidad; después de la tabla se ofrece acceso a la categoría para consultar otros formatos. Se conserva el ASIN en su columna para identificar cada referencia, así como las capacidades, fuentes y límites ya documentados. No se añaden productos ni afirmaciones de eficacia.
+
+Validación: 58 pruebas Python aprobadas. En una copia construida, comederos pasa ocho páginas y 567 enlaces; bebederos, cinco páginas y 389 enlaces. Se compara la lista completa de atributos de los enlaces Amazon antes y después: conserva destinos, tag y rel. Las tres filas enlazan a fichas existentes. La generación del blog conserva íntegro el artículo de la comparativa; actualiza zonas compartidas fuera del artículo, que no se incluyen en esta entrega. La comparación inicial de toda la página detectó esas diferencias compartidas; la verificación de persistencia del contenido editorial pasó.
+
+Archivos del cambio: comparativa estática y este registro. Hipótesis: facilitar el paso del modelo comparado a sus detalles y reconocer el destino comercial sin interpretar un código. No hay datos para atribuir más visitas, ventas o beneficio. Sigue pendiente la revisión visual en móvil por la limitación de vista previa documentada. Incorporación autorizada al mismo borrador #119; sin fusión ni despliegue. Reversión: revertir este cambio de la comparativa y revisar posibles ediciones posteriores.
+
+
+## Guía de pedal: criterios y registro antes de los productos
+
+Carencia comprobada en el código: la guía presentaba las tres tarjetas comerciales antes de explicar qué comprobar y cómo registrar el problema. Se trasladan esos dos bloques existentes, incluida la comparación, antes de la selección. Se añade una salida a la guía específica de pollitos y a la categoría de otros formatos. En cada tarjeta, el acceso a la ficha propia precede al enlace Amazon. Es una aplicación editorial del recorrido problema → criterios → comparación → ficha; no se añaden afirmaciones técnicas ni se cambia la selección de modelos.
+
+Archivos: guía HTML estática y este registro. Validación: 58 pruebas Python aprobadas, recorrido de comederos de ocho páginas y 569 enlaces, piloto de agua de cinco páginas y 389 enlaces, todos sin errores en la copia construida. Se comprueba el orden de los bloques y de los enlaces de las tres tarjetas; todos los atributos de los enlaces Amazon coinciden con la versión anterior. La generación del blog conserva íntegro el artículo de la guía. No se incluyen cambios incidentales de regeneración.
+
+Hipótesis: presentar primero criterios y recursos gratuitos puede ayudar a determinar si procede cambiar el equipo y qué detalle consultar. No hay métricas para atribuir tráfico, ventas o beneficio. Riesgo: la selección queda más abajo; antes de publicar sigue pendiente revisar claridad y desplazamiento en móvil, con la limitación de vista previa ya documentada. Se incorpora al borrador #119 autorizado; sin fusión ni despliegue. Reversión: restaurar el orden anterior y retirar los dos nuevos enlaces, comprobando cambios posteriores.
