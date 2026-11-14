@@ -1,0 +1,491 @@
+{
+  "fecha": "2026-11-14",
+  "tipo": "borradores_editoriales_con_fuentes_de_fabricante",
+  "cantidad": 16,
+  "total_redactado_seleccion_100": 22,
+  "pendientes_de_redaccion": 78,
+  "publicados": 0,
+  "nota": "Aplicaciones en granja y Lo que más gusta son valoraciones editoriales, sin prueba propia ni extracción de opiniones de clientes. Las fuentes de fabricante no verifican precio, estrellas, reseñas, variante o stock de Amazon.com. La ficha 97 tiene solo identificación indexada. Todas requieren confirmar equivalencia del ASIN, completar imágenes y verificación comercial antes de publicar.",
+  "fichas": [
+    {
+      "numero_seleccion": 13,
+      "asin": "B000HHS9S6",
+      "titulo_seo": "Cabezal Little Giant DuraFork para renovar una horca",
+      "categoria": "Horcas y recambios",
+      "descripcion": "El fabricante presenta este artículo como recambio para DuraFork PDF1. Es una opción para sustituir el cabezal cuando el mango compatible sigue en buen estado. En una granja puede servir para conservar una herramienta dedicada a retirar cama, siempre que se confirme la referencia exacta.",
+      "lo_que_mas_gusta": [
+        "Recambio identificado para DuraFork PDF1.",
+        "Permite valorar la reparación frente a comprar una horca completa.",
+        "Varios colores disponibles en la familia oficial."
+      ],
+      "por_que_valorar_en_granja_rentable": "Interesa cuando ya existe una horca compatible. El ahorro depende del estado del resto de la herramienta.",
+      "consejos_de_uso": [
+        "Comparar alojamiento y referencia con el cabezal antiguo.",
+        "Comprobar tornillo y tuerca necesarios antes del montaje.",
+        "Verificar que la unión queda firme antes de cargar."
+      ],
+      "antes_de_comprar": "Confirmar color, referencia y contenido del ASIN. La página del fabricante consultada selecciona inicialmente otro color; no demuestra la variante comercial de Amazon.",
+      "fuente_fabricante": "https://miller-mfg.com/products/durafork-replacement-fork-head",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B000HHS9S6?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 14,
+      "asin": "B003DTZLAE",
+      "titulo_seo": "Cabezal Little Giant DuraPitch II con cesta para cama",
+      "categoria": "Horcas y recambios",
+      "descripcion": "El cabezal DuraPitch II incorpora forma de cesta y púas inclinadas para retener mejor el material durante la recogida. Miller declara policarbonato y unas medidas de 13 por 16 pulgadas. La referencia oficial consultada es DP201RED, un cabezal de recambio.",
+      "lo_que_mas_gusta": [
+        "Forma de cesta para limitar derrames.",
+        "Púas inclinadas para recoger material.",
+        "Recambio separado de la herramienta completa."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede encajar en el mantenimiento de cama suelta si la separación de las púas resulta adecuada para ese material.",
+      "consejos_de_uso": [
+        "Medir el espacio de trabajo y la compatibilidad del mango.",
+        "Distinguir el cabezal DP201 de la horca completa DP2.",
+        "Revisar el conjunto de fijación al instalar."
+      ],
+      "antes_de_comprar": "Confirmar que el ASIN corresponde al cabezal y no a la horca completa. No extender una recomendación para material suelto a cama endurecida.",
+      "fuente_fabricante": "https://miller-mfg.com/products/durapitch-ii-stall-fork-head",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B003DTZLAE?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 17,
+      "asin": "B00006ICOE",
+      "titulo_seo": "Recogedor Rubbermaid FG200500CHAR para limpieza puntual",
+      "categoria": "Limpieza de instalaciones",
+      "descripcion": "El FG200500CHAR es un recogedor de plástico de 12,25 pulgadas. La ficha oficial identifica polietileno de alta densidad, dientes para limpiar la escoba y orificio para colgarlo. En la granja puede destinarse a recoger residuos secos de pasillos de servicio.",
+      "lo_que_mas_gusta": [
+        "Cuerpo de plástico para limpieza habitual.",
+        "Dientes para desprender residuos de las cerdas.",
+        "Orificio para guardarlo colgado."
+      ],
+      "por_que_valorar_en_granja_rentable": "Resulta una opción sencilla si se necesita recogida puntual de residuos y se dispone de una escoba adecuada.",
+      "consejos_de_uso": [
+        "Reservar una unidad para cada zona de limpieza.",
+        "Comprobar que el borde apoya sobre el suelo.",
+        "Vaciar, limpiar y secar antes de guardarlo."
+      ],
+      "antes_de_comprar": "Confirmar FG200500CHAR y número de unidades. La ficha del fabricante incluye datos de caja de doce: no confundir el embalaje mayorista con el contenido individual del anuncio.",
+      "fuente_fabricante": "https://www.rubbermaidcommercial.com/cleaning/dustpans/heavy-duty-dustpans/",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B00006ICOE?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 18,
+      "asin": "B08Z9ZLLVX",
+      "titulo_seo": "Escoba O-Cedar Pet Pro para suelos duros de zonas auxiliares",
+      "categoria": "Limpieza de instalaciones",
+      "descripcion": "Pet Pro combina cerdas inclinadas y un recogedor que se sujeta con el pie. El recogedor tiene borde flexible y peines para retirar pelo y residuos de la escoba. Su aplicación propuesta es la limpieza de espacios auxiliares con suelo duro.",
+      "lo_que_mas_gusta": [
+        "Cerdas inclinadas para alcanzar esquinas.",
+        "Recogedor con apoyo de pie.",
+        "Peines integrados para limpiar las cerdas."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede facilitar la limpieza en un almacén o cuarto de servicio con suelo regular.",
+      "consejos_de_uso": [
+        "Comprobar que el recogedor asienta bien.",
+        "Retirar residuos de las cerdas después de usar.",
+        "Guardar separada de los útiles de la vivienda."
+      ],
+      "antes_de_comprar": "Confirmar que se incluye escoba y recogedor. Las pruebas domésticas del fabricante no demuestran eficacia sobre cama avícola, estiércol ni reducción de patógenos.",
+      "fuente_fabricante": "https://www.ocedar.com/p/brooms/indoor-brooms/powercorner-petpro-broom-with-dust-pan",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B08Z9ZLLVX?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 19,
+      "asin": "B0C5JVX1WW",
+      "titulo_seo": "Escoba O-Cedar One Sweep con recogedor de apoyo",
+      "categoria": "Limpieza de instalaciones",
+      "descripcion": "One Sweep emplea dos tipos de cerdas: unas firmes e inclinadas para las esquinas y otras más suaves para desplazar residuos. El recogedor Step-On incorpora peines y se mantiene apoyado con el pie. La propuesta de uso es barrer suelos duros de zonas de servicio.",
+      "lo_que_mas_gusta": [
+        "Cerdas de distinta firmeza.",
+        "Cabezal inclinado para esquinas.",
+        "Recogedor con peines y apoyo de pie."
+      ],
+      "por_que_valorar_en_granja_rentable": "Una candidata para comparar si se busca un conjunto de barrido para mantenimiento diario.",
+      "consejos_de_uso": [
+        "Revisar que el suelo permita un buen apoyo del recogedor.",
+        "Limpiar las cerdas sin deformarlas.",
+        "Separar los útiles entre zonas limpias y sucias."
+      ],
+      "antes_de_comprar": "Confirmar versión y contenido del paquete. No trasladar a instalaciones avícolas el porcentaje de recogida obtenido en ensayos con suciedad doméstica.",
+      "fuente_fabricante": "https://www.ocedar.com/p/brooms/indoor-brooms/powercorner-one-sweep-broom-with-dust-pan",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B0C5JVX1WW?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 41,
+      "asin": "B003TFE7ZM",
+      "titulo_seo": "Manguera Flexzilla de 50 pies para llevar agua por la granja",
+      "categoria": "Mangueras y accesorios",
+      "descripcion": "La tabla oficial identifica HFZG550YW como una manguera de 50 pies, diámetro interior de 5/8 de pulgada y conexiones de 3/4 de pulgada con rosca 11½ GHT. Estas medidas ayudan a comprobar recorrido y accesorios antes de comprar.",
+      "lo_que_mas_gusta": [
+        "Longitud identificada por referencia.",
+        "Diámetro interior especificado.",
+        "Rosca GHT descrita por el fabricante."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede encajar en recorridos de agua de longitud moderada si las conexiones coinciden con la instalación.",
+      "consejos_de_uso": [
+        "Medir el recorrido real incluyendo curvas.",
+        "Comprobar rosca y adaptadores del grifo.",
+        "Evitar aplastamientos y revisar juntas."
+      ],
+      "antes_de_comprar": "Confirmar HFZG550YW y distinguir versión estándar de SwivelGrip. La misma medida nominal no demuestra compatibilidad entre GHT y BSP. Para agua de bebida, comprobar la aptitud expresa de la variante recibida.",
+      "fuente_fabricante": "https://flexzilla.com/pages/garden-hose-product-bulletin",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B003TFE7ZM?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 42,
+      "asin": "B004ME11FS",
+      "titulo_seo": "Manguera Camco TastePURE 22783 de 25 pies para agua",
+      "categoria": "Mangueras y accesorios",
+      "descripcion": "El catálogo Camco identifica 22783 como manguera TastePURE de 25 pies y 5/8 de pulgada de diámetro interior. La familia se presenta para agua potable y con estructura reforzada. Es una candidata para valorar al llevar agua limpia hasta los puntos de servicio.",
+      "lo_que_mas_gusta": [
+        "Referencia diferenciada por longitud y diámetro.",
+        "Familia destinada a agua potable.",
+        "Construcción reforzada descrita en el catálogo."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede interesar cuando se necesita un tramo corto de manguera destinado exclusivamente al agua limpia.",
+      "consejos_de_uso": [
+        "Comprobar conexiones y recorrido.",
+        "Enjuagar siguiendo las instrucciones de la unidad.",
+        "Guardar los extremos protegidos y fuera del suelo sucio."
+      ],
+      "antes_de_comprar": "Confirmar 22783. No confundir con 22733, también de 25 pies pero con otro diámetro. El catálogo no acredita disponibilidad actual ni certificados de la unidad vendida hoy.",
+      "fuente_fabricante": "https://www.camco.net/_files/ugd/4b6ff6_ed1f266cfab24a10b511695b1d426e00.pdf",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B004ME11FS?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 48,
+      "asin": "B000E28UQU",
+      "titulo_seo": "Pulverizador Chapin 20004 de un galón para mantenimiento",
+      "categoria": "Pulverizadores vacíos",
+      "descripcion": "Chapin identifica el 20004 como pulverizador manual de un galón para jardín y mantenimiento. Esta ficha lo considera un equipo vacío: la selección del líquido y la compatibilidad de juntas y boquilla deben resolverse por separado.",
+      "lo_que_mas_gusta": [
+        "Modelo y capacidad identificados en fuente oficial.",
+        "Funcionamiento por bombeo manual.",
+        "Formato para valorar en trabajos puntuales."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede resultar útil para aplicaciones de mantenimiento compatibles con las instrucciones de equipo y producto.",
+      "consejos_de_uso": [
+        "Comprobar compatibilidad antes de llenar.",
+        "Etiquetar el equipo según el producto usado.",
+        "Limpiar y despresurizar siguiendo el manual."
+      ],
+      "antes_de_comprar": "Confirmar 20004, contenido y manual. La identificación del pulverizador no acredita aptitud para desinfectantes, aplicación sobre aves ni productos concretos.",
+      "fuente_fabricante": "https://chapinmfg.com/collections/weed-control?page=8",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Identificación de modelo y capacidad en catálogo oficial; sin prueba de compatibilidad química.",
+      "url_afiliado": "https://www.amazon.com/dp/B000E28UQU?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 71,
+      "asin": "B004AZ8IDW",
+      "titulo_seo": "Pestillo National Hardware N184-861 para puertas de recinto",
+      "categoria": "Cierres y pestillos",
+      "descripcion": "El N184-861 está diseñado para puertas que abren hacia fuera y recintos de animales. El fabricante incluye pestillo, pieza de enganche de cuatro pulgadas y herrajes de montaje para ambos sentidos. Admite un candado adicional.",
+      "lo_que_mas_gusta": [
+        "Montaje para apertura a izquierda o derecha.",
+        "Herrajes identificados en el kit oficial.",
+        "Posibilidad de añadir candado."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede facilitar el cierre de una puerta de servicio con soporte y alineación adecuados.",
+      "consejos_de_uso": [
+        "Comprobar sentido de apertura y espacio para el enganche.",
+        "Fijar siguiendo las instrucciones.",
+        "Probar el cierre y revisar tornillos de forma periódica."
+      ],
+      "antes_de_comprar": "Confirmar referencia y contenido. El candado debe comprobarse aparte; no se atribuye resistencia específica frente a depredadores ni garantía de seguridad del recinto.",
+      "fuente_fabricante": "https://www.national-hardware.com/p/21-automatic-gate-latches?model=N184-861",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B004AZ8IDW?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 90,
+      "asin": "B00GMXFK3G",
+      "titulo_seo": "Juego DEWALT DWA2T40IR para tareas de atornillado",
+      "categoria": "Juegos de herramientas",
+      "descripcion": "DEWALT identifica DWA2T40IR dentro de su familia FlexTorq IMPACT READY con estuche ToughCase+. La ficha describe puntas mecanizadas y un sistema de almacenamiento conectable, con tapa transparente y soporte de puntas reorganizable.",
+      "lo_que_mas_gusta": [
+        "Tapa transparente para localizar accesorios.",
+        "Soportes que permiten ordenar las puntas.",
+        "Familia diseñada para aplicaciones con atornillador de impacto."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede completar un equipo de montaje de cierres y accesorios cuando las puntas coinciden con las fijaciones utilizadas.",
+      "consejos_de_uso": [
+        "Comparar tipos de punta con los tornillos habituales.",
+        "Usar la medida adecuada para cada cabeza.",
+        "Guardar los accesorios secos en el estuche."
+      ],
+      "antes_de_comprar": "Confirmar DWA2T40IR, inventario de cuarenta piezas y accesorios concretos. No confundir número de piezas con cuarenta tipos distintos ni con inclusión de herramienta eléctrica.",
+      "fuente_fabricante": "https://www.dewalt.com/en-us/product/dwa2t40ir/flextorq-impact-ready-screwdriving-bit-sets-toughcase-system",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B00GMXFK3G?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 91,
+      "asin": "B00IJ0ALYS",
+      "titulo_seo": "Kit DEWALT DCK240C2 para perforar y atornillar",
+      "categoria": "Juegos de herramientas",
+      "descripcion": "La ficha oficial del DCK240C2 reúne taladro DCD771, atornillador de impacto DCF885, dos baterías de 1,3 Ah, cargador y bolsa. El taladro tiene dos rangos de velocidad. El atornillador utiliza inserción hexagonal de un cuarto de pulgada.",
+      "lo_que_mas_gusta": [
+        "Dos herramientas para tareas diferentes.",
+        "Dos baterías en el conjunto descrito por fabricante.",
+        "Bolsa para transportar el equipo."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede encajar en mantenimiento frecuente de soportes, puertas y accesorios si el equipo y el cargador son compatibles con el país de uso.",
+      "consejos_de_uso": [
+        "Comprobar tensión y frecuencia de entrada del cargador.",
+        "Seleccionar broca o punta adecuada al trabajo.",
+        "Revisar el contenido exacto del vendedor."
+      ],
+      "antes_de_comprar": "Confirmar DCK240C2 y modelos incluidos. No deducir percusión para mampostería. La plataforma 20V MAX identifica tensión máxima inicial; el fabricante indica 18 V nominales.",
+      "fuente_fabricante": "https://www.dewalt.com/en-us/product/dck240c2/20v-max-13-ah-drill-driverimpact-driver-combo-kit",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B00IJ0ALYS?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 92,
+      "asin": "B01BHJE0J4",
+      "titulo_seo": "Maletín DEWALT DWMT75049 para mantenimiento mecánico",
+      "categoria": "Juegos de herramientas",
+      "descripcion": "El DWMT75049 es un juego de 192 piezas con tres carracas, vasos, extensiones, articulaciones y adaptadores. El fabricante incluye medidas métricas y SAE. Puede reunir herramientas para revisar uniones atornilladas y pequeños equipos de la explotación.",
+      "lo_que_mas_gusta": [
+        "Tres tamaños de accionamiento en el conjunto.",
+        "Medidas métricas y SAE.",
+        "Vasos y extensiones para distintos accesos."
+      ],
+      "por_que_valorar_en_granja_rentable": "Interesa si se mantienen equipos con medidas variadas y se quiere centralizar herramientas.",
+      "consejos_de_uso": [
+        "Comparar medidas con las máquinas existentes.",
+        "Usar el vaso del tamaño correcto.",
+        "Reponer las piezas en su alojamiento después de trabajar."
+      ],
+      "antes_de_comprar": "Confirmar DWMT75049 y lista del paquete. La cifra de 192 incluye accesorios; no significa 192 vasos. No se presume que los vasos admitan herramientas de impacto.",
+      "fuente_fabricante": "https://www.dewalt.com/en-us/product/dwmt75049/mechanics-tools-set-192-pc",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B01BHJE0J4?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 94,
+      "asin": "B001D1FFZA",
+      "titulo_seo": "Grampa's Weeder para retirar hierbas de forma mecánica",
+      "categoria": "Suelo y herramientas manuales",
+      "descripcion": "El sistema del Grampa's Weeder usa cuatro garras, apoyo para el pie y palanca con el mango. El fabricante describe cómo centrar la raíz, introducir las garras y bascular para extraerla. Es una herramienta manual para trabajar sobre hierbas individuales.",
+      "lo_que_mas_gusta": [
+        "Extracción mecánica sin motor.",
+        "Apoyo de pie para introducir el cabezal.",
+        "Mango para trabajar desde una posición erguida."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede servir para mantener pequeñas zonas exteriores y accesos donde hay hierbas aisladas.",
+      "consejos_de_uso": [
+        "Centrar el cabezal sobre la planta.",
+        "Trabajar según las instrucciones y las condiciones del suelo.",
+        "Limpiar el cabezal y guardar seco."
+      ],
+      "antes_de_comprar": "Confirmar producto original y montaje. No se promete eliminar cualquier raíz ni impedir rebrotes; el resultado depende de suelo y vegetación. No se copian pesos contradictorios de otras páginas de la marca.",
+      "fuente_fabricante": "https://grampasweeder.com/blogs/news/original-stand-up-weeder-since-1913-our-story",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B001D1FFZA?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 96,
+      "asin": "B004S0PGUC",
+      "titulo_seo": "Cultivador Fiskars Ergo para pequeñas zonas de suelo",
+      "categoria": "Suelo y herramientas manuales",
+      "descripcion": "El Ergo Cultivator 300S de referencia 384240-1007 tiene cabezal de aluminio fundido, púas y mango con orificio para colgar. Fiskars lo destina a aflojar suelo, retirar hierbas y airear pequeñas superficies.",
+      "lo_que_mas_gusta": [
+        "Cabezal de aluminio fundido.",
+        "Púas para trabajar la capa superficial.",
+        "Mango con orificio de almacenamiento."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede complementar el mantenimiento de pequeños bancales o plantaciones auxiliares de la granja.",
+      "consejos_de_uso": [
+        "Comprobar que el tamaño se adapta al trabajo.",
+        "Evitar usarlo como palanca para piedras.",
+        "Retirar tierra y guardar después del uso."
+      ],
+      "antes_de_comprar": "Confirmar equivalencia del ASIN con 384240-1007. La referencia británica 1027019 describe un cabezal de acero: no mezclar sus materiales con la ficha estadounidense.",
+      "fuente_fabricante": "https://cuix-prod.fiskars.com/en-us/gardening-and-yard-care/products/cultivating-tools/ergo-cultivator-300s-384240-1007",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B004S0PGUC?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 97,
+      "asin": "B004S0PGPM",
+      "titulo_seo": "Paleta Fiskars Ergo para plantaciones auxiliares",
+      "categoria": "Suelo y herramientas manuales",
+      "descripcion": "Fiskars presenta la Ergo Trowel 300S como paleta de mano con un mango diseñado para facilitar el trabajo de jardinería. Puede valorarse para abrir pequeños huecos y manejar tierra en plantaciones auxiliares, según la variante y sus instrucciones.",
+      "lo_que_mas_gusta": [
+        "Formato de paleta de mano.",
+        "Mango de la familia Ergo.",
+        "Referencia oficial disponible para comparar el modelo."
+      ],
+      "por_que_valorar_en_granja_rentable": "Una candidata para labores puntuales de plantación cuando una pala grande resulta poco manejable.",
+      "consejos_de_uso": [
+        "Comprobar agarre y forma de la hoja.",
+        "Limpiar después de mover tierra.",
+        "Separarla de utensilios que entren en contacto con alimento."
+      ],
+      "antes_de_comprar": "Confirmar equivalencia con 384220-1008 y material del ASIN. La página completa agotó el tiempo de acceso: solo se usa el título y descripción indexada, sin dar por comprobadas medidas ni materiales.",
+      "fuente_fabricante": "https://cuix-prod.fiskars.com/en-us/gardening-and-yard-care/products/cultivating-tools/ergo-trowel-300s-384220-1008",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Titulo y descripción indexada; página completa no accesible.",
+      "url_afiliado": "https://www.amazon.com/dp/B004S0PGPM?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    },
+    {
+      "numero_seleccion": 98,
+      "asin": "B08C253V48",
+      "titulo_seo": "Pala Garden Weasel Scoop para mover sustrato",
+      "categoria": "Suelo y herramientas manuales",
+      "descripcion": "Garden Weasel identifica la Scoop 91362 como una pala de jardinería de laterales altos y extremo dentado. La ficha describe construcción AluminIron y empuñadura texturizada. Es una herramienta para trasladar sustrato y trabajar en macetas o bancales.",
+      "lo_que_mas_gusta": [
+        "Laterales altos para contener el sustrato.",
+        "Extremo dentado para trabajos de jardinería.",
+        "Empuñadura con textura."
+      ],
+      "por_que_valorar_en_granja_rentable": "Puede encajar en el manejo de sustratos para plantaciones auxiliares de la granja.",
+      "consejos_de_uso": [
+        "Confirmar referencia y estado del borde dentado.",
+        "Usarla para el material previsto por fabricante.",
+        "Guardar limpia y separada de los útiles de alimentación."
+      ],
+      "antes_de_comprar": "Confirmar equivalencia del ASIN con 91362. No es un dosificador calibrado ni se acredita uso alimentario. La longitud publicada como 125 pulgadas parece inconsistente y se deja pendiente de aclaración.",
+      "fuente_fabricante": "https://www.gardenweasel.com/products/weasel-scoop-hand-tool",
+      "fecha_consulta": "2026-11-14",
+      "alcance_fuente": "Características del modelo o familia; equivalencia exacta con ASIN pendiente.",
+      "url_afiliado": "https://www.amazon.com/dp/B08C253V48?tag=granjarentabl-20",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false
+    }
+  ]
+}
