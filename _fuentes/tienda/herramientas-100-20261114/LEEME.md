@@ -1,5 +1,25 @@
 # Cien referencias nuevas: herramientas y protección para la granja
 
+## Estado actual de la redacción
+
+Los cien candidatos tienen texto inicial. **Esto no equivale a cien productos verificados o listos para publicar.**
+
+| Nivel | Cantidad | Archivo |
+| --- | ---: | --- |
+| Borradores con fuentes de fabricante, de alcance variable | 6 | [fichas-fabricantes-01.json](fichas-fabricantes-01.json) |
+| Borradores adicionales con fuentes de fabricante, de alcance variable | 16 | [fichas-fabricantes-02.json](fichas-fabricantes-02.json) |
+| Textos iniciales con identificación secundaria; contraste técnico pendiente | 78 | [fichas-iniciales-78.json](fichas-iniciales-78.json) |
+| Datos comerciales actuales verificados en Amazon.com | 0 | Pendiente |
+| Imágenes nuevas de la selección de cien | 0 | Pendiente |
+| Productos nuevos publicados de esta selección | 0 | Publicación desactivada |
+
+Las aplicaciones en granja y «Lo que más gusta» son criterios editoriales, sin prueba propia ni extracción de opiniones. Las fuentes de fabricante describen modelos o familias y no prueban por sí solas la equivalencia del ASIN. La ficha Fiskars n.º 97 solo tiene título y descripción indexada; el acceso completo agotó su tiempo. Las fuentes DCL040 y Camco tienen los límites indicados en cada ficha.
+
+Validación de la redacción: cien ASIN únicos; correspondencia uno a uno con la selección; tres criterios y tres consejos por texto nuevo; campos de precio, estrellas, reseñas y disponibilidad actuales sin completar; publicación desactivada en todos. No cambia el catálogo público.
+
+Pendiente: contrastar técnicamente los 78 textos iniciales, resolver la equivalencia exacta entre modelos y variantes de los cien, verificar los datos comerciales actuales en Amazon, preparar imágenes con referencias auténticas y revisar cada ficha antes de incorporarla. La consulta adicional de Amazon para la manguera Camco siguió sin acceso.
+
+
 Selección editorial del 14/11/2026. Son cien ASIN distintos del catálogo base de 169 y también de los 113 candidatos de la investigación anterior.
 
 **Estado:** investigación preparada; no se han publicado nuevos productos. Las cifras de la columna «Valoración del informe» pertenecen a informes de marzo a agosto de 2026. La segunda columna de valoración recoge otros comercios, con antigüedad y mercados variables. Ninguna acredita las estrellas ni la disponibilidad actual en Amazon.com.
