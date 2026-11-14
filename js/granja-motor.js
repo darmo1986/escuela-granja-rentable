@@ -32,7 +32,7 @@
   function log(s,t){s.log.unshift('Día '+s.day+': '+t);s.log=s.log.slice(0,12);}
   function count(s){return s.hens.reduce((n,h)=>n+h.count,0);}
   function random(s){s.seed=(Math.imul(s.seed,1664525)+1013904223)>>>0;return s.seed/4294967296;}
-  function spend(s,n){if(!Number.isFinite(n)||n<0||s.money+1e-8<n)return false;s.money-=n;s.expenses+=n;return true;}
+  function spend(s,n){if(!Number.isFinite(n)||n<0||s.money+1e-8<n)return false;s.money=Math.max(0,s.money-n);s.expenses+=n;return true;}
   function threats(s){let ground=.16*Math.pow(.48,s.upgrades.fence),air=.09*(s.upgrades.roof?.1:1);for(const d of s.defenders)if(d.health>0){const effect=d.health/100;ground*=1-effect*({dog:.3,guard:.5,scarecrow:.04}[d.type]);air*=1-effect*({dog:.12,guard:.08,scarecrow:.55}[d.type]);}return {ground:Math.max(.002,ground),air:Math.max(.001,air)};}
   function eggCapacity(s){return [24,100,180][s.upgrades.storage];}
   function syncEggs(s){s.eggs=s.eggLots.reduce((n,l)=>n+l.count,0);}
@@ -130,6 +130,7 @@
       if(s.youngFeed===undefined){const total=count(s),share=total?s.hens.filter(needsYoungFeed).reduce((n,h)=>n+h.count,0)/total:0;s.youngFeed=s.feed*share;s.feed-=s.youngFeed;}
       if(s.calcium===undefined)s.calcium=1;
       if(!Number.isFinite(s.youngFeed)||s.youngFeed<0||!Number.isFinite(s.calcium)||s.calcium<0)return fresh(now);
+      if(s.sceneLayout!==undefined)s.sceneLayout=Object.fromEntries(Object.entries(s.sceneLayout&&typeof s.sceneLayout==='object'?s.sceneLayout:{}).filter(([k,v])=>/^(feeder-[0-7]|waterer-[0-7]|nest|footbath|clean)$/.test(k)&&v&&Number.isFinite(v.x)&&Number.isFinite(v.y)).slice(0,19).map(([k,v])=>[k,{x:clamp(v.x,7,93),y:clamp(v.y,24,82)}]));
       if(!Object.hasOwn(difficulties,s.difficulty))s.difficulty='normal';
       if(s.nestLots!==undefined&&(!Array.isArray(s.nestLots)||s.nestLots.some(l=>!Number.isFinite(l.count)||l.count<=0||!Number.isFinite(l.day)||l.day<0||l.day>s.day)))return fresh(now);
       prepareNest(s);syncEggs(s);s.log=s.log.filter(t=>typeof t==='string').slice(0,12);if(s.last>now)s.last=now;return s;
