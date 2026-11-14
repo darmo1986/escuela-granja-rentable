@@ -20,9 +20,9 @@ function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === tr
 function mountAdsterraPilot(){
   if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
   if(document.querySelector('[data-adsterra-pilot]'))return;
-  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return;
+  const homeGuides=document.querySelector('main.home-renovada #elige-tu-camino');
   const article=document.querySelector('main .post-body');
-  if(!article || article.textContent.trim().length<1500)return;
+  if(!homeGuides && (!article || article.textContent.trim().length<1500))return;
   const box=document.createElement('aside');
   box.dataset.adsterraPilot='1';
   box.setAttribute('aria-label','Publicidad');
@@ -37,7 +37,8 @@ function mountAdsterraPilot(){
   frame.setAttribute('referrerpolicy','no-referrer');
   frame.style.cssText='border:0;display:block;width:300px;height:250px;max-width:100%';
   box.append(label,frame);
-  article.appendChild(box);
+  if(homeGuides)homeGuides.after(box);
+  else article.appendChild(box);
   const mount=()=>{
     if(!box.isConnected || box.dataset.loaded || !adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
     let accepted=false;
@@ -94,7 +95,8 @@ var ADS_RUTAS_SIN = {
   '/enfermedades/categoria/parasitarias.html':1
 };
 function paginaSinAnuncios(){
-  if(!/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
+  const home=location.pathname==='/' || location.pathname==='/index.html';
+  if(!home && !/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
   if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;
   var robots=document.querySelector('meta[name="robots"]');
   if(robots && /noindex/i.test(robots.getAttribute('content')||''))return true;
