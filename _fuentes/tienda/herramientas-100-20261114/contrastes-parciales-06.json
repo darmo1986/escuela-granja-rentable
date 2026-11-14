@@ -1,0 +1,276 @@
+{
+  "fecha": "2026-11-14",
+  "tipo": "ampliacion_parcial_de_seis_textos",
+  "alcance": "Complementa los mismos seis candidatos de fichas-iniciales-78.json; no suma candidatos ni sustituye la verificación comercial. Usar estos textos revisados sobre las versiones iniciales. Los 22 borradores previos y el grupo de 78 se mantienen.",
+  "fichas": [
+    {
+      "numero_seleccion": 30,
+      "asin": "B00467C7AE",
+      "titulo_seo_provisional": "Gafas 3M 91252H1-DC-10 contra salpicaduras",
+      "categoria": "Gafas de trabajo",
+      "descripcion_editorial_inicial": "Candidata para tareas de mantenimiento con necesidad de protección ocular. La familia 3M 91252 utiliza correa ajustable y ventilación indirecta. Hay que confirmar marcado, ajuste y presentación del anuncio antes de recomendarla para una tarea concreta.",
+      "lo_que_mas_gusta_propuesto": [
+        "Selección para la tarea",
+        "Ajuste alrededor de los ojos",
+        "Comprobación de marcado"
+      ],
+      "criterio_editorial": "Los puntos anteriores describen usos a valorar, no prestaciones verificadas ni opiniones de compradores. Recomendación definitiva pendiente.",
+      "consejos_de_uso": [
+        "Probar ajuste y visibilidad con las gafas graduadas, si se usan.",
+        "Elegir la protección indicada para la tarea y el producto empleado.",
+        "Limpiar según instrucciones y sustituir lentes o correas dañadas."
+      ],
+      "antes_de_comprar": "Familia y referencia completa visibles en fuente oficial; falta equivalencia del ASIN y contenido de venta. No promete protección universal ni una certificación europea de esta variante.",
+      "fuente_identificacion": "https://www.asinsight.com/report/US/safety-goggles",
+      "periodo_fuente": "2026-07",
+      "alcance_fuente": "El título y la identidad proceden de la investigación secundaria previa. Especificaciones del producto, identidad de variante y correspondencia con ASIN pendientes de contraste. El texto describe aplicaciones propuestas de la clase de herramienta.",
+      "url_afiliado": "https://www.amazon.com/dp/B00467C7AE?tag=granjarentabl-20",
+      "fecha_redaccion": "2026-11-14",
+      "estado": "texto_inicial_pendiente_contraste_tecnico",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false,
+      "contraste_parcial_fabricante": {
+        "fecha": "2026-11-14",
+        "url": "https://www.3m.com/3M/en_US/p/d/b5005625014/",
+        "acceso": "Ficha oficial consultada mediante búsqueda y lectura de la página.",
+        "modelo_fuente": "3M 91252; imagen identificada como 91252H1-DC-10",
+        "datos_del_modelo_en_fuente": [
+          "Lente de una pieza y montura flexible.",
+          "Correa ajustable y ventilación indirecta.",
+          "La página indica compatibilidad con algunas gafas graduadas, no todas.",
+          "Imagen comercial rotulada 10/case: no demuestra que Amazon venda diez unidades."
+        ],
+        "limite": "Familia y referencia completa visibles en fuente oficial; falta equivalencia del ASIN y contenido de venta. No promete protección universal ni una certificación europea de esta variante."
+      }
+    },
+    {
+      "numero_seleccion": 31,
+      "asin": "B071RSM598",
+      "titulo_seo_provisional": "Sobregafas NoCry para llevar sobre gafas graduadas",
+      "categoria": "Gafas de trabajo",
+      "descripcion_editorial_inicial": "Sobregafas propuestas para quien necesita conservar sus gafas graduadas durante el mantenimiento. La versión OverSpecs+ consultada tiene patillas ajustables y protección lateral, pero montura abierta. Conviene medir las gafas y comprobar que ambas monturas no se rocen.",
+      "lo_que_mas_gusta_propuesto": [
+        "Uso con gafas graduadas",
+        "Comodidad de ajuste",
+        "Visión durante el trabajo"
+      ],
+      "criterio_editorial": "Los puntos anteriores describen usos a valorar, no prestaciones verificadas ni opiniones de compradores. Recomendación definitiva pendiente.",
+      "consejos_de_uso": [
+        "Medir ancho y altura de la montura graduada antes de comprar.",
+        "Ajustar las patillas y comprobar que las lentes no se toquen.",
+        "Para polvo fino o salpicaduras, elegir el equipo indicado para ese riesgo; esta montura no es sellada."
+      ],
+      "antes_de_comprar": "Pendiente equivalencia con B071RSM598. No atribuir al modelo abierto las propiedades de OverSpecs+ Seal o OverSpecs Pro Anti-Fog; no copiar promesas generales de la página como protección integral.",
+      "fuente_identificacion": "https://www.asinsight.com/report/US/safety-goggles",
+      "periodo_fuente": "2026-07",
+      "alcance_fuente": "El título y la identidad proceden de la investigación secundaria previa. Especificaciones del producto, identidad de variante y correspondencia con ASIN pendientes de contraste. El texto describe aplicaciones propuestas de la clase de herramienta.",
+      "url_afiliado": "https://www.amazon.com/dp/B071RSM598?tag=granjarentabl-20",
+      "fecha_redaccion": "2026-11-14",
+      "estado": "texto_inicial_pendiente_contraste_tecnico",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false,
+      "contraste_parcial_fabricante": {
+        "fecha": "2026-11-14",
+        "url": "https://nocry.com/collections/safety-glasses/products/overspecs-plus",
+        "acceso": "Ficha oficial consultada mediante búsqueda y lectura de la página.",
+        "modelo_fuente": "NoCry OverSpecs+",
+        "datos_del_modelo_en_fuente": [
+          "Montura abierta con protección lateral.",
+          "Patillas telescópicas con extremos de goma.",
+          "Fabricante indica monturas de hasta 5,7 pulgadas de ancho; 1,37 de alto a los lados y 1,77 en el centro.",
+          "Comparativa oficial: versión transparente sin tratamiento antivaho y sin sellado contra polvo."
+        ],
+        "limite": "Pendiente equivalencia con B071RSM598. No atribuir al modelo abierto las propiedades de OverSpecs+ Seal o OverSpecs Pro Anti-Fog; no copiar promesas generales de la página como protección integral."
+      }
+    },
+    {
+      "numero_seleccion": 43,
+      "asin": "B09Z6VPFWD",
+      "titulo_seo_provisional": "Manguera Camco EvoFlex2 de 50 pies",
+      "categoria": "Mangueras y accesorios",
+      "descripcion_editorial_inicial": "Manguera propuesta para llevar agua por recorridos definidos de la granja. La referencia oficial localizada es EvoFlex2 22579 de 50 pies con refuerzo textil. Falta comprobar que sea exactamente la variante del ASIN seleccionado y confirmar diámetro y conexiones.",
+      "lo_que_mas_gusta_propuesto": [
+        "Alcance del recorrido",
+        "Servicio de agua",
+        "Organización de manguera"
+      ],
+      "criterio_editorial": "Los puntos anteriores describen usos a valorar, no prestaciones verificadas ni opiniones de compradores. Recomendación definitiva pendiente.",
+      "consejos_de_uso": [
+        "Medir el recorrido y confirmar las conexiones de ambos extremos.",
+        "Separar las conducciones de agua de las utilizadas con productos de limpieza.",
+        "Recogerla evitando obstáculos y revisar juntas antes de usar."
+      ],
+      "antes_de_comprar": "No trasladar dimensiones del paquete como longitud de la manguera, ni stock del fabricante como stock Amazon. Diámetro y correspondencia con B09Z6VPFWD pendientes.",
+      "fuente_identificacion": "https://www.asinsight.com/report/US/garden-hose",
+      "periodo_fuente": "2026-07",
+      "alcance_fuente": "El título y la identidad proceden de la investigación secundaria previa. Especificaciones del producto, identidad de variante y correspondencia con ASIN pendientes de contraste. El texto describe aplicaciones propuestas de la clase de herramienta.",
+      "url_afiliado": "https://www.amazon.com/dp/B09Z6VPFWD?tag=granjarentabl-20",
+      "fecha_redaccion": "2026-11-14",
+      "estado": "texto_inicial_pendiente_contraste_tecnico",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false,
+      "contraste_parcial_fabricante": {
+        "fecha": "2026-11-14",
+        "url": "https://camcooutdoors.com/products/evoflex2-50-drinking-water-hose-fabric-reinforced-e-f-1",
+        "acceso": "Ficha oficial consultada mediante búsqueda y lectura de la página.",
+        "modelo_fuente": "Camco EvoFlex2 22579; UPC 014717225793",
+        "datos_del_modelo_en_fuente": [
+          "Título oficial: manguera de agua potable de 50 pies, reforzada con tejido.",
+          "SKU 22579, diferente de EvoFlex 22596.",
+          "La ficha lista dimensiones de 4,6 × 8 × 8,6 pulgadas que no corresponden a la longitud desplegada de 50 pies."
+        ],
+        "limite": "No trasladar dimensiones del paquete como longitud de la manguera, ni stock del fabricante como stock Amazon. Diámetro y correspondencia con B09Z6VPFWD pendientes."
+      }
+    },
+    {
+      "numero_seleccion": 49,
+      "asin": "B0F2G7L4JB",
+      "titulo_seo_provisional": "Tres botellas pulverizadoras ZEP de 32 onzas",
+      "categoria": "Pulverizadores vacíos",
+      "descripcion_editorial_inicial": "Botellas propuestas para organizar aplicaciones localizadas de soluciones compatibles. La familia Zep de 32 onzas dispone de boquilla ajustable, marcas de medida y espacio para etiquetar. La compra debe comprobarse por volumen y número real de botellas del paquete.",
+      "lo_que_mas_gusta_propuesto": [
+        "Organización de líquidos",
+        "Recipientes dedicados",
+        "Reposición de botellas"
+      ],
+      "criterio_editorial": "Los puntos anteriores describen usos a valorar, no prestaciones verificadas ni opiniones de compradores. Recomendación definitiva pendiente.",
+      "consejos_de_uso": [
+        "Etiquetar el contenido y la dilución de cada botella.",
+        "Seguir las instrucciones de compatibilidad del líquido y del pulverizador.",
+        "Mantener separados los envases de limpieza de los de agua o alimento."
+      ],
+      "antes_de_comprar": "La página consultada muestra HDPRO36 como selección principal. La mención HDPRO1PK3 no acredita por sí sola el paquete de tres de B0F2G7L4JB. No se confirma ningún líquido incluido.",
+      "fuente_identificacion": "https://www.asinsight.com/report/US/pump-sprayer",
+      "periodo_fuente": "2026-07",
+      "alcance_fuente": "El título y la identidad proceden de la investigación secundaria previa. Especificaciones del producto, identidad de variante y correspondencia con ASIN pendientes de contraste. El texto describe aplicaciones propuestas de la clase de herramienta.",
+      "url_afiliado": "https://www.amazon.com/dp/B0F2G7L4JB?tag=granjarentabl-20",
+      "fecha_redaccion": "2026-11-14",
+      "estado": "texto_inicial_pendiente_contraste_tecnico",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false,
+      "contraste_parcial_fabricante": {
+        "fecha": "2026-11-14",
+        "url": "https://zep.com/products/https-zep-com-products-zep-professional-sprayer-bottle",
+        "acceso": "Ficha oficial consultada mediante búsqueda y lectura de la página.",
+        "modelo_fuente": "Zep Professional Sprayer 32 oz; mención HDPRO1PK3",
+        "datos_del_modelo_en_fuente": [
+          "Botella rellenable con gatillo de tres dedos.",
+          "Boquilla ajustable y marcas graduadas.",
+          "Zona para identificar el contenido.",
+          "La ficha agrupa cajas de distintas cantidades y menciona HDPRO1PK3 embolsado."
+        ],
+        "limite": "La página consultada muestra HDPRO36 como selección principal. La mención HDPRO1PK3 no acredita por sí sola el paquete de tres de B0F2G7L4JB. No se confirma ningún líquido incluido."
+      }
+    },
+    {
+      "numero_seleccion": 50,
+      "asin": "B0CKRSTX76",
+      "titulo_seo_provisional": "Pulverizador Petratools HD101 de un galón",
+      "categoria": "Pulverizadores vacíos",
+      "descripcion_editorial_inicial": "Pulverizador manual propuesto para aplicar soluciones compatibles durante el mantenimiento. La ficha HD101 indica depósito de un galón, dos boquillas y válvula para liberar presión. La elección depende del líquido autorizado y de la compatibilidad del equipo.",
+      "lo_que_mas_gusta_propuesto": [
+        "Aplicación localizada",
+        "Equipo manual",
+        "Organización por producto"
+      ],
+      "criterio_editorial": "Los puntos anteriores describen usos a valorar, no prestaciones verificadas ni opiniones de compradores. Recomendación definitiva pendiente.",
+      "consejos_de_uso": [
+        "Despresurizar según el manual antes de abrir o guardar.",
+        "Comprobar compatibilidad y dilución del líquido; no presuponer que admite cualquier desinfectante.",
+        "Limpiar según instrucciones y no dirigir la boquilla hacia personas o animales."
+      ],
+      "antes_de_comprar": "El título de metadatos menciona HD100, mientras cuerpo, imágenes y URL dicen HD101. Correspondencia con B0CKRSTX76 pendiente; los 6 pies de alcance publicitario no se presentan como longitud de manguera.",
+      "fuente_identificacion": "https://www.asinsight.com/report/US/pump-sprayer",
+      "periodo_fuente": "2026-07",
+      "alcance_fuente": "El título y la identidad proceden de la investigación secundaria previa. Especificaciones del producto, identidad de variante y correspondencia con ASIN pendientes de contraste. El texto describe aplicaciones propuestas de la clase de herramienta.",
+      "url_afiliado": "https://www.amazon.com/dp/B0CKRSTX76?tag=granjarentabl-20",
+      "fecha_redaccion": "2026-11-14",
+      "estado": "texto_inicial_pendiente_contraste_tecnico",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false,
+      "contraste_parcial_fabricante": {
+        "fecha": "2026-11-14",
+        "url": "https://www.petratools.com/products/petratools-hd101-1-gallon-pump-sprayer",
+        "acceso": "Ficha oficial consultada mediante búsqueda y lectura de la página.",
+        "modelo_fuente": "PetraTools HD101",
+        "datos_del_modelo_en_fuente": [
+          "Depósito de un galón.",
+          "Manguera de 52 pulgadas y lanza de 16 pulgadas.",
+          "Dos boquillas: ajustable y abanico plano.",
+          "Filtro y válvula de liberación de presión."
+        ],
+        "limite": "El título de metadatos menciona HD100, mientras cuerpo, imágenes y URL dicen HD101. Correspondencia con B0CKRSTX76 pendiente; los 6 pies de alcance publicitario no se presentan como longitud de manguera."
+      }
+    },
+    {
+      "numero_seleccion": 86,
+      "asin": "B08B43QY61",
+      "titulo_seo_provisional": "Carro Gorilla Carts GCR-4 de dos ruedas",
+      "categoria": "Transporte de materiales",
+      "descripcion_editorial_inicial": "Carro propuesto para mover sacos y otros materiales por recorridos de la granja. El GCR-4 usa dos ruedas y una caja de polímero; permite empujar o tirar. Su límite de carga y su forma de descarga deben respetarse sin equipararlo a los Gorilla de cuatro ruedas.",
+      "lo_que_mas_gusta_propuesto": [
+        "Transporte auxiliar",
+        "Comparación de maniobra",
+        "Organización de cargas"
+      ],
+      "criterio_editorial": "Los puntos anteriores describen usos a valorar, no prestaciones verificadas ni opiniones de compradores. Recomendación definitiva pendiente.",
+      "consejos_de_uso": [
+        "Medir los accesos y comprobar el firme del recorrido.",
+        "Equilibrar la carga y respetar el límite y las instrucciones de descarga.",
+        "Revisar neumáticos y fijaciones; no remolcarlo con un vehículo."
+      ],
+      "antes_de_comprar": "Enlace Amazon del fabricante redirigió a B08B43QY61, coincidente con el candidato. Es evidencia de correspondencia comercial del modelo, no de stock, precio ni variante actual: las lecturas posteriores quedaron bloqueadas por robots.txt.",
+      "fuente_identificacion": "https://www.asinsight.com/report/US/wheel-barrow",
+      "periodo_fuente": "2026-07",
+      "alcance_fuente": "El título y la identidad proceden de la investigación secundaria previa. Especificaciones del producto, identidad de variante y correspondencia con ASIN pendientes de contraste. El texto describe aplicaciones propuestas de la clase de herramienta.",
+      "url_afiliado": "https://www.amazon.com/dp/B08B43QY61?tag=granjarentabl-20",
+      "fecha_redaccion": "2026-11-14",
+      "estado": "texto_inicial_pendiente_contraste_tecnico",
+      "amazon_verificado_hoy": false,
+      "precio_actual": null,
+      "valoracion_actual": null,
+      "resenas_actuales": null,
+      "disponibilidad_actual": null,
+      "imagen": null,
+      "publicable": false,
+      "contraste_parcial_fabricante": {
+        "fecha": "2026-11-14",
+        "url": "https://gorillamade.com/product/gcr-4/",
+        "acceso": "Ficha oficial consultada mediante búsqueda y lectura de la página.",
+        "modelo_fuente": "Gorilla GCR-4",
+        "datos_del_modelo_en_fuente": [
+          "Carro de dos ruedas con caja de polímero de cuatro pies cúbicos.",
+          "Capacidad máxima de transporte declarada: 300 libras.",
+          "Neumáticos de diez pulgadas.",
+          "Diseño para empujar o tirar; fabricante indica que no es remolcable."
+        ],
+        "limite": "Enlace Amazon del fabricante redirigió a B08B43QY61, coincidente con el candidato. Es evidencia de correspondencia comercial del modelo, no de stock, precio ni variante actual: las lecturas posteriores quedaron bloqueadas por robots.txt."
+      }
+    }
+  ]
+}
