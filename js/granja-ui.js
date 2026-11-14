@@ -1,0 +1,62 @@
+(function(){
+  'use strict';
+  const M=window.GranjaMotor, $=id=>document.getElementById(id), euro=n=>n.toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+  let mode='real',state,saveOK=true,scene=null;
+  function key(){return 'gr-simulador-v1-'+mode;}
+  function load(){try{state=M.restore(localStorage.getItem(key()));}catch(_){state=M.fresh();saveOK=false;}if(mode==='real')M.advance(state);paint();}
+  function save(){try{localStorage.setItem(key(),JSON.stringify(state));saveOK=true;}catch(_){saveOK=false;}$('save-status').textContent=saveOK?'Partida guardada en este navegador.':'No se pudo guardar: esta partida se perderá al cerrar. Permite el almacenamiento para conservarla.';}
+  function paintCrops(bankrupt){
+    if(!M.cropStatus||!M.cropRules)return;
+    const c=M.cropStatus(state),r=M.cropRules,names={corn:'Maíz',oats:'Avena'},kg=n=>n.toLocaleString('es-ES',{maximumFractionDigits:2})+' kg';
+    $('crop-level').textContent=c.owned?'Nivel '+c.level+' / '+r.maxUpgrades:'Sin terreno';
+    $('crop-area').textContent=c.owned?c.plots+' parcela'+(c.plots===1?'':'s')+' · '+c.level+' de '+r.maxUpgrades+' mejoras.':'Compra una parcela y amplíala con hasta '+r.maxUpgrades+' mejoras.';
+    $('crop-buy-land').textContent=c.owned?'Terreno comprado':'Comprar terreno · '+euro(r.land);
+    $('crop-buy-land').disabled=bankrupt||c.owned||state.money<r.land;
+    $('crop-improve-land').textContent=c.canImprove?'Añadir parcela · '+euro(c.nextUpgradeCost):'Terreno al máximo';
+    if(!c.owned)$('crop-improve-land').textContent='Mejoras disponibles al comprar';
+    $('crop-improve-land').disabled=bankrupt||!c.owned||!c.canImprove||state.money<c.nextUpgradeCost;
+    $('crop-buy-mill').textContent=c.mill?'Máquina instalada':'Comprar máquina · '+euro(r.mill);
+    $('crop-buy-mill').disabled=bankrupt||!c.owned||c.mill||state.money<r.mill;
+    for(const type of ['corn','oats']){
+      $('crop-'+type+'-seeds').textContent=c.seeds[type];$('crop-'+type+'-grain').textContent=kg(c.grain[type]);
+      $('crop-buy-'+type).textContent=r.seedPack+' semillas · '+euro(r.seedPrice[type]);
+      $('crop-buy-'+type).disabled=bankrupt||!c.owned||state.money<r.seedPrice[type];
+      $('crop-plant-'+type).disabled=bankrupt||!c.owned||Boolean(c.active)||c.seeds[type]<c.plantCost.seeds||state.water<c.plantCost.water;
+    }
+    $('crop-plant-cost').textContent=c.owned?'Cada siembra actual usa '+c.plantCost.seeds+' semillas y '+c.plantCost.water+' L de agua. Cosecha prevista: '+kg(c.yieldKg)+'.':'Compra semillas y reserva agua antes de sembrar.';
+    $('crop-status').textContent=!c.owned?'La compra de terreno desbloquea el cultivo.':c.active?(c.ready?names[c.active.type]+' listo para cosechar.':names[c.active.type]+' creciendo: el terreno está ocupado.'):'Terreno disponible. Elige maíz o avena para la siguiente cosecha.';
+    $('crop-time').textContent=c.active?(c.ready?'Cosecha lista · '+kg(c.active.yieldKg):'Faltan '+c.hoursLeft.toLocaleString('es-ES',{maximumFractionDigits:1})+' horas de juego ('+c.daysLeft.toLocaleString('es-ES',{maximumFractionDigits:1})+' días).'):'Sin siembra activa · ciclo de '+r.growHours/24+' días de juego';
+    $('crop-progress').value=c.active?Math.max(0,Math.min(100,(r.growHours-c.hoursLeft)/r.growHours*100)):0;
+    $('crop-harvest').disabled=bankrupt||!c.ready;
+    $('crop-recipe').textContent='Cada tanda convierte '+r.recipe.corn+' kg de maíz + '+r.recipe.oats+' kg de avena + '+r.recipe.complementKg+' kg de complemento comprado en '+r.recipe.output+' kg de pienso. El coste del complemento se paga al preparar.';
+    for(const target of ['layer','young']){const cost=r.recipe[target+'Cost'];$('crop-mill-'+target).textContent='Preparar '+r.recipe.output+' kg · '+(target==='layer'?'ponedoras':'jóvenes')+' · '+euro(cost);$('crop-mill-'+target).disabled=bankrupt||!c.mill||!c.canMill[target]||state.money<cost;}
+  }
+  function paint(){
+    const n=M.count(state),bankrupt=M.isBankrupt(state),health=n?state.hens.reduce((a,h)=>a+h.health*h.count,0)/n:0;
+    const value=M.farmValue(state);$('farm-value').textContent=euro(value.total);$('value-breakdown').textContent='Caja '+euro(value.cash)+' · Aves '+euro(value.birds)+' · Huevos '+euro(value.eggs)+'. Valor de venta actual; incluye huevos enteros del nido y excluye instalaciones y reservas.';
+    $('money').textContent=euro(state.money);$('day').textContent='Día '+state.day+' · '+state.hour%24+':00';$('birds').textContent=n+' / '+state.capacity;
+    $('egg-count').textContent=state.eggs+' / '+M.eggCapacity(state)+' guardados · '+Math.floor(state.nest)+' en nidos';$('egg-price').textContent=euro(state.eggPrice);$('sell-eggs').textContent='Vender huevos · '+euro(state.eggPrice)+'/ud.';$('feed-count').textContent=state.feed.toFixed(1)+' kg';$('young-feed-count').textContent=(state.youngFeed||0).toFixed(1)+' kg';$('calcium-count').textContent=(state.calcium||0).toFixed(2)+' kg';$('water-count').textContent=state.water.toFixed(1)+' L';$('pause').textContent=state.paused?'Reanudar la granja':'Pausar la granja';
+    $('hygiene').value=state.hygiene;$('hygiene-label').textContent=Math.round(state.hygiene)+' %';$('health').value=health;$('health-label').textContent=Math.round(health)+' %';
+    $('balance').textContent='Ingresos '+euro(state.income)+' · Gastos '+euro(state.expenses)+' · Resultado '+euro(state.income-state.expenses)+' (sin valorar aves e instalaciones).';
+    $('lifecycle-status').textContent=bankrupt?'Quiebra: el valor de tu granja ha llegado a cero y no quedan aves. Reinicia para volver a jugar.':state.hens.some(h=>M.retired(h))?'Aviso: hay gallinas que han terminado la puesta por edad. Puedes conservarlas o venderlas; siguen necesitando cuidados.':!n?(value.total<Math.min(...Object.values(M.breeds).map(b=>b.price))?'No quedan aves y el valor de venta actual no alcanza para otra pollita. La partida no termina automáticamente mientras quede valor: puedes esperar otro precio si tienes huevos o reiniciar.':'No quedan aves, pero la partida continúa: vende los huevos disponibles o compra nuevas pollitas.'):'Joven → adulta → vieja. La producción cambia con la edad; prepara el relevo del lote.';
+    $('flock').replaceChildren();state.hens.forEach((h,i)=>{const row=document.createElement('li');row.textContent=h.count+' × '+M.breeds[h.breed].name+' · '+Math.floor(h.age)+' días · '+M.lifeStage(h)+' · salud '+Math.round(h.health)+' %'+(h.quarantine>0?' · en observación':'')+' ';const b=document.createElement('button');b.type='button';b.dataset.action='sellHen';b.dataset.value=i;b.textContent='Vender una';row.append(b);const iso=document.createElement('button');iso.type='button';iso.dataset.action='isolate';iso.dataset.value=i;iso.textContent=h.isolated?'Reunir lote':'Aislar lote';row.append(iso);const status=document.createElement('p');status.className='fine';status.textContent=M.productionStatus(state,h).message;row.append(status);$('flock').append(row);});
+    if(!n){const li=document.createElement('li');li.textContent='No quedan aves. Revisa tu caja y los huevos disponibles para comprar nuevas pollitas.';$('flock').append(li);}
+    if(scene)scene.update(state,M);
+    $('fence-state').textContent='Malla '+state.upgrades.fence+'/3';$('roof-state').textContent=state.upgrades.roof?'Cubierta instalada':'Sin cubierta';
+    document.querySelectorAll('[data-upgrade]').forEach(el=>{const k=el.dataset.upgrade,owned=k==='fence'?state.upgrades.fence===3:k==='storage'?state.upgrades.storage===2:['roof','access'].includes(k)&&state.upgrades[k],price=k==='fence'?M.prices.fence[state.upgrades.fence]:k==='storage'?M.prices.storage[state.upgrades.storage]:M.prices[k];el.disabled=Boolean(owned);el.textContent=owned?'Instalado':euro(price)+' · Comprar';});
+    $('defenders').textContent=state.defenders.length?state.defenders.map(d=>({scarecrow:'Espantapájaros',dog:'Perro',guard:'Guardián'}[d.type])+': '+Math.round(d.health)+' % resistencia').join(' · '):'Todavía no tienes defensores.';
+    $('storage-status').textContent=['Sin almacén: 24 huevos, 2 días de conservación simulada.','Almacén protegido: 100 huevos, 4 días; reduce pérdidas por plagas.','Almacén refrigerado: 180 huevos, 10 días; electricidad 0,40 €/día.'][state.upgrades.storage];
+    $('egg-lots').textContent=state.eggLots.length?state.eggLots.map(l=>l.count+' huevos de hace '+(state.day-l.day)+' días').join(' · '):'Sin lotes guardados.';
+    $('log').replaceChildren();state.log.forEach(t=>{const li=document.createElement('li');li.textContent=t;$('log').append(li);});
+    $('practice-turn').hidden=mode!=='practice';$('practice-turn').disabled=state.paused||bankrupt;document.querySelectorAll('[data-action]').forEach(el=>{if(bankrupt)el.disabled=true;else if(!el.dataset.upgrade)el.disabled=false;});$('clock-description').textContent=bankrupt?'Partida terminada por quiebra. Puedes reiniciar.':state.paused?'Granja pausada: sin consumo, envejecimiento ni amenazas mientras no estás.':mode==='real'?'Reloj ×3: ocho horas reales equivalen a un día de granja. Máximo tres días simulados por ausencia.':'Práctica independiente: avanza un día cuando quieras. No modifica tu partida en tiempo real.';
+    $('real-mode').setAttribute('aria-pressed',String(mode==='real'));$('practice-mode').setAttribute('aria-pressed',String(mode==='practice'));paintCrops(bankrupt);save();
+  }
+  function performAction(type,value){if(type==='showFood'||type==='showCrops'){const section=$(type==='showFood'?'food-reserves':'crop-panel');section.scrollIntoView({behavior:'smooth',block:'center'});section.focus({preventScroll:true});return;}if(mode==='real')M.advance(state);const message=M.action(state,type,value);$('message').textContent=message;paint();if(scene)scene.feedback(type,message,value);}
+  document.addEventListener('click',event=>{const b=event.target.closest('button');if(b&&b.dataset.action)performAction(b.dataset.action,b.dataset.value);});
+  $('real-mode').onclick=()=>{save();mode='real';load();};$('practice-mode').onclick=()=>{save();mode='practice';load();};
+  $('practice-turn').onclick=()=>{M.advance(state,state.last+M.DAY/3);state.last=Date.now();$('message').textContent='Ha transcurrido un día de práctica. Revisa los nidos y las reservas.';paint();};
+  $('reset').onclick=()=>{if(window.confirm('¿Borrar solo la partida '+(mode==='real'?'en tiempo real':'de práctica')+' y empezar de nuevo?')){state=M.fresh(Date.now(),$('difficulty').value);$('message').textContent='Nueva partida creada.';paint();}};
+  if(window.GranjaEscena)scene=window.GranjaEscena.create($('yard'),{onAction:performAction,onLayout:layout=>{state.sceneLayout=layout;save();}});
+  load();setInterval(()=>{if(mode==='real'){M.advance(state);paint();}},30000);window.addEventListener('pagehide',save);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&mode==='real'){M.advance(state);paint();}});
+})();
+
