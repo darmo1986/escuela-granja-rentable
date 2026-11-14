@@ -27,6 +27,10 @@ let e=entorno();
 assert.equal(e.visibles().length,169);
 e.buscar('nidales'); const nidales=e.visibles().map(d=>d.q);
 assert.ok(nidales.length>0);
+assert.equal(nidales.length,13);
+const fueraDeNidales=e.visibles().filter(d=>d.cat!=='nidales-y-cama');
+assert.equal(fueraDeNidales.length,1);
+assert.match(fueraDeNidales[0].q,/nidal/);
 for(const q of ['PONEDEROS','nidos','nidal']) {e.buscar(q);assert.deepEqual(e.visibles().map(d=>d.q),nidales);}
 e.buscar('comedero para pollitos');
 assert.ok(e.visibles().length>0);

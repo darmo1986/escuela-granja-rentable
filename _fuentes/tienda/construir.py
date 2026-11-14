@@ -294,7 +294,7 @@ def ps(frases_lista):
 
 def data_q(p):
     blob = " ".join([
-        p["titulo"], p["categoria"], p["seccion"], p["nombre"], p["claves"], p["asin"],
+        p["titulo"], p["categoria"], p["nombre"], p["claves"], p["asin"],
         " ".join(p["explicacion"]), " ".join(p["recomendacion"]),
     ])
     return esc(normalizar(blob))
