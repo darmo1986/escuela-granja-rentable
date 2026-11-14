@@ -13,7 +13,7 @@ class Publicacion(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.raiz = Path(self.tmp.name)
         self.activos = ''.join(f'<script src="js/{x}.js?v=prueba"></script>' for x in ['config','app','site'])
-        self.home = '<a href="razas.html" data-slide class="gr-slide is-active">Razas</a><section aria-labelledby="recientes-titulo"><article class="gr-article">Nuevo</article></section>' + self.activos
+        self.home = '<a href="curso.html" data-inicio-curso>Empezar el curso gratis</a><section aria-labelledby="recientes-titulo"><article class="gr-article">Nuevo</article></section>' + self.activos
         (self.raiz / 'index.html').write_text(self.home)
         (self.raiz / 'blog').mkdir()
         (self.raiz / 'blog/tema.html').write_text(self.activos)
@@ -53,9 +53,17 @@ class Publicacion(unittest.TestCase):
         pagina.write_text('<a href="https://www.amazon.com/dp/B00P9EJLSO?tag=granjarentabl-20">Amazon</a>')
         self.assertEqual(self.errores(), [])
 
-    def test_rechaza_curso_como_primer_destacado(self):
-        (self.raiz / 'index.html').write_text(self.home.replace('href="razas.html"', 'href="curso.html"'))
-        self.assertTrue(any('Razas' in e for e in self.errores()))
+    def test_rechaza_accion_principal_ajena_al_curso(self):
+        (self.raiz / 'index.html').write_text(self.home.replace('href="curso.html"', 'href="razas.html"'))
+        self.assertTrue(any('acción principal' in e for e in self.errores()))
+
+    def test_rechaza_promocion_antes_del_curso(self):
+        (self.raiz / 'index.html').write_text('<section data-promo-carousel></section>' + self.home)
+        self.assertTrue(any('acción principal' in e for e in self.errores()))
+
+    def test_rechaza_inicio_rotativo(self):
+        (self.raiz / 'index.html').write_text('<section data-hero>' + self.home + '</section>')
+        self.assertTrue(any('acción principal' in e for e in self.errores()))
 
 
 if __name__ == '__main__':

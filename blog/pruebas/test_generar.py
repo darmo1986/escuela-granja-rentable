@@ -468,6 +468,18 @@ class Generador(unittest.TestCase):
         cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
         self.assertNotIn("pasos.html", cat)
 
+    def test_ofertas_portada_respetan_curso_y_marcador_al_regenerar(self):
+        original = ('<head></head><body><main><h1>Inicio</h1>'
+                    '<a href="curso.html" data-inicio-curso>Empezar</a>'
+                    '<section>Guías y vídeo</section><!-- inicio-ofertas -->'
+                    '</main></body>')
+        primero = generar.colocar_banners('index.html', original, RAIZ)
+        segundo = generar.colocar_banners('index.html', primero, RAIZ)
+        self.assertEqual(segundo.count('data-promo-carousel'), 1)
+        self.assertLess(segundo.index('data-inicio-curso'), segundo.index('data-promo-carousel'))
+        self.assertLess(segundo.index('Guías y vídeo'), segundo.index('data-promo-carousel'))
+        self.assertRegex(segundo, r'<!-- inicio-ofertas -->\s*<section class="promo-carousel"')
+
     def test_ofertas_arriba_persisten_y_respetan_destinos(self):
         from html import unescape
         import json

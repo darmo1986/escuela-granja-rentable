@@ -11,10 +11,16 @@ class Destacados(HTMLParser):
     def __init__(self):
         super().__init__()
         self.primero = None
+        self.promo_antes = False
+        self.rotativo = False
 
     def handle_starttag(self, tag, attrs):
         datos = dict(attrs)
-        if self.primero is None and tag == 'a' and 'data-slide' in datos:
+        if self.primero is None and 'data-promo-carousel' in datos:
+            self.promo_antes = True
+        if 'data-hero' in datos:
+            self.rotativo = True
+        if self.primero is None and tag == 'a' and 'data-inicio-curso' in datos:
             self.primero = datos
 
 
@@ -42,8 +48,8 @@ def verificar_salida(destino, version, posts, categorias):
     lector = Destacados()
     lector.feed(html)
     primero = lector.primero or {}
-    if primero.get('href') != 'razas.html' or 'is-active' not in primero.get('class', '').split():
-        errores.append('Razas debe ser el primer destacado y estar activo al inicio.')
+    if primero.get('href') != 'curso.html' or lector.promo_antes or lector.rotativo:
+        errores.append('El curso debe ser la acción principal fija, antes de las promociones.')
     visibles = [p for p in posts if p.get('publicar') and not p.get('noindex')]
     recientes = re.search(r'<section[^>]*aria-labelledby="recientes-titulo"[^>]*>(.*?)</section>', html, re.S)
     tarjetas = re.findall(r'class="gr-article"', recientes.group(1)) if recientes else []
@@ -86,7 +92,7 @@ def main():
     if errores:
         print('\n'.join(errores), file=sys.stderr)
         return 1
-    print('Sitio construido verificado: artículos, categorías, novedades, Razas inicial, versiones y exclusión de fuentes.')
+    print('Sitio construido verificado: artículos, categorías, novedades, curso principal, versiones y exclusión de fuentes.')
     return 0
 
 
