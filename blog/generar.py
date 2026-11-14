@@ -1103,8 +1103,12 @@ def colocar_banners(rel, html, raiz, post=None):
     html = re.sub(r'<section class="promo-carousel"[\s\S]*?</section>', '', html)
     html = re.sub(r'<aside class="banner-ebook"[\s\S]*?</aside>'
                   r'(?:<aside class="banner-amazon"[\s\S]*?</aside>)?', '', html)
-    # Dentro de main, antes del contenido principal; no sustituye anuncios externos.
-    html = re.sub(r'(<main\b[^>]*>)', lambda m: m.group(1) + "\n" + banner, html, count=1)
+    # En portada, las ofertas van después del curso, las guías y el vídeo.
+    # El marcador conserva el orden en cada compilación; el blog mantiene su posición.
+    if rel == "index.html" and "<!-- inicio-ofertas -->" in html:
+        html = html.replace("<!-- inicio-ofertas -->", "<!-- inicio-ofertas -->\n" + banner, 1)
+    else:
+        html = re.sub(r'(<main\b[^>]*>)', lambda m: m.group(1) + "\n" + banner, html, count=1)
     return asegurar_script_banners(html, rel)
 
 
