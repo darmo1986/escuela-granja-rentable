@@ -21,6 +21,11 @@ function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === tr
 function mountAdsterraPilot(){
   if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
   if(document.querySelector('[data-adsterra-pilot]'))return;
+  const tablon=document.querySelector('[data-tablon-publicidad]');
+  if(tablon){
+    insertAdsterraBanner(tablon,'afterend');
+    return;
+  }
   const home=document.querySelector('main.home-renovada');
   if(home){
     const tools=home.querySelector('.gr-tools');
