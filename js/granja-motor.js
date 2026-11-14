@@ -19,10 +19,9 @@
     if(h.health<99)return {reason:'health',message:'Puesta reducida por salud; puede recuperarse con los cuidados.',eggsPerDay};
     return {reason:'laying',message:lifeStage(h)==='vieja'?'Puesta descendente por edad.':lifeStage(h)==='joven'?'La puesta está aumentando.':'Etapa adulta de buena producción.',eggsPerDay};
   }
-  // Evaluación conservadora: mientras existan aves se permite intentar recuperarse.
-  // Sin aves se valoran incluso los huevos del nido al máximo de mercado para no
-  // declarar una quiebra prematura porque el precio de hoy sea bajo.
-  function isBankrupt(s){return count(s)===0&&s.money+(s.eggs+Math.floor(s.nest))*.34+1e-8<Math.min(...Object.values(breeds).map(b=>b.price));}
+  // Sin aves, el final automático llega cuando caja y huevos vendibles valen cero.
+  // Un saldo insuficiente para recomprar se avisa sin forzar el final.
+  function isBankrupt(s){return count(s)===0&&farmValue(s).total<=1e-8;}
   function henSaleValue(h){return breeds[h.breed].price*.45*clamp(1-(h.age-180)/1200,.15,1)*h.health/100;}
   function farmValue(s){const birds=s.hens.reduce((sum,h)=>sum+h.count*henSaleValue(h),0),eggs=(s.eggs+Math.floor(s.nest))*s.eggPrice;return {cash:s.money,birds,eggs,total:s.money+birds+eggs};}
   function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
@@ -70,10 +69,10 @@
     const elapsed=(now-s.last)*3;const whole=Math.floor(elapsed/HOUR);const hours=Math.min(whole,72);
     if(whole>72){s.missed+=whole-72;log(s,'Ausencia larga: solo se simulan los últimos tres días de juego.');s.last=now-(elapsed%HOUR)/3;}
     else s.last+=hours*HOUR/3;
-    for(let i=0;i<hours;i++){step(s);if(isBankrupt(s)){log(s,'Quiebra: no quedan aves ni recursos suficientes para reponer una pollita.');break;}}return s;
+    for(let i=0;i<hours;i++){step(s);if(isBankrupt(s)){log(s,'Quiebra: no quedan aves, dinero ni huevos con valor de venta.');break;}}return s;
   }
   function action(s,type,value){
-    if(isBankrupt(s))return 'Partida terminada por quiebra: no quedan aves ni recursos suficientes para reponer una pollita. Puedes reiniciar.';
+    if(isBankrupt(s))return 'Partida terminada por quiebra: no quedan aves, dinero ni huevos con valor de venta. Puedes reiniciar.';
     if(type==='pause'){s.paused=!s.paused;s.last=Date.now();return s.paused?'Granja pausada: no transcurre tiempo ni hay pérdidas durante la ausencia.':'Granja activa: vuelve el reloj ×3.';}
     if(type==='closeDoor'){s.doorClosed=true;return 'Puerta cerrada: la próxima visita queda fuera. No necesitas contratar un guardián para rechazarla.';}
     if(type==='collect'){const n=Math.min(Math.floor(s.nest),eggCapacity(s)-s.eggs);if(!n)return 'No hay huevos enteros o el almacén está lleno.';s.nest-=n;s.eggLots.push({count:n,day:s.day});syncEggs(s);return 'Has recogido '+n+' huevos.';}
