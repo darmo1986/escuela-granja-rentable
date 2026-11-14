@@ -11,4 +11,6 @@ test('instalaciones tienen límite y los nuevos inventarios nunca admiten númer
 
 test('el redondeo de una compra nunca deja caja negativa ni invalida el guardado',()=>{const s=M.fresh(0);s.money=4.8-1e-10;M.action(s,'feed');assert.equal(s.money,0);assert.deepEqual(M.restore(JSON.stringify(s),0),s);});
 
-test('disposición del corral se conserva al guardar y datos dañados no borran la partida',()=>{const s=M.fresh(0);s.sceneLayout={'feeder-0':{x:20,y:70},waterer:{x:1,y:1},clean:{x:-80,y:500},nest:{x:null,y:20}};s.money=23.45;const r=M.restore(JSON.stringify(s),0);assert.equal(r.money,23.45);assert.deepEqual(r.sceneLayout,{'feeder-0':{x:20,y:70},clean:{x:7,y:82}});assert.deepEqual(M.restore(JSON.stringify(r),0),r);});
+test('disposición del corral se conserva al guardar y datos dañados no borran la partida',()=>{const s=M.fresh(0);s.sceneLayout={'feeder-0':{x:20,y:70},waterer:{x:1,y:1},clean:{x:-80,y:500},nest:{x:null,y:20}};s.money=23.45;const r=M.restore(JSON.stringify(s),0);assert.equal(r.money,23.45);assert.deepEqual(r.sceneLayout,{'feeder-0':{x:20,y:70},clean:{x:14,y:82}});assert.deepEqual(M.restore(JSON.stringify(r),0),r);});
+
+test('rendimiento informativo acumula carencia de equipo y calcio y avisa al cambiar dieta',()=>{const s=M.fresh(0);s.hens[0].age=300;s.hens[0].count=10;s.calcium=0;assert.ok(Math.abs(M.productionStatus(s,s.hens[0]).eggsPerDay-4.08)<1e-8);const a=M.fresh(0);a.hens[0].age=149.99;hour(a);assert.ok(a.log.some(t=>t.includes('pienso de ponedoras')));});
