@@ -2,20 +2,24 @@
   'use strict';
   const DAY=86400000, HOUR=DAY/24;
   const breeds={brown:{name:'Ponedoras marrones',price:18,lay:.85,feed:.12,resilience:.9},leghorn:{name:'Leghorn',price:20,lay:.9,feed:.11,resilience:.85},sussex:{name:'Sussex',price:24,lay:.65,feed:.14,resilience:1.1}};
-  const prices={egg:.25,feed:.48,water:.02,clean:2,care:8,fence:[35,80,150],roof:95,scarecrow:18,dog:90,guard:150,expand:75,storage:[45,110],access:25,footbath:12};
+  const prices={egg:.25,feed:.48,youngFeed:.60,calcium:1.50,feeder:12,waterer:10,water:.02,clean:2,care:8,fence:[35,80,150],roof:95,scarecrow:18,dog:90,guard:150,expand:75,storage:[45,110],access:25,footbath:12};
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
   // Edades y curva ficticias para el juego; no son una garantía biológica.
   const difficulties={facil:300,normal:180,dificil:80};
   const lifecycle={purchaseAge:145,start:150,peak:210,decline:450,end:1650};
   function ageFactor(age){if(age<lifecycle.start||age>=lifecycle.end)return 0;if(age<lifecycle.peak)return (age-lifecycle.start)/(lifecycle.peak-lifecycle.start);if(age<lifecycle.decline)return 1;return (lifecycle.end-age)/(lifecycle.end-lifecycle.decline);}
   function lifeStage(h){return h.age<lifecycle.peak?'joven':h.age<lifecycle.decline?'adulta':'vieja';}
+  function needsYoungFeed(h){return h.age<lifecycle.start;}
   function retired(h){return h.age>=lifecycle.end;}
+  function equipmentAccess(s){const n=count(s),f=s.facilities||{feeder:1,waterer:1};return {feed:n?Math.min(1,f.feeder*6/n):1,water:n?Math.min(1,f.waterer*6/n):1};}
   function productionStatus(s,h){
     const factor=ageFactor(h.age),eggsPerDay=h.count*breeds[h.breed].lay*factor*h.health/100*(h.isolated?.65:1);
     if(retired(h))return {reason:'age',message:'Fin de puesta por edad: puedes vender este lote o conservarlo; seguirá necesitando alimento y agua.',eggsPerDay:0};
-    if(h.age<lifecycle.start)return {reason:'young',message:'Pollitas próximas al inicio de puesta.',eggsPerDay:0};
     if(s.water<=0)return {reason:'water',message:'Puesta detenida por falta de agua; no es fin de puesta por edad.',eggsPerDay:0};
-    if(s.feed<=0)return {reason:'feed',message:'Puesta detenida por falta de alimento; no es fin de puesta por edad.',eggsPerDay:0};
+    if((needsYoungFeed(h)?s.youngFeed:s.feed)<=0)return {reason:'feed',message:needsYoungFeed(h)?'Falta pienso para jóvenes. Revisa la reserva del lote.':'Puesta detenida por falta de pienso de ponedoras; no es fin de puesta por edad.',eggsPerDay:0};
+    const access=equipmentAccess(s);if(access.feed<1||access.water<1)return {reason:'equipment',message:'Acceso insuficiente: cada comedero y bebedero atiende seis aves en el juego. Coloca más equipos.',eggsPerDay:eggsPerDay*Math.min(access.feed,access.water)};
+    if(h.age<lifecycle.start)return {reason:'young',message:'Pollitas próximas al inicio de puesta: consumen pienso para jóvenes.',eggsPerDay:0};
+    if(s.calcium<=0)return {reason:'calcium',message:'Reserva de calcio agotada: se reduce la producción aprovechable en el juego.',eggsPerDay:eggsPerDay*.8};
     if(h.health<99)return {reason:'health',message:'Puesta reducida por salud; puede recuperarse con los cuidados.',eggsPerDay};
     return {reason:'laying',message:lifeStage(h)==='vieja'?'Puesta descendente por edad.':lifeStage(h)==='joven'?'La puesta está aumentando.':'Etapa adulta de buena producción.',eggsPerDay};
   }
@@ -24,7 +28,7 @@
   function isBankrupt(s){return count(s)===0&&farmValue(s).total<=1e-8;}
   function henSaleValue(h){return breeds[h.breed].price*.45*clamp(1-(h.age-180)/1200,.15,1)*h.health/100;}
   function farmValue(s){const birds=s.hens.reduce((sum,h)=>sum+h.count*henSaleValue(h),0),eggs=(s.eggs+Math.floor(s.nest))*s.eggPrice;return {cash:s.money,birds,eggs,total:s.money+birds+eggs};}
-  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
+  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,youngFeed:4,calcium:1,facilities:{feeder:1,waterer:1},water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
   function log(s,t){s.log.unshift('Día '+s.day+': '+t);s.log=s.log.slice(0,12);}
   function count(s){return s.hens.reduce((n,h)=>n+h.count,0);}
   function random(s){s.seed=(Math.imul(s.seed,1664525)+1013904223)>>>0;return s.seed/4294967296;}
@@ -48,16 +52,18 @@
   }
   function step(s){
     s.hour++;s.hygiene=clamp(s.hygiene-count(s)*.075,0,100);s.upgrades.footbath=Math.max(0,s.upgrades.footbath-1/72);
-    const needed=s.hens.reduce((n,h)=>n+breeds[h.breed].feed*h.count/24,0),water=count(s)*.24/24;
-    const fed=needed===0?1:Math.min(1,s.feed/needed),watered=water===0?1:Math.min(1,s.water/water);
-    s.feed=Math.max(0,s.feed-needed);s.water=Math.max(0,s.water-water);
+    const needed=s.hens.filter(h=>!needsYoungFeed(h)).reduce((n,h)=>n+breeds[h.breed].feed*h.count/24,0),youngNeeded=s.hens.filter(needsYoungFeed).reduce((n,h)=>n+breeds[h.breed].feed*h.count/24,0),water=count(s)*.24/24;
+    const calciumNeeded=s.hens.reduce((n,h)=>n+(ageFactor(h.age)>0?h.count*.003/24:0),0);
+    const access=equipmentAccess(s);
+    const fedLayer=needed===0?1:Math.min(access.feed,s.feed/needed),fedYoung=youngNeeded===0?1:Math.min(access.feed,s.youngFeed/youngNeeded),watered=water===0?1:Math.min(access.water,s.water/water),mineral=calciumNeeded===0?1:Math.min(1,s.calcium/calciumNeeded);
+    s.feed=Math.max(0,s.feed-needed*fedLayer);s.youngFeed=Math.max(0,s.youngFeed-youngNeeded*fedYoung);s.calcium=Math.max(0,s.calcium-calciumNeeded);s.water=Math.max(0,s.water-water*watered);
     for(const h of s.hens){
-      const wasRetired=retired(h);
+      const wasRetired=retired(h),fed=needsYoungFeed(h)?fedYoung:fedLayer;
       h.age+=1/24;h.quarantine=Math.max(0,(h.quarantine||0)-1/24);
       const deficit=(1-fed)*2+(1-watered)*3+(s.hygiene<45?(45-s.hygiene)/100:0);
       h.health=clamp(h.health+(deficit? -deficit/breeds[h.breed].resilience:.12),0,100);
       if(!wasRetired&&retired(h))log(s,breeds[h.breed].name+': fin de puesta por edad. Puedes vender el lote o conservarlo con sus cuidados.');
-      addNest(s,h.count*breeds[h.breed].lay*ageFactor(h.age)*(h.health/100)*Math.min(fed,watered)*(h.isolated?.65:1)/24);
+      addNest(s,h.count*breeds[h.breed].lay*ageFactor(h.age)*(h.health/100)*Math.min(fed,watered)*(.8+.2*mineral)*(h.isolated?.65:1)/24);
     }
     if(s.hour%24===0){
       s.day++;s.eggPrice=Math.round((.19+random(s)*.15)*100)/100;
@@ -92,7 +98,10 @@
     if(type==='closeDoor'){s.doorClosed=true;return 'Puerta cerrada: la próxima visita queda fuera. No necesitas contratar un guardián para rechazarla.';}
     if(type==='collect'){prepareNest(s);const n=Math.min(Math.floor(s.nest+1e-9),Math.max(0,eggCapacity(s)-s.eggs));if(!n)return 'No hay huevos enteros o el almacén está lleno.';collectNest(s,n);return 'Has recogido '+n+' huevos.';}
     if(type==='sellEggs'){if(!s.eggs)return 'No tienes huevos recogidos.';const n=s.eggs*s.eggPrice;s.money+=n;s.income+=n;s.eggLots=[];s.eggs=0;return 'Venta de huevos: '+n.toFixed(2)+' € de juego.';}
-    if(type==='feed'||type==='water'){const amount=type==='feed'?10:20;if(!spend(s,amount*prices[type]))return 'Saldo insuficiente.';s[type]+=amount;return type==='feed'?'Compraste 10 kg de alimento.':'Repusiste 20 litros de agua.';}
+    if(type==='feed'){const young=value==='young',key=young?'youngFeed':'feed';if(!spend(s,10*prices[key]))return 'Saldo insuficiente.';s[key]+=10;return young?'Compraste 10 kg de pienso para jóvenes.':'Compraste 10 kg de pienso de ponedoras.';}
+    if(type==='install'){if(!['feeder','waterer'].includes(value))return 'Equipo desconocido.';if(s.facilities[value]>=8)return 'Máximo ocho equipos de cada tipo.';if(!spend(s,prices[value]))return 'Saldo insuficiente.';s.facilities[value]++;return value==='feeder'?'Comedero añadido: seis aves más pueden acceder al pienso. Colócalo en el corral.':'Bebedero añadido: seis aves más pueden acceder al agua. Colócalo en el corral.';}
+    if(type==='calcium'){if(!spend(s,prices.calcium))return 'Saldo insuficiente.';s.calcium+=1;return 'Compraste 1 kg de reserva de calcio. Los consumos son reglas ficticias del juego, no dosis reales.';}
+    if(type==='water'){if(!spend(s,20*prices.water))return 'Saldo insuficiente.';s.water+=20;return 'Repusiste 20 litros de agua.';}
     if(type==='clean'){if(s.hygiene>99)return 'La cama ya está limpia.';if(!spend(s,prices.clean))return 'Saldo insuficiente.';s.hygiene=100;return 'Cama cambiada e instalación limpia.';}
     if(type==='care'){if(!s.hens.some(h=>h.health<99))return 'El lote no necesita recuperación.';if(!spend(s,prices.care))return 'Saldo insuficiente.';s.hens.forEach(h=>h.health=clamp(h.health+30,0,100));return 'Atención al lote: mejora su recuperación. No sustituye agua y comida.';}
     if(type==='buyHen'){const b=breeds[value];if(!b)return 'Raza desconocida.';if(count(s)>=s.capacity)return 'Amplía el gallinero antes de comprar más aves.';if(!spend(s,b.price))return 'Saldo insuficiente.';s.hens.push({breed:value,count:1,age:lifecycle.purchaseAge,health:100,quarantine:3,isolated:false});return 'Compraste una pollita '+b.name+' próxima a la puesta. Tres días de observación separados en el juego.';}
@@ -116,11 +125,16 @@
       if(!Array.isArray(s.defenders)||s.defenders.length>9||s.defenders.some(d=>!['dog','guard','scarecrow'].includes(d.type)||!Number.isFinite(d.health)||d.health<0||d.health>100)||!Array.isArray(s.eggLots)||s.eggLots.some(l=>!Number.isInteger(l.count)||l.count<0||!Number.isFinite(l.day)||l.day<0||l.day>s.day)||![0,1,2].includes(s.upgrades.storage)||!Number.isFinite(s.upgrades.footbath)||typeof s.paused!=='boolean')return fresh(now);
       if(s.pending&&!['ground','air'].includes(s.pending.type))return fresh(now);
       if(s.capacity>40||s.hygiene>100||s.upgrades.fence<0||s.upgrades.fence>3||!Number.isInteger(s.upgrades.fence)||s.hens.some(h=>!breeds[h.breed]||!Number.isInteger(h.count)||h.count<1||!Number.isFinite(h.age)||h.age<0||!Number.isFinite(h.health)||h.health<0||h.health>100)||count(s)>s.capacity)return fresh(now);
+      if(s.facilities===undefined)s.facilities={feeder:1,waterer:1};
+      if(!s.facilities||!['feeder','waterer'].every(k=>Number.isInteger(s.facilities[k])&&s.facilities[k]>=0&&s.facilities[k]<=8))return fresh(now);
+      if(s.youngFeed===undefined){const total=count(s),share=total?s.hens.filter(needsYoungFeed).reduce((n,h)=>n+h.count,0)/total:0;s.youngFeed=s.feed*share;s.feed-=s.youngFeed;}
+      if(s.calcium===undefined)s.calcium=1;
+      if(!Number.isFinite(s.youngFeed)||s.youngFeed<0||!Number.isFinite(s.calcium)||s.calcium<0)return fresh(now);
       if(!Object.hasOwn(difficulties,s.difficulty))s.difficulty='normal';
       if(s.nestLots!==undefined&&(!Array.isArray(s.nestLots)||s.nestLots.some(l=>!Number.isFinite(l.count)||l.count<=0||!Number.isFinite(l.day)||l.day<0||l.day>s.day)))return fresh(now);
       prepareNest(s);syncEggs(s);s.log=s.log.filter(t=>typeof t==='string').slice(0,12);if(s.last>now)s.last=now;return s;
     }catch(_){return fresh(now);}
   }
-  const api={DAY,HOUR,breeds,prices,difficulties,lifecycle,ageFactor,lifeStage,retired,productionStatus,isBankrupt,henSaleValue,farmValue,fresh,advance,action,restore,count,threats,eggCapacity};if(typeof module==='object'&&module.exports)module.exports=api;else root.GranjaMotor=api;
+  const api={DAY,HOUR,breeds,prices,difficulties,lifecycle,ageFactor,lifeStage,needsYoungFeed,retired,productionStatus,equipmentAccess,isBankrupt,henSaleValue,farmValue,fresh,advance,action,restore,count,threats,eggCapacity};if(typeof module==='object'&&module.exports)module.exports=api;else root.GranjaMotor=api;
 })(typeof globalThis==='object'?globalThis:this);
 
