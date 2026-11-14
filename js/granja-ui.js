@@ -7,6 +7,7 @@
   function save(){try{localStorage.setItem(key(),JSON.stringify(state));saveOK=true;}catch(_){saveOK=false;}$('save-status').textContent=saveOK?'Partida guardada en este navegador.':'No se pudo guardar: esta partida se perderá al cerrar. Permite el almacenamiento para conservarla.';}
   function paint(){
     const n=M.count(state),bankrupt=M.isBankrupt(state),health=n?state.hens.reduce((a,h)=>a+h.health*h.count,0)/n:0;
+    const value=M.farmValue(state);$('farm-value').textContent=euro(value.total);$('value-breakdown').textContent='Caja '+euro(value.cash)+' · Aves '+euro(value.birds)+' · Huevos '+euro(value.eggs)+'. Valor de venta actual; incluye huevos enteros del nido y excluye instalaciones y reservas.';
     $('money').textContent=euro(state.money);$('day').textContent='Día '+state.day+' · '+state.hour%24+':00';$('birds').textContent=n+' / '+state.capacity;
     $('egg-count').textContent=state.eggs+' / '+M.eggCapacity(state)+' guardados · '+Math.floor(state.nest)+' en nidos';$('egg-price').textContent=euro(state.eggPrice);$('sell-eggs').textContent='Vender huevos · '+euro(state.eggPrice)+'/ud.';$('feed-count').textContent=state.feed.toFixed(1)+' kg';$('water-count').textContent=state.water.toFixed(1)+' L';$('pause').textContent=state.paused?'Reanudar la granja':'Pausar la granja';
     $('hygiene').value=state.hygiene;$('hygiene-label').textContent=Math.round(state.hygiene)+' %';$('health').value=health;$('health-label').textContent=Math.round(health)+' %';
