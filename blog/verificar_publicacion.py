@@ -13,11 +13,13 @@ class Destacados(HTMLParser):
         self.primero = None
         self.promo_antes = False
         self.rotativo = False
+        self.controles = set()
 
     def handle_starttag(self, tag, attrs):
         datos = dict(attrs)
         if self.primero is None and 'data-promo-carousel' in datos:
             self.promo_antes = True
+        self.controles.update(datos.keys() & {'data-hero-prev', 'data-hero-next', 'data-hero-pause'})
         if 'data-hero' in datos:
             self.rotativo = True
         if self.primero is None and tag == 'a' and 'data-inicio-curso' in datos:
@@ -48,8 +50,8 @@ def verificar_salida(destino, version, posts, categorias):
     lector = Destacados()
     lector.feed(html)
     primero = lector.primero or {}
-    if primero.get('href') != 'curso.html' or lector.promo_antes or lector.rotativo:
-        errores.append('El curso debe ser la acción principal fija, antes de las promociones.')
+    if primero.get('href') != 'curso.html' or lector.promo_antes or (lector.rotativo and len(lector.controles) != 3):
+        errores.append('El curso debe ser la acción principal antes de las promociones y el carrusel debe permitir navegar y pausar.')
     visibles = [p for p in posts if p.get('publicar') and not p.get('noindex')]
     recientes = re.search(r'<section[^>]*aria-labelledby="recientes-titulo"[^>]*>(.*?)</section>', html, re.S)
     tarjetas = re.findall(r'class="gr-article"', recientes.group(1)) if recientes else []
