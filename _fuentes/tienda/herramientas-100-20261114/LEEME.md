@@ -191,3 +191,11 @@ Se excluyeron cuatro referencias de los cálculos por falta de correspondencia d
 Las cuatro consultas directas de Amazon realizadas en esta continuación quedaron bloqueadas por robots.txt. No se ha verificado hoy ningún nuevo precio, puntuación, reseñas ni stock en Amazon. Ninguna ficha está marcada como publicable y no hay imágenes nuevas.
 
 Validación: seis ASIN únicos pertenecientes a la selección; todas las fichas mantienen publicación desactivada y campos comerciales actuales sin completar. Se conserva la selección de cien y no se modifican páginas públicas.
+
+## Nueva consulta de Canopy y dos contrastes parciales
+
+El 14/11/2026 se probó el formulario público de Canopy con B087RNQDFC. Respondió «Today's free-tool quota has been used up». No se obtuvo ningún precio, valoración ni stock; no se conectó la API ni se contrató un servicio.
+
+Se incorporan anotaciones en los textos n.º 1 y 4 de `fichas-iniciales-78.json`. Fiskars: el extracto indexado del catálogo oficial 2020 identifica el Xact europeo 1027044; el PDF no pudo abrirse y no acredita equivalencia con el ASIN estadounidense. VEVOR: se leyó la ficha oficial europea CY-SF13, SKU ZCLQPLHJ36INUFPURV0; declara 37 púas, cabezal de 915 mm y 1,6 kg, pendientes de equivalencia con B0CGCM233N. Se distingue la longitud del mango de las dimensiones totales.
+
+Ambas anotaciones incluyen texto editorial revisado y límites concretos. Permanecen dentro de los 78 textos pendientes: no se incrementa el total de 22 borradores anteriores con fuentes. La correspondencia de variantes y los datos comerciales actuales siguen sin verificar. Cero nuevas imágenes y cero productos publicados en esta continuación.
