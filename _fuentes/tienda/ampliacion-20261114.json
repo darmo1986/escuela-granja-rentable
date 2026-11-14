@@ -1,0 +1,730 @@
+{
+  "fecha": "2026-11-14",
+  "objetivo": "Seleccionar aproximadamente 100 productos adicionales, disponibles y con más de 4 estrellas. Priorizar 4,3 o más.",
+  "catalogo_publico_base": 169,
+  "publicados_nuevos": 0,
+  "criterio_destino": "Los enlaces /clp/ observados se reservan hasta comprobar un destino de ficha. No se sustituyen por enlaces inventados.",
+  "limite_consulta": "Canopy respondió: You have used today's free-tool quota. Try again tomorrow, or sign up for an API key. No se contrataron servicios ni se intentó evitar el límite.",
+  "resumen": {
+    "identificados_nuevos": 113,
+    "consultados": 12,
+    "preseleccionados": 7,
+    "revisar_destino": 2,
+    "reserva_por_puntuacion": 2,
+    "descartados_sin_stock": 1,
+    "pendientes": 101
+  },
+  "verificaciones": [
+    {
+      "asin": "B07ZJVQH1B",
+      "nombre": "RentACoop Automatic Treadle Chicken Feeder, 40 lb",
+      "valoracion": 4.3,
+      "resenas": 856,
+      "precio_usd": 219.95,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/RentACoop-Capacity-Metal-Treadle-Feeder/dp/B07ZJVQH1B",
+      "titulo_seo": "Comedero de pedal RentACoop de 40 lb",
+      "categoria": "Comederos",
+      "borrador": "Tolva de pedal con capacidad nominal de 40 libras. Compara el acceso al pedal, el espacio de instalación y la adaptación de las aves antes de elegirla.",
+      "estado": "preseleccionado_ficha_pendiente",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B016047Q5G",
+      "nombre": "RentACoop 25lb Chicken Feeder with 4 Large Ports - Center Placement",
+      "valoracion": 4.5,
+      "resenas": 1264,
+      "precio_usd": 69.95,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/RentACoop-BPA-Free-Chicken-Feeder-Adjustable/dp/B016047Q5G",
+      "titulo_seo": "Comedero RentACoop de 25 lb con cuatro bocas grandes",
+      "categoria": "Comederos",
+      "borrador": "Comedero de depósito con cuatro bocas grandes y soporte ajustable. Puede encajar para un lote adulto si las aves alcanzan las bocas y el soporte queda estable.",
+      "estado": "preseleccionado_ficha_pendiente",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B07F1ZTDV4",
+      "nombre": "RentACoop 25lb Gravity-Fed Metal Trough Feeder with Lid & Rain Cover",
+      "valoracion": 4.5,
+      "resenas": 1327,
+      "precio_usd": 89.95,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/RentACoop-Gravity-Fed-Metal-Trough-Feeder/dp/B07F1ZTDV4",
+      "titulo_seo": "Tolva metálica RentACoop de 25 lb con cubierta de lluvia",
+      "categoria": "Comederos",
+      "borrador": "Tolva metálica de gravedad con ventana lateral y rejilla ajustable. Está orientada a aves adultas; comprueba las medidas, la fijación y el acceso para limpiarla.",
+      "estado": "preseleccionado_ficha_pendiente",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B0BCBYC3NN",
+      "nombre": "RentACoop Chick2Chicken DIY Medium 4-Port Feeder Kit",
+      "valoracion": 4.5,
+      "resenas": 132,
+      "precio_usd": 17.95,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/RentACoop-4-Port-Chick-Chicken-Feeder/dp/B0BCBYC3NN",
+      "titulo_seo": "Kit RentACoop Chick2Chicken de cuatro bocas medianas",
+      "categoria": "Kits, comederos y bebederos de pollitos",
+      "borrador": "Kit de cuatro bocas medianas para preparar un comedero con un recipiente compatible. Comprueba la altura de montaje, el diámetro de corte y que cada ave pueda acceder al alimento.",
+      "estado": "preseleccionado_ficha_pendiente",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B0CVH8N1C3",
+      "nombre": "OverEZ Compact Chicken Feeder, 25 Pounds",
+      "valoracion": 4.6,
+      "resenas": 102,
+      "precio_usd": 49.99,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/OverEZ-Compact-Feeder-Automatic-Dispenser/dp/B0CVH8N1C3",
+      "titulo_seo": "Comedero compacto OverEZ de 25 lb",
+      "categoria": "Comederos",
+      "borrador": "Comedero compacto de gravedad con capacidad nominal de 25 libras y posibilidad de montaje. Revisa el espacio necesario y las instrucciones de fijación antes de compararlo con una tolva de suelo.",
+      "estado": "preseleccionado_ficha_pendiente",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B09VHD384L",
+      "nombre": "My Favorite Chicken 27 oz Cage Cup, 800 mL Green",
+      "valoracion": 4.6,
+      "resenas": 332,
+      "precio_usd": 8.99,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/clp/B09VHD384L",
+      "titulo_seo": "Copa My Favorite Chicken de 800 ml para jaula",
+      "categoria": "Bebederos normales",
+      "borrador": "Recipiente abierto con ganchos para malla que puede destinarse a comida o agua. Su tamaño permite compararlo para jaulas pequeñas, pero exige revisar limpieza, altura y estabilidad.",
+      "estado": "revisar_destino",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B0C95GBGYP",
+      "nombre": "Little Family Members Chicken Waterer 1.5-Gallon Metal Handle",
+      "valoracion": 4.3,
+      "resenas": 531,
+      "precio_usd": 16.99,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/Little-Family-Members-1-5-Gallon-Chicken/dp/B0C95GBGYP",
+      "titulo_seo": "Bebedero Little Family Members de 1,5 galones",
+      "categoria": "Bebederos normales",
+      "borrador": "Bebedero de depósito con asa metálica y capacidad nominal de 1,5 galones estadounidenses. Comprueba el sistema de llenado, la base y el acceso de las aves antes de instalarlo.",
+      "estado": "preseleccionado_ficha_pendiente",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B0FP9TCLT9",
+      "nombre": "Hen's Choice 5 Gallon Chicken Waterer with 8 Drinker Nipples",
+      "valoracion": 4.8,
+      "resenas": 47,
+      "precio_usd": 48.99,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/Hens-Choice-Chicken-Waterer-Anti-Roost/dp/B0FP9TCLT9",
+      "titulo_seo": "Bebedero Hen's Choice de 5 galones con ocho tetinas",
+      "categoria": "Bebederos de tetina y copas",
+      "borrador": "Depósito de llenado superior con ocho tetinas y patas plegables. Puede encajar si puedes regular su altura y comprobar que todo el lote utiliza las tetinas correctamente.",
+      "estado": "preseleccionado_ficha_pendiente",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B0FX1YFZLD",
+      "nombre": "GADFISH 55LBS Large Capacity Automatic Chicken Feeder, 8 Ports",
+      "valoracion": 4.3,
+      "resenas": 126,
+      "precio_usd": 65.87,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/clp/B0FX1YFZLD",
+      "titulo_seo": "Comedero GADFISH de 55 lb con ocho bocas",
+      "categoria": "Comederos",
+      "borrador": "Comedero de gran capacidad con ocho bocas, ventana para observar el pienso y patas ajustables. Antes de elegirlo, compara el tamaño del lote, el espacio disponible y la estabilidad del apoyo.",
+      "estado": "revisar_destino",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B00P1LUZ0S",
+      "nombre": "RentACoop Chicken Feeder 20 Pounds, Center Placement",
+      "valoracion": 4.5,
+      "resenas": 513,
+      "precio_usd": null,
+      "stock": "Out of Stock",
+      "url_observada": "https://www.amazon.com/Chicken-Feeder-Holds-20-Pounds-Pellets-Crumbles-Grain-Bucket/dp/B00P1LUZ0S",
+      "titulo_seo": "Comedero RentACoop de 20 lb",
+      "categoria": "",
+      "borrador": "",
+      "estado": "descartado_sin_stock",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B0B6WJNMNB",
+      "nombre": "RentACoop Chick2Chicken 10lb BPA-Free 4-Medium Port Feeder",
+      "valoracion": 4.2,
+      "resenas": 884,
+      "precio_usd": 42.95,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/RentACoop-Chick2Chicken-4-Port-Feeder-Chickens/dp/B0B6WJNMNB",
+      "titulo_seo": "Comedero RentACoop Chick2Chicken de 10 lb",
+      "categoria": "",
+      "borrador": "",
+      "estado": "reserva_priorizar_43",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    },
+    {
+      "asin": "B006ZJHDNM",
+      "nombre": "Harris Farms Easy-Fill Poultry Drinker, 6.25 Gallon",
+      "valoracion": 4.1,
+      "resenas": 2869,
+      "precio_usd": 52.76,
+      "stock": "In Stock",
+      "url_observada": "https://www.amazon.com/Harris-Farms-Poultry-Drinker-gallon/dp/B006ZJHDNM",
+      "titulo_seo": "Bebedero Harris Farms de 6,25 galones",
+      "categoria": "",
+      "borrador": "",
+      "estado": "reserva_priorizar_43",
+      "fuente": "https://www.canopyapi.co/tools/asin-lookup",
+      "consultado": "2026-11-14",
+      "actualizacion_mostrada": "2026-11-14",
+      "limite": "Instantánea de actualización mensual; no acredita stock ni precio en tiempo real."
+    }
+  ],
+  "cola": [
+    {
+      "asin": "B002QYDWHG",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/chicken-waterers/"
+    },
+    {
+      "asin": "B0DKBVXJJM",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/chicken-waterers/"
+    },
+    {
+      "asin": "B0GN9XPPWJ",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/chicken-waterers/"
+    },
+    {
+      "asin": "B0D2QCVMHN",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/chicken-waterers/"
+    },
+    {
+      "asin": "B0H28NBHLM",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-chicken-feeders/"
+    },
+    {
+      "asin": "B0FR5JDR7N",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-chicken-feeders/"
+    },
+    {
+      "asin": "B0DM9NYY5X",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-chicken-feeders/"
+    },
+    {
+      "asin": "B0CR17Q4ZH",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-chicken-feeders/"
+    },
+    {
+      "asin": "B0GLPSNCWK",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-chicken-feeders/"
+    },
+    {
+      "asin": "B0BP7Q6HGT",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-chicken-feeders/"
+    },
+    {
+      "asin": "B0G6GD9K3F",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-chicken-feeders/"
+    },
+    {
+      "asin": "B0FB7QQPRP",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0G6SC7VWW",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0GT8VWFK5",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0BYYXBYLF",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0F8HFXGX3",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0FZSHMN57",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0DPFXB26C",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B087YD9JKJ",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0F9FB86TT",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0DKNJFGBT",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-boxes/"
+    },
+    {
+      "asin": "B0DF71RJ5R",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-feeders/"
+    },
+    {
+      "asin": "B0H4PBHNJH",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-feeders/"
+    },
+    {
+      "asin": "B0F9W4QWD4",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-feeders/"
+    },
+    {
+      "asin": "B0GHSVH1Y4",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-feeders/"
+    },
+    {
+      "asin": "B0FYDX4VMD",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-feeders/"
+    },
+    {
+      "asin": "B0CSMTVN2P",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-feeders/"
+    },
+    {
+      "asin": "B0C9NS3TH7",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-feeders/"
+    },
+    {
+      "asin": "B08LV6N9SN",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-waterers/"
+    },
+    {
+      "asin": "B0814KPWJR",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-waterers/"
+    },
+    {
+      "asin": "B07R74M14W",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-waterers/"
+    },
+    {
+      "asin": "B0BSGDRX95",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-waterers/"
+    },
+    {
+      "asin": "B07Q48WR94",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-waterers/"
+    },
+    {
+      "asin": "B09V5NR7T4",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-waterers/"
+    },
+    {
+      "asin": "B0GHZQRF43",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/quail-waterers/"
+    },
+    {
+      "asin": "B0GJRHN7YK",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0F18DBBJ3",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0FPFHBBNG",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0FRN7M7J2",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0GGC6243S",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0GN994ZWS",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0FFLSDF7L",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0GZYNP5FB",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0GDZR6MLV",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B0DRHP4R63",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/nesting-boxes/"
+    },
+    {
+      "asin": "B005CEQYJK",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/roosting-bars-and-perches/"
+    },
+    {
+      "asin": "B0DP8KNMGM",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/roosting-bars-and-perches/"
+    },
+    {
+      "asin": "B0DS63S9XG",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/roosting-bars-and-perches/"
+    },
+    {
+      "asin": "B0FJFFW2MK",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/roosting-bars-and-perches/"
+    },
+    {
+      "asin": "B0FD3KY4RY",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/roosting-bars-and-perches/"
+    },
+    {
+      "asin": "B0GR8HCYH8",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/roosting-bars-and-perches/"
+    },
+    {
+      "asin": "B00KCKNYCY",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-candlers/"
+    },
+    {
+      "asin": "B07FQNX9WF",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-candlers/"
+    },
+    {
+      "asin": "B08C2QBLG5",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-candlers/"
+    },
+    {
+      "asin": "B0CR6DNNY3",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-candlers/"
+    },
+    {
+      "asin": "B0942XBWX8",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-candlers/"
+    },
+    {
+      "asin": "B081211NJV",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-candlers/"
+    },
+    {
+      "asin": "B0FLY2SFWS",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-heat-plates/"
+    },
+    {
+      "asin": "B0BYD4MQHJ",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-heat-plates/"
+    },
+    {
+      "asin": "B0CL8SXMS6",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-heat-plates/"
+    },
+    {
+      "asin": "B07DLFD6GY",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-heat-plates/"
+    },
+    {
+      "asin": "B0BG1L94HR",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-heat-plates/"
+    },
+    {
+      "asin": "B0GG9LRPBK",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-heat-plates/"
+    },
+    {
+      "asin": "B0FSXN2NLC",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/brooder-heat-plates/"
+    },
+    {
+      "asin": "B0GJ6B4TT5",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-coop-doors/"
+    },
+    {
+      "asin": "B0DCFTN57J",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-coop-doors/"
+    },
+    {
+      "asin": "B0H748J3CD",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-coop-doors/"
+    },
+    {
+      "asin": "B0DX6TN7ZP",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-coop-doors/"
+    },
+    {
+      "asin": "B0C5N8CP21",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-coop-doors/"
+    },
+    {
+      "asin": "B0GS9ZYWTM",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-coop-doors/"
+    },
+    {
+      "asin": "B0H2DM97SR",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/automatic-coop-doors/"
+    },
+    {
+      "asin": "B0DLWDCHJD",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0GGRD9SDJ",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B09Y84KPNC",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0G4LYJRBH",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0G5PDW112",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0G5WZXQYJ",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0H7WPHQGK",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0838VM7C9",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0GJ2YKC9S",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0FXG21GBV",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-incubators/"
+    },
+    {
+      "asin": "B0G37NS579",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B0DK19H556",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B0CJ5BNCQ8",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B0DGWYY5L7",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B08BYDBKZ7",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B0DSVX93GK",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B0DSF5GF2Y",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B01EXWMOY0",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B09BNFQ7LH",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B0DPDNZTPG",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/hardware-cloth/"
+    },
+    {
+      "asin": "B00AYUMB4O",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B09CD69XSW",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B0FP91X6JZ",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B09W5G1ZD7",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B09VT151RF",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B08DL59R2J",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B08CK7ZC7D",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B06XVFQTW4",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B0FGD2L2K1",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    },
+    {
+      "asin": "B0F8HJWQGZ",
+      "estado": "pendiente_verificacion",
+      "fuente_descubrimiento": "https://thepoultryfeed.com/reviews/egg-cartons-and-storage/"
+    }
+  ]
+}
