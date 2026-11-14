@@ -17,6 +17,8 @@
     pollitos: "pollito", pollos: "pollo", huevos: "huevo", incubadoras: "incubadora",
     ovoscopios: "ovoscopio", lamparas: "lampara", placas: "placa", puertas: "puerta",
     automaticas: "automatico", automatica: "automatico", automaticos: "automatico",
+    termometros: "termometro", higrometros: "higrometro", termohigrometros: "termohigrometro",
+    criadoras: "criadora", bombillas: "bombilla", perchas: "percha",
     ratones: "raton", ratas: "rata", jaulas: "jaula", mallas: "malla", vallas: "valla"
   };
   var vacias = ["de", "del", "la", "el", "los", "las", "para", "con", "y", "en", "un", "una"];
