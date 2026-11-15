@@ -8,7 +8,6 @@
 
   var vistos = Object.create(null);
   var banners = document.querySelectorAll("[data-banner]");
-  if (!banners.length) return;
 
   function dominio(ref) {
     if (!ref) return "";
@@ -59,7 +58,37 @@
     }).catch(function () {});
   }
 
-  if ("IntersectionObserver" in window) {
+  // El informe usa los registros guias-{grupo}-{evento}, separados de los
+  // banners propios. Una visita cuenta aunque el proveedor no sirva creatividad.
+  var grupoEnsayo = "";
+  function ensayoVigente() {
+    try {
+      return grupoEnsayo && localStorage.getItem("gr_adsterra_consent_v1") === "si" &&
+        document.querySelector("[data-ensayo-guias]") && !(window.esPremiumLocal && window.esPremiumLocal());
+    } catch (e) { return false; }
+  }
+  function registrarEnsayo() {
+    if (!window.ads || !window.ads.ensayoGuias || grupoEnsayo) return;
+    var zona = document.querySelector("[data-ensayo-guias]");
+    if (!zona) return;
+    var grupo = zona.dataset.ensayoGuias;
+    if (grupo !== "final" && grupo !== "interior") return;
+    grupoEnsayo = grupo;
+    if (!ensayoVigente()) return;
+    enviar("guias-" + grupo + "-visita", "impresion");
+    var lectura = document.querySelector("[data-lectura-ensayo]");
+    if (!lectura || !("IntersectionObserver" in window)) return;
+    var observadorLectura = new IntersectionObserver(function (entradas) {
+      if (entradas.some(function (e) { return e.isIntersecting && e.intersectionRatio >= 0.5; })) {
+        observadorLectura.disconnect();
+        if (ensayoVigente()) enviar("guias-" + grupo + "-lectura", "impresion");
+      }
+    }, { threshold: 0.5 });
+    observadorLectura.observe(lectura);
+  }
+  document.addEventListener("gr-ensayo-guias", registrarEnsayo);
+  registrarEnsayo();
+  if ("IntersectionObserver" in window && banners.length) {
     var visibles = new Set();
     function registrarVisible(nodo) {
       if (!visibles.has(nodo) || nodo.closest('[aria-hidden="true"], [inert]')) return;
@@ -89,6 +118,17 @@
   document.addEventListener("click", function (ev) {
     var enlace = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
     if (!enlace) return;
+    if (ensayoVigente() && enlace.closest("main")) {
+      var destino = new URL(enlace.href, location.href);
+      var categoria = "";
+      if (destino.origin === location.origin) {
+        if (/^\/ebooks(?:\/|$)/.test(destino.pathname)) categoria = "ebooks";
+        if (/^\/tienda(?:\/|\.html$|$)/.test(destino.pathname)) categoria = "tienda";
+      } else if (/^(?:www\.)?(?:amazon\.com|amzn\.to)$/.test(destino.hostname)) {
+        categoria = "amazon";
+      }
+      if (categoria) enviar("guias-" + grupoEnsayo + "-" + categoria, "clic");
+    }
     var nodo = enlace.closest("[data-banner]");
     if (!nodo) return;
     enviar(idDe(nodo), "clic");
