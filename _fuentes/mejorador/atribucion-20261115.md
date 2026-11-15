@@ -8,9 +8,13 @@ Desactivado por defecto: solo funciona con `GR.analitica.atribucionUtm === true`
 
 Límite: atribución únicamente en la página cuya URL incluye UTM. No conserva la campaña entre páginas; no presentarla como atribución completa de ventas. Los datos cliente son manipulables, igual que los contadores actuales.
 
+El panel actual no presenta un desglose UTM. Este lote prepara la captura, no un informe de campañas: hasta aprobar una consulta o informe administrativo que lea estas columnas, la atribución solo podrá comprobarse en una base aislada o con acceso autorizado a Supabase.
+
 Fases restantes del embudo: clic = intención; inicio de pago únicamente tras obtener una sesión real del servidor; venta únicamente por verificación Stripe del lado servidor y deduplicación por transacción. No existe aquí el servidor Stripe desplegado verificable: no se inventan esos eventos ni se registran ventas desde el navegador. Requiere recuperar y verificar ese código/cuenta antes de completarlo.
 
 Prueba propuesta: enlace de engorde con `utm_source=youtube&utm_medium=organic_video&utm_campaign=engorde_registro&utm_content=w4c0OzCPWKI`. En entorno aislado, debe aparecer una página vista y el clic que se produzca, sin inicios ni ventas inventados. Comparar ventanas iguales de siete días tras una activación autorizada. Impacto esperado: mejor atribución, no incremento demostrado de visitas o ventas. Esfuerzo medio; sin gasto aprobado ni ejecutado. Riesgo: pérdida de eventos si se activa antes del esquema; mitigado con bandera apagada.
+
+La prueba automatizada exige dos envíos distintos (visita e intención), los cuatro valores UTM permitidos, ausencia de URL completa, rechazo de texto libre y duplicados, configuración real no activada y correspondencia de los valores con la migración SQL. La batería de ebooks y publicación pasa. La batería de generador detecta en la base `8c2a545` un fallo previo ajeno a este lote: `premium.html` conserva versiones de activos anteriores a `VERSION_ACTIVOS`; no se corrige aquí para no mezclar la atribución con una regeneración amplia.
 
 ## Oferta educativa, solo propuesta interna
 
