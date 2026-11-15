@@ -3,12 +3,9 @@ const root=document.body.dataset.root||'';
 const PK='gr_progreso',CK='gr_adsterra_consent_v1';
 const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p!=='object'||Array.isArray(p))return{};const clean={};Object.keys(p).forEach(id=>{const item=p[id];if(item&&typeof item==='object'&&!Array.isArray(item))clean[id]=item;});return clean;}catch(e){return{}}};
 const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
-/* Piloto: un banner 300×250 en artículos, siempre con consentimiento nuevo. */
+/* Piloto: un banner 300×250 en portada y artículos, siempre con consentimiento. */
 function adsOn(){return !!(window.ads && window.ads.activo === true);}
-const adsterraObservers=new Set();
 function retirarPiloto(){
-  adsterraObservers.forEach(observer=>observer.disconnect());
-  adsterraObservers.clear();
   document.querySelectorAll('[data-adsterra-pilot]').forEach(el=>el.remove());
 }
 function ocultarHuecos(){
@@ -19,87 +16,44 @@ function ocultarHuecos(){
 if(!adsOn())ocultarHuecos();
 function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === true);}
 function mountAdsterraPilot(){
-  if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
-  if(document.querySelector('[data-adsterra-pilot]'))return;
-  const tablon=document.querySelector('[data-tablon-publicidad]');
-  if(tablon){
-    insertAdsterraBanner(tablon,'afterend');
-    return;
-  }
+  if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal() || document.querySelector('[data-adsterra-pilot]'))return;
+  let accepted=false;
+  try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
+  if(!accepted)return;
+  const board=document.querySelector('[data-tablon-publicidad]');
   const home=document.querySelector('main.home-renovada');
-  if(home){
-    const tools=home.querySelector('.gr-tools');
-    if(tools)insertAdsterraBanner(tools,'afterend');
-    insertAdsterraBanner(home,'beforeend');
-    return;
-  }
   const article=document.querySelector('main .post-body');
-  if(article && article.textContent.trim().length>=1500)insertAdsterraBanner(article,'beforeend');
-}
-function insertAdsterraBanner(target,position){
+  const tools=home && home.querySelector('.gr-tools');
+  const target=board || tools || home || (article && article.textContent.trim().length>=1500 && article);
+  if(!target)return;
+  if(window.__grAdTagStarted)return;
+  window.__grAdTagStarted=true;
   const box=document.createElement('aside');
   box.dataset.adsterraPilot='1';
   box.setAttribute('aria-label','Publicidad');
-  box.style.cssText='margin:24px auto;width:300px;max-width:100%;text-align:center;overflow:hidden';
+  box.style.cssText='margin:24px auto;width:300px;max-width:100%;text-align:center';
   const label=document.createElement('p');
   label.textContent='Publicidad';
   label.style.cssText='margin:0 0 4px;font-size:12px';
-  const frame=document.createElement('iframe');
-  frame.title='Publicidad de Adsterra';
-  frame.width='300';frame.height='250';
-  frame.setAttribute('sandbox','allow-scripts');
-  frame.setAttribute('referrerpolicy','no-referrer');
-  frame.style.cssText='border:0;display:block;width:300px;height:250px;max-width:100%';
-  box.style.margin='0 auto';
-  box.style.height='1px';
-  label.hidden=true;
-  box.append(label,frame);
-  target.insertAdjacentElement(position,box);
-  const mount=()=>{
-    if(!box.isConnected || box.dataset.loaded || !adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal())return;
-    let accepted=false;
-    try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
-    if(!accepted)return;
-    box.dataset.loaded='1';
-    box.style.height='auto';
-    box.style.margin='24px auto';
-    label.hidden=false;
-    let timeout;
-    const stop=()=>{
-      clearTimeout(timeout);
-      window.removeEventListener('message',onRender);
-    };
-    const onRender=event=>{
-      if(event.source===frame.contentWindow && event.data==='gr-banner-rendered') stop();
-    };
-    window.addEventListener('message',onRender);
-    timeout=setTimeout(()=>{
-      stop();
-      if(!box.isConnected)return;
-      frame.remove();
-      label.textContent='Promoción de Granja Rentable';
-      const link=document.createElement('a');
-      link.href=root+'ebooks/';
-      const image=document.createElement('img');
-      image.src=root+'img/banners/banner-empezar.webp';
-      image.alt='Ver las guías de Granja Rentable para empezar con gallinas';
-      image.style.cssText='display:block;width:100%;height:auto';
-      link.append(image);
-      box.append(link);
-    },26000);
-    frame.srcdoc="<!doctype html><html><head><meta name=\"referrer\" content=\"no-referrer\"></head><body style=\"margin:0;overflow:hidden\"><script>\n(function () {\n  function visibleContent(doc) {\n    return Array.from(doc.querySelectorAll('img,video,canvas,object,a[href]')).some(function (node) {\n      var bounds = node.getBoundingClientRect();\n      return bounds.width >= 100 && bounds.height >= 40 &&\n        (node.tagName !== 'IMG' || (node.complete && node.naturalWidth > 0));\n    });\n  }\n  function hasCreative() {\n    if (visibleContent(document)) return true;\n    return Array.from(document.querySelectorAll('iframe')).some(function (child) {\n      if (child.offsetWidth < 100 || child.offsetHeight < 40) return false;\n      if (child.contentDocument && visibleContent(child.contentDocument)) return true;\n      return child.dataset.loaded === 'yes' && /^https?:/i.test(child.src);\n    });\n  }\n  document.addEventListener('load', function (event) {\n    if (event.target.tagName === 'IFRAME') event.target.dataset.loaded = 'yes';\n  }, true);\n  var attempts = 0;\n  var timer = setInterval(function () {\n    if (hasCreative()) {\n      clearInterval(timer);\n      parent.postMessage('gr-banner-rendered','*');\n    } else if (++attempts >= 100) clearInterval(timer);\n  }, 250);\n})();\n</script><script>window.atOptions={key:\"4c10efc097372233b52ed4f05e0a6ab8\",format:\"iframe\",height:250,width:300,params:{}};</script><script src=\"https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8\"></script></body></html>";
-  };
-  if('IntersectionObserver' in window){
-    const observer=new IntersectionObserver(entries=>{
-      if(entries.some(e=>e.isIntersecting)){
-        observer.disconnect();
-        adsterraObservers.delete(observer);
-        mount();
-      }
-    },{rootMargin:'100px'});
-    adsterraObservers.add(observer);
-    observer.observe(box);
-  }else mount();
+  box.append(label);
+  target.insertAdjacentElement(board || tools ? 'afterend' : 'beforeend',box);
+  // Reuse the placement supplied by Publishers. The vendor renders its own creative.
+  window.atOptions={key:'4c10efc097372233b52ed4f05e0a6ab8',format:'iframe',height:250,width:300,params:{}};
+  const tag=document.createElement('script');
+  tag.src='https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8';
+  tag.async=false;
+  tag.addEventListener('error',()=>{
+    if(!box.isConnected)return;
+    label.textContent='Promoción de Granja Rentable';
+    const link=document.createElement('a'),image=document.createElement('img');
+    link.href=root+'ebooks/';
+    image.src=root+'img/banners/banner-empezar.webp';
+    image.alt='Guías de Granja Rentable para empezar con gallinas';
+    image.style.cssText='display:block;width:100%;height:auto';
+    link.append(image);
+    box.append(link);
+  });
+  box.append(tag);
 }
 /* Se comprueba Premium antes de montar y antes de cargar el anuncio. */
 function esPremiumLocal(){
@@ -120,6 +74,7 @@ function quitarAnuncios(){
   var nota = document.getElementById('cookie-note');
   if (nota) nota.remove();
   retirarPiloto();
+  if(window.__grAdTagStarted)location.reload();
   window.__adsLoaded = 1;
 }
 window.GR_quitarAnuncios = quitarAnuncios;
@@ -252,7 +207,7 @@ window.addEventListener('storage',e=>{
   if(e.key!==CK && e.key!==null)return;
   let accepted=false;
   try{accepted=localStorage.getItem(CK)==='si';}catch(err){}
-  if(!accepted){retirarPiloto();window.__adsLoaded=0;document.documentElement.classList.remove('ad-ok');}
+  if(!accepted){retirarPiloto();window.__adsLoaded=0;document.documentElement.classList.remove('ad-ok');if(window.__grAdTagStarted)location.reload();}
 });
 arrancarAnuncios();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
@@ -264,6 +219,7 @@ document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener(
   window.__adsLoaded=0;
   document.documentElement.classList.remove('ad-ok');
   try { sessionStorage.setItem('gr_pedir_cookies','1'); } catch(err){}
+  if(window.__grAdTagStarted){location.reload();return;}
   if(!adsConfigured()){ alert('Ahora mismo este sitio no usa cookies publicitarias.'); return; }
   const prev=document.getElementById('cookie-banner');
   if(prev) prev.remove();
