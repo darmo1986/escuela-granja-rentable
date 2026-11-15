@@ -14,7 +14,7 @@ function run({consent,oldConsent,premium=false,active=true,configured=true,lazy=
  return {nodes,article,win,store,observers,storage(){for(const fn of events.storage||[])fn({key:'gr_adsterra_consent_v1'});}};
 }
 for(const args of [{},{oldConsent:true},{consent:'no'},{consent:'si',premium:true},{consent:'si',active:false},{consent:'si',path:'/privacidad.html'}]){const s=run(args);assert.equal(s.article.children.length,0,JSON.stringify(args));}
-let s=run({consent:'si'});assert.equal(s.article.children.length,1);let box=s.article.children[0],frame=box.children[1];assert.equal(frame.attrs.sandbox,'allow-scripts');assert.equal(frame.attrs.referrerpolicy,'no-referrer');assert.match(frame.srcdoc,/www\.highrevenueformat\.com\/4c10efc097372233b52ed4f05e0a6ab8\/invoke\.js/);assert.equal(frame.width,'300');assert.equal(frame.height,'250');s.win.testAds.loadAds();assert.equal(s.article.children.length,1);s.win.GR_quitarAnuncios();assert.equal(s.nodes.filter(n=>n.dataset.adsterraPilot).length,0);
+let s=run({consent:'si'});assert.equal(s.article.children.length,1);let box=s.article.children[0],frame=box.children[1];assert.equal(frame.attrs.sandbox,'allow-scripts');assert.equal(frame.attrs.referrerpolicy,'no-referrer');assert.match(frame.srcdoc,/bauval\.org\/22\/4c10efc097372233b52ed4f05e0a6ab8/);assert.equal(frame.width,'300');assert.equal(frame.height,'250');s.win.testAds.loadAds();assert.equal(s.article.children.length,1);s.win.GR_quitarAnuncios();assert.equal(s.nodes.filter(n=>n.dataset.adsterraPilot).length,0);
 for(const args of [{consent:'si',lazy:true},{consent:'si',lazy:true,configured:false}]){
  const state=run(args);
  if(args.configured===false){assert.equal(state.article.children.length,0);continue;}
