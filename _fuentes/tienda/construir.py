@@ -185,6 +185,13 @@ def armar(filas):
             n += 1
         slugs[slug] = asin
         sid, seccion = secciones[cat_csv]
+        foto = f"img/productos/amazon/{asin}.webp"
+        referencia = f"img/productos/referencias/{asin}.webp"
+        imagen = texto.get("imagen") or ""
+        if (RAIZ / foto).is_file():
+            imagen = foto
+        elif (RAIZ / referencia).is_file():
+            imagen = referencia
         productos.append({
             "asin": asin,
             "slug": slug,
@@ -199,7 +206,7 @@ def armar(filas):
             "url": fila["url_afiliado"].strip(),
             "explicacion": explicacion,
             "recomendacion": recomendacion,
-            "imagen": texto.get("imagen") or "",
+            "imagen": imagen,
             "origen": texto["origen"],
             "claves": (CLAVES[cat_csv] + " " + CLAVES.get(origen, "")).strip(),
             "unico_42": asin in SOLO_SI_UNICOS,
@@ -303,10 +310,13 @@ def data_q(p):
 def figura_imagen(p, raiz):
     if not p.get("imagen"):
         return ""
+    pie = "Foto del producto" if p["imagen"].startswith("img/productos/amazon/") else "Ilustración generada con IA"
+    if p["imagen"].startswith("img/productos/referencias/"):
+        pie = "Ilustración de uso generada con IA. Consulta el modelo exacto en Amazon."
     return (
         f'<figure class="t-foto"><img src="{raiz}{esc(p["imagen"])}" '
         f'alt="{esc(p["titulo"])}" loading="lazy">'
-        f"<figcaption>Ilustración generada con IA</figcaption></figure>"
+        f"<figcaption>{pie}</figcaption></figure>"
     )
 
 
