@@ -13,7 +13,7 @@ function fixture(reduced = false) {
   const slides = Array.from({length:4},node), dots = Array.from({length:4},node);
   slides[0].classList.add('is-active');
   const pause = node(), previous = node(), next = node(), hero = node();
-  const document = {hidden:false,activeElement:null,querySelector:()=>hero,addEventListener:(key,fn)=>{events[key]=fn;}};
+  const document = {body:node(),hidden:false,activeElement:null,querySelector:()=>hero,addEventListener:(key,fn)=>{events[key]=fn;}};
   hero.querySelectorAll = key => key==='[data-slide]' ? slides : dots;
   hero.querySelector = key => ({'[data-hero-pause]':pause,'[data-hero-prev]':previous,'[data-hero-next]':next})[key];
   hero.matches = () => false;

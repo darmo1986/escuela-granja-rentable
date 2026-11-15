@@ -33,6 +33,7 @@
     filter();
   }
   function filter() {
+    clear.disabled = !input.value;
     var term = normalize(input.value);
     var words = term ? term.split(/\s+/) : [];
     var visible = 0;
@@ -46,6 +47,11 @@
   }
   input.maxLength = 120;
   form.addEventListener('submit', function (event) { event.preventDefault(); filter(); saveQuery(); });
+  input.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && input.value) {
+      event.preventDefault(); input.value = ''; filter(); saveQuery();
+    }
+  });
   input.addEventListener('input', function () { filter(); saveQuery(); });
   clear.addEventListener('click', function () { input.value = ''; filter(); saveQuery(); input.focus(); });
   window.addEventListener('popstate', restoreQuery);
