@@ -26,9 +26,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Granja Rentable","url":"https://granjarentable.com/","logo":"https://granjarentable.com/img/logo.jpg","email":"ventas@granjarentable.com","sameAs":["https://www.youtube.com/@GranjaRentable","https://www.facebook.com/GranjaRentable"]},{"@type":"WebSite","name":"Granja Rentable","url":"https://granjarentable.com/","inLanguage":"es-419","description":"Curso gratis de avicultura para pollos y gallinas."}]}</script>
 <link rel="stylesheet" href="css/estilo.css?v=20261110d">
 <script src="js/boot.js?v=20261110d"></script>
-<link rel="stylesheet" href="css/inicio.css?v=20261115movil">
+<link rel="stylesheet" href="css/inicio.css?v=20261115accesos">
 <link rel="stylesheet" href="css/ofertas.css?v=20261112">
-<script defer src="js/hero.js?v=20261114aves"></script>
+<script defer src="js/hero.js?v=20261115gestos"></script>
 <style>@media(max-width:599px){.gr-hero-dots{flex-wrap:wrap;gap:0}.gr-hero-dots button{max-width:16.66%;min-width:0}}</style>
 </head>
 <body data-root="">
@@ -118,9 +118,10 @@
 </header>
 <p id="ref-note" class="ref-note" hidden></p>
 <main id="contenido" class="home-renovada">
+<nav class="gr-shortcuts" aria-label="Accesos rápidos"><a href="criaderos.html">Buscar criaderos</a><a href="calculadora.html">Calcular costes</a><a href="#registrar-lote">Registrar mi lote</a></nav>
 <section class="gr-hero" id="empieza-aqui" data-hero aria-label="Destacados de Granja Rentable">
 <div class="gr-hero-viewport">
-<div class="gr-slide is-active" data-slide>
+<div class="gr-slide is-active" data-slide data-short-title="Curso">
 <div class="gr-hero-copy">
 <p class="gr-kicker">EMPIEZA AQUÍ · CURSO GRATIS</p>
 <h1 id="inicio-titulo">Empieza tu granja<br><span>con las cuentas claras.</span></h1>
@@ -131,14 +132,14 @@
 </div>
 <div class="gr-hero-photo"><img src="img/inicio-curso.webp" alt="Gallinas ponedoras en un gallinero" width="800" height="450" fetchpriority="high" decoding="async"></div>
 </div>
-<div class="gr-slide" data-slide>
+<div class="gr-slide" data-slide data-short-title="Criaderos">
 <div class="gr-hero-copy"><p class="gr-kicker">DIRECTORIO AVÍCOLA</p>
 <h2 class="gr-hero-title">Encuentra criaderos en tu país</h2>
 <p class="gr-lead">Busca gallinas, codornices o huevos fértiles y consulta qué ofrece cada criadero.</p>
 <div class="gr-actions"><a class="btn gold" href="criaderos.html">Buscar un criadero →</a></div></div>
 <div class="gr-hero-photo"><a href="criaderos.html"><img src="img/criaderos-por-pais.webp" alt="Criaderos por país. Abrir el directorio" width="960" height="540" decoding="async"></a></div>
 </div>
-<div class="gr-slide" data-slide>
+<div class="gr-slide" data-slide data-short-title="Cuaderno de aves">
 <div class="gr-hero-copy"><p class="gr-kicker">CUADERNO DE AVES</p>
 <h2 class="gr-hero-title">¿Cómo va tu lote?</h2>
 <p class="gr-lead">Anota pesajes y huevos, consulta la referencia de tu estirpe y lleva al día las vacunas.</p>
@@ -146,11 +147,11 @@
 <p class="gr-hero-note">Gratis · Sin cuenta · Guardado en tu navegador</p></div>
 <div class="gr-lote-preview"><div class="gr-lote-sheet"><small>REGISTRO DE EJEMPLO</small><strong>Mi lote de ponedoras</strong><dl><div><dt>Aves</dt><dd>12</dd></div><div><dt>Huevos hoy</dt><dd>9</dd></div><div><dt>Último pesaje</dt><dd>1,8 kg</dd></div></dl></div></div>
 </div>
-<div class="gr-slide" data-slide><div class="gr-hero-copy"><p class="gr-kicker">RAZAS DE GALLINAS</p><h2 class="gr-hero-title">¿Qué raza encaja en tu granja?</h2><p class="gr-lead">Consulta las fichas de Australorp, Brahma y otras razas.</p><div class="gr-actions"><a class="btn gold" href="razas.html#razas-gallinas">Explorar las razas →</a></div></div><div class="gr-hero-photo"><img src="img/razas/australorp.webp" alt="Gallina Australorp negra" loading="lazy" decoding="async"></div></div>
-<div class="gr-slide" data-slide><div class="gr-hero-copy"><p class="gr-kicker">GUÍAS EN PDF</p><h2 class="gr-hero-title">Ebooks de avicultura</h2><p class="gr-lead">Elige una guía para empezar con ponedoras o preparar su alimentación.</p><div class="gr-actions"><a class="btn gold" href="ebooks/">Ver los ebooks →</a></div></div><div class="gr-hero-photo"><img src="img/banners/banner-empezar.webp" alt="Granjero dando de comer a sus aves" loading="lazy" decoding="async"></div></div>
-<div class="gr-slide" data-slide><div class="gr-hero-copy"><p class="gr-kicker">SEGURIDAD DEL GALLINERO</p><h2 class="gr-hero-title">Protege tu corral de los depredadores</h2><p class="gr-lead">Revisa la malla, las puertas y el cierre de noche.</p><div class="gr-actions"><a class="btn gold" href="blog/corral-anti-depredadores.html">Leer la guía →</a></div></div><div class="gr-hero-photo"><img src="img/blog/corral-anti-depredadores.webp" alt="Gallina en un corral protegido con malla" loading="lazy" decoding="async"></div></div>
+<div class="gr-slide" data-slide data-short-title="Razas"><div class="gr-hero-copy"><p class="gr-kicker">RAZAS DE GALLINAS</p><h2 class="gr-hero-title">¿Qué raza encaja en tu granja?</h2><p class="gr-lead">Consulta las fichas de Australorp, Brahma y otras razas.</p><div class="gr-actions"><a class="btn gold" href="razas.html#razas-gallinas">Explorar las razas →</a></div></div><div class="gr-hero-photo"><img src="img/razas/australorp.webp" alt="Gallina Australorp negra" loading="lazy" decoding="async"></div></div>
+<div class="gr-slide" data-slide data-short-title="Ebooks"><div class="gr-hero-copy"><p class="gr-kicker">GUÍAS EN PDF</p><h2 class="gr-hero-title">Ebooks de avicultura</h2><p class="gr-lead">Elige una guía para empezar con ponedoras o preparar su alimentación.</p><div class="gr-actions"><a class="btn gold" href="ebooks/">Ver los ebooks →</a></div></div><div class="gr-hero-photo"><img src="img/banners/banner-empezar.webp" alt="Granjero dando de comer a sus aves" loading="lazy" decoding="async"></div></div>
+<div class="gr-slide" data-slide data-short-title="Seguridad"><div class="gr-hero-copy"><p class="gr-kicker">SEGURIDAD DEL GALLINERO</p><h2 class="gr-hero-title">Protege tu corral de los depredadores</h2><p class="gr-lead">Revisa la malla, las puertas y el cierre de noche.</p><div class="gr-actions"><a class="btn gold" href="blog/corral-anti-depredadores.html">Leer la guía →</a></div></div><div class="gr-hero-photo"><img src="img/blog/corral-anti-depredadores.webp" alt="Gallina en un corral protegido con malla" loading="lazy" decoding="async"></div></div>
 </div>
-<div class="gr-hero-ctrl"><button class="gr-hero-arrow" data-hero-prev aria-label="Anterior">‹</button><div class="gr-hero-dots"><button data-hero-dot aria-label="Mostrar el curso"></button><button data-hero-dot aria-label="Mostrar el directorio de criaderos"></button><button data-hero-dot aria-label="Mostrar el Cuaderno de aves"></button><button data-hero-dot aria-label="Mostrar: ¿Qué raza encaja en tu granja?"></button><button data-hero-dot aria-label="Mostrar: Ebooks de avicultura"></button><button data-hero-dot aria-label="Mostrar: Protege tu corral de los depredadores"></button></div><button data-hero-pause>Pausar</button><button class="gr-hero-arrow" data-hero-next aria-label="Siguiente">›</button></div>
+<div class="gr-hero-ctrl"><button class="gr-hero-arrow" data-hero-prev aria-label="Anterior">‹</button><span class="gr-slide-count" data-slide-count></span><div class="gr-hero-dots"><button data-hero-dot aria-label="Mostrar el curso"></button><button data-hero-dot aria-label="Mostrar el directorio de criaderos"></button><button data-hero-dot aria-label="Mostrar el Cuaderno de aves"></button><button data-hero-dot aria-label="Mostrar: ¿Qué raza encaja en tu granja?"></button><button data-hero-dot aria-label="Mostrar: Ebooks de avicultura"></button><button data-hero-dot aria-label="Mostrar: Protege tu corral de los depredadores"></button></div><button data-hero-pause>Pausar</button><button class="gr-hero-arrow" data-hero-next aria-label="Siguiente">›</button></div>
 </section>
 <section class="gr-calculator-intro" aria-labelledby="calcular-inicio-titulo">
 <div><h2 id="calcular-inicio-titulo">¿Ya tienes aves o estás haciendo números?</h2><p>Comprueba cómo influyen el alimento, la puesta y el precio de venta en tus resultados.</p></div>
@@ -160,6 +161,12 @@
 
 <section class="gr-section" id="elige-tu-camino" aria-labelledby="camino-titulo">
 <div class="gr-section-head"><div><p class="gr-kicker">EMPIEZA POR LO QUE NECESITAS</p><h2 id="camino-titulo">Guías para tus aves</h2></div><a href="guias.html">Explorar todas las guías →</a></div>
+<form class="gr-home-search" role="search" action="blog/" method="get" aria-label="Buscar artículos de avicultura">
+<label for="inicio-buscar">¿Qué necesitas saber de tus aves?</label>
+<p id="inicio-buscar-ayuda">Busca entre las guías gratuitas de gallinas, gallos, pollitos y codornices.</p>
+<div class="gr-home-search-fields"><input id="inicio-buscar" name="q" type="search" maxlength="120" required placeholder="¿Por qué mis gallinas no ponen?" aria-describedby="inicio-buscar-ayuda"><button class="btn gold" type="submit">Buscar artículos →</button></div>
+<div class="gr-search-topics"><a href="blog/?q=pollitos">Pollitos</a><a href="blog/?q=puesta">Puesta de huevos</a><a href="blog/?q=codornices">Codornices</a><a href="blog/?q=gallo">Gallos</a></div>
+</form>
 <div class="gr-paths">
 
 <a class="gr-path" href="blog/gallinas-ponedoras.html"><span class="gr-num">PONEDORAS</span><h3>Gallinas y huevos</h3><p>Alimentación, luz, puesta y renovación del lote. Encuentra qué revisar en tu gallinero.</p><span class="gr-card-link">Ver guías de ponedoras →</span></a>
@@ -170,12 +177,7 @@
 
 
 </div></section>
-<form class="gr-home-search" role="search" action="blog/" method="get" aria-label="Buscar artículos de avicultura">
-<label for="inicio-buscar">¿Qué necesitas saber de tus aves?</label>
-<p id="inicio-buscar-ayuda">Busca entre las guías gratuitas de gallinas, gallos, pollitos y codornices.</p>
-<div class="gr-home-search-fields"><input id="inicio-buscar" name="q" type="search" maxlength="120" required placeholder="Por ejemplo: agua, puesta o incubación" aria-describedby="inicio-buscar-ayuda"><button class="btn gold" type="submit">Buscar artículos →</button></div>
-<div class="gr-search-topics"><a href="blog/?q=pollitos">Pollitos</a><a href="blog/?q=puesta">Puesta de huevos</a><a href="blog/?q=codornices">Codornices</a><a href="blog/?q=gallo">Gallos</a></div>
-</form>
+
 <!-- inicio-articulos:inicio -->
 <!-- inicio-articulos:fin -->
 
@@ -199,7 +201,7 @@
 <section class="gr-course gr-section" aria-labelledby="premium-inicio"><div><p class="gr-kicker">ACOMPAÑAMIENTO PERSONAL · PLAZAS LIMITADAS</p><h2 id="premium-inicio">Una mano con las dudas de tu granja.</h2><p>Asesoramiento Premium por escrito: <strong>29 € por un mes, 10 consultas</strong> y respuesta en un máximo de 24 horas. Orientación sobre manejo, instalaciones y costes.</p></div><div><a class="btn gold" href="premium.html">Ver el asesoramiento Premium →</a><p class="fine">Consulta disponibilidad y condiciones antes de contratar.</p></div></section>
 <section class="gr-section gr-bottom" aria-labelledby="recursos-titulo"><div><p class="gr-kicker">RECURSOS PARA SEGUIR APRENDIENDO</p><h2 id="recursos-titulo">Guarda lo útil. Vuelve cuando lo necesites.</h2><p>Consulta <a href="ebooks/">las guías en PDF</a>, repasa las <a href="faq.html">preguntas frecuentes</a> o explora la <a href="enfermedades.html">guía de enfermedades</a>.</p><p>Granja Rentable reúne formación y recursos para pequeños criadores. <a href="quienes-somos.html">Conoce el proyecto y quién publica</a>.</p></div><div class="gr-final-cta"><h3>¿Empiezas desde cero?</h3><p>Empieza por decidir qué quieres producir.</p><a class="btn gold" href="lecciones/l01.html">Ir a la primera lección →</a></div></section>
 
-<section class="gr-section gr-app-extra" aria-labelledby="app-inicio-titulo"><p class="gr-kicker">UN RECURSO ADICIONAL</p><h2 id="app-inicio-titulo">Lleva el registro de tus pollos</h2><p>Consulta la app gratuita para Android y sus instrucciones antes de instalarla. La descarga se realiza desde esta web, fuera de Google Play.</p><a href="app.html">Conocer la app y cómo instalarla →</a></section>
+<section id="registrar-lote" class="gr-section gr-app-extra" aria-labelledby="app-inicio-titulo"><h2 id="app-inicio-titulo">Registrar mi lote</h2><p>El Cuaderno de aves funciona sin cuenta. Los datos se guardan en este navegador.</p><a href="https://granja-rentable-cuaderno-aves.diligentcandy2.chatgpt.site/">Abrir el cuaderno en el navegador →</a><p>Para instalar la app en tu teléfono, consulta las instrucciones y la descarga para Android.</p><a href="app.html">Descargar la app para Android →</a></section>
 
 </main>
 <footer class="foot">
