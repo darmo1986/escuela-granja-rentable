@@ -2,6 +2,9 @@
    amazonTag = etiqueta de afiliado de Amazon. Con etiqueta, el generador pinta el hueco de Amazon detrás del banner del ebook (relleno). No depende de activo.
    Piloto de un banner 300×250, solo en artículos y tras aceptar. */
 window.ads = { activo: true, adsterraPilot: true, amazonTag: "granjarentabl-20" };
+// Para activar el ensayo, configurar desde y hasta (UTC), y dos unidades
+// aprobadas independientes: final e interior, cada una con {key, src}.
+window.ads.ensayoGuias = null;
 
 /* El curso y los ebooks van primero. */
 window.GR = {
