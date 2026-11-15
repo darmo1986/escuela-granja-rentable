@@ -50,6 +50,9 @@ function insertAdsterraBanner(target,position){
   frame.setAttribute('sandbox','allow-scripts');
   frame.setAttribute('referrerpolicy','no-referrer');
   frame.style.cssText='border:0;display:block;width:300px;height:250px;max-width:100%';
+  box.style.margin='0 auto';
+  box.style.height='1px';
+  label.hidden=true;
   box.append(label,frame);
   target.insertAdjacentElement(position,box);
   const mount=()=>{
@@ -58,7 +61,21 @@ function insertAdsterraBanner(target,position){
     try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
     if(!accepted)return;
     box.dataset.loaded='1';
-    frame.srcdoc='<!doctype html><html><head><meta name="referrer" content="no-referrer"></head><body style="margin:0"><script>var atOptions={key:"4c10efc097372233b52ed4f05e0a6ab8",format:"iframe",height:250,width:300,params:{}};<\/script><script src="https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8"><\/script></body></html>';
+    let timeout;
+    const stop=()=>{
+      clearTimeout(timeout);
+      window.removeEventListener('message',onRender);
+    };
+    const onRender=event=>{
+      if(event.source!==frame.contentWindow || event.data!=='gr-banner-rendered')return;
+      stop();
+      box.style.height='auto';
+      box.style.margin='24px auto';
+      label.hidden=false;
+    };
+    window.addEventListener('message',onRender);
+    timeout=setTimeout(()=>{stop();box.remove();},15000);
+    frame.srcdoc="<!doctype html><html><head><meta name=\"referrer\" content=\"no-referrer\"></head><body style=\"margin:0;overflow:hidden\"><script>\n(function(){\n  function report(){\n    var creative=Array.from(document.querySelectorAll(\"iframe,img\")).some(function(el){\n      var r=el.getBoundingClientRect();\n      if(r.width<100 || r.height<40)return false;\n      if(el.tagName===\"IMG\")return el.complete && el.naturalWidth>0;\n      return /^https?:/i.test(el.src) && el.dataset.adFrameLoaded===\"1\";\n    });\n    if(creative)parent.postMessage(\"gr-banner-rendered\",\"*\");\n  }\n  document.addEventListener(\"load\",function(e){\n    if(e.target.tagName===\"IFRAME\")e.target.dataset.adFrameLoaded=\"1\";\n    report();\n  },true);\n  new MutationObserver(report).observe(document.documentElement,{childList:true,subtree:true,attributes:true});\n})();\n</script><script>var atOptions={key:\"4c10efc097372233b52ed4f05e0a6ab8\",format:\"iframe\",height:250,width:300,params:{}};</script><script src=\"https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8\"></script></body></html>";
   };
   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
