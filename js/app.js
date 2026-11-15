@@ -61,21 +61,33 @@ function insertAdsterraBanner(target,position){
     try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
     if(!accepted)return;
     box.dataset.loaded='1';
+    box.style.height='auto';
+    box.style.margin='24px auto';
+    label.hidden=false;
     let timeout;
     const stop=()=>{
       clearTimeout(timeout);
       window.removeEventListener('message',onRender);
     };
     const onRender=event=>{
-      if(event.source!==frame.contentWindow || event.data!=='gr-banner-rendered')return;
-      stop();
-      box.style.height='auto';
-      box.style.margin='24px auto';
-      label.hidden=false;
+      if(event.source===frame.contentWindow && event.data==='gr-banner-rendered') stop();
     };
     window.addEventListener('message',onRender);
-    timeout=setTimeout(()=>{stop();box.remove();},15000);
-    frame.srcdoc="<!doctype html><html><head><meta name=\"referrer\" content=\"no-referrer\"></head><body style=\"margin:0;overflow:hidden\"><script>\n(function(){\n  function report(){\n    var creative=Array.from(document.querySelectorAll(\"iframe,img\")).some(function(el){\n      var r=el.getBoundingClientRect();\n      if(r.width<100 || r.height<40)return false;\n      if(el.tagName===\"IMG\")return el.complete && el.naturalWidth>0;\n      return /^https?:/i.test(el.src) && el.dataset.adFrameLoaded===\"1\";\n    });\n    if(creative)parent.postMessage(\"gr-banner-rendered\",\"*\");\n  }\n  document.addEventListener(\"load\",function(e){\n    if(e.target.tagName===\"IFRAME\")e.target.dataset.adFrameLoaded=\"1\";\n    report();\n  },true);\n  new MutationObserver(report).observe(document.documentElement,{childList:true,subtree:true,attributes:true});\n})();\n</script><script>window.atOptions={key:\"4c10efc097372233b52ed4f05e0a6ab8\",format:\"iframe\",height:250,width:300,params:{}};</script><script src=\"https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8\"></script></body></html>";
+    timeout=setTimeout(()=>{
+      stop();
+      if(!box.isConnected)return;
+      frame.remove();
+      label.textContent='Promoción de Granja Rentable';
+      const link=document.createElement('a');
+      link.href=root+'ebooks/';
+      const image=document.createElement('img');
+      image.src=root+'img/banners/banner-empezar.webp';
+      image.alt='Ver las guías de Granja Rentable para empezar con gallinas';
+      image.style.cssText='display:block;width:100%;height:auto';
+      link.append(image);
+      box.append(link);
+    },26000);
+    frame.srcdoc="<!doctype html><html><head><meta name=\"referrer\" content=\"no-referrer\"></head><body style=\"margin:0;overflow:hidden\"><script>\n(function () {\n  function visibleContent(doc) {\n    return Array.from(doc.querySelectorAll('img,video,canvas,object,a[href]')).some(function (node) {\n      var bounds = node.getBoundingClientRect();\n      return bounds.width >= 100 && bounds.height >= 40 &&\n        (node.tagName !== 'IMG' || (node.complete && node.naturalWidth > 0));\n    });\n  }\n  function hasCreative() {\n    if (visibleContent(document)) return true;\n    return Array.from(document.querySelectorAll('iframe')).some(function (child) {\n      if (child.offsetWidth < 100 || child.offsetHeight < 40) return false;\n      if (child.contentDocument && visibleContent(child.contentDocument)) return true;\n      return child.dataset.loaded === 'yes' && /^https?:/i.test(child.src);\n    });\n  }\n  document.addEventListener('load', function (event) {\n    if (event.target.tagName === 'IFRAME') event.target.dataset.loaded = 'yes';\n  }, true);\n  var attempts = 0;\n  var timer = setInterval(function () {\n    if (hasCreative()) {\n      clearInterval(timer);\n      parent.postMessage('gr-banner-rendered','*');\n    } else if (++attempts >= 100) clearInterval(timer);\n  }, 250);\n})();\n</script><script>window.atOptions={key:\"4c10efc097372233b52ed4f05e0a6ab8\",format:\"iframe\",height:250,width:300,params:{}};</script><script src=\"https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8\"></script></body></html>";
   };
   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
