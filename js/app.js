@@ -15,6 +15,46 @@ function ocultarHuecos(){
 }
 if(!adsOn())ocultarHuecos();
 function adsConfigured(){return !!(window.ads && window.ads.adsterraPilot === true);}
+const unidadHabitual = {
+  key: '4c10efc097372233b52ed4f05e0a6ab8',
+  src: 'https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8'
+};
+const cortesGuias = {
+  '/blog/empezar-con-10-gallinas-ponedoras.html': ['Alimentación de diez gallinas ponedoras', 'Rutina diaria para mantener las gallinas sanas'],
+  '/blog/cuanto-cuesta-producir-docena-huevos.html': ['Calcula el consumo de agua', 'Incluye electricidad, cama y limpieza']
+};
+const claveGrupoGuias = 'gr_ensayo_guias';
+function unidadDeEnsayoValida(unidad){
+  return unidad && /^[a-f0-9]{32}$/.test(unidad.key) && unidad.key !== unidadHabitual.key &&
+    typeof unidad.src === 'string' && /^https:\/\/[^/\s]+\/[^\s]+$/.test(unidad.src) && unidad.src !== unidadHabitual.src;
+}
+function prepararEnsayoGuias(article){
+  const config = window.ads.ensayoGuias;
+  const titulos = cortesGuias[location.pathname];
+  if(!config || !titulos || !article)return null;
+  const ahora = Date.now(), inicio = Date.parse(config.desde), fin = Date.parse(config.hasta);
+  if(!(inicio <= ahora && ahora < fin) || !unidadDeEnsayoValida(config.final) ||
+    !unidadDeEnsayoValida(config.interior) || config.final.key === config.interior.key ||
+    config.final.src === config.interior.src)return null;
+  const encabezados = Array.from(article.querySelectorAll('h2'));
+  const buscar = titulo => encabezados.find(h => h.textContent.trim().replace(/^\d+\.\s*/, '') === titulo);
+  const corte = buscar(titulos[0]), lectura = buscar(titulos[1]);
+  if(!corte || !lectura || encabezados.indexOf(corte) >= encabezados.indexOf(lectura))return null;
+  const prefijo = inicio + '/';
+  let grupo;
+  try{
+    const previo = localStorage.getItem(claveGrupoGuias);
+    if(previo === prefijo+'final' || previo === prefijo+'interior')grupo = previo.slice(prefijo.length);
+    else{
+      grupo = Math.random() < 0.5 ? 'final' : 'interior';
+      localStorage.setItem(claveGrupoGuias,prefijo+grupo);
+    }
+  }catch(e){return null;}
+  return {grupo, corte, lectura, unidad: config[grupo]};
+}
+function borrarGrupoGuias(){
+  try{localStorage.removeItem(claveGrupoGuias);}catch(e){}
+}
 function mountAdsterraPilot(){
   if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal() || document.querySelector('[data-adsterra-pilot]'))return;
   let accepted=false;
@@ -27,6 +67,9 @@ function mountAdsterraPilot(){
   const target=board || tools || home || (article && article.textContent.trim().length>=1500 && article);
   if(!target)return;
   if(window.__grAdTagStarted)return;
+  const ensayo = target === article ? prepararEnsayoGuias(article) : null;
+  if(ensayo && ensayo.corte.getBoundingClientRect().width < 300)return;
+  const unidad = ensayo ? ensayo.unidad : unidadHabitual;
   window.__grAdTagStarted=true;
   const box=document.createElement('aside');
   box.dataset.adsterraPilot='1';
@@ -36,11 +79,18 @@ function mountAdsterraPilot(){
   label.textContent='Publicidad';
   label.style.cssText='margin:0 0 4px;font-size:12px';
   box.append(label);
-  target.insertAdjacentElement(board || tools ? 'afterend' : 'beforeend',box);
+  if(ensayo){
+    box.dataset.ensayoGuias = ensayo.grupo;
+    box.style.minHeight = '274px';
+    ensayo.lectura.dataset.lecturaEnsayo = '1';
+  }
+  if(ensayo && ensayo.grupo === 'interior')ensayo.corte.insertAdjacentElement('beforebegin',box);
+  else target.insertAdjacentElement(board || tools ? 'afterend' : 'beforeend',box);
+  if(ensayo)document.dispatchEvent(new Event('gr-ensayo-guias'));
   // Reuse the placement supplied by Publishers. The vendor renders its own creative.
-  window.atOptions={key:'4c10efc097372233b52ed4f05e0a6ab8',format:'iframe',height:250,width:300,params:{}};
+  window.atOptions={key:unidad.key,format:'iframe',height:250,width:300,params:{}};
   const tag=document.createElement('script');
-  tag.src='https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8';
+  tag.src=unidad.src;
   tag.async=false;
   tag.addEventListener('error',()=>{
     if(!box.isConnected)return;
@@ -207,7 +257,7 @@ window.addEventListener('storage',e=>{
   if(e.key!==CK && e.key!==null)return;
   let accepted=false;
   try{accepted=localStorage.getItem(CK)==='si';}catch(err){}
-  if(!accepted){retirarPiloto();window.__adsLoaded=0;document.documentElement.classList.remove('ad-ok');if(window.__grAdTagStarted)location.reload();}
+  if(!accepted){borrarGrupoGuias();retirarPiloto();window.__adsLoaded=0;document.documentElement.classList.remove('ad-ok');if(window.__grAdTagStarted)location.reload();}
 });
 arrancarAnuncios();
 document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener('click',e=>{
@@ -215,6 +265,7 @@ document.querySelectorAll('[data-cookie-config]').forEach(a=>a.addEventListener(
   if(esPremiumLocal()){alert('Con Premium esta web no carga anuncios.');return;}
   if(!adsOn()){alert('Ahora mismo este sitio no usa cookies publicitarias.');return;}
   localStorage.removeItem(CK);
+  borrarGrupoGuias();
   retirarPiloto();
   window.__adsLoaded=0;
   document.documentElement.classList.remove('ad-ok');
