@@ -75,3 +75,16 @@
 .gr-start .btn{max-width:100%;white-space:normal;text-align:center}
 @media(min-width:900px){.gr-start{grid-template-columns:1.2fr .8fr}.gr-start .gr-hero-photo{height:auto;min-height:100%}}
 @media(max-width:599px){.gr-start .gr-hero-copy{padding:26px 22px}.gr-calculator-intro{padding:20px}.gr-start .gr-actions{margin-top:20px}}
+
+.gr-lote-preview{display:grid;place-items:center;padding:clamp(16px,4vw,42px);background:#dce8d6;color:#163e2a}
+.gr-lote-sheet{box-sizing:border-box;width:min(100%,340px);padding:16px 22px;background:#fffdf5;border-left:5px solid #ba9435;border-radius:6px}
+.gr-lote-sheet small,.gr-lote-sheet strong{display:block}.gr-lote-sheet small{font-weight:700;letter-spacing:.09em;font-size:.7rem}.gr-lote-sheet strong{margin:5px 0 10px;font-size:1.2rem}
+.gr-lote-sheet dl,.gr-lote-sheet dd{margin:0}.gr-lote-sheet dl>div{display:flex;justify-content:space-between;border-top:1px solid #dbe1d4;padding:5px 0}.gr-lote-sheet dd{font-weight:750}
+@media(max-width:899px){
+ .gr-hero.js-hero .gr-slide:not(.is-active){display:none}
+ .gr-slide{grid-template-rows:auto auto}
+ .gr-slide .gr-hero-copy{padding:20px}
+ .gr-slide .gr-hero-photo,.gr-slide .gr-hero-photo img{height:auto;min-height:0;aspect-ratio:16/9}
+ .gr-hero-photo>a{display:block}
+ .gr-slide .gr-actions{margin:14px 0 8px}
+}
