@@ -105,3 +105,12 @@
  .gr-hero-visible .wa-float{position:static;margin:12px 16px 12px auto}
  .gr-shortcuts a{font-size:.8rem}
 }
+
+.gr-shop-slide .gr-hero-photo img{object-fit:contain;background:#fff}
+@media(max-width:899px){
+ .gr-lote-preview{padding:0 20px 18px;background:transparent}
+ .gr-lote-sheet{width:100%}
+ .gr-lote-sheet dl>div{gap:1rem;align-items:baseline}
+ .gr-hero-dots{width:100%;min-width:0}
+ .gr-hero-dots button{flex:0 1 44px;min-width:0}
+}
