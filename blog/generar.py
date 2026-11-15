@@ -93,7 +93,7 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "20261115-panel"
+VERSION_ACTIVOS = "20261115-banner2"
 VERSION_BANNERS = "20261113banners"
 VERSION_PORTADA = "20261114curso"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
