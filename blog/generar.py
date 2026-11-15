@@ -794,6 +794,8 @@ def poner_version(html):
             "js/ofertas.js", "js/registro-banners.js",
             "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css", "js/calculadoras.js", "js/lista.js", "js/guias.js", "js/auth.js"):
         version = VERSION_BANNERS if nombre in {"js/ofertas.js", "js/registro-banners.js"} else VERSION_ACTIVOS
+        if nombre == "js/app.js":
+            version = "20261115-panel"
         if nombre in {"css/inicio.css", "js/hero.js"}:
             version = VERSION_PORTADA
         html = re.sub(
