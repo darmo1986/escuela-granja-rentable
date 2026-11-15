@@ -851,7 +851,7 @@ def anuncios_activos(raiz):
     """True solo si el interruptor de js/config.js está en true.
 
     Con false, o si falta el archivo, el blog no pinta huecos de anuncio.
-    El piloto Adsterra crea su único iframe desde app.js tras el consentimiento;
+    El piloto Adsterra inserta una sola etiqueta en el documento desde app.js tras el consentimiento;
     no debe activar los huecos heredados de cabecera y lateral.
     """
     ruta = Path(raiz) / "js" / "config.js"
