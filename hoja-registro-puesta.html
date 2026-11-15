@@ -42,6 +42,7 @@
   .hoja-semana tr{break-inside:avoid}
   .hoja-cuenta{display:none !important}
 }
+.campos-semana{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}.campos-semana label,#editor-semana fieldset>label{display:grid;gap:.3rem}.campos-semana :is(input,select),#dia-registro{min-width:0;min-height:44px;font:inherit}#editor-semana fieldset{margin:1rem 0;min-width:0}#editor-semana[hidden]{display:none}
 </style>
 </head>
 <body data-root="">
@@ -134,15 +135,20 @@
 <section class="page-hero">
 <p class="kicker">Gratis · sin correo</p>
 <h1>Hoja de registro de puesta y pienso</h1>
-<p>Una semana en blanco para anotar aves, huevos enteros, rotos y kilos de pienso. La descarga no pide el correo y no crea una cuenta.</p>
-<p class="hoja-acciones no-print"><a class="btn gold" href="descargas/hoja-registro-puesta.csv" download>Descargar CSV</a> <button class="btn sec" type="button" onclick="window.print()">Imprimir esta hoja</button></p>
-<p class="no-print">El archivo CSV trae los siete días y las columnas vacías. Ábrelo en tu hoja de cálculo. Si las columnas salen juntas, indica que el separador es la coma. Esta página no guarda lo que escribas.</p>
+<p>Una hoja semanal para anotar aves, huevos enteros, rotos y kilos de pienso. La descarga no pide el correo y no crea una cuenta.</p>
+<p class="hoja-acciones no-print"><a class="btn gold" href="descargas/hoja-registro-puesta.csv" download>Descargar plantilla vacía</a> <button class="btn sec" type="button" onclick="window.print()">Imprimir esta hoja</button></p>
+<p class="no-print">El archivo CSV trae los siete días y las columnas vacías. Ábrelo en tu hoja de cálculo. Si las columnas salen juntas, indica que el separador es la coma. Si rellenas la hoja aquí, los registros se conservan en este navegador. Descarga una copia para guardarla fuera del dispositivo.</p>
 </section>
 <section class="panel">
 <h2 id="semana-titulo">Semana</h2>
-<p>Lote: ____________________ · Del __________ al __________ · Moneda: __________</p>
+<div id="editor-semana" hidden>
+<div class="no-print campos-semana"><label>Semana que incluye el día<input type="date" id="fecha-semana"></label><label>Nombre del lote<input id="nombre-lote" maxlength="100"></label></div>
+<div class="hoja-acciones no-print"><button type="button" class="btn sec" id="semana-anterior">Semana anterior</button><button type="button" class="btn sec" id="semana-hoy">Esta semana</button><button type="button" class="btn sec" id="semana-siguiente">Semana siguiente</button></div><p id="periodo-semana"></p>
+<fieldset class="no-print"><legend>Registro diario</legend><label>Día <select id="dia-registro"></select></label><div class="campos-semana" id="campos-dia"></div></fieldset>
+<p id="estado-registro" class="fine no-print" role="status"></p><p class="no-print"><button class="btn" id="exportar-semana" type="button">Descargar semana rellenada</button></p></div>
+<p id="lote-blanco">Lote: ____________________ · Del __________ al __________ · Moneda: __________</p>
 <p>Pienso en comederos al empezar: ______ kg · Al terminar: ______ kg.</p>
-<p id="semana-ayuda" class="no-print">En pantallas estrechas, desplaza la tabla lateralmente. También puedes enfocarla con el teclado y usar las flechas. Para escribir, descarga el CSV o imprime la hoja.</p>
+<p id="semana-ayuda" class="no-print">En pantallas estrechas, desplaza la tabla lateralmente. También puedes enfocarla con el teclado y usar las flechas. Puedes usar el formulario diario, descargar el CSV o imprimir la hoja.</p>
 <div class="tabla hoja-semana" role="region" aria-labelledby="semana-titulo" aria-describedby="semana-ayuda" tabindex="0"><table>
 <caption>Registro diario del mismo lote: siete días</caption>
 <thead><tr><th scope="col">Día</th><th scope="col">Aves vivas al empezar</th><th scope="col">Huevos enteros</th><th scope="col">Rotos o no aptos</th><th scope="col">Kg de pienso añadidos</th><th scope="col">Precio por kg</th><th scope="col">Agua revisada</th><th scope="col">Nota</th></tr></thead>
@@ -157,7 +163,7 @@
 
 </tbody>
 </table></div>
-<p>Huevos aprovechables: ______ · Rotos o no aptos: ______ · Pienso añadido: ______ kg · Pienso utilizado: ______ kg.</p>
+<p id="resumen-semana">Huevos aprovechables: ______ · Rotos o no aptos: ______ · Pienso añadido: ______ kg · Pienso utilizado: ______ kg.</p>
 <p><strong>Al cerrar la semana:</strong> suma los huevos y los kilos añadidos. No sumes las aves vivas ni los precios por kilo: describe los cambios de lote y de precio en las notas.</p>
 </section>
 <section class="panel hoja-cuenta">
@@ -239,4 +245,5 @@
 <script src="js/config.js?v=20261110d"></script>
 <script src="js/app.js?v=20261110d"></script>
 <script src="js/site.js?v=20261110d"></script>
+<script src="js/hoja-semanal.js"></script>
 </body></html>
