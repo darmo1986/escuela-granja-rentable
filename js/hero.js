@@ -51,7 +51,7 @@
     if (!start) return;
     var end = event.changedTouches[0], dx = end.clientX - start.clientX, dy = end.clientY - start.clientY;
     start = null;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(current + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) { manual = true; show(current + (dx < 0 ? 1 : -1)); }
   }, {passive:true});
   hero.addEventListener('keydown', function (event) {
     if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;

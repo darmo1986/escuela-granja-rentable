@@ -50,7 +50,7 @@ function hero(){
  const slides=[el(true),el(),el(),el()],dots=slides.map(()=>el()),pause=el(),prev=el(),next=el(),events={};
  const motion={matches:true,addEventListener(k,f){events.motion=f;}};
  let timers=0;
- const container={classList:cls(),matches:()=>false,addEventListener(){},querySelectorAll:s=>s==='[data-slide]'?slides:dots,querySelector:s=>s==='[data-hero-prev]'?prev:s==='[data-hero-next]'?next:pause};
+ const container={classList:cls(),matches:()=>false,addEventListener(){},querySelectorAll:s=>s==='[data-slide]'?slides:dots,querySelector:s=>s==='[data-hero-prev]'?prev:s==='[data-hero-next]'?next:s==='[data-hero-pause]'?pause:null};
  vm.runInNewContext(source('hero.js'),{document:{hidden:false,querySelector:()=>container,addEventListener(){}},window:{matchMedia:()=>motion,addEventListener(k,f){events[k]=f;}},setTimeout:()=>++timers,clearTimeout(){}});
  assert.equal(pause.textContent,'Reanudar');assert.equal(timers,0);
  pause.onclick();assert.equal(pause.textContent,'Pausar');assert(timers>0);

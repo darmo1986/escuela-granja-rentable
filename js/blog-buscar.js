@@ -33,6 +33,7 @@
     search();
   }
   function search() {
+    clear.disabled = !input.value;
     var term = normalize(input.value);
     results.replaceChildren();
     if (!term) {
@@ -84,6 +85,11 @@
     });
   }
   form.addEventListener('submit', function (event) { event.preventDefault(); search(); saveQuery(); });
+  input.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && input.value) {
+      event.preventDefault(); input.value = ''; search(); saveQuery();
+    }
+  });
   input.addEventListener('input', function () { search(); saveQuery(); });
   clear.addEventListener('click', function () { input.value = ''; search(); saveQuery(); input.focus(); });
   window.addEventListener('popstate', restoreQuery);
