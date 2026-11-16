@@ -125,7 +125,7 @@ button[data-stripe-ebook][disabled] { opacity: .55; cursor: not-allowed; }
 .t-card[data-sec="taller"] .t-marca { background: #eee8df; }
 .t-por-que { margin: 0; line-height: 1.45; }
 .t-foto { margin: 0; }
-.t-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+.t-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: #fff; border-radius: 10px; }
 .t-foto figcaption { margin-top: .35rem; font-size: .85rem; line-height: 1.35; color: var(--muted, #4d5a50); }
 .t-ficha .t-foto { margin: .8rem 0 1rem; }
 .t-ficha .t-foto img { max-width: 640px; }

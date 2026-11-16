@@ -3,6 +3,10 @@
    Piloto de un banner 300×250, solo en artículos y tras aceptar. */
 window.ads = { activo: true, adsterraPilot: true, amazonTag: "granjarentabl-20" };
 
+// Activación autorizada por Pablo el 16/11/2026 tras revisar la colocación.
+// La confirmación del filtro completo de apuestas por Adsterra sigue pendiente.
+window.ads.ampliacionDiscreta = true;
+
 /* El curso y los ebooks van primero. */
 window.GR = {
   siteUrl: "https://granjarentable.com",

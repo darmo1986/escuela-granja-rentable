@@ -185,6 +185,13 @@ def armar(filas):
             n += 1
         slugs[slug] = asin
         sid, seccion = secciones[cat_csv]
+        foto = f"img/productos/amazon/{asin}.webp"
+        referencia = f"img/productos/referencias/{asin}.webp"
+        imagen = texto.get("imagen") or ""
+        if (RAIZ / foto).is_file():
+            imagen = foto
+        elif (RAIZ / referencia).is_file():
+            imagen = referencia
         productos.append({
             "asin": asin,
             "slug": slug,
@@ -199,7 +206,7 @@ def armar(filas):
             "url": fila["url_afiliado"].strip(),
             "explicacion": explicacion,
             "recomendacion": recomendacion,
-            "imagen": texto.get("imagen") or "",
+            "imagen": imagen,
             "origen": texto["origen"],
             "claves": (CLAVES[cat_csv] + " " + CLAVES.get(origen, "")).strip(),
             "unico_42": asin in SOLO_SI_UNICOS,
@@ -303,10 +310,13 @@ def data_q(p):
 def figura_imagen(p, raiz):
     if not p.get("imagen"):
         return ""
+    pie = "Foto del producto" if p["imagen"].startswith("img/productos/amazon/") else "Ilustración generada con IA"
+    if p["imagen"].startswith("img/productos/referencias/"):
+        pie = "Ilustración de uso generada con IA. Consulta el modelo exacto en Amazon."
     return (
         f'<figure class="t-foto"><img src="{raiz}{esc(p["imagen"])}" '
         f'alt="{esc(p["titulo"])}" loading="lazy">'
-        f"<figcaption>Ilustración generada con IA</figcaption></figure>"
+        f"<figcaption>{pie}</figcaption></figure>"
     )
 
 
@@ -547,7 +557,7 @@ def guia_pollitos(p, raiz):
 <h2>Antes de elegir el equipo de tus pollitos</h2>
 <p>Comprueba el acceso al alimento y al agua, la estabilidad del montaje, el desmontaje para limpiar y el espacio que ocupará en la criadora. Confirma en el anuncio del vendedor la edad y el tamaño de aves indicados para el modelo.</p>
 <ul>
-<li><a href="{raiz}blog/comedero-para-pollitos-como-elegir.html">Cómo elegir un comedero para pollitos</a>: revisa medidas y registra los derrames.</li>
+<li><a href="{raiz}blog/criar-pollitos-30-dias.html">Cómo criar pollitos durante los primeros 30 días</a>: prepara el espacio de cría y los puntos de comida y agua.</li>
 <li><a href="{raiz}blog/agua-gallinas-ponedoras-bebederos.html">Agua y bebederos, con apartado para pollitos</a>: comprueba el acceso, la limpieza y las pérdidas.</li>
 <li><a href="{raiz}blog/pienso-iniciador-pollitos.html">Cómo elegir el pienso iniciador</a>: compara la etiqueta y el precio por kilogramo.</li>
 </ul>
@@ -562,7 +572,7 @@ def orientacion_comederos(cat, raiz):
 <h2 id="orientacion-comederos-titulo">Elige según tu lote y tu problema</h2>
 <p>Empieza por lo que necesitas resolver. Las guías y el registro son gratuitos; puedes consultarlos antes de valorar un cambio de equipo.</p>
 <nav aria-label="Guías para elegir comederos"><ul>
-<li><strong>Crías pollitos:</strong> consulta <a href="{raiz}blog/comedero-para-pollitos-como-elegir.html">cómo elegir un comedero para pollitos</a> antes de comparar modelos para adultas.</li>
+<li><strong>Crías pollitos:</strong> consulta <a href="{raiz}blog/criar-pollitos-30-dias.html">la guía de los primeros 30 días</a> antes de comparar modelos para adultas.</li>
 <li><strong>Encuentras pienso en el suelo:</strong> sigue la <a href="{raiz}blog/reducir-desperdicio-pienso.html">guía para identificar y registrar las pérdidas</a>.</li>
 <li><strong>Estás valorando un pedal:</strong> revisa los <a href="{raiz}tsr/tsr-comederos-antirratas.html">criterios de elección y adaptación</a> y la <a href="{raiz}comparativas/comparativa-comederos-pedal-antirratas.html">comparación de tres modelos</a>.</li>
 <li><strong>Quieres comparar tu propio manejo:</strong> utiliza la <a href="{raiz}hoja-registro-puesta.html">hoja semanal gratuita de puesta y pienso</a>.</li>
