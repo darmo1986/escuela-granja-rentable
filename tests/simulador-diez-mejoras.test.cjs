@@ -32,7 +32,7 @@ test('4. el mercado cambia tres veces por día simulado',()=>{
  assert.equal(s.day,1);
 });
 test('5. comprar tres pollitas es atómico y respeta plazas',()=>{
- const s=M.fresh(0);s.money=100;const b=s.money;
+ const s=M.fresh(0);s.money=200;const b=s.money;
  assert.match(M.action(s,'buyHenThree','brown'),/tres pollitas/);
  assert.equal(M.count(s),7);assert.equal(s.money,b-54);
  assert.match(M.action(s,'buyHenThree','brown'),/tres pollitas/);
