@@ -11,7 +11,7 @@ test('la reposición en una operación respeta el presupuesto y las reservas',()
   assert.equal(s.youngFeed,10);
   assert.equal(s.water,20);
   assert.ok(s.money<before&&s.money>=0);
-  assert.equal(s.expenses,before-s.money);
+  assert.ok(Math.abs(s.expenses-(before-s.money))<1e-8);
   assert.match(M.action(s,'restockEssentials'),/ya cubren/);
 });
 
