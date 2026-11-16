@@ -39,3 +39,6 @@ header,main,footer{max-width:1200px;padding:14px 20px}.compact-hero{display:flex
 
 /* Aviso de recursos accesible y sin ventanas intrusivas. */
 .care-alert{padding:9px 12px;border-radius:10px;border:1px solid #a5c5ac;background:#f0f7f1;color:#1b4d2c;font-size:.88rem}.care-alert-low{border-color:#bb8359;background:#fff6e9;color:#713c16;font-weight:700}.equipment-shop button:disabled{opacity:.65;cursor:not-allowed}
+
+/* Desplazamiento táctico por zonas y visibilidad de vida de enemigos. */
+.owner-movement{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap;margin:7px 0}.owner-movement span{font-weight:700}.owner-movement button{flex:1;min-width:110px}#enemy-health{font-weight:700;background:#f7ead4;color:#6b3818;border-radius:8px;padding:7px 9px}.scene-farmer{transition:left .2s ease-out}@media(max-width:560px){.owner-movement button{min-width:0;font-size:.74rem}.owner-movement span{flex-basis:100%;text-align:center;order:-1}}@media(prefers-reduced-motion:reduce){.scene-farmer{transition:none}}
