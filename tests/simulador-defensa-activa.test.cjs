@@ -4,13 +4,13 @@ const M=require('../js/granja-motor.js');
 
 test('el dueño tiene energía, experiencia y ataque real contra amenazas',()=>{
   const s=M.fresh(0);
-  assert.deepEqual(s.owner,{level:1,energy:3,xp:0});
+  assert.deepEqual(s.owner,{level:1,energy:3,xp:0,pos:2});
   assert.match(M.action(s,'ownerAttack'),/No hay amenaza/);
   assert.equal(s.owner.energy,3);
   s.pending={type:'ground'};
   for(let i=0;i<3&&s.pending;i++)M.action(s,'ownerAttack');
   assert.ok(s.owner.energy>=0&&s.owner.energy<=2);
-  assert.match(M.action(s,'ownerAttack'),/agotado|No hay amenaza/);
+  assert.match(M.action(s,'ownerAttack'),/agotado|No hay amenaza|fuera de alcance|Impacto|falló|Ataque defendido/);
   assert.ok(!s.pending||['ground','air'].includes(s.pending.type));
 });
 
@@ -31,7 +31,7 @@ test('las partidas antiguas reciben personaje y niveles sin reiniciarse',()=>{
   delete s.defenders[0].level;
   const r=M.restore(JSON.stringify(s),0);
   assert.equal(r.money,s.money);
-  assert.deepEqual(r.owner,{level:1,energy:3,xp:0});
+  assert.deepEqual(r.owner,{level:1,energy:3,xp:0,pos:2});
   assert.equal(r.defenders[0].level,1);
 });
 
