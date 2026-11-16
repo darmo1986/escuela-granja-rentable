@@ -109,7 +109,14 @@
       const cost=s.defenders.reduce((n,d)=>n+(d.health>0?({dog:.6,guard:2,scarecrow:0}[d.type]):0),0)+(s.upgrades.storage===2?.4:0);
       if(cost&&!spend(s,cost)){s.defenders.forEach(d=>d.health=Math.max(0,d.health-20));if(s.upgrades.storage===2){s.upgrades.storage=1;log(s,'Sin saldo para electricidad: el refrigerador pasa a conservación sin frío.');}log(s,'Falta presupuesto de mantenimiento: baja la resistencia de tus defensores.');}
       const risk=threats(s);
-      if(s.pending){const r=random(s);if(count(s)&&r<risk[s.pending.type]){const h=s.hens.find(h=>h.count>0);h.count--;log(s,s.pending.type==='ground'?'Una intrusión terrestre causó una baja por ataque, no por enfermedad.':'Un ataque aéreo causó una baja por trauma.');s.defenders.forEach(d=>d.health=Math.max(0,d.health-12));}else log(s,'La amenaza avisada no causó bajas. Las defensas reducen el riesgo, no garantizan el resultado.');s.pending=null;}
+      if(s.pending){
+        const type=s.pending.type,active=s.defenders.filter(d=>d.health>0),power=active.reduce((n,d)=>n+(d.health/100)*Math.min(1,({ground:{dog:.42,guard:.32,scarecrow:.03},air:{dog:.05,guard:.24,scarecrow:.4}}[type][d.type])*(1+.25*((d.level||1)-1))),0);
+        const intercepted=active.length>0&&random(s)<Math.min(.88,power);
+        if(intercepted){const defending=active.find(d=>(type==='ground'?d.type==='dog'||d.type==='guard':d.type==='scarecrow'||d.type==='guard'))||active[0];defending.health=Math.max(0,defending.health-4);log(s,'¡Defensa automática! '+(defending.type==='dog'?'El perro':defending.type==='guard'?'El vigilante':'El espantapájaros')+' ahuyentó una amenaza '+(type==='ground'?'terrestre':'aérea')+'.');}
+        else if(count(s)&&random(s)<risk[type]){const h=s.hens.find(h=>h.count>0);h.count--;log(s,type==='ground'?'Una intrusión terrestre causó una baja por ataque, no por enfermedad.':'Un ataque aéreo causó una baja por trauma.');s.defenders.forEach(d=>d.health=Math.max(0,d.health-12));}
+        else log(s,'La amenaza avisada no causó bajas. Las defensas reducen el riesgo, no garantizan el resultado.');
+        s.pending=null;
+      }
       if(random(s)<.35){s.pending={type:random(s)<.6?'ground':'air'};log(s,s.pending.type==='ground'?'Aviso: huellas junto al cercado. Refuerza la malla antes del próximo día.':'Aviso: aves rapaces en las cercanías. Revisa la protección aérea.');}
       const visitors=Boolean(s.visitorPending&&!s.doorClosed&&!s.upgrades.access&&!s.defenders.some(d=>d.type==='guard'&&d.health>25)),wild=random(s)<.2;
       if(s.visitorPending)log(s,visitors?'Un vecino entró sin control. Aumenta la exposición, pero no implica contagio seguro.':'La visita quedó fuera: la puerta, el control de acceso o el guardián evitaron la entrada.');
