@@ -94,6 +94,7 @@ TITULO_MAX_EXTRA = {
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
 VERSION_ACTIVOS = "20261115-banner-directo"
+VERSION_PUBLICIDAD = "20261116-discreto"
 VERSION_BANNERS = "20261113banners"
 VERSION_PORTADA = "20261114curso"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
@@ -794,6 +795,8 @@ def poner_version(html):
             "js/ofertas.js", "js/registro-banners.js",
             "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css", "js/calculadoras.js", "js/lista.js", "js/guias.js", "js/auth.js"):
         version = VERSION_BANNERS if nombre in {"js/ofertas.js", "js/registro-banners.js"} else VERSION_ACTIVOS
+        if 'data-publicidad-discreta' in html and nombre in {"js/app.js", "js/config.js"}:
+            version = VERSION_PUBLICIDAD
         if nombre in {"css/inicio.css", "js/hero.js"}:
             version = VERSION_PORTADA
         html = re.sub(
@@ -1647,6 +1650,7 @@ def planificar(raiz, incluir_borradores=False):
             buscador_blog(visibles),
             '<div data-blog-listado>\n' + listado(visibles, numero, cortes) + "\n</div>",
             bloque_guias("../"),
+            '<div data-publicidad-discreta></div>' if numero == 1 else '',
             bloque_curso("../"),
             anuncio("rect", activo),
         ] if parte)
