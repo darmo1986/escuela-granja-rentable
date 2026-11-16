@@ -25,7 +25,7 @@ El curso de este sitio es gratis. Entrar no lo cierra: copia el avance a la cuen
    6. La del concurso, cuando se rebase: tiene que usar `apodo_ok` y `premio_euros()`.
    7. `supabase/migrations/20261020193000_panel.sql` (crea `visitas`, `intenciones_compra` y los resúmenes; una intención no es una venta).
    8. `supabase/migrations/20261115083000_atribucion_controlada.sql`, solo después de probarla en una base aislada y antes de activar `GR.analitica.atribucionUtm`. Añade columnas UTM cerradas, pero no activa el seguimiento ni crea eventos de pago o venta.
-6. Mientras las tablas no existan, guardar un cálculo muestra el error. No digas al visitante que faltan migraciones.
+9. Mientras las tablas no existan, guardar un cálculo muestra el error. No digas al visitante que faltan migraciones.
 
 ### Google
 

@@ -34,6 +34,20 @@ const duplicados=ejecutar(true,'?utm_source=youtube&utm_source=instagram');
 assert.equal(duplicados.length,2);
 for(const {row} of duplicados)assert.equal(row.utm_source,undefined);
 assert.doesNotMatch(config,/atribucionUtm\s*:\s*true/);
-for(const valor of ['youtube','instagram','facebook','tiktok','granjarentable','organic_video','organic_social','banner','engorde_registro','ebook-pack','ebook-alimenta','ebook-elegir','ebook-hacer','ebook-empezar','w4c0OzCPWKI','fP3Df9d8gPI','GpRK3Sej8vE'])assert.ok(sql.includes("''"+valor+"''"),valor+' falta en SQL');
+const permitidosSql={
+ utm_source:['youtube','instagram','facebook','tiktok','granjarentable'],
+ utm_medium:['organic_video','organic_social','banner'],
+ utm_campaign:['engorde_registro','ebook-pack','ebook-alimenta','ebook-elegir','ebook-hacer','ebook-empezar'],
+ utm_content:['w4c0OzCPWKI','fP3Df9d8gPI','GpRK3Sej8vE']
+};
+for(const [campo,valores] of Object.entries(permitidosSql)){
+ const siguiente=Object.keys(permitidosSql)[Object.keys(permitidosSql).indexOf(campo)+1];
+ const inicio=sql.indexOf('add column if not exists '+campo);
+ const fin=siguiente?sql.indexOf('add column if not exists '+siguiente,inicio):sql.indexOf("', tabla)",inicio);
+ assert.ok(inicio>=0&&fin>inicio,campo+' no tiene una restricción identificable en SQL');
+ const restriccion=sql.slice(inicio,fin);
+ for(const valor of valores)assert.ok(restriccion.includes("''"+valor+"''"),valor+' falta en la restricción de '+campo);
+ for(const ajeno of Object.entries(permitidosSql).filter(([otro])=>otro!==campo).flatMap(([,lista])=>lista))assert.ok(!restriccion.includes("''"+ajeno+"''"),ajeno+' aparece en la restricción equivocada: '+campo);
+}
 for(const tabla of ["'visitas'","'intenciones_compra'"])assert.ok(sql.includes(tabla));
 console.log('UTM: visita y clic, bandera apagada, rechazo de texto libre y duplicados; sin eventos de venta inventados.');
