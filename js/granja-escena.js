@@ -41,7 +41,7 @@
     station('feeder-0','scene-feeder','Elegir alimento','showFood','🌾');station('waterer-0','scene-water','Reponer agua · 0,40 €','water','💧');const nest=station('nest','scene-nest','Recoger nidos · 0','collect','🥚');
     const footbath=station('footbath','scene-footbath','Pediluvio · 12 €','upgrade','👢','footbath'),cleaner=station('clean','scene-clean','Cambiar cama · 2 €','clean','🧹');
     const defenders=make('div','scene-defenders'),threat=make('div','scene-threat'),predator=make('div','scene-predator');predator.hidden=true;predator.setAttribute('role','img');threat.hidden=true;threat.setAttribute('role','status');
-    const toast=make('div','scene-feedback');toast.setAttribute('aria-hidden','true');
+    const toast=make('div','scene-feedback');toast.setAttribute('aria-hidden','true');const combat=make('div','scene-combat-impact');combat.hidden=true;combat.setAttribute('aria-hidden','true');
     const status=make('p','scene-status','Selecciona una gallina para conocer su etapa y salud.');status.id='scene-selection';status.setAttribute('role','status');
     const selectedActions=make('div','scene-selected-actions');
     const sell=make('button','scene-sell','Vender una de este lote'),isolate=make('button','scene-isolate','Aislar lote');sell.type=isolate.type='button';selectedActions.hidden=true;selectedActions.append(sell,isolate);
@@ -50,7 +50,7 @@
     const toolbar=make('div','scene-toolbar'),motion=make('button','scene-motion','Detener movimiento');motion.type='button';motion.setAttribute('aria-pressed','false');motion.addEventListener('click',()=>{moving=!moving;motion.textContent=moving?'Detener movimiento':'Activar movimiento';motion.setAttribute('aria-pressed',String(!moving));yard.classList.toggle('scene-still',!moving);});
     const placement=make('button','scene-placement','Colocar / mover');placement.type='button';placement.setAttribute('aria-pressed','false');placement.addEventListener('click',()=>{placing=!placing;stationSelected=null;refreshPlacement();});const activeDefense=make('button','scene-defend','Defender');activeDefense.type='button';activeDefense.disabled=true;activeDefense.title='Ahuyentar depredador visible utilizando una energía';activeDefense.addEventListener('click',()=>options.onAction('ownerAttack'));
     toolbar.append(make('span','scene-count',''),activeDefense,placement,motion);
-    const landscape=make('div','scene-landscape');landscape.setAttribute('aria-hidden','true');for(let i=0;i<7;i++){const tree=make('i','scene-tree tree-'+i);landscape.append(tree);}for(let i=0;i<6;i++)landscape.append(make('i','scene-stone stone-'+i));yard.append(sky,landscape,barn,coop,cropField,cropMill,fence,stage,farmer,tools,defenders,predator,threat,toast,toolbar);
+    const landscape=make('div','scene-landscape');landscape.setAttribute('aria-hidden','true');for(let i=0;i<7;i++){const tree=make('i','scene-tree tree-'+i);landscape.append(tree);}for(let i=0;i<6;i++)landscape.append(make('i','scene-stone stone-'+i));yard.append(sky,landscape,barn,coop,cropField,cropMill,fence,stage,farmer,tools,defenders,predator,threat,toast,combat,toolbar);
     yard.addEventListener('click',event=>{if(!placing||!stationSelected||event.target.closest('button'))return;const box=yard.getBoundingClientRect();commitPosition(stationSelected,14+(((event.clientX-box.left)/box.width*100)-23)/54*72,24+(((event.clientY-box.top)/box.height*100)-39)/33*58);});
     function refreshPlacement(){yard.classList.toggle('scene-placing',placing);placement.setAttribute('aria-pressed',String(placing));placement.textContent=placing?'Terminar de colocar':'Colocar / mover';stations.forEach((b,k)=>b.classList.toggle('station-selected',placing&&k===stationSelected));if(placing)status.textContent=stationSelected?'Toca una zona del suelo para colocar. También puedes mover con las flechas del teclado.':'Elige un comedero, bebedero, nidal o utensilio para moverlo. La cantidad de equipos afecta al acceso; la posición organiza tu corral.';}
     function defaultPosition(key){if(key==='nest')return {x:51,y:25};if(key==='footbath')return {x:14,y:36};if(key==='clean')return {x:86,y:36};const n=Number(key.split('-')[1])||0;return {x:key.startsWith('feeder')?14+n%4*19:86-n%4*19,y:78-Math.floor(n/4)*13};}
@@ -93,9 +93,9 @@
     }
     function feedback(type,message,value){
       if(type==='install'&&value&&state.facilities&&!/insuficiente|máximo/i.test(message)){placing=true;stationSelected=value+'-'+(state.facilities[value]-1);refreshPlacement();}
-      if(type==='ownerAttack'&&/¡Ataque defendido!/.test(message)){yard.classList.remove('scene-repelled');void yard.offsetWidth;yard.classList.add('scene-repelled');}
+      if(type==='ownerAttack'&&/¡Ataque defendido!/.test(message)){combat.hidden=false;combat.textContent='🛡️ ¡Amenaza repelida!';yard.classList.remove('scene-repelled');void yard.offsetWidth;yard.classList.add('scene-repelled');}
       toast.textContent=message;toast.classList.add('scene-feedback-visible');if(!/insuficiente|no hay|no tienes|terminada|desconocid|no necesita|máximo|amplía/i.test(message))yard.dataset.activity=type;
-      clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>{toast.classList.remove('scene-feedback-visible');yard.classList.remove('scene-repelled');delete yard.dataset.activity;},2200);
+      clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>{toast.classList.remove('scene-feedback-visible');combat.hidden=true;yard.classList.remove('scene-repelled');delete yard.dataset.activity;},2200);
     }
     animationTimer=setInterval(()=>{if(!state||state.paused||M.isBankrupt(state)||!moving||doc.hidden)return;frame++;let i=0;birds.forEach(item=>place(item,i++,birds.size));},2600);
     return {update,feedback,destroy(){clearInterval(animationTimer);clearTimeout(feedbackTimer);if(mq&&mq.removeEventListener)mq.removeEventListener('change',setReduced);status.remove();selectedActions.remove();yard.replaceChildren();}};
