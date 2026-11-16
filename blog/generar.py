@@ -93,7 +93,7 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "20261115-banner-directo"
+VERSION_ACTIVOS = "20261116-discreto"
 VERSION_BANNERS = "20261113banners"
 VERSION_PORTADA = "20261114curso"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
@@ -1647,6 +1647,7 @@ def planificar(raiz, incluir_borradores=False):
             buscador_blog(visibles),
             '<div data-blog-listado>\n' + listado(visibles, numero, cortes) + "\n</div>",
             bloque_guias("../"),
+            '<div data-publicidad-discreta></div>' if numero == 1 else '',
             bloque_curso("../"),
             anuncio("rect", activo),
         ] if parte)
