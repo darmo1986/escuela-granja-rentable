@@ -45,7 +45,13 @@
     if(scene)scene.update(state,M);
     $('fence-state').textContent='Malla '+state.upgrades.fence+'/3';$('roof-state').textContent=state.upgrades.roof?'Cubierta instalada':'Sin cubierta';
     document.querySelectorAll('[data-upgrade]').forEach(el=>{const k=el.dataset.upgrade,owned=k==='fence'?state.upgrades.fence===3:k==='storage'?state.upgrades.storage===2:['roof','access'].includes(k)&&state.upgrades[k],price=k==='fence'?M.prices.fence[state.upgrades.fence]:k==='storage'?M.prices.storage[state.upgrades.storage]:M.prices[k];el.disabled=Boolean(owned);el.textContent=owned?'Instalado':euro(price)+' · Comprar';});
-    $('defenders').textContent=state.defenders.length?state.defenders.map(d=>({scarecrow:'Espantapájaros',dog:'Perro',guard:'Guardián'}[d.type])+': '+Math.round(d.health)+' % resistencia').join(' · '):'Todavía no tienes defensores.';
+    $('defenders').replaceChildren();
+    if(!state.defenders.length)$('defenders').textContent='Todavía no tienes defensores.';
+    state.defenders.forEach((d,i)=>{const row=document.createElement('div');row.className='defender-row';const name=document.createElement('span');name.textContent=({scarecrow:'Espantapájaros',dog:'Perro',guard:'Guardián'}[d.type])+' · nivel '+(d.level||1)+'/3 · resistencia '+Math.round(d.health)+' %';const upgrade=document.createElement('button');upgrade.type='button';upgrade.dataset.action='upgradeDefender';upgrade.dataset.value=String(i);upgrade.textContent=(d.level||1)>=3?'Nivel máximo':'Mejorar · '+euro(6*(d.level||1));upgrade.disabled=bankrupt||(d.level||1)>=3||state.money<6*(d.level||1);row.append(name,upgrade);$('defenders').append(row);});
+    const owner=state.owner||{level:1,energy:3,xp:0};$('owner-status').textContent='Nivel '+owner.level+'/5 · energía '+owner.energy+'/3 · experiencia '+owner.xp;
+    $('owner-attack').disabled=bankrupt||!state.pending||owner.energy<1;
+    $('owner-upgrade').disabled=bankrupt||owner.level>=5||owner.xp<owner.level||state.money<owner.level*10;
+    $('owner-upgrade').textContent=owner.level>=5?'Dueño al máximo':'Entrenar · '+euro(owner.level*10);
     $('storage-status').textContent=['Sin almacén: 24 huevos, 2 días de conservación simulada.','Almacén protegido: 100 huevos, 4 días; reduce pérdidas por plagas.','Almacén refrigerado: 180 huevos, 10 días; electricidad 0,40 €/día.'][state.upgrades.storage];
     $('egg-lots').textContent=state.eggLots.length?state.eggLots.map(l=>l.count+' huevos de hace '+(state.day-l.day)+' días').join(' · '):'Sin lotes guardados.';
     $('log').replaceChildren();state.log.forEach(t=>{const li=document.createElement('li');li.textContent=t;$('log').append(li);});
