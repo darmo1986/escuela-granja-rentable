@@ -3,6 +3,9 @@
    Piloto de un banner 300×250, solo en artículos y tras aceptar. */
 window.ads = { activo: true, adsterraPilot: true, amazonTag: "granjarentabl-20" };
 
+// Activar solo tras confirmar la exclusión completa de apuestas y revisar móvil.
+window.ads.ampliacionDiscreta = false;
+
 /* El curso y los ebooks van primero. */
 window.GR = {
   siteUrl: "https://granjarentable.com",
