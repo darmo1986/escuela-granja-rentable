@@ -16,7 +16,7 @@ test('el dueño tiene energía, experiencia y ataque real contra amenazas',()=>{
 
 test('la energía se recupera al cambiar de día y guarda el nivel',()=>{
   const s=M.fresh(0);
-  s.owner={level:3,energy:0,xp:2};
+  s.owner={level:3,energy:0,xp:2,pos:2};
   M.advance(s,s.last+M.DAY/3);
   assert.equal(s.owner.energy,3);
   assert.equal(s.owner.level,3);
