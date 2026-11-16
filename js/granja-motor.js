@@ -172,6 +172,16 @@
       const cost=6*d.level;if(!spend(s,cost))return 'Saldo insuficiente para entrenar al defensor.';
       d.level++;return 'Defensor mejorado al nivel '+d.level+'. Su protección ante ataques aumenta.';
     }
+    if(type==='restockEssentials'){
+      const flock=count(s),young=s.hens.filter(needsYoungFeed).reduce((n,h)=>n+h.count,0),layers=flock-young;
+      const targetYoung=young?Math.max(3,young*.14*3):0,targetLayer=layers?Math.max(3,layers*.14*3):0,targetWater=Math.max(20,flock*.24*3);
+      const youngPacks=Math.max(0,Math.ceil((targetYoung-s.youngFeed-1e-8)/10)),layerPacks=Math.max(0,Math.ceil((targetLayer-s.feed-1e-8)/10)),waterPacks=Math.max(0,Math.ceil((targetWater-s.water-1e-8)/20));
+      const cost=youngPacks*10*prices.youngFeed+layerPacks*10*prices.feed+waterPacks*20*prices.water;
+      if(!cost)return 'Las reservas de comida y agua ya cubren el objetivo de tres días de juego.';
+      if(!spend(s,cost))return 'Saldo insuficiente para reponer todas las reservas. Compra por separado lo prioritario.';
+      s.youngFeed+=youngPacks*10;s.feed+=layerPacks*10;s.water+=waterPacks*20;
+      return 'Reposición completa: '+youngPacks*10+' kg para jóvenes, '+layerPacks*10+' kg para ponedoras y '+waterPacks*20+' L de agua por '+cost.toFixed(2)+' €.';
+    }
     if(type==='closeDoor'){s.doorClosed=true;return 'Puerta cerrada: la próxima visita queda fuera. No necesitas contratar un guardián para rechazarla.';}
     if(type==='collect'){prepareNest(s);const n=Math.min(Math.floor(s.nest+1e-9),Math.max(0,eggCapacity(s)-s.eggs));if(!n)return 'No hay huevos enteros o el almacén está lleno.';collectNest(s,n);return 'Has recogido '+n+' huevos.';}
     if(type==='sellEggs'){if(!s.eggs)return 'No tienes huevos recogidos.';const n=s.eggs*s.eggPrice;s.money+=n;s.income+=n;s.eggLots=[];s.eggs=0;return 'Venta de huevos: '+n.toFixed(2)+' € de juego.';}
