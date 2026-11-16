@@ -6,6 +6,10 @@ window.ads = { activo: true, adsterraPilot: true, amazonTag: "granjarentabl-20" 
 // aprobadas independientes: final e interior, cada una con {key, src}.
 window.ads.ensayoGuias = null;
 
+// Activación autorizada por Pablo el 16/11/2026 tras revisar la colocación.
+// La confirmación del filtro completo de apuestas por Adsterra sigue pendiente.
+window.ads.ampliacionDiscreta = true;
+
 /* El curso y los ebooks van primero. */
 window.GR = {
   siteUrl: "https://granjarentable.com",

@@ -55,17 +55,24 @@ function prepararEnsayoGuias(article){
 function borrarGrupoGuias(){
   try{localStorage.removeItem(claveGrupoGuias);}catch(e){}
 }
+// Ampliación preparada: solo rutas revisadas y activación explícita.
+function ampliacionDiscreta(){
+  return !!(window.ads && window.ads.ampliacionDiscreta === true &&
+    ['/criaderos.html','/tienda/','/tienda/index.html','/blog/','/blog/index.html'].includes(location.pathname));
+}
 function mountAdsterraPilot(){
   if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal() || document.querySelector('[data-adsterra-pilot]'))return;
   let accepted=false;
   try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
   if(!accepted)return;
-  const board=document.querySelector('[data-tablon-publicidad]');
+  const extended=ampliacionDiscreta() && document.querySelector('main [data-publicidad-discreta]');
+  const board=!extended && document.querySelector('[data-tablon-publicidad]');
   const home=document.querySelector('main.home-renovada');
   const article=document.querySelector('main .post-body');
   const tools=home && home.querySelector('.gr-tools');
-  const target=board || tools || home || (article && article.textContent.trim().length>=1500 && article);
+  const target=extended || board || tools || home || (article && article.textContent.trim().length>=1500 && article);
   if(!target)return;
+  if(extended && extended.getBoundingClientRect().width < 300)return;
   if(window.__grAdTagStarted)return;
   const ensayo = target === article ? prepararEnsayoGuias(article) : null;
   if(ensayo && ensayo.corte.getBoundingClientRect().width < 300)return;
@@ -74,7 +81,7 @@ function mountAdsterraPilot(){
   const box=document.createElement('aside');
   box.dataset.adsterraPilot='1';
   box.setAttribute('aria-label','Publicidad');
-  box.style.cssText='margin:24px auto;width:300px;max-width:100%;text-align:center';
+  box.style.cssText='margin:24px auto;width:300px;max-width:100%;text-align:center;min-height:274px;box-sizing:border-box';
   const label=document.createElement('p');
   label.textContent='Publicidad';
   label.style.cssText='margin:0 0 4px;font-size:12px';
@@ -145,7 +152,7 @@ var ADS_RUTAS_SIN = {
 };
 function paginaSinAnuncios(){
   const home=location.pathname==='/' || location.pathname==='/index.html';
-  if(!home && !/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
+  if(!home && !ampliacionDiscreta() && !/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
   if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;
   var robots=document.querySelector('meta[name="robots"]');
   if(robots && /noindex/i.test(robots.getAttribute('content')||''))return true;
