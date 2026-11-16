@@ -2,7 +2,7 @@
   'use strict';
   const DAY=86400000, HOUR=DAY/24;
   const breeds={brown:{name:'Ponedoras marrones',price:18,lay:.85,feed:.12,resilience:.9},leghorn:{name:'Leghorn',price:20,lay:.9,feed:.11,resilience:.85},sussex:{name:'Sussex',price:24,lay:.65,feed:.14,resilience:1.1}};
-  const prices={egg:.25,feed:.48,youngFeed:.60,calcium:1.50,feeder:12,waterer:10,water:.02,clean:2,care:8,fence:[35,80,150],roof:95,scarecrow:18,dog:90,guard:150,expand:75,storage:[45,110],access:25,footbath:12};
+  const prices={egg:.25,feed:.48,youngFeed:.60,calcium:1.50,feeder:12,waterer:10,water:.02,clean:2,care:8,fence:[35,80,150],roof:95,scarecrow:18,dog:45,guard:70,expand:75,storage:[45,110],access:25,footbath:12};
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
   // Agricultura: precios, rendimientos, receta y duración son reglas ficticias.
   const cropRules={land:250,mill:180,maxUpgrades:10,growHours:144,seedPack:10,seedPrice:{corn:4,oats:3},waterPerPlot:4,yieldPerPlot:8,recipe:{corn:3,oats:2,output:10,complementKg:5,layerCost:2.2,youngCost:2.6}};
@@ -66,12 +66,12 @@
   function isBankrupt(s){return count(s)===0&&farmValue(s).total<=1e-8;}
   function henSaleValue(h){return breeds[h.breed].price*.45*clamp(1-(h.age-180)/1200,.15,1)*h.health/100;}
   function farmValue(s){const birds=s.hens.reduce((sum,h)=>sum+h.count*henSaleValue(h),0),eggs=(s.eggs+Math.floor(s.nest))*s.eggPrice;return {cash:s.money,birds,eggs,total:s.money+birds+eggs};}
-  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,pace:'classic',speed:1,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,youngFeed:4,calcium:1,crops:freshCrops(),facilities:{feeder:1,waterer:1},water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
+  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,pace:'classic',speed:1,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,youngFeed:4,calcium:1,crops:freshCrops(),facilities:{feeder:1,waterer:1},water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],owner:{level:1,energy:3,xp:0},pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
   function log(s,t){s.log.unshift('Día '+s.day+': '+t);s.log=s.log.slice(0,12);}
   function count(s){return s.hens.reduce((n,h)=>n+h.count,0);}
   function random(s){s.seed=(Math.imul(s.seed,1664525)+1013904223)>>>0;return s.seed/4294967296;}
   function spend(s,n){if(!Number.isFinite(n)||n<0||s.money+1e-8<n)return false;s.money=Math.max(0,s.money-n);s.expenses+=n;return true;}
-  function threats(s){let ground=.16*Math.pow(.48,s.upgrades.fence),air=.09*(s.upgrades.roof?.1:1);for(const d of s.defenders)if(d.health>0){const effect=d.health/100;ground*=1-effect*({dog:.3,guard:.5,scarecrow:.04}[d.type]);air*=1-effect*({dog:.12,guard:.08,scarecrow:.55}[d.type]);}return {ground:Math.max(.002,ground),air:Math.max(.001,air)};}
+  function threats(s){let ground=.16*Math.pow(.48,s.upgrades.fence),air=.09*(s.upgrades.roof?.1:1);for(const d of s.defenders)if(d.health>0){const effect=d.health/100;ground*=1-effect*({dog:.3,guard:.5,scarecrow:.04}[d.type])*(1+.2*((d.level||1)-1));air*=1-effect*({dog:.12,guard:.08,scarecrow:.55}[d.type])*(1+.2*((d.level||1)-1));}return {ground:Math.max(.002,ground),air:Math.max(.001,air)};}
   function eggCapacity(s){return [24,100,180][s.upgrades.storage];}
   function syncEggs(s){s.eggs=s.eggLots.reduce((n,l)=>n+l.count,0);}
   function syncNest(s){s.nest=s.nestLots.reduce((n,l)=>n+l.count,0);}
@@ -105,7 +105,7 @@
       addNest(s,h.count*breeds[h.breed].lay*ageFactor(h.age)*(h.health/100)*Math.min(fed,watered)*(.8+.2*mineral)*(h.isolated?.65:1)/24);
     }
     if(s.hour%24===0){
-      s.day++;s.eggPrice=Math.round((.19+random(s)*.15)*100)/100;
+      s.day++;if(!s.owner)s.owner={level:1,energy:3,xp:0};s.owner.energy=3;s.eggPrice=Math.round((.19+random(s)*.15)*100)/100;
       const cost=s.defenders.reduce((n,d)=>n+(d.health>0?({dog:.6,guard:2,scarecrow:0}[d.type]):0),0)+(s.upgrades.storage===2?.4:0);
       if(cost&&!spend(s,cost)){s.defenders.forEach(d=>d.health=Math.max(0,d.health-20));if(s.upgrades.storage===2){s.upgrades.storage=1;log(s,'Sin saldo para electricidad: el refrigerador pasa a conservación sin frío.');}log(s,'Falta presupuesto de mantenimiento: baja la resistencia de tus defensores.');}
       const risk=threats(s);
@@ -144,6 +144,27 @@
     const cropResult=cropAction(s,type,value);if(cropResult!==null)return cropResult;
     if(type==='setSpeed')return setSpeed(s,value,now);
     if(type==='pause'){if(!Number.isFinite(now))return 'No se pudo pausar: reloj no válido.';now=Math.max(now,s.last);advance(s,now);s.paused=!s.paused;s.last=now;return s.paused?'Granja pausada: no transcurre tiempo ni hay pérdidas durante la ausencia.':s.pace==='fast'?'Granja activa: vuelve el ritmo de juego ×'+s.speed+'.':'Granja activa: vuelve el reloj clásico ×3.';}
+    if(type==='ownerAttack'){
+      if(!s.pending)return 'No hay amenaza visible que repeler.';
+      if(!s.owner)s.owner={level:1,energy:3,xp:0};
+      if(s.owner.energy<1)return 'Tu personaje está agotado: recupera energía al comenzar el próximo día.';
+      s.owner.energy--;const chance=Math.min(.9,.42+.10*(s.owner.level-1));
+      if(random(s)<chance){const enemy=s.pending.type;s.pending=null;s.owner.xp++;log(s,'El dueño ahuyentó la amenaza '+(enemy==='ground'?'terrestre':'aérea')+' desde el corral.');return '¡Ataque defendido! El dueño ahuyentó al depredador y ganó experiencia.';}
+      log(s,'El dueño intentó defender el corral, pero la amenaza continúa.');return 'Tu ataque no consiguió ahuyentar al depredador. Puedes reforzar las defensas o intentarlo de nuevo.';
+    }
+    if(type==='upgradeOwner'){
+      if(!s.owner)s.owner={level:1,energy:3,xp:0};
+      if(s.owner.level>=5)return 'El dueño ya ha alcanzado el nivel máximo.';
+      const cost=10*s.owner.level;if(s.owner.xp<s.owner.level)return 'Necesitas experiencia defendiendo: '+s.owner.level+' victoria(s) para subir de nivel.';
+      if(!spend(s,cost))return 'Saldo insuficiente para entrenar al dueño.';
+      s.owner.xp-=s.owner.level;s.owner.level++;return 'Dueño mejorado al nivel '+s.owner.level+'. Sus ataques tienen más probabilidad de ahuyentar amenazas.';
+    }
+    if(type==='upgradeDefender'){
+      const i=Number(value),d=s.defenders[i];if(!Number.isInteger(i)||!d)return 'Defensor no encontrado.';
+      d.level=d.level||1;if(d.level>=3)return 'Defensor al nivel máximo.';
+      const cost=6*d.level;if(!spend(s,cost))return 'Saldo insuficiente para entrenar al defensor.';
+      d.level++;return 'Defensor mejorado al nivel '+d.level+'. Su protección ante ataques aumenta.';
+    }
     if(type==='closeDoor'){s.doorClosed=true;return 'Puerta cerrada: la próxima visita queda fuera. No necesitas contratar un guardián para rechazarla.';}
     if(type==='collect'){prepareNest(s);const n=Math.min(Math.floor(s.nest+1e-9),Math.max(0,eggCapacity(s)-s.eggs));if(!n)return 'No hay huevos enteros o el almacén está lleno.';collectNest(s,n);return 'Has recogido '+n+' huevos.';}
     if(type==='sellEggs'){if(!s.eggs)return 'No tienes huevos recogidos.';const n=s.eggs*s.eggPrice;s.money+=n;s.income+=n;s.eggLots=[];s.eggs=0;return 'Venta de huevos: '+n.toFixed(2)+' € de juego.';}
@@ -160,7 +181,7 @@
     if(type==='expand'){if(s.capacity>=40)return 'Capacidad máxima de esta versión: 40 aves.';if(!spend(s,prices.expand))return 'Saldo insuficiente.';s.capacity+=10;return 'Gallinero ampliado en diez plazas.';}
     if(type==='upgrade'){
       if(value==='fence'){if(s.upgrades.fence===3)return 'La malla ya está al máximo.';if(!spend(s,prices.fence[s.upgrades.fence]))return 'Saldo insuficiente.';s.upgrades.fence++;return 'Malla reforzada al nivel '+s.upgrades.fence+'.';}
-      if(['scarecrow','dog','guard'].includes(value)){if(s.defenders.length>=9)return 'Máximo nueve defensores.';if(!spend(s,prices[value]))return 'Saldo insuficiente.';s.defenders.push({type:value,health:100});return 'Defensor añadido: puedes combinar varios. Su efecto depende de la resistencia.';}
+      if(['scarecrow','dog','guard'].includes(value)){if(s.defenders.length>=9)return 'Máximo nueve defensores.';if(!spend(s,prices[value]))return 'Saldo insuficiente.';s.defenders.push({type:value,health:100,level:1});return 'Defensor añadido: puedes combinar varios. Su efecto depende de la resistencia.';}
       if(value==='storage'){if(s.upgrades.storage===2)return 'Almacén al máximo.';if(!spend(s,prices.storage[s.upgrades.storage]))return 'Saldo insuficiente.';s.upgrades.storage++;return 'Almacenamiento mejorado. Protección de plagas y conservación térmica son efectos distintos.';}
       if(value==='footbath'){if(!spend(s,prices.footbath))return 'Saldo insuficiente.';s.upgrades.footbath=1;return 'Pediluvio mantenido: efecto de juego durante tres días simulados.';}
       if(!['roof','access'].includes(value))return 'Mejora desconocida.';
@@ -173,6 +194,9 @@
       for(const k of ['last','hour','day','money','feed','water','hygiene','eggs','nest','capacity','income','expenses','seed','missed','eggPrice'])if(!Number.isFinite(s[k])||s[k]<0)return fresh(now);
       if(!Array.isArray(s.defenders)||s.defenders.length>9||s.defenders.some(d=>!['dog','guard','scarecrow'].includes(d.type)||!Number.isFinite(d.health)||d.health<0||d.health>100)||!Array.isArray(s.eggLots)||s.eggLots.some(l=>!Number.isInteger(l.count)||l.count<0||!Number.isFinite(l.day)||l.day<0||l.day>s.day)||![0,1,2].includes(s.upgrades.storage)||!Number.isFinite(s.upgrades.footbath)||typeof s.paused!=='boolean')return fresh(now);
       if(s.pending&&!['ground','air'].includes(s.pending.type))return fresh(now);
+      if(s.owner===undefined)s.owner={level:1,energy:3,xp:0};
+      if(!s.owner||!Number.isInteger(s.owner.level)||s.owner.level<1||s.owner.level>5||!Number.isInteger(s.owner.energy)||s.owner.energy<0||s.owner.energy>3||!Number.isInteger(s.owner.xp)||s.owner.xp<0)return fresh(now);
+      for(const d of s.defenders){if(d.level===undefined)d.level=1;if(!Number.isInteger(d.level)||d.level<1||d.level>3)return fresh(now);}
       if(s.capacity>40||s.hygiene>100||s.upgrades.fence<0||s.upgrades.fence>3||!Number.isInteger(s.upgrades.fence)||s.hens.some(h=>!breeds[h.breed]||!Number.isInteger(h.count)||h.count<1||!Number.isFinite(h.age)||h.age<0||!Number.isFinite(h.health)||h.health<0||h.health>100)||count(s)>s.capacity)return fresh(now);
       if(s.facilities===undefined)s.facilities={feeder:1,waterer:1};
       if(!s.facilities||!['feeder','waterer'].every(k=>Number.isInteger(s.facilities[k])&&s.facilities[k]>=0&&s.facilities[k]<=8))return fresh(now);
