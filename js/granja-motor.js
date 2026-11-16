@@ -66,7 +66,7 @@
   function isBankrupt(s){return count(s)===0&&farmValue(s).total<=1e-8;}
   function henSaleValue(h){return breeds[h.breed].price*.45*clamp(1-(h.age-180)/1200,.15,1)*h.health/100;}
   function farmValue(s){const birds=s.hens.reduce((sum,h)=>sum+h.count*henSaleValue(h),0),eggs=(s.eggs+Math.floor(s.nest))*s.eggPrice;return {cash:s.money,birds,eggs,total:s.money+birds+eggs};}
-  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,pace:'classic',speed:1,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,youngFeed:4,calcium:1,crops:freshCrops(),facilities:{feeder:1,waterer:1},water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],owner:{level:1,energy:3,xp:0},pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
+  function fresh(now=Date.now(),difficulty='normal'){if(!Object.hasOwn(difficulties,difficulty))difficulty='normal';return {version:1,difficulty,pace:'classic',speed:1,last:now,hour:0,day:0,money:difficulties[difficulty],feed:12,youngFeed:4,calcium:1,crops:freshCrops(),facilities:{feeder:1,waterer:1},water:25,hygiene:95,eggs:0,eggLots:[],eggPrice:.25,nest:0,nestLots:[],capacity:10,hens:[{breed:'brown',count:4,age:lifecycle.purchaseAge,health:100,quarantine:0,isolated:false}],upgrades:{fence:0,roof:false,storage:0,access:false,footbath:0},defenders:[],owner:{level:1,energy:3,xp:0,pos:2},pending:null,visitorPending:false,doorClosed:false,paused:false,income:0,expenses:0,seed:104729,log:['Empiezas con cuatro pollitas próximas a la puesta y '+difficulties[difficulty]+' € de juego.'],missed:0};}
   function log(s,t){s.log.unshift('Día '+s.day+': '+t);s.log=s.log.slice(0,12);}
   function count(s){return s.hens.reduce((n,h)=>n+h.count,0);}
   function random(s){s.seed=(Math.imul(s.seed,1664525)+1013904223)>>>0;return s.seed/4294967296;}
@@ -104,8 +104,9 @@
       if(!wasRetired&&retired(h))log(s,breeds[h.breed].name+': fin de puesta por edad. Puedes vender el lote o conservarlo con sus cuidados.');
       addNest(s,h.count*breeds[h.breed].lay*ageFactor(h.age)*(h.health/100)*Math.min(fed,watered)*(.8+.2*mineral)*(h.isolated?.65:1)/24);
     }
+    if(s.hour%8===0)s.eggPrice=Math.round((.19+random(s)*.15)*100)/100;
     if(s.hour%24===0){
-      s.day++;if(!s.owner)s.owner={level:1,energy:3,xp:0};s.owner.energy=3;s.eggPrice=Math.round((.19+random(s)*.15)*100)/100;
+      s.day++;if(!s.owner)s.owner={level:1,energy:3,xp:0,pos:2};s.owner.energy=3;
       const cost=s.defenders.reduce((n,d)=>n+(d.health>0?({dog:.6,guard:2,scarecrow:0}[d.type]):0),0)+(s.upgrades.storage===2?.4:0);
       if(cost&&!spend(s,cost)){s.defenders.forEach(d=>d.health=Math.max(0,d.health-20));if(s.upgrades.storage===2){s.upgrades.storage=1;log(s,'Sin saldo para electricidad: el refrigerador pasa a conservación sin frío.');}log(s,'Falta presupuesto de mantenimiento: baja la resistencia de tus defensores.');}
       const risk=threats(s);
@@ -117,7 +118,7 @@
         else log(s,'La amenaza avisada no causó bajas. Las defensas reducen el riesgo, no garantizan el resultado.');
         s.pending=null;
       }
-      if(random(s)<.35){s.pending={type:random(s)<.6?'ground':'air'};log(s,s.pending.type==='ground'?'Aviso: huellas junto al cercado. Refuerza la malla antes del próximo día.':'Aviso: aves rapaces en las cercanías. Revisa la protección aérea.');}
+      if(random(s)<.35){s.pending={type:random(s)<.6?'ground':'air',hp:3,lane:s.seed%5};log(s,s.pending.type==='ground'?'Aviso: huellas junto al cercado. Refuerza la malla antes del próximo día.':'Aviso: aves rapaces en las cercanías. Revisa la protección aérea.');}
       const visitors=Boolean(s.visitorPending&&!s.doorClosed&&!s.upgrades.access&&!s.defenders.some(d=>d.type==='guard'&&d.health>25)),wild=random(s)<.2;
       if(s.visitorPending)log(s,visitors?'Un vecino entró sin control. Aumenta la exposición, pero no implica contagio seguro.':'La visita quedó fuera: la puerta, el control de acceso o el guardián evitaron la entrada.');
       s.visitorPending=random(s)<.25;s.doorClosed=false;if(s.visitorPending)log(s,'Aviso: un vecino quiere entrar mañana. Puedes cerrar la puerta o preparar control de acceso.');
@@ -151,13 +152,28 @@
     const cropResult=cropAction(s,type,value);if(cropResult!==null)return cropResult;
     if(type==='setSpeed')return setSpeed(s,value,now);
     if(type==='pause'){if(!Number.isFinite(now))return 'No se pudo pausar: reloj no válido.';now=Math.max(now,s.last);advance(s,now);s.paused=!s.paused;s.last=now;return s.paused?'Granja pausada: no transcurre tiempo ni hay pérdidas durante la ausencia.':s.pace==='fast'?'Granja activa: vuelve el ritmo de juego ×'+s.speed+'.':'Granja activa: vuelve el reloj clásico ×3.';}
+    if(type==='moveOwner'){
+      const dir=value==='left'?-1:value==='right'?1:0;
+      if(!dir)return 'Dirección desconocida.';
+      if(!s.owner)s.owner={level:1,energy:3,xp:0,pos:2};
+      s.owner.pos=clamp((s.owner.pos??2)+dir,0,4);
+      return 'Te has movido a la zona '+(s.owner.pos+1)+'/5 del corral.';
+    }
     if(type==='ownerAttack'){
       if(!s.pending)return 'No hay amenaza visible que repeler.';
-      if(!s.owner)s.owner={level:1,energy:3,xp:0};
+      if(!s.owner)s.owner={level:1,energy:3,xp:0,pos:2};
       if(s.owner.energy<1)return 'Tu personaje está agotado: recupera energía al comenzar el próximo día.';
-      s.owner.energy--;const chance=Math.min(.9,.42+.10*(s.owner.level-1));
-      if(random(s)<chance){const enemy=s.pending.type;s.pending=null;s.owner.xp++;log(s,'El dueño ahuyentó la amenaza '+(enemy==='ground'?'terrestre':'aérea')+' desde el corral.');return '¡Ataque defendido! El dueño ahuyentó al depredador y ganó experiencia.';}
-      log(s,'El dueño intentó defender el corral, pero la amenaza continúa.');return 'Tu ataque no consiguió ahuyentar al depredador. Puedes reforzar las defensas o intentarlo de nuevo.';
+      const enemy=s.pending,dist=Math.abs((s.owner.pos??2)-(enemy.lane??2));
+      const range=s.owner.level>=3?2:1;
+      if(dist>range)return 'El enemigo está fuera de alcance. Muévete por el corral para acercarte.';
+      s.owner.energy--;
+      const chance=Math.min(.95,.75+.04*(s.owner.level-1)-(dist>.5?.15:0));
+      if(random(s)<chance){
+        enemy.hp=(enemy.hp??3)-(s.owner.level>=4?2:1);
+        if(enemy.hp<=0){const kind=enemy.type;s.pending=null;s.owner.xp++;log(s,'El dueño ahuyentó al depredador '+(kind==='ground'?'terrestre':'aéreo')+'.');return '¡Ataque defendido! El depredador se retiró y ganaste experiencia.';}
+        return '¡Impacto! Al depredador le quedan '+enemy.hp+' puntos de vida.';
+      }
+      return 'El ataque falló: el depredador sigue acercándose.';
     }
     if(type==='upgradeOwner'){
       if(!s.owner)s.owner={level:1,energy:3,xp:0};
@@ -184,13 +200,18 @@
     }
     if(type==='closeDoor'){s.doorClosed=true;return 'Puerta cerrada: la próxima visita queda fuera. No necesitas contratar un guardián para rechazarla.';}
     if(type==='collect'){prepareNest(s);const n=Math.min(Math.floor(s.nest+1e-9),Math.max(0,eggCapacity(s)-s.eggs));if(!n)return 'No hay huevos enteros o el almacén está lleno.';collectNest(s,n);return 'Has recogido '+n+' huevos.';}
+    if(type==='collectAndSell'){prepareNest(s);const n=Math.min(Math.floor(s.nest+1e-9),Math.max(0,eggCapacity(s)-s.eggs));if(n>0)collectNest(s,n);if(!s.eggs)return 'No hay huevos enteros disponibles para vender.';const gross=s.eggs*s.eggPrice;s.money+=gross;s.income+=gross;s.eggs=0;s.eggLots=[];return 'Recogiste y vendiste '+(n>0?n+' nuevos huevos; ':'los huevos almacenados; ')+'ingresaste '+gross.toFixed(2)+' €.';}
     if(type==='sellEggs'){if(!s.eggs)return 'No tienes huevos recogidos.';const n=s.eggs*s.eggPrice;s.money+=n;s.income+=n;s.eggLots=[];s.eggs=0;return 'Venta de huevos: '+n.toFixed(2)+' € de juego.';}
+    if(type==='feedBulk'){if(!['layer','young'].includes(value))return 'Tipo de pienso desconocido.';const key=value==='young'?'youngFeed':'feed',cost=30*prices[key];if(!spend(s,cost))return 'Saldo insuficiente para el saco grande.';s[key]+=30;return 'Compraste 30 kg de pienso para '+(value==='young'?'jóvenes':'ponedoras')+' por '+cost.toFixed(2)+' €.';}
     if(type==='feed'){const young=value==='young',key=young?'youngFeed':'feed';if(!spend(s,10*prices[key]))return 'Saldo insuficiente.';s[key]+=10;return young?'Compraste 10 kg de pienso para jóvenes.':'Compraste 10 kg de pienso de ponedoras.';}
+    if(type==='installPair'){if(s.facilities.feeder>=8||s.facilities.waterer>=8)return 'Ya alcanzaste el límite de un equipo.';if(!spend(s,prices.feeder+prices.waterer))return 'Saldo insuficiente para el conjunto.';s.facilities.feeder++;s.facilities.waterer++;return 'Compraste un comedero y un bebedero: ahora hay seis plazas de acceso adicionales por equipo.';}
     if(type==='install'){if(!['feeder','waterer'].includes(value))return 'Equipo desconocido.';if(s.facilities[value]>=8)return 'Máximo ocho equipos de cada tipo.';if(!spend(s,prices[value]))return 'Saldo insuficiente.';s.facilities[value]++;return value==='feeder'?'Comedero añadido: seis aves más pueden acceder al pienso. Colócalo en el corral.':'Bebedero añadido: seis aves más pueden acceder al agua. Colócalo en el corral.';}
     if(type==='calcium'){if(!spend(s,prices.calcium))return 'Saldo insuficiente.';s.calcium+=1;return 'Compraste 1 kg de reserva de calcio. Los consumos son reglas ficticias del juego, no dosis reales.';}
+    if(type==='waterBulk'){if(!spend(s,100*prices.water))return 'Saldo insuficiente para 100 L.';s.water+=100;return 'Depósito repuesto: 100 litros de agua por 2 €.';}
     if(type==='water'){if(!spend(s,20*prices.water))return 'Saldo insuficiente.';s.water+=20;return 'Repusiste 20 litros de agua.';}
     if(type==='clean'){if(s.hygiene>99)return 'La cama ya está limpia.';if(!spend(s,prices.clean))return 'Saldo insuficiente.';s.hygiene=100;return 'Cama cambiada e instalación limpia.';}
     if(type==='care'){if(!s.hens.some(h=>h.health<99))return 'El lote no necesita recuperación.';if(!spend(s,prices.care))return 'Saldo insuficiente.';s.hens.forEach(h=>h.health=clamp(h.health+30,0,100));return 'Atención al lote: mejora su recuperación. No sustituye agua y comida.';}
+    if(type==='buyHenThree'){const b=breeds[value];if(!b)return 'Raza desconocida.';if(count(s)+3>s.capacity)return 'Necesitas tres plazas libres para el lote.';if(!spend(s,3*b.price))return 'Saldo insuficiente para tres pollitas.';s.hens.push({breed:value,count:3,age:lifecycle.purchaseAge,health:100,quarantine:3,isolated:false});return 'Lote de tres pollitas '+b.name+' comprado y puesto en observación.';}
     if(type==='buyHen'){const b=breeds[value];if(!b)return 'Raza desconocida.';if(count(s)>=s.capacity)return 'Amplía el gallinero antes de comprar más aves.';if(!spend(s,b.price))return 'Saldo insuficiente.';s.hens.push({breed:value,count:1,age:lifecycle.purchaseAge,health:100,quarantine:3,isolated:false});return 'Compraste una pollita '+b.name+' próxima a la puesta. Tres días de observación separados en el juego.';}
     if(type==='isolate'){const h=s.hens[Number(value)];if(!h)return 'Lote no disponible.';h.isolated=!h.isolated;return h.isolated?'Lote separado para observación. Revisa cuidados y consulta.':'Lote reunido. Comprueba antes su recuperación.';}
     if(type==='repair'){const n=s.defenders.filter(d=>d.health<100).length;if(!n)return 'Tus defensores están en buen estado.';if(!spend(s,n*5))return 'Saldo insuficiente.';s.defenders.forEach(d=>d.health=100);return 'Defensores recuperados. Coste: 5 € por defensor.';}
@@ -211,7 +232,10 @@
       for(const k of ['last','hour','day','money','feed','water','hygiene','eggs','nest','capacity','income','expenses','seed','missed','eggPrice'])if(!Number.isFinite(s[k])||s[k]<0)return fresh(now);
       if(!Array.isArray(s.defenders)||s.defenders.length>9||s.defenders.some(d=>!['dog','guard','scarecrow'].includes(d.type)||!Number.isFinite(d.health)||d.health<0||d.health>100)||!Array.isArray(s.eggLots)||s.eggLots.some(l=>!Number.isInteger(l.count)||l.count<0||!Number.isFinite(l.day)||l.day<0||l.day>s.day)||![0,1,2].includes(s.upgrades.storage)||!Number.isFinite(s.upgrades.footbath)||typeof s.paused!=='boolean')return fresh(now);
       if(s.pending&&!['ground','air'].includes(s.pending.type))return fresh(now);
-      if(s.owner===undefined)s.owner={level:1,energy:3,xp:0};
+      if(s.pending){if(s.pending.hp===undefined)s.pending.hp=3;if(s.pending.lane===undefined)s.pending.lane=2;if(!Number.isInteger(s.pending.hp)||s.pending.hp<1||s.pending.hp>3||!Number.isInteger(s.pending.lane)||s.pending.lane<0||s.pending.lane>4)return fresh(now);}
+      if(s.owner===undefined)s.owner={level:1,energy:3,xp:0,pos:2};
+      if(s.owner&&s.owner.pos===undefined)s.owner.pos=2;
+      if(!s.owner||!Number.isInteger(s.owner.pos)||s.owner.pos<0||s.owner.pos>4)return fresh(now);
       if(!s.owner||!Number.isInteger(s.owner.level)||s.owner.level<1||s.owner.level>5||!Number.isInteger(s.owner.energy)||s.owner.energy<0||s.owner.energy>3||!Number.isInteger(s.owner.xp)||s.owner.xp<0)return fresh(now);
       for(const d of s.defenders){if(d.level===undefined)d.level=1;if(!Number.isInteger(d.level)||d.level<1||d.level>3)return fresh(now);}
       if(s.capacity>40||s.hygiene>100||s.upgrades.fence<0||s.upgrades.fence>3||!Number.isInteger(s.upgrades.fence)||s.hens.some(h=>!breeds[h.breed]||!Number.isInteger(h.count)||h.count<1||!Number.isFinite(h.age)||h.age<0||!Number.isFinite(h.health)||h.health<0||h.health>100)||count(s)>s.capacity)return fresh(now);
