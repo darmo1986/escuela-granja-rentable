@@ -116,7 +116,7 @@ class Generador(unittest.TestCase):
         self.assertNotIn(">Artículos<", menu)
         self.assertNotIn('href="blog/"', menu)
         self.assertIn(">Calculadoras<", menu)
-        self.assertIn(f"css/estilo.css?v={generar.VERSION_ACTIVOS}", indice)
+        self.assertIn(f"css/estilo.css?v={generar.VERSION_ESTILO}", indice)
         self.assertIn(f"js/boot.js?v={generar.VERSION_ACTIVOS}", indice)
         self.assertIn(f"css/blog.css?v={generar.VERSION_ACTIVOS}", indice)
         self.assertIn(f"js/blog.js?v={generar.VERSION_ACTIVOS}", indice)
@@ -363,7 +363,7 @@ class Generador(unittest.TestCase):
         self.assertIn("m.me/PENDIENTE", html)
         self.assertIn('data-social="whatsapp" href="https://wa.me/34656267726"', html)
         self.assertIn('<a class="wa-float" href="https://wa.me/34656267726">', html)
-        self.assertIn(f"css/estilo.css?v={generar.VERSION_ACTIVOS}", html)
+        self.assertIn(f"css/estilo.css?v={generar.VERSION_ESTILO}", html)
         self.assertIn(f"js/boot.js?v={generar.VERSION_ACTIVOS}", html)
 
     def test_piloto_no_activa_huecos_heredados(self):
@@ -375,7 +375,7 @@ class Generador(unittest.TestCase):
 
     def test_version_con_letras_se_sustituye(self):
         html = generar.poner_version('<link href="css/estilo.css?v=20261109a"><script src="js/app.js?v=1"></script>')
-        self.assertIn(f"css/estilo.css?v={generar.VERSION_ACTIVOS}\"", html)
+        self.assertIn(f"css/estilo.css?v={generar.VERSION_ESTILO}\"", html)
         self.assertIn(f"js/app.js?v={generar.VERSION_ACTIVOS}\"", html)
         self.assertNotIn("20261109a", html)
 
@@ -488,7 +488,9 @@ class Generador(unittest.TestCase):
         primero = generar.colocar_banners('index.html', original, RAIZ)
         segundo = generar.colocar_banners('index.html', primero, RAIZ)
         self.assertEqual(segundo.count('data-promo-carousel'), 1)
-        self.assertRegex(segundo, r'<main>\s*<section class="promo-carousel"')
+        self.assertLess(segundo.index('</h1>'), segundo.index('banner-franja'))
+        self.assertLess(segundo.index('</h1>'), segundo.index('data-promo-carousel'))
+        self.assertNotRegex(segundo, r'<main>\s*<(?:section class="promo-carousel"|aside class="banner)')
         datos = json.loads(unescape(re.search(r'data-ofertas="([^"]+)"', segundo).group(1)))
         self.assertEqual(len({x['id'] for x in datos}), len(datos))
         self.assertTrue(any(x['tipo'] == 'amazon' for x in datos))
@@ -646,6 +648,38 @@ class Generador(unittest.TestCase):
         self.assertEqual(generar.generar(self.tmp), [])
         self.assertNotIn("<figcaption>", (self.tmp / "blog" / "sin-pie.html").read_text(encoding="utf-8"))
 
+    def test_banner_despues_del_titulo_y_como_maximo_tres(self):
+        post(self.tmp, "2026-11-09-largo.md", borrador="false", leccion="", producto="",
+             categoria="incubacion", titulo="Artículo largo de incubación con varios párrafos",
+             titulo_seo="Artículo largo de incubación",
+             _cuerpo=("Primer párrafo del texto.\n\nSegundo párrafo del texto.\n\n"
+                      "Tercer párrafo del texto.\n\nCuarto párrafo del texto.\n"))
+        (self.tmp / "js").mkdir(exist_ok=True)
+        (self.tmp / "js" / "config.js").write_text(
+            'window.ads = { activo: false, amazonTag: "test-20" };\n', encoding="utf-8")
+        self.assertEqual(generar.generar(self.tmp), [])
+        html = (self.tmp / "blog" / "largo.html").read_text(encoding="utf-8")
+        self.assertLess(html.index("</h1>"), html.index("data-banner"))
+        self.assertNotRegex(html, r'<main[^>]*>\s*<(?:section class="promo-carousel"|aside class="banner)')
+        self.assertIn('class="banner-ebook banner-franja"', html)
+        self.assertIn('fetchpriority="high"', html)
+        self.assertLessEqual(len(re.findall(r'data-banner="', html)), 3)
+        self.assertGreaterEqual(len(re.findall(r'data-banner="', html)), 2)
+        self.assertIn('data-banner="amazon-incubacion"', html)
+        self.assertLess(html.index("data-banner-ebook"), html.index("data-banner-amazon"))
+        self.assertIn('rel="sponsored nofollow noopener"', html)
+        self.assertIn('target="_blank"', html.split("banner-amazon", 1)[1])
+        self.assertIn("srcset=", html)
+        self.assertIn("360w", html)
+        self.assertIn("720w", html)
+        self.assertIn("1200w", html)
+        medio = html.split('<div class="panel prose post-body">', 1)[1]
+        self.assertLess(medio.index("Tercer párrafo"), medio.index("data-banner"))
+        self.assertEqual(generar.generar(self.tmp), [])
+        otra = (self.tmp / "blog" / "largo.html").read_text(encoding="utf-8")
+        self.assertEqual(otra.count("data-banner="), html.count("data-banner="))
+        self.assertLessEqual(otra.count("data-banner="), 3)
+
 
 class ConfiguracionReal(unittest.TestCase):
     """Amazon de relleno y piloto aislado sin huecos publicitarios heredados."""
@@ -659,7 +693,11 @@ class ConfiguracionReal(unittest.TestCase):
 
     def test_hueco_amazon_va_detras_del_ebook(self):
         html = (RAIZ / "blog" / "incubacion-dia-a-dia.html").read_text(encoding="utf-8")
-        self.assertEqual(html.count("data-banner-ebook"), 1)
+        self.assertGreaterEqual(html.count("data-banner-ebook"), 1)
+        self.assertEqual(html.count("data-banner-amazon"), 1)
+        self.assertLess(html.index("</h1>"), html.index("data-banner"))
+        self.assertLessEqual(len(re.findall(r'data-banner="', html)), 3)
+        self.assertGreaterEqual(html.count("data-banner-ebook"), 1)
         self.assertEqual(html.count("data-banner-amazon"), 1)
         self.assertLess(html.index("data-banner-ebook"), html.index("data-banner-amazon"))
         self.assertIn("tag=granjarentabl-20", html)
