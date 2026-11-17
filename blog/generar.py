@@ -95,8 +95,8 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "20261115-banner-directo"
-VERSION_ESTILO = "20261117-barra"
+VERSION_ACTIVOS = "20261117-anuncios-arriba"
+VERSION_ESTILO = "20261117-sin-fijo"
 VERSION_PUBLICIDAD = "20261116-discreto"
 VERSION_BANNERS = "20261117banners"
 VERSION_PORTADA = "20261117-franja"
@@ -1021,7 +1021,7 @@ def srcset_banner(raiz_url, clave):
 def html_ilustracion(raiz_url, clave, eager=False):
     nombre = EBOOK_ILUSTRACION[clave]
     base = f"{raiz_url}img/banners/{nombre}"
-    sizes = "(max-width: 1023px) 96px, 220px" if eager else "(max-width: 600px) 100vw, 320px"
+    sizes = "96px" if eager else "(max-width: 600px) 100vw, 320px"
     carga = 'fetchpriority="high"' if eager else 'loading="lazy"'
     return (
         f'<img class="banner-ebook-ilustracion" src="{esc(base + ".webp")}" '
@@ -1159,6 +1159,8 @@ def quitar_banners(html):
         html = re.sub(
             r'[ \t]*<aside class="[^"]*\bbanner-(?:ebook|amazon)\b[^"]*"[\s\S]*?</aside>',
             '', html, count=1)
+    html = re.sub(r'[ \t]*<div class="anuncios-arriba"[^>]*>\s*</div>', '', html)
+    html = re.sub(r'[ \t]*<div class="anuncio-tercio"[^>]*>\s*</div>', '', html)
     return html
 
 
@@ -1195,6 +1197,55 @@ def punto_franja(html):
     if intro and 'banner-ebook' not in intro.group(1):
         pos += intro.end()
     return pos
+
+
+def _tras_primeras_secciones(html, desde, hasta):
+    """Tras una o dos secciones, en el primer tercio. Nunca al final del texto."""
+    zona = html[desde:hasta]
+    h2s = list(re.finditer(r'<h2\b', zona))
+    if len(h2s) >= 2:
+        # Tras la primera sección. Si esa sección casi no tiene texto, se espera a la segunda.
+        corte = 1
+        previo = re.sub(r'<[^>]+>', ' ', zona[:h2s[1].start()])
+        previo = re.sub(r'\s+', ' ', previo).strip()
+        if len(previo) < 280 and len(h2s) >= 3:
+            corte = 2
+        return desde + h2s[corte].start()
+    utiles = parrafos_utiles(html, desde, hasta)
+    if len(utiles) >= 3:
+        indice = max(1, min(len(utiles) // 3, len(utiles) - 2))
+        return desde + utiles[indice].end()
+    if utiles:
+        return desde + utiles[min(1, len(utiles) - 1)].end()
+    if h2s:
+        return desde + h2s[0].start()
+    return None
+
+
+def punto_tercio(html):
+    """Hueco de Adsterra: arriba, después del primer bloque o de una o dos secciones."""
+    main = re.search(r'<main\b[^>]*>', html)
+    if not main:
+        return None
+    inicio = main.end()
+    fin = html.find('</main>', inicio)
+    if fin < 0:
+        return None
+    zona = html[inicio:fin]
+    calculadora = re.search(r'<section class="gr-calculator-intro\b[\s\S]*?</section>', zona)
+    if calculadora:
+        return inicio + calculadora.end()
+    cuerpo = zona.find('<div class="panel prose post-body">')
+    if cuerpo >= 0:
+        desde = inicio + cuerpo + len('<div class="panel prose post-body">')
+        return _tras_primeras_secciones(html, desde, fin)
+    if 'class="pcard"' in zona:
+        tarjetas = list(re.finditer(r'</article>', zona))
+        if len(tarjetas) >= 2:
+            return inicio + tarjetas[1].end()
+        if tarjetas:
+            return inicio + tarjetas[0].end()
+    return _tras_primeras_secciones(html, inicio, fin)
 
 
 def punto_medio(html):
@@ -1277,10 +1328,11 @@ def asegurar_script_banners(html, rel):
 
 
 def colocar_banners(rel, html, raiz, post=None):
-    """Hasta 3 unidades propias: franja tras el título, pieza a mitad y cierre.
+    """Guía compacta tras el título. Adsterra va en el primer tercio, en el flujo.
 
-    La franja nunca va antes del h1. En escritorio es la columna sticky;
-    en móvil se queda en el flujo, sin flotar.
+    La franja que seguía al lector no se publica. El hueco data-anuncio-tercio
+    lo rellena js/app.js solo con consentimiento. El enlace de Amazon, si toca,
+    queda al final y también quieto.
     """
     if not pagina_con_banner(rel) or "</main>" not in html:
         return html
@@ -1288,54 +1340,35 @@ def colocar_banners(rel, html, raiz, post=None):
     clave, amazon_tema = ebook_y_amazon(rel, post)
     tag = etiqueta_amazon(raiz)
     raiz_url = raiz_de(rel)
-    otras = otras_claves(clave)
     recursos = bool(post and RECURSOS_ARTICULO.get(post.get("slug") or ""))
-    n_cuerpo = len(re.findall(r'<p(?:\s[^>]*)?>[\s\S]*?</p>', post.get("html") or "")) if post else 0
 
     def ebook(puesto, cual, eager=False):
         return html_banner_estatico(raiz_url, cual, None, "", puesto=puesto, eager=eager)
 
+    def grupo(bloque):
+        return f'<div class="anuncios-arriba" data-anuncios-arriba>\n{bloque}\n</div>'
+
     cortes = []
-    franja = punto_franja(html)
-    if franja is not None:
-        cortes.append((franja, ebook("franja", clave, eager=True)))
+    arriba = punto_franja(html)
+    if arriba is not None:
+        cortes.append((arriba, grupo(ebook("compacto", clave, eager=True))))
+    tercio = punto_tercio(html)
+    if tercio is not None:
+        cortes.append((tercio, '<div class="anuncio-tercio" data-anuncio-tercio></div>'))
     if rel == "index.html":
         _titulo, href = EBOOK_POR_CLAVE[clave]
         carrusel = html_banner(raiz_url, clave, amazon_tema, tag, precio_catalogo(raiz, href))
         if "<!-- inicio-ofertas -->" in html:
             marca = html.find("<!-- inicio-ofertas -->")
             cortes.append((marca + len("<!-- inicio-ofertas -->"), "\n" + carrusel))
-        elif franja is not None:
-            cortes.append((franja, carrusel))
-        cierre = punto_cierre(html)
-        cortes.append((cierre, ebook("compacto", otras[0])))
+        elif arriba is not None:
+            cortes.append((arriba, carrusel))
         html = _volcar_cortes(html, cortes)
         return asegurar_script_banners(marcar_lateral(html, False), rel)
-    if es_listado(rel):
-        medio = punto_infeed(html)
-        if medio is not None:
-            cortes.append((medio, ebook("infeed", otras[0])))
-        if tag and amazon_tema:
-            cortes.append((punto_cierre(html), html_banner_amazon(amazon_tema, tag, "cierre")))
-        else:
-            cortes.append((punto_cierre(html), ebook("cierre", otras[1])))
-        html = _volcar_cortes(html, cortes)
-        return asegurar_script_banners(marcar_lateral(html, True), rel)
-    if post and n_cuerpo >= 3:
-        cortes.append((punto_medio(html), ebook("completo", otras[0])))
-    elif not post:
-        cortes.append((punto_medio(html), ebook("completo", otras[0])))
-    if not recursos:
-        if tag and amazon_tema:
-            cortes.append((punto_cierre(html), html_banner_amazon(amazon_tema, tag, "cierre")))
-        elif post and n_cuerpo >= 2:
-            indice = 1 if n_cuerpo >= 3 else 0
-            cortes.append((punto_cierre(html), ebook("cierre", otras[indice])))
-        elif not post:
-            indice = 1 if punto_medio(html) is not None else 0
-            cortes.append((punto_cierre(html), ebook("cierre", otras[indice])))
+    if tag and amazon_tema and not es_listado(rel) and not recursos:
+        cortes.append((punto_cierre(html), html_banner_amazon(amazon_tema, tag, "cierre")))
     html = _volcar_cortes(html, cortes)
-    return asegurar_script_banners(marcar_lateral(html, True), rel)
+    return asegurar_script_banners(marcar_lateral(html, False), rel)
 
 
 def _volcar_cortes(html, cortes):
