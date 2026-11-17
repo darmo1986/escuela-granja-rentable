@@ -582,147 +582,147 @@
     },
     {
       "id": 49,
-      "pregunta": "En el cálculo de Wright que explica el guion de genética, ¿cuál es el coeficiente de consanguinidad (F) del hijo de dos hermanos completos?",
+      "pregunta": "En el engorde comercial, ¿cómo ofrece la comida la L01?",
       "opciones": [
-        "0,25, es decir un 25 %",
-        "0,125, que es la cifra del hijo de dos medio hermanos",
-        "0,50",
-        "0, porque los hermanos no comparten antepasados"
+        "A libre disposición, reponiéndola a menudo los primeros días",
+        "Una sola toma al día",
+        "Sin alimento hasta el día 10",
+        "Solo grano por la noche"
       ],
       "correcta": 0,
-      "explicacion": "Cada paso del camino multiplica por un medio. En hermanos completos, F = 0,25. En medio hermanos baja al 12,5 %. Si un gallo cubre a sus hijas, los nietos también quedan en un 25 %."
+      "explicacion": "La comida del engorde va a libre disposición. Al recibir, la cama se busca a 28–32 °C y la humedad alrededor del 60–70 %."
     },
     {
       "id": 50,
-      "pregunta": "Con un solo gallo y diez gallinas, ¿qué pasa con la consanguinidad del lote según el guion?",
+      "pregunta": "En suelo, ¿qué densidad orienta la L02 para las pollitas?",
       "opciones": [
-        "El tamaño efectivo sale 50 y la consanguinidad no sube",
-        "El tamaño efectivo sale unos 3,6 y la consanguinidad sube casi un 14 % en una generación; pasar a 30 gallinas con el mismo gallo casi no lo arregla",
-        "Con 30 gallinas y ese gallo, la subida baja del 1 %",
-        "Lo que manda es el número de gallinas; los gallos apenas cuentan"
+        "55–60 por m² durante todo el crecimiento",
+        "15–20 por m² las tres primeras semanas y 8–10 por m² después",
+        "9 por m² desde el primer día",
+        "Una por m², dentro y fuera"
       ],
       "correcta": 1,
-      "explicacion": "Ne = 4 × machos × hembras / (machos + hembras). Añadir gallinas no sustituye a más gallos: con 30 gallinas la subida sigue cerca del 13 %."
+      "explicacion": "Esas cifras son de la pollita. El tope de 9 por m² es el de las adultas en suelo, no el de las tres primeras semanas."
     },
     {
       "id": 51,
-      "pregunta": "¿Qué tamaño efectivo mínimo considera aceptable la FAO en el guion, y a qué subida por generación equivale?",
+      "pregunta": "¿Qué límite tiene la clueca frente a la incubadora, según la L03?",
       "opciones": [
-        "Al menos 3,6, la cifra de un gallo con diez gallinas",
-        "Al menos 10, aunque la subida sea del 14 %",
-        "Al menos 50, lo que equivale a una subida máxima del 1 % por generación",
-        "No hay cifra: cualquier tamaño vale si hay muchas gallinas"
+        "Incuba unas 50 unidades con un calendario fijo",
+        "Es más precisa que una máquina doméstica",
+        "Cubre unos 8–12 huevos por tanda y no tiene un calendario fiable",
+        "Solo sirve para codorniz y pavo"
       ],
       "correcta": 2,
-      "explicacion": "Con diez gallos y cien gallinas la subida baja a un 1,4 %. Con trece gallos y ciento treinta se acerca al 1 %. En poblaciones comerciales muy seleccionadas, la FAO recoge un máximo de alrededor del 2 %."
+      "explicacion": "La máquina permite elegir el día, el número y la especie. Compensa si haces varias tandas al año, repones el lote o vendes pollitos."
     },
     {
       "id": 52,
-      "pregunta": "En el experimento con Rhode Island Red y Light Sussex que cita el guion, ¿qué ocurrió por cada diez puntos de consanguinidad?",
+      "pregunta": "¿Con cuánta antelación hay que dejar estable la nave antes de que lleguen los pollitos?",
       "opciones": [
-        "La puesta subió un 10 % y la fertilidad no cambió",
-        "Solo cambió el color de la cáscara",
-        "La eclosión de los huevos incubados subió un 2,6 %",
-        "La tasa de puesta bajó un 2 %, la fertilidad un 1,7 % y la eclosión de los huevos incubados un 2,6 %"
+        "Basta encender la calefacción al abrir las cajas",
+        "Una semana, con la nave cerrada y sin ventilar",
+        "No hace falta si la cama es nueva",
+        "Al menos 24 horas antes; Cobb indica empezar unas 48 horas antes"
       ],
       "correcta": 3,
-      "explicacion": "La consanguinidad cuesta huevos y pollitos. El guion lo ilustra con más de seis mil aves de esas dos razas."
+      "explicacion": "En ese precalentado el aire va a unos 30 °C, el suelo a 28–30 °C y la humedad al 60–70 %. En el borde de la campana, unos 32 °C."
     },
     {
       "id": 53,
-      "pregunta": "En el apareamiento en clanes, o en espiral, ¿cómo se organiza a partir de la segunda temporada?",
+      "pregunta": "En el trópico, ¿cómo orienta la L02 el lado largo de la nave?",
       "opciones": [
-        "Los gallos rotan un corral, siempre en el mismo sentido, y cada pollito sigue siendo del clan de su madre",
-        "Se juntan los tres clanes en un solo corral para mezclarlos",
-        "El gallo mejor pasa al clan que peor pone, aunque cambie de grupo",
-        "Cada gallo cubre a sus propias hijas para fijar la línea"
+        "De este a oeste",
+        "De norte a sur",
+        "Da igual la orientación si el suelo está seco",
+        "Mirando al viento más frío"
       ],
       "correcta": 0,
-      "explicacion": "Hacen falta al menos tres grupos. Con esa rueda no se cruzan hermanos ni medio hermanos. El gallo nuevo de un clan se elige solo entre los machos de ese clan."
+      "explicacion": "El eje este-oeste hace que el sol castigue menos las paredes. El gallinero va, además, en un sitio alto y drenado, con ventilación sin corrientes."
     },
     {
       "id": 54,
-      "pregunta": "¿Por qué hay que separar los grupos con tiempo antes de guardar huevos para incubar?",
+      "pregunta": "Ves una gallina con una herida que sangra. ¿Qué haces primero, según la L02?",
       "opciones": [
-        "Porque el huevo fértil se vuelve infértil a las dos horas",
-        "Porque la gallina puede guardar semen de un gallo anterior y, si no, no sabrás quién es el padre",
-        "Porque el guion pide mezclar los gallos la misma semana de la recogida",
-        "Porque sin mezclarlos la incubación dura más de 21 días"
+        "La dejas en el lote para que el grupo la respete",
+        "La pasas a la enfermería, le tapas la herida y bajas la luz a unos 5–10 lux",
+        "Subes la luz para vigilarla mejor dentro del grupo",
+        "Le das más grano y la devuelves enseguida con las demás"
       ],
       "correcta": 1,
-      "explicacion": "Sin anilla y sin cuaderno no hay genética, solo suerte. Anota número, clan, madre, fecha de nacimiento y fecha del primer huevo."
+      "explicacion": "La sangre atrae al resto. Además de aislarla, la L02 añade enriquecimiento y más comederos. Si hay síntomas en el lote, llama al veterinario."
     },
     {
       "id": 55,
-      "pregunta": "¿Qué separación de los huesos del pubis pide la Universidad de Mississippi para una gallina en puesta?",
+      "pregunta": "¿Cómo recomienda Aviagen voltear los huevos, según la L03?",
       "opciones": [
-        "Ningún dedo: tienen que estar pegados",
-        "Un dedo como máximo",
-        "Al menos dos dedos, con los huesos flexibles",
-        "Cinco dedos, y el abdomen firme"
+        "90 grados de golpe, una sola vez al día",
+        "Solo el día 18, cuando empieza el nacimiento",
+        "45 grados a cada lado de la vertical, con un movimiento suave",
+        "No hace falta voltear si la máquina es de aire forzado"
       ],
       "correcta": 2,
-      "explicacion": "En la que no pone cabe uno o ninguno. De la quilla al pubis caben tres o cuatro dedos, y el abdomen está blando; unos dos dedos y firme si está parada. La cresta de la que pone es grande, roja y brillante."
+      "explicacion": "El volteo puede ser manual, semiautomático o automático. Se para en el lockdown."
     },
     {
       "id": 56,
-      "pregunta": "Una Leghorn de piel amarilla tiene el pico totalmente amarillo en plena temporada de puesta. ¿Qué indica el guion?",
+      "pregunta": "Según el Ross 308 citado en la L04A, ¿qué proteína bruta lleva cada fase del alimento?",
       "opciones": [
-        "Empezó a poner hace cuatro días",
-        "Está en el pico de puesta",
-        "El pigmento no informa: el mismo truco vale en Orpington y Sussex",
-        "Lleva al menos cuatro semanas sin poner"
+        "Un 10 % durante todo el lote",
+        "Un 40 % la primera semana y un 5 % al final",
+        "Un 19,5 % del día 0 al 10 y un 23 % desde el día 25",
+        "Arranque 23 % (días 0–10, en migaja), crecimiento 21,5 % (días 11–24) y acabado 19,5 % (desde el día 25)"
       ],
       "correcta": 3,
-      "explicacion": "El amarillo sale en un orden fijo y, al dejar de poner, vuelve más o menos el doble de rápido. La cloaca se blanquea a los 4–7 días del primer huevo y la punta del pico, entre las 6 y las 8 semanas. No sirve en piel blanca ni en pata oscura."
+      "explicacion": "La forma también cambia: migaja en el arranque y gránulo en el crecimiento y el acabado."
     },
     {
       "id": 57,
-      "pregunta": "¿Cómo mudan las mejores ponedoras, según el guion?",
+      "pregunta": "Los objetivos de catálogo del engorde que cita la L01, y que no son una garantía de patio, son aproximadamente…",
       "opciones": [
-        "Tarde, después de 12 a 14 meses de puesta: sueltan las primarias por grupos y acaban en dos o tres meses",
-        "En la primera semana de puesta, pluma a pluma",
-        "Pronto, y tardan de cuatro a seis meses mudando de una en una",
-        "No mudan si el pienso no cambia"
+        "2,2 kg al día 35 con conversión cercana a 1,5, y 2,9 kg al día 42 con conversión cercana a 1,7",
+        "1 kg al día 35 con conversión 3,5, y el mismo peso al día 42",
+        "5 kg al día 35 con conversión 1,0",
+        "2,2 kg tanto el día 35 como el día 42, con la misma conversión"
       ],
       "correcta": 0,
-      "explicacion": "Las diez plumas grandes del borde del ala son las primarias. Las peores mudan pronto y de una en una, y pueden tardar de cuatro a seis meses."
+      "explicacion": "Son cifras orientativas de catálogo de las líneas de carne. En un patio el resultado puede ser otro. La L01 señala como riesgos la mortalidad temprana, la cama húmeda y el precio de venta."
     },
     {
       "id": 58,
-      "pregunta": "¿Por qué el guion desaconseja incubar los huevos de tus híbridas comerciales para reponer el lote?",
+      "pregunta": "¿Cuál de estas combinaciones es una señal de que el gallinero de ponedoras va por encima de su capacidad, según la L02?",
       "opciones": [
-        "Porque una híbrida no pone huevos fértiles en ningún caso",
-        "Porque son cruces de líneas y sus hijas no salen iguales: se pierde uniformidad y parte del vigor híbrido",
-        "Porque las hijas salen iguales a la madre y ponen más que ella",
-        "Porque la Universidad de Kentucky recomienda reponer siempre criando de la híbrida"
+        "Todas comen a la vez y la cama está suelta",
+        "Amoníaco, plumas rotas y huevos en el suelo",
+        "Las bajas han bajado y nadie jadea",
+        "La luz ronda las 14 horas y los nidos se usan"
       ],
       "correcta": 1,
-      "explicacion": "Hy-Line, ISA o Lohmann no son razas: salen de cuatro líneas puras. El vigor híbrido puede rendir entre un 10 y un 40 % más que esas líneas. Kentucky lo resume así: estos cruces no crían fieles."
+      "explicacion": "La L02 también cuenta como sobrecarga que no coman todas a la vez, las aves rezagadas, el jadeo y el aumento de bajas. Con varias señales, quita aves o amplía."
     },
     {
       "id": 59,
-      "pregunta": "¿Cuántos huevos por gallina alojada espera la guía de Hy-Line Brown citada en el guion hasta las 100 semanas?",
+      "pregunta": "Un huevo con la cáscara agrietada, ¿qué haces según la L03?",
       "opciones": [
-        "Entre 20 y 30",
-        "Unos 112",
-        "Entre 466 y casi 500",
-        "Más de 900"
+        "Lo incubas igual: la grieta no cambia el resultado",
+        "Lo lavas y lo metes con el resto de la tanda",
+        "No lo incubas: tiene más riesgo de reventar",
+        "Lo guardas para mirarlo el día 18"
       ],
       "correcta": 2,
-      "explicacion": "Es la cifra hasta las 100 semanas. La gallina-alojada cuenta a todas las que entraron, incluidas las muertas; la gallina-día, solo a las vivas de cada día. La L01 da otra ventana para Hy-Line: unos 315–333 huevos entre las semanas 18 y 75."
+      "explicacion": "La tabla de la L03 dice que la cáscara agrietada no se incuba, por el riesgo de explosión. Un huevo podrido, si se deja, puede contaminar la tanda."
     },
     {
       "id": 60,
-      "pregunta": "Para tener huevo todo el año sin mezclar edades en el mismo gallinero, ¿qué describe el guion?",
+      "pregunta": "¿Qué significa «todo dentro, todo fuera» en la L04B?",
       "opciones": [
-        "Meter las pollitas con las adultas el mismo día que llegan",
-        "Un solo lote que no se renueva nunca",
-        "Vaciar el gallinero un fin de semana y meter el lote nuevo el lunes",
-        "Tres gallineros que entran en enero, en mayo y en septiembre; cada uno va todo dentro, todo fuera, con su propio vacío"
+        "Que los pollos duermen dentro y comen en el parque",
+        "Que se mezclan edades para no dejar la nave vacía",
+        "Que el equipo se saca una vez al año y el lote sigue dentro",
+        "Que en la misma nave todos entran a la vez y salen a la vez, sin añadir pollitos a un lote que ya está"
       ],
       "correcta": 3,
-      "explicacion": "Así siempre hay un lote en recría, uno en pico y uno al final. La Universidad de California resume un vacío de dos a tres semanas. Si añades aves a un lote que ya existe, aíslalas al menos 30 días."
+      "explicacion": "Así se puede vaciar y limpiar de verdad. El orden es: en seco, agua y detergente, aclarar y secar, y después un desinfectante autorizado."
     }
   ]
 }
