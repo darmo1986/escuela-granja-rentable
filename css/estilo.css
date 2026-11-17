@@ -412,19 +412,39 @@ label.check input { width: 22px; height: 22px; min-height: 22px; margin-top: 2px
 }
 
 #cookie-banner {
-  position: fixed; left: 12px; right: 12px; bottom: 84px; z-index: 70;
-  background: #fff; border-top: 4px solid var(--gold); border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.2); padding: 14px; max-width: 720px; margin: 0 auto; font-size: .95rem;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  margin: 0; padding: 6px 10px; max-width: none;
+  background: #fff; border: 0; border-top: 3px solid var(--gold); border-radius: 0;
+  box-shadow: 0 -3px 12px rgba(0,0,0,.14); font-size: .82rem; line-height: 1.25;
 }
-#cookie-banner .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-#cookie-banner .btn.sec { background: #eee; color: #222; border: 0; }
-body:has(#cookie-banner) main { padding-bottom: 120px; }
+#cookie-banner p { margin: 0; flex: 1 1 12rem; }
+#cookie-banner .row { display: flex; gap: 8px; flex-wrap: nowrap; margin: 0; flex: 0 0 auto; }
+#cookie-banner .btn {
+  min-height: 34px; padding: 4px 12px; font-size: .86rem; font-weight: 750;
+  background: #fff; color: var(--gd); border: 2px solid var(--g); box-shadow: none;
+}
+#cookie-banner .btn:hover,
+#cookie-banner .btn:focus-visible { background: var(--gl); color: var(--gd); transform: none; }
+body:has(#cookie-banner) { padding-bottom: 96px; }
+body:has(#cookie-banner) .wa-float { bottom: 104px; }
+@media (min-width: 800px) {
+  body:has(#cookie-banner) { padding-bottom: 56px; }
+  body:has(#cookie-banner) .wa-float { bottom: 68px; }
+}
 #cookie-note {
   position: static; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
   margin: 0 0 12px; padding: 8px 12px; max-width: 100%;
   background: #fff; border: 1px solid var(--line); border-radius: 12px; font-size: .9rem;
 }
 #cookie-note .btn { min-height: 40px; padding: 6px 14px; font-size: .92rem; }
+
+.gr-miembro {
+  margin: 28px 0 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px;
+  background: #fff; font-size: .92rem; line-height: 1.45;
+}
+.gr-miembro p { margin: .25em 0; }
+.curso-miembro { margin: .6em 0 0; font-size: .9rem; line-height: 1.45; }
 
 .progress .bar { height: 10px; background: var(--gl); border-radius: 9px; overflow: hidden; }
 .progress .bar span { display: block; height: 100%; width: 0; background: var(--gold); }

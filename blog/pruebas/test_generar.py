@@ -469,6 +469,20 @@ class Generador(unittest.TestCase):
         cat = (self.tmp / "blog" / "incubacion.html").read_text(encoding="utf-8")
         self.assertNotIn("pasos.html", cat)
 
+    def test_marcar_lateral_no_repite_la_clase(self):
+        repetida = '<main id="contenido" class="con-lateral con-lateral"><p>Texto</p></main>'
+        una = generar.marcar_lateral(repetida, True)
+        self.assertEqual(una.count("con-lateral"), 1)
+        self.assertIn('<main id="contenido" class="con-lateral">', una)
+        otra = generar.marcar_lateral('<main id="contenido" class="home-renovada con-lateral">', True)
+        self.assertEqual(otra.count("con-lateral"), 1)
+        self.assertIn('class="con-lateral home-renovada"', otra)
+        sin_clase = generar.marcar_lateral('<main id="contenido">', True)
+        self.assertIn('<main id="contenido" class="con-lateral">', sin_clase)
+        portada = generar.marcar_lateral('<main id="contenido" class="home-renovada con-lateral">', False)
+        self.assertNotIn("con-lateral", portada)
+        self.assertIn('class="home-renovada"', portada)
+
     def test_ofertas_portada_respetan_curso_y_marcador_al_regenerar(self):
         original = ('<head></head><body><main><h1>Inicio</h1>'
                     '<a href="curso.html" data-inicio-curso>Empezar</a>'
