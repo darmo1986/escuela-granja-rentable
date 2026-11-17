@@ -126,7 +126,7 @@ function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Si aceptas, cargamos un banner de Adsterra para financiar las guías. Adsterra recibe tu IP y datos técnicos del navegador al servir el anuncio. Puedes rechazarlo y seguir leyendo. Tu cuenta funciona por separado. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  b.innerHTML='<p id="cookie-title">Si aceptas, cargamos un anuncio de Adsterra. <a href="'+root+'cookies.html">Política de cookies</a>.</p><div class="row"><button type="button" class="btn" data-c="si">Aceptar</button><button type="button" class="btn" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }

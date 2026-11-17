@@ -25,6 +25,8 @@ SITIO = "https://granjarentable.com"
 AUTOR = "Juan Pablo González García"
 EDITOR = "Granja Rentable"
 LOGO = SITIO + "/img/logo.jpg"
+OG_PREDETERMINADA = SITIO + "/img/og-default.jpg"
+OG_PREDETERMINADA_ALT = "Gallinas en un gallinero de Granja Rentable"
 POR_PAGINA = 12
 MINIMO_CATEGORIA = 3
 # Las categorías requieren el mínimo de artículos antes de indexarse.
@@ -94,7 +96,7 @@ TITULO_MAX_EXTRA = {
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
 VERSION_ACTIVOS = "20261115-banner-directo"
-VERSION_ESTILO = "20261117-franja"
+VERSION_ESTILO = "20261117-barra"
 VERSION_PUBLICIDAD = "20261116-discreto"
 VERSION_BANNERS = "20261117banners"
 VERSION_PORTADA = "20261117-franja"
@@ -1244,14 +1246,19 @@ def insertar_en(html, pos, bloque):
 
 
 def marcar_lateral(html, activar):
+    """Añade o quita con-lateral en <main> una sola vez, aunque ya estuviera repetida."""
     def sustituir(coincidencia):
         etiqueta = coincidencia.group(0)
-        etiqueta = etiqueta.replace(' con-lateral', '').replace('con-lateral ', '')
-        if not activar:
-            return etiqueta
-        if 'class="' in etiqueta:
-            return etiqueta.replace('class="', 'class="con-lateral ', 1)
-        return etiqueta[:-1] + ' class="con-lateral">'
+        clases = re.search(r'\sclass="([^"]*)"', etiqueta)
+        otras = []
+        if clases:
+            otras = [c for c in clases.group(1).split() if c and c != "con-lateral"]
+            etiqueta = etiqueta[:clases.start()] + etiqueta[clases.end():]
+        if activar:
+            otras.insert(0, "con-lateral")
+        if otras:
+            etiqueta = etiqueta[:-1] + ' class="' + " ".join(otras) + '">'
+        return etiqueta
     return re.sub(r'<main\b[^>]*>', sustituir, html, count=1)
 
 
@@ -1666,6 +1673,8 @@ def envolver(shell, rel, titulo, descripcion, canonical, robots, og_type, og_ima
         "@@OG_TYPE@@": og_type,
         "@@OG_IMAGE@@": esc(og_image),
         "@@OG_ALT@@": esc(og_alt),
+        "@@OG_ANCHO@@": str(ANCHO_OG),
+        "@@OG_ALTO@@": str(ALTO_OG),
         "@@AUTOR@@": esc(AUTOR),
         "@@EXTRA_HEAD@@": extra,
         "@@CONTENIDO@@": contenido,
@@ -1855,7 +1864,7 @@ def planificar(raiz, incluir_borradores=False):
     titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
     descripcion_blog = ("Artículos sobre gallinas ponedoras, pollos de engorde, incubación, salud, alimentación, negocios y codornices, "
                         "con guías prácticas y fuentes para ampliar la información.")
-    og_portada = LOGO
+    og_portada = OG_PREDETERMINADA
     cortes = repartir_posts(len(visibles), POR_PAGINA) if visibles else [(0, 0)]
     paginas_indice = len(cortes)
     for numero in range(1, paginas_indice + 1):
@@ -1889,7 +1898,7 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo_pagina, descripcion_pagina, canonical,
             "index,follow" if visibles else "noindex,follow", "website",
-            og_portada, "Logo de Granja Rentable", ld_blog() + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">', contenido, menu_html, pie_html)
+            og_portada, OG_PREDETERMINADA_ALT, ld_blog() + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">', contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in visibles if p["categoria"] == clave]
         indexable = len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX
@@ -1913,15 +1922,13 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
-            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta) + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">',
+            "website", og_portada, OG_PREDETERMINADA_ALT, ld_categoria(meta) + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">',
             contenido, menu_html, pie_html)
     for post in publicados:
         rel = f"blog/{post['slug']}.html"
         canonical = SITIO + "/blog/" + post["slug"] + ".html"
         titulo = titulo_visible(post["titulo_seo"])
-        extra = (ld_articulo(post, canonical) + "\n" + ld_faq(post.get("faq") or [])
-                 + '<meta property="og:image:width" content="1200">\n'
-                 '<meta property="og:image:height" content="630">')
+        extra = ld_articulo(post, canonical) + "\n" + ld_faq(post.get("faq") or [])
         robots = "noindex,follow" if post.get("noindex") else "index,follow"
         archivos[rel] = envolver(
             shell, rel, titulo, post["descripcion"], canonical, robots, "article",

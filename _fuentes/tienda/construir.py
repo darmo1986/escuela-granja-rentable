@@ -397,12 +397,15 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(descripcion)}">
 <meta property="og:url" content="{esc(canonical)}">
-<meta property="og:image" content="{SITIO}/img/logo.jpg">
+<meta property="og:image" content="{SITIO}/img/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gallinas en un gallinero de Granja Rentable">
 <meta property="og:locale" content="es_419">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(titulo)}">
 <meta name="twitter:description" content="{esc(descripcion)}">
-<meta name="twitter:image" content="{SITIO}/img/logo.jpg">
+<meta name="twitter:image" content="{SITIO}/img/og-default.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="{raiz}favicon.ico">
 <link rel="icon" href="{raiz}img/favicon.svg" type="image/svg+xml">
