@@ -1,0 +1,6 @@
+Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name "Source".
+
+Source Serif 4 is licensed under the SIL Open Font License, Version 1.1.
+The license text is in OFL.txt, next to this file.
+The files in this folder are the Latin subset, self-hosted, with font-display: swap.
+Inter is also licensed under the SIL Open Font License 1.1 (see OFL.txt).
