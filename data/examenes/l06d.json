@@ -1,0 +1,248 @@
+{
+  "leccion": 6,
+  "codigo": "L06D",
+  "titulo": "Genética de ponedoras: consanguinidad, selección y renovación del lote",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "Según la lección, ¿cuánto vale el coeficiente de consanguinidad (F) del hijo de dos hermanos completos?",
+      "opciones": [
+        "Un 12,5 %",
+        "Un 25 % (F = 0,25)",
+        "Un 50 %",
+        "Un 1 %, que es el máximo que acepta la FAO"
+      ],
+      "correcta": 1,
+      "explicacion": "Wright: el hijo de dos hermanos completos tiene F = 0,25. El de dos medio hermanos baja a 12,5 %. Si un gallo cubre a sus hijas, sus nietos también tienen un 25 %."
+    },
+    {
+      "id": 2,
+      "pregunta": "En un lote, ¿qué cambia de verdad la subida de consanguinidad por generación?",
+      "opciones": [
+        "Añadir muchas gallinas a un solo gallo",
+        "El número de gallos: con un gallo y treinta gallinas la subida sigue cerca del 13 %",
+        "Pintar los corrales de distinto color",
+        "Incubar solo los huevos más grandes"
+      ],
+      "correcta": 1,
+      "explicacion": "Ne = 4 × machos × hembras / (machos + hembras). Un gallo y diez gallinas dan Ne = 3,6 y casi un 14 %. Con treinta gallinas y el mismo gallo, casi un 13 %. Añadir gallinas no arregla el problema."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Qué tamaño efectivo (Ne) considera aceptable la FAO, y a qué subida equivale?",
+      "opciones": [
+        "Al menos 50, con una subida máxima del 1 % por generación",
+        "Al menos 3,6, con una subida del 14 %",
+        "Un solo gallo, si hay más de cien gallinas",
+        "Cero: la consanguinidad no debe calcularse"
+      ],
+      "correcta": 0,
+      "explicacion": "Ne de al menos 50 equivale a una subida máxima del 1 % por generación. En poblaciones comerciales muy seleccionadas, la FAO recoge un máximo de alrededor del 2 %. Tres gallos y treinta gallinas suben un 4,6 %; diez y cien, un 1,4 %; trece y ciento treinta, cerca del 1 %."
+    },
+    {
+      "id": 4,
+      "pregunta": "En el experimento con más de seis mil Rhode Island Red y Light Sussex, ¿qué ocurrió por cada diez puntos de consanguinidad?",
+      "opciones": [
+        "La puesta subió un 2 % y la eclosión no cambió",
+        "La puesta bajó un 2 %, la fertilidad un 1,7 % y la eclosión de los huevos incubados un 2,6 %",
+        "Solo cambió el color de la cáscara",
+        "La fertilidad subió un 10 %"
+      ],
+      "correcta": 1,
+      "explicacion": "Esos diez puntos redujeron la tasa de puesta un 2 %, la fertilidad un 1,7 % y la eclosión de los huevos incubados un 2,6 %."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cómo funciona el apareamiento en clanes, o en espiral?",
+      "opciones": [
+        "Hace falta al menos tres grupos. El pollito queda en el clan de la madre y los gallos rotan un corral al año, siempre en el mismo sentido",
+        "Se cruzan los hermanos de cada corral para fijar la puesta",
+        "El mejor gallo de la granja pasa cada año a todos los clanes",
+        "Basta un solo corral si anillas a los pollitos"
+      ],
+      "correcta": 0,
+      "explicacion": "Con esa rueda no se cruzan hermanos ni medio hermanos. El gallo nuevo se elige solo entre los machos de su clan, aunque haya uno mejor al lado. La FAO llama a este principio apareamiento circular."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Por qué hay que separar los grupos antes de recoger huevos para incubar?",
+      "opciones": [
+        "Porque el huevo se enfría si hay dos gallos a la vista",
+        "Porque la gallina puede guardar semen de un gallo anterior y no sabrás quién es el padre",
+        "Porque el pigmento de la cloaca se borra con el estrés",
+        "Porque la FAO prohíbe anillar antes de los 30 días"
+      ],
+      "correcta": 1,
+      "explicacion": "Si los grupos no estaban separados con tiempo, el padre queda en duda. Cada pollito necesita anilla al nacer. En el cuaderno: número, clan, madre, fecha de nacimiento y fecha del primer huevo."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cómo distingue la lección a una gallina en puesta al mirar la cloaca y el pubis?",
+      "opciones": [
+        "Cloaca pequeña y seca; en el pubis no cabe ni un dedo",
+        "Cloaca grande, húmeda y casi blanca; en el pubis caben al menos dos dedos",
+        "Cloaca amarilla y pubis cerrado, sea cual sea la raza",
+        "Solo vale el peso del ave, no la cloaca"
+      ],
+      "correcta": 1,
+      "explicacion": "Mississippi pide al menos dos dedos entre los huesos del pubis. Si no pone, caben uno o ninguno, y la cloaca es pequeña, seca y fruncida. La cresta y las barbillas de la que pone son grandes, de rojo vivo y brillantes."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Qué mide la profundidad del abdomen y qué encuentras en una gallina en puesta?",
+      "opciones": [
+        "De la cresta al pico: caben seis dedos",
+        "De la punta de la quilla al pubis: caben tres o cuatro dedos y el abdomen está blando",
+        "De la pata al corvejón: siempre dos dedos, esté o no en puesta",
+        "Solo se mide en razas de pata oscura"
+      ],
+      "correcta": 1,
+      "explicacion": "En una pollita o en una gallina parada caben unos dos dedos y el abdomen está firme."
+    },
+    {
+      "id": 9,
+      "pregunta": "En plena temporada encuentras una Leghorn blanca con el pico totalmente amarillo. ¿Qué indica, según la lección?",
+      "opciones": [
+        "Que lleva al menos cuatro semanas sin poner",
+        "Que está en el pico de puesta",
+        "Que mudará en menos de una semana",
+        "Que el truco sirve igual en una Orpington o una Sussex"
+      ],
+      "correcta": 0,
+      "explicacion": "El amarillo vuelve en el mismo orden, más o menos el doble de rápido, cuando deja de poner. El reloj del pigmento no sirve en piel blanca (Orpington o Sussex) ni en pata oscura. La cloaca se blanquea entre cuatro y siete días después del primer huevo."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Cómo mudan las mejores ponedoras?",
+      "opciones": [
+        "Pronto, pluma a pluma, y pueden tardar de cuatro a seis meses",
+        "Tarde, tras doce a catorce meses de puesta, sueltan las primarias por grupos y acaban en dos o tres meses",
+        "No mudan nunca si el pienso es el mismo",
+        "Mudan las diez primarias el mismo día, a las ocho semanas de vida"
+      ],
+      "correcta": 1,
+      "explicacion": "El borde del ala tiene diez plumas primarias. Las peores mudan pronto, pluma a pluma, y pueden tardar de cuatro a seis meses."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Cuándo y cómo haces la revisión en una granja pequeña?",
+      "opciones": [
+        "El día que llegan, a pleno sol, y descartas a todas las que mudan",
+        "Entre ocho y diez semanas después de alojar a las pollitas, de noche y con luz azul tenue",
+        "Durante una muda general, para aprovechar que están quietas",
+        "Solo si el lote está enfermo, porque entonces se ve mejor quién pone"
+      ],
+      "correcta": 1,
+      "explicacion": "No revises en una muda general ni con el lote enfermo: eliminarías buenas ponedoras. Si dudas, aparta la gallina unos días con comida y agua y mira si pone."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Qué diferencia hay entre puesta gallina-día y puesta gallina-alojada?",
+      "opciones": [
+        "La gallina-día divide los huevos entre las vivas de cada día; la gallina-alojada, entre todas las que entraron, también las muertas",
+        "Son el mismo cálculo con otro nombre",
+        "La gallina-alojada no cuenta los huevos rotos ni las gallinas que siguen vivas",
+        "La gallina-día solo vale para híbridas y la otra solo para raza pura"
+      ],
+      "correcta": 0,
+      "explicacion": "Como referencia, la guía de la Hy-Line Brown espera entre 466 y casi 500 huevos por gallina alojada hasta las cien semanas. Con uno o dos nidos trampa puedes saber qué candidata a madre pone cada huevo."
+    },
+    {
+      "id": 13,
+      "pregunta": "Tu lote pone 180 huevos al año y las madres que eliges ponen 200. Con una heredabilidad de 0,19, ¿qué ganancia cita la lección?",
+      "opciones": [
+        "Unos 20 huevos por generación, aunque el gallo venga de madres malas",
+        "Casi cuatro huevos por generación, y solo si el gallo también viene de buenas madres",
+        "Cero, porque el número de huevos no se hereda",
+        "Un 49 % más de peso del huevo en la primera generación"
+      ],
+      "correcta": 1,
+      "explicacion": "La respuesta es heredabilidad por diferencial de selección. El diferencial es 20 huevos. En el metaanálisis de 33 estudios, la heredabilidad del número de huevos fue 0,29 y la del peso del huevo 0,49. El 0,19 es la medida de una línea Leghorn usada en el ejemplo."
+    },
+    {
+      "id": 14,
+      "pregunta": "El número de huevos y el peso del huevo tienen una correlación genética de −0,36. ¿Qué haces al seleccionar?",
+      "opciones": [
+        "Eliges solo a las del huevo más grande: pondrán más",
+        "Seleccionas primero por número de huevos y pones un peso mínimo aceptable",
+        "Descartas a todas las que pongan más de 180 huevos",
+        "Cruzas hermanas entre sí para subir las dos cosas a la vez"
+      ],
+      "correcta": 1,
+      "explicacion": "Si eliges solo el huevo más grande, acabarás con gallinas que ponen menos. Para el peso, de heredabilidad alta, basta la selección masal. Para el número de huevos rinde más la familia: elige al gallo cuyas hermanas pusieron más."
+    },
+    {
+      "id": 15,
+      "pregunta": "¿Por qué no conviene incubar los huevos de tus híbridas Hy-Line, ISA o Lohmann para reponer el lote?",
+      "opciones": [
+        "Porque son razas puras y las hijas salen idénticas",
+        "Porque son un cruce de cuatro líneas: las hijas pierden uniformidad y buena parte del vigor híbrido",
+        "Porque la heterosis baja la puesta entre un 10 y un 40 %",
+        "Porque la madre no decide el sexo y todos los pollitos nacen macho"
+      ],
+      "correcta": 1,
+      "explicacion": "No son razas. El vigor híbrido hace que una cruzada rinda entre un 10 y un 40 % más que sus líneas puras. Kentucky: estos cruces son híbridos y no crían fieles."
+    },
+    {
+      "id": 16,
+      "pregunta": "Cruzas una gallina barrada con un gallo Rhode Island Red. ¿Qué pollitos nacen?",
+      "opciones": [
+        "Todos negros, y los machos tienen una mancha blanca en la cabeza",
+        "Machos blancos y hembras rojizas",
+        "Todos iguales, sin marca de sexo",
+        "Solo hembras, porque el padre decide el sexo"
+      ],
+      "correcta": 0,
+      "explicacion": "En las aves, la madre decide el sexo. Gallina de factor plateado con gallo dorado: machos blancos y hembras rojizas. Si haces ese cruce al revés, todos los pollitos salen iguales."
+    },
+    {
+      "id": 17,
+      "pregunta": "Según LowInputBreeds, ¿qué puesta cabe esperar, en las mismas condiciones, de una raza rústica y de una híbrida comercial?",
+      "opciones": [
+        "Rústica, 280 a 300 huevos; híbrida, 200 a 250",
+        "Rústica, 200 a 250; híbrida, 280 a 300",
+        "Las dos, unos 466 huevos, y el sabor sí se distingue en cata a ciegas",
+        "La rústica pone menos de 50 y la híbrida no se puede comparar"
+      ],
+      "correcta": 1,
+      "explicacion": "En catas a ciegas no se distingue el sabor por la raza. La raza pura tiene sentido si vendes huevo de color especial, reproductores o aves de doble propósito. No selecciones solo por apariencia: también salud, fertilidad y producción."
+    },
+    {
+      "id": 18,
+      "pregunta": "En el sistema todo dentro, todo fuera, ¿cuánto tiempo deja vacío el gallinero la pauta de la Universidad de California, y qué haces si añades aves a un lote que ya existe?",
+      "opciones": [
+        "Vacío de dos a tres semanas; las aves nuevas se aíslan al menos 30 días",
+        "Vacío de un día; las nuevas entran el mismo día al lote",
+        "No hace falta vacío si el suelo es de tierra",
+        "Vacío de siete días solo en ponedoras, y sin cuarentena"
+      ],
+      "correcta": 0,
+      "explicacion": "Primero se sacan las aves y toda la materia orgánica. En suelo de tierra se retiran también unos 8 a 10 cm de la capa superficial. Varias edades dan huevo todo el año, pero las adultas pueden contagiar a las jóvenes."
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Cuándo pasa la pollita a la nave de puesta, según Hy-Line, y qué le pasa en el viaje?",
+      "opciones": [
+        "El día del primer huevo; no pierde peso",
+        "Al menos 14 días antes del primer huevo; pierde entre un 10 y un 12 % del peso y debe beber con normalidad en unas seis horas",
+        "A las 100 semanas, cuando el huevo ya es más grande",
+        "A los 35 días, con unos 2,3 kg"
+      ],
+      "correcta": 1,
+      "explicacion": "Durante la recría vive separada de las adultas y pasa hacia las 16 semanas, ya con sus vacunas. En la Hy-Line Brown el 50 % de puesta llega hacia los 139 días. Sin muda forzada, el lote suele terminar entre las 75 y las 85 semanas; las guías actuales de Hy-Line llegan a las 100."
+    },
+    {
+      "id": 20,
+      "pregunta": "Si vendes huevo de consumo, ¿cuál es el primer paso del plan con el que cierra la lección?",
+      "opciones": [
+        "Incubar las hijas de tus híbridas para ahorrar la reposición",
+        "Comprar pollitas híbridas sanas y no criar de ellas",
+        "Cruzar hermanos para subir la puesta en una generación",
+        "Dejar un solo gallo con todas las gallinas de la granja"
+      ],
+      "correcta": 1,
+      "explicacion": "Los otros pasos: en raza pura, al menos tres clanes y el máximo de gallos útiles; anillar y anotar la puesta; descartar con método, de noche y en fechas fijas; renovar por lotes completos, con vacío sanitario y cuarentena. Si hace falta sangre nueva, un gallo de la misma raza y no emparentado pasa 30 días de cuarentena y se prueba en un solo clan."
+    }
+  ]
+}

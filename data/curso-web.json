@@ -110,6 +110,17 @@
    "enlace": ""
   },
   {
+   "id": "l06d",
+   "codigo": "L06D",
+   "titulo": "Genética de ponedoras: consanguinidad, selección y renovación del lote",
+   "estado": "disponible",
+   "video": "genetica-ponedoras.mp4",
+   "videoFinal": "",
+   "examen": "l06d.json",
+   "descripcion": "Mide la consanguinidad, elige las ponedoras que se quedan y renueva el lote sin perder la genética.",
+   "enlace": "https://github.com/darmo1986/granja-rentable-curso-videos/releases/download/v1/genetica-ponedoras.mp4"
+  },
+  {
    "id": "l06c",
    "codigo": "L06C",
    "titulo": "Gallos y genética (3): sistemas de cría, consanguinidad, razas autóctonas y venta",
