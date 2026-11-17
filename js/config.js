@@ -54,6 +54,12 @@ window.GR = {
      muestra /panel.html; necesita la migración 20261020193000_panel.sql. */
   analitica: {
     cfToken: ""
+  },
+  /* Universidad privada. Vacío = no se muestra «Sign in with Google».
+     El mismo valor tiene que estar en la propiedad UNI_GOOGLE_CLIENT_ID
+     del Apps Script. El cobro real lo decide UNI_MODO en el script, no esta página. */
+  universidad: {
+    googleClientId: ""
   }
 };
 
