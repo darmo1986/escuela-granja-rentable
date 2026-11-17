@@ -1,1 +1,728 @@
-{"leccion": 0, "codigo": "FINAL", "titulo": "Examen final del curso", "aprobado_minimo": 10, "preguntas": [{"id": 1, "pregunta": "Un vecino quiere empezar el mismo año con pollos de engorde, gallinas ponedoras y cría de gallos de raza. ¿Qué le aconseja la lección?", "opciones": ["Empezar con los tres para repartir el riesgo", "Empezar por la genética, que es la que antes da dinero", "Elegir un solo camino, comprometerse unos tres meses y combinar más adelante", "Comprar las aves primero y decidir después"], "correcta": 2, "explicacion": "La regla de oro de la L01: para empezar, una sola cosa bien hecha; combinar, después."}, {"id": 2, "pregunta": "El precio del alimento sube mucho. ¿Por qué te afecta tanto, según la FAO citada en la L01?", "opciones": ["Porque el alimento solo supone un 5 % del costo", "Porque el alimento suele ser entre el 60 y el 80 % del costo de insumos", "Porque sin alimento las gallinas dejan de necesitar agua", "Porque el alimento solo se usa en genética"], "correcta": 1, "explicacion": "El alimento es el mayor gasto de insumos en avicultura (FAO)."}, {"id": 3, "pregunta": "¿Qué vende quien se dedica al camino de la genética?", "opciones": ["Solo carne de pollo", "Solo huevos de consumo", "Reproductores, huevos fértiles o pollitos", "Alimento compuesto"], "correcta": 2, "explicacion": "El producto de la genética son animales, huevos fértiles o pollitos, con un ingreso más lento."}, {"id": 4, "pregunta": "Tienes 35 gallinas y quieres vender huevos a los vecinos. ¿Qué te dice la L02?", "opciones": ["Puedes vender sin registrarte si son pocos", "Ya no encajas en autoconsumo (máximo 30 y sin venta): necesitas otra clasificación en el REGA", "Con 35 gallinas el autoconsumo permite vender", "Solo tienes que avisar al ayuntamiento"], "correcta": 1, "explicacion": "Autoconsumo: hasta 0,15 UGM (30 ponedoras) y sin vender nada (RD 637/2021)."}, {"id": 5, "pregunta": "Tu lote es de 100 aves. ¿Qué plazas orienta la L02 para enfermería y cuarentena?", "opciones": ["Ninguna: no hacen falta con 100 aves", "Unas 5 plazas de enfermería y unas 20 de cuarentena", "50 de enfermería y 50 de cuarentena", "1 de enfermería y 1 de cuarentena"], "correcta": 1, "explicacion": "Estimación práctica: enfermería ~5 % del lote y cuarentena para tu mayor compra (~20 %)."}, {"id": 6, "pregunta": "¿Dónde se coloca la zona de cuarentena respecto al gallinero principal?", "opciones": ["Pegada al gallinero para vigilarla mejor", "Dentro del mismo gallinero, separada por una cuerda", "Lejos, a unos 30 metros, a sotavento y con equipo propio", "Donde sea, si se limpia una vez al mes"], "correcta": 2, "explicacion": "Distancia, viento a favor y material propio reducen el contagio."}, {"id": 7, "pregunta": "Para estar preparado ante un confinamiento obligatorio por gripe aviar, ¿qué recomienda la L02 en el vallado?", "opciones": ["Quitar la valla durante la alerta", "Tener una zona techada o cubierta con red", "Soltar las aves para que se dispersen", "Bajar la valla a 50 cm"], "correcta": 1, "explicacion": "Con una zona cubierta las aves pueden quedarse dentro sin contacto con aves silvestres."}, {"id": 8, "pregunta": "Tienes una incubadora de aire quieto y pones el termómetro en el fondo, por debajo de los huevos. ¿Qué problema hay?", "opciones": ["Ninguno: en aire quieto da igual dónde se mida", "Que el termómetro se moja", "Que así los huevos giran peor", "Que en aire quieto la temperatura se mide arriba del huevo; abajo medirás de menos"], "correcta": 3, "explicacion": "En aire quieto hay capas de calor: se mide arriba del huevo (≈ 38,9 °C, 102 °F, MSU)."}, {"id": 9, "pregunta": "Haces dos tandas de 20 huevos al año para casa. ¿Qué incubadora encaja mejor según la L03?", "opciones": ["Una profesional de más de 1.000 huevos", "Una multietapa con nacedora aparte", "Una doméstica de 6 a 30 huevos, comprada por la tanda real", "Ninguna: para casa solo sirve la clueca"], "correcta": 2, "explicacion": "Se compra por la tanda que harás de verdad, no por el sueño de llenarla (estimación 40–150 €)."}, {"id": 10, "pregunta": "Al día 18 tus huevos solo han perdido un 5 % de su peso. ¿Qué indica?", "opciones": ["Que han perdido menos agua de lo ideal (~12 %): la humedad ha estado alta", "Que todo va perfecto", "Que la temperatura estaba demasiado baja seguro", "Que los huevos eran infértiles"], "correcta": 0, "explicacion": "La referencia de la L03 es una pérdida de ~12 % al día 18; menos pérdida suele ser exceso de humedad."}, {"id": 11, "pregunta": "Llegan los pollitos. ¿Qué parte del suelo cubres con papel y con cuánta migaja?", "opciones": ["Al menos el 70 % del suelo, con unos 40 g de migaja por pollito", "Un 10 %, sin alimento el primer día", "Todo el suelo, con 1 kg por pollito", "Nada: el alimento va solo en las tolvas"], "correcta": 0, "explicacion": "El papel con migaja facilita que todos coman desde el primer momento (Ross)."}, {"id": 12, "pregunta": "A las 24 horas de la llegada, solo el 80 % de los pollitos tiene el buche lleno. ¿Qué indica?", "opciones": ["Que va perfecto", "Que estás por debajo del objetivo (> 95 %): revisa agua, alimento y temperatura", "Que hay que retirar el alimento", "Que sobran bebederos"], "correcta": 1, "explicacion": "Ross pide un 75 % a las 2 h y más del 95 % a las 24 h."}, {"id": 13, "pregunta": "Los pollitos se agrupan en un solo lado de la nave, lejos de una ventana. ¿Qué significa?", "opciones": ["Que hay una corriente de aire", "Que tienen calor", "Que les falta luz", "Que están perfectamente"], "correcta": 0, "explicacion": "Amontonados = frío; en los bordes jadeando = calor; en un lado = corriente."}, {"id": 14, "pregunta": "Pesas 50 pollos y el coeficiente de variación sale del 12 %. ¿Cómo está el lote?", "opciones": ["Muy uniforme", "Perfecto para vender", "Con exceso de peso seguro", "Poco uniforme: el objetivo es un CV de 8 % o menos"], "correcta": 3, "explicacion": "Cuanto más bajo el CV, más uniforme el lote; ≤ 8 % se considera uniforme."}, {"id": 15, "pregunta": "Has gastado 3.400 kg de alimento y has producido 2.000 kg de pollo. ¿Cuál es tu índice de conversión?", "opciones": ["0,6", "1,7", "5,4", "17"], "correcta": 1, "explicacion": "IC = kilos de alimento ÷ kilos producidos = 3.400 ÷ 2.000 = 1,7."}, {"id": 16, "pregunta": "Tu medidor marca 25 ppm de amoníaco al entrar por la mañana. ¿Cómo está?", "opciones": ["Alto: lo ideal es menos de 10 ppm y el límite legal en densidades altas es 20 ppm", "Perfecto", "Bajo: hay que cerrar ventanas", "Da igual, el amoníaco no afecta"], "correcta": 0, "explicacion": "Ross y Cobb: < 10 ppm; Directiva: 20 ppm por encima de 33 kg/m²."}, {"id": 17, "pregunta": "Para la franja más baja del gallinero, donde entran ratas y ratones, ¿qué luz de malla da la L04B?", "opciones": ["Unos 5 cm", "Unos 13 cm", "Da igual, con malla de gallinero hexagonal basta", "Unos 6 mm"], "correcta": 3, "explicacion": "Malla electrosoldada de 13 mm en general y de 6 mm abajo."}, {"id": 18, "pregunta": "¿Por qué no se usan venenos caseros ni lazos contra zorros y otros depredadores?", "opciones": ["Porque son caros", "Porque están prohibidos; se usan mallas, cierre nocturno, pastor eléctrico y biocidas autorizados en portacebos", "Porque funcionan demasiado bien", "Porque solo se permiten en invierno"], "correcta": 1, "explicacion": "La protección legal es física y con productos autorizados."}, {"id": 19, "pregunta": "¿Para qué sirve contar los pollos cada día?", "opciones": ["Para detectar pronto bajas o ataques de depredadores", "Para saber cuánto alimento tirar", "Solo para la estadística anual", "No sirve para nada"], "correcta": 0, "explicacion": "Las bajas y los pollitos que faltan son la primera señal de depredadores o enfermedad (L04B)."}, {"id": 20, "pregunta": "¿Qué aparato mide a la vez la temperatura y la humedad de la nave?", "opciones": ["Un termohigrómetro", "Un luxómetro", "Un ovoscopio", "Una báscula colgante"], "correcta": 0, "explicacion": "El termohigrómetro (estimación 10–30 €) es básico en la cría."}]}
+{
+  "leccion": 0,
+  "codigo": "FINAL",
+  "titulo": "Examen final del curso",
+  "aprobado_minimo": 30,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "Un vecino quiere empezar el mismo año con pollos de engorde, gallinas ponedoras y cría de gallos de raza. ¿Qué le recomienda la L01?",
+      "opciones": [
+        "Elegir un solo camino, sostenerlo unos tres meses y combinar más adelante",
+        "Empezar los tres a la vez para repartir el riesgo",
+        "Empezar por la genética, porque es el camino que antes da dinero",
+        "Comprar las aves primero y decidir el camino cuando ya estén en la nave"
+      ],
+      "correcta": 0,
+      "explicacion": "La regla de oro de la L01: al empezar, una sola cosa bien hecha. Combinar, después."
+    },
+    {
+      "id": 2,
+      "pregunta": "El precio del alimento sube mucho. ¿Por qué te afecta tanto, según la FAO citada en la L01?",
+      "opciones": [
+        "Porque el alimento ronda el 5 % del coste de insumos",
+        "Porque el alimento suele ser entre el 60 y el 80 % del coste de insumos",
+        "Porque el alimento solo pesa en el camino de la genética",
+        "Porque a partir del segundo mes el alimento deja de ser un coste"
+      ],
+      "correcta": 1,
+      "explicacion": "En avicultura el alimento es el mayor gasto de insumos (FAO)."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Qué vende quien se dedica al camino de la genética?",
+      "opciones": [
+        "Solo carne de pollo de engorde",
+        "Solo huevos de consumo",
+        "Reproductores, huevos fértiles o pollitos",
+        "Sacos de alimento compuesto"
+      ],
+      "correcta": 2,
+      "explicacion": "El producto son animales, huevos fértiles o pollitos. La proporción orientativa es de 7 a 10 gallos por cada 100 gallinas, y el ingreso llega más tarde."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué ritmo asigna la L01 a cada camino?",
+      "opciones": [
+        "Los tres dan el primer ingreso en la primera semana",
+        "La genética es un sprint de 5 a 8 semanas y el engorde tarda temporadas",
+        "La puesta se cierra en 5 a 8 semanas y el engorde dura muchos meses",
+        "El engorde es un sprint de 5 a 8 semanas, la puesta dura muchos meses y la genética es un proyecto de temporadas"
+      ],
+      "correcta": 3,
+      "explicacion": "Cada camino pide un ritmo distinto. Por eso no conviene mezclarlos al empezar."
+    },
+    {
+      "id": 5,
+      "pregunta": "Si necesitas dinero en pocas semanas, ¿qué camino señala la guía de decisión de la L01?",
+      "opciones": [
+        "El engorde",
+        "Solo la genética, porque el primer pollito se vende al día siguiente",
+        "Esperar tres años sin aves hasta tener la nave perfecta",
+        "Las ponedoras, porque el primer huevo llega en la primera semana"
+      ],
+      "correcta": 0,
+      "explicacion": "Ingreso rápido: engorde. Las ponedoras tardan meses en dar el primer ingreso y la genética, temporadas."
+    },
+    {
+      "id": 6,
+      "pregunta": "Si tienes un rato cada día y buscas un ritmo más calmado, ¿qué encaja mejor según la L01?",
+      "opciones": [
+        "Un engorde sin pausa entre lotes",
+        "Las ponedoras",
+        "Una genética que se resuelve en una semana",
+        "Cambiar de camino cada mes y no anotar nada"
+      ],
+      "correcta": 1,
+      "explicacion": "Tiempo diario estable: ponedoras. Si lo que te gusta es anotar y seleccionar, el camino es la genética."
+    },
+    {
+      "id": 7,
+      "pregunta": "Antes de comprar aves, ¿qué tiene que estar listo según la L01?",
+      "opciones": [
+        "Solo el anuncio para vender la primera semana",
+        "Un préstamo, aunque el sitio aún no tenga agua",
+        "Calor, agua limpia y un sitio seco. Si falta eso, no compres aves",
+        "Los tres caminos montados a la vez"
+      ],
+      "correcta": 2,
+      "explicacion": "Sin calor, agua limpia y sitio seco, la lección dice que no se compran aves. Conviene conocer a alguien cerca o a un veterinario de aves."
+    },
+    {
+      "id": 8,
+      "pregunta": "Si te gusta anotar y seleccionar, ¿qué camino recomienda la guía de la L01?",
+      "opciones": [
+        "El engorde, porque en ese camino no hace falta anotar",
+        "Las ponedoras, porque la selección no cambia el resultado",
+        "Ninguno: los registros son solo para naves industriales",
+        "La genética"
+      ],
+      "correcta": 3,
+      "explicacion": "Anotar y seleccionar encaja con la genética. Hace falta registro, separar las líneas y tener paciencia."
+    },
+    {
+      "id": 9,
+      "pregunta": "Tienes 35 gallinas y quieres vender huevos a los vecinos. ¿Qué dice la L02 del autoconsumo?",
+      "opciones": [
+        "Ya no encajas en autoconsumo: el tope es 30 ponedoras y sin vender nada, así que necesitas otra clasificación en el REGA",
+        "Puedes vender sin registrarte si el lote es pequeño",
+        "Con 35 gallinas el autoconsumo permite la venta",
+        "Basta con avisar al ayuntamiento y seguir como autoconsumo"
+      ],
+      "correcta": 0,
+      "explicacion": "Autoconsumo: hasta 0,15 UGM (30 ponedoras o unos 50 pollos) y sin vender nada (RD 637/2021). Aun así hay que inscribirlo en el REGA."
+    },
+    {
+      "id": 10,
+      "pregunta": "Tu lote es de 100 aves. ¿Qué plazas orienta la L02 para enfermería y cuarentena?",
+      "opciones": [
+        "Ninguna: con 100 aves no hacen falta",
+        "Unas 5 plazas de enfermería y unas 20 de cuarentena",
+        "50 de enfermería y 50 de cuarentena",
+        "1 de enfermería y 1 de cuarentena"
+      ],
+      "correcta": 1,
+      "explicacion": "Estimación práctica: enfermería para un 5 % del lote y cuarentena para tu mayor compra, alrededor del 20 %. En 100 aves: 5 y 20."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Dónde se coloca la zona de cuarentena respecto al gallinero principal?",
+      "opciones": [
+        "Pegada al gallinero, para vigilarla sin caminar",
+        "Dentro del mismo gallinero, separada solo por una cuerda",
+        "Lejos, a unos 30 metros, a sotavento y con equipo propio",
+        "En cualquier sitio, si se limpia una vez al mes"
+      ],
+      "correcta": 2,
+      "explicacion": "Distancia, sotavento y material propio reducen el contagio. La cuarentena de aves nuevas dura unos 30 días. El orden del día es sanas, luego cuarentena y al final enfermería."
+    },
+    {
+      "id": 12,
+      "pregunta": "Para estar preparado ante un confinamiento por gripe aviar, ¿qué recomienda la L02 en el parque?",
+      "opciones": [
+        "Quitar la valla mientras dure la alerta",
+        "Soltar las aves para que se dispersen",
+        "Bajar la valla a 50 cm para que puedan salir",
+        "Tener una zona techada o cubierta con red, para dejarlas dentro sin contacto con aves silvestres"
+      ],
+      "correcta": 3,
+      "explicacion": "Con una zona cubierta las aves pueden quedarse dentro. Quien vende tiene el vallado obligatorio (RD 637/2021)."
+    },
+    {
+      "id": 13,
+      "pregunta": "Según la ficha de ISA Brown citada en la L01, ¿cuántos huevos por gallina alojada se orientan entre las semanas 18 y 100?",
+      "opciones": [
+        "Unos 476",
+        "Unos 50",
+        "Unos 150",
+        "Unos 900"
+      ],
+      "correcta": 0,
+      "explicacion": "ISA Brown: unos 476 huevos HH en ese periodo. Es un objetivo de ficha, no una garantía de patio."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Cuántos huevos al año estima la FAO para una gallina de patio tradicional en sistemas muy básicos?",
+      "opciones": [
+        "De 200 a 250",
+        "De 20 a 30",
+        "De 400 a 500",
+        "Más de 600"
+      ],
+      "correcta": 1,
+      "explicacion": "En sistemas muy básicos la FAO orienta 20–30 huevos al año, lejos de las fichas comerciales."
+    },
+    {
+      "id": 15,
+      "pregunta": "Según la ficha que cita la L01, ¿cuántos huevos orienta Lohmann Brown hasta las 72 semanas?",
+      "opciones": [
+        "Unos 50",
+        "Unos 900",
+        "Unos 324",
+        "Unos 476, la misma cifra que la L01 da para Lohmann"
+      ],
+      "correcta": 2,
+      "explicacion": "Lohmann: unos 324 huevos a las 72 semanas. Hy-Line Brown, en la misma lección, orienta unos 315–333 entre las semanas 18 y 75. Los 476 son de la ISA, no de Lohmann."
+    },
+    {
+      "id": 16,
+      "pregunta": "En un gallinero de patio, ¿cuánto espacio interior orienta Virginia Tech por gallina?",
+      "opciones": [
+        "0,05 m² por ave",
+        "2 m² dentro del gallinero",
+        "No hace falta interior si hay patio",
+        "Unos 0,28 a 0,37 m² por ave"
+      ],
+      "correcta": 3,
+      "explicacion": "Virginia Tech: 0,28–0,37 m² dentro. La L02 añade unos 0,93 m² fuera en el patio."
+    },
+    {
+      "id": 17,
+      "pregunta": "¿Cuántos ponederos recomienda Virginia Tech para un gallinero de patio?",
+      "opciones": [
+        "Uno por cada 4 o 5 gallinas",
+        "Uno por cada 20 gallinas",
+        "Uno solo para todo el gallinero, sea cual sea el lote",
+        "Ninguno: en patio ponen en el suelo y el nido sobra"
+      ],
+      "correcta": 0,
+      "explicacion": "En patio, un ponedero cada 4 o 5 gallinas. En la norma de suelo el mínimo es uno cada 7: no es la cifra de Virginia Tech."
+    },
+    {
+      "id": 18,
+      "pregunta": "¿Cuántas horas de luz necesitan las ponedoras para mantener la puesta, según la L02?",
+      "opciones": [
+        "Unas 6 horas",
+        "Unas 14 horas",
+        "Unas 10 horas, y por debajo de 12 la puesta no cambia",
+        "24 horas, sin ninguna oscuridad"
+      ],
+      "correcta": 1,
+      "explicacion": "Unas 14 horas. Por debajo de 12 la puesta baja y a menudo se para. La L01 señala la luz y el calcio como claves, y el primer ingreso de este camino llega en meses."
+    },
+    {
+      "id": 19,
+      "pregunta": "En el huevo ecológico (código 0), ¿cuál es el máximo de gallinas por metro cuadrado dentro del gallinero?",
+      "opciones": [
+        "9",
+        "12",
+        "6",
+        "20"
+      ],
+      "correcta": 2,
+      "explicacion": "Ecológico: máximo 6 gallinas/m² dentro, 4 m² de parque, 18 cm de aseladero y un nido cada 7. El tope de 9/m² es el del suelo (código 2), no el ecológico."
+    },
+    {
+      "id": 20,
+      "pregunta": "¿Cuánto parque exterior mínimo por gallina pide el huevo campero (código 1)?",
+      "opciones": [
+        "1 m²",
+        "10 m²",
+        "Ninguno: basta con el interior",
+        "4 m²"
+      ],
+      "correcta": 3,
+      "explicacion": "Huevo campero: como el suelo por dentro y al menos 4 m² de parque por gallina. El metro cuadrado de parque es la cifra del pollo campero, no la del huevo."
+    },
+    {
+      "id": 21,
+      "pregunta": "¿Cuánto aseladero orienta la L02 en un patio y cuánto pide como mínimo la norma UE de suelo?",
+      "opciones": [
+        "Patio: 20–25 cm por ave. Norma UE de suelo: 15 cm",
+        "Patio: 5 cm. Norma UE: 50 cm",
+        "Patio: 15 cm. Norma UE: 20–25 cm",
+        "No hace falta aseladero en ninguno de los dos sistemas"
+      ],
+      "correcta": 0,
+      "explicacion": "En patio se orientan 20–25 cm. En la norma de suelo el mínimo es 15 cm, con comedero de 10 cm y una tetina cada 10 gallinas."
+    },
+    {
+      "id": 22,
+      "pregunta": "¿Qué superficie mínima por gallina pide la jaula acondicionada (huevo código 3)?",
+      "opciones": [
+        "550 cm²",
+        "750 cm², de ellos 600 utilizables",
+        "1 m²",
+        "No hay mínimo legal"
+      ],
+      "correcta": 1,
+      "explicacion": "750 cm² por gallina, 600 utilizables. Es el sistema de escala industrial que cita la L02."
+    },
+    {
+      "id": 23,
+      "pregunta": "En el sistema de suelo (huevo código 2), ¿cuál es el máximo de gallinas por metro cuadrado utilizable?",
+      "opciones": [
+        "6",
+        "15",
+        "9",
+        "30"
+      ],
+      "correcta": 2,
+      "explicacion": "Suelo: máximo 9 gallinas/m² utilizable y un nido cada 7. El máximo de 6/m² es el del ecológico."
+    },
+    {
+      "id": 24,
+      "pregunta": "¿Qué líneas de ponedoras comerciales nombra la L01?",
+      "opciones": [
+        "Ross 308 y Cobb 500",
+        "Solo gallinas de patio, sin líneas comerciales",
+        "Ross 308 y Lohmann Brown, las dos como ponedoras",
+        "Lohmann Brown, Hy-Line Brown e ISA Brown"
+      ],
+      "correcta": 3,
+      "explicacion": "Esas tres son las de puesta. Ross 308 y Cobb 500 son las de engorde."
+    },
+    {
+      "id": 25,
+      "pregunta": "Tienes una incubadora de aire quieto y pones el termómetro en el fondo, por debajo de los huevos. ¿Qué problema hay?",
+      "opciones": [
+        "En aire quieto la temperatura se mide arriba del huevo; abajo medirás de menos",
+        "Ninguno: en aire quieto da igual dónde se mida",
+        "Que así los huevos giran peor",
+        "Que el termómetro se moja y por eso marca de más"
+      ],
+      "correcta": 0,
+      "explicacion": "En aire quieto hay capas de calor. Se mide arriba del huevo: unos 38,9 °C (102 °F), según MSU."
+    },
+    {
+      "id": 26,
+      "pregunta": "Haces dos tandas de 20 huevos al año para casa. ¿Qué incubadora encaja mejor según la L03?",
+      "opciones": [
+        "Una profesional de más de 1.000 huevos",
+        "Una doméstica de 6 a 30 huevos, comprada por la tanda que harás de verdad",
+        "Una multietapa con nacedora aparte",
+        "Ninguna: para casa solo sirve la clueca"
+      ],
+      "correcta": 1,
+      "explicacion": "Se compra por la tanda real, no por el sueño de llenarla. La estimación de la lección para 6–30 huevos es de unos 40–150 €."
+    },
+    {
+      "id": 27,
+      "pregunta": "Al día 18 tus huevos solo han perdido un 5 % de su peso. ¿Qué indica la L03?",
+      "opciones": [
+        "Que todo va en la referencia",
+        "Que la temperatura ha estado demasiado baja con seguridad",
+        "Que han perdido menos agua de la referencia (unos 12 %): la humedad ha estado alta",
+        "Que los huevos eran infértiles"
+      ],
+      "correcta": 2,
+      "explicacion": "La referencia es una pérdida de alrededor del 12 % al día 18. Menos pérdida suele ser exceso de humedad."
+    },
+    {
+      "id": 28,
+      "pregunta": "¿Cuál es la temperatura de referencia en una incubadora de aire forzado, según MSU?",
+      "opciones": [
+        "35 °C",
+        "40 °C",
+        "32 °C, medida fuera de la máquina",
+        "37,8 °C (100 °F)"
+      ],
+      "correcta": 3,
+      "explicacion": "Aire forzado: unos 37,8 °C. El ventilador reparte el calor. En aire quieto la referencia es más alta y se mide arriba del huevo."
+    },
+    {
+      "id": 29,
+      "pregunta": "En los tres últimos días de incubación de la gallina, ¿qué haces con la humedad?",
+      "opciones": [
+        "La subes al menos al 65 % y evitas abrir la máquina",
+        "La bajas al 30 %",
+        "La dejas en el 58–60 % y abres cada hora",
+        "Quitas toda el agua"
+      ],
+      "correcta": 0,
+      "explicacion": "Del día 1 al 18 la HR orientativa es 58–60 %. En los tres últimos días sube al menos al 65 % y no conviene abrir."
+    },
+    {
+      "id": 30,
+      "pregunta": "¿Cuántos días dura la incubación de la gallina y desde qué día se para el volteo?",
+      "opciones": [
+        "28 días, y se voltea hasta el día 25",
+        "21 días, y no se voltea desde el día 18",
+        "17 días, y no se voltea desde el día 10",
+        "14 días, y no se voltea desde el día 7"
+      ],
+      "correcta": 1,
+      "explicacion": "Gallina: 21 días. El lockdown es el tramo final: sin volteo desde el día 18, más humedad y mínima apertura."
+    },
+    {
+      "id": 31,
+      "pregunta": "Según MSU, ¿cuántos días incuban aproximadamente la codorniz, el pato y el pavo?",
+      "opciones": [
+        "Codorniz 21, pato 21 y pavo 21",
+        "Codorniz 28, pato 17 y pavo 21",
+        "Codorniz 17, pato 28 y pavo 28",
+        "Codorniz 10, pato 14 y pavo 16"
+      ],
+      "correcta": 2,
+      "explicacion": "Son fechas orientativas de MSU, no una garantía de que nazcan: codorniz 17, pato 28 y pavo 28."
+    },
+    {
+      "id": 32,
+      "pregunta": "Al ovoscopiar hacia el día 7, ¿cómo se ve un embrión vivo?",
+      "opciones": [
+        "Totalmente negro, sin ningún detalle",
+        "Igual que un huevo de nevera, solo con la yema",
+        "Solo la cáscara: el interior no se ve nunca",
+        "Como una araña: un punto oscuro con venas que se abren"
+      ],
+      "correcta": 3,
+      "explicacion": "MSU describe ese aspecto de araña. La primera ovoscopia va entre el día 4 y el 7 (mejor hacia el 7 si la cáscara es oscura) y la segunda entre el 14 y el 16."
+    },
+    {
+      "id": 33,
+      "pregunta": "¿Qué indica un anillo de sangre al ovoscopiar?",
+      "opciones": [
+        "Un embrión que empezó y murió pronto: hay que sacar ese huevo",
+        "Que el pollito está a punto de nacer",
+        "Que la humedad ha estado en la referencia",
+        "Que el huevo es de codorniz"
+      ],
+      "correcta": 0,
+      "explicacion": "La sangre se separa del embrión muerto y forma el anillo. Si se deja, se descompone."
+    },
+    {
+      "id": 34,
+      "pregunta": "¿Qué recomienda MSU sobre lavar los huevos que vas a incubar?",
+      "opciones": [
+        "Lavarlos siempre con agua fría",
+        "No lavarlos: mejor nidos limpios y recogerlos a menudo",
+        "Remojarlos 24 horas antes de cargarlos",
+        "Bañarlos en lejía pura"
+      ],
+      "correcta": 1,
+      "explicacion": "El lavado facilita que entren bacterias por los poros. Huevos sucios o lavados es uno de los errores frecuentes de la L03."
+    },
+    {
+      "id": 35,
+      "pregunta": "Si dejas dentro los huevos claros, sin desarrollo, ¿qué consecuencia señala la L03?",
+      "opciones": [
+        "Nacen igual de bien que el resto",
+        "Suben la humedad ellos solos",
+        "Ocupan sitio, gastan luz y falsean el porcentaje de nacimiento",
+        "Evitan que se estropeen los huevos contaminados"
+      ],
+      "correcta": 2,
+      "explicacion": "Un claro no va a nacer. Conviene sacarlo. Un huevo podrido, además, puede reventar y contaminar la tanda."
+    },
+    {
+      "id": 36,
+      "pregunta": "Antes de meter la primera tanda, ¿qué comprobación recomienda la L03?",
+      "opciones": [
+        "Sacarla de la caja y llenarla el mismo día",
+        "Mirar solo el color de la carcasa",
+        "Dejarla al sol para que coja calor",
+        "Una prueba en vacío de unas 48 horas: temperatura, humedad y volteo"
+      ],
+      "correcta": 3,
+      "explicacion": "Si falla en vacío, fallará con huevos. Al comprar, la lección pide estabilidad de temperatura, sondas, volteo que se pueda parar y un plan por si se va la luz."
+    },
+    {
+      "id": 37,
+      "pregunta": "Llegan los pollitos. ¿Qué parte del suelo cubres con papel y cuánta migaja pones?",
+      "opciones": [
+        "Al menos el 70 % del suelo, con unos 40 g de migaja por pollito",
+        "Un 10 %, y sin alimento el primer día",
+        "Todo el suelo, con 1 kg de migaja por pollito",
+        "Ninguna: el alimento va solo en las tolvas desde la primera hora"
+      ],
+      "correcta": 0,
+      "explicacion": "El papel con migaja ayuda a que todos coman desde el primer momento (Ross). Agua y alimento, a no más de 2 m."
+    },
+    {
+      "id": 38,
+      "pregunta": "A las 24 horas de la llegada, solo el 80 % de los pollitos tiene el buche lleno. ¿Qué indica?",
+      "opciones": [
+        "Que el arranque va en el objetivo",
+        "Que estás por debajo del objetivo (más del 95 % a las 24 h): revisa agua, alimento y temperatura",
+        "Que hay que retirar el alimento",
+        "Que sobran bebederos"
+      ],
+      "correcta": 1,
+      "explicacion": "Ross pide un 75 % con el buche lleno a las 2 horas y más del 95 % a las 24 horas."
+    },
+    {
+      "id": 39,
+      "pregunta": "Los pollitos se agrupan en un solo lado de la nave, lejos de una ventana. ¿Qué significa?",
+      "opciones": [
+        "Que tienen frío y buscan la campana",
+        "Que tienen calor y se apartan del centro",
+        "Que hay una corriente de aire",
+        "Que el lote está repartido como toca"
+      ],
+      "correcta": 2,
+      "explicacion": "Amontonados bajo el calor: frío. En los bordes, con las alas abiertas y jadeando: calor. En un solo lado: corriente."
+    },
+    {
+      "id": 40,
+      "pregunta": "Pesas una muestra y el coeficiente de variación sale del 12 %. ¿Cómo está el lote?",
+      "opciones": [
+        "Muy uniforme",
+        "En el objetivo de venta",
+        "Con exceso de peso con seguridad",
+        "Poco uniforme: el objetivo es un CV del 8 % o menos"
+      ],
+      "correcta": 3,
+      "explicacion": "Cuanto más bajo el CV, más parejos están. Un 8 % o menos se considera uniforme. El peso a los 7 días debe ser al menos 4,5 veces el de llegada."
+    },
+    {
+      "id": 41,
+      "pregunta": "Has gastado 3.400 kg de alimento y has producido 2.000 kg de pollo. ¿Cuál es tu índice de conversión?",
+      "opciones": [
+        "1,7",
+        "0,6",
+        "5,4",
+        "17"
+      ],
+      "correcta": 0,
+      "explicacion": "IC = kilos de alimento ÷ kilos producidos = 3.400 ÷ 2.000 = 1,7. Cuanto más bajo, mejor."
+    },
+    {
+      "id": 42,
+      "pregunta": "Tu medidor marca 25 ppm de amoníaco al entrar por la mañana. ¿Cómo está?",
+      "opciones": [
+        "Bien: 25 ppm queda por debajo del ideal de 10 ppm",
+        "Alto: lo ideal es menos de 10 ppm y el límite legal, por encima de 33 kg/m², es 20 ppm",
+        "Bajo: hay que cerrar la ventilación",
+        "Da igual: el amoníaco no se mide, solo se huele"
+      ],
+      "correcta": 1,
+      "explicacion": "Ross y Cobb orientan menos de 10 ppm. Si te pican los ojos, está alto. Se mide por la mañana, antes de ventilar, a la altura de los pollos."
+    },
+    {
+      "id": 43,
+      "pregunta": "Para la franja más baja del gallinero, donde entran ratas y ratones, ¿qué luz de malla da la L04B?",
+      "opciones": [
+        "Unos 5 cm",
+        "Unos 13 cm, también abajo",
+        "Unos 6 mm, y unos 13 mm en el resto",
+        "Da igual: la malla hexagonal de gallinero basta"
+      ],
+      "correcta": 2,
+      "explicacion": "Malla electrosoldada de unos 13 mm en general y de unos 6 mm abajo, enterrada unos 30 cm o con faldón. La tela hexagonal no frena depredadores."
+    },
+    {
+      "id": 44,
+      "pregunta": "¿Por qué no se usan venenos caseros ni lazos contra zorros y otros depredadores?",
+      "opciones": [
+        "Porque salen más caros que la malla",
+        "Porque solo se permiten en invierno",
+        "Porque funcionan tan bien que vacían el coto",
+        "Porque están prohibidos: se usan malla, cierre nocturno, pastor eléctrico y, si hace falta, biocida autorizado en portacebos"
+      ],
+      "correcta": 3,
+      "explicacion": "La protección que describe la L04B es física. El raticida, si hace falta, es un biocida autorizado dentro de un portacebos cerrado, nunca suelto por la cama."
+    },
+    {
+      "id": 45,
+      "pregunta": "¿Para qué sirve contar los pollos cada día?",
+      "opciones": [
+        "Para detectar pronto bajas o un ataque de depredadores",
+        "Para decidir cuánto alimento tirar al suelo",
+        "Solo para la estadística de fin de año",
+        "No aporta nada si ya pesaste el primer día"
+      ],
+      "correcta": 0,
+      "explicacion": "Las bajas y los pollos que faltan son la primera señal de depredadores o de un problema del lote (L04B)."
+    },
+    {
+      "id": 46,
+      "pregunta": "¿Qué aparato mide a la vez la temperatura y la humedad de la nave?",
+      "opciones": [
+        "Un luxómetro",
+        "Un termohigrómetro",
+        "Un ovoscopio",
+        "Una báscula colgante"
+      ],
+      "correcta": 1,
+      "explicacion": "El termohigrómetro es el aparato básico de la cría. La estimación de la L04B es de unos 10–30 €."
+    },
+    {
+      "id": 47,
+      "pregunta": "¿Cuál es la densidad máxima general de pollos de engorde en la UE, según la L02 y la L04A?",
+      "opciones": [
+        "11 kg/m²",
+        "50 kg/m² en cualquier nave",
+        "33 kg/m²; 39 o 42 solo si se cumplen condiciones adicionales",
+        "No hay límite legal de kilos por metro"
+      ],
+      "correcta": 2,
+      "explicacion": "Directiva 2007/43/CE y RD 692/2010: base de 33 kg/m². En nave abierta, Cobb orienta unos 30 kg/m². Un pollo de 2,5 kg a 30 kg/m² son unos 12 por m²."
+    },
+    {
+      "id": 48,
+      "pregunta": "¿Cuándo se retira el alimento antes del sacrificio?",
+      "opciones": [
+        "No se retira en ningún momento",
+        "Tres días antes, y también el agua",
+        "24 horas antes, sin dejar agua",
+        "Entre 8 y 12 horas antes, nunca más de 12, y el agua sigue hasta la carga"
+      ],
+      "correcta": 3,
+      "explicacion": "Ross cuenta carga y transporte dentro de esas 8–12 horas. La directiva no permite retirarlo más de 12 horas antes. El agua se mantiene."
+    },
+    {
+      "id": 49,
+      "pregunta": "En el engorde comercial, ¿cómo ofrece la comida la L01?",
+      "opciones": [
+        "A libre disposición, reponiéndola a menudo los primeros días",
+        "Una sola toma al día",
+        "Sin alimento hasta el día 10",
+        "Solo grano por la noche"
+      ],
+      "correcta": 0,
+      "explicacion": "La comida del engorde va a libre disposición. Al recibir, la cama se busca a 28–32 °C y la humedad alrededor del 60–70 %."
+    },
+    {
+      "id": 50,
+      "pregunta": "En suelo, ¿qué densidad orienta la L02 para las pollitas?",
+      "opciones": [
+        "55–60 por m² durante todo el crecimiento",
+        "15–20 por m² las tres primeras semanas y 8–10 por m² después",
+        "9 por m² desde el primer día",
+        "Una por m², dentro y fuera"
+      ],
+      "correcta": 1,
+      "explicacion": "Esas cifras son de la pollita. El tope de 9 por m² es el de las adultas en suelo, no el de las tres primeras semanas."
+    },
+    {
+      "id": 51,
+      "pregunta": "¿Qué límite tiene la clueca frente a la incubadora, según la L03?",
+      "opciones": [
+        "Incuba unas 50 unidades con un calendario fijo",
+        "Es más precisa que una máquina doméstica",
+        "Cubre unos 8–12 huevos por tanda y no tiene un calendario fiable",
+        "Solo sirve para codorniz y pavo"
+      ],
+      "correcta": 2,
+      "explicacion": "La máquina permite elegir el día, el número y la especie. Compensa si haces varias tandas al año, repones el lote o vendes pollitos."
+    },
+    {
+      "id": 52,
+      "pregunta": "¿Con cuánta antelación hay que dejar estable la nave antes de que lleguen los pollitos?",
+      "opciones": [
+        "Basta encender la calefacción al abrir las cajas",
+        "Una semana, con la nave cerrada y sin ventilar",
+        "No hace falta si la cama es nueva",
+        "Al menos 24 horas antes; Cobb indica empezar unas 48 horas antes"
+      ],
+      "correcta": 3,
+      "explicacion": "En ese precalentado el aire va a unos 30 °C, el suelo a 28–30 °C y la humedad al 60–70 %. En el borde de la campana, unos 32 °C."
+    },
+    {
+      "id": 53,
+      "pregunta": "En el trópico, ¿cómo orienta la L02 el lado largo de la nave?",
+      "opciones": [
+        "De este a oeste",
+        "De norte a sur",
+        "Da igual la orientación si el suelo está seco",
+        "Mirando al viento más frío"
+      ],
+      "correcta": 0,
+      "explicacion": "El eje este-oeste hace que el sol castigue menos las paredes. El gallinero va, además, en un sitio alto y drenado, con ventilación sin corrientes."
+    },
+    {
+      "id": 54,
+      "pregunta": "Ves una gallina con una herida que sangra. ¿Qué haces primero, según la L02?",
+      "opciones": [
+        "La dejas en el lote para que el grupo la respete",
+        "La pasas a la enfermería, le tapas la herida y bajas la luz a unos 5–10 lux",
+        "Subes la luz para vigilarla mejor dentro del grupo",
+        "Le das más grano y la devuelves enseguida con las demás"
+      ],
+      "correcta": 1,
+      "explicacion": "La sangre atrae al resto. Además de aislarla, la L02 añade enriquecimiento y más comederos. Si hay síntomas en el lote, llama al veterinario."
+    },
+    {
+      "id": 55,
+      "pregunta": "¿Cómo recomienda Aviagen voltear los huevos, según la L03?",
+      "opciones": [
+        "90 grados de golpe, una sola vez al día",
+        "Solo el día 18, cuando empieza el nacimiento",
+        "45 grados a cada lado de la vertical, con un movimiento suave",
+        "No hace falta voltear si la máquina es de aire forzado"
+      ],
+      "correcta": 2,
+      "explicacion": "El volteo puede ser manual, semiautomático o automático. Se para en el lockdown."
+    },
+    {
+      "id": 56,
+      "pregunta": "Según el Ross 308 citado en la L04A, ¿qué proteína bruta lleva cada fase del alimento?",
+      "opciones": [
+        "Un 10 % durante todo el lote",
+        "Un 40 % la primera semana y un 5 % al final",
+        "Un 19,5 % del día 0 al 10 y un 23 % desde el día 25",
+        "Arranque 23 % (días 0–10, en migaja), crecimiento 21,5 % (días 11–24) y acabado 19,5 % (desde el día 25)"
+      ],
+      "correcta": 3,
+      "explicacion": "La forma también cambia: migaja en el arranque y gránulo en el crecimiento y el acabado."
+    },
+    {
+      "id": 57,
+      "pregunta": "Los objetivos de catálogo del engorde que cita la L01, y que no son una garantía de patio, son aproximadamente…",
+      "opciones": [
+        "2,2 kg al día 35 con conversión cercana a 1,5, y 2,9 kg al día 42 con conversión cercana a 1,7",
+        "1 kg al día 35 con conversión 3,5, y el mismo peso al día 42",
+        "5 kg al día 35 con conversión 1,0",
+        "2,2 kg tanto el día 35 como el día 42, con la misma conversión"
+      ],
+      "correcta": 0,
+      "explicacion": "Son cifras orientativas de catálogo de las líneas de carne. En un patio el resultado puede ser otro. La L01 señala como riesgos la mortalidad temprana, la cama húmeda y el precio de venta."
+    },
+    {
+      "id": 58,
+      "pregunta": "¿Cuál de estas combinaciones es una señal de que el gallinero de ponedoras va por encima de su capacidad, según la L02?",
+      "opciones": [
+        "Todas comen a la vez y la cama está suelta",
+        "Amoníaco, plumas rotas y huevos en el suelo",
+        "Las bajas han bajado y nadie jadea",
+        "La luz ronda las 14 horas y los nidos se usan"
+      ],
+      "correcta": 1,
+      "explicacion": "La L02 también cuenta como sobrecarga que no coman todas a la vez, las aves rezagadas, el jadeo y el aumento de bajas. Con varias señales, quita aves o amplía."
+    },
+    {
+      "id": 59,
+      "pregunta": "Un huevo con la cáscara agrietada, ¿qué haces según la L03?",
+      "opciones": [
+        "Lo incubas igual: la grieta no cambia el resultado",
+        "Lo lavas y lo metes con el resto de la tanda",
+        "No lo incubas: tiene más riesgo de reventar",
+        "Lo guardas para mirarlo el día 18"
+      ],
+      "correcta": 2,
+      "explicacion": "La tabla de la L03 dice que la cáscara agrietada no se incuba, por el riesgo de explosión. Un huevo podrido, si se deja, puede contaminar la tanda."
+    },
+    {
+      "id": 60,
+      "pregunta": "¿Qué significa «todo dentro, todo fuera» en la L04B?",
+      "opciones": [
+        "Que los pollos duermen dentro y comen en el parque",
+        "Que se mezclan edades para no dejar la nave vacía",
+        "Que el equipo se saca una vez al año y el lote sigue dentro",
+        "Que en la misma nave todos entran a la vez y salen a la vez, sin añadir pollitos a un lote que ya está"
+      ],
+      "correcta": 3,
+      "explicacion": "Así se puede vaciar y limpiar de verdad. El orden es: en seco, agua y detergente, aclarar y secar, y después un desinfectante autorizado."
+    }
+  ]
+}
