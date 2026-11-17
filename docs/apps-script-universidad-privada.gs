@@ -474,7 +474,8 @@ function uniTemas_() {
       id: "genetica-ponedoras",
       titulo: "Primer tema: Genética de ponedoras",
       estado: "abierto",
-      texto: "Cómo se hereda la puesta, qué anotar de cada gallina y cómo leer un árbol sencillo antes de cruzar. No promete más huevos. El vídeo de la clase se publica en esta aula. Todavía no hay un archivo de vídeo distinto del curso gratis."
+      texto: "Consanguinidad, selección de ponedoras y renovación del lote: qué anotar de cada gallina y cómo leer un árbol sencillo antes de cruzar. Vídeo de 18 minutos. No promete más huevos.",
+      video: "https://github.com/darmo1986/granja-rentable-curso-videos/releases/download/v1/genetica-ponedoras.mp4"
     },
     {
       id: "chat",

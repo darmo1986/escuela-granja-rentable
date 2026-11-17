@@ -92,6 +92,17 @@
       var p = document.createElement("p");
       p.textContent = tema.texto || "";
       item.appendChild(p);
+      var url = String(tema.video || "");
+      if (/^https:\/\/github\.com\/darmo1986\/granja-rentable-curso-videos\/releases\/download\/[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+\.mp4$/.test(url)) {
+        var video = document.createElement("video");
+        video.controls = true;
+        video.preload = "metadata";
+        video.setAttribute("playsinline", "");
+        video.style.width = "100%";
+        video.style.maxWidth = "720px";
+        video.src = url;
+        item.appendChild(video);
+      }
       temasEl.appendChild(item);
     });
     if (d.whatsapp) {
