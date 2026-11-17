@@ -107,6 +107,7 @@
 }
 
 .gr-shop-slide .gr-hero-photo img{object-fit:contain;background:#fff}
+.gr-uni-photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,34,20,.2),rgba(9,34,20,.48)),linear-gradient(90deg,rgba(9,34,20,.4),transparent 58%)}
 @media(max-width:899px){
  .gr-lote-preview{padding:0 20px 18px;background:transparent}
  .gr-lote-sheet{width:100%}

@@ -52,7 +52,7 @@
   document.documentElement.dataset.ads = estricto ? "ue" : "libre";
   try {
     var rutaAds = location.pathname || "/";
-    var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadora|calculadoras|afiliados|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || /\/blog\/alimentacion\.html$/.test(rutaAds) || /\/enfermedades\/categoria\/(respiratorias|parasitarias)\.html$/.test(rutaAds);
+    var sinAnuncios = /\/(aviso-legal|privacidad|cookies|condiciones-venta|contacto|registro|cuenta|lista|examen-final|juegos|calculadora|calculadoras|afiliados|universidad|404)(\.html)?$/.test(rutaAds) || /\/ebooks\/?$/.test(rutaAds) || /\/blog\/alimentacion\.html$/.test(rutaAds) || /\/enfermedades\/categoria\/(respiratorias|parasitarias)\.html$/.test(rutaAds);
     if (sinAnuncios) document.documentElement.setAttribute("data-ads-pagina", "no");
     if (premiumVigente()) document.documentElement.classList.add("ad-off");
   } catch (e0) {}

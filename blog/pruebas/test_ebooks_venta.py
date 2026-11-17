@@ -30,7 +30,7 @@ class EbooksVenta(unittest.TestCase):
         self.assertEqual(len(re.findall(r'<p class="precio">29 €</p>', self.html)), 1)
         self.assertNotIn("2,00 USD", self.html)
         self.assertNotIn("5,00 USD", self.html)
-        resto = self.html.replace("29 €", "").replace("en euros", "")
+        resto = self.html.replace("29 €", "").replace("12 €/mes", "").replace("en euros", "")
         self.assertNotIn("€", resto)
 
     def test_espana_no_cambia_la_moneda(self):
@@ -59,6 +59,13 @@ class EbooksVenta(unittest.TestCase):
         self.assertIsNotNone(enlace)
         self.assertNotIn("nav-extra", enlace.group(0))
         self.assertIn('href="@@RAIZ@@ebooks/"', enlace.group(0))
+
+    def test_la_universidad_no_es_un_ebook_de_pago_aqui(self):
+        self.assertEqual(self.html.count("Universidad Granja Rentable"), 1)
+        self.assertIn('href="../universidad.html#suscripcion"', self.html)
+        self.assertIn("12 €/mes", self.html)
+        self.assertIn("próximamente", self.html)
+        self.assertNotIn("Suscribirme por 12", self.html)
 
 
 if __name__ == "__main__":
