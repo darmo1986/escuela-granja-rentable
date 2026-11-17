@@ -114,3 +114,58 @@
  .gr-hero-dots{width:100%;min-width:0}
  .gr-hero-dots button{flex:0 1 44px;min-width:0}
 }
+
+/* Pulido de portada y del bloque de curso. No mueve banners. */
+.gr-hero, .gr-slide { border-radius: 22px; }
+.home-renovada .gr-hero {
+  box-shadow: 0 18px 40px rgba(14, 42, 24, .16);
+}
+.gr-kicker { letter-spacing: .12em; }
+.gr-section { margin-top: 52px; }
+.gr-section h2 { letter-spacing: -.03em; }
+.gr-path, .gr-article, .gr-tool-links a, .gr-home-search, .gr-shop-link, .gr-calculator-intro {
+  box-shadow: var(--shadow-sm);
+}
+.gr-path, .gr-article, .gr-tool-links a {
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.gr-path:hover, .gr-article:hover, .gr-tool-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.gr-article img, .gr-hero-photo img { background: #d7e4d6; }
+.gr-quick { box-shadow: var(--shadow-sm); }
+.gr-shortcuts a {
+  border: 1px solid transparent;
+  transition: background .15s ease, border-color .15s ease;
+}
+.gr-shortcuts a:hover { background: #d7e8d8; border-color: #c5d9c6; }
+.gr-course-intro {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 18px;
+  padding: 26px 26px 20px;
+  box-shadow: var(--shadow);
+}
+.gr-course-intro p { max-width: 68ch; }
+.gr-course-intro h1 { letter-spacing: -.03em; }
+@media (min-width: 768px) and (max-width: 899px) {
+  .gr-slide .gr-hero-copy, .gr-hero-copy { padding: 32px 28px 8px; }
+  .gr-slide .gr-hero-title, .gr-hero h1 { font-size: 2.25rem; }
+  .gr-paths { gap: 14px; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .gr-hero.js-hero .gr-hero-ctrl { display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; padding: 6px 14px 16px; }
+  .gr-slide-count { white-space: nowrap; flex: none; font-size: .88rem; }
+  .gr-hero-dots { flex: 1 1 auto; justify-content: center; gap: 0; min-width: 0; width: auto; }
+  .gr-hero-dots button { width: 28px; height: 36px; flex: 0 0 28px; }
+  .gr-hero-visible .wa-float { position: static; margin: 12px 16px 12px auto; }
+}
+@media (min-width: 1280px) {
+  .gr-hero-copy, .gr-slide .gr-hero-copy { padding: 52px 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gr-path, .gr-article, .gr-tool-links a, .gr-shortcuts a { transition: none; }
+  .gr-path:hover, .gr-article:hover, .gr-tool-links a:hover { transform: none; }
+}

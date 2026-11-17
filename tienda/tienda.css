@@ -155,3 +155,46 @@ a.t-amazon, a.t-resenas { display: flex; justify-content: center; width: 100%; t
   .t-grid { grid-template-columns: 1fr 1fr 1fr; }
   .ebook-venta, .t-seccion, .t-cat { scroll-margin-top: 9.5rem; }
 }
+
+.t-hero h1 { letter-spacing: -.03em; }
+.t-lead { max-width: 68ch; line-height: 1.6; }
+.t-aviso { border-radius: 14px; background: var(--paper); box-shadow: var(--shadow-sm); }
+.t-rutas { gap: 14px; }
+.t-rutas a {
+  border-radius: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.t-rutas a:hover {
+  transform: translateY(-2px);
+  border-color: #b7cbb8;
+  box-shadow: var(--shadow);
+  background: #f7fbf7;
+}
+.t-filtros, .t-card, .ebook-venta, .t-compra {
+  border-radius: 16px;
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.t-card {
+  padding: 1rem;
+  gap: .55rem;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.t-card:hover {
+  transform: translateY(-2px);
+  border-color: #c9d8cb;
+  box-shadow: var(--shadow);
+}
+.t-foto img { border-radius: 12px; background: #f3f6f1; }
+.t-chip { background: var(--paper); }
+.t-buscar input, .t-categoria select { background: var(--paper); border-radius: 12px; }
+@media (min-width: 768px) and (max-width: 1039px) {
+  .t-grid { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-card, .t-rutas a { transition: none; }
+  .t-card:hover, .t-rutas a:hover { transform: none; }
+}
