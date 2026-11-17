@@ -517,6 +517,62 @@ html.ad-ok .ad-gap { margin: 0; height: 50px; display: flex; align-items: center
 .banner-amazon p { margin: .2rem 0; }
 .banner-amazon a { font-weight: 800; }
 .banner-amazon small { color: var(--muted); font-weight: 700; letter-spacing: .02em; }
+/* Franja baja: se ve al cargar sin ocupar la pantalla. En escritorio pasa a la columna. */
+.banner-franja, .banner-compacto { max-width: 44rem; margin: .75rem 0 1rem; }
+.banner-franja .banner-ebook-ficha, .banner-compacto .banner-ebook-ficha {
+  grid-template-columns: 84px minmax(0, 1fr) auto;
+  grid-template-areas: "ilustracion texto texto";
+  align-items: center;
+}
+.banner-franja .banner-ebook-marca, .banner-compacto .banner-ebook-marca { display: none; }
+.banner-franja .banner-ebook-ilustracion, .banner-compacto .banner-ebook-ilustracion {
+  width: 84px; height: 72px; min-height: 0; aspect-ratio: auto; object-fit: cover;
+}
+.banner-franja .banner-ebook-texto, .banner-compacto .banner-ebook-texto { padding: 8px 12px; gap: 2px; }
+.banner-franja .banner-ebook-titulo, .banner-compacto .banner-ebook-titulo { font-size: 1rem; }
+.banner-franja .banner-ebook-guia, .banner-compacto .banner-ebook-guia { display: none; }
+.banner-franja .banner-ebook-precio, .banner-compacto .banner-ebook-precio { font-size: 1.05rem; margin: 0; }
+.banner-franja .banner-ebook-cta, .banner-compacto .banner-ebook-cta { font-size: .85rem; padding: .4rem .75rem; margin: 0; }
+.banner-infeed, .banner-cierre { margin: 1.25rem 0; }
+.banner-franja { position: static; }
+@media (min-width: 1024px) {
+  main.con-lateral {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 232px;
+    column-gap: 28px;
+    align-items: start;
+  }
+  main.con-lateral > *,
+  main.con-lateral > header > *,
+  main.con-lateral > article > *,
+  main.con-lateral > section.page-hero > * { grid-column: 1; min-width: 0; }
+  main.con-lateral > header,
+  main.con-lateral > article,
+  main.con-lateral > section.page-hero { display: contents; }
+  main.con-lateral .banner-franja {
+    grid-column: 2;
+    grid-row: 1 / span 80;
+    position: sticky;
+    top: 88px;
+    align-self: start;
+    height: max-content;
+    width: 232px;
+    max-width: 232px;
+    margin: 0;
+    z-index: 1;
+  }
+  main.con-lateral .banner-franja .banner-ebook-ficha {
+    grid-template-columns: 1fr;
+    grid-template-areas: "ilustracion" "texto";
+  }
+  main.con-lateral .banner-franja .banner-ebook-ilustracion { width: 100%; height: 96px; }
+  main.con-lateral .banner-franja .banner-ebook-cta { display: block; text-align: center; }
+}
+@media (max-width: 1023px) {
+  main.con-lateral { display: block; }
+  main.con-lateral .banner-franja,
+  .banner-franja, .banner-compacto { position: static !important; }
+}
 @media (max-width: 600px) {
   .banner-ebook { margin: 1.25rem 0; }
   .banner-ebook-ficha { grid-template-columns: minmax(0, 1fr); grid-template-areas: "marca" "ilustracion" "texto"; }
@@ -525,6 +581,9 @@ html.ad-ok .ad-gap { margin: 0; height: 50px; display: flex; align-items: center
   .banner-ebook-titulo { font-size: 1.3rem; }
   .banner-ebook-precio { font-size: 2.1rem; }
   .banner-ebook-cta { display: block; width: 100%; text-align: center; box-sizing: border-box; }
+  .banner-ebook:not(.banner-franja):not(.banner-compacto) .banner-ebook-ilustracion {
+    max-height: 180px; width: 100%; object-fit: cover;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .banner-ebook { transition: none; }

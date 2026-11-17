@@ -29,7 +29,8 @@
     });
     dots.forEach(function (dot, i) { dot.setAttribute('aria-current', String(i === current)); });
     var status = hero.querySelector('[data-slide-count]');
-    if (status) status.textContent = (current + 1) + ' de ' + slides.length + ' · ' + slides[current].dataset.shortTitle;
+    var tituloCorto = (slides[current].dataset && slides[current].dataset.shortTitle) || '';
+    if (status) status.textContent = (current + 1) + ' de ' + slides.length + (tituloCorto ? ' · ' + tituloCorto : '');
     pause.textContent = paused() ? 'Reanudar' : 'Pausar';
     pause.setAttribute('aria-pressed', String(paused()));
     schedule();
@@ -68,7 +69,7 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
       visible = entries[0].isIntersecting;
-      document.body.classList.toggle('gr-hero-visible', visible);
+      if (document.body) document.body.classList.toggle('gr-hero-visible', visible);
       schedule();
     }).observe(hero);
   }

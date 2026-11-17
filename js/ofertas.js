@@ -25,8 +25,10 @@
         link.target = '_blank';
       }
       var image = document.createElement('img');
-      image.src = oferta.imagen; image.alt = oferta.alt;
-      image.width = 600; image.height = 469; image.loading = 'lazy';
+      image.src = oferta.imagen; image.alt = oferta.alt || '';
+      image.width = oferta.width || 600; image.height = oferta.height || 469; image.decoding = 'async';
+      image.loading = 'lazy';
+      if (oferta.srcset) { image.srcset = oferta.srcset; image.sizes = oferta.sizes || '(max-width: 600px) 40vw, 280px'; }
       var copy = document.createElement('div'); copy.className = 'promo-copy';
       var label = document.createElement('small');
       label.textContent = oferta.tipo === 'amazon' ? 'Amazon.com · Enlace de afiliado' : 'Granja Rentable · Ebook PDF';
