@@ -1,6 +1,6 @@
 /* País antes del primer pintado.
    Orden: ?pais= → elección guardada → zona horaria → idioma (solo si el
-   código de país está en la lista) → México. Un inglés genérico no
+   código de país está en la lista) → España. Un inglés genérico no
    se convierte en Estados Unidos.
    El aviso de anuncios mira la zona horaria, sin llamar a nadie:
    UE, EEE, Reino Unido, Suiza, Brasil, zona desconocida o GPC piden Aceptar. */
@@ -110,15 +110,24 @@
   };
   var p = "";
   try {
+    /* Solo valen códigos de la lista: un ?pais= o un valor guardado
+       inválido no se queda pegado para siempre. */
+    var VALIDOS = { ES:1, MX:1, AR:1, CL:1, CO:1, PE:1, VE:1, EC:1, BO:1, PY:1, UY:1, BR:1, US:1, CA:1, GB:1, FR:1, DE:1, IT:1, PT:1, DO:1, CU:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1, PR:1 };
     var q = new URLSearchParams(location.search).get("pais");
     if (q) {
-      p = q.toUpperCase();
-      localStorage.setItem("gr_pais", p);
+      q = q.toUpperCase();
+      if (VALIDOS[q]) {
+        p = q;
+        localStorage.setItem("gr_pais", p);
+      }
     }
-    if (!p) p = localStorage.getItem("gr_pais") || "";
+    if (!p) {
+      var guardado = (localStorage.getItem("gr_pais") || "").toUpperCase();
+      if (VALIDOS[guardado]) p = guardado;
+    }
     if (!p) p = map[tz] || "";
     if (!p) {
-      var known = { MX:1, US:1, CO:1, PE:1, ES:1, AR:1, VE:1, EC:1, DO:1, CL:1, PY:1, UY:1, BO:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1 };
+      var known = { MX:1, US:1, CO:1, PE:1, ES:1, AR:1, VE:1, EC:1, DO:1, CL:1, PY:1, UY:1, BO:1, GT:1, HN:1, SV:1, NI:1, CR:1, PA:1, BR:1, GB:1, FR:1, DE:1, IT:1, PT:1, CU:1, PR:1 };
       var langs = navigator.languages || [navigator.language || ""];
       for (var i = 0; i < langs.length && !p; i++) {
         var m = String(langs[i]).toUpperCase().match(/-([A-Z]{2})$/);
