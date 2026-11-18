@@ -6,10 +6,10 @@
 
   function valid(code) {
     code = String(code || "").toUpperCase();
-    return PAISES[code] ? code : "MX";
+    return PAISES[code] ? code : "ES";
   }
 
-  var pais = valid(document.documentElement.dataset.pais || "MX");
+  var pais = valid(document.documentElement.dataset.pais || "ES");
 
   function readRef() {
     try {
@@ -464,6 +464,7 @@
         if (drop) {
           drop.classList.remove("is-dismissed");
           var open = drop.classList.toggle("is-open");
+          if (open) cerrarOtros(drop);
           drop.querySelectorAll(".nav-parent, .nav-redes").forEach(function (b) {
             b.setAttribute("aria-expanded", open ? "true" : "false");
           });
@@ -494,15 +495,27 @@
         b.setAttribute("aria-expanded", abierto ? "true" : "false");
       });
     }
+    function cerrarOtros(drop) {
+      nav.querySelectorAll(".nav-drop").forEach(function (otro) {
+        if (otro === drop) return;
+        otro.classList.remove("is-open");
+        otro.classList.add("is-dismissed");
+        otro.querySelectorAll(".nav-parent, .nav-redes").forEach(function (b) {
+          b.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
     function soltarDesplegable(ev) {
       var drop = ev.target.closest && ev.target.closest(".nav-drop");
       if (!drop || !nav.contains(drop)) return;
       if (ev.type === "focusin" && ev.target.closest(".nav-redes, .nav-parent")) {
         if (!drop.classList.contains("is-dismissed")) marcarDesplegable(drop, true);
+        cerrarOtros(drop);
         return;
       }
       drop.classList.remove("is-dismissed");
       marcarDesplegable(drop, true);
+      cerrarOtros(drop);
     }
     function cerrarSiSale(ev) {
       var drop = ev.target.closest && ev.target.closest(".nav-drop");
@@ -524,6 +537,11 @@
     nav.addEventListener("mouseout", cerrarSiSale);
     nav.addEventListener("focusin", soltarDesplegable);
     nav.addEventListener("focusout", cerrarSiSale);
+    /* Al hacer scroll se cierran todos: un desplegable abierto no debe
+       quedarse flotando sobre el contenido. */
+    window.addEventListener("scroll", function () {
+      cerrarDesplegables(true);
+    }, { passive: true });
     document.addEventListener("keydown", function (ev) {
       if (ev.key !== "Escape") return;
       if (nav.classList.contains("is-open")) {
@@ -628,6 +646,14 @@
           return;
         }
       }
+      if (tipo === "contacto") {
+        var mensajeEl = form.querySelector("[name=mensaje]");
+        if (!mensajeEl || !mensajeEl.value.trim()) {
+          say("Escribe tu mensaje.");
+          if (mensajeEl) mensajeEl.focus();
+          return;
+        }
+      }
       if (tipo === "lead") {
         var fecha = form.querySelector("[name=fecha_inicio]");
         if (!fecha || !/^\d{4}-\d{2}-\d{2}$/.test(fecha.value)) {
@@ -648,6 +674,13 @@
       data.ref = readRef();
       data.origen = "test" === new URLSearchParams(location.search).get("origen") ? "test" : location.href;
       data.consentimiento = "si";
+      if (tipo === "contacto") {
+        /* La hoja del Apps Script no tiene columna «mensaje»: el asunto y
+           el mensaje viajan en «interes» para que no se pierdan. */
+        var asuntoEl = form.querySelector("[name=asunto]");
+        var mensajeTxt = form.querySelector("[name=mensaje]");
+        data.interes = "contacto · " + (asuntoEl ? asuntoEl.value.trim() : "") + " — " + (mensajeTxt ? mensajeTxt.value.trim() : "");
+      }
       if (!data._gotcha) data._gotcha = "";
       say("Enviando…");
       var btn = form.querySelector("[type=submit]");
@@ -663,6 +696,8 @@
           var fechaEl = form.querySelector("[name=fecha_inicio]");
           if (fechaEl) iso = fechaEl.value;
           entregarLista(msg, iso);
+        } else if (tipo === "contacto") {
+          say("Listo. Recibimos tu mensaje. Te respondemos a ese correo.");
         } else {
           say("Listo. Guardamos tu registro. Te escribimos a ese correo cuando haya novedad.");
         }

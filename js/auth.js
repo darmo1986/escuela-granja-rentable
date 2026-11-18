@@ -12,7 +12,7 @@
   var listoNube = null;
   var usuarioActual = null;
   var cursoTimer = 0;
-  var googleApagado = true;
+  var googleApagado = null; // null = aún sin comprobar; no se afirma nada hasta saberlo
   var ultimoError = "";
   try { localStorage.removeItem("gr_cuentas"); } catch (eCu) {}
 
@@ -524,10 +524,13 @@
   }
 
   function google() {
-    if (!nube() || googleApagado) {
+    if (!nube()) {
       mensajeGoogle();
       return;
     }
+    /* Esperar siempre a la comprobación de ajustes (googleApagado puede
+       estar aún en null): solo se dice que Google no está activado
+       cuando el ajuste lo confirma, nunca antes de saberlo. */
     prepararNube().then(function () {
       if (googleApagado) {
         mensajeGoogle();
@@ -843,6 +846,7 @@
     var n = document.getElementById("auth-demo-nota");
     if (!n) return;
     if (!nube()) n.textContent = "El acceso no está disponible. Inténtalo más tarde.";
+    else if (googleApagado === null) n.textContent = "Entra con Google o con correo y contraseña. El apodo es el nombre del ranking, nunca el correo.";
     else if (googleApagado) n.textContent = "Entra con correo y contraseña. Google se activará cuando esté configurado. El apodo es el nombre del ranking, nunca el correo.";
     else n.textContent = "Puedes entrar con Google o con correo. El apodo es el nombre del ranking, nunca el correo.";
   }
