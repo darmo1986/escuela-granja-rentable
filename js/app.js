@@ -52,8 +52,10 @@ function mountAdsterraPilot(){
   const tag=document.createElement('script');
   tag.src='https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8';
   tag.async=false;
-  tag.addEventListener('error',()=>{
-    if(!box.isConnected)return;
+  // Reserva propia si el anuncio no llega: mismo banner que si falla la carga.
+  function mostrarReserva(){
+    if(!box.isConnected || box.dataset.reserva)return;
+    box.dataset.reserva='1';
     label.textContent='Promoción de Granja Rentable';
     const link=document.createElement('a'),image=document.createElement('img');
     link.href=root+'ebooks/';
@@ -62,6 +64,15 @@ function mountAdsterraPilot(){
     image.style.cssText='display:block;width:100%;height:auto';
     link.append(image);
     box.append(link);
+  }
+  tag.addEventListener('error',mostrarReserva);
+  tag.addEventListener('load',()=>{
+    // El script puede cargar sin traer creatividad (sin inventario).
+    // Si a los 10 s no hay nada renderizado, se muestra la reserva.
+    setTimeout(()=>{
+      if(!box.isConnected || box.dataset.reserva)return;
+      if(!box.querySelector('iframe,img'))mostrarReserva();
+    },10000);
   });
   box.append(tag);
 }
