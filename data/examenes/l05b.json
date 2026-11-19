@@ -1,0 +1,188 @@
+{
+  "leccion": 7,
+  "codigo": "L05B",
+  "titulo": "Gallinas ponedoras (2): producción, huevo, cama, limpieza y plagas",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Cómo se calcula el porcentaje diario de puesta de un lote?",
+      "opciones": [
+        "Huevos recogidos dividido por gallinas en edad de puesta, multiplicado por 100",
+        "Gallinas dividido por bebederos",
+        "Pienso dividido por huevos rotos",
+        "Huevos multiplicados por kilos de pienso"
+      ],
+      "correcta": 0,
+      "explicacion": "Este indicador permite seguir la producción; conviene comparar también promedios semanales."
+    },
+    {
+      "id": 2,
+      "pregunta": "Recoges 8 huevos de 10 gallinas en edad de puesta. ¿Qué porcentaje representa ese día?",
+      "opciones": [
+        "8 %",
+        "80 %",
+        "125 %",
+        "18 %"
+      ],
+      "correcta": 1,
+      "explicacion": "8 dividido entre 10 y multiplicado por 100 equivale al 80 %."
+    },
+    {
+      "id": 3,
+      "pregunta": "Si la puesta baja, ¿qué es prioritario comprobar?",
+      "opciones": [
+        "Agua, alimento, luz, muda, edad, estrés y posibles pérdidas de huevos",
+        "Solo el color de los huevos",
+        "Comprar antibióticos",
+        "Cambiar todas las gallinas sin observarlas"
+      ],
+      "correcta": 0,
+      "explicacion": "Hay muchas causas posibles; primero hay que investigar los cambios reales."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué aporta un pienso completo para ponedoras?",
+      "opciones": [
+        "Una ración equilibrada para esa fase, según su formulación",
+        "La garantía de que cada gallina pondrá dos huevos diarios",
+        "La eliminación de toda enfermedad",
+        "Un sustituto del agua"
+      ],
+      "correcta": 0,
+      "explicacion": "La nutrición equilibrada ayuda a sostener la producción, sin garantizar cifras fijas."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Qué puede afectar a la calidad de la cáscara?",
+      "opciones": [
+        "Nutrición, edad, salud y manejo",
+        "Solo el color de las plumas",
+        "Únicamente el nombre de la raza",
+        "La presencia de un gallo en todos los casos"
+      ],
+      "correcta": 0,
+      "explicacion": "La calidad de la cáscara es multifactorial."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Cómo debe mantenerse un nidal?",
+      "opciones": [
+        "Limpio, seco y con material de cama adecuado",
+        "Húmedo para enfriar los huevos",
+        "Sin revisión durante semanas",
+        "Como almacén de pienso"
+      ],
+      "correcta": 0,
+      "explicacion": "La higiene del nido reduce suciedad y roturas."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Qué haces si aparecen muchos huevos rotos?",
+      "opciones": [
+        "Los ignoras",
+        "Revisas nidales, cama, frecuencia de recogida y manejo de las aves",
+        "Dejas de ofrecer agua",
+        "Abres todos los nidales al exterior"
+      ],
+      "correcta": 1,
+      "explicacion": "La rotura puede depender del estado del nido, del manejo y de la cáscara."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Qué problema puede indicar una cama apelmazada y húmeda?",
+      "opciones": [
+        "Falta de humedad",
+        "Riesgo de mala higiene y aumento de gases; hay que localizar la causa",
+        "Que el gallinero está perfecto",
+        "Que debe mojarse aún más"
+      ],
+      "correcta": 1,
+      "explicacion": "Una cama seca y manejable es importante para la salud de las aves."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Cuál es el orden básico antes de desinfectar el gallinero entre lotes?",
+      "opciones": [
+        "Aplicar desinfectante sobre estiércol",
+        "Retirar suciedad y materia orgánica, limpiar y después usar un desinfectante autorizado según etiqueta",
+        "Perfumar sin limpiar",
+        "Dejar solo las ventanas abiertas"
+      ],
+      "correcta": 1,
+      "explicacion": "La suciedad reduce la eficacia de la desinfección y debe retirarse previamente."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Qué medida preventiva ayuda a controlar roedores?",
+      "opciones": [
+        "Dejar pienso derramado",
+        "Guardar alimento cerrado, retirar restos y sellar puntos de entrada",
+        "Abrir agujeros en paredes",
+        "Guardar basura junto a comederos"
+      ],
+      "correcta": 1,
+      "explicacion": "El control comienza por reducir alimento y refugios disponibles para plagas."
+    },
+    {
+      "id": 11,
+      "pregunta": "Si se requiere control químico de plagas, ¿qué corresponde hacer?",
+      "opciones": [
+        "Usar remedios tóxicos improvisados",
+        "Seguir la normativa y el etiquetado de productos autorizados, con asesoramiento cuando proceda",
+        "Mezclar veneno con pienso para las aves",
+        "Esparcir cebos al alcance de niños y animales"
+      ],
+      "correcta": 1,
+      "explicacion": "Nunca deben exponerse aves, personas ni otros animales a productos peligrosos."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Cómo puede afectar el calor intenso a las ponedoras?",
+      "opciones": [
+        "Puede reducir consumo y puesta y aumentar el estrés térmico",
+        "Siempre mejora la calidad de la cáscara",
+        "Elimina la necesidad de sombra",
+        "Garantiza más huevos"
+      ],
+      "correcta": 0,
+      "explicacion": "El calor requiere agua fresca, sombra y ventilación apropiada."
+    },
+    {
+      "id": 13,
+      "pregunta": "Durante la muda, ¿qué puede suceder con la producción de huevos?",
+      "opciones": [
+        "Puede disminuir o interrumpirse temporalmente",
+        "Siempre se duplica",
+        "No cambia nunca",
+        "Solo aumenta el tamaño del huevo"
+      ],
+      "correcta": 0,
+      "explicacion": "Muchas gallinas destinan recursos a renovar el plumaje y reducen su puesta."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Qué registro ayuda a detectar problemas de producción?",
+      "opciones": [
+        "Huevos diarios, aves en edad de puesta, consumo y observaciones del lote",
+        "Solo colores de las anillas",
+        "Solo el calendario de festivos",
+        "Únicamente el precio del gallinero"
+      ],
+      "correcta": 0,
+      "explicacion": "Los datos permiten detectar tendencias y revisar causas concretas."
+    },
+    {
+      "id": 15,
+      "pregunta": "Una caída brusca de puesta se acompaña de dificultad respiratoria y mortalidad. ¿Qué haces?",
+      "opciones": [
+        "Esperar una semana sin avisar",
+        "Consultar urgentemente al veterinario y avisar a los servicios oficiales si se sospecha una enfermedad de declaración obligatoria",
+        "Medicar todo el lote por tu cuenta",
+        "Vender las aves enfermas"
+      ],
+      "correcta": 1,
+      "explicacion": "Los signos graves requieren intervención veterinaria y pueden activar obligaciones de notificación."
+    }
+  ]
+}
