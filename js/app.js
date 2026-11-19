@@ -20,23 +20,7 @@ function ampliacionDiscreta(){
   return !!(window.ads && window.ads.ampliacionDiscreta === true &&
     ['/criaderos.html','/tienda/','/tienda/index.html','/blog/','/blog/index.html'].includes(location.pathname));
 }
-function mountAdsterraPilot(){
-  if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal() || document.querySelector('[data-adsterra-pilot]'))return;
-  let accepted=false;
-  try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
-  if(!accepted)return;
-  const extended=ampliacionDiscreta() && document.querySelector('main [data-publicidad-discreta]');
-  const board=!extended && document.querySelector('[data-tablon-publicidad]');
-  const tercio=!extended && !board && document.querySelector('[data-anuncio-tercio]');
-  const home=document.querySelector('main.home-renovada');
-  const article=document.querySelector('main .post-body');
-  const tools=home && home.querySelector('.gr-tools');
-  const primero=home && home.querySelector('.gr-calculator-intro');
-  const target=extended || board || tercio || primero || tools || home || article;
-  if(!target)return;
-  if(extended && extended.getBoundingClientRect().width < 300)return;
-  if(window.__grAdTagStarted)return;
-  window.__grAdTagStarted=true;
+function cajaAdsterra(){
   const box=document.createElement('aside');
   box.dataset.adsterraPilot='1';
   box.setAttribute('aria-label','Publicidad');
@@ -45,8 +29,6 @@ function mountAdsterraPilot(){
   label.textContent='Publicidad';
   label.style.cssText='margin:0 0 4px;font-size:12px';
   box.append(label);
-  const lugar=(target===board||target===primero||target===tools)?'afterend':'beforeend';
-  target.insertAdjacentElement(lugar,box);
   // Reuse the placement supplied by Publishers. The vendor renders its own creative.
   window.atOptions={key:'4c10efc097372233b52ed4f05e0a6ab8',format:'iframe',height:250,width:300,params:{}};
   const tag=document.createElement('script');
@@ -64,6 +46,38 @@ function mountAdsterraPilot(){
     box.append(link);
   });
   box.append(tag);
+  return box;
+}
+function mountAdsterraPilot(){
+  if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal() || document.querySelector('[data-adsterra-pilot]'))return;
+  let accepted=false;
+  try{accepted=localStorage.getItem(CK)==='si';}catch(e){}
+  if(!accepted)return;
+  const extended=ampliacionDiscreta() && document.querySelector('main [data-publicidad-discreta]');
+  const board=!extended && document.querySelector('[data-tablon-publicidad]');
+  const tercio=!extended && !board && document.querySelector('[data-anuncio-tercio]');
+  const home=document.querySelector('main.home-renovada');
+  const article=document.querySelector('main .post-body');
+  const tools=home && home.querySelector('.gr-tools');
+  const primero=home && home.querySelector('.gr-calculator-intro');
+  const target=extended || board || tercio || primero || tools || home || article;
+  if(!target)return;
+  if(extended && extended.getBoundingClientRect().width < 300)return;
+  if(window.__grAdTagStarted)return;
+  window.__grAdTagStarted=true;
+  const lugar=(target===board||target===primero||target===tools)?'afterend':'beforeend';
+  target.insertAdjacentElement(lugar,cajaAdsterra());
+  /* Hueco del segundo banner (fin de artículo): reservado con
+     identificador distinto. Sin código de Adsterra hasta que pablo
+     pase el key del nuevo placement. PEGA_AQUI_ADSTERRA_FIN */
+  const fin=article && article.querySelector('.post-relacionados, .post-cta, footer');
+  if(fin && fin!==target && !fin.contains(target)){
+    const hueco=document.createElement('aside');
+    hueco.dataset.adSlot='fin-articulo';
+    hueco.setAttribute('aria-label','Publicidad');
+    hueco.style.cssText='margin:12px auto;width:300px;max-width:100%;text-align:center;box-sizing:border-box;position:static';
+    fin.insertAdjacentElement('beforebegin',hueco);
+  }
 }
 /* Se comprueba Premium antes de montar y antes de cargar el anuncio. */
 function esPremiumLocal(){
