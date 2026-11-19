@@ -24,8 +24,8 @@ SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
-VERSION = "20261114tienda"
-VERSION_BUSCADOR = "20261114tienda"
+VERSION = "20261119tienda24"
+VERSION_BUSCADOR = "20261119tienda24"
 
 
 def esc(texto):
