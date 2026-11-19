@@ -193,13 +193,15 @@ def armar(filas):
             n += 1
         slugs[slug] = asin
         sid, seccion = secciones[cat_csv]
-        foto = f"img/productos/amazon/{asin}.webp"
-        referencia = f"img/productos/referencias/{asin}.webp"
         imagen = texto.get("imagen") or ""
-        if (RAIZ / foto).is_file():
-            imagen = foto
-        elif (RAIZ / referencia).is_file():
-            imagen = referencia
+        if imagen.startswith("img/productos/amazon/") or imagen.startswith(
+            "img/productos/referencias/"
+        ):
+            raise SystemExit(
+                f"Imagen comercial prohibida en {asin}: {imagen} "
+                "(las fotos de Amazon no pueden alojarse en la web; "
+                "usa una ilustración propia en img/productos/)"
+            )
         productos.append({
             "asin": asin,
             "slug": slug,
