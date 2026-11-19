@@ -24,6 +24,14 @@ SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
+# Los 14 productos prioritarios de pablo (fichas-seo/productos_prioritarios_3_ventas.md):
+# concentran el esfuerzo editorial para las 3 ventas cualificadas. El orden es
+# el de la lista: agua, comida, incubación, calor, protección y puesta.
+PRIORITARIOS = [
+    "B00P9EJLSO", "B016AFYT4Q", "B00TXX20GW", "B07MQW8MQK", "B0793HHZ1L",
+    "B01N56NGS8", "B00D458L9K", "B07NJZM1F5", "B0CP83KPD2", "B0BL3TQDJN",
+    "B0DLTMQJ77", "B01MFE2ASJ", "B0FJ7RQ6RB", "B000HHQDPM",
+]
 VERSION = "20261119tienda24"
 VERSION_BUSCADOR = "20261119tienda24"
 
@@ -335,6 +343,42 @@ def tarjeta(p, raiz, nivel):
 </article>'''
 
 
+def tarjeta_destacada(p, raiz):
+    """La misma tarjeta, pero fuera del buscador: sin data-t-card/data-q.
+
+    El bloque destacado es editorial y queda siempre visible arriba; si llevara
+    data-t-card, tienda.js lo contaría (169 de 183) y lo filtraría con el resto.
+    """
+    href = f"{raiz}tienda/p/{p['slug']}/"
+    cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
+    foto = figura_imagen(p, raiz)
+    foto = f"{foto}\n" if foto else ""
+    return f'''<article class="t-card" data-t-destacado data-sec="{esc(p["seccion_id"])}">
+<div class="t-marca"><span>{esc(p["categoria"])}</span></div>
+{foto}<h3><a href="{href}">{esc(p["titulo"])}</a></h3>
+{f'<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>' if p["recomendacion"] else ""}
+<div class="t-acciones"><a class="btn sec t-detalle" href="{href}">Ver ficha y criterios<span class="sr">: {esc(p["titulo"])}</span></a>
+{boton_amazon(p)}</div>
+<p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
+</article>'''
+
+
+def bloque_prioritarios(productos, raiz):
+    """Bloque destacado con los 14 productos prioritarios, en el orden de la lista."""
+    por_asin = {p["asin"]: p for p in productos}
+    faltan = [asin for asin in PRIORITARIOS if asin not in por_asin]
+    if faltan:
+        raise SystemExit(f"Prioritarios sin ficha en el catálogo: {', '.join(faltan)}")
+    cards = "\n".join(tarjeta_destacada(por_asin[asin], raiz) for asin in PRIORITARIOS)
+    return f'''<section class="t-seccion t-destacados" id="destacados" aria-labelledby="destacados-titulo">
+<h2 id="destacados-titulo">Los 14 imprescindibles para empezar</h2>
+<p class="t-nota">Agua, comida, incubación, calor, protección y puesta: lo que de verdad necesita un gallinero, con su ficha y sus criterios. El precio se ve en Amazon.</p>
+<div class="t-grid">
+{cards}
+</div>
+</section>'''
+
+
 def migas(items):
     datos = {
         "@context": "https://schema.org",
@@ -531,6 +575,7 @@ def cuerpo_portada(productos, raiz):
 <nav class="t-rutas" aria-label="Familias de material">
 {familias}
 </nav>
+{bloque_prioritarios(productos, raiz)}
 <section id="amazon" aria-labelledby="amazon-titulo">
 <h2 id="amazon-titulo">Encuentra y compara material</h2>
 <p class="t-nota">{len(productos)} referencias con ficha. Las imágenes marcadas como ilustración no acreditan el aspecto ni los accesorios de la variante vendida.</p>
@@ -549,6 +594,7 @@ def cuerpo_portada(productos, raiz):
 <div class="t-vacio" data-t-vacio hidden><h3>No encontramos esa combinación</h3><p>Prueba una palabra más general o cambia de categoría.</p><button type="button" class="btn sec" data-t-ampliar hidden>Buscar en toda la tienda</button></div>
 {"".join(bloques)}
 </section>
+<div data-publicidad-discreta></div>
 <aside class="t-ayuda"><h2>Primero resuelve la duda de manejo</h2><p>Antes de elegir equipo puedes consultar las <a href="{raiz}blog/">guías gratuitas</a> y las <a href="{raiz}calculadoras.html">calculadoras</a>. Si prefieres una guía en PDF, consulta el contenido y el precio de los <a href="{raiz}ebooks/">ebooks propios</a>.</p></aside>'''
 
 
