@@ -3,6 +3,16 @@ const root=document.body.dataset.root||'';
 const PK='gr_progreso';
 const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p!=='object'||Array.isArray(p))return{};const clean={};Object.keys(p).forEach(id=>{const item=p[id];if(item&&typeof item==='object'&&!Array.isArray(item))clean[id]=item;});return clean;}catch(e){return{}}};
 const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
+function esPremiumLocal(){
+  if (typeof window.GR_esPremium === 'function' && window.GR_esPremium()) return true;
+  var u = window.GRAuth && window.GRAuth.usuarioActual;
+  if (u && u.premium) {
+    var fh = u.premiumHasta || u.premium_hasta;
+    if (fh && Date.parse(fh) > Date.now()) return true;
+  }
+  return false;
+}
+window.esPremiumLocal = esPremiumLocal;
 /* Publicidad Adsterra retirada: no cargar scripts, iframes ni solicitudes de consentimiento. */
 document.querySelectorAll('[data-adsterra-pilot],.ad-inline,[data-ad-slot]').forEach(el=>el.remove());
 document.documentElement.classList.remove('ad-ok');
