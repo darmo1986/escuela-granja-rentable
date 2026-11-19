@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/reposicion-descarte-tras-muda.webp"
 imagen_og: "img/blog/reposicion-descarte-tras-muda-og.webp"
 imagen_alt: "Tres gallinas marrones caminando y picoteando en un prado verde al aire libre"
+relacionados:
+  - micoplasmosis-aviar
+  - viruela-aviar-gallinas
+  - pullorosis-tifosis-salmonela
 ---
 
 Entras al gallinero por la mañana y encuentras varias gallinas muertas que la tarde anterior parecían sanas. El cólera aviar es una de las causas posibles de ese susto, junto con la [gripe aviar](https://granjarentable.com/blog/gripe-aviar-gallinas.html) y la [enfermedad de Newcastle](https://granjarentable.com/blog/enfermedad-newcastle-gallinas.html). Su nombre asusta, pero no tiene nada que ver con el cólera de las personas: lo causa otra bacteria.

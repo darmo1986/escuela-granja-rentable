@@ -12,6 +12,8 @@ actualizado: 2026-11-13
 fuentes:
   - "University of Maryland Extension: Housing Requirements — https://extension.umd.edu/resource/housing-requirements"
   - "Meyer Hatchery: Predator Proofing Your Coop and Run — https://meyerhatchery.zendesk.com/hc/en-us/articles/29414283183885-Predator-Proofing-Your-Coop-and-Run"
+relacionados:
+  - empezar-con-10-gallinas-ponedoras
 ---
 
 ## Empieza por localizar el punto débil

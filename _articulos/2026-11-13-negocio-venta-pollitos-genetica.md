@@ -12,11 +12,10 @@ imagen_alt: "Pollitos Wyandotte en una criadora junto a comedero y bebedero"
 imagen_credito: "Foto: Frank Vincentz, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kluse_-_Wyandotten_ssg_5_Tage_03_ies.jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "negocio-venta-huevos-fertiles"
-  - "negocio-venta-pollitas-recria"
-  - "negocio-incubacion-por-encargo"
+  - negocio-venta-huevos-consumo
+  - negocio-venta-huevos-fertiles
+  - negocio-kits-gallineros
 fuentes:
-  - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---
 
 Vender pollitos de genética consiste en ofrecer aves de una procedencia identificada y un objetivo de cría definido. El cliente puede buscar conservar una raza, formar un lote reproductor o producir huevos. Para cobrar por esa diferencia necesitas explicar qué entregas y demostrar lo que afirmas sobre el origen.

@@ -12,9 +12,9 @@ imagen_alt: "Incubadora pequeña con ventanas y huevos visibles en su interior"
 imagen_credito: "Foto: Alex Ford from Raleigh, NC, USA, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Small_Chicken_Egg_Incubator.jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "negocio-venta-huevos-fertiles"
-  - "negocio-venta-pollitos-genetica"
-  - "como-elegir-incubadora"
+  - negocio-venta-huevos-fertiles
+  - negocio-venta-huevos-consumo
+  - negocio-talleres-visitas-gallinas
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---

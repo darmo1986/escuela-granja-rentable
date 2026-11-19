@@ -16,6 +16,10 @@ guia: empezar
 fuentes:
   - "Fichas técnicas de puesta de las principales estirpes ponedoras comerciales"
   - "Lección L01 del curso gratis de Granja Rentable"
+relacionados:
+  - muda-gallinas-otono
+  - cuanto-cuesta-producir-docena-huevos
+  - precio-huevo-5-negocios
 ---
 
 ## La respuesta corta

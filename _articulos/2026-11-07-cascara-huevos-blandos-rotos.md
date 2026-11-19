@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/cascara-huevos-blandos-rotos.webp"
 imagen_og: "img/blog/cascara-huevos-blandos-rotos-og.webp"
 imagen_alt: "Gallina marrón junto a huevos con cáscara firme en un nidal limpio, fondo verde desenfocado"
+relacionados:
+  - por-que-mis-gallinas-no-ponen-huevos
+  - precio-huevo-5-negocios
+  - fotoperiodo-gallinas-ponedoras
 ---
 
 ## Un huevo blando es un mensaje

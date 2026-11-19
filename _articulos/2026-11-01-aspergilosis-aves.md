@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/renovar-lotes-ponedoras-pollos-engorde.webp"
 imagen_og: "img/blog/renovar-lotes-ponedoras-pollos-engorde-og.webp"
 imagen_alt: "Gallinero de madera vacío con cama de paja limpia, guantes y pulverizador de limpieza junto a la puerta"
+relacionados:
+  - colibacilosis-aves
+  - pullorosis-tifosis-salmonela
+  - viruela-aviar-gallinas
 ---
 
 Pollitos que respiran con la boca abierta y van muriendo uno a uno en la primera semana, sin que nadie más del corral enferme. Una de las causas posibles es la aspergilosis, una infección por hongos que no se contagia de un ave a otra: la provoca el ambiente. Por eso se previene casi por completo cuidando la cama, el pienso y la ventilación.

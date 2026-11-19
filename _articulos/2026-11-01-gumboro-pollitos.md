@@ -9,6 +9,10 @@ imagen: "img/blog/gumboro-pollitos.webp"
 imagen_og: "img/blog/gumboro-pollitos-og.webp"
 imagen_alt: "Pollitos de engorde de pocos días sobre la viruta de una criadora, sin medicamentos a la vista"
 imagen_credito: "Foto: Earthdirt, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cornish_Rock_broiler_chicks.JPG) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - bronquitis-infecciosa-gallinas
+  - micoplasmosis-aviar
+  - laringotraqueitis-gallinas
 ---
 
 La enfermedad de Gumboro, o bursitis infecciosa, es un problema típico de las primeras semanas de vida. A veces se ve claramente: pollitos postrados, con diarrea acuosa y plumas sucias alrededor de la cloaca. Otras veces no se ve nada, pero el lote queda con las defensas bajas y empieza a enfermar de todo. Por eso conviene conocerla aunque nunca la hayas oído nombrar.

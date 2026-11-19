@@ -12,9 +12,9 @@ imagen_alt: "Gallo de plumaje rojizo junto a dos gallinas blancas en exterior"
 imagen_credito: "Foto: SimonWaldherr, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster_and_Hen_04.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "gallinas-por-gallo"
-  - "elegir-gallo-reproductor"
-  - "introducir-gallo-nuevo"
+  - elegir-gallo-reproductor
+  - gallinas-por-gallo
+  - por-que-canta-gallo
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

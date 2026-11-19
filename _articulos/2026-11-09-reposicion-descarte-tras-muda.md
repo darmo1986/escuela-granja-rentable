@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/reposicion-descarte-tras-muda.webp"
 imagen_og: "img/blog/reposicion-descarte-tras-muda-og.webp"
 imagen_alt: "Gallinas marrones con plumaje nuevo tras la muda en un patio de granja, fondo verde desenfocado"
+relacionados:
+  - precio-huevo-5-negocios
+  - muda-gallinas-otono
+  - por-que-mis-gallinas-no-ponen-huevos
 ---
 
 ## Después de la muda, toca decidir

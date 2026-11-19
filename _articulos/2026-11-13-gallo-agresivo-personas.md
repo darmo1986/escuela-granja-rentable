@@ -12,9 +12,9 @@ imagen_alt: "Primer plano de la cabeza y cresta de un gallo, imagen ilustrativa"
 imagen_credito: "Foto: Clément Bardot, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster_portrait,_France.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen ilustrativa: no documenta una agresión."
 guia: "empezar"
 relacionados:
-  - "dos-gallos-gallinero"
-  - "gallo-revision-salud"
-  - "introducir-gallo-nuevo"
+  - por-que-canta-gallo
+  - introducir-gallo-nuevo
+  - gallo-revision-salud
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

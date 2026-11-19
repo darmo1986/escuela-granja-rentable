@@ -9,6 +9,10 @@ imagen: "img/blog/alimento-casero-vs-balanceado-foto.webp"
 imagen_og: "img/blog/alimento-casero-vs-balanceado-foto-og.webp"
 imagen_alt: "Gallinas de varios colores picando maíz y grano suelto en el suelo del corral"
 imagen_credito: "Foto: Rbreidbrown, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Backyard_heritage_chickens_eating_kitchen_food_waste.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - gallinas-solo-maiz
+  - calcio-grit-gallinas-diferencias
+  - alimentacion-gallinas-ponedoras
 ---
 
 ## La pregunta que todos se hacen

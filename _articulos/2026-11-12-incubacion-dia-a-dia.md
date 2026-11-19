@@ -11,6 +11,10 @@ imagen_alt: "Huevos marcados a mano con círculos y puntos sobre las varillas de
 imagen_credito: "Foto: Santeri Viinamäki, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Eggs_in_incubator.jpg) Imagen adaptada de tamaño y encuadre."
 actualizado: 2026-11-13
 autor: "Equipo editorial de Granja Rentable"
+relacionados:
+  - temperatura-humedad-incubar
+  - por-que-no-nacen-errores-incubacion
+  - ovoscopia-huevos-fertilizados
 ---
 
 Una tanda necesita un calendario compartido por sus huevos y un registro de lo que ocurre. Para gallina se utiliza como referencia un periodo de unos 21 días, pero la fecha no prueba por sí sola la viabilidad de un huevo ni garantiza cuándo nacerá un pollito.

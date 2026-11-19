@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/corral-anti-depredadores.webp"
 imagen_og: "img/blog/corral-anti-depredadores-og.webp"
 imagen_alt: "Gallina marrón detrás de una malla metálica de corral, con vegetación verde al fondo"
+relacionados:
+  - pullorosis-tifosis-salmonela
+  - micoplasmosis-aviar
+  - laringotraqueitis-gallinas
 ---
 
 La gripe aviar (o influenza aviar) es la enfermedad de las aves que más preocupa hoy en granjas grandes y pequeñas. No tiene cura en el gallinero, se contagia con facilidad y obliga a avisar a la autoridad en cuanto se sospecha. La buena noticia es que la bioseguridad de todos los días reduce mucho el riesgo, también en un corral de diez gallinas.

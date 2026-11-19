@@ -10,6 +10,10 @@ imagen_og: img/blog/renovar-lotes-ponedoras-pollos-engorde-og.webp
 imagen_alt: "Gallinas ponedoras jóvenes en granja, lote renovado"
 actualizado: 2026-11-13
 autor: "Equipo editorial de Granja Rentable"
+relacionados:
+  - fotoperiodo-gallinas-ponedoras
+  - empezar-con-10-gallinas-ponedoras
+  - reposicion-descarte-tras-muda
 ---
 
 Renovar un lote implica decidir qué hacer con las aves actuales, preparar el alojamiento y financiar la entrada del siguiente grupo. La edad por sí sola no responde esas tres preguntas. Tampoco un porcentaje de puesta o un margen sobre el pienso permiten conocer el resultado completo de una granja.

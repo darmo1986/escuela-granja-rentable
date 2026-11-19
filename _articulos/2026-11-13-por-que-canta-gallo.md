@@ -12,11 +12,10 @@ imagen_alt: "Gallo de plumaje oscuro en una zona exterior junto a árboles"
 imagen_credito: "Foto: Ken Lund from Reno, Nevada, USA, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster,_Mount_Vernon,_Near_Alexandria,_Virginia_(2731027384).jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "gallo-necesario-huevos"
-  - "dos-gallos-gallinero"
-  - "gallo-revision-salud"
+  - introducir-gallo-nuevo
+  - gallo-revision-salud
+  - gallo-agresivo-personas
 fuentes:
-  - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---
 
 El canto del gallo no depende únicamente de que vea salir el sol. La investigación de Shimmura y Yoshimura, explicada por la [Universidad de Nagoya](https://en.nagoya-u.ac.jp/news/articles/aip_highlights_042/), mostró la intervención de un reloj biológico interno. Oscurecer un recinto no permite prometer que el animal dejará de cantar.

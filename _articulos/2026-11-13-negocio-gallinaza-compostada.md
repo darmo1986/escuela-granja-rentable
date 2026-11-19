@@ -12,9 +12,9 @@ imagen_alt: "Pila de compost en una zona exterior de trabajo"
 imagen_credito: "Foto: Gossipguy, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Compost_heap.jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen de contexto: no representa un lote de gallinaza analizado."
 guia: "empezar"
 relacionados:
-  - "negocio-venta-huevos-consumo"
-  - "negocio-kits-gallineros"
-  - "registros-granja-avicola"
+  - negocio-venta-pollitas-recria
+  - negocio-gallos-exposicion
+  - negocio-venta-huevos-fertiles
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---

@@ -10,6 +10,8 @@ imagen_og: "img/blog/construir-gallinero-casero-og.webp"
 imagen_alt: "Gallinero de madera en construcción en patio de granja"
 actualizado: 2026-11-13
 autor: "Equipo editorial de Granja Rentable"
+relacionados:
+  - errores-pollitos-al-nacer
 ---
 
 Construir un gallinero empieza por decidir cómo lo vas a utilizar y limpiar. Esta guía te ayuda a preparar un croquis, calcular materiales y comprobar el montaje. No contiene un proyecto estructural ni un plano universal para cualquier número de aves.

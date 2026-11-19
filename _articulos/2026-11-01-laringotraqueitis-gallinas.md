@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/fotoperiodo-ponedoras.webp"
 imagen_og: "img/blog/fotoperiodo-ponedoras-og.webp"
 imagen_alt: "Gallinas ponedoras dentro de un gallinero de madera iluminado por la luz de una ventana"
+relacionados:
+  - bronquitis-infecciosa-gallinas
+  - gripe-aviar-gallinas
+  - gumboro-pollitos
 ---
 
 Gallinas que estiran el cuello para respirar, boquean, tosen con fuerza y dejan salpicaduras de moco con sangre en las paredes. Es el cuadro grave de la laringotraqueitis infecciosa, una enfermedad respiratoria vírica que puede matar por asfixia y que deja a las aves recuperadas como portadoras para siempre.

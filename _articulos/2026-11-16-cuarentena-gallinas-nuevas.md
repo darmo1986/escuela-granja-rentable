@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/cuarentena-gallinas-nuevas.webp"
 imagen_og: "img/blog/cuarentena-gallinas-nuevas-og.webp"
 imagen_alt: "Gallina marrón en primer plano a la derecha en un corral limpio y separado de granja, fondo verde desenfocado"
+relacionados:
+  - picaje-ponedoras
+  - enfermedades-comunes-gallinas
+  - bioseguridad-10-puntos-granja
 ---
 
 ## La enfermedad entra con el ave nueva

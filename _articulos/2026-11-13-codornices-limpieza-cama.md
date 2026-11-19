@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-limpieza-cama-og.webp"
 imagen_alt: "Dos codornices japonesas de distinto plumaje junto a una zona cubierta"
 guia: "empezar"
 relacionados:
-  - "codornices-agua-bebederos"
-  - "codornices-cuarentena-bioseguridad"
-  - "codornices-alojamiento-seguro"
+  - codornices-ponedoras-cuidados
+  - codornices-agua-bebederos
+  - codornices-senales-enfermedad
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: LNAl'ornitho, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cailles_du_japon.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."

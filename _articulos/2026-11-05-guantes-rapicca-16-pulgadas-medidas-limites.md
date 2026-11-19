@@ -9,6 +9,9 @@ noindex: true
 imagen: "img/blog/rapicca-guantes-16-pulgadas-revision.webp"
 imagen_og: "img/blog/rapicca-guantes-16-pulgadas-revision-og.webp"
 imagen_alt: "Guantes de manejo de animales RAPICCA de 16 pulgadas"
+relacionados:
+  - viruela-aviar-gallinas
+  - pullorosis-tifosis-salmonela
 ---
 
 ## Guantes RAPICCA de 16 pulgadas: medidas y límites

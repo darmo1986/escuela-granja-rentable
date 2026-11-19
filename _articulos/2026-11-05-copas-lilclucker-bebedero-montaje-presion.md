@@ -9,6 +9,8 @@ noindex: true
 imagen: "img/blog/lilclucker-bebedero-automatico-vasos-ponedoras.webp"
 imagen_og: "img/blog/lilclucker-bebedero-automatico-vasos-ponedoras-og.webp"
 imagen_alt: "Copas automáticas naranjas Lil'Clucker para bebedero de gallinas"
+relacionados:
+  - empezar-con-10-gallinas-ponedoras
 ---
 
 ## Copas Lil'Clucker: montaje y presión de agua

@@ -9,6 +9,10 @@ imagen: "img/blog/alimentacion-gallos-adultos.webp"
 imagen_og: "img/blog/alimentacion-gallos-adultos-og.webp"
 imagen_alt: "Gallo adulto de plumaje cobrizo y cola oscura, con la cabeza baja, comiendo grano en el suelo del corral"
 imagen_credito: "Foto: EEIM, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pollo_Gallo_comiendo.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - pienso-iniciador-pollitos
+  - alimentacion-gallinas-por-etapas
+  - alimentacion-gallinas-ponedoras
 ---
 
 Un gallo adulto no produce huevos y tampoco tiene las mismas necesidades que un pollito en crecimiento. Para elegir su alimento, empieza por su edad, su actividad y el grupo con el que vive. Comprar el saco con más proteína no resuelve por sí solo la decisión.

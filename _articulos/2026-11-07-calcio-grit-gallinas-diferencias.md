@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/alimento-casero-vs-balanceado.webp"
 imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
 imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
+relacionados:
+  - alimento-casero-vs-balanceado
+  - alimentacion-gallinas-ponedoras
+  - alimentacion-gallinas-por-etapas
 ---
 
 La conchilla de ostra y las pequeñas piedras para la molleja pueden parecer productos parecidos, pero no tienen la misma función. Confundirlos lleva a compras innecesarias y a creer que cualquier material triturado sirve para resolver una dieta desequilibrada.

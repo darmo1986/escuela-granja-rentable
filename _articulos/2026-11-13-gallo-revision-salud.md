@@ -12,9 +12,9 @@ imagen_alt: "Gallo doméstico acicalándose, sin diagnóstico clínico represent
 imagen_credito: "Foto: Julian Lupyan, [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster_Preening_in_Key_West,_Florida.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada. No representa un caso clínico diagnosticado."
 guia: "empezar"
 relacionados:
-  - "gallos-calor-verano"
-  - "gallos-frio-invierno"
-  - "introducir-gallo-nuevo"
+  - dos-gallos-gallinero
+  - por-que-canta-gallo
+  - introducir-gallo-nuevo
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/lombrices-gallinas.webp"
 imagen_og: "img/blog/lombrices-gallinas-og.webp"
 imagen_alt: "Gallina marrón en primer plano a la derecha pastoreando en hierba verde de granja, fondo verde desenfocado"
+relacionados:
+  - problemas-gallinero-picaje-huevos-rotos-humedad
+  - enfermedades-comunes-gallinas
+  - colera-aviar-gallinas
 ---
 
 ## Un problema invisible hasta que ya pesa

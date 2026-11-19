@@ -9,6 +9,9 @@ noindex: true
 imagen: "img/blog/brinsea-ecoglow-safety-600-opinion.webp"
 imagen_og: "img/blog/brinsea-ecoglow-safety-600-opinion-og.webp"
 imagen_alt: "Placa de calor Brinsea EcoGlow Safety 600 para pollitos"
+relacionados:
+  - criar-pollitos-30-dias
+  - errores-pollitos-al-nacer
 ---
 
 ## Brinsea EcoGlow 600: placa de calor para pollitos

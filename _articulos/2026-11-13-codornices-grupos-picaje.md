@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-grupos-picaje-og.webp"
 imagen_alt: "Codornices japonesas de plumaje claro junto a un recipiente de alimento"
 guia: "empezar"
 relacionados:
-  - "codornices-alojamiento-seguro"
-  - "codornices-cuarentena-bioseguridad"
-  - "codornices-senales-enfermedad"
+  - codornices-alojamiento-seguro
+  - criar-codornices-desde-cero
+  - codornices-senales-enfermedad
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: LNAl'ornitho, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cailles_du_japon_isabelle.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."

@@ -15,6 +15,10 @@ red: ""
 guia: incubadora
 fuentes:
   - "Lección L03 de Granja Rentable (cita a la MSU y a Cobb)"
+relacionados:
+  - ovoscopia-huevos-fertilizados
+  - como-elegir-incubadora
+  - problemas-gallinero-picaje-huevos-rotos-humedad
 ---
 
 Este archivo es un ejemplo para probar el generador. No está publicado.

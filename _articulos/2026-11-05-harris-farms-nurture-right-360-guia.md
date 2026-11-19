@@ -9,6 +9,9 @@ noindex: true
 imagen: "img/blog/harris-farms-nurture-right-360-incubadora.webp"
 imagen_og: "img/blog/harris-farms-nurture-right-360-incubadora-og.webp"
 imagen_alt: "Incubadora Harris Farms Nurture Right 360 con ventana de visión panorámica y volteo automático"
+relacionados:
+  - por-que-no-nacen-errores-incubacion
+  - como-elegir-incubadora
 ---
 
 ## Harris Farms Nurture Right 360: guía de compra

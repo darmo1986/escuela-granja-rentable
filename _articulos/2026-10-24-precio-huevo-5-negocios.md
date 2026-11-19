@@ -16,6 +16,10 @@ guia: empezar
 fuentes:
   - "Lección L01 del curso gratis de Granja Rentable"
   - "Guías de manejo de ponedoras comerciales (Lohmann, Hy-Line, ISA)"
+relacionados:
+  - reposicion-descarte-tras-muda
+  - por-que-mis-gallinas-no-ponen-huevos
+  - cuantas-gallinas-para-30-huevos
 ---
 
 ## La respuesta corta

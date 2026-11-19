@@ -12,9 +12,9 @@ imagen_alt: "Incubadora vista desde arriba como ejemplo de equipo avícola"
 imagen_credito: "Foto: Alex Ford from Raleigh, NC, USA, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Small_Chicken_Egg_Incubator_overhead.jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen de contexto sobre equipo avícola; no corresponde a un kit anunciado."
 guia: "empezar"
 relacionados:
-  - "negocio-talleres-visitas-gallinas"
-  - "negocio-venta-pollitas-recria"
-  - "comedero-para-pollitos-como-elegir"
+  - negocio-talleres-visitas-gallinas
+  - negocio-venta-pollitos-genetica
+  - negocio-venta-huevos-fertiles
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---

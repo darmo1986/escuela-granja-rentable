@@ -12,6 +12,10 @@ imagen_alt: "Pollitos de pocas semanas en la criadora sobre cama limpia y seca, 
 guia: espacio
 fuentes:
   - "Lección L04 del curso de Granja Rentable (salud y prevención en la granja)"
+relacionados:
+  - gumboro-pollitos
+  - enfermedades-comunes-gallinas
+  - colibacilosis-aves
 ---
 
 Es el cuadro que más se repite en las criadoras: pollitos de unas 3 semanas que ayer estaban bien y hoy están **erizados, apáticos y con diarrea con sangre**. En la mayoría de los casos es coccidiosis, una parasitosis intestinal muy común en aves jóvenes.

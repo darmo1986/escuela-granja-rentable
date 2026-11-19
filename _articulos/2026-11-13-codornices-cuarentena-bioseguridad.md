@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-cuarentena-bioseguridad-og.webp"
 imagen_alt: "Codorniz japonesa de plumaje pardo fotografiada de perfil"
 guia: "empezar"
 relacionados:
-  - "codornices-limpieza-cama"
-  - "codornices-grupos-picaje"
-  - "codornices-senales-enfermedad"
+  - codornices-calor-frio-ventilacion
+  - codornices-primeros-siete-dias
+  - codornices-alojamiento-seguro
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: Nekomata obecná, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:K%C5%99epelka_japonsk%C3%A1_-_divok%C3%A9_zbarven%C3%AD.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."

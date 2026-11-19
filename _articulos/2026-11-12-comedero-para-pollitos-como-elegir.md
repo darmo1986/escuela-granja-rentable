@@ -8,6 +8,9 @@ borrador: false
 imagen: img/blog/comedero-para-pollitos-como-elegir.webp
 imagen_og: img/blog/comedero-para-pollitos-como-elegir-og.webp
 imagen_alt: "Pollitos sobre viruta junto a un comedero de depósito blanco y bandeja roja en una criadora"
+relacionados:
+  - reducir-desperdicio-pienso
+  - pienso-iniciador-pollitos
 ---
 
 Un comedero para pollitos debe permitirles alcanzar el alimento y facilitarte la limpieza. Antes de comparar depósitos o accesorios, comprueba cómo quedará instalado en tu criadora. Un recipiente con mucha capacidad puede resultar incómodo si ocupa el paso, se vuelca o cuesta desmontarlo.

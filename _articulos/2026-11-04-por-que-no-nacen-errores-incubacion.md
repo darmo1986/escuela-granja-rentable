@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/por-que-no-nacen-errores-incubacion.webp"
 imagen_og: "img/blog/por-que-no-nacen-errores-incubacion-og.webp"
 imagen_alt: "Gallina marrón junto a una incubadora con huevos en una granja, fondo verde desenfocado"
+relacionados:
+  - temperatura-humedad-incubar
+  - ovoscopia-huevos-fertilizados
+  - incubacion-dia-a-dia
 ---
 
 ## Cuando la incubadora no da lo que esperas

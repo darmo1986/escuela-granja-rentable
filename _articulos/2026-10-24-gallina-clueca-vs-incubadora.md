@@ -17,6 +17,10 @@ fuentes:
   - "Lección L03 del curso gratis de Granja Rentable"
   - "Guías de manejo de incubación de las principales estirpes camperas"
 imagen_credito: "Foto: Cleur Monie, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_broody_hen_on_a_nest.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - como-elegir-incubadora
+  - temperatura-humedad-incubar
+  - por-que-no-nacen-errores-incubacion
 ---
 
 ## La respuesta corta

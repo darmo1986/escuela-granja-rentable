@@ -15,6 +15,10 @@ fuentes:
   - "Oklahoma State University Extension: Backyard Flock Production"
   - "Hendrix Genetics: Lighting program as a tool to manage sexual maturity"
 imagen_credito: "Foto: Happydept, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Agro-oven_led.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - renovar-lotes-ponedoras-pollos-engorde
+  - reposicion-descarte-tras-muda
+  - por-que-mis-gallinas-no-ponen-huevos
 ---
 
 Cuando se acortan los días, las horas de luz pueden influir en la puesta. Para interpretar una bajada, revisa también la edad, la muda, el acceso al agua, el alimento y los cambios de manejo. Anotar lo que ocurre en tu lote ayuda a decidir qué comprobar primero.

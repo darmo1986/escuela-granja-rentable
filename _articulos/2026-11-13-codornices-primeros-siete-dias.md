@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-primeros-siete-dias-og.webp"
 imagen_alt: "Polluelos de codorniz japonesa de una semana sobre cama de papel"
 guia: "empezar"
 relacionados:
-  - "codornices-agua-bebederos"
-  - "codornices-alimentacion-por-etapas"
-  - "codornices-calor-frio-ventilacion"
+  - codornices-alojamiento-seguro
+  - criar-pollitos-30-dias
+  - codornices-ponedoras-cuidados
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: BrokenSphere, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:1_week_old_Japanese_quail_chicks_02.JPG). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."

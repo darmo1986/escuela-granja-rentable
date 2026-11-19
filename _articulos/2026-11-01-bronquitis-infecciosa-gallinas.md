@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/cascara-huevos-blandos-rotos.webp"
 imagen_og: "img/blog/cascara-huevos-blandos-rotos-og.webp"
 imagen_alt: "Huevos marrones en un nido de paja junto a una gallina marrón en primer plano"
+relacionados:
+  - laringotraqueitis-gallinas
+  - gumboro-pollitos
+  - gripe-aviar-gallinas
 ---
 
 Si tus gallinas tosen, la puesta cae de golpe y empiezan a salir huevos arrugados, de cáscara fina o con la clara aguada, la bronquitis infecciosa es una de las primeras sospechas. Es muy contagiosa, no tiene tratamiento específico y puede dejar secuelas para toda la vida en las pollitas que la pasan de jóvenes.
