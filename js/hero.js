@@ -73,7 +73,7 @@
       schedule();
     }).observe(hero);
   }
-  window.addEventListener('gr-pais', function () { show(initial); });
+  window.addEventListener('gr-pais', function () { show(current); });
   show(initial);
 })();
 
