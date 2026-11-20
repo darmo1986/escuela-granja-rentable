@@ -37,11 +37,25 @@
           }
         } catch (_) {}
       }
+      var visual = document.createElement('span');
+      visual.className = 'promo-visual';
       var image = document.createElement('img');
-      image.src = oferta.imagen; image.alt = oferta.alt || '';
+      image.alt = oferta.alt || '';
       image.width = oferta.width || 600; image.height = oferta.height || 469; image.decoding = 'async';
       image.loading = 'lazy';
+      var fallback = document.createElement('span');
+      fallback.className = 'promo-image-fallback';
+      fallback.hidden = true;
+      fallback.textContent = oferta.tipo === 'amazon'
+        ? 'Imagen no disponible. Comprueba la fotografía en Amazon.'
+        : 'Portada no disponible. Consulta la ficha del ebook.';
+      image.addEventListener('error', function () {
+        image.hidden = true;
+        fallback.hidden = false;
+      }, { once: true });
       if (oferta.srcset) { image.srcset = oferta.srcset; image.sizes = oferta.sizes || '(max-width: 600px) 40vw, 280px'; }
+      visual.append(image, fallback);
+      image.src = oferta.imagen;
       var copy = document.createElement('div'); copy.className = 'promo-copy';
       var label = document.createElement('small');
       label.textContent = oferta.tipo === 'amazon' ? 'Amazon.com · Enlace de afiliado' : 'Granja Rentable · Ebook PDF';
@@ -56,7 +70,7 @@
         notice.textContent = 'Podemos recibir una comisión por compras que cumplan los requisitos.';
         copy.append(notice);
       }
-      link.append(image, copy); card.append(link); return card;
+      link.append(visual, copy); card.append(link); return card;
     });
     items.replaceChildren.apply(items, slides);
     panel.classList.add('promo-ready'); controls.hidden = false;
