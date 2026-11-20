@@ -877,6 +877,26 @@
     document.head.appendChild(s);
   }
 
+  /* Abrir los ASIN de Amazon.com con la interfaz española si Amazon la ofrece.
+     No redirigir ASIN a otros dominios sin verificar disponibilidad ni tag local. */
+  function prepararAmazonEspanol() {
+    document.querySelectorAll('a[href*="amazon.com/dp/"]').forEach(function (enlace) {
+      try {
+        var url = new URL(enlace.href, location.href);
+        if (!/^(?:www\.)?amazon\.com$/i.test(url.hostname)) return;
+        if (!/^\/dp\/[A-Z0-9]{10}\/?$/i.test(url.pathname)) return;
+        if (!url.searchParams.get("tag")) return;
+        url.searchParams.set("language", "es_US");
+        enlace.href = url.href;
+        enlace.target = "_blank";
+        ["sponsored", "nofollow", "noopener", "noreferrer"].forEach(function (valor) {
+          enlace.relList.add(valor);
+        });
+        if (!enlace.title) enlace.title = "Amazon.com (Estados Unidos). Consulta el envío a tu país y el precio actual.";
+      } catch (err) {}
+    });
+  }
+  prepararAmazonEspanol();
   applyPais(pais, false);
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), ebooks: storeUrl() };
@@ -963,11 +983,18 @@
       var href = t.href || "";
       var esPago = !!ebook || t.hasAttribute("data-checkout") || t.classList.contains("js-comprar");
       var esWhats = href.indexOf("wa.me/") > -1;
-      if (!esPago && !esWhats) return;
+      var esAmazon = /^https:\/\/(?:www\.)?amazon\.com\/dp\/[A-Z0-9]{10}/i.test(href);
+      if (!esPago && !esWhats && !esAmazon) return;
 
       var producto = "";
       var canal = "";
-      if (esPago) {
+      if (esAmazon) {
+        canal = "tienda";
+        var asin = (href.match(/\/dp\/([A-Z0-9]{10})/i) || [])[1] || "";
+        var card = t.closest(".gr-venta-card, .t-card, .pdp-buy");
+        var titulo = card && card.querySelector(".gr-venta-nombre, h3, .pdp-titulo");
+        producto = "Amazon " + asin + (titulo ? " - " + titulo.textContent.trim() : "");
+      } else if (esPago) {
         canal = "tienda";
         producto = ebook || t.getAttribute("data-producto") || "Pago";
       } else {
@@ -988,7 +1015,7 @@
       /* Aviso al correo vía la aplicación de formularios (Apps Script):
          solo surte efecto con el Codigo.gs actualizado (tipo «compra»). */
       var endpoint = (GR.formEndpoint || "").trim();
-      if (endpoint && !ebook) {
+      if (endpoint && !ebook && !esAmazon) {
         try {
           var cuerpo = new URLSearchParams({
             tipo: "compra", interes: producto, origen: ruta
