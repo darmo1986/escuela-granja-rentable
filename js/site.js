@@ -983,11 +983,18 @@
       var href = t.href || "";
       var esPago = !!ebook || t.hasAttribute("data-checkout") || t.classList.contains("js-comprar");
       var esWhats = href.indexOf("wa.me/") > -1;
-      if (!esPago && !esWhats) return;
+      var esAmazon = /^https:\/\/(?:www\.)?amazon\.com\/dp\/[A-Z0-9]{10}/i.test(href);
+      if (!esPago && !esWhats && !esAmazon) return;
 
       var producto = "";
       var canal = "";
-      if (esPago) {
+      if (esAmazon) {
+        canal = "tienda";
+        var asin = (href.match(/\/dp\/([A-Z0-9]{10})/i) || [])[1] || "";
+        var card = t.closest(".gr-venta-card, .t-card, .pdp-buy");
+        var titulo = card && card.querySelector(".gr-venta-nombre, h3, .pdp-titulo");
+        producto = "Amazon " + asin + (titulo ? " - " + titulo.textContent.trim() : "");
+      } else if (esPago) {
         canal = "tienda";
         producto = ebook || t.getAttribute("data-producto") || "Pago";
       } else {
@@ -1008,7 +1015,7 @@
       /* Aviso al correo vía la aplicación de formularios (Apps Script):
          solo surte efecto con el Codigo.gs actualizado (tipo «compra»). */
       var endpoint = (GR.formEndpoint || "").trim();
-      if (endpoint && !ebook) {
+      if (endpoint && !ebook && !esAmazon) {
         try {
           var cuerpo = new URLSearchParams({
             tipo: "compra", interes: producto, origen: ruta
