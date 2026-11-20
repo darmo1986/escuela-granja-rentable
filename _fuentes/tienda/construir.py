@@ -589,7 +589,7 @@ def cuerpo_portada(productos, raiz):
   <p>O ve directamente a <a href="#destacados">los 14 imprescindibles</a> y <a href="#amazon">todo el catálogo</a>.</p>
 </form>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
-<p class="t-amazon-aviso"><strong>Importante:</strong> nuestros enlaces de producto llevan a <strong>Amazon.com (Estados Unidos)</strong>. Solicitamos la interfaz en español cuando esté disponible, pero confirma idioma, disponibilidad, precio y envío a tu país antes de comprar.</p>
+<p class="t-amazon-aviso"><strong>Importante para España y Latinoamérica:</strong> nuestros enlaces llevan a <strong>Amazon.com (Estados Unidos)</strong>, no a una tienda local. Solicitamos el idioma español cuando esté disponible. Comprueba que el vendedor envíe a tu país y revisa antes de pagar la moneda, el precio final, los posibles impuestos de importación, la garantía y la compatibilidad eléctrica si corresponde.</p>
 <p class="t-catalogo-rapido"><a class="btn gold" href="{raiz}recomendados.html">Ver 7 artículos recomendados y 3 ebooks desde una página rápida →</a></p>
 </header>
 <nav class="t-rutas" aria-label="Familias de material">
