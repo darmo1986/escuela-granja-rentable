@@ -1002,5 +1002,28 @@
       }
     }, true);
   } catch (e) {}
+
+  /* Idioma preferido en Amazon.com para el catálogo de la comunidad.
+     No cambia el país del marketplace, el tag de afiliado ni garantiza que
+     todos los títulos de vendedores estén traducidos. */
+  function configurarAmazonIdioma(enlace) {
+    if (!enlace || !enlace.getAttribute) return;
+    var href = enlace.getAttribute("href") || "";
+    if (href.indexOf("https://www.amazon.com/") !== 0) return;
+    try {
+      var u = new URL(href, location.href);
+      if (u.hostname !== "www.amazon.com" || !/^\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(u.pathname)) return;
+      if (!u.searchParams.has("language")) {
+        u.searchParams.set("language", "es_US");
+        enlace.setAttribute("href", u.toString());
+      }
+    } catch (e) { /* No se toca un enlace no interpretable. */ }
+  }
+  document.querySelectorAll('a[href^="https://www.amazon.com/dp/"]').forEach(configurarAmazonIdioma);
+  document.addEventListener("click", function (ev) {
+    var enlace = ev.target && ev.target.closest && ev.target.closest('a[href^="https://www.amazon.com/"]');
+    if (enlace) configurarAmazonIdioma(enlace);
+  }, true);
+
 })();
 
