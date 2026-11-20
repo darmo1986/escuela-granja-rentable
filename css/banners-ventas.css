@@ -29,3 +29,46 @@
 @media(min-width:1100px){.gr-ventas-carril{grid-auto-columns:minmax(225px,1fr)}.gr-ventas-carril-ebooks{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row;overflow:visible}}
 @media(max-width:640px){.gr-ventas-directas{border-radius:16px;margin:16px auto 24px;padding:15px 10px}.gr-ventas-cabecera h2{font-size:1.28rem}.gr-ventas-carril{grid-auto-columns:min(78vw,268px);gap:10px;scroll-padding-left:3px}.gr-venta-card{min-height:345px}.gr-venta-foto{height:137px}.gr-venta-boton{padding:8px}.gr-ventas-cabecera-ebooks{padding-top:17px}}
 @media(prefers-reduced-motion:reduce){.gr-venta-card{transition:none}.gr-venta-card:hover{transform:none}}
+
+
+/* Mejoras de conversión y accesibilidad, noviembre 2026 */
+.gr-shortcuts{display:flex;flex-wrap:wrap;gap:8px}
+.gr-shortcuts a{flex:1 1 145px;min-width:0;padding:8px 9px;font-size:.87rem;line-height:1.23;text-wrap:balance;border-radius:12px}
+.gr-shortcuts a:first-child,.gr-shortcuts a:nth-child(2){background:#d8e9d8;border-color:#b7d5bc;color:#174c2b;font-weight:850}
+.gr-shortcuts a:focus-visible{outline:3px solid #1f6b39;outline-offset:2px}
+.gr-hero-comercio{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:8px 14px;color:#fff!important;border:1px solid #cfe5c5;border-radius:10px;font-weight:800;text-decoration:none!important}
+.gr-hero-comercio:hover,.gr-hero-comercio:focus-visible{background:#ffffff20}
+.gr-ventas-directas{background:linear-gradient(140deg,#f0f7ed 0%,#fbfaf3 60%,#f5f9f3 100%);border-color:#cadfca}
+.gr-ventas-cabecera h2{max-width:24ch}
+.gr-ventas-pais{margin:0 0 12px;padding:10px 14px;border:1px solid #d4e3d3;border-radius:12px;background:#fff;color:#3c6246;font-size:.86rem;line-height:1.45}
+.gr-ventas-herramientas{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 9px}
+.gr-ventas-filtros{display:flex;flex-wrap:wrap;gap:7px}
+.gr-ventas-filtro{font:inherit;cursor:pointer;border:1px solid #bad0bf;background:#fff;color:#305438;padding:8px 13px;min-height:42px;border-radius:999px;font-size:.83rem;font-weight:800}
+.gr-ventas-filtro[aria-pressed="true"]{background:#205d39;color:#fff;border-color:#205d39}
+.gr-ventas-filtro:hover:not([aria-pressed="true"]){background:#eaf4e9}
+.gr-ventas-filtro:focus-visible,.gr-ventas-flecha:focus-visible{outline:3px solid #1c7046;outline-offset:3px}
+.gr-ventas-navega{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.gr-ventas-navega[hidden]{display:none!important}
+.gr-ventas-estado{color:#436b4c;font-size:.83rem;font-weight:750}
+.gr-ventas-flecha{font:inherit;cursor:pointer;width:40px;height:40px;background:#fff;border:1px solid #afcbae;border-radius:50%;font-size:1.65rem;line-height:1;color:#164c2a}
+.gr-ventas-flecha:disabled{opacity:.35;cursor:default}
+.gr-ventas-carril{scrollbar-width:thin;scroll-padding-inline:6px}
+.gr-venta-card[hidden]{display:none!important}
+.gr-venta-card{border-radius:17px;box-shadow:0 8px 22px #173b2516}
+.gr-venta-foto{height:155px}
+.gr-venta-nombre{font-size:1.1rem;letter-spacing:-.012em}
+.gr-venta-boton{min-height:40px;display:inline-flex;align-items:center}
+.gr-venta-sin-foto{display:grid;place-items:center;text-align:center;min-height:90px;padding:12px;font-size:.85rem;color:#53685a}
+.gr-ventas-aviso{margin-bottom:24px}
+.gr-ventas-directas,.gr-ventas-carril{scroll-margin-top:76px}
+@media (max-width:640px){
+  .gr-shortcuts{gap:6px}
+  .gr-shortcuts a{flex:1 1 calc(50% - 6px);font-size:.79rem;min-height:44px}
+  .gr-ventas-filtros{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:5px;scrollbar-width:thin}
+  .gr-ventas-filtro{white-space:nowrap;flex:0 0 auto;padding:8px 11px}
+  .gr-ventas-navega{width:100%;justify-content:space-between}
+  .gr-ventas-flecha{width:44px;height:44px}
+  .gr-ventas-directas{margin-top:16px}
+  .gr-venta-foto{height:151px}
+}
+@media (prefers-reduced-motion:reduce){.gr-ventas-carril{scroll-behavior:auto}}
