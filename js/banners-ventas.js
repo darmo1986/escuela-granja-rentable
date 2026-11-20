@@ -9,7 +9,9 @@
       img.hidden = true;
       var nota = document.createElement("span");
       nota.className = "gr-venta-sin-foto";
-      nota.textContent = "Consulta la fotografía exacta en Amazon";
+      nota.textContent = img.closest(".gr-venta-ebook")
+        ? "Portada no disponible. Consulta la ficha del ebook."
+        : "Imagen no disponible. Consulta la fotografía del producto en Amazon.";
       marco.appendChild(nota);
     }
     img.addEventListener("error", respaldo, { once: true });
