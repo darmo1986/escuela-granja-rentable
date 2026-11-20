@@ -32,7 +32,7 @@ PRIORITARIOS = [
     "B01N56NGS8", "B00D458L9K", "B07NJZM1F5", "B0CP83KPD2", "B0BL3TQDJN",
     "B0DLTMQJ77", "B01MFE2ASJ", "B0FJ7RQ6RB", "B000HHQDPM",
 ]
-VERSION = "20261119tienda24"
+VERSION = "20261120-rapida"
 VERSION_BUSCADOR = "20261119tienda24"
 
 
@@ -314,7 +314,17 @@ def data_q(p):
         p["titulo"], p["categoria"], p["nombre"], p["claves"], p["asin"],
         " ".join(p["explicacion"]), " ".join(p["recomendacion"]),
     ])
-    return esc(normalizar(blob))
+    # El buscador trabaja con palabras sueltas: conservar cada palabra una vez
+    # elimina repeticiones del HTML sin perder coincidencias por término.
+    omitidas = {"de", "del", "la", "el", "los", "las", "para", "con", "y", "en", "un", "una"}
+    palabras = re.findall(r"[a-z0-9]+", normalizar(blob))
+    vistas = set()
+    indice = []
+    for palabra in palabras:
+        if palabra not in omitidas and palabra not in vistas:
+            indice.append(palabra)
+            vistas.add(palabra)
+    return esc(" ".join(indice))
 
 
 def figura_imagen(p, raiz):
@@ -325,7 +335,7 @@ def figura_imagen(p, raiz):
         pie = "Ilustración de uso generada con IA. Consulta el modelo exacto en Amazon."
     return (
         f'<figure class="t-foto"><img src="{raiz}{esc(p["imagen"])}" '
-        f'alt="{esc(p["titulo"])}" loading="lazy">'
+        f'alt="{esc(p["titulo"])}" loading="lazy" width="800" height="600" decoding="async">'
         f"<figcaption>{pie}</figcaption></figure>"
     )
 
@@ -509,8 +519,9 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <script src="{raiz}js/config.js?v=20261110d"></script>
 <script src="{raiz}js/catalogo.js"></script>
 <script src="{raiz}js/app.js?v=20261110d"></script>
-<script src="{raiz}js/site.js?v=20261110d"></script>
+<script src="{raiz}js/site.js?v=20261120-idioma"></script>
 <script defer src="{raiz}tienda/tienda.js?v={VERSION_BUSCADOR}"></script>
+{f'<script defer src="{raiz}tienda/imagenes-respaldo.js?v=20261120"></script>' if rel == "tienda/index.html" else ""}
 </body>
 </html>
 '''
@@ -572,6 +583,11 @@ def cuerpo_portada(productos, raiz):
 <p class="kicker">Equipo para tu granja</p>
 <h1>Elige el material que necesita tu lote</h1>
 <p class="t-lead">Busca por tarea, compara las fichas y comprueba medidas y compatibilidad antes de comprar. La compra, el precio y el envío se consultan en Amazon.</p>
+<form class="t-busqueda-rapida" role="search" action="{raiz}tienda/#amazon" method="get" aria-label="Encontrar productos en la tienda">
+  <label for="t-rapida">¿Qué necesitas para tus aves?</label>
+  <div class="t-rapida-fila"><input id="t-rapida" type="search" name="q" placeholder="Comedero, incubadora, bebedero…" maxlength="120" required autocomplete="off"><button class="btn gold" type="submit">Buscar entre {len(productos)} productos →</button></div>
+  <p>O ve directamente a <a href="#destacados">los 14 imprescindibles</a> y <a href="#amazon">todo el catálogo</a>.</p>
+</form>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 </header>
 <nav class="t-rutas" aria-label="Familias de material">
@@ -596,7 +612,6 @@ def cuerpo_portada(productos, raiz):
 <div class="t-vacio" data-t-vacio hidden><h3>No encontramos esa combinación</h3><p>Prueba una palabra más general o cambia de categoría.</p><button type="button" class="btn sec" data-t-ampliar hidden>Buscar en toda la tienda</button></div>
 {"".join(bloques)}
 </section>
-<div data-publicidad-discreta></div>
 <aside class="t-ayuda"><h2>Primero resuelve la duda de manejo</h2><p>Antes de elegir equipo puedes consultar las <a href="{raiz}blog/">guías gratuitas</a> y las <a href="{raiz}calculadoras.html">calculadoras</a>. Si prefieres una guía en PDF, consulta el contenido y el precio de los <a href="{raiz}ebooks/">ebooks propios</a>.</p></aside>'''
 
 
