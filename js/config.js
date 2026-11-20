@@ -1,11 +1,8 @@
-/* Interruptor de publicidad. false = no se pintan huecos de anuncio.
-   amazonTag = etiqueta de afiliado de Amazon. Con etiqueta, el generador pinta el hueco de Amazon detrás del banner del ebook (relleno). No depende de activo.
-   Piloto de un banner 300×250 en el primer tercio, tras aceptar. */
+/* Adsterra retirada por decisión editorial (20/11/2026).
+   No activar el piloto ni los espacios ampliados.
+   amazonTag identifica enlaces de afiliado a Amazon y no carga anuncios de terceros. */
 window.ads = { activo: false, adsterraPilot: false, amazonTag: "granjarentabl-20" };
-
-// Activación autorizada por Pablo el 16/11/2026 tras revisar la colocación.
-// La confirmación del filtro completo de apuestas por Adsterra sigue pendiente.
-window.ads.ampliacionDiscreta = true;
+window.ads.ampliacionDiscreta = false;
 
 /* El curso y los ebooks van primero. */
 window.GR = {

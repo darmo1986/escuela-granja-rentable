@@ -26,6 +26,14 @@
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
 <link rel="stylesheet" href="css/estilo.css?v=20261117-sin-fijo">
 <script src="js/boot.js?v=20261117-anuncios-arriba"></script>
+<style>
+.gr-contacto-panel{margin:2rem 0;padding:1.3rem;border:1px solid #cddccc;border-radius:16px;background:#f6faf4}
+.gr-contacto-panel form{display:grid;gap:.65rem;max-width:640px}
+.gr-contacto-panel label{font-weight:700;margin-top:.35rem}
+.gr-contacto-panel input,.gr-contacto-panel select,.gr-contacto-panel textarea{font:inherit;width:100%;box-sizing:border-box;padding:.65rem;border:1px solid #82938a;border-radius:8px;background:#fff;color:#17291e}
+.gr-contacto-panel button{justify-self:start;margin-top:.6rem}
+.gr-contacto-panel .fine{font-size:.9rem;line-height:1.5}
+</style>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -116,6 +124,19 @@
 <main id="contenido">
 <article class="legal"><h1>Contacto</h1>
 <p>¿Tienes una duda sobre el curso, los ebooks o la cría de tus gallinas? Escríbenos por el canal que prefieras.</p>
+<section class="gr-contacto-panel" aria-labelledby="gr-contacto-titulo">
+<h2 id="gr-contacto-titulo">Cuéntanos tu consulta</h2>
+<p>Rellena el formulario y se abrirá tu aplicación de correo con el mensaje preparado. <strong>Necesitas pulsar «Enviar» en tu correo</strong>; esta web no envía ni guarda el mensaje automáticamente.</p>
+<form id="gr-contacto-form" action="mailto:ventas@granjarentable.com" method="post" enctype="text/plain">
+<label for="gr-contacto-nombre">Nombre</label><input id="gr-contacto-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required>
+<label for="gr-contacto-correo">Tu correo</label><input id="gr-contacto-correo" name="correo" type="email" autocomplete="email" maxlength="160" required>
+<label for="gr-contacto-motivo">Motivo de la consulta</label>
+<select id="gr-contacto-motivo" name="motivo" required><option value="Gallinas o pollitos">Gallinas o pollitos</option><option value="Curso gratuito">Curso gratuito</option><option value="Compra de un ebook">Compra de un ebook</option><option value="Tienda y productos Amazon">Tienda y productos Amazon</option><option value="Otra consulta">Otra consulta</option></select>
+<label for="gr-contacto-mensaje">Mensaje</label><textarea id="gr-contacto-mensaje" name="mensaje" rows="5" minlength="10" maxlength="3000" required placeholder="Explica qué necesitas; si es una compra, incluye el producto y tu país."></textarea>
+<button class="btn" type="submit">Preparar correo</button>
+<p id="gr-contacto-estado" role="status" aria-live="polite"></p></form>
+<p class="fine">¿No se abre el correo? Escribe directamente a <a href="mailto:ventas@granjarentable.com">ventas@granjarentable.com</a>. Consulta nuestra <a href="privacidad.html">política de privacidad</a> antes de compartir datos personales.</p>
+</section>
 <h2>Correo</h2>
 <p><!--email_off--><a href="mailto:ventas@granjarentable.com">ventas@granjarentable.com</a><!--/email_off--> — consultas sobre los ebooks, el curso y la web.</p>
 <h2>WhatsApp</h2>
@@ -131,6 +152,27 @@
 <p>Los datos del titular están en el <a href="aviso-legal.html">aviso legal</a>. Las preguntas frecuentes están en <a href="faq.html">preguntas frecuentes</a>. Las compras se resumen en las <a href="condiciones-venta.html">condiciones de venta</a>.</p>
 </article>
 </main>
+<script>
+(function () {
+  var form = document.getElementById('gr-contacto-form');
+  if (!form) return;
+  form.addEventListener('submit', function (evento) {
+    if (!form.reportValidity()) return;
+    evento.preventDefault();
+    var nombre = document.getElementById('gr-contacto-nombre').value.trim();
+    var correo = document.getElementById('gr-contacto-correo').value.trim();
+    var motivo = document.getElementById('gr-contacto-motivo').value;
+    var mensaje = document.getElementById('gr-contacto-mensaje').value.trim();
+    var asunto = 'Granja Rentable - ' + motivo;
+    var cuerpo = 'Nombre: ' + nombre + '\nCorreo de respuesta: ' + correo +
+      '\nMotivo: ' + motivo + '\n\nMensaje:\n' + mensaje;
+    document.getElementById('gr-contacto-estado').textContent =
+      'El correo está preparado. Comprueba que se haya abierto tu aplicación y pulsa Enviar para terminar.';
+    window.location.href = 'mailto:ventas@granjarentable.com?subject=' +
+      encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+  });
+})();
+</script>
 <footer class="foot">
 <div class="wrap foot-grid">
 <div>
