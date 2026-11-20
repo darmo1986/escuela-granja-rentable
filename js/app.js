@@ -26,26 +26,16 @@ function cajaAdsterra(){
   box.setAttribute('aria-label','Publicidad');
   box.style.cssText='margin:12px auto;width:300px;max-width:100%;text-align:center;min-height:270px;box-sizing:border-box;position:static';
   const label=document.createElement('p');
-  label.textContent='Publicidad';
+  label.textContent='Promoción de Granja Rentable';
   label.style.cssText='margin:0 0 4px;font-size:12px';
   box.append(label);
-  // Reuse the placement supplied by Publishers. The vendor renders its own creative.
-  window.atOptions={key:'4c10efc097372233b52ed4f05e0a6ab8',format:'iframe',height:250,width:300,params:{}};
-  const tag=document.createElement('script');
-  tag.src='https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8';
-  tag.async=false;
-  tag.addEventListener('error',()=>{
-    if(!box.isConnected)return;
-    label.textContent='Promoción de Granja Rentable';
-    const link=document.createElement('a'),image=document.createElement('img');
-    link.href=root+'ebooks/';
-    image.src=root+'img/banners/banner-empezar.webp';
-    image.alt='Guías de Granja Rentable para empezar con gallinas';
-    image.style.cssText='display:block;width:100%;height:auto';
-    link.append(image);
-    box.append(link);
-  });
-  box.append(tag);
+  const link=document.createElement('a'),image=document.createElement('img');
+  link.href=root+'ebooks/';
+  image.src=root+'img/banners/banner-empezar.webp';
+  image.alt='Guías de Granja Rentable para empezar con gallinas';
+  image.style.cssText='display:block;width:100%;height:auto';
+  link.append(image);
+  box.append(link);
   return box;
 }
 function mountAdsterraPilot(){
@@ -91,15 +81,16 @@ function montarFinArticulo(article, target){
   hueco.style.cssText='margin:12px auto;width:300px;max-width:100%;text-align:center;box-sizing:border-box;position:static';
   fin.insertAdjacentElement('beforebegin',hueco);
   const etiqueta=document.createElement('p');
-  etiqueta.textContent='Publicidad';
+  etiqueta.textContent='Promoción de Granja Rentable';
   etiqueta.style.cssText='margin:0 0 4px;font-size:12px';
   hueco.append(etiqueta);
-  window.atOptions={key:'2cb9c27a34001101eabb1ede31566134',format:'iframe',height:250,width:300,params:{}};
-  const tagFin=document.createElement('script');
-  tagFin.src='https://auctionr.org/4/2cb9c27a34001101eabb1ede31566134';
-  tagFin.async=false;
-  tagFin.addEventListener('error',()=>{hueco.remove();});
-  hueco.append(tagFin);
+  const linkFin=document.createElement('a'),imgFin=document.createElement('img');
+  linkFin.href=root+'tienda/';
+  imgFin.src=root+'img/banners/banner-alimenta.webp';
+  imgFin.alt='Tienda de Granja Rentable';
+  imgFin.style.cssText='display:block;width:100%;height:auto';
+  linkFin.append(imgFin);
+  hueco.append(linkFin);
 }
 /* Se comprueba Premium antes de montar y antes de cargar el anuncio. */
 function esPremiumLocal(){
