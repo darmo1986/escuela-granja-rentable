@@ -21,7 +21,20 @@
   var contenedorMas = document.createElement("div");
   contenedorMas.className = "t-paginacion";
   contenedorMas.style.cssText = "text-align:center;margin:2rem auto";
+  contenedorMas.setAttribute("role", "navigation");
+  contenedorMas.setAttribute("aria-label", "Explorar más productos");
   contenedorMas.appendChild(botonMas);
+  var volverFiltros = document.createElement("button");
+  volverFiltros.type = "button";
+  volverFiltros.className = "btn sec t-volver-filtros";
+  volverFiltros.textContent = "Volver al buscador";
+  volverFiltros.hidden = true;
+  volverFiltros.style.marginLeft = ".5rem";
+  contenedorMas.appendChild(volverFiltros);
+  volverFiltros.addEventListener("click", function () {
+    if (formulario) formulario.scrollIntoView({ behavior: "smooth", block: "start" });
+    caja.focus({ preventScroll: true });
+  });
   var bloques = document.querySelectorAll("[data-t-bloque]");
   var ultimo = bloques.length ? bloques[bloques.length - 1] : cards[cards.length - 1];
   if (ultimo && ultimo.parentNode) ultimo.parentNode.insertBefore(contenedorMas, ultimo.nextSibling);
@@ -34,7 +47,9 @@
     automaticas: "automatico", automatica: "automatico", automaticos: "automatico",
     termometros: "termometro", higrometros: "higrometro", termohigrometros: "termohigrometro",
     criadoras: "criadora", bombillas: "bombilla", perchas: "percha",
-    ratones: "raton", ratas: "rata", jaulas: "jaula", mallas: "malla", vallas: "valla"
+    ratones: "raton", ratas: "rata", jaulas: "jaula", mallas: "malla", vallas: "valla",
+    tolva: "comedero", tolvas: "comedero", comederas: "comedero",
+    bebedera: "bebedero", bebederas: "bebedero", ponederas: "nidal"
   };
   var vacias = ["de", "del", "la", "el", "los", "las", "para", "con", "y", "en", "un", "una"];
   function palabras(texto) {
@@ -79,6 +94,7 @@
     });
     if (vacio) vacio.hidden = n !== 0;
     botonMas.hidden = n <= limite;
+    volverFiltros.hidden = n <= paso;
     botonMas.textContent = "Mostrar " + Math.min(paso, Math.max(0, n - limite)) + " productos más";
     if (ampliar) ampliar.hidden = filtro === "todas";
     if (cuenta) cuenta.textContent = visibles + " visibles de " + n + " resultados (" + cards.length + " productos en total)";
