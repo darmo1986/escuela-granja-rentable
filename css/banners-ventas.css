@@ -62,3 +62,18 @@
 .gr-ofertas-portada{padding:15px;margin:10px 0}
 .gr-ofertas-portada a{width:100%;justify-content:center}
 }
+
+/* Landing de recomendaciones */
+.gr-landing-venta{max-width:1240px;margin-inline:auto;padding:16px clamp(10px,2.5vw,28px) 42px}
+.gr-ventas-landing-intro{padding:clamp(18px,3vw,30px);border-radius:18px;background:#f0f6ed;border:1px solid #dbe8d5;margin:12px 0 18px}
+.gr-ventas-landing-intro h1{font-size:clamp(1.75rem,3.3vw,2.7rem);line-height:1.13;color:#183f2b;margin:9px 0}
+.gr-ventas-landing-intro p:last-child{max-width:73ch;line-height:1.55;color:#465f4f;margin:0}
+.gr-landing-venta .gr-ventas-directas{margin:14px auto 28px}
+.gr-venta-faq{margin:25px auto;max-width:950px}
+.gr-venta-faq h2{font-size:1.45rem;margin:0 0 14px}
+.gr-venta-faq details{border:1px solid #d9e5d8;background:#fff;border-radius:12px;margin:8px 0;padding:13px 16px}
+.gr-venta-faq summary{font-weight:800;color:#225335;cursor:pointer}
+.gr-venta-faq details p{margin:11px 0 0;line-height:1.6;color:#415747}
+.gr-ventas-cierre{padding:13px 0;text-align:center;line-height:1.8}
+.gr-ventas-cierre a{color:#1f603c;font-weight:800}
+@media(max-width:640px){.gr-landing-venta{padding:10px 9px 30px}.gr-ventas-landing-intro{padding:15px}.gr-venta-faq details{padding:12px}}
