@@ -877,6 +877,26 @@
     document.head.appendChild(s);
   }
 
+  /* Abrir los ASIN de Amazon.com con la interfaz española si Amazon la ofrece.
+     No redirigir ASIN a otros dominios sin verificar disponibilidad ni tag local. */
+  function prepararAmazonEspanol() {
+    document.querySelectorAll('a[href*="amazon.com/dp/"]').forEach(function (enlace) {
+      try {
+        var url = new URL(enlace.href, location.href);
+        if (!/^(?:www\.)?amazon\.com$/i.test(url.hostname)) return;
+        if (!/^\/dp\/[A-Z0-9]{10}\/?$/i.test(url.pathname)) return;
+        if (!url.searchParams.get("tag")) return;
+        url.searchParams.set("language", "es_US");
+        enlace.href = url.href;
+        enlace.target = "_blank";
+        ["sponsored", "nofollow", "noopener", "noreferrer"].forEach(function (valor) {
+          enlace.relList.add(valor);
+        });
+        if (!enlace.title) enlace.title = "Amazon.com (Estados Unidos). Consulta el envío a tu país y el precio actual.";
+      } catch (err) {}
+    });
+  }
+  prepararAmazonEspanol();
   applyPais(pais, false);
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), ebooks: storeUrl() };
