@@ -1,0 +1,26 @@
+{
+  "fecha": "2026-11-14",
+  "alcance": "Auditoría de los archivos de trabajo locales. No acredita despliegue, persistencia remota de imágenes, fidelidad visual ni vigencia comercial.",
+  "productos": 100,
+  "asin_unicos": 100,
+  "fichas": 100,
+  "asin_fichas_unicos": 100,
+  "imagenes": 100,
+  "asin_imagenes_unicos": 100,
+  "seleccion_sin_ficha": [],
+  "seleccion_sin_imagen": [],
+  "imagenes_ausentes_en_destino": [],
+  "imagenes_ilegibles": [],
+  "dimensiones": {
+    "1254x1254": 99,
+    "1199x1312": 1
+  },
+  "enlaces_afiliados_mal_formados": [],
+  "productos_marcados_publicables": 0,
+  "pendiente": [
+    "Equivalencia de ASIN y variante.",
+    "Revisión visual individual de fidelidad de imágenes.",
+    "Verificación actual de precio, stock, estrellas y reseñas.",
+    "Integración y publicación."
+  ]
+}

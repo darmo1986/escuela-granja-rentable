@@ -1,0 +1,226 @@
+# Cien referencias nuevas: herramientas y protección para la granja
+
+## Estado actual de la redacción
+
+Los cien candidatos tienen texto inicial. **Esto no equivale a cien productos verificados o listos para publicar.**
+
+| Nivel | Cantidad | Archivo |
+| --- | ---: | --- |
+| Borradores con fuentes de fabricante, de alcance variable | 6 | [fichas-fabricantes-01.json](fichas-fabricantes-01.json) |
+| Borradores adicionales con fuentes de fabricante, de alcance variable | 16 | [fichas-fabricantes-02.json](fichas-fabricantes-02.json) |
+| Textos iniciales con identificación secundaria; contraste técnico pendiente | 78 | [fichas-iniciales-78.json](fichas-iniciales-78.json) |
+| Datos comerciales actuales verificados en Amazon.com | 0 | Pendiente |
+| Imágenes nuevas de la selección de cien | 0 | Pendiente |
+| Productos nuevos publicados de esta selección | 0 | Publicación desactivada |
+
+Las aplicaciones en granja y «Lo que más gusta» son criterios editoriales, sin prueba propia ni extracción de opiniones. Las fuentes de fabricante describen modelos o familias y no prueban por sí solas la equivalencia del ASIN. La ficha Fiskars n.º 97 solo tiene título y descripción indexada; el acceso completo agotó su tiempo. Las fuentes DCL040 y Camco tienen los límites indicados en cada ficha.
+
+Validación de la redacción: cien ASIN únicos; correspondencia uno a uno con la selección; tres criterios y tres consejos por texto nuevo; campos de precio, estrellas, reseñas y disponibilidad actuales sin completar; publicación desactivada en todos. No cambia el catálogo público.
+
+Pendiente: contrastar técnicamente los 78 textos iniciales, resolver la equivalencia exacta entre modelos y variantes de los cien, verificar los datos comerciales actuales en Amazon, preparar imágenes con referencias auténticas y revisar cada ficha antes de incorporarla. La consulta adicional de Amazon para la manguera Camco siguió sin acceso.
+
+
+Selección editorial del 14/11/2026. Son cien ASIN distintos del catálogo base de 169 y también de los 113 candidatos de la investigación anterior.
+
+**Estado:** investigación preparada; no se han publicado nuevos productos. Las cifras de la columna «Valoración del informe» pertenecen a informes de marzo a agosto de 2026. La segunda columna de valoración recoge otros comercios, con antigüedad y mercados variables. Ninguna acredita las estrellas ni la disponibilidad actual en Amazon.com.
+
+Las fotos comerciales se guardan como enlaces de referencia en `seleccion.json`. Las imágenes IA exigidas para las nuevas fichas todavía están pendientes; estas referencias comerciales no se incorporan como imágenes propias a la tienda.
+
+## Distribución
+
+| Categoría propuesta | Referencias |
+|---|---:|
+| Rastrillos | 8 |
+| Horcas y recambios | 8 |
+| Limpieza de instalaciones | 6 |
+| Guantes | 4 |
+| Gafas de trabajo | 5 |
+| Botas de trabajo | 3 |
+| Protección auditiva | 1 |
+| Iluminación auxiliar | 5 |
+| Mangueras y accesorios | 7 |
+| Pulverizadores vacíos | 4 |
+| Poda y mantenimiento exterior | 5 |
+| Herramientas de corte y reparación | 8 |
+| Malla y reparación de cercados | 6 |
+| Cierres y pestillos | 6 |
+| Fijaciones auxiliares | 6 |
+| Transporte de materiales | 7 |
+| Juegos de herramientas | 4 |
+| Suelo y herramientas manuales | 7 |
+
+## Selección de cien
+
+Precio y reseñas son los del informe fechado, sin promesa de vigencia. Los enlaces de compra tienen el tag granjarentabl-20; se ha comprobado su estructura, no el destino comercial actual.
+
+| Nº | Referencia | ASIN | Valoración del informe | Reseñas del informe | Precio USD del informe | Periodo | Otro comercio |
+|---:|---|---|---:|---:|---:|---|---|
+| 1 | [Rastrillo de mano Fiskars Xact](https://www.amazon.com/dp/B087RNQDFC?tag=granjarentabl-20) | B087RNQDFC | 4.6 | 1,458 | 8.79 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | Sin cifra adicional |
+| 2 | [Rastrillo Walensee de 17 púas y mango de 63 pulgadas](https://www.amazon.com/dp/B0BGPQM7P8?tag=granjarentabl-20) | B0BGPQM7P8 | 4.4 | 1,926 | 23.99 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | [4.3–4.3★](https://www.desertcart.co.za/products/494761860-walensee-heavy-duty-dual-sided-bow-rake-63-stainless-steel) |
+| 3 | [Rastrillo metálico de 17 púas y 63 pulgadas](https://www.amazon.com/dp/B0D8B6BCMW?tag=granjarentabl-20) | B0D8B6BCMW | 4.6 | 698 | 23.99 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | Sin cifra adicional |
+| 4 | [Rastrillo VEVOR de aluminio con cabezal de 36 pulgadas](https://www.amazon.com/dp/B0CGCM233N?tag=granjarentabl-20) | B0CGCM233N | 4.4 | 512 | 39.90 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | Sin cifra adicional |
+| 5 | [Rastrillo escarificador con mango de 74 pulgadas](https://www.amazon.com/dp/B0FD9V33ND?tag=granjarentabl-20) | B0FD9V33ND | 4.6 | 241 | 29.99 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | Sin cifra adicional |
+| 6 | [Rastrillo de doble cara de 17 púas y 68 pulgadas](https://www.amazon.com/dp/B0FD9VDNBS?tag=granjarentabl-20) | B0FD9VDNBS | 4.6 | 349 | 24.99 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | Sin cifra adicional |
+| 7 | [Rastrillo nivelador de 30 por 10 pulgadas](https://www.amazon.com/dp/B0BZMXK6YL?tag=granjarentabl-20) | B0BZMXK6YL | 4.7 | 973 | 46.97 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | [4.6–4.6★](https://www.desertcart.in/products/535644324-lawn-leveling-rake-30x10-inch-professional-grade-lawn-leveler-tool) |
+| 8 | [Rastrillo metálico con cabezal extensible de 8 a 17 pulgadas](https://www.amazon.com/dp/B0C8945NKT?tag=granjarentabl-20) | B0C8945NKT | 4.4 | 1,888 | 21.99 | [2026-07](https://www.asinsight.com/report/US/bow-rake) | [4.3–4.4★](https://www.desertcart.in/products/577082677-oliynedy-adjustable-metal-leaf-rake-30-70-inch-garden-rakes) |
+| 9 | [Horca de cavar de cuatro púas y 45 pulgadas](https://www.amazon.com/dp/B0B45HCHY3?tag=granjarentabl-20) | B0B45HCHY3 | 4.5 | 518 | 29.99 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | Sin cifra adicional |
+| 10 | [Horca COSITA de diez púas para cama y estiércol](https://www.amazon.com/dp/B0FL17DW2L?tag=granjarentabl-20) | B0FL17DW2L | 4.5 | 90 | 34.99 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | Sin cifra adicional |
+| 11 | [Horca VEVOR de 18 púas con mango de fibra](https://www.amazon.com/dp/B0FB5HXLBK?tag=granjarentabl-20) | B0FB5HXLBK | 4.5 | 64 | 36.99 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | [4.5–4.5★](https://www.desertcart.in/products/735602835-vevor-manure-fork-18-angled-tines-61-fiberglass-plastic-muck) |
+| 12 | [Seis cabezales VEVOR de recambio para horca de 18 púas](https://www.amazon.com/dp/B0FBB9L583?tag=granjarentabl-20) | B0FBB9L583 | 4.4 | 90 | 52.90 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | [4.4–4.4★](https://www.desertcart.com.kw/products/770664688-vevor-6pcs-manure-fork-replacement-head-18-angled-tines-horse-manure-fork-head-durable-plastic-pitchfork-heads-horse-mulch-rake-for-picking-up-stable-stall-muck-grass-hay-cleaning-farm-work) |
+| 13 | [Cabezal de recambio Little Giant DuraFork](https://www.amazon.com/dp/B000HHS9S6?tag=granjarentabl-20) | B000HHS9S6 | 4.6 | 653 | 19.99 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | Sin cifra adicional |
+| 14 | [Cabezal de recambio Little Giant DuraPitch II con cesta](https://www.amazon.com/dp/B003DTZLAE?tag=granjarentabl-20) | B003DTZLAE | 4.6 | 651 | 29.99 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | Sin cifra adicional |
+| 15 | [Horca KOLEIYA de cinco púas y 57 pulgadas](https://www.amazon.com/dp/B0CQQBZN3L?tag=granjarentabl-20) | B0CQQBZN3L | 4.7 | 260 | 35.99 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | Sin cifra adicional |
+| 16 | [Horca de cinco púas con mango de fibra de 58 pulgadas](https://www.amazon.com/dp/B0CVVHKZRX?tag=granjarentabl-20) | B0CVVHKZRX | 4.6 | 275 | 35.99 | [2026-08](https://www.asinsight.com/report/US/manure-fork) | Sin cifra adicional |
+| 17 | [Recogedor industrial Rubbermaid de plástico](https://www.amazon.com/dp/B00006ICOE?tag=granjarentabl-20) | B00006ICOE | 4.7 | 4,290 | 1.95 | [2026-07](https://www.asinsight.com/report/US/dust-pan) | [4.6–4.7★](https://jamaica.desertcart.com/products/57819378-rubbermaid-commercial-products-heavy-duty-dustpan) |
+| 18 | [Escoba O-Cedar Pet Pro con recogedor de apoyo](https://www.amazon.com/dp/B08Z9ZLLVX?tag=granjarentabl-20) | B08Z9ZLLVX | 4.7 | 16,793 | 13.99 | [2026-07](https://www.asinsight.com/report/US/dust-pan) | [4.7–4.7★](https://www.desertcart.us/products/371112669-pet-pro-broom-and-step-on-dustpan-powercorner-red) |
+| 19 | [Escoba O-Cedar One Sweep con recogedor](https://www.amazon.com/dp/B0C5JVX1WW?tag=granjarentabl-20) | B0C5JVX1WW | 4.5 | 6,232 | 12.98 | [2026-07](https://www.asinsight.com/report/US/dust-pan) | [4.4–4.5★](https://www.desertcart.co.uk/products/539625088-one-sweep-broom-with-step-on-dustpan-remove-99-one) |
+| 20 | [Cepillo de suelo con mango largo y raspador](https://www.amazon.com/dp/B0C6XTNXL8?tag=granjarentabl-20) | B0C6XTNXL8 | 4.4 | 3,521 | 24.99 | [2026-07](https://www.asinsight.com/report/US/broom) | [4.3–4.4★](https://belize.desertcart.com/products/545221887-air-u-floor-scrub-brush-with-long-handle-3-in) |
+| 21 | [Rasqueta de goma para retirar agua del suelo](https://www.amazon.com/dp/B0C8NFNZN8?tag=granjarentabl-20) | B0C8NFNZN8 | 4.5 | 1,066 | 19.99 | [2026-03](https://www.asinsight.com/report/US/floor-squeegee) | [4.4–4.5★](https://www.desertcart.com.my/products/626107104-cleanhome-rubber-floor-squeegee-for-concrete-tile-metal-aluminium-heavy) |
+| 22 | [Cepillo Yocada de suelo con mango telescópico](https://www.amazon.com/dp/B08TMMYK6P?tag=granjarentabl-20) | B08TMMYK6P | 4.4 | 6,441 | 17.99 | [2026-03](https://www.asinsight.com/report/US/floor-squeegee) | [4.4–4.4★](https://www.desertcart.tw/products/278315563-yocada-floor-scrub-brush-telescopic-handle-2-in-1-scrape) |
+| 23 | [Guantes WZQH de cuero para trabajo](https://www.amazon.com/dp/B0BPNNPF83?tag=granjarentabl-20) | B0BPNNPF83 | 4.7 | 11,014 | 9.99 | [2026-07](https://www.asinsight.com/report/US/work-gloves) | [4.6–4.7★](https://www.desertcart.in/products/515081800-leather-work-gloves-for-men-or-women-gardening-welding-coffee) |
+| 24 | [Guantes HANDLANDY de trabajo con función táctil](https://www.amazon.com/dp/B0797N2YW1?tag=granjarentabl-20) | B0797N2YW1 | 4.5 | 8,553 | 9.98 | [2026-07](https://www.asinsight.com/report/US/work-gloves) | [4.4–4.5★](https://www.desertcart.jp/products/73744008-handlandy-work-gloves-for-men-women-utility-mechanic-working-gloves-touch-screen-flexible-yard-work-gloves) |
+| 25 | [Seis pares de guantes COOLJOB de jardinería](https://www.amazon.com/dp/B07MLWK6MS?tag=granjarentabl-20) | B07MLWK6MS | 4.7 | 24,690 | 13.47 | [2026-07](https://www.asinsight.com/report/US/work-gloves) | [4.7–4.7★](https://papua.desertcart.com/products/472988882-cooljob-gardening-gloves-for-women-6-pairs-breathable-rubber-coated) |
+| 26 | [Guantes desechables Inspire de nitrilo negro de 6 mil](https://www.amazon.com/dp/B0C3SSXL4K?tag=granjarentabl-20) | B0C3SSXL4K | 4.7 | 15,620 | 16.99 | [2026-07](https://www.asinsight.com/report/US/work-gloves) | [4.7–4.7★](https://www.desertcart.in/products/681781014-inspire-black-nitrile-gloves-heavy-duty-6-mil-nitrile-original) |
+| 27 | [Gafas cerradas DEWALT DPG82 Concealer](https://www.amazon.com/dp/B01A12J3GI?tag=granjarentabl-20) | B01A12J3GI | 4.5 | 56,711 | 12.59 | [2026-07](https://www.asinsight.com/report/US/safety-glasses) | [4.5–4.5★](https://www.desertcart.in/products/24277113-dewalt-dpg82-concealer-anti-fog-dual-mold-safety-goggle-1) |
+| 28 | [Gafas transparentes NoCry con patillas ajustables](https://www.amazon.com/dp/B07GB8Y11G?tag=granjarentabl-20) | B07GB8Y11G | 4.5 | 50,523 | 13.99 | [2026-07](https://www.asinsight.com/report/US/safety-glasses) | [4.5–4.5★](https://www.desertcart.com.cy/products/262621390-nocry-unisex-eyearmor-safety-glasses-pack-of-1) |
+| 29 | [Gafas transparentes TICONN de trabajo](https://www.amazon.com/dp/B0BGSFQJF6?tag=granjarentabl-20) | B0BGSFQJF6 | 4.7 | 2,212 | 14.95 | [2026-07](https://www.asinsight.com/report/US/safety-glasses) | [4.7–4.8★](https://www.desertcart.in/products/550368312-ticonn-12-pack-clear-safety-glasses-for-men-safety-goggles) |
+| 30 | [Gafas 3M 91252H1-DC-10 contra salpicaduras](https://www.amazon.com/dp/B00467C7AE?tag=granjarentabl-20) | B00467C7AE | 4.5 | 2,528 | 4.49 | [2026-07](https://www.asinsight.com/report/US/safety-goggles) | [4.5–4.5★](https://bahamas.desertcart.com/products/278845440-3m-chemical-splash-impact-goggle) |
+| 31 | [Sobregafas NoCry para llevar sobre gafas graduadas](https://www.amazon.com/dp/B071RSM598?tag=granjarentabl-20) | B071RSM598 | 4.5 | 33,597 | 16.99 | [2026-07](https://www.asinsight.com/report/US/safety-goggles) | [4.5–4.6★](https://www.desertcart.in/products/51675341-nocry-over-glasses-safety-glasses-with-clear-anti-scratch-wraparound) |
+| 32 | [Botas Dunlop Chesapeake de PVC](https://www.amazon.com/dp/B001280CHU?tag=granjarentabl-20) | B001280CHU | 4.5 | 15,679 | 22.20 | [2026-07](https://www.asinsight.com/report/US/waterproof-boots) | [4.5–4.5★](https://www.desertcart.ma/products/159575546-chesapeake-rubber-boots-for-men-and-women-plain-toe-black) |
+| 33 | [Botas industriales Tingley de puntera normal](https://www.amazon.com/dp/B09JV7MYLH?tag=granjarentabl-20) | B09JV7MYLH | 4.5 | 1,562 | 16.59 | [2026-07](https://www.asinsight.com/report/US/waterproof-boots) | Sin cifra adicional |
+| 34 | [Botines impermeables de cubierta para trabajo exterior](https://www.amazon.com/dp/B0CGXF2B8N?tag=granjarentabl-20) | B0CGXF2B8N | 4.4 | 2,006 | 34.99 | [2026-07](https://www.asinsight.com/report/US/waterproof-boots) | [4.3–4.3★](https://armenia.desertcart.com/products/591352736-mens-deck-boots-waterproof-non-slip-ankle-rain-boots-fishing) |
+| 35 | [Orejeras ProCase para reducción de ruido](https://www.amazon.com/dp/B07MNZ7C1M?tag=granjarentabl-20) | B07MNZ7C1M | 4.4 | 22,365 | 11.99 | [2026-03](https://www.asinsight.com/report/US/ear-protection) | [4.4–4.4★](https://www.desertcart.in/products/253314398-noise-reduction-ear-muffs) |
+| 36 | [Dos linternas frontales recargables LHKNL](https://www.amazon.com/dp/B08D66HCXW?tag=granjarentabl-20) | B08D66HCXW | 4.5 | 35,904 | 19.99 | [2026-07](https://www.asinsight.com/report/US/head-lamp) | [4.5–4.5★](https://device.report/lhknl/tg-t069) |
+| 37 | [Linterna de trabajo DEWALT DCL040 de 20 V](https://www.amazon.com/dp/B0052MILZM?tag=granjarentabl-20) | B0052MILZM | 4.8 | 10,959 | 31.79 | [2026-07](https://www.asinsight.com/report/US/head-lamp) | [4.8–4.8★](https://device.report/dewalt/dcl040) |
+| 38 | [Linterna frontal recargable Lepro con cinco modos](https://www.amazon.com/dp/B01DNDMSLY?tag=granjarentabl-20) | B01DNDMSLY | 4.4 | 19,614 | 9.98 | [2026-07](https://www.asinsight.com/report/US/head-lamp) | [4.4–4.7★](https://www.desertcart.sg/products/851328167-le-head-torch-rechargeable-super-bright-led-headlamp-waterproof-red) |
+| 39 | [Linterna frontal Energizer PRO-260](https://www.amazon.com/dp/B083JWX9PK?tag=granjarentabl-20) | B083JWX9PK | 4.7 | 8,823 | 13.98 | [2026-07](https://www.asinsight.com/report/US/head-lamp) | [4.7–4.7★](https://www.desertcart.in/products/181004137-energizer-pro-260-led-headlamp-ipx4-water-resistant-headlamps-high) |
+| 40 | [Linterna frontal recargable Blukar de ocho modos](https://www.amazon.com/dp/B0BLVT2Y9N?tag=granjarentabl-20) | B0BLVT2Y9N | 4.5 | 20,589 | 15.99 | [2026-07](https://www.asinsight.com/report/US/head-lamp) | [4.5–4.6★](https://www.desertcart.com.cy/products/707129982-blukarled-headlamp-rechargeable-2000l-high-lumen-super-bright-dimmable-headlight-flashlight-with-motion-sensor-8-modes-spotlight-floodlight-ipx5-waterproof-for-camping-hiking-running-fishing-2-pack) |
+| 41 | [Manguera Flexzilla de 5/8 pulgadas y 50 pies](https://www.amazon.com/dp/B003TFE7ZM?tag=granjarentabl-20) | B003TFE7ZM | 4.4 | 101,357 | 39.97 | [2026-07](https://www.asinsight.com/report/US/garden-hose) | [4.3–4.4★](https://www.desertcart.in/products/749281949-flexzilla-garden-hose-5-8-in-x-50-ft-lightweight) |
+| 42 | [Manguera Camco TastePURE de 25 pies](https://www.amazon.com/dp/B004ME11FS?tag=granjarentabl-20) | B004ME11FS | 4.5 | 17,554 | 13.97 | [2026-07](https://www.asinsight.com/report/US/garden-hose) | [4.5–4.5★](https://www.desertcart.in/products/306719642-camco-tastepure-drinking-water-hose-for-rv-25-feet-white) |
+| 43 | [Manguera Camco EvoFlex2 de 50 pies](https://www.amazon.com/dp/B09Z6VPFWD?tag=granjarentabl-20) | B09Z6VPFWD | 4.6 | 1,618 | 23.97 | [2026-07](https://www.asinsight.com/report/US/garden-hose) | Sin cifra adicional |
+| 44 | [Pistola de riego RESTMO metálica de siete patrones](https://www.amazon.com/dp/B08QVK1GXV?tag=granjarentabl-20) | B08QVK1GXV | 4.4 | 13,290 | 16.49 | [2026-07](https://www.asinsight.com/report/US/garden-hose-nozzle) | [4.4–4.5★](https://device.report/restmo/o-hn-2) |
+| 45 | [Soporte mural metálico PeoMev para manguera](https://www.amazon.com/dp/B09W1Y21Y2?tag=granjarentabl-20) | B09W1Y21Y2 | 4.6 | 10,164 | 9.99 | [2026-07](https://www.asinsight.com/report/US/hose-reel) | [4.6–4.6★](https://www.desertcart.in/products/503650904-peomev-metal-garden-hose-holder-heavy-duty-hose-hanger-wall) |
+| 46 | [Soporte de suelo VyGrow para manguera con cuatro piquetas](https://www.amazon.com/dp/B0C1G82F7Z?tag=granjarentabl-20) | B0C1G82F7Z | 4.7 | 1,203 | 29.99 | [2026-07](https://www.asinsight.com/report/US/hose-reel) | [4.7–4.7★](https://www.desertcart.in/products/665508265-vygrow-garden-hose-holder-freestanding-heavy-duty-water-hose-holder) |
+| 47 | [Lanza de riego RESTMO de quince pulgadas](https://www.amazon.com/dp/B09FXL84H6?tag=granjarentabl-20) | B09FXL84H6 | 4.4 | 4,916 | 28.99 | [2026-07](https://www.asinsight.com/report/US/garden-hose) | [4.3–4.3★](https://www.desertcart.in/products/417201147-restmo-watering-wand-heavy-duty-15-inch-long-hose-nozzle) |
+| 48 | [Pulverizador manual Chapin 20004 de un galón](https://www.amazon.com/dp/B000E28UQU?tag=granjarentabl-20) | B000E28UQU | 4.4 | 79,745 | 15.49 | [2026-07](https://www.asinsight.com/report/US/pump-sprayer) | [4.5–4.5★](https://d2-products.com/product/chapin-20000-made-in-usa-1-gallon-lawn-and-garden-pump-pressured-sprayer/) |
+| 49 | [Tres botellas pulverizadoras ZEP de 32 onzas](https://www.amazon.com/dp/B0F2G7L4JB?tag=granjarentabl-20) | B0F2G7L4JB | 4.6 | 3,940 | 7.99 | [2026-07](https://www.asinsight.com/report/US/pump-sprayer) | [4.6–4.6★](https://www.desertcart.ae/products/724756133-professional-sprayer-bottle-32-oz-pack-of-3-hdpro1-versatile) |
+| 50 | [Pulverizador Petratools HD101 de un galón](https://www.amazon.com/dp/B0CKRSTX76?tag=granjarentabl-20) | B0CKRSTX76 | 4.5 | 4,313 | 24.99 | [2026-07](https://www.asinsight.com/report/US/pump-sprayer) | [4.5–4.5★](https://device.report/petra/pt-1112) |
+| 51 | [Pulverizador Flo-Master Hudson 24101 de un galón](https://www.amazon.com/dp/B08B42QKDW?tag=granjarentabl-20) | B08B42QKDW | 4.3 | 17,757 | 17.84 | [2026-07](https://www.asinsight.com/report/US/pump-sprayer) | [4.3–4.3★](https://device.report/flo-master-by-hudson/24101) |
+| 52 | [Tijeras de poda Fiskars de corte bypass](https://www.amazon.com/dp/B00002N66H?tag=granjarentabl-20) | B00002N66H | 4.6 | 51,664 | 12.98 | [2026-07](https://www.asinsight.com/report/US/pruning-shears) | [4.5–4.6★](https://www.desertcart.in/products/52466167-fiskars-91095935-bypass-pruner-731645-self-cleaning-sap-groove-prevents) |
+| 53 | [Tijera cortarramas Fiskars de 28 pulgadas](https://www.amazon.com/dp/B000BX1IB6?tag=granjarentabl-20) | B000BX1IB6 | 4.8 | 13,058 | 19.97 | [2026-07](https://www.asinsight.com/report/US/pruning-shears) | [4.8–4.8★](https://device.report/fiskars/391461-1003) |
+| 54 | [Tijeras de poda Felco F2](https://www.amazon.com/dp/B00023RYS6?tag=granjarentabl-20) | B00023RYS6 | 4.8 | 31,408 | 74.99 | [2026-07](https://www.asinsight.com/report/US/pruning-shears) | [4.8–4.8★](https://www.desertcart.in/products/48445985-felco-2-pruning-secateurs-25-mm-cutting-diameter-for-large) |
+| 55 | [Tijeras de poda gonicc GPPS-1003](https://www.amazon.com/dp/B01JZFC9QS?tag=granjarentabl-20) | B01JZFC9QS | 4.5 | 37,540 | 14.95 | [2026-03](https://www.asinsight.com/report/US/garden-shears) | [4.5–4.6★](https://www.desertcart.in/products/217833415-gonicc-premium-quality-forged-titanium-garden-pruner-gpps-1003-comfortable) |
+| 56 | [Tijeras de setos Fiskars Power-Lever extensibles](https://www.amazon.com/dp/B001KVZTSG?tag=granjarentabl-20) | B001KVZTSG | 4.5 | 2,996 | 25.50 | [2026-07](https://www.asinsight.com/report/US/pruning-shears) | [4.5–4.6★](https://www.desertcart.com.sa/products/96439355-fiskars-fis91696935j-fiskars-telescoping-hedge-shear) |
+| 57 | [Pelacables y crimpadora WGGE WG-015](https://www.amazon.com/dp/B073YG65N2?tag=granjarentabl-20) | B073YG65N2 | 4.6 | 16,645 | 9.29 | [2026-07](https://www.asinsight.com/report/US/wire-cutters) | [4.6–4.6★](https://device.report/wgge/wg-015) |
+| 58 | [Juego WORKPRO de siete alicates](https://www.amazon.com/dp/B0105SSMRO?tag=granjarentabl-20) | B0105SSMRO | 4.5 | 18,215 | 26.98 | [2026-07](https://www.asinsight.com/report/US/wire-cutters) | [4.5–4.5★](https://www.desertcart.in/products/22009022-7-piece-workpro-pliers-set-with-groove-joint-long-nose) |
+| 59 | [Tijeras HURRICANE de aviación de corte recto](https://www.amazon.com/dp/B07GDDF5JB?tag=granjarentabl-20) | B07GDDF5JB | 4.7 | 4,432 | 13.39 | [2026-07](https://www.asinsight.com/report/US/wire-cutters) | [4.6–4.6★](https://bahamas.desertcart.com/products/120490029-hurricane-10-inch-aviation-tin-snips-straight-cut-metal-shears) |
+| 60 | [Pelacables IRWIN Vise-Grip 2078309](https://www.amazon.com/dp/B000JNNWQ2?tag=granjarentabl-20) | B000JNNWQ2 | 4.7 | 21,307 | 11.99 | [2026-07](https://www.asinsight.com/report/US/bolt-cutters) | [4.7–4.7★](https://www.desertcart.in/products/1098139-irwin-vise-grip-wire-stripping-tool-wire-cutter-8-inch) |
+| 61 | [Cortapernos WORKPRO W017004A de 14 pulgadas](https://www.amazon.com/dp/B015W3BAW6?tag=granjarentabl-20) | B015W3BAW6 | 4.5 | 14,344 | 15.24 | [2026-07](https://www.asinsight.com/report/US/bolt-cutters) | [4.4–4.5★](https://www.desertcart.in/products/43043294-w017004a-bolt-cutter-bi-material-handle-with-soft-rubber-grip) |
+| 62 | [Cortatubos Bates de carraca para PVC](https://www.amazon.com/dp/B09BVXZBLN?tag=granjarentabl-20) | B09BVXZBLN | 4.5 | 3,569 | 9.95 | [2026-07](https://www.asinsight.com/report/US/bolt-cutters) | [4.5–4.5★](https://www.desertcart.in/products/459389063-bates-pvc-pipe-cutter-cuts-up-to-1-5-8) |
+| 63 | [Mini sierra KATA de diez pulgadas con tres hojas](https://www.amazon.com/dp/B09PYHS642?tag=granjarentabl-20) | B09PYHS642 | 4.4 | 1,898 | 9.99 | [2026-07](https://www.asinsight.com/report/US/bolt-cutters) | [4.4–4.4★](https://www.desertcart.jp/products/440919824-kata-10-inch-aluminum-frame-compact-hand-operate-mini-hack) |
+| 64 | [Alicates CRAFTSMAN CMHT81645 de punta larga](https://www.amazon.com/dp/B08PFK8YWQ?tag=granjarentabl-20) | B08PFK8YWQ | 4.8 | 3,978 | 12.98 | [2026-07](https://www.asinsight.com/report/US/fencing-pliers) | [4.8–4.8★](https://zambia.desertcart.com/products/393992769-craftsman-cmht-81645-8-in-long-nose-pliers-chrome) |
+| 65 | [Alicates DEWALT P7DW con mil anillas](https://www.amazon.com/dp/B00I7PCF3K?tag=granjarentabl-20) | B00I7PCF3K | 4.5 | 3,339 | 36.97 | [2026-07](https://www.asinsight.com/report/US/fencing-pliers) | [4.5–4.5★](https://www.desertcart.hr/products/5598768-dewalt-hog-ring-pliers-kit-includes-pliers-and-1000-ring) |
+| 66 | [Alicates WORKPRO de junta deslizante de ocho pulgadas](https://www.amazon.com/dp/B0C65DS667?tag=granjarentabl-20) | B0C65DS667 | 4.7 | 884 | 8.99 | [2026-07](https://www.asinsight.com/report/US/fencing-pliers) | Sin cifra adicional |
+| 67 | [Tenazas Bates para extracción de clavos](https://www.amazon.com/dp/B07VFVY7DR?tag=granjarentabl-20) | B07VFVY7DR | 4.6 | 6,849 | 8.99 | [2026-07](https://www.asinsight.com/report/US/fencing-pliers) | [4.6–4.6★](https://gambia.desertcart.com/products/158325636-bates-nail-puller-7-inch-steel-end-cutting-pliers) |
+| 68 | [Cortacables DISEN para trabajos de cercado](https://www.amazon.com/dp/B0CF5364ZM?tag=granjarentabl-20) | B0CF5364ZM | 4.6 | 567 | 16.99 | [2026-07](https://www.asinsight.com/report/US/fencing-pliers) | [4.6–4.6★](https://aruba.desertcart.com/products/557556748-disen-wire-cutters-heavy-duty-cutting-up-to-3-16) |
+| 69 | [Doscientas grapas galvanizadas en U para cercado](https://www.amazon.com/dp/B09VP4YTPQ?tag=granjarentabl-20) | B09VP4YTPQ | 4.6 | 1,238 | 5.16 | [2026-07](https://www.asinsight.com/report/US/fence-staples) | [4.5–4.5★](https://jamaica.desertcart.com/products/434078296-steel-wire-fencing-staples-200-pcs-galvanized-u-shaped-fasteners) |
+| 70 | [Cincuenta fijaciones Insaga de acero inoxidable para malla](https://www.amazon.com/dp/B0CP7W5BY6?tag=granjarentabl-20) | B0CP7W5BY6 | 4.8 | 346 | 18.99 | [2026-07](https://www.asinsight.com/report/US/fence-staples) | Sin cifra adicional |
+| 71 | [Pestillo automático National Hardware N184-861](https://www.amazon.com/dp/B004AZ8IDW?tag=granjarentabl-20) | B004AZ8IDW | 4.7 | 1,612 | 6.48 | [2026-07](https://www.asinsight.com/report/US/gate-latch) | [4.6–4.6★](https://antigua.desertcart.com/products/349193398-national-hardware-n184-861-bpb21-automatic-gate-latch-in-black) |
+| 72 | [Cierre basculante Alise de acero inoxidable de cuatro pulgadas](https://www.amazon.com/dp/B076CYQDDS?tag=granjarentabl-20) | B076CYQDDS | 4.6 | 1,575 | 8.99 | [2026-07](https://www.asinsight.com/report/US/gate-latch) | Sin cifra adicional |
+| 73 | [Pestillo de gravedad automático para poste](https://www.amazon.com/dp/B0854B4353?tag=granjarentabl-20) | B0854B4353 | 4.6 | 2,377 | 18.99 | [2026-07](https://www.asinsight.com/report/US/gate-latch) | [4.6–4.6★](https://www.desertcart.in/products/195023089-self-locking-gate-latch-heavy-duty-for-wood-gate-steel) |
+| 74 | [Pasador deslizante para puerta con orificio de candado](https://www.amazon.com/dp/B0D4Y37VGL?tag=granjarentabl-20) | B0D4Y37VGL | 4.7 | 425 | 7.99 | [2026-07](https://www.asinsight.com/report/US/gate-latch) | Sin cifra adicional |
+| 75 | [Cierre con llave National Hardware LokkLatch N346-201](https://www.amazon.com/dp/B01N030SXM?tag=granjarentabl-20) | B01N030SXM | 4.5 | 1,880 | 36.07 | [2026-07](https://www.asinsight.com/report/US/gate-latch) | [4.5–4.5★](https://www.desertcart.in/products/325415371-national-hardware-v6201-ltch-blk-n346-201-4-9-16) |
+| 76 | [Gancho con hembrilla Raswik de cuatro pulgadas](https://www.amazon.com/dp/B07SD4KSSG?tag=granjarentabl-20) | B07SD4KSSG | 4.8 | 17,383 | 9.98 | [2026-07](https://www.asinsight.com/report/US/gate-latch) | [4.8–4.8★](https://aruba.desertcart.com/products/152597592-4-privacy-hook-and-eye-gate-door-latch-easy-barn) |
+| 77 | [Cien bridas TR Industrial negras resistentes a UV](https://www.amazon.com/dp/B01018DC96?tag=granjarentabl-20) | B01018DC96 | 4.7 | 27,630 | 7.89 | [2026-07](https://www.asinsight.com/report/US/zip-ties) | [4.7–4.7★](https://www.desertcart.ec/products/276939984) |
+| 78 | [Cuatrocientas bridas ANOSON de tamaños surtidos](https://www.amazon.com/dp/B0C2Z4L3S6?tag=granjarentabl-20) | B0C2Z4L3S6 | 4.6 | 17,960 | 5.99 | [2026-07](https://www.asinsight.com/report/US/zip-ties) | [4.6–4.6★](https://antigua.desertcart.com/products/533915937-zip-ties-assorted-sizes-4-6-8-12-400-pack) |
+| 79 | [Bridas de doce pulgadas con dentado de doble cara](https://www.amazon.com/dp/B0DK2TBQQ5?tag=granjarentabl-20) | B0DK2TBQQ5 | 4.8 | 1,537 | 9.99 | [2026-07](https://www.asinsight.com/report/US/zip-ties) | [4.8–4.8★](https://www.desertcart.in/products/687106393-zip-ties-heavy-duty-12-inch-v-shaped-toothed-double) |
+| 80 | [Cincuenta piquetas FEED GARDEN galvanizadas de seis pulgadas](https://www.amazon.com/dp/B07Z1SH6B5?tag=granjarentabl-20) | B07Z1SH6B5 | 4.8 | 11,132 | 8.99 | [2026-07](https://www.asinsight.com/report/US/fence-staples) | Sin cifra adicional |
+| 81 | [Cien piquetas GROWNEER galvanizadas de seis pulgadas](https://www.amazon.com/dp/B073F1VMHS?tag=granjarentabl-20) | B073F1VMHS | 4.6 | 10,837 | 14.02 | [2026-07](https://www.asinsight.com/report/US/fence-staples) | Sin cifra adicional |
+| 82 | [Seis mosquetones sprookber de acero inoxidable](https://www.amazon.com/dp/B0796NN5YY?tag=granjarentabl-20) | B0796NN5YY | 4.7 | 13,917 | 9.99 | [2026-07](https://www.asinsight.com/report/US/carabiner) | [4.7–4.7★](https://cayman.desertcart.com/products/269856044-sprookber-stainless-steel-spring-snap-hook-carabiner-304-stainless-steel) |
+| 83 | [Carro basculante Gorilla Carts GOR4PS de cuatro pies cúbicos](https://www.amazon.com/dp/B01BECQAWO?tag=granjarentabl-20) | B01BECQAWO | 4.7 | 30,550 | 123.49 | [2026-07](https://www.asinsight.com/report/US/wheel-barrow) | [4.6–4.7★](https://www.desertcart.com.cy/products/272082208-gorilla-carts-600-lb-poly-garden-dump-cart-4-cu) |
+| 84 | [Carro basculante Gorilla Carts de cinco pies cúbicos](https://www.amazon.com/dp/B01BECQE52?tag=granjarentabl-20) | B01BECQE52 | 4.7 | 30,550 | 153.99 | [2026-07](https://www.asinsight.com/report/US/wheel-barrow) | [4.6–4.7★](https://fado.vn/us/amazon/gorilla-carts-poly-dump-cart-800-lb-capacity-5-cu-ft-gray-800-lb-capacity-poly-dump-cart-with-quick-release-dump-bed-for-gardeners-and-landscapers-hauling-soil-mulch-or-rock-B01BECQE52.html) |
+| 85 | [Carro basculante Gorilla Carts de seis pies cúbicos](https://www.amazon.com/dp/B01BECQF6K?tag=granjarentabl-20) | B01BECQF6K | 4.7 | 30,366 | 199.99 | [2026-03](https://www.asinsight.com/report/US/wheelbarrow) | [4.8–4.8★](https://www.desertcart.in/products/284685100-gorilla-carts-heavy-duty-poly-yard-dump-cart-2-in) |
+| 86 | [Carro Gorilla Carts GCR-4 de dos ruedas](https://www.amazon.com/dp/B08B43QY61?tag=granjarentabl-20) | B08B43QY61 | 4.6 | 3,247 | 99.00 | [2026-07](https://www.asinsight.com/report/US/wheel-barrow) | [4.6–4.6★](https://www.desertcart.co.uk/products/213011745-gorilla-carts-poly-dump-cart-2-wheel-garden-wagon-4) |
+| 87 | [Carretilla Best Choice Products de dos ruedas](https://www.amazon.com/dp/B01H683DIO?tag=granjarentabl-20) | B01H683DIO | 4.3 | 5,276 | 99.99 | [2026-07](https://www.asinsight.com/report/US/wheel-barrow) | [4.3–4.4★](https://www.desertcart.com.eg/products/30018635-dual-wheel-home-utility-yard-wheelbarrow-garden-cart-w-built) |
+| 88 | [Carro VEVOR metálico con laterales desmontables](https://www.amazon.com/dp/B0DT9DRVXJ?tag=granjarentabl-20) | B0DT9DRVXJ | 4.6 | 3,130 | 76.49 | [2026-07](https://www.asinsight.com/report/US/wheel-barrow) | [4.5–4.7★](https://www.desertcart.in/products/722441300-vevor-500-lbs-steel-garden-cart-heavy-duty-garden-wagon-cart-pullable-on-wheels-metal-yard-utility-wagon-carts-with-10-all-terrain-tires-mesh-removable-sides-and-180-rotating-handle) |
+| 89 | [Carro basculante BILT HARD de cuatro pies cúbicos](https://www.amazon.com/dp/B0BHL8NLFJ?tag=granjarentabl-20) | B0BHL8NLFJ | 4.5 | 1,699 | 99.99 | [2026-03](https://www.asinsight.com/report/US/wheelbarrow) | [4.5–4.5★](https://device.report/bilt-hard/gcb-1101) |
+| 90 | [Juego DEWALT FlexTorq DWA2T40IR de cuarenta puntas](https://www.amazon.com/dp/B00GMXFK3G?tag=granjarentabl-20) | B00GMXFK3G | 4.8 | 47,464 | 21.57 | [2026-07](https://www.asinsight.com/report/US/tool-set) | [4.6–4.8★](https://www.desertcart.com.au/products/47984806-dewalt-impact-ready-flextorq-screwdriver-bit-set-40-pieces-dwa2t40ir) |
+| 91 | [Kit DEWALT DCK240C2 de taladro y atornillador](https://www.amazon.com/dp/B00IJ0ALYS?tag=granjarentabl-20) | B00IJ0ALYS | 4.7 | 60,344 | 149.00 | [2026-07](https://www.asinsight.com/report/US/tool-set) | [4.7–4.7★](https://device.report/dewalt/b00ij0alys) |
+| 92 | [Maletín DEWALT DWMT75049 de 192 piezas](https://www.amazon.com/dp/B01BHJE0J4?tag=granjarentabl-20) | B01BHJE0J4 | 4.8 | 7,970 | 164.99 | [2026-07](https://www.asinsight.com/report/US/tool-set) | [4.8–4.8★](https://www.desertcart.co.il/products/50821502-mechanics-tool-set-sae-and-metric-1-2-1-4) |
+| 93 | [Juego WORKPRO de seis alicates y llave ajustable](https://www.amazon.com/dp/B07G9LKCML?tag=granjarentabl-20) | B07G9LKCML | 4.6 | 2,827 | 22.79 | [2026-07](https://www.asinsight.com/report/US/fencing-pliers) | [4.6–4.6★](https://brunei.desertcart.com/products/100818118-workpro-large-pliers-and-wrench-set-6-piece-10-water) |
+| 94 | [Arrancador de malas hierbas Grampa's Weeder](https://www.amazon.com/dp/B001D1FFZA?tag=granjarentabl-20) | B001D1FFZA | 4.5 | 67,189 | 35.96 | [2026-06](https://www.asinsight.com/report/US/garden-rake) | [4.4–4.5★](https://www.desertcart.in/products/61763777) |
+| 95 | [Arrancador Fiskars de cuatro garras con mango largo](https://www.amazon.com/dp/B0030MIHAU?tag=granjarentabl-20) | B0030MIHAU | 4.4 | 29,933 | 48.98 | [2026-06](https://www.asinsight.com/report/US/garden-rake) | [4.4–4.4★](https://www.desertcart.in/products/617911-fiskars-deluxe-stand-up-weed-puller-tool-4-serrated-stainless) |
+| 96 | [Cultivador de mano Fiskars Ergo](https://www.amazon.com/dp/B004S0PGUC?tag=granjarentabl-20) | B004S0PGUC | 4.7 | 2,039 | 8.94 | [2026-07](https://www.asinsight.com/report/US/garden-fork) | [4.7–4.7★](https://www.desertcart.in/products/333462540-ergo-cultivator-heavy-duty-gardening-hand-tool-with-hang-hole) |
+| 97 | [Paleta de mano Fiskars de aluminio](https://www.amazon.com/dp/B004S0PGPM?tag=granjarentabl-20) | B004S0PGPM | 4.7 | 14,179 | 6.29 | [2026-03](https://www.asinsight.com/report/US/shovel) | [4.7–4.8★](https://www.desertcart.com.sa/products/342373002-fiskars-ergo-scratch-trowel-garden-tool-7022) |
+| 98 | [Pala dosificadora Garden Weasel Potting Scoop](https://www.amazon.com/dp/B08C253V48?tag=granjarentabl-20) | B08C253V48 | 4.8 | 1,169 | 13.99 | [2026-03](https://www.asinsight.com/report/US/shovel) | Sin cifra adicional |
+| 99 | [Juego Fiskars de paleta, trasplantador y cultivador](https://www.amazon.com/dp/B01MUXL5V8?tag=granjarentabl-20) | B01MUXL5V8 | 4.8 | 1,345 | 24.95 | [2026-07](https://www.asinsight.com/report/US/garden-fork) | [4.8–4.8★](https://www.desertcart.in/products/836112356-fiskars-3-piece-garden-hand-tools-set-w-trowel-transplanter) |
+| 100 | [Cuchillo de jardín PERWIN Hori Hori con funda](https://www.amazon.com/dp/B0BCK7NRBH?tag=granjarentabl-20) | B0BCK7NRBH | 4.8 | 3,037 | 17.99 | [2026-07](https://www.asinsight.com/report/US/garden-fork) | Sin cifra adicional |
+
+## Comprobación de fabricantes
+
+- [Gafas cerradas DEWALT DPG82 Concealer](https://www.dewalt.com/en-us/product/dpg82/concealer): Ficha del fabricante localizada; verificar el marcado y el ajuste de la variante vendida.
+- [Linterna de trabajo DEWALT DCL040 de 20 V](https://www.dewalt.com/en-us/product/dcl040/20v-max-led-work-light): Ficha del fabricante: linterna de batería; se indica herramienta sola. Confirmar el contenido del paquete de Amazon.
+- [Tijeras de poda Felco F2](https://www.felco.com/products/felco-2): Ficha del fabricante: tijera bypass para mano derecha y mano grande. La longitud declarada es 215 mm; no copiar sin revisar la longitud distinta del título comercial.
+- [Alicates CRAFTSMAN CMHT81645 de punta larga](https://www.craftsman.com/en-us/product/cmht81645/craftsman-8-inch-long-nose-pliers): Ficha del fabricante: alicates de punta larga de ocho pulgadas; confirmar referencia y variante.
+- [Cierre con llave National Hardware LokkLatch N346-201](https://www.national-hardware.com/p/6201-lokklatch?model=N346-201): Ficha del fabricante: cierre con llave y ajuste horizontal y vertical; comprobar montaje y contenido.
+- [Carro basculante Gorilla Carts GOR4PS de cuatro pies cúbicos](https://gorillamade.com/product/gor4ps-gor4ps-c/): Ficha del fabricante: carro con caja de cuatro pies cúbicos y basculación. El manual distingue carga de transporte y carga de basculación.
+- [Cultivador de mano Fiskars Ergo](https://cuix-prod.fiskars.com/en-us/gardening-and-yard-care/products/cultivating-tools/ergo-cultivator-300s-384240-1007): Ficha estadounidense del fabricante localizada para la familia Ergo; comprobar equivalencia exacta con el ASIN y variante antes de publicarla.
+
+## Cuatro reservas sustituidas
+
+- B0051U7W32: rango observado [4.2, 4.5]; [fuente con la cifra inferior](https://www.desertcart.co.uk/products/80221689-macks-ear-care-ultra-soft-foam-earplugs-50-pair).
+- B01LWYWH43: rango observado [3.9, 4.6]; [fuente con la cifra inferior](https://antigua.desertcart.com/products/355989486-dr-meter-noise-cancelling-headphones-for-adults-kids-adjustable-hearing).
+- B073Q6PBD3: rango observado [4.2, 4.7]; [fuente con la cifra inferior](https://bahrain.desertcart.com/products/255940864-innav8-water-hose-nozzle-sprayer-10-spray-patterns-thumb-control).
+- B08YRLZCPJ: rango observado [4, 4.5]; [fuente con la cifra inferior](https://bahamas.desertcart.com/products/403904419-egofine-46-pieces-1-4-inch-drive-ratchet-wrench-socket).
+
+## Pendiente antes de incorporar a la tienda
+
+Confirmar en Amazon.com la correspondencia del ASIN, variante, puntuación y disponibilidad. Después, completar cada ficha con características contrastadas y su imagen IA fiel a una referencia auténtica, revisar visualmente y obtener el OK de publicación. La existencia de una ficha de fabricante o de stock en otro comercio no demuestra stock en Amazon.
+
+## Validación de esta entrega
+
+Cien ASIN únicos, ninguno presente en el catálogo ni en los 113 candidatos anteriores. Dieciocho categorías cuya suma es cien; todos con puntuación de informe ≥4,3, reseñas y precio fechado. Setenta y nueve tienen cifras en un segundo comercio; siete incluyen referencia de fabricante. Cuatro reservas documentadas y sustituidas. Cien enlaces con correspondencia estructural ASIN–URL y tag correctos. Ningún nuevo producto marcado como publicable. Las páginas de producción no cambian.
+
+
+## Continuación: fichas y depuración de referencias
+
+Se añaden seis borradores en `fichas-fabricantes-01.json`: FELCO 2, Gorilla GOR4PS, CRAFTSMAN CMHT81645, LokkLatch N346-201, DEWALT DPG82 y DCL040. Incluyen descripción, criterios editoriales, consejos, comprobaciones y fuente oficial. Son seis productos de esta selección de cien, adicionales a los siete borradores avícolas anteriores. La fuente oficial de DCL040 utilizada es la ficha del kit DCK623M2 y solo acredita las características identificadas de la linterna, no el contenido del anuncio individual.
+
+Se excluyeron cuatro referencias de los cálculos por falta de correspondencia de producto: OZERO frente a COOLJOB; Chapin 20000 frente a 20004; gallinero WAYTRIM frente a tijeras HURRICANE; carro LITELEPH frente a Gorilla GOR6PS. Se conservan en `contrastes_excluidos` con el motivo. Los intervalos y los enlaces de esta tabla se recalcularon usando los contrastes restantes. Esto no valida automáticamente la identidad de esos contrastes restantes.
+
+Las cuatro consultas directas de Amazon realizadas en esta continuación quedaron bloqueadas por robots.txt. No se ha verificado hoy ningún nuevo precio, puntuación, reseñas ni stock en Amazon. Ninguna ficha está marcada como publicable y no hay imágenes nuevas.
+
+Validación: seis ASIN únicos pertenecientes a la selección; todas las fichas mantienen publicación desactivada y campos comerciales actuales sin completar. Se conserva la selección de cien y no se modifican páginas públicas.
+
+## Nueva consulta de Canopy y dos contrastes parciales
+
+El 14/11/2026 se probó el formulario público de Canopy con B087RNQDFC. Respondió «Today's free-tool quota has been used up». No se obtuvo ningún precio, valoración ni stock; no se conectó la API ni se contrató un servicio.
+
+Se incorporan anotaciones en los textos n.º 1 y 4 de `fichas-iniciales-78.json`. Fiskars: el extracto indexado del catálogo oficial 2020 identifica el Xact europeo 1027044; el PDF no pudo abrirse y no acredita equivalencia con el ASIN estadounidense. VEVOR: se leyó la ficha oficial europea CY-SF13, SKU ZCLQPLHJ36INUFPURV0; declara 37 púas, cabezal de 915 mm y 1,6 kg, pendientes de equivalencia con B0CGCM233N. Se distingue la longitud del mango de las dimensiones totales.
+
+Ambas anotaciones incluyen texto editorial revisado y límites concretos. Permanecen dentro de los 78 textos pendientes: no se incrementa el total de 22 borradores anteriores con fuentes. La correspondencia de variantes y los datos comerciales actuales siguen sin verificar. Cero nuevas imágenes y cero productos publicados en esta continuación.
+
+## Seis contrastes parciales adicionales
+
+`contrastes-parciales-06.json` complementa los textos n.º 30, 31, 43, 49, 50 y 86 del grupo de 78, con fuente oficial leída, descripción revisada, tres consejos y límites individuales. Al revisar estas seis fichas, usar la versión de ese complemento. No añade productos ni convierte el total en 28 fichas completas: se mantienen los 22 borradores anteriores y los 78 pendientes, ahora con seis anotaciones adicionales a las dos previas.
+
+- 3M 91252: ventilación indirecta; imagen oficial 91252H1-DC-10 rotulada 10/case. Confirmar cantidad del anuncio.
+- NoCry OverSpecs+: montura abierta, sin sellado de polvo ni antivaho en la versión transparente de la comparativa. No confundir con Seal o Pro Anti-Fog. Medir gafas graduadas.
+- Camco EvoFlex2: referencia oficial 22579 de 50 pies; distinguirla de EvoFlex 22596 y de las dimensiones del paquete.
+- Zep: la ficha reúne varias presentaciones; HDPRO1PK3 aparece en texto pero la selección principal es HDPRO36. Falta verificar el paquete Amazon.
+- PetraTools HD101: manguera 52 pulgadas, lanza 16 pulgadas, dos boquillas y válvula de despresurización. Metadatos HD100 y cuerpo HD101: dejar constancia y verificar variante.
+- Gorilla GCR-4: dos ruedas, cuatro pies cúbicos, 300 libras y no remolcable. El enlace Amazon del fabricante redirigió al ASIN B08B43QY61; esta coincidencia mejora la identidad del modelo, pero las consultas posteriores quedaron bloqueadas y no se confirma precio ni stock actual.
+
+Validación: seis ASIN únicos pertenecientes al grupo de 78; tres consejos por ficha; precio, estrellas, reseñas y disponibilidad actuales vacíos; publicación desactivada. Sin nuevas imágenes, fusión ni publicación.
+
+## Segunda tanda: siete contrastes parciales
+
+`contrastes-parciales-07.json` complementa los textos 44, 47, 58, 62, 77, 81 y 100. Usar su descripción revisada y sus comprobaciones junto a los consejos iniciales. Fuentes oficiales leídas para RESTMO, WORKPRO, Bates, TR Industrial, GROWNEER y PERWIN.
+
+Avance de identidad: GROWNEER muestra explícitamente B073F1VMHS como SKU del paquete de cien piquetas de seis pulgadas. No equivale a oferta ni stock actual de Amazon.
+
+Discrepancias registradas: lanza RESTMO de 16 pulgadas y mercado UK frente al título de 15 pulgadas; dos juegos WORKPRO de siete piezas con códigos distintos; capacidades diferentes en cortatubos Bates; cantidades y resistencias diferentes entre variantes de bridas. No se copia la temperatura de TR Industrial porque la equivalencia Celsius/Fahrenheit es inconsistente. La funda y el material exacto del PERWIN siguen pendientes.
+
+Esta tanda suma siete anotaciones a las seis anteriores y las dos previas: quince candidatos del grupo de 78 tienen contraste parcial adicional. Se mantienen los 22 borradores anteriores y los 78 pendientes de contraste completo/equivalencia. Cien candidatos totales, cero nuevos datos comerciales actuales completos, cero nuevos productos publicados de la selección.
+
+Validación: siete ASIN únicos, todos del grupo de 78 y distintos de las anotaciones previas; fuentes y límites por ficha; publicación desactivada. No se fusiona ni se alteran páginas públicas.

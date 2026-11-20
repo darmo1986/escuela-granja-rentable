@@ -1,0 +1,148 @@
+{
+  "fecha": "2026-11-14",
+  "tipo": "segunda_tanda_de_contrastes_parciales",
+  "cantidad": 7,
+  "alcance": "Complementa siete textos del grupo de 78. Usar estas descripciones revisadas; se conservan los consejos iniciales. No suma candidatos ni productos comercialmente verificados.",
+  "fichas": [
+    {
+      "numero_seleccion": 44,
+      "asin": "B08QVK1GXV",
+      "titulo": "Pistola de riego RESTMO metálica de siete patrones",
+      "descripcion_revisada": "Para riego y limpieza localizada con manguera compatible. La fuente describe siete patrones y control de caudal; el resultado depende de la presión disponible.",
+      "contraste": {
+        "fecha": "2026-11-14",
+        "url": "https://restmo.online/products/restmo-garden-hose-nozzle-heavy-duty-metal-water-nozzle-with-7-adjustable-spray-patterns-high-pressure-hand-sprayer-with-flow-control-for-watering-plants-lawns-washing-cars-pets",
+        "modelo_fuente": "RESTMO siete patrones",
+        "acceso": "Ficha oficial leída",
+        "datos_del_modelo_en_fuente": [
+          "Cuerpo y gatillo metálicos.",
+          "Gatillo frontal bloqueable y siete patrones.",
+          "Conexión declarada de 3/4 NH y juntas."
+        ],
+        "limite": "Confirmar B08QVK1GXV y la rosca exacta; no prometer aumento de presión creado por la boquilla."
+      },
+      "publicable": false,
+      "amazon_verificado_hoy": false
+    },
+    {
+      "numero_seleccion": 47,
+      "asin": "B09FXL84H6",
+      "titulo": "Lanza de riego RESTMO de quince pulgadas",
+      "descripcion_revisada": "Lanza propuesta para acercar el agua a puntos de difícil alcance. La fuente localizada corresponde a 16 pulgadas; el candidato dice 15 pulgadas y no puede tratarse como la misma variante.",
+      "contraste": {
+        "fecha": "2026-11-14",
+        "url": "https://restmo.online/en-gb/collections/o-hn-2/products/restmo-metal-watering-wand-heavy-duty-garden-hose-wand-with-180-swivel-ratcheting-head-16-inch-hose-nozzle-sprayer-with-7-spray-patterns-and-flow-control-ideal-to-water-hanging-baskets-and-shrubs",
+        "modelo_fuente": "RESTMO 16 pulgadas variante UK",
+        "acceso": "Ficha oficial leída",
+        "datos_del_modelo_en_fuente": [
+          "Cabezal articulado de 180 grados.",
+          "Siete patrones y control de caudal.",
+          "Título oficial de 16 pulgadas, selección Yellow-UK."
+        ],
+        "limite": "B09FXL84H6 pendiente: resolver longitud, mercado y conexiones antes de transferir especificaciones."
+      },
+      "publicable": false,
+      "amazon_verificado_hoy": false
+    },
+    {
+      "numero_seleccion": 58,
+      "asin": "B0105SSMRO",
+      "titulo": "Juego WORKPRO de siete alicates",
+      "descripcion_revisada": "Juego propuesto para agarre, doblado y corte en mantenimiento. La identificación exige comparar referencia y herramientas incluidas; dos juegos de siete piezas pueden ser distintos.",
+      "contraste": {
+        "fecha": "2026-11-14",
+        "url": "https://workprotools.com/products/workpro-7-piece-pliers-set-hand-tool-kit-for-home-and-professional-use",
+        "modelo_fuente": "WORKPRO W006015AH frente a W001389AH",
+        "acceso": "Ficha oficial leída",
+        "datos_del_modelo_en_fuente": [
+          "Juego de siete alicates de punta, corte, universal y articulados.",
+          "Incluye piezas de seis y ocho pulgadas y una mini de punta.",
+          "También existe versión negra W001389AH de siete piezas."
+        ],
+        "limite": "B0105SSMRO sin equivalencia resuelta. Segunda fuente oficial: https://workprotools.store/products/workpro-7-piece-pliers-set-black-groove-joint-piler-long-nose-piler-slip-joint-piler-linesman-piler-diagonal-pliers-for-diy-home-use. No atribuir aislamiento eléctrico ni corte de acero endurecido."
+      },
+      "publicable": false,
+      "amazon_verificado_hoy": false
+    },
+    {
+      "numero_seleccion": 62,
+      "asin": "B09BVXZBLN",
+      "titulo": "Cortatubos Bates de carraca para PVC",
+      "descripcion_revisada": "Cortatubos propuesto para preparar tubería plástica compatible. Debe elegirse por diámetro exterior, material y espesor admitidos, confirmando referencia antes de recomendarlo.",
+      "contraste": {
+        "fecha": "2026-11-14",
+        "url": "https://bateschoice.com/products/bates-pvc-pipe-cutter-cuts-up-to-1-5-8-black-yellow-ratcheting-pvc-pipe-cutter-tool-pipe-cutters-pvc-pipe-shears",
+        "modelo_fuente": "Bates negro/amarillo 1-5/8 pulgadas",
+        "acceso": "Ficha oficial leída",
+        "datos_del_modelo_en_fuente": [
+          "Carraca y hoja SK5.",
+          "Diámetro máximo anunciado 1-5/8 pulgadas.",
+          "Cierre para almacenamiento y mangos antideslizantes."
+        ],
+        "limite": "La referencia oficial XTWB001B419VC no demuestra equivalencia con B09BVXZBLN. No confundir capacidades de otras versiones ni prometer corte de metal."
+      },
+      "publicable": false,
+      "amazon_verificado_hoy": false
+    },
+    {
+      "numero_seleccion": 77,
+      "asin": "B01018DC96",
+      "titulo": "Cien bridas TR Industrial negras resistentes a UV",
+      "descripcion_revisada": "Bridas propuestas para ordenar cables y sujetar elementos ligeros. Se debe confirmar tamaño, cantidad y variante negra para exterior.",
+      "contraste": {
+        "fecha": "2026-11-14",
+        "url": "https://trindustrial.com/multi-purpose-cable-ties/",
+        "modelo_fuente": "TR Industrial Multi-Purpose",
+        "acceso": "Ficha oficial leída",
+        "datos_del_modelo_en_fuente": [
+          "Nailon 6/6; opción negra resistente a UV.",
+          "Cuatro, ocho, doce y catorce pulgadas en paquetes de cien.",
+          "Longitudes mayores se presentan en paquetes de cincuenta."
+        ],
+        "limite": "B01018DC96 pendiente. No transferir 18 libras del ejemplo de cuatro pulgadas ni 250 libras de otra serie. No copiar temperaturas: la fuente equipara cifras Celsius/Fahrenheit incompatibles. No presentarlas como protección antidepredadores probada."
+      },
+      "publicable": false,
+      "amazon_verificado_hoy": false
+    },
+    {
+      "numero_seleccion": 81,
+      "asin": "B073F1VMHS",
+      "titulo": "Cien piquetas GROWNEER galvanizadas de seis pulgadas",
+      "descripcion_revisada": "Piquetas propuestas para sujetar tejidos, mangueras y bordes al suelo. El código y el paquete coinciden en la ficha oficial; la retención depende del terreno y del material.",
+      "contraste": {
+        "fecha": "2026-11-14",
+        "url": "https://growneer.com/product/growneer-100-packs-6-inches-heavy-duty-11-gauge-galvanized-steel-garden-stakes/",
+        "modelo_fuente": "GROWNEER 100 piquetas de seis pulgadas calibre 11",
+        "acceso": "Ficha oficial leída",
+        "datos_del_modelo_en_fuente": [
+          "Ficha oficial muestra SKU B073F1VMHS, coincidente con el ASIN.",
+          "Cien unidades de acero galvanizado.",
+          "Extremos biselados y diseño descrito como trapezoidal."
+        ],
+        "limite": "Identidad documental de código y paquete confirmada en fabricante. Oferta, variante vendida y stock actual de Amazon pendientes; no es prueba de anclaje estructural o resistencia a depredadores."
+      },
+      "publicable": false,
+      "amazon_verificado_hoy": false
+    },
+    {
+      "numero_seleccion": 100,
+      "asin": "B0BCK7NRBH",
+      "titulo": "Cuchillo de jardín PERWIN Hori Hori con funda",
+      "descripcion_revisada": "Herramienta propuesta para plantación y retirada de raíces en el exterior. La referencia combina filo, serrado y marcas de profundidad. Antes de elegir, comprobar variante y contenido del paquete.",
+      "contraste": {
+        "fecha": "2026-11-14",
+        "url": "https://perwintools.com/products/perwin-hori-hori-garden-knife-gardening-tools-for-weeding-planting-digging-cherry-wood-handle",
+        "modelo_fuente": "PERWIN Hori Hori mango cerezo",
+        "acceso": "Ficha oficial leída",
+        "datos_del_modelo_en_fuente": [
+          "Hoja curva con borde de corte y serrado.",
+          "Marcas de profundidad en pulgadas.",
+          "Mango de madera con tres remaches."
+        ],
+        "limite": "B0BCK7NRBH pendiente de equivalencia. No atribuir longitud, acero, construcción integral o funda sin confirmación; el stock del fabricante no acredita el de Amazon."
+      },
+      "publicable": false,
+      "amazon_verificado_hoy": false
+    }
+  ]
+}
