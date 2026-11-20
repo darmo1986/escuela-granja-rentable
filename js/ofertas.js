@@ -28,8 +28,8 @@
         // sin cambiar Amazon.com, el ASIN ni el tag de afiliado.
         try {
           var amazonUrl = new URL(oferta.href, location.href);
-          if (/^(?:www\\.)?amazon\\.com$/i.test(amazonUrl.hostname) &&
-              /^\\/dp\\/[A-Z0-9]{10}\\/?$/i.test(amazonUrl.pathname) &&
+          if (/^(?:www\.)?amazon\.com$/i.test(amazonUrl.hostname) &&
+              /^\/dp\/[A-Z0-9]{10}\/?$/i.test(amazonUrl.pathname) &&
               amazonUrl.searchParams.get('tag')) {
             amazonUrl.searchParams.set('language', 'es_US');
             link.href = amazonUrl.href;
