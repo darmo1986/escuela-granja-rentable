@@ -611,7 +611,6 @@ def cuerpo_portada(productos, raiz):
 <div class="t-vacio" data-t-vacio hidden><h3>No encontramos esa combinación</h3><p>Prueba una palabra más general o cambia de categoría.</p><button type="button" class="btn sec" data-t-ampliar hidden>Buscar en toda la tienda</button></div>
 {"".join(bloques)}
 </section>
-<div data-publicidad-discreta></div>
 <aside class="t-ayuda"><h2>Primero resuelve la duda de manejo</h2><p>Antes de elegir equipo puedes consultar las <a href="{raiz}blog/">guías gratuitas</a> y las <a href="{raiz}calculadoras.html">calculadoras</a>. Si prefieres una guía en PDF, consulta el contenido y el precio de los <a href="{raiz}ebooks/">ebooks propios</a>.</p></aside>'''
 
 
