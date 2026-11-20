@@ -26,6 +26,9 @@ jobs:
       - name: Bajar el repositorio
         uses: actions/checkout@v4
 
+      - name: Comprobar banners, imágenes y tienda antes de publicar
+        run: node blog/pruebas/test_escaparate.cjs
+
       - name: Limpiar botones heredados de Amazon
         run: python3 _fuentes/tienda/limpiar_destinos.py
 
