@@ -201,3 +201,19 @@ a.t-amazon, a.t-resenas { display: flex; justify-content: center; width: 100%; t
 
 .t-foto-error{display:flex;align-items:center;justify-content:center;min-height:150px;padding:1rem;text-align:center;background:#eef3ed;color:#294b33;font-size:.95rem;line-height:1.5;border-radius:10px}
 .t-foto img[hidden]{display:none!important}
+
+
+/* Acceso instantáneo al catálogo desde la parte alta de la tienda */
+.t-busqueda-rapida{background:linear-gradient(120deg,#174b2e,#267448);color:#fff;border-radius:18px;padding:18px clamp(12px,2vw,24px);margin:16px 0;box-shadow:0 12px 24px #173c261f}
+.t-busqueda-rapida label{display:block;color:#fff;font-size:clamp(1.16rem,2.2vw,1.55rem);font-weight:850;line-height:1.22;margin-bottom:10px}
+.t-rapida-fila{display:flex;align-items:stretch;gap:9px;flex-wrap:wrap}
+.t-rapida-fila input{flex:1 1 230px;width:100%;min-width:0;min-height:50px;border:2px solid #b6d4bf;border-radius:11px;background:#fff;color:#1b3927;padding:11px 14px;font:inherit}
+.t-rapida-fila input:focus-visible{outline:3px solid #eedc97;outline-offset:2px}
+.t-rapida-fila button{min-height:50px;margin:0;font-weight:850;white-space:normal}
+.t-busqueda-rapida p{color:#e3f1e7;line-height:1.5;margin:11px 0 0;font-size:.89rem}
+.t-busqueda-rapida p a{color:#fff;text-decoration:underline;font-weight:800;text-underline-offset:3px}
+.t-busqueda-rapida p a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.t-seccion,.t-busqueda-rapida,#amazon{scroll-margin-top:72px}
+.t-foto-vacia .t-foto-error{min-height:142px;border:1px dashed #a9bbab}
+.anuncio-tercio:empty,[data-publicidad-discreta]:empty{display:none!important}
+@media(max-width:640px){.t-busqueda-rapida{padding:15px 12px}.t-rapida-fila button{width:100%}.t-rapida-fila input{flex-basis:100%}}

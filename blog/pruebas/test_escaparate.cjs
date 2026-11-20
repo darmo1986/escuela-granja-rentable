@@ -1,0 +1,45 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '../..');
+const read = p => fs.readFileSync(path.join(root, p), 'utf8');
+const home = read('index.html');
+const landing = read('recomendados.html');
+const shop = read('tienda/index.html');
+const ebooks = read('ebooks/index.html');
+
+for (const [name, html] of [['portada', home], ['recomendados', landing]]) {
+  const amazon = [...html.matchAll(/<a class="gr-venta-card"[^>]*>/g)].map(m => m[0]);
+  const libros = [...html.matchAll(/<a class="gr-venta-card gr-venta-ebook"[^>]*>/g)].map(m => m[0]);
+  assert.equal(amazon.length, 7, name + ': siete productos');
+  assert.equal(libros.length, 3, name + ': tres ebooks');
+  assert.equal(new Set(amazon.map(a => a.match(/data-banner="([^"]+)"/)?.[1])).size, 7);
+  for (const a of amazon) {
+    assert.match(a, /data-banner="amazon-[a-z0-9]{10}"/);
+    assert.match(a, /amazon\.com\/dp\/[A-Z0-9]{10}\?tag=granjarentabl-20&amp;language=es_US/);
+    assert.match(a, /rel="sponsored noopener noreferrer"/);
+  }
+  for (const a of libros) {
+    const id = a.match(/href="ebooks\/#([^"]+)"/)?.[1];
+    assert.ok(id && ebooks.includes('id="' + id + '"'), 'ebook existente: ' + id);
+    assert.match(a, /data-banner="ebook-[a-z-]+"/);
+  }
+  const cards = [...html.matchAll(/<a class="gr-venta-card(?: gr-venta-ebook)?"[^>]*>[\s\S]*?<\/a>/g)];
+  assert.equal(cards.length, 10);
+  for (const card of cards) {
+    const image = card[0].match(/<img src="([^"]+)"/)?.[1];
+    assert.ok(image && fs.existsSync(path.join(root, image)), 'foto local: ' + image);
+  }
+  assert.ok(html.includes('js/registro-banners.js'), 'registro de clics: ' + name);
+}
+assert.ok(home.includes('gr-ventas-busqueda') && home.includes('js/banners-ventas.js'));
+assert.ok(shop.includes('t-busqueda-rapida'), 'buscar antes de la lista');
+assert.equal([...shop.matchAll(/ data-t-card data-cat=/g)].length, 169);
+assert.ok(shop.length < 360000, 'la tienda no debe recuperar su tamaño antiguo');
+assert.ok(read('js/config.js').includes('activo: false'), 'Adsterra desactivado');
+assert.ok(!read('js/app.js').includes('bauval.org'), 'sin script Adsterra');
+assert.ok(read('js/site.js').includes('searchParams.set("language", "es_US")'));
+assert.ok(read('tienda/imagenes-respaldo.js').includes('t-foto-vacia'));
+assert.ok(read('js/banners-ventas.js').includes('gr-venta-sin-foto'));
+console.log('Escaparate: 7 Amazon y 3 ebooks en dos páginas, imágenes, clics, 169 fichas, buscador, idioma y Adsterra comprobados.');

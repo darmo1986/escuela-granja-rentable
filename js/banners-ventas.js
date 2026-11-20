@@ -1,6 +1,20 @@
 /* Controles accesibles para ofertas horizontales. */
 (function () {
   "use strict";
+  /* No mostrar una foto rota: mantener el enlace de producto y ofrecer texto claro. */
+  document.querySelectorAll(".gr-venta-foto img").forEach(function (img) {
+    function respaldo() {
+      var marco = img.closest(".gr-venta-foto");
+      if (!marco || marco.querySelector(".gr-venta-sin-foto")) return;
+      img.hidden = true;
+      var nota = document.createElement("span");
+      nota.className = "gr-venta-sin-foto";
+      nota.textContent = "Consulta la fotografía exacta en Amazon";
+      marco.appendChild(nota);
+    }
+    img.addEventListener("error", respaldo, { once: true });
+    if (img.complete && img.naturalWidth === 0) respaldo();
+  });
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.querySelectorAll(".gr-ventas-carril").forEach(function (carril) {
     var controls = document.createElement("div");
