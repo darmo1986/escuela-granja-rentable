@@ -32,7 +32,7 @@ PRIORITARIOS = [
     "B01N56NGS8", "B00D458L9K", "B07NJZM1F5", "B0CP83KPD2", "B0BL3TQDJN",
     "B0DLTMQJ77", "B01MFE2ASJ", "B0FJ7RQ6RB", "B000HHQDPM",
 ]
-VERSION = "20261119tienda24"
+VERSION = "20261120-rapida"
 VERSION_BUSCADOR = "20261119tienda24"
 
 
@@ -519,8 +519,9 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <script src="{raiz}js/config.js?v=20261110d"></script>
 <script src="{raiz}js/catalogo.js"></script>
 <script src="{raiz}js/app.js?v=20261110d"></script>
-<script src="{raiz}js/site.js?v=20261110d"></script>
+<script src="{raiz}js/site.js?v=20261120-idioma"></script>
 <script defer src="{raiz}tienda/tienda.js?v={VERSION_BUSCADOR}"></script>
+{f'<script defer src="{raiz}tienda/imagenes-respaldo.js?v=20261120"></script>' if rel == "tienda/index.html" else ""}
 </body>
 </html>
 '''
