@@ -29,3 +29,36 @@
 @media(min-width:1100px){.gr-ventas-carril{grid-auto-columns:minmax(225px,1fr)}.gr-ventas-carril-ebooks{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row;overflow:visible}}
 @media(max-width:640px){.gr-ventas-directas{border-radius:16px;margin:16px auto 24px;padding:15px 10px}.gr-ventas-cabecera h2{font-size:1.28rem}.gr-ventas-carril{grid-auto-columns:min(78vw,268px);gap:10px;scroll-padding-left:3px}.gr-venta-card{min-height:345px}.gr-venta-foto{height:137px}.gr-venta-boton{padding:8px}.gr-ventas-cabecera-ebooks{padding-top:17px}}
 @media(prefers-reduced-motion:reduce){.gr-venta-card{transition:none}.gr-venta-card:hover{transform:none}}
+
+/* Actualización comercial accesible, 20-11-2026 */
+.gr-ventas-busqueda{display:flex;flex-wrap:wrap;gap:9px;align-items:center;padding:13px;background:#fff;border:1px solid #cfdfcf;border-radius:13px;margin:9px 0 10px}
+.gr-ventas-busqueda label{font-weight:800;color:#214930;font-size:.9rem}
+.gr-ventas-busqueda input{flex:1 1 190px;min-width:0;border:1px solid #97b49d;border-radius:9px;padding:11px 12px;min-height:44px;background:#fff;color:#163c28;font:inherit}
+.gr-ventas-busqueda button{min-height:44px;border:0;border-radius:9px;padding:0 18px;background:#205f3a;color:white;font:inherit;font-weight:850;cursor:pointer}
+.gr-ventas-busqueda button:hover{background:#164b2d}
+.gr-ventas-categorias{display:flex;gap:7px;overflow-x:auto;scrollbar-width:thin;margin:2px 0 10px;padding:1px 0 8px}
+.gr-ventas-categorias a{flex:none;min-height:40px;display:inline-flex;align-items:center;padding:8px 13px;border-radius:999px;border:1px solid #b7ceb9;background:#fff;color:#245536;text-decoration:none;font-size:.86rem;font-weight:800}
+.gr-ventas-categorias a:hover,.gr-ventas-categorias a:focus-visible{background:#e0eddf}
+.gr-ventas-controls{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin:0 1px 8px}
+.gr-ventas-controls[hidden]{display:none!important}
+.gr-ventas-controls button{border:1px solid #b5c9b7;background:#fff;color:#1e5a37;min-width:42px;min-height:42px;display:inline-grid;place-items:center;border-radius:10px;font-size:1.5rem;cursor:pointer}
+.gr-ventas-controls button:disabled{color:#a1b6a6;background:#f4f7f3;cursor:default}
+.gr-ventas-controls .gr-ventas-contador{margin-right:auto;font-size:.8rem;color:#536b5c;font-weight:800}
+.gr-ventas-comprar-rapido{margin:0 0 18px;padding:11px 12px;background:#e8f2e5;border-left:4px solid #307e4d;border-radius:8px;color:#304b37;line-height:1.5;font-size:.88rem}
+.gr-ventas-directas .gr-venta-foto{height:157px}
+.gr-venta-card{min-height:343px}
+.gr-venta-card:focus-visible,.gr-ventas-categorias a:focus-visible,.gr-ventas-controls button:focus-visible,.gr-ventas-busqueda button:focus-visible{outline:3px solid #367d51;outline-offset:2px}
+.gr-ventas-busqueda input:focus-visible{outline:3px solid #367d51;outline-offset:1px}
+.gr-ofertas-portada{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin:16px 0 13px;padding:clamp(16px,3vw,28px);background:linear-gradient(120deg,#17462e,#30734d);color:#fff;border-radius:18px}
+.gr-ofertas-portada h2{color:#fff;margin:0;font-size:clamp(1.05rem,2.3vw,1.45rem);line-height:1.25}
+.gr-ofertas-portada p{color:#e6f2e5;margin:.35rem 0 0}
+.gr-ofertas-portada a{color:#163e28!important;background:#fbe2a2;padding:11px 19px;min-height:44px;border-radius:10px;display:inline-flex;align-items:center;font-weight:900;text-decoration:none!important}
+.t-amazon-aviso{margin:10px 0;padding:12px 15px;border-radius:10px;border:1px solid #d2e2d0;background:#f3faf2;color:#2f5137;line-height:1.5}
+.t-catalogo-rapido{margin:12px 0}
+.t-catalogo-rapido .btn{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+@media(max-width:640px){
+.gr-ventas-busqueda label,.gr-ventas-busqueda input,.gr-ventas-busqueda button{flex:1 1 100%;width:100%}
+.gr-ventas-directas .gr-venta-foto{height:144px}
+.gr-ofertas-portada{padding:15px;margin:10px 0}
+.gr-ofertas-portada a{width:100%;justify-content:center}
+}
