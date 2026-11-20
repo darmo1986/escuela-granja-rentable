@@ -1,6 +1,12 @@
-/* Adsterra desactivado por orden del propietario (19/11/2026).
-   Quedan vigentes solo las promociones propias y enlaces de Amazon. */
-window.ads = { activo: false, adsterraPilot: false, ampliacionDiscreta: false, amazonTag: "granjarentabl-20" };
+/* Interruptor de publicidad. false = no se pintan huecos de anuncio.
+   amazonTag = etiqueta de afiliado de Amazon. Con etiqueta, el generador pinta el hueco de Amazon detrás del banner del ebook (relleno). No depende de activo.
+   Piloto de un banner 300×250 en el primer tercio, tras aceptar. */
+window.ads = { activo: false, adsterraPilot: false, amazonTag: "granjarentabl-20" };
+
+// Activación autorizada por Pablo el 16/11/2026 tras revisar la colocación.
+// La confirmación del filtro completo de apuestas por Adsterra sigue pendiente.
+window.ads.ampliacionDiscreta = true;
+
 /* El curso y los ebooks van primero. */
 window.GR = {
   siteUrl: "https://granjarentable.com",
