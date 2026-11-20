@@ -70,6 +70,7 @@
    "titulo": "Gallinas ponedoras (1): de la pollita a la puesta",
    "estado": "disponible",
    "video": "",
+   "examen": "l05a.json",
    "descripcion": "De la pollita hasta que empieza a poner: crianza, luz y el paso a la puesta.",
    "enlace": "https://github.com/Darmo1986/escuela-granja-rentable/releases/download/curso-videos/leccion-05a-1080p.mp4"
   },
@@ -79,6 +80,7 @@
    "titulo": "Gallinas ponedoras (2): producción, huevo, cama, limpieza y plagas",
    "estado": "disponible",
    "video": "",
+   "examen": "l05b.json",
    "descripcion": "Producción, calidad del huevo, cama, limpieza y control de plagas.",
    "enlace": "https://github.com/Darmo1986/escuela-granja-rentable/releases/download/curso-videos/leccion-05b-1080p.mp4"
   },

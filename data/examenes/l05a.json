@@ -1,0 +1,188 @@
+{
+  "leccion": 6,
+  "codigo": "L05A",
+  "titulo": "Gallinas ponedoras (1): de la pollita a la puesta",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Qué conviene revisar antes de incorporar pollitas al gallinero?",
+      "opciones": [
+        "Solo el color de las plumas",
+        "Que tengan agua, alimento adecuado, refugio, ventilación y espacio suficiente",
+        "Únicamente el precio de compra",
+        "Que ya estén poniendo huevos"
+      ],
+      "correcta": 1,
+      "explicacion": "Un alojamiento preparado reduce problemas de manejo y facilita la adaptación."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Cuál es la bebida que debe estar siempre disponible para las pollitas?",
+      "opciones": [
+        "Agua limpia y fresca",
+        "Agua con azúcar como sustituto permanente",
+        "Leche",
+        "Agua únicamente por la mañana"
+      ],
+      "correcta": 0,
+      "explicacion": "El acceso continuo a agua limpia es esencial."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Qué alimento es la base más segura durante la recría?",
+      "opciones": [
+        "Solo maíz",
+        "Restos de cocina",
+        "Un pienso completo adaptado a la etapa de crecimiento",
+        "Solo semillas de girasol"
+      ],
+      "correcta": 2,
+      "explicacion": "La ración de crecimiento debe estar formulada para cubrir las necesidades de la edad."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué es importante al pasar del pienso de recría al de puesta?",
+      "opciones": [
+        "Cambiar sin observar a las aves",
+        "Ajustar la alimentación a la fase productiva y seguir las indicaciones del fabricante o asesor técnico",
+        "Dar siempre pienso de puesta desde el primer día de vida",
+        "Quitar el pienso durante dos días"
+      ],
+      "correcta": 1,
+      "explicacion": "La dieta debe corresponder a la etapa; adelantar una ración alta en calcio a aves jóvenes puede ser perjudicial."
+    },
+    {
+      "id": 5,
+      "pregunta": "Si una pollita está apática y apenas come, ¿qué haces?",
+      "opciones": [
+        "Esperas sin observar otros síntomas",
+        "Le das un antibiótico al azar",
+        "Compruebas las condiciones, la observas y consultas al veterinario si persiste o hay signos de enfermedad",
+        "La obligas a caminar"
+      ],
+      "correcta": 2,
+      "explicacion": "El diagnóstico y los tratamientos deben quedar en manos de un profesional."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Cómo debe ser la ventilación de la zona de recría?",
+      "opciones": [
+        "Sin entrada de aire",
+        "Adecuada para renovar el aire sin corrientes directas intensas sobre las aves",
+        "Solo con las puertas cerradas",
+        "Sustituida por perfumes"
+      ],
+      "correcta": 1,
+      "explicacion": "La ventilación ayuda a controlar humedad, polvo y gases sin provocar estrés por corrientes."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Qué indica una cama mojada alrededor de los bebederos?",
+      "opciones": [
+        "Que no necesita mantenimiento",
+        "Que hay que revisar fugas, altura de bebederos y retirar la cama húmeda",
+        "Que conviene añadir más agua al suelo",
+        "Que las pollitas ya están listas para poner"
+      ],
+      "correcta": 1,
+      "explicacion": "La humedad favorece problemas higiénicos y obliga a corregir la causa."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Qué efecto puede tener un cambio brusco de luz durante la recría?",
+      "opciones": [
+        "Ninguno en ningún caso",
+        "Puede alterar el comportamiento y el desarrollo reproductivo; conviene manejar el fotoperiodo de forma planificada",
+        "Garantiza huevos más grandes",
+        "Elimina la necesidad de alimento"
+      ],
+      "correcta": 1,
+      "explicacion": "La luz influye en la madurez y debe gestionarse de acuerdo con la genética y el programa de recría."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Todas las pollitas empiezan a poner a la misma edad?",
+      "opciones": [
+        "Sí, el mismo día",
+        "No; depende de genética, manejo, alimentación y desarrollo",
+        "Sí, exactamente a los tres meses",
+        "Solo si hay un gallo"
+      ],
+      "correcta": 1,
+      "explicacion": "El inicio de la postura no tiene una fecha universal para todas las aves."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Es necesario un gallo para que una gallina ponga huevos?",
+      "opciones": [
+        "Sí, siempre",
+        "No; el gallo solo es necesario si se buscan huevos fértiles",
+        "Solo en verano",
+        "Solo con pienso de puesta"
+      ],
+      "correcta": 1,
+      "explicacion": "Las gallinas ponen huevos sin gallo, aunque esos huevos no estarán fecundados por él."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Qué debes observar para comprobar que las pollitas se adaptan bien?",
+      "opciones": [
+        "Solo la temperatura exterior",
+        "Consumo de agua y pienso, actividad, plumaje y estado de la cama",
+        "Solo el número de gallos",
+        "Nada si están en un gallinero nuevo"
+      ],
+      "correcta": 1,
+      "explicacion": "Un seguimiento diario permite detectar desviaciones a tiempo."
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Qué ayuda a evitar el estrés al trasladar las pollitas?",
+      "opciones": [
+        "Traslados bruscos y hacinamiento",
+        "Introducción ordenada, espacio suficiente y acceso fácil a agua y alimento",
+        "Cambiar de pienso, luz y alojamiento el mismo día sin supervisión",
+        "Mantenerlas sin beber"
+      ],
+      "correcta": 1,
+      "explicacion": "Reducir cambios simultáneos y facilitar recursos mejora la transición."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Cómo conviene preparar los nidales antes del inicio de la puesta?",
+      "opciones": [
+        "Sucios y sin cama",
+        "Accesibles, tranquilos, secos y fáciles de limpiar",
+        "Al lado del depósito de basura",
+        "Con materiales que se deshacen al mojarse"
+      ],
+      "correcta": 1,
+      "explicacion": "Los nidales bien preparados ayudan a que los huevos aparezcan en lugares adecuados."
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Por qué no se debe usar solo la edad para decidir si un lote entra en puesta?",
+      "opciones": [
+        "Porque también importan el desarrollo corporal y el manejo",
+        "Porque la edad nunca influye",
+        "Porque manda únicamente el color del pico",
+        "Porque todas las razas maduran igual"
+      ],
+      "correcta": 0,
+      "explicacion": "La condición y la evolución del lote deben valorarse junto a la edad."
+    },
+    {
+      "id": 15,
+      "pregunta": "Si notas más humedad y olor intenso en el gallinero, ¿qué revisas primero?",
+      "opciones": [
+        "La decoración",
+        "Ventilación, fugas de agua y estado de la cama",
+        "El precio de los huevos",
+        "Solo la iluminación"
+      ],
+      "correcta": 1,
+      "explicacion": "Corregir la causa de la humedad y renovar el aire mejora las condiciones ambientales."
+    }
+  ]
+}
