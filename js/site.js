@@ -928,6 +928,23 @@
 
     function enviar(tabla, datos) {
       if (!SB || !KEY) return;
+      /* Activar solo después de desplegar la migración UTM. Sin texto libre,
+         URL completa, persistencia en el navegador ni identificación personal. */
+      if (GR.analitica && GR.analitica.atribucionUtm === true) {
+        try {
+          var parametros = new URLSearchParams(location.search || "");
+          var permitidos = {
+            utm_source: ["youtube", "instagram", "facebook", "tiktok", "granjarentable"],
+            utm_medium: ["organic_video", "organic_social", "banner"],
+            utm_campaign: ["engorde_registro", "ebook-pack", "ebook-alimenta", "ebook-elegir", "ebook-hacer", "ebook-empezar"],
+            utm_content: ["w4c0OzCPWKI", "fP3Df9d8gPI", "GpRK3Sej8vE"]
+          };
+          Object.keys(permitidos).forEach(function (campo) {
+            var valores = parametros.getAll(campo);
+            if (valores.length === 1 && permitidos[campo].indexOf(valores[0]) !== -1) datos[campo] = valores[0];
+          });
+        } catch (e) {}
+      }
       try {
         fetch(SB + "/rest/v1/" + tabla, {
           method: "POST",

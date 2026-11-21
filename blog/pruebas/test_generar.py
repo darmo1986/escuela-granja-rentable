@@ -708,14 +708,14 @@ class Generador(unittest.TestCase):
 
 
 class ConfiguracionReal(unittest.TestCase):
-    """Amazon de relleno y piloto aislado sin huecos publicitarios heredados."""
+    """Amazon de relleno y Adsterra retirado sin huecos publicitarios heredados."""
 
     def test_amazon_y_piloto_sin_huecos_heredados(self):
         self.assertEqual(generar.etiqueta_amazon(RAIZ), "granjarentabl-20")
         self.assertFalse(generar.anuncios_activos(RAIZ))
         config = (RAIZ / "js" / "config.js").read_text(encoding="utf-8").lower()
         self.assertNotIn("adsbygoogle", config)
-        self.assertRegex(config, r"adsterrapilot\s*:\s*true")
+        self.assertRegex(config, r"adsterrapilot\s*:\s*false")
 
     def test_hueco_amazon_va_detras_del_ebook(self):
         html = (RAIZ / "blog" / "incubacion-dia-a-dia.html").read_text(encoding="utf-8")
