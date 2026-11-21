@@ -3,7 +3,7 @@ const root=document.body.dataset.root||'';
 const PK='gr_progreso',CK='gr_adsterra_consent_v1';
 const prog=()=>{try{const p=JSON.parse(localStorage.getItem(PK));if(!p||typeof p!=='object'||Array.isArray(p))return{};const clean={};Object.keys(p).forEach(id=>{const item=p[id];if(item&&typeof item==='object'&&!Array.isArray(item))clean[id]=item;});return clean;}catch(e){return{}}};
 const save=p=>{let local=true;try{localStorage.setItem(PK,JSON.stringify(p));}catch(e){local=false;}try{if(window.GRAuth&&GRAuth.guardarCurso)GRAuth.guardarCurso(p);}catch(e){}return local;};
-/* Piloto: un banner 300×250 en portada y artículos, siempre con consentimiento. */
+/* Piloto: un banner 300×250 en el primer tercio, siempre con consentimiento. */
 function adsOn(){return !!(window.ads && window.ads.activo === true);}
 function retirarPiloto(){
   document.querySelectorAll('[data-adsterra-pilot]').forEach(el=>el.remove());
@@ -20,6 +20,24 @@ function ampliacionDiscreta(){
   return !!(window.ads && window.ads.ampliacionDiscreta === true &&
     ['/criaderos.html','/tienda/','/tienda/index.html','/blog/','/blog/index.html'].includes(location.pathname));
 }
+function cajaAdsterra(){
+  const box=document.createElement('aside');
+  box.dataset.adsterraPilot='1';
+  box.setAttribute('aria-label','Publicidad');
+  box.style.cssText='margin:12px auto;width:300px;max-width:100%;text-align:center;min-height:270px;box-sizing:border-box;position:static';
+  const label=document.createElement('p');
+  label.textContent='Promoción de Granja Rentable';
+  label.style.cssText='margin:0 0 4px;font-size:12px';
+  box.append(label);
+  const link=document.createElement('a'),image=document.createElement('img');
+  link.href=root+'ebooks/';
+  image.src=root+'img/banners/banner-empezar.webp';
+  image.alt='Guías de Granja Rentable para empezar con gallinas';
+  image.style.cssText='display:block;width:100%;height:auto';
+  link.append(image);
+  box.append(link);
+  return box;
+}
 function mountAdsterraPilot(){
   if(!adsOn() || !adsConfigured() || paginaSinAnuncios() || esPremiumLocal() || document.querySelector('[data-adsterra-pilot]'))return;
   let accepted=false;
@@ -27,40 +45,52 @@ function mountAdsterraPilot(){
   if(!accepted)return;
   const extended=ampliacionDiscreta() && document.querySelector('main [data-publicidad-discreta]');
   const board=!extended && document.querySelector('[data-tablon-publicidad]');
+  const tercio=!extended && !board && document.querySelector('[data-anuncio-tercio]');
   const home=document.querySelector('main.home-renovada');
   const article=document.querySelector('main .post-body');
   const tools=home && home.querySelector('.gr-tools');
-  const target=extended || board || tools || home || (article && article.textContent.trim().length>=1500 && article);
+  const primero=home && home.querySelector('.gr-calculator-intro');
+  const target=extended || board || tercio || primero || tools || home || article;
   if(!target)return;
   if(extended && extended.getBoundingClientRect().width < 300)return;
   if(window.__grAdTagStarted)return;
   window.__grAdTagStarted=true;
-  const box=document.createElement('aside');
-  box.dataset.adsterraPilot='1';
-  box.setAttribute('aria-label','Publicidad');
-  box.style.cssText='margin:24px auto;width:300px;max-width:100%;text-align:center;min-height:274px;box-sizing:border-box';
-  const label=document.createElement('p');
-  label.textContent='Publicidad';
-  label.style.cssText='margin:0 0 4px;font-size:12px';
-  box.append(label);
-  target.insertAdjacentElement(board || tools ? 'afterend' : 'beforeend',box);
-  // Reuse the placement supplied by Publishers. The vendor renders its own creative.
-  window.atOptions={key:'4c10efc097372233b52ed4f05e0a6ab8',format:'iframe',height:250,width:300,params:{}};
-  const tag=document.createElement('script');
-  tag.src='https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8';
-  tag.async=false;
-  tag.addEventListener('error',()=>{
-    if(!box.isConnected)return;
-    label.textContent='Promoción de Granja Rentable';
-    const link=document.createElement('a'),image=document.createElement('img');
-    link.href=root+'ebooks/';
-    image.src=root+'img/banners/banner-empezar.webp';
-    image.alt='Guías de Granja Rentable para empezar con gallinas';
-    image.style.cssText='display:block;width:100%;height:auto';
-    link.append(image);
-    box.append(link);
-  });
-  box.append(tag);
+  const lugar=(target===board||target===primero||target===tools)?'afterend':'beforeend';
+  target.insertAdjacentElement(lugar,cajaAdsterra());
+  /* El segundo banner se monta cuando el piloto ya cargó, para no pisar su atOptions. */
+  const cajaPiloto=document.querySelector('[data-adsterra-pilot] script');
+  const lanzarFin=()=>montarFinArticulo(article, target);
+  if(cajaPiloto){
+    cajaPiloto.addEventListener('load',lanzarFin,{once:true});
+    cajaPiloto.addEventListener('error',lanzarFin,{once:true});
+    setTimeout(lanzarFin, 8000);
+  } else {
+    setTimeout(lanzarFin, 3000);
+  }
+}
+function montarFinArticulo(article, target){
+  /* Segundo banner (fin de artículo): placement propio 32372311.
+     Se monta cuando el piloto ya cargó, para no pisar su atOptions. */
+  if(window.__grAdFin)return;
+  window.__grAdFin=true;
+  const fin=article && article.querySelector('.post-relacionados, .post-cta, footer');
+  if(!fin || fin===target || fin.contains(target))return;
+  const hueco=document.createElement('aside');
+  hueco.dataset.adSlot='fin-articulo';
+  hueco.setAttribute('aria-label','Publicidad');
+  hueco.style.cssText='margin:12px auto;width:300px;max-width:100%;text-align:center;box-sizing:border-box;position:static';
+  fin.insertAdjacentElement('beforebegin',hueco);
+  const etiqueta=document.createElement('p');
+  etiqueta.textContent='Promoción de Granja Rentable';
+  etiqueta.style.cssText='margin:0 0 4px;font-size:12px';
+  hueco.append(etiqueta);
+  const linkFin=document.createElement('a'),imgFin=document.createElement('img');
+  linkFin.href=root+'tienda/';
+  imgFin.src=root+'img/banners/banner-alimenta.webp';
+  imgFin.alt='Tienda de Granja Rentable';
+  imgFin.style.cssText='display:block;width:100%;height:auto';
+  linkFin.append(imgFin);
+  hueco.append(linkFin);
 }
 /* Se comprueba Premium antes de montar y antes de cargar el anuncio. */
 function esPremiumLocal(){
@@ -100,9 +130,16 @@ var ADS_RUTAS_SIN = {
   '/blog/alimentacion.html':1,'/enfermedades/categoria/respiratorias.html':1,
   '/enfermedades/categoria/parasitarias.html':1
 };
+function rutaDeContenido(p){
+  if(p==='/'||p==='/index.html')return true;
+  if(/\/blog\/[^/]+\.html$/.test(p))return true;
+  if(p==='/razas.html'||/\/razas\/[^/]+\.html$/.test(p))return true;
+  if(/\/(?:curso|guias|faq|app)\.html$/.test(p))return true;
+  if(/\/lecciones\/[^/]+\.html$/.test(p))return true;
+  if(/\/guia-[^/]+\.html$/.test(p))return true;
+  return false;
+}
 function paginaSinAnuncios(){
-  const home=location.pathname==='/' || location.pathname==='/index.html';
-  if(!home && !ampliacionDiscreta() && !/\/blog\/[^/]+\.html$/.test(location.pathname))return true;
   if(document.documentElement.getAttribute('data-ads-pagina')==='no')return true;
   var robots=document.querySelector('meta[name="robots"]');
   if(robots && /noindex/i.test(robots.getAttribute('content')||''))return true;
@@ -110,7 +147,9 @@ function paginaSinAnuncios(){
   if(p.length>1&&p.endsWith('/index.html'))p=p.slice(0,-10);
   if(ADS_RUTAS_SIN[p]||ADS_RUTAS_SIN[p+'/'])return true;
   if(/\/(checkout|descargas)\b/.test(p))return true;
-  return false;
+  if(rutaDeContenido(p))return false;
+  if(ampliacionDiscreta() && ['/criaderos.html','/tienda/','/tienda/index.html','/blog/','/blog/index.html'].includes(location.pathname))return false;
+  return true;
 }
 function loadAds(){
   if(paginaSinAnuncios()){quitarAnuncios();return;}
@@ -126,7 +165,7 @@ function banner(){
   if(!adsConfigured())return;
   if(document.getElementById('cookie-banner'))return;
   const b=document.createElement('div');b.id='cookie-banner';b.setAttribute('role','dialog');b.setAttribute('aria-labelledby','cookie-title');
-  b.innerHTML='<strong id="cookie-title">Aviso de cookies</strong><p style="margin:.3em 0">Si aceptas, cargamos un banner de Adsterra para financiar las guías. Adsterra recibe tu IP y datos técnicos del navegador al servir el anuncio. Puedes rechazarlo y seguir leyendo. Tu cuenta funciona por separado. <a href="'+root+'cookies.html">Política de cookies</a></p><div class="row"><button class="btn" data-c="si">Aceptar</button><button class="btn sec" data-c="no">Rechazar</button></div>';
+  b.innerHTML='<p id="cookie-title">Si aceptas, cargamos un anuncio de Adsterra. <a href="'+root+'cookies.html">Política de cookies</a>.</p><div class="row"><button type="button" class="btn" data-c="si">Aceptar</button><button type="button" class="btn" data-c="no">Rechazar</button></div>';
   b.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;localStorage.setItem(CK,c);cerrarPregunta();b.remove();if(!adsOn()){ocultarHuecos();return;}if(c==='si'){document.documentElement.classList.add('ad-ok');loadAds();}else{document.documentElement.classList.remove('ad-ok');if(window.__adsLoaded)location.reload();}});
   document.body.appendChild(b);
 }

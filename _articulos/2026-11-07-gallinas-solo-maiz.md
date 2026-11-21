@@ -9,6 +9,10 @@ imagen: "img/blog/gallinas-solo-maiz.webp"
 imagen_og: "img/blog/gallinas-solo-maiz-og.webp"
 imagen_alt: "Gallina parda frente a una mano que le ofrece maíz, con granos sueltos en el suelo"
 imagen_credito: "Foto: Queen Asali, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_girl_feeding_a_hen_with_maize.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - almacenar-pienso-gallinas
+  - alimento-casero-vs-balanceado
+  - alimentacion-gallinas-ponedoras
 ---
 
 Dar maíz a las gallinas no es lo mismo que alimentarlas exclusivamente con maíz. Un ingrediente puede formar parte de una fórmula equilibrada y, al mismo tiempo, resultar insuficiente cuando se convierte en casi toda la ración.

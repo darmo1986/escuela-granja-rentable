@@ -12,9 +12,9 @@ imagen_alt: "Gallo doméstico fotografiado al aire libre"
 imagen_credito: "Foto: Vengolis, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster_08393.JPG). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "dos-gallos-gallinero"
-  - "elegir-gallo-reproductor"
-  - "gallo-revision-salud"
+  - introducir-gallo-nuevo
+  - elegir-gallo-reproductor
+  - gallos-frio-invierno
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

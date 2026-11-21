@@ -12,6 +12,10 @@ actualizado: 2026-11-13
 fuentes:
   - "University of Wisconsin Extension: Enterprise Budgeting — https://farms.extension.wisc.edu/articles/enterprise-budgeting/"
   - "University of Maryland Extension: Backyard Layer Flock Economics — https://extension.umd.edu/resource/backyard-layer-flock-economics-how-much-does-it-cost-you-produce-dozen-eggs-fs-2025-0783"
+relacionados:
+  - cuanto-cuesta-producir-docena-huevos
+  - cuanto-cuesta-criar-100-pollos-engorde
+  - criar-pollitos-30-dias
 ---
 
 ## Empieza por tu actividad y tu periodo

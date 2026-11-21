@@ -25,6 +25,8 @@ SITIO = "https://granjarentable.com"
 AUTOR = "Juan Pablo González García"
 EDITOR = "Granja Rentable"
 LOGO = SITIO + "/img/logo.jpg"
+OG_PREDETERMINADA = SITIO + "/img/og-default.jpg"
+OG_PREDETERMINADA_ALT = "Gallinas en un gallinero de Granja Rentable"
 POR_PAGINA = 12
 MINIMO_CATEGORIA = 3
 # Las categorías requieren el mínimo de artículos antes de indexarse.
@@ -93,10 +95,11 @@ TITULO_MAX_EXTRA = {
     "cuanto-cuesta-producir-docena-huevos": 70,
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
-VERSION_ACTIVOS = "20261115-banner-directo"
+VERSION_ACTIVOS = "20261117-anuncios-arriba"
+VERSION_ESTILO = "20261117-sin-fijo"
 VERSION_PUBLICIDAD = "20261116-discreto"
-VERSION_BANNERS = "20261113banners"
-VERSION_PORTADA = "20261114curso"
+VERSION_BANNERS = "20261117banners"
+VERSION_PORTADA = "20261117-franja"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -795,6 +798,8 @@ def poner_version(html):
             "js/ofertas.js", "js/registro-banners.js",
             "js/blog-buscar.js", "css/blog-buscar.css", "js/fichas-buscar.js", "css/fichas-buscar.css", "js/calculadoras.js", "js/lista.js", "js/guias.js", "js/auth.js"):
         version = VERSION_BANNERS if nombre in {"js/ofertas.js", "js/registro-banners.js"} else VERSION_ACTIVOS
+        if nombre == "css/estilo.css":
+            version = VERSION_ESTILO
         if 'data-publicidad-discreta' in html and nombre in {"js/app.js", "js/config.js"}:
             version = VERSION_PUBLICIDAD
         if nombre in {"css/inicio.css", "js/hero.js"}:
@@ -913,6 +918,18 @@ def ebook_y_amazon(rel, post=None):
                "blog/incubacion.html", "blog/salud.html", "blog/alimentacion.html",
                "blog/negocios-con-gallinas.html", "blog/cuidados-codornices.html"):
         return "pack", None
+    if rel in ("curso.html", "guias.html", "faq.html", "app.html", "razas.html") or rel.startswith("razas/"):
+        return "empezar", None
+    if rel.startswith("calculadora"):
+        return "empezar", None
+    if rel.startswith("guia-incubadora") or rel == "lecciones/l03.html":
+        return "empezar", "incubacion"
+    if rel in ("lecciones/l04a.html", "lecciones/l04b.html"):
+        return "hacer", "comedero"
+    if rel.startswith("lecciones/") or rel.startswith("guia-"):
+        return "empezar", None
+    if rel.startswith("tienda"):
+        return "hacer", "comedero"
     blob = rel.lower()
     if post:
         blob += " " + post.get("slug", "") + " " + post.get("categoria", "")
@@ -995,16 +1012,35 @@ def precio_banner(clave):
     return "3 USD"
 
 
-def html_ilustracion(raiz_url, clave):
-    ruta = f"{raiz_url}img/banners/{EBOOK_ILUSTRACION[clave]}.webp"
+def srcset_banner(raiz_url, clave):
+    nombre = EBOOK_ILUSTRACION[clave]
+    base = f"{raiz_url}img/banners/{nombre}"
+    return f"{base}-360.webp 360w, {base}-720.webp 720w, {base}-1200.webp 1200w"
+
+
+def html_ilustracion(raiz_url, clave, eager=False):
+    nombre = EBOOK_ILUSTRACION[clave]
+    base = f"{raiz_url}img/banners/{nombre}"
+    sizes = "96px" if eager else "(max-width: 600px) 100vw, 320px"
+    carga = 'fetchpriority="high"' if eager else 'loading="lazy"'
     return (
-        f'<img class="banner-ebook-ilustracion" src="{esc(ruta)}" '
+        f'<img class="banner-ebook-ilustracion" src="{esc(base + ".webp")}" '
+        f'srcset="{esc(srcset_banner(raiz_url, clave))}" sizes="{sizes}" '
         f'alt="{esc(EBOOK_ALT[clave])}" width="600" height="469" '
-        f'loading="lazy" decoding="async">'
+        f'{carga} decoding="async">'
     )
 
 
-def html_banner_estatico(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
+CLASE_PUESTO = {
+    "franja": "banner-ebook banner-franja",
+    "completo": "banner-ebook",
+    "infeed": "banner-ebook banner-infeed",
+    "cierre": "banner-ebook banner-cierre",
+    "compacto": "banner-ebook banner-compacto",
+}
+
+
+def html_banner_estatico(raiz_url, ebook_clave, amazon_tema, tag, precio="", puesto="completo", eager=False):
     titulo, href = EBOOK_POR_CLAVE[ebook_clave]
     id_ebook = id_banner("ebook", ebook_clave)
     enlace = con_utm_interno(raiz_url + href, id_ebook)
@@ -1013,13 +1049,14 @@ def html_banner_estatico(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
         if ebook_clave == "pack"
         else f"Ebook en PDF: {titulo}"
     )
+    clases = CLASE_PUESTO.get(puesto, "banner-ebook")
     bloque = (
-        f'<aside class="banner-ebook" data-banner-ebook data-banner="{esc(id_ebook)}">'
+        f'<aside class="{clases}" data-banner-ebook data-banner="{esc(id_ebook)}" data-banner-puesto="{esc(puesto)}">'
         f'<a class="banner-ebook-ficha" href="{esc(enlace)}">'
         f'<div class="banner-ebook-marca">'
-        f'<img src="{esc(raiz_url)}img/logo-oscuro.svg" alt="" width="36" height="36" decoding="async">'
+        f'<img src="{esc(raiz_url)}img/logo-oscuro.svg" alt="" width="36" height="36" loading="lazy" decoding="async">'
         f'<span>Granja Rentable</span></div>'
-        f'{html_ilustracion(raiz_url, ebook_clave)}'
+        f'{html_ilustracion(raiz_url, ebook_clave, eager=eager)}'
         f'<div class="banner-ebook-texto">'
         f'<p class="banner-ebook-titulo">{esc(EBOOK_TITULAR[ebook_clave])}</p>'
         f'<p class="banner-ebook-guia">{esc(guia)}</p>'
@@ -1027,15 +1064,20 @@ def html_banner_estatico(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
         f'<span class="banner-ebook-cta">Compra ya</span>'
         f'</div></a></aside>'
     )
-    if tag and amazon_tema in AMAZON_POR_TEMA:
-        nombre, asin = AMAZON_POR_TEMA[amazon_tema]
-        id_amazon = id_banner("amazon", amazon_tema)
-        url = f"https://www.amazon.com/dp/{asin}?tag={tag}"
-        bloque += (f'<aside class="banner-amazon" data-banner-amazon data-banner="{esc(id_amazon)}">'
-                   f'<p><small>Enlace de afiliado</small></p>'
-                   f'<p><a rel="sponsored nofollow noopener" target="_blank" href="{esc(url)}">{esc(nombre)}</a></p>'
-                   f'</aside>')
+    if tag and amazon_tema in AMAZON_POR_TEMA and puesto == "completo":
+        bloque += html_banner_amazon(amazon_tema, tag, "cierre")
     return bloque
+
+
+def html_banner_amazon(amazon_tema, tag, puesto="cierre"):
+    if not tag or amazon_tema not in AMAZON_POR_TEMA:
+        return ""
+    nombre, asin = AMAZON_POR_TEMA[amazon_tema]
+    url = f"https://www.amazon.com/dp/{asin}?tag={tag}"
+    return (f'<aside class="banner-amazon banner-{puesto}" data-banner-amazon data-banner="{esc(id_banner("amazon", amazon_tema))}" data-banner-puesto="{esc(puesto)}">'
+            f'<p><small>Enlace de afiliado</small></p>'
+            f'<p><a rel="sponsored nofollow noopener" target="_blank" href="{esc(url)}">{esc(nombre)}</a></p>'
+            f'</aside>')
 
 
 def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
@@ -1048,6 +1090,8 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
                         "titulo": EBOOK_TITULAR[clave], "descripcion": titulo,
                         "href": raiz_url + href, "precio": precio_banner(clave),
                         "imagen": raiz_url + "img/banners/" + EBOOK_ILUSTRACION[clave] + ".webp",
+                        "srcset": srcset_banner(raiz_url, clave),
+                        "sizes": "(max-width: 600px) 40vw, 280px",
                         "alt": EBOOK_ALT[clave]})
     imagenes = {
         "comedero": "comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas.webp",
@@ -1076,8 +1120,197 @@ def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
             '</div></section>')
 
 
+PAGINAS_BANNER = {
+    "index.html", "tienda/index.html", "tienda.html", "razas.html",
+    "curso.html", "calculadoras.html", "calculadora.html", "faq.html",
+    "app.html", "guias.html",
+    "lecciones/l01.html", "lecciones/l02.html", "lecciones/l03.html",
+    "lecciones/l04a.html", "lecciones/l04b.html",
+}
+
+
 def pagina_con_banner(rel):
-    return rel == "index.html" or (rel.startswith("blog/") and rel.endswith(".html"))
+    if rel in PAGINAS_BANNER:
+        return True
+    if rel.startswith(("guia-", "razas/")) and rel.endswith(".html"):
+        return True
+    return rel.startswith("blog/") and rel.endswith(".html")
+
+
+def es_listado(rel):
+    if rel in ("blog/index.html", "tienda/index.html", "tienda.html", "razas.html", "guias.html"):
+        return True
+    if rel.startswith("blog/pagina-"):
+        return True
+    if not (rel.startswith("blog/") and rel.endswith(".html")):
+        return False
+    return rel.rsplit("/", 1)[-1][:-5] in SLUGS_CAT
+
+
+def otras_claves(clave):
+    return [c for c in ("pack", "alimenta", "elegir", "hacer", "empezar") if c != clave]
+
+
+def quitar_banners(html):
+    html = re.sub(r'[ \t]*<section class="promo-carousel"[\s\S]*?</section>', '', html)
+    anterior = None
+    while anterior != html:
+        anterior = html
+        html = re.sub(
+            r'[ \t]*<aside class="[^"]*\bbanner-(?:ebook|amazon)\b[^"]*"[\s\S]*?</aside>',
+            '', html, count=1)
+    html = re.sub(r'[ \t]*<div class="anuncios-arriba"[^>]*>\s*</div>', '', html)
+    html = re.sub(r'[ \t]*<div class="anuncio-tercio"[^>]*>\s*</div>', '', html)
+    return html
+
+
+def parrafos_utiles(html, desde, hasta):
+    utiles = []
+    for coincidencia in re.finditer(r'<p(?:\s[^>]*)?>[\s\S]*?</p>', html[desde:hasta]):
+        frag = coincidencia.group(0)
+        if any(marca in frag for marca in (
+                'ad-label', 'class="crumb"', 'class="crumbs"', 'class="post-meta"',
+                'post-volver', 'class="fuentes"', 'banner-ebook')):
+            continue
+        absoluto = desde + coincidencia.start()
+        previo = html[desde:absoluto]
+        if previo.count('<aside') > previo.count('</aside>'):
+            continue
+        utiles.append(coincidencia)
+    return utiles
+
+
+def punto_franja(html):
+    """Después del título y del párrafo de intro. Nunca antes del h1."""
+    hero = re.search(r'<section class="gr-hero\b[\s\S]*?</section>', html)
+    if hero and hero.start() < html.find('</main>'):
+        return hero.end()
+    cabecera = re.search(r'<header class="[^"]*\bpost-head\b[^"]*">[\s\S]*?</header>', html)
+    if cabecera:
+        return cabecera.end()
+    h1 = re.search(r'</h1>', html)
+    if not h1:
+        main = re.search(r'<main\b[^>]*>', html)
+        return main.end() if main else None
+    pos = h1.end()
+    intro = re.match(r'(\s*<p(?:\s[^>]*)?>[\s\S]*?</p>)', html[pos:])
+    if intro and 'banner-ebook' not in intro.group(1):
+        pos += intro.end()
+    return pos
+
+
+def _tras_primeras_secciones(html, desde, hasta):
+    """Tras una o dos secciones, en el primer tercio. Nunca al final del texto."""
+    zona = html[desde:hasta]
+    h2s = list(re.finditer(r'<h2\b', zona))
+    if len(h2s) >= 2:
+        # Tras la primera sección. Si esa sección casi no tiene texto, se espera a la segunda.
+        corte = 1
+        previo = re.sub(r'<[^>]+>', ' ', zona[:h2s[1].start()])
+        previo = re.sub(r'\s+', ' ', previo).strip()
+        if len(previo) < 280 and len(h2s) >= 3:
+            corte = 2
+        return desde + h2s[corte].start()
+    utiles = parrafos_utiles(html, desde, hasta)
+    if len(utiles) >= 3:
+        indice = max(1, min(len(utiles) // 3, len(utiles) - 2))
+        return desde + utiles[indice].end()
+    if utiles:
+        return desde + utiles[min(1, len(utiles) - 1)].end()
+    if h2s:
+        return desde + h2s[0].start()
+    return None
+
+
+def punto_tercio(html):
+    """Hueco de Adsterra: arriba, después del primer bloque o de una o dos secciones."""
+    main = re.search(r'<main\b[^>]*>', html)
+    if not main:
+        return None
+    inicio = main.end()
+    fin = html.find('</main>', inicio)
+    if fin < 0:
+        return None
+    zona = html[inicio:fin]
+    calculadora = re.search(r'<section class="gr-calculator-intro\b[\s\S]*?</section>', zona)
+    if calculadora:
+        return inicio + calculadora.end()
+    cuerpo = zona.find('<div class="panel prose post-body">')
+    if cuerpo >= 0:
+        desde = inicio + cuerpo + len('<div class="panel prose post-body">')
+        return _tras_primeras_secciones(html, desde, fin)
+    if 'class="pcard"' in zona:
+        tarjetas = list(re.finditer(r'</article>', zona))
+        if len(tarjetas) >= 2:
+            return inicio + tarjetas[1].end()
+        if tarjetas:
+            return inicio + tarjetas[0].end()
+    return _tras_primeras_secciones(html, inicio, fin)
+
+
+def punto_medio(html):
+    cuerpo = html.find('<div class="panel prose post-body">')
+    main = re.search(r'<main\b[^>]*>', html)
+    if not main:
+        return None
+    desde = cuerpo + len('<div class="panel prose post-body">') if cuerpo >= 0 else main.end()
+    hasta = html.find('</main>', desde)
+    if hasta < 0:
+        return None
+    utiles = parrafos_utiles(html, desde, hasta)
+    if len(utiles) < 3:
+        return None
+    return desde + utiles[2].end()
+
+
+def punto_infeed(html):
+    main = re.search(r'<main\b[^>]*>', html)
+    if not main:
+        return None
+    inicio = main.end()
+    fin = html.find('</main>', inicio)
+    if fin < 0:
+        return None
+    articulos = [inicio + m.end() for m in re.finditer(r'</article>', html[inicio:fin])]
+    if len(articulos) >= 3:
+        return articulos[2]
+    if len(articulos) >= 2:
+        return articulos[1]
+    tarjetas = list(re.finditer(r'<a class="gr-path"[^>]*>[\s\S]*?</a>', html[inicio:fin]))
+    if len(tarjetas) >= 3:
+        return inicio + tarjetas[2].end()
+    return None
+
+
+def punto_cierre(html):
+    relacionados = html.find('<section class="post-relacionados">')
+    if relacionados >= 0:
+        return relacionados
+    fin = html.rfind('</main>')
+    return fin if fin >= 0 else None
+
+
+def insertar_en(html, pos, bloque):
+    if pos is None or not bloque:
+        return html
+    return html[:pos] + "\n" + bloque + html[pos:]
+
+
+def marcar_lateral(html, activar):
+    """Añade o quita con-lateral en <main> una sola vez, aunque ya estuviera repetida."""
+    def sustituir(coincidencia):
+        etiqueta = coincidencia.group(0)
+        clases = re.search(r'\sclass="([^"]*)"', etiqueta)
+        otras = []
+        if clases:
+            otras = [c for c in clases.group(1).split() if c and c != "con-lateral"]
+            etiqueta = etiqueta[:clases.start()] + etiqueta[clases.end():]
+        if activar:
+            otras.insert(0, "con-lateral")
+        if otras:
+            etiqueta = etiqueta[:-1] + ' class="' + " ".join(otras) + '">'
+        return etiqueta
+    return re.sub(r'<main\b[^>]*>', sustituir, html, count=1)
 
 
 def asegurar_script_banners(html, rel):
@@ -1095,24 +1328,63 @@ def asegurar_script_banners(html, rel):
 
 
 def colocar_banners(rel, html, raiz, post=None):
-    """El banner propio se inserta una vez. Si ya está, se vuelve a escribir con su id."""
+    """Guía compacta tras el título. Adsterra va en el primer tercio, en el flujo.
+
+    La franja que seguía al lector no se publica. El hueco data-anuncio-tercio
+    lo rellena js/app.js solo con consentimiento. El enlace de Amazon, si toca,
+    queda al final y también quieto.
+    """
     if not pagina_con_banner(rel) or "</main>" not in html:
         return html
+    html = quitar_banners(html)
     clave, amazon_tema = ebook_y_amazon(rel, post)
-    _titulo, href = EBOOK_POR_CLAVE[clave]
-    banner = html_banner(raiz_de(rel), clave, amazon_tema, etiqueta_amazon(raiz),
-                         precio_catalogo(raiz, href))
-    # Quita el contenedor previo completo y los banners heredados, sin duplicarlos.
-    html = re.sub(r'<section class="promo-carousel"[\s\S]*?</section>', '', html)
-    html = re.sub(r'<aside class="banner-ebook"[\s\S]*?</aside>'
-                  r'(?:<aside class="banner-amazon"[\s\S]*?</aside>)?', '', html)
-    # En portada, las ofertas van después del curso, las guías y el vídeo.
-    # El marcador conserva el orden en cada compilación; el blog mantiene su posición.
-    if rel == "index.html" and "<!-- inicio-ofertas -->" in html:
-        html = html.replace("<!-- inicio-ofertas -->", "<!-- inicio-ofertas -->\n" + banner, 1)
-    else:
-        html = re.sub(r'(<main\b[^>]*>)', lambda m: m.group(1) + "\n" + banner, html, count=1)
-    return asegurar_script_banners(html, rel)
+    tag = etiqueta_amazon(raiz)
+    raiz_url = raiz_de(rel)
+    recursos = bool(post and RECURSOS_ARTICULO.get(post.get("slug") or ""))
+
+    def ebook(puesto, cual, eager=False):
+        return html_banner_estatico(raiz_url, cual, None, "", puesto=puesto, eager=eager)
+
+    def grupo(bloque):
+        return f'<div class="anuncios-arriba" data-anuncios-arriba>\n{bloque}\n</div>'
+
+    cortes = []
+    arriba = punto_franja(html)
+    if arriba is not None:
+        cortes.append((arriba, grupo(ebook("compacto", clave, eager=True))))
+    tercio = punto_tercio(html)
+    if tercio is not None:
+        cortes.append((tercio, '<div class="anuncio-tercio" data-anuncio-tercio></div>'))
+    if rel == "index.html":
+        _titulo, href = EBOOK_POR_CLAVE[clave]
+        carrusel = html_banner(raiz_url, clave, amazon_tema, tag, precio_catalogo(raiz, href))
+        if "<!-- inicio-ofertas -->" in html:
+            marca = html.find("<!-- inicio-ofertas -->")
+            cortes.append((marca + len("<!-- inicio-ofertas -->"), "\n" + carrusel))
+        elif arriba is not None:
+            cortes.append((arriba, carrusel))
+        html = _volcar_cortes(html, cortes)
+        return asegurar_script_banners(marcar_lateral(html, False), rel)
+    if tag and amazon_tema and not es_listado(rel) and not recursos:
+        cortes.append((punto_cierre(html), html_banner_amazon(amazon_tema, tag, "cierre")))
+    html = _volcar_cortes(html, cortes)
+    return asegurar_script_banners(marcar_lateral(html, False), rel)
+
+
+def _volcar_cortes(html, cortes):
+    """Inserta de atrás hacia adelante para que los desplazamientos no se pisen."""
+    grupos = {}
+    orden = []
+    for pos, bloque in cortes:
+        if pos is None or not bloque:
+            continue
+        if pos not in grupos:
+            orden.append(pos)
+            grupos[pos] = []
+        grupos[pos].append(bloque.strip())
+    for pos in sorted(orden, reverse=True):
+        html = insertar_en(html, pos, "\n".join(grupos[pos]))
+    return html
 
 
 def url_post(slug):
@@ -1232,10 +1504,10 @@ def relacionados(post, publicados):
 
 
 RECURSOS_ARTICULO = {
-    "alimentacion-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Ebook de Granja Rentable</small><br><a href=\"../ebooks/\">Cómo elegir el pienso</a></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
-    "agua-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
-    "criar-pollitos-30-dias": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
-    "como-elegir-incubadora": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B0793HHZ1L?tag=granjarentabl-20\">Incubadora Nurture Right 360</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>"
+    "alimentacion-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Ebook de Granja Rentable</small><br><a href=\"../ebooks/\">Cómo elegir el pienso</a></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "agua-gallinas-ponedoras": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B00TXW0UQK?tag=granjarentabl-20\">Comedero de pedal Grandpa’s Feeders Standard</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "criar-pollitos-30-dias": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20\">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>",
+    "como-elegir-incubadora": "<aside data-recursos-granja aria-label=\"Recursos relacionados\"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B0793HHZ1L?tag=granjarentabl-20\">Incubadora Nurture Right 360</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel=\"sponsored nofollow noopener\" target=\"_blank\" href=\"https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20\">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type=\"button\" data-otra>Ver otro recurso</button> <button type=\"button\" data-pausa>Pausar</button></div></aside>"
 }
 
 
@@ -1434,6 +1706,8 @@ def envolver(shell, rel, titulo, descripcion, canonical, robots, og_type, og_ima
         "@@OG_TYPE@@": og_type,
         "@@OG_IMAGE@@": esc(og_image),
         "@@OG_ALT@@": esc(og_alt),
+        "@@OG_ANCHO@@": str(ANCHO_OG),
+        "@@OG_ALTO@@": str(ALTO_OG),
         "@@AUTOR@@": esc(AUTOR),
         "@@EXTRA_HEAD@@": extra,
         "@@CONTENIDO@@": contenido,
@@ -1623,7 +1897,7 @@ def planificar(raiz, incluir_borradores=False):
     titulo_blog = "Artículos de avicultura para tu granja | Granja Rentable"
     descripcion_blog = ("Artículos sobre gallinas ponedoras, pollos de engorde, incubación, salud, alimentación, negocios y codornices, "
                         "con guías prácticas y fuentes para ampliar la información.")
-    og_portada = LOGO
+    og_portada = OG_PREDETERMINADA
     cortes = repartir_posts(len(visibles), POR_PAGINA) if visibles else [(0, 0)]
     paginas_indice = len(cortes)
     for numero in range(1, paginas_indice + 1):
@@ -1657,7 +1931,7 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo_pagina, descripcion_pagina, canonical,
             "index,follow" if visibles else "noindex,follow", "website",
-            og_portada, "Logo de Granja Rentable", ld_blog() + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">', contenido, menu_html, pie_html)
+            og_portada, OG_PREDETERMINADA_ALT, ld_blog() + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">', contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in visibles if p["categoria"] == clave]
         indexable = len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX
@@ -1681,15 +1955,13 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
-            "website", og_portada, "Logo de Granja Rentable", ld_categoria(meta) + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">',
+            "website", og_portada, OG_PREDETERMINADA_ALT, ld_categoria(meta) + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">',
             contenido, menu_html, pie_html)
     for post in publicados:
         rel = f"blog/{post['slug']}.html"
         canonical = SITIO + "/blog/" + post["slug"] + ".html"
         titulo = titulo_visible(post["titulo_seo"])
-        extra = (ld_articulo(post, canonical) + "\n" + ld_faq(post.get("faq") or [])
-                 + '<meta property="og:image:width" content="1200">\n'
-                 '<meta property="og:image:height" content="630">')
+        extra = ld_articulo(post, canonical) + "\n" + ld_faq(post.get("faq") or [])
         robots = "noindex,follow" if post.get("noindex") else "index,follow"
         archivos[rel] = envolver(
             shell, rel, titulo, post["descripcion"], canonical, robots, "article",

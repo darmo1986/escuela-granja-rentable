@@ -14,3 +14,33 @@
 @media(max-width:600px){.promo-carousel{padding:0 10px}.promo-card>a{grid-template-columns:minmax(0,30%) minmax(0,1fr)}.promo-copy{padding:14px 12px;gap:6px}.promo-copy p:not(.promo-title){font-size:.85rem}.promo-copy small{font-size:.7rem}.promo-card img{max-height:none}.promo-cta{padding:7px 10px;font-size:.85rem}.promo-controls{gap:5px}.promo-controls button{padding:6px 10px;font-size:.8rem}}
 
 @media(max-width:600px){.promo-card{height:220px}.promo-card>a{height:100%}.promo-card img{height:220px;max-height:220px;object-fit:contain}}
+
+.promo-card {
+  border-radius: 18px;
+  border-color: #e4d7a8;
+  box-shadow: 0 10px 28px rgba(15, 45, 24, .08);
+  transition: box-shadow .16s ease, transform .16s ease;
+}
+.promo-card:hover { box-shadow: 0 14px 32px rgba(15, 45, 24, .12); }
+.promo-cta { border-radius: 999px; }
+.promo-card img { background: #f4f1e8; }
+@media (prefers-reduced-motion: reduce) {
+  .promo-card { transition: none; }
+}
+
+/* Mantener el espacio del banner si falta la imagen (Amazon o ebook). */
+.promo-visual{display:grid;place-items:center;min-width:0;overflow:hidden;background:#f4f1e8}
+.promo-visual>img{width:100%;height:100%;max-height:250px;object-fit:contain}
+.promo-visual>img[hidden],.promo-image-fallback[hidden]{display:none!important}
+.promo-image-fallback{padding:14px;text-align:center;color:#35563c;font-size:.86rem;line-height:1.5;max-width:24ch}
+@media(max-width:600px){.promo-visual,.promo-visual>img{height:220px}.promo-image-fallback{font-size:.73rem;padding:8px;max-width:18ch}}
+
+/* En móvil, el texto del aviso y la llamada a la acción pueden ocupar más
+   de 220px: la tarjeta crece sin recortar el contenido ni tapar controles. */
+@media(max-width:600px){
+  .promo-card{height:auto;min-height:220px}
+  .promo-card>a{height:100%;min-height:220px}
+  .promo-visual{height:100%;min-height:220px}
+  .promo-visual>img{height:100%;max-height:250px}
+  .promo-copy{min-width:0;overflow-wrap:anywhere}
+}

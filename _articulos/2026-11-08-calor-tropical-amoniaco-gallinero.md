@@ -9,6 +9,10 @@ imagen: "img/blog/calor-tropical-amoniaco-gallinero-foto.webp"
 imagen_og: "img/blog/calor-tropical-amoniaco-gallinero-foto-og.webp"
 imagen_alt: "Pollos blancos apiñados a la sombra de un túnel de lona, junto a un bebedero de campana rojo"
 imagen_credito: "Foto: Geoffrey McKim, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Chickens_seeking_shade.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - acaros-piojos-cama-humeda
+  - viruela-aviar-gallinas
+  - lombrices-gallinas
 ---
 
 ## Dos enemigos que llegan juntos

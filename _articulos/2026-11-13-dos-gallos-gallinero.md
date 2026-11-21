@@ -12,9 +12,9 @@ imagen_alt: "Gallo blanco en un recinto exterior con vegetación"
 imagen_credito: "Foto: JarroNevsbaru, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster_(Gallus_gallus_domesticus)_2024.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "introducir-gallo-nuevo"
-  - "gallinas-por-gallo"
-  - "gallo-agresivo-personas"
+  - gallos-calor-verano
+  - gallo-revision-salud
+  - introducir-gallo-nuevo
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

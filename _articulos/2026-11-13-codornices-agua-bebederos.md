@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-agua-bebederos-og.webp"
 imagen_alt: "Grupo de codornices japonesas jóvenes en su zona de cría"
 guia: "empezar"
 relacionados:
-  - "codornices-primeros-siete-dias"
-  - "codornices-limpieza-cama"
-  - "codornices-calor-frio-ventilacion"
+  - codornices-primeros-siete-dias
+  - codornices-limpieza-cama
+  - codornices-calor-frio-ventilacion
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: BrokenSphere, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:2_week_old_Japanese_quail_chicks_3.JPG). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen de referencia de las aves; el diseño del alojamiento y el equipo se explica en el texto."

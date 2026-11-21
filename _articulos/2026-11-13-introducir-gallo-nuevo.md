@@ -12,9 +12,9 @@ imagen_alt: "Gallo de plumaje barrado caminando sobre el terreno"
 imagen_credito: "Foto: Candeadly, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cuckoo_Marans_rooster_walking.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "dos-gallos-gallinero"
-  - "gallo-revision-salud"
-  - "gallinas-por-gallo"
+  - gallinas-por-gallo
+  - elegir-gallo-reproductor
+  - por-que-canta-gallo
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

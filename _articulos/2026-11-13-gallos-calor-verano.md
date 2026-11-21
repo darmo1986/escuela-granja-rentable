@@ -12,9 +12,9 @@ imagen_alt: "Gallo doméstico en un exterior de Key West, imagen ilustrativa"
 imagen_credito: "Foto: Julian Lupyan, [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster_in_Key_West,_Florida,_2025.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "gallo-revision-salud"
-  - "gallinas-por-gallo"
-  - "elegir-gallo-reproductor"
+  - gallos-frio-invierno
+  - dos-gallos-gallinero
+  - introducir-gallo-nuevo
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

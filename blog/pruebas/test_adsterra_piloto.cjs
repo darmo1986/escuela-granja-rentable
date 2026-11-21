@@ -43,8 +43,18 @@ for(const path of ['/criaderos.html','/tienda/','/tienda/index.html','/blog/','/
   assert.equal(t.slot.children.length,0,JSON.stringify({path,...opts}));
  }
 }
-for(const path of ['/juegos.html','/cuenta.html','/ebooks/','/tienda/p/producto/','/calculadoras.html']){
+for(const path of ['/juegos.html','/cuenta.html','/ebooks/','/tienda/p/producto/','/calculadoras.html','/premium.html','/privacidad.html']){
  const t=run({path,expanded:true,consent:'si'});
  assert.equal(t.nodes.some(n=>n.tag==='script'),false,path);
 }
+for(const path of ['/razas/araucana.html','/curso.html','/blog/gallinas-ponedoras.html']){
+ const t=run({path,consent:'si'});
+ assert.equal(t.nodes.filter(n=>n.dataset.adsterraPilot).length,1,path);
+ assert.equal(t.nodes.filter(n=>n.tag==='script'&&n.src&&n.src.includes('bauval.org')).length,1,path);
+ t.win.testAds.loadAds();
+ assert.equal(t.nodes.filter(n=>n.dataset.adsterraPilot).length,1,path);
+}
+const corto=run({path:'/blog/nota.html',consent:'si'});
+assert.equal(corto.article.children.length,1);
 console.log('Ampliación discreta: cinco rutas, interruptor apagado, consentimiento, Premium, ancho y controles excluidos.');
+console.log('Fichas, curso y artículos: un solo Adsterra en el primer tercio, sin Premium ni rutas excluidas.');

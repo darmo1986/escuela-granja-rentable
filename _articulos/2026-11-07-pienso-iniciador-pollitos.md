@@ -10,6 +10,10 @@ imagen: "img/blog/pienso-iniciador-pollitos.webp"
 imagen_og: "img/blog/pienso-iniciador-pollitos-og.webp"
 imagen_alt: "Pollitos de engorde de una semana alrededor de un comedero de tolva con pienso en migaja"
 imagen_credito: "Foto: Shadow Ayush, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Broiler_chicks_around_a_week_old.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - codornices-alimentacion-por-etapas
+  - alimentacion-gallos-adultos
+  - alimentacion-gallinas-por-etapas
 ---
 
 Antes de traer pollitos a casa, compra el alimento adecuado para su destino productivo. Un pollito de futura ponedora y uno seleccionado para engorde no deben recibir un programa idéntico simplemente porque tengan la misma edad.

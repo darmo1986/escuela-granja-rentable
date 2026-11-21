@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-alojamiento-seguro-og.webp"
 imagen_alt: "Tres codornices japonesas de plumaje pardo sobre material de cama"
 guia: "empezar"
 relacionados:
-  - "codornices-grupos-picaje"
-  - "codornices-limpieza-cama"
-  - "codornices-calor-frio-ventilacion"
+  - codornices-primeros-siete-dias
+  - codornices-senales-enfermedad
+  - codornices-grupos-picaje
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: BrokenSphere, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:3_Japanese_quails_less_than_1_year_old.JPG). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen de referencia de las aves; el diseño del alojamiento y el equipo se explica en el texto."

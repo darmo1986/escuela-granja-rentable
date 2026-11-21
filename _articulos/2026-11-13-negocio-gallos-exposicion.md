@@ -12,9 +12,9 @@ imagen_alt: "Primer plano de un gallo Menorquina negro en una exposición avíco
 imagen_credito: "Foto: Erik Fitzpatrick, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster_at_Scottish_poultry_show.jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "negocio-gallinas-ornamentales"
-  - "negocio-venta-pollitos-genetica"
-  - "alimentacion-gallos-adultos"
+  - negocio-gallinas-ornamentales
+  - negocio-venta-pollitas-recria
+  - negocio-venta-huevos-fertiles
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---

@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-calor-frio-ventilacion-og.webp"
 imagen_alt: "Codorniz japonesa adulta de plumaje pardo observada de perfil"
 guia: "empezar"
 relacionados:
-  - "codornices-primeros-siete-dias"
-  - "codornices-agua-bebederos"
-  - "codornices-senales-enfermedad"
+  - codornices-primeros-siete-dias
+  - codornices-cuarentena-bioseguridad
+  - criar-codornices-desde-cero
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: メルビル, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Adlut_Coturnix_japonica2015.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."

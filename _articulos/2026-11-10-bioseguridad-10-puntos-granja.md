@@ -8,6 +8,9 @@ borrador: false
 imagen: "img/blog/bioseguridad-10-puntos-granja.webp"
 imagen_og: "img/blog/bioseguridad-10-puntos-granja-og.webp"
 imagen_alt: "Gallinas marrones sanas en un gallinero limpio y ordenado, fondo verde desenfocado"
+relacionados:
+  - problemas-gallinero-picaje-huevos-rotos-humedad
+  - cuarentena-gallinas-nuevas
 ---
 
 ## La enfermedad casi siempre entra por la puerta

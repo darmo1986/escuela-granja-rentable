@@ -12,9 +12,9 @@ imagen_alt: "Pollitos y recipientes en la zona avícola de la feria de Wisconsin
 imagen_credito: "Foto: Michael Barera, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:2023_Wisconsin_State_Fair_67_(Poultry_%26_Rabbit_Palace--chicks).jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada."
 guia: "empezar"
 relacionados:
-  - "negocio-kits-gallineros"
-  - "negocio-venta-huevos-consumo"
-  - "bioseguridad-10-puntos-granja"
+  - negocio-kits-gallineros
+  - negocio-gallos-exposicion
+  - negocio-venta-pollitas-recria
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---

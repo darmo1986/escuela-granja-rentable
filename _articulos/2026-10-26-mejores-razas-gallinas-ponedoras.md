@@ -8,6 +8,9 @@ borrador: false
 imagen: "img/blog/mejores-razas-gallinas-ponedoras.webp"
 imagen_og: "img/blog/mejores-razas-gallinas-ponedoras-og.webp"
 imagen_alt: "Diferentes razas de gallinas ponedoras: Rhode Island, Leghorn y Sussex"
+relacionados:
+  - renovar-lotes-ponedoras-pollos-engorde
+  - fotoperiodo-gallinas-ponedoras
 ---
 
 ## 5 razas de ponedoras para comparar

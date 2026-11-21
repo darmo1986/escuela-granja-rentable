@@ -11,9 +11,9 @@ imagen_og: "img/blog/negocio-venta-huevos-consumo-og.webp"
 imagen_alt: "Huevos de gallina en una huevera de cartón sobre una tabla, con uno abierto"
 guia: "empezar"
 relacionados:
-  - "cuanto-cuesta-producir-docena-huevos"
-  - "negocio-venta-huevos-fertiles"
-  - "negocio-venta-pollitas-recria"
+  - negocio-venta-pollitos-genetica
+  - negocio-venta-huevos-fertiles
+  - negocio-venta-pollitas-recria
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: Krzysztof Golik, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Egg_cartons_with_chicken_eggs_01.jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada."

@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-ponedoras-cuidados-og.webp"
 imagen_alt: "Dos huevos moteados de codorniz japonesa vistos de cerca"
 guia: "empezar"
 relacionados:
-  - "codornices-alimentacion-por-etapas"
-  - "codornices-grupos-picaje"
-  - "codornices-senales-enfermedad"
+  - codornices-primeros-siete-dias
+  - codornices-limpieza-cama
+  - codornices-alimentacion-por-etapas
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: BrokenSphere, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pair_of_Japanese_quail_eggs.JPG). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."

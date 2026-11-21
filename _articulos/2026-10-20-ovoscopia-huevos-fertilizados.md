@@ -9,6 +9,10 @@ producto: incubadora-24egg-dual
 imagen: "img/blog/ovoscopia-ejemplo.webp"
 imagen_og: "img/blog/ovoscopia-ejemplo-og.webp"
 imagen_alt: "Ovoscopia de huevos fertilizados en incubadora, embrión visible a contraluz"
+relacionados:
+  - por-que-no-nacen-errores-incubacion
+  - incubacion-dia-a-dia
+  - como-elegir-incubadora
 ---
 
 ## Ovoscopia: cómo saber si un huevo está fertilizado

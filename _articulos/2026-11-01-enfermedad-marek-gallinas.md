@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/levante-pollitas.webp"
 imagen_og: "img/blog/levante-pollitas-og.webp"
 imagen_alt: "Pollitas marrones en crecimiento comiendo de un comedero metálico sobre cama de paja"
+relacionados:
+  - enfermedad-newcastle-gallinas
+  - viruela-aviar-gallinas
+  - gumboro-pollitos
 ---
 
 Una pollita que un día cojea, después se queda sentada con una pata estirada hacia delante y la otra hacia atrás, y deja de llegar al comedero. Es la imagen típica de la enfermedad de Marek, una de las causas más frecuentes de bajas en gallinas jóvenes de corral. No tiene cura, pero se puede prevenir bastante bien si se hace desde el principio.

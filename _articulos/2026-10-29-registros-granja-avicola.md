@@ -13,6 +13,10 @@ guia: empezar
 fuentes:
   - "FAO, Small-scale poultry production (2004): https://www.fao.org/4/y5169e/y5169e.pdf"
   - "FAO, Egg production: https://www.fao.org/4/Y4628E/y4628e03.htm"
+relacionados:
+  - renovar-lotes-ponedoras-pollos-engorde
+  - precio-huevo-5-negocios
+  - cuanto-cuesta-producir-docena-huevos
 ---
 
 Un cuaderno a la misma hora vale más que la memoria. Sin números, un mes flojo y un mes bueno se mezclan, y al cabo de un tiempo solo queda la impresión de que «antes ponían más». El registro no hace que el lote ponga más: te dice si el cambio que hiciste (sombra, pienso, un ave separada) coincidió con más huevos, menos bajas o el mismo resultado.

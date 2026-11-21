@@ -9,6 +9,10 @@ borrador: false
 imagen: "img/blog/enfermedades-comunes-gallinas.webp"
 imagen_og: "img/blog/enfermedades-comunes-gallinas-og.webp"
 imagen_alt: "Veterinario revisando gallina enferma en granja"
+relacionados:
+  - colera-aviar-gallinas
+  - viruela-aviar-gallinas
+  - bronquitis-infecciosa-gallinas
 ---
 
 ## 5 enfermedades comunes en gallinas y cómo prevenirlas

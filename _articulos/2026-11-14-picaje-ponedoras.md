@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/picaje-ponedoras.webp"
 imagen_og: "img/blog/picaje-ponedoras-og.webp"
 imagen_alt: "Gallina marrón en primer plano a la derecha picoteando forraje en el suelo de un corral, fondo verde desenfocado"
+relacionados:
+  - acaros-piojos-cama-humeda
+  - problemas-gallinero-picaje-huevos-rotos-humedad
+  - cuarentena-gallinas-nuevas
 ---
 
 ## Cuando picar deja de ser normal

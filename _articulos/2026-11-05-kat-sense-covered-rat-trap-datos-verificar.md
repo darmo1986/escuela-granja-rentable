@@ -9,6 +9,10 @@ noindex: true
 imagen: "img/blog/kat-sense-covered-rat-trap-asin-b081lg4t1w.webp"
 imagen_og: "img/blog/kat-sense-covered-rat-trap-asin-b081lg4t1w-og.webp"
 imagen_alt: "Trampa para ratas cubierta Kat Sense"
+relacionados:
+  - bioseguridad-10-puntos-granja
+  - viruela-aviar-gallinas
+  - problemas-gallinero-picaje-huevos-rotos-humedad
 ---
 
 ## Kat Sense Covered Rat Trap: datos por verificar

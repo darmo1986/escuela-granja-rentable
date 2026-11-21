@@ -11,6 +11,10 @@ imagen_alt: "Gallina ponedora con el plumaje en renovación, con plumas nuevas s
 guia: empezar
 fuentes:
   - "Ciclo natural de la gallina adulta: una muda completa al año, ligada al acortamiento de los días"
+relacionados:
+  - reposicion-descarte-tras-muda
+  - cuantas-gallinas-para-30-huevos
+  - por-que-mis-gallinas-no-ponen-huevos
 ---
 
 Llega el otoño y el gallinero amanece lleno de plumas. Las gallinas se ven despeluchadas, la puesta se para y más de uno piensa en enfermedad o en un problema del pienso. Casi siempre es algo mucho más simple: **la muda**.

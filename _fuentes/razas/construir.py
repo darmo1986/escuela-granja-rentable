@@ -179,6 +179,8 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{img_abs}">
+<meta property="og:image:width" content="{w}">
+<meta property="og:image:height" content="{h}">
 <meta property="og:locale" content="es_419">
 <meta property="og:image:alt" content="{esc(medio["alt"])}">
 <meta name="twitter:card" content="summary_large_image">

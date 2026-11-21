@@ -9,6 +9,9 @@ noindex: true
 imagen: "img/blog/land-guard-19-gauge-hardware-cloth-qt070.webp"
 imagen_og: "img/blog/land-guard-19-gauge-hardware-cloth-qt070-og.webp"
 imagen_alt: "Malla metálica soldada Land Guard de media pulgada para gallinero"
+relacionados:
+  - corral-anti-depredadores
+  - empezar-con-10-gallinas-ponedoras
 ---
 
 ## Malla Land Guard de 1/2 pulgada: qué verificar

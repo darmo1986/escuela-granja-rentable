@@ -52,7 +52,7 @@ ol.steps li { margin: .45em 0; }
 .post-volver { margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--line); }
 @media print {
   @page { margin:16mm; }
-  .promo-carousel, .banner-ebook, .banner-amazon, [data-recursos-granja], .post-indice, .post-acciones, .post-cta, .post-volver, .post-relacionados, .yt-facade { display:none !important; }
+  .promo-carousel, .banner-ebook, .banner-amazon, .anuncios-arriba, .anuncio-tercio, [data-adsterra-pilot], [data-recursos-granja], .post-indice, .post-acciones, .post-cta, .post-volver, .post-relacionados, .yt-facade { display:none !important; }
   .post-head, .post-foto, .post-body { max-width:none; }
   .post-foto img { width:auto; max-width:100%; max-height:65mm; object-fit:contain; }
   .post-body { border:0; box-shadow:none; padding:0; }
@@ -63,5 +63,52 @@ ol.steps li { margin: .45em 0; }
   .post-body h2, .post-body h3 { break-after:avoid; }
   .post-body tr, .post-foto { break-inside:avoid; }
   a { color:inherit; }
+}
+
+/* Lectura: columna de unas 70 letras, serif y ritmo vertical. */
+.post-head,
+.post-foto,
+.post-body,
+.post-indice,
+.post-acciones,
+.post-volver {
+  max-width: 38rem;
+  margin-inline: auto;
+}
+.post-head h1 { letter-spacing: -.03em; line-height: 1.15; }
+.post-meta { line-height: 1.5; }
+.post-foto { margin: 0 auto 18px; }
+.post-foto img {
+  width: 100%;
+  max-width: none;
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+  background: #e7efe8;
+}
+.post-body {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  padding: 1.35rem 1.45rem 1.55rem;
+}
+.post-body h2,
+.post-body h3 { font-family: var(--font-sans); line-height: 1.25; letter-spacing: -.02em; }
+.post-body h2 { margin: 1.55em 0 .45em; }
+.post-body > h2:first-child { margin-top: .15em; }
+.post-body h3 { margin: 1.3em 0 .35em; }
+.post-body p { margin: 0 0 1.05em; }
+.post-body ul, .post-body ol { margin: 0 0 1.05em; padding-left: 1.25em; }
+.post-body li { margin: .35em 0; }
+.post-body a { text-underline-offset: .18em; }
+.post-indice, .post-acciones { font-family: var(--font-sans); }
+main > section { margin-top: 2rem; }
+.pcard .post-more { text-underline-offset: .15em; }
+@media (max-width: 640px) {
+  .post-body { padding: 1.1rem 1.05rem 1.25rem; font-size: 1.0625rem; line-height: 1.7; }
+  .post-head h1 { font-size: 1.7rem; }
+}
+@media print {
+  .post-head, .post-foto, .post-body, .post-indice, .post-acciones, .post-volver { max-width: none; margin-inline: 0; }
+  .post-body { padding: 0; box-shadow: none; }
 }
 

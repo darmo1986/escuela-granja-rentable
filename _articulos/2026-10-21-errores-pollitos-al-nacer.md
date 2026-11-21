@@ -9,6 +9,9 @@ imagen: "img/blog/errores-pollitos-al-nacer.webp"
 imagen_og: "img/blog/errores-pollitos-al-nacer-og.webp"
 imagen_alt: "Pollito recién nacido con las patas enteras junto a la cáscara rota, al pie de una incubadora amarilla"
 imagen_credito: "Foto: VauxhallCityFarm, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Incubator_with_freshly_hatched_chick.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - criar-pollitos-30-dias
+  - codornices-primeros-siete-dias
 ---
 
 ## 7 errores frecuentes al nacer los pollitos (y cómo evitarlos)

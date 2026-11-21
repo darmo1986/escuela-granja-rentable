@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/cuarentena-gallinas-nuevas.webp"
 imagen_og: "img/blog/cuarentena-gallinas-nuevas-og.webp"
 imagen_alt: "Gallina marrón de cresta roja en un recinto de madera con malla, separada del resto del lote"
+relacionados:
+  - gripe-aviar-gallinas
+  - laringotraqueitis-gallinas
+  - gumboro-pollitos
 ---
 
 La enfermedad de Newcastle es, junto con la [gripe aviar](https://granjarentable.com/blog/gripe-aviar-gallinas.html), la enfermedad vírica de las aves que más daño hace en el mundo. Puede matar a casi todo un lote en pocos días, no tiene tratamiento y en España hay que avisar a la autoridad ante la mínima sospecha.

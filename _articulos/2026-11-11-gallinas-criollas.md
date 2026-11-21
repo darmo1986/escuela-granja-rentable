@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/gallinas-criollas.webp"
 imagen_og: "img/blog/gallinas-criollas-og.webp"
 imagen_alt: "Gallinas criollas marrones pastoreando en un patio verde, fondo verde desenfocado"
+relacionados:
+  - reposicion-descarte-tras-muda
+  - precio-huevo-5-negocios
+  - por-que-mis-gallinas-no-ponen-huevos
 ---
 
 ## Las gallinas de siempre, con sus pros y sus contras

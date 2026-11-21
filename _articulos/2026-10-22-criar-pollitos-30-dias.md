@@ -11,6 +11,10 @@ imagen_og: "img/blog/criar-pollitos-30-dias-og.webp"
 imagen_alt: "Pollitos Wyandotte en una criadora, con comedero, bebedero y un recipiente de grit"
 imagen_credito: "Foto: Frank Vincentz, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kluse_-_Wyandotten_ssg_5_Tage_03_ies.jpg) Imagen adaptada de tamaño y encuadre."
 autor: "Equipo editorial de Granja Rentable"
+relacionados:
+  - errores-pollitos-al-nacer
+  - codornices-primeros-siete-dias
+  - costo-granja-avicola
 ---
 
 El primer mes necesita una criadora preparada y un seguimiento que permita detectar fallos. Una tabla de temperaturas puede orientar, pero no sustituye observar a los pollitos ni seguir las instrucciones del sistema de calefacción y del proveedor del lote.

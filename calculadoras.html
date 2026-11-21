@@ -11,19 +11,22 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Coste por docena, espacio y nacimiento | Granja Rentable">
 <meta property="og:description" content="Calcula el coste de pienso por docena con tu precio, compara dos sacos por kilo y estima espacio o fecha de nacimiento. Cifras de las lecciones, no un precio de tu país.">
-<meta property="og:image" content="https://granjarentable.com/img/logo.jpg">
+<meta property="og:image" content="https://granjarentable.com/img/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_419">
-<meta property="og:image:alt" content="Logo de Granja Rentable">
+<meta property="og:image:alt" content="Gallinas en un gallinero de Granja Rentable">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Coste por docena, espacio y nacimiento | Granja Rentable">
 <meta name="twitter:description" content="Calcula el coste de pienso por docena con tu precio, compara dos sacos por kilo y estima espacio o fecha de nacimiento. Cifras de las lecciones, no un precio de tu país.">
-<meta name="twitter:image" content="https://granjarentable.com/img/logo.jpg">
+<meta name="twitter:image" content="https://granjarentable.com/img/og-default.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="favicon.ico">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="css/estilo.css?v=20261110d">
-<script src="js/boot.js?v=20261110d"></script>
+<link rel="stylesheet" href="css/estilo.css?v=20261117-sin-fijo">
+<script src="js/boot.js?v=20261117-anuncios-arriba"></script>
+<link rel="stylesheet" href="css/ofertas.css?v=20261112">
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -73,7 +76,7 @@
 <div class="nav-sub" id="nav-razas">
 <a data-nav="razas-gallinas" href="razas.html#razas-gallinas"><span class="nav-label">Gallinas</span></a>
 <a data-nav="razas-pollos" href="pollos-engorde.html"><span class="nav-label">Pollos</span></a>
-<span class="nav-soon"><span class="nav-label">Gallos (próximamente)</span></span>
+<a data-nav="razas-gallos" href="razas.html#gallos"><span class="nav-label">Gallos</span></a>
 </div>
 </div>
 
@@ -116,7 +119,17 @@
 <p class="kicker">Gratis · sin correo</p>
 <h1>Coste por docena, espacio y nacimiento</h1>
 <p>Estas cuentas usan las cifras de L01, L02, L03 y L04A, y los precios que escribes tú. El resultado es una estimación, no un consejo veterinario, ni una garantía de tu lote, ni el beneficio si faltan gastos.</p>
+<div class="anuncios-arriba" data-anuncios-arriba>
+<aside class="banner-ebook banner-compacto" data-banner-ebook data-banner="ebook-empezar" data-banner-puesto="compacto"><a class="banner-ebook-ficha" href="ebooks/?utm_source=granjarentable&amp;utm_medium=banner&amp;utm_campaign=ebook-empezar#guia-empezar"><div class="banner-ebook-marca"><img src="img/logo-oscuro.svg" alt="" width="36" height="36" loading="lazy" decoding="async"><span>Granja Rentable</span></div><img class="banner-ebook-ilustracion" src="img/banners/banner-empezar.webp" srcset="img/banners/banner-empezar-360.webp 360w, img/banners/banner-empezar-720.webp 720w, img/banners/banner-empezar-1200.webp 1200w" sizes="96px" alt="Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera" width="600" height="469" fetchpriority="high" decoding="async"><div class="banner-ebook-texto"><p class="banner-ebook-titulo">Empieza tu granja con buen pie</p><p class="banner-ebook-guia">Ebook en PDF: Guía para empezar tu granja</p><p class="banner-ebook-precio">3 USD</p><span class="banner-ebook-cta">Compra ya</span></div></a></aside>
+</div>
+
+
+
+
+
 <p>La fórmula del pienso por docena es (precio por kilo × kilos) ÷ (huevos enteros ÷ 12). Los rotos no entran. L01 cita a la FAO: el alimento suele ser el 60–80 % del coste de insumos. El otro tramo lo anotas aparte. No hay un precio igual para España y América.</p>
+
+
 <p>Para el lote completo (huevos, carne o doble propósito) está la <a href="calculadora.html">calculadora de rentabilidad</a>. La <a href="hoja-registro-puesta.html">hoja de puesta y pienso</a> se descarga sin correo. Si vienes de un vídeo, elige el <a href="youtube/">recurso de ese vídeo</a>. Las guías escritas están en <a href="ebooks/">Ebooks</a>; su precio no se calcula aquí.</p>
 </section>
 
@@ -140,7 +153,9 @@
 </section>
 <section class="panel calc" id="coste-docena">
 <span id="alimento"></span>
-<h2>Coste de pienso por docena</h2>
+
+
+<div class="anuncio-tercio" data-anuncio-tercio></div><h2>Coste de pienso por docena</h2>
 <p>Precio por kilo por los kilos usados. Con huevos enteros sale el coste por huevo y por docena. Con kilos de pollo, el coste por kilo producido. Es el pienso, no el beneficio.</p>
 <p>Números de prueba, no un precio: 1 de precio, 12 kg y 24 huevos. 24 huevos son 2 docenas, así que el pienso por docena sale 6. Bórralos y pon tu saco.</p>
 <form id="calc-alimento">
@@ -154,6 +169,7 @@
 <p>La guía de la ración es <a href="blog/alimentacion-gallinas-ponedoras.html">qué comen las ponedoras</a>. El lote de engorde, con la ficha de L01 y sin tarifa, está en <a href="blog/cuanto-cuesta-criar-100-pollos-engorde.html">cuánto cuesta criar 100 pollos</a>.</p>
 </section>
 <section class="panel calc" id="sacos">
+
 <h2>Qué saco sale más barato por kilo</h2>
 <p>Precio del saco dividido entre los kilos que trae. Si escribes los kilos que vas a gastar, compara ese consumo con cada precio. No supone un país ni un saco concreto.</p>
 <form id="calc-sacos">
@@ -185,6 +201,8 @@
 </form>
 </section>
 </div>
+
+
 </main>
 <footer class="foot">
 <div class="wrap foot-grid">
@@ -236,11 +254,13 @@
 <p class="copy wrap">© 2026 Granja Rentable.</p>
 </footer>
 <a class="wa-float" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable" aria-label="Ayuda por WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm7.6 15.2c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8.6 8.6 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4a3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/></svg></a>
-<script src="js/config.js?v=20261110d"></script>
-<script src="js/app.js?v=20261110d"></script>
+<script src="js/config.js?v=20261117-anuncios-arriba"></script>
+<script src="js/app.js?v=20261117-anuncios-arriba"></script>
 <script src="js/catalogo.js"></script>
-<script src="js/lista.js"></script>
-<script src="js/calculadoras.js"></script>
-<script src="js/site.js?v=20261110d"></script>
+<script src="js/lista.js?v=20261117-anuncios-arriba"></script>
+<script src="js/calculadoras.js?v=20261117-anuncios-arriba"></script>
+<script src="js/site.js?v=20261117-anuncios-arriba"></script>
+<script defer src="js/ofertas.js?v=20261117banners"></script>
+<script defer src="js/registro-banners.js?v=20261117banners"></script>
 </body></html>
 

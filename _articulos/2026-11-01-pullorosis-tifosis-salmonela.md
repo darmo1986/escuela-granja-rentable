@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/incubacion-dia-a-dia.webp"
 imagen_og: "img/blog/incubacion-dia-a-dia-og.webp"
 imagen_alt: "Huevos en una caja de madera con paja junto a una gallina marrón, junto a una ventana"
+relacionados:
+  - micoplasmosis-aviar
+  - gripe-aviar-gallinas
+  - colera-aviar-gallinas
 ---
 
 Cuando se habla de salmonela en las aves se mezclan dos problemas distintos. Uno es el de las salmonelas propias de las aves, que causan la **pullorosis** y la **tifosis aviar** y pueden matar a muchos pollitos. El otro es el de las salmonelas que normalmente no enferman a la gallina, pero sí a las personas que comen huevos o carne contaminados. Las dos se previenen de forma parecida y las dos tienen normas en España.

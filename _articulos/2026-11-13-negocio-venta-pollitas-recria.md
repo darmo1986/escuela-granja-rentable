@@ -11,9 +11,9 @@ imagen_og: "img/blog/negocio-venta-pollitas-recria-og.webp"
 imagen_alt: "Dos aves jóvenes de plumaje blanco y cuello oscuro caminando por un corral"
 guia: "empezar"
 relacionados:
-  - "negocio-venta-pollitos-genetica"
-  - "negocio-venta-huevos-consumo"
-  - "levante-pollitas-0-18-semanas"
+  - negocio-gallos-exposicion
+  - negocio-gallinaza-compostada
+  - negocio-venta-huevos-fertiles
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: Konstantin Nikiforov, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Two_adlerian_silver_chicks_on_walk_(3_months_old).jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada."

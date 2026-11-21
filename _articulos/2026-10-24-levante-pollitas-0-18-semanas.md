@@ -16,6 +16,10 @@ guia: empezar
 fuentes:
   - "Guías de manejo de ponedoras comerciales (Lohmann, Hy-Line, ISA)"
   - "Lección L01 del curso gratis de Granja Rentable"
+relacionados:
+  - reposicion-descarte-tras-muda
+  - precio-huevo-5-negocios
+  - por-que-mis-gallinas-no-ponen-huevos
 ---
 
 ## La respuesta corta

@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/calor-tropical-amoniaco-gallinero.webp"
 imagen_og: "img/blog/calor-tropical-amoniaco-gallinero-og.webp"
 imagen_alt: "Grupo de gallinas marrones descansando sobre paja junto a un bebedero en un gallinero abierto"
+relacionados:
+  - colera-aviar-gallinas
+  - viruela-aviar-gallinas
+  - pullorosis-tifosis-salmonela
 ---
 
 La micoplasmosis aviar es una de esas enfermedades que se quedan a vivir en el gallinero. Las aves pueden estar meses sin síntomas y, de pronto, tras un golpe de frío o un traslado, empiezan los estornudos y los ojos espumosos. Conocerla te ayuda a cortar su entrada, porque una vez dentro es muy difícil sacarla.

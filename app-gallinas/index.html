@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión de Gallinas · Granja Rentable</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐔</text></svg>">
+<style>
+:root{--v:#2e7d32;--vc:#1b5e20;--claro:#e8f5e9;--av:#f9a825;--fondo:#f4f6f1;--txt:#222;--gris:#757575;--card:#fff;--rojo:#c62828;--azul:#1565c0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Roboto,"Segoe UI",sans-serif;background:var(--fondo);color:var(--txt);font-size:16px;line-height:1.45;padding-bottom:90px}
+header{background:var(--vc);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:10}
+header h1{font-size:19px}header small{opacity:.85;font-size:13px}
+nav#tabs{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ccc;display:flex;z-index:20}
+nav#tabs button{flex:1;border:0;background:#fff;padding:9px 2px;font-size:12px;color:var(--gris);cursor:pointer}
+nav#tabs button.act{color:var(--vc);font-weight:700;border-top:3px solid var(--v)}
+main{max-width:900px;margin:0 auto;padding:12px}
+.sec{display:none}.sec.act{display:block}
+.card{background:var(--card);border-radius:12px;padding:14px;margin:10px 0;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+h2{font-size:19px;margin:6px 0 8px}h3{font-size:16px;margin:10px 0 6px}
+label{display:block;margin:8px 0 2px;font-weight:600;font-size:14px}
+input,select,textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:16px;background:#fff}
+textarea{resize:vertical;min-height:60px}
+.row{display:flex;gap:8px}.row>*{flex:1}
+button.btn{background:var(--v);color:#fff;border:0;border-radius:9px;padding:11px 14px;font-size:16px;margin:8px 4px 8px 0;cursor:pointer}
+button.btn.sec{background:#fff;color:var(--vc);border:1.5px solid var(--v)}
+button.btn.dan{background:#fff;color:var(--rojo);border:1.5px solid var(--rojo)}
+button.btn.peq{padding:6px 10px;font-size:14px;margin:4px 4px 4px 0}
+.aviso{background:#fff8e1;border-left:5px solid var(--av);padding:10px;border-radius:8px;margin:8px 0}
+.peligro{background:#ffebee;border-left:5px solid var(--rojo);padding:10px;border-radius:8px;margin:8px 0}
+.ok{background:var(--claro);border-left:5px solid var(--v);padding:10px;border-radius:8px;margin:8px 0}
+.ficha{border:1.5px solid #cfd8cc;border-radius:12px;padding:12px;margin:10px 0;background:#fff}
+.ficha .num{font-size:22px;font-weight:800}
+.anilla{display:inline-block;min-width:30px;height:30px;border-radius:50%;color:#fff;font-weight:800;text-align:center;line-height:30px;padding:0 8px;text-shadow:0 1px 2px rgba(0,0,0,.5);border:2px solid #555}
+.foto{width:100%;max-height:240px;object-fit:cover;border-radius:10px;margin-top:8px}
+.dot{width:18px;height:18px;border-radius:50%;display:inline-block;vertical-align:middle;border:1px solid #555}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+th,td{border:1px solid #ddd;padding:6px;text-align:left}th{background:var(--claro)}
+.arbol{overflow-x:auto;padding:10px;background:#fff;border-radius:12px}
+.nodo{display:inline-block;border:2px solid var(--v);border-radius:10px;padding:6px 10px;margin:4px;background:#fff;text-align:center;font-size:14px;min-width:110px;vertical-align:top}
+.nodo.hijo{border-color:var(--av)}.nodo.sel{background:var(--claro);border-width:3px}
+.nodo .n{font-weight:800;font-size:17px}
+.gen{text-align:center;margin:6px 0}.gen .etq{font-size:12px;color:var(--gris);text-transform:uppercase}
+.kpi{display:flex;gap:8px;flex-wrap:wrap}.kpi div{flex:1;min-width:130px;background:#fff;border-radius:10px;padding:10px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.kpi b{font-size:22px;display:block;color:var(--vc)}
+.bar{height:10px;background:#e0e0e0;border-radius:5px;overflow:hidden;margin:4px 0}.bar i{display:block;height:100%;background:var(--v)}
+footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font-size:13px}
+.guia li{margin:8px 0 8px 20px}
+@media(min-width:700px){nav#tabs button{font-size:14px}body{padding-bottom:20px}nav#tabs{position:static;border:0;margin-top:8px}}
+</style>
+</head>
+<body>
+<header><h1>🐔 Gestión de Gallinas</h1><small>Granja Rentable · tu granja en el móvil y el ordenador</small></header>
+<nav id="tabs">
+<button data-s="aves" class="act">🐔 Aves</button>
+<button data-s="puesta">🥚 Puesta</button>
+<button data-s="arbol">🌳 Árbol</button>
+<button data-s="cria">🐣 Cría</button>
+<button data-s="gestion">💰 Gestión</button>
+<button data-s="avisos">⏰ Avisos</button>
+<button data-s="guia">📖 Guía</button>
+</nav>
+<main>
+<section id="s-aves" class="sec act"><h2>🐔 Mis aves</h2><div id="listaAves"></div>
+<div class="card"><h3 id="tFormAve">Añadir ave nueva</h3>
+<label>Número (es su nombre en la app)</label><input id="f-num" inputmode="numeric" placeholder="Ej: 12">
+<div class="row"><div><label>Sexo</label><select id="f-sexo"><option value="gallina">Gallina</option><option value="gallo">Gallo</option></select></div>
+<div><label>Raza</label><select id="f-raza"></select></div></div>
+<div class="row"><div><label>Línea de sangre</label><select id="f-linea"></select></div>
+<div><label>Nº de anilla</label><input id="f-anilla" placeholder="Ej: 2024-112"></div></div>
+<p style="font-size:13px;color:var(--gris)">El color de la anilla lo pone la línea: cada línea tiene su color y el ave lo hereda sola.</p>
+<label>Fecha de nacimiento</label><input id="f-fnac" type="date">
+<div class="row"><div><label>Padre (gallo)</label><select id="f-padre"><option value="">— No sé / no está —</option></select></div>
+<div><label>Madre (gallina)</label><select id="f-madre"><option value="">— No sé / no está —</option></select></div></div>
+<label>Foto (para reconocerla de un vistazo)</label><input id="f-foto" type="file" accept="image/*">
+<label>Nota (ej: tuvo una enfermedad, cuándo; o es traviesa…)</label><textarea id="f-nota" placeholder="Escribe aquí lo que quieras recordar de esta ave"></textarea>
+<button class="btn" onclick="guardarAve()">💾 Guardar ave</button>
+<button class="btn sec" id="btnCancAve" style="display:none" onclick="cancelarEdAve()">Cancelar</button>
+</div>
+<div class="card"><h3>Líneas de sangre (color de anilla)</h3><div id="listaLineas"></div>
+<div class="row"><div><label>Nueva línea</label><input id="n-linea" placeholder="Ej: Línea camperas 1"></div>
+<div><label>Su color</label><input id="n-color" type="color" value="#d32f2f" style="height:44px"></div></div>
+<button class="btn sec" onclick="guardarLinea()">Añadir línea</button></div>
+<div class="card"><h3>💾 Copia de seguridad</h3>
+<p style="font-size:14px">Tus datos se guardan en este navegador. Descarga una copia de vez en cuando por si cambias de móvil.</p>
+<button class="btn sec" onclick="descargarCopia()">⬇️ Descargar copia (JSON)</button>
+<label style="margin-top:8px">Recuperar copia</label><input id="imp" type="file" accept=".json">
+<div class="aviso">⏳ Pendiente: copia automática en Google Drive cada vez que apuntes algo. Aún no es posible porque no hay conexión con Google.</div></div>
+</section>
+
+<section id="s-puesta" class="sec"><h2>🥚 Puesta de huevos</h2>
+<div class="card"><h3>Apuntar huevos de hoy (<span id="hoy"></span>)</h3><div id="puestaHoy"></div>
+<button class="btn" onclick="guardarPuesta()">💾 Guardar huevos de hoy</button></div>
+<div class="card"><h3>Totales del gallinero</h3><div class="kpi" id="kpiGranja"></div></div>
+<div class="card"><h3>Por gallina (este mes y este año)</h3><div id="tablaPuesta"></div></div>
+<div class="card"><h3>🏆 Las que más ponen, por etapa</h3><div id="rankEtapas"></div></div>
+<div class="card"><h3>🏆 Ranking dentro de cada raza</h3><p style="font-size:13px;color:var(--gris)">Cada raza pone distinto, así que se comparan solo con las de su raza.</p><div id="rankRazas"></div></div>
+<div class="card"><h3>⚖️ Cada gallina comparada con la media de su raza</h3><div id="vsRaza"></div></div>
+</section>
+
+<section id="s-arbol" class="sec"><h2>🌳 Árbol genealógico</h2>
+<div class="card"><label>Elige el ave para ver su árbol</label><select id="arb-sel" onchange="verArbol()"></select>
+<div class="arbol" id="dibujoArbol"></div>
+<div id="fichaArbol"></div></div>
+<div class="card"><h3>Añadir parientes al árbol</h3>
+<p style="font-size:14px">Apunta quiénes son el padre y la madre, o añade un hijo nuevo de esta ave.</p>
+<div class="row"><div><label>Padre (gallo)</label><select id="a-padre"><option value="">—</option></select></div>
+<div><label>Madre (gallina)</label><select id="a-madre"><option value="">—</option></select></div></div>
+<button class="btn sec" onclick="asignarPadres()">Guardar padres</button>
+<button class="btn sec" onclick="hijoDe()">🐣 Añadir un hijo de esta ave</button></div>
+<div class="card"><h3>📝 Notas del árbol genealógico</h3><div id="notasArbol"></div>
+<textarea id="nuevaNotaArbol" placeholder="Ej: esta familia pone huevos muy grandes…"></textarea>
+<button class="btn sec" onclick="addNotaArbol()">Añadir nota al árbol</button></div>
+</section>
+
+<section id="s-cria" class="sec"><h2>🐣 Elegir las mejores para criar</h2>
+<div class="card"><h3>Probar un cruce: ¿son parientes?</h3>
+<div class="row"><div><label>Gallo</label><select id="c-gallo"></select></div><div><label>Gallina</label><select id="c-gallina"></select></div></div>
+<button class="btn" onclick="probarCruce()">🔍 Comprobar cruce</button><div id="resCruce"></div></div>
+<div class="card"><h3>⭐ Mejores gallinas para criar (por puesta y salud)</h3><div id="topGallinas"></div></div>
+<div class="card"><h3>⭐ Mejores gallos (por la puesta de su línea)</h3><div id="topGallos"></div></div>
+</section>
+
+<section id="s-gestion" class="sec"><h2>💰 Pienso, gastos e ingresos</h2>
+<div class="card"><h3>¿Se paga solo el gallinero?</h3><div class="kpi" id="kpiCoste"></div><div id="txtCoste"></div></div>
+<div class="card"><h3>Apuntar pienso</h3>
+<div class="row"><div><label>Fecha</label><input id="p-fecha" type="date"></div><div><label>Kilos</label><input id="p-kg" type="number" min="0" step="0.5"></div><div><label>Coste (€)</label><input id="p-coste" type="number" min="0" step="0.01"></div></div>
+<label>Nota</label><input id="p-nota" placeholder="Ej: saco de 20 kg mezcla ponedoras">
+<button class="btn sec" onclick="guardarPienso()">Guardar pienso</button></div>
+<div class="card"><h3>Apuntar gasto o ingreso</h3>
+<div class="row"><div><label>Tipo</label><select id="m-tipo"><option value="gasto">Gasto</option><option value="ingreso">Ingreso</option></select></div>
+<div><label>Fecha</label><input id="m-fecha" type="date"></div><div><label>Euros (€)</label><input id="m-eur" type="number" min="0" step="0.01"></div></div>
+<label>Concepto</label><input id="m-con" placeholder="Ej: venta de 2 docenas / vacuna">
+<label>Nota</label><input id="m-nota" placeholder="Detalle si quieres">
+<button class="btn sec" onclick="guardarMov()">Guardar apunte</button></div>
+<div class="card"><h3>Resumen</h3><div class="kpi" id="kpiGest"></div><div id="listaMov"></div></div>
+</section>
+
+<section id="s-avisos" class="sec"><h2>⏰ Avisos</h2>
+<div class="card"><h3>Vacunas y desparasitación</h3>
+<div class="row"><div><label>Ave</label><select id="v-ave"></select></div><div><label>Tipo</label><select id="v-tipo"><option>Vacuna</option><option>Desparasitación</option></select></div></div>
+<div class="row"><div><label>Nombre (ej: Newcastle)</label><input id="v-nom"></div><div><label>Fecha hecha</label><input id="v-fecha" type="date"></div><div><label>Próxima fecha</label><input id="v-prox" type="date"></div></div>
+<button class="btn sec" onclick="guardarVac()">Guardar aviso</button></div>
+<div id="listaAvisos"></div></section>
+
+<section id="s-guia" class="sec"><h2>📖 Guía: cómo se usa la app, paso a paso</h2>
+<div class="card guia"><ol>
+<li><b>Aves:</b> pulsa «Añadir ave nueva». El <b>número es su nombre</b> (Ej: la 12). Elige su <b>línea</b> y el color de anilla se pone solo. Apunta raza, fecha de nacimiento y, si los sabes, padre y madre. Saca una <b>foto</b> para reconocerla. En «Nota» escribe lo que quieras recordar (enfermedades con fecha, carácter…).</li>
+<li><b>Puesta:</b> cada día entra en 🥚, escribe los huevos de cada gallina y pulsa Guardar. La app suma el mes y el año, por gallina y de todo el gallinero.</li>
+<li><b>Árbol:</b> elige un ave y verás el dibujo con padres, abuelos, hijos y nietos. Con «Añadir parientes» puedes ponerle padres o crearle un hijo. En «Notas del árbol» apunta cosas de la familia.</li>
+<li><b>Cría:</b> antes de juntar un gallo y una gallina, pulsa «Comprobar cruce»: si son parientes cercanos (padres, hermanos o abuelos comunes) te avisa y <b>no lo recomienda</b>. Mira también las listas de mejores.</li>
+<li><b>Gestión:</b> apunta el pienso, los gastos (vacunas, anillas…) y los ingresos (huevos vendidos). Arriba verás el <b>coste por huevo</b> y si el gallinero se paga solo.</li>
+<li><b>Avisos:</b> apunta vacunas y desparasitaciones con su próxima fecha. La app te avisa de lo que toca y de qué <b>pollitas empiezan a poner</b> pronto.</li>
+<li><b>Copia de seguridad:</b> tus datos están en este navegador. En 🐔 abajo, «Descargar copia» guarda un archivo; guárdalo a salvo. Para pasarlo a otro móvil, abre la app allí y usa «Recuperar copia».</li>
+</ol>
+<div class="aviso">📌 <b>Nota sobre «el pico de la raza»:</b> en esta app se interpreta como el <b>pico de puesta</b>, o sea, el momento de máxima puesta de la raza (la edad en que más huevos pone, normalmente entre las 28 y 34 semanas según la raza). No es el pico (la boca) como rasgo físico. Cada raza trae su semana de pico y la verás en la ficha del ave.</div>
+<div class="aviso">⏳ <b>Nota sobre Google Drive:</b> la copia automática en Drive cada vez que apuntes algo está <b>pendiente</b>: aún no hay conexión con Google, así que de momento usa el botón «Descargar copia».</div>
+<div class="ok">Edades: <b>pollita</b> (menos de 20 semanas), <b>ponedora joven</b> (de 20 semanas a 12 meses), <b>adulta</b> (más de 12 meses). La puesta suele empezar sobre las 20 semanas.</div>
+</div></section>
+</main>
+<footer>Granja Rentable · App de gestión de gallinas · tus datos están en tu navegador</footer>
+<script src="razas.js"></script>
+<script src="app.js"></script>
+</body></html>

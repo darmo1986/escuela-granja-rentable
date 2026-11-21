@@ -1,6 +1,6 @@
 # Atribución controlada — preparado, sin desplegar
 
-Base actualizada el 16/11/2026: main 762ea40 (#142). La rama fix/blog-orientacion-20261112 (28f3a56) ya es antecesora de main; se ha revisado y no se duplican sus arreglos. La FAQ de conversión y el registro semanal ya están integrados en #134; no se repiten. La tienda #124 está fusionada.
+Base conciliada el 21/11/2026 con main 28503d2. Se revisaron los PR abiertos antes de actualizar este lote: no se incorporan cambios de los demás ayudantes y se conserva como único alcance la atribución controlada del PR #135. La FAQ de conversión y el registro semanal ya estaban integrados en #134; no se repiten.
 
 El registro actual no conserva UTM. Se añaden valores cerrados y previamente enumerados de fuente, medio, campaña e identificador de vídeo a páginas vistas e intenciones. Rechaza texto libre y parámetros repetidos; no guarda URL completa, consultas, contactos ni identificadores de personas. No usa cookies ni almacenamiento del navegador. La lista cerrada se replica en las restricciones SQL.
 
@@ -14,9 +14,7 @@ Fases restantes del embudo: clic = intención; inicio de pago únicamente tras o
 
 Prueba propuesta: enlace de engorde con `utm_source=youtube&utm_medium=organic_video&utm_campaign=engorde_registro&utm_content=w4c0OzCPWKI`. En entorno aislado, debe aparecer una página vista y el clic que se produzca, sin inicios ni ventas inventados. Comparar ventanas iguales de siete días tras una activación autorizada. Impacto esperado: mejor atribución, no incremento demostrado de visitas o ventas. Esfuerzo medio; sin gasto aprobado ni ejecutado. Riesgo: pérdida de eventos si se activa antes del esquema; mitigado con bandera apagada.
 
-La prueba automatizada exige dos envíos distintos (visita e intención), los cuatro valores UTM permitidos, ausencia de URL completa, rechazo de texto libre y duplicados, configuración real no activada y correspondencia de los valores con la migración SQL.
-
-Revisión del 16/11: la batería del generador detectó las versiones antiguas de activos en `premium.html`. Se normalizan mediante `poner_version`, la misma función que emplea el generador, conservando textos, precio, WhatsApp y condiciones existentes. La integración local con main no tuvo conflictos. No se cambia ni activa la oferta Premium existente ni la propuesta educativa de abajo. No se ejecutan migraciones, no se activa UTM, no se publica ni se modifican anuncios en producción.
+La prueba automatizada exige dos envíos distintos (visita e intención), los cuatro valores UTM permitidos, ausencia de URL completa, rechazo de texto libre y duplicados, configuración real no activada y correspondencia de los valores con la migración SQL. La revisión del 21/11 comprobó además que las campañas presentes en los enlaces públicos generados (`ebook-pack`, `ebook-alimenta`, `ebook-elegir`, `ebook-hacer`, `ebook-empezar` y `engorde_registro`) están en esa lista cerrada. No se ejecutan migraciones, no se activa UTM, no se publica ni se modifican anuncios en producción.
 
 Aviso nuevo de Search Console recibido el 16/11 a las 01:12:50 UTC: «No se ha encontrado (404)» en sitemap, sin URL afectadas en el mensaje. La auditoría local de las 341 URL del sitemap en main no encontró rutas sin archivo o índice; eso no prueba que producción esté libre de 404. El acceso HTTP de esta jornada devuelve 403 y no permite contrastar las URL reales. Recuperar el listado de Search Console antes de crear redirecciones o retirar URL.
 

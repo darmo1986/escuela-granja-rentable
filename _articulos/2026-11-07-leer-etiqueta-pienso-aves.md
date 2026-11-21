@@ -10,6 +10,10 @@ imagen: "img/blog/leer-etiqueta-pienso-aves.webp"
 imagen_og: "img/blog/leer-etiqueta-pienso-aves-og.webp"
 imagen_alt: "Etiqueta en español de un pienso completo para gallinas ponedoras, con análisis y aditivos"
 imagen_credito: "Foto: Hugh1975, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Composicion_pienso_gallinas.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - alimentacion-gallinas-por-etapas
+  - conversion-alimenticia-pollos-engorde
+  - almacenar-pienso-gallinas
 ---
 
 Dos sacos del mismo peso pueden tener finalidades diferentes. Antes de comparar cuál cuesta menos, confirma que ambos sirven para las aves que vas a alimentar y que se utilizan de la misma manera.

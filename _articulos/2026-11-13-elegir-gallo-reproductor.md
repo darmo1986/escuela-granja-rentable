@@ -12,9 +12,9 @@ imagen_alt: "Gallo de plumaje multicolor visto de perfil sobre hierba"
 imagen_credito: "Foto: Žiga, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rooster-1.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada. La imagen no acredita fertilidad ni parentesco."
 guia: "empezar"
 relacionados:
-  - "gallinas-por-gallo"
-  - "introducir-gallo-nuevo"
-  - "gallo-revision-salud"
+  - introducir-gallo-nuevo
+  - gallo-necesario-huevos
+  - gallinas-por-gallo
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas y organización de registros: elaboración editorial de Granja Rentable."
 ---

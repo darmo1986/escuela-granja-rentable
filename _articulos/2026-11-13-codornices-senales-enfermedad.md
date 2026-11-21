@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-senales-enfermedad-og.webp"
 imagen_alt: "Primer plano de una codorniz japonesa sostenida en unas manos"
 guia: "empezar"
 relacionados:
-  - "codornices-cuarentena-bioseguridad"
-  - "codornices-agua-bebederos"
-  - "codornices-alimentacion-por-etapas"
+  - codornices-alimentacion-por-etapas
+  - codornices-primeros-siete-dias
+  - codornices-alojamiento-seguro
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: Thennicke, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Quail_in_hands,_Canberra_ACT.jpg). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen de referencia; no muestra un caso clínico diagnosticado."

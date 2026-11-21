@@ -12,9 +12,9 @@ imagen_alt: "Gallina Sedosa blanca de plumaje esponjoso y copete, de pie sobre t
 imagen_credito: "Foto: Ra'ike, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Silkie_-_hen.jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen de referencia; no acredita calidad de exposición ni es un anuncio de venta."
 guia: "empezar"
 relacionados:
-  - "negocio-gallos-exposicion"
-  - "negocio-venta-pollitos-genetica"
-  - "negocio-venta-huevos-fertiles"
+  - negocio-gallos-exposicion
+  - negocio-venta-huevos-fertiles
+  - negocio-venta-pollitas-recria
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---

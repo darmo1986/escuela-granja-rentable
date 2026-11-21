@@ -12,9 +12,9 @@ imagen_alt: "Huevos de gallina en un nido con material de cama"
 imagen_credito: "Foto: brittgow, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Chicken_eggs_in_nest_(4782183732).jpg). Versiones web adaptadas de tamaño, formato y márgenes; se conserva la licencia indicada. Imagen ilustrativa: la fotografía no acredita la fertilidad de los huevos."
 guia: "empezar"
 relacionados:
-  - "negocio-venta-pollitos-genetica"
-  - "negocio-incubacion-por-encargo"
-  - "ovoscopia-huevos-fertilizados"
+  - negocio-venta-huevos-consumo
+  - negocio-venta-pollitos-genetica
+  - negocio-incubacion-por-encargo
 fuentes:
   - "Fuentes técnicas enlazadas en el texto; consultadas el 13 de noviembre de 2026. Presupuestos, registros y propuestas comerciales: elaboración editorial de Granja Rentable."
 ---

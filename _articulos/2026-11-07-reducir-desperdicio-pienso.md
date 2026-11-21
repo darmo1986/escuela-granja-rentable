@@ -10,6 +10,10 @@ imagen: "img/blog/reducir-desperdicio-pienso.webp"
 imagen_og: "img/blog/reducir-desperdicio-pienso-og.webp"
 imagen_alt: "Comedero de pedal antidesperdicio, de chapa con teja y pedal de madera, sobre la paja del gallinero"
 imagen_credito: "Foto: Hugh1975, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Comedero_Pedal_01.jpg) Imagen adaptada de tamaño y encuadre."
+relacionados:
+  - comedero-para-pollitos-como-elegir
+  - pienso-iniciador-pollitos
+  - leer-etiqueta-pienso-aves
 ---
 
 Si el saco dura menos, no significa necesariamente que las aves estén comiendo más. Parte del alimento puede acabar en la cama, mojarse o quedar disponible para animales que no forman parte del lote. Antes de cambiar de pienso, observa dónde se pierde.

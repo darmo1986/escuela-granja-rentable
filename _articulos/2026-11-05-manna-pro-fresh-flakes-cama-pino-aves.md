@@ -9,6 +9,9 @@ noindex: true
 imagen: "img/blog/manna-pro-fresh-flakes-cama-pino-engorde.webp"
 imagen_og: "img/blog/manna-pro-fresh-flakes-cama-pino-engorde-og.webp"
 imagen_alt: "Virutas de pino Manna Pro Fresh Flakes para cama de gallinero"
+relacionados:
+  - cuanto-cuesta-criar-100-pollos-engorde
+  - criar-pollitos-30-dias
 ---
 
 ## Manna Pro Fresh Flakes: cama de pino para aves

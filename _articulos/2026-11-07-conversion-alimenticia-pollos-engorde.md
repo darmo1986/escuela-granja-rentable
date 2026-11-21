@@ -8,6 +8,10 @@ borrador: false
 imagen: "img/blog/alimento-casero-vs-balanceado.webp"
 imagen_og: "img/blog/alimento-casero-vs-balanceado-og.webp"
 imagen_alt: "Gallina marrón junto a un comedero con grano y verduras en una granja"
+relacionados:
+  - leer-etiqueta-pienso-aves
+  - reducir-desperdicio-pienso
+  - alimentacion-pollos-engorde-fases
 ---
 
 La conversión alimenticia relaciona el alimento consumido con la ganancia de peso. Resulta útil para seguir un lote de pollos de engorde, siempre que definas qué estás midiendo y compares periodos equivalentes.

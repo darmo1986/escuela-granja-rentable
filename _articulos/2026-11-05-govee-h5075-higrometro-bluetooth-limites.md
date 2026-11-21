@@ -9,6 +9,7 @@ noindex: true
 imagen: "img/blog/govee-h5075-engorde-analisis.webp"
 imagen_og: "img/blog/govee-h5075-engorde-analisis-og.webp"
 imagen_alt: "Higrómetro y termómetro Bluetooth Govee H5075 para interior"
+relacionados:
 ---
 
 ## Govee H5075: higrómetro Bluetooth y límites

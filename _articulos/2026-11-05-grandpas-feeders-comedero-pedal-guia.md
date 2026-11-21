@@ -9,6 +9,10 @@ noindex: true
 imagen: "img/blog/grandpas-feeders-standard-comedero-automatico.webp"
 imagen_og: "img/blog/grandpas-feeders-standard-comedero-automatico-og.webp"
 imagen_alt: "Comedero automático de pedal Grandpa's Feeders, variante Standard"
+relacionados:
+  - comedero-para-pollitos-como-elegir
+  - agua-gallinas-ponedoras-bebederos
+  - pienso-iniciador-pollitos
 ---
 
 ## Grandpa's Feeders: guía del comedero de pedal

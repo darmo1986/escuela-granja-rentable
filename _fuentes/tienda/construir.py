@@ -24,8 +24,16 @@ SITIO = "https://granjarentable.com"
 AVISO = ("Como afiliado de Amazon, Granja Rentable gana comisiones por compras que cumplan los requisitos. "
          "La compra se hace en Amazon, no en esta web.")
 SOLO_SI_UNICOS = {"B092W338NC", "B0H5J3F9XD", "B0G6RSQ4XX", "B0DKN6TZB6"}
-VERSION = "20261114tienda"
-VERSION_BUSCADOR = "20261114tienda"
+# Los 14 productos prioritarios de pablo (fichas-seo/productos_prioritarios_3_ventas.md):
+# concentran el esfuerzo editorial para las 3 ventas cualificadas. El orden es
+# el de la lista: agua, comida, incubación, calor, protección y puesta.
+PRIORITARIOS = [
+    "B00P9EJLSO", "B016AFYT4Q", "B00TXX20GW", "B07MQW8MQK", "B0793HHZ1L",
+    "B01N56NGS8", "B00D458L9K", "B07NJZM1F5", "B0CP83KPD2", "B0BL3TQDJN",
+    "B0DLTMQJ77", "B01MFE2ASJ", "B0FJ7RQ6RB", "B000HHQDPM",
+]
+VERSION = "20261120-rapida"
+VERSION_BUSCADOR = "20261120mejoras1"
 
 
 def esc(texto):
@@ -185,13 +193,15 @@ def armar(filas):
             n += 1
         slugs[slug] = asin
         sid, seccion = secciones[cat_csv]
-        foto = f"img/productos/amazon/{asin}.webp"
-        referencia = f"img/productos/referencias/{asin}.webp"
         imagen = texto.get("imagen") or ""
-        if (RAIZ / foto).is_file():
-            imagen = foto
-        elif (RAIZ / referencia).is_file():
-            imagen = referencia
+        if imagen.startswith("img/productos/amazon/") or imagen.startswith(
+            "img/productos/referencias/"
+        ):
+            raise SystemExit(
+                f"Imagen comercial prohibida en {asin}: {imagen} "
+                "(las fotos de Amazon no pueden alojarse en la web; "
+                "usa una ilustración propia en img/productos/)"
+            )
         productos.append({
             "asin": asin,
             "slug": slug,
@@ -304,7 +314,17 @@ def data_q(p):
         p["titulo"], p["categoria"], p["nombre"], p["claves"], p["asin"],
         " ".join(p["explicacion"]), " ".join(p["recomendacion"]),
     ])
-    return esc(normalizar(blob))
+    # El buscador trabaja con palabras sueltas: conservar cada palabra una vez
+    # elimina repeticiones del HTML sin perder coincidencias por término.
+    omitidas = {"de", "del", "la", "el", "los", "las", "para", "con", "y", "en", "un", "una"}
+    palabras = re.findall(r"[a-z0-9]+", normalizar(blob))
+    vistas = set()
+    indice = []
+    for palabra in palabras:
+        if palabra not in omitidas and palabra not in vistas:
+            indice.append(palabra)
+            vistas.add(palabra)
+    return esc(" ".join(indice))
 
 
 def figura_imagen(p, raiz):
@@ -315,7 +335,7 @@ def figura_imagen(p, raiz):
         pie = "Ilustración de uso generada con IA. Consulta el modelo exacto en Amazon."
     return (
         f'<figure class="t-foto"><img src="{raiz}{esc(p["imagen"])}" '
-        f'alt="{esc(p["titulo"])}" loading="lazy">'
+        f'alt="{esc(p["titulo"])}" loading="lazy" width="800" height="600" decoding="async">'
         f"<figcaption>{pie}</figcaption></figure>"
     )
 
@@ -333,6 +353,42 @@ def tarjeta(p, raiz, nivel):
 {boton_amazon(p)}</div>
 <p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
 </article>'''
+
+
+def tarjeta_destacada(p, raiz):
+    """La misma tarjeta, pero fuera del buscador: sin data-t-card/data-q.
+
+    El bloque destacado es editorial y queda siempre visible arriba; si llevara
+    data-t-card, tienda.js lo contaría (169 de 183) y lo filtraría con el resto.
+    """
+    href = f"{raiz}tienda/p/{p['slug']}/"
+    cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
+    foto = figura_imagen(p, raiz)
+    foto = f"{foto}\n" if foto else ""
+    return f'''<article class="t-card" data-t-destacado data-sec="{esc(p["seccion_id"])}">
+<div class="t-marca"><span>{esc(p["categoria"])}</span></div>
+{foto}<h3><a href="{href}">{esc(p["titulo"])}</a></h3>
+{f'<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>' if p["recomendacion"] else ""}
+<div class="t-acciones"><a class="btn sec t-detalle" href="{href}">Ver ficha y criterios<span class="sr">: {esc(p["titulo"])}</span></a>
+{boton_amazon(p)}</div>
+<p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
+</article>'''
+
+
+def bloque_prioritarios(productos, raiz):
+    """Bloque destacado con los 14 productos prioritarios, en el orden de la lista."""
+    por_asin = {p["asin"]: p for p in productos}
+    faltan = [asin for asin in PRIORITARIOS if asin not in por_asin]
+    if faltan:
+        raise SystemExit(f"Prioritarios sin ficha en el catálogo: {', '.join(faltan)}")
+    cards = "\n".join(tarjeta_destacada(por_asin[asin], raiz) for asin in PRIORITARIOS)
+    return f'''<section class="t-seccion t-destacados" id="destacados" aria-labelledby="destacados-titulo">
+<h2 id="destacados-titulo">Los 14 imprescindibles para empezar</h2>
+<p class="t-nota">Agua, comida, incubación, calor, protección y puesta: lo que de verdad necesita un gallinero, con su ficha y sus criterios. El precio se ve en Amazon.</p>
+<div class="t-grid">
+{cards}
+</div>
+</section>'''
 
 
 def migas(items):
@@ -397,12 +453,15 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(descripcion)}">
 <meta property="og:url" content="{esc(canonical)}">
-<meta property="og:image" content="{SITIO}/img/logo.jpg">
+<meta property="og:image" content="{SITIO}/img/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gallinas en un gallinero de Granja Rentable">
 <meta property="og:locale" content="es_419">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(titulo)}">
 <meta name="twitter:description" content="{esc(descripcion)}">
-<meta name="twitter:image" content="{SITIO}/img/logo.jpg">
+<meta name="twitter:image" content="{SITIO}/img/og-default.jpg">
 <meta name="theme-color" content="#1F5E2E">
 <link rel="icon" href="{raiz}favicon.ico">
 <link rel="icon" href="{raiz}img/favicon.svg" type="image/svg+xml">
@@ -460,8 +519,9 @@ def pagina(rel, titulo, descripcion, canonical, cuerpo, datos_ld, con_stripe=Fal
 <script src="{raiz}js/config.js?v=20261110d"></script>
 <script src="{raiz}js/catalogo.js"></script>
 <script src="{raiz}js/app.js?v=20261110d"></script>
-<script src="{raiz}js/site.js?v=20261110d"></script>
+<script src="{raiz}js/site.js?v=20261120-idioma"></script>
 <script defer src="{raiz}tienda/tienda.js?v={VERSION_BUSCADOR}"></script>
+{f'<script defer src="{raiz}tienda/imagenes-respaldo.js?v=20261120"></script>' if rel == "tienda/index.html" else ""}
 </body>
 </html>
 '''
@@ -523,11 +583,19 @@ def cuerpo_portada(productos, raiz):
 <p class="kicker">Equipo para tu granja</p>
 <h1>Elige el material que necesita tu lote</h1>
 <p class="t-lead">Busca por tarea, compara las fichas y comprueba medidas y compatibilidad antes de comprar. La compra, el precio y el envío se consultan en Amazon.</p>
+<form class="t-busqueda-rapida" role="search" action="{raiz}tienda/#amazon" method="get" aria-label="Encontrar productos en la tienda">
+  <label for="t-rapida">¿Qué necesitas para tus aves?</label>
+  <div class="t-rapida-fila"><input id="t-rapida" type="search" name="q" placeholder="Comedero, incubadora, bebedero…" maxlength="120" required autocomplete="off"><button class="btn gold" type="submit">Buscar entre {len(productos)} productos →</button></div>
+  <p>O ve directamente a <a href="#destacados">los 14 imprescindibles</a> y <a href="#amazon">todo el catálogo</a>.</p>
+</form>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
+<p class="t-amazon-aviso"><strong>Importante para España y Latinoamérica:</strong> nuestros enlaces llevan a <strong>Amazon.com (Estados Unidos)</strong>, no a una tienda local. Solicitamos el idioma español cuando esté disponible. Comprueba que el vendedor envíe a tu país y revisa antes de pagar la moneda, el precio final, los posibles impuestos de importación, la garantía y la compatibilidad eléctrica si corresponde.</p>
+<p class="t-catalogo-rapido"><a class="btn gold" href="{raiz}recomendados.html">Ver 7 artículos recomendados y 3 ebooks desde una página rápida →</a></p>
 </header>
 <nav class="t-rutas" aria-label="Familias de material">
 {familias}
 </nav>
+{bloque_prioritarios(productos, raiz)}
 <section id="amazon" aria-labelledby="amazon-titulo">
 <h2 id="amazon-titulo">Encuentra y compara material</h2>
 <p class="t-nota">{len(productos)} referencias con ficha. Las imágenes marcadas como ilustración no acreditan el aspecto ni los accesorios de la variante vendida.</p>
@@ -805,7 +873,7 @@ def escribir(productos):
     portada = cuerpo_portada(visual, "../")
     titulo = "Tienda de avicultura | Granja Rentable"
     descripcion = recortar(
-        "Material de avicultura enlazado a Amazon. La compra se hace en Amazon, no en esta web."
+        "Explora material para gallinas y pollos: bebederos, comederos, incubación y gallineros. Guías para elegir y enlaces a Amazon, donde se compra."
     )
     canon = f"{SITIO}/tienda/"
     datos = [

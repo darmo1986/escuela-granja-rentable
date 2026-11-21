@@ -11,9 +11,9 @@ imagen_og: "img/blog/codornices-alimentacion-por-etapas-og.webp"
 imagen_alt: "Codornices japonesas jóvenes junto a un recipiente con alimento"
 guia: "empezar"
 relacionados:
-  - "codornices-primeros-siete-dias"
-  - "codornices-ponedoras-cuidados"
-  - "codornices-agua-bebederos"
+  - codornices-senales-enfermedad
+  - codornices-primeros-siete-dias
+  - pienso-iniciador-pollitos
 fuentes:
   - "Fuentes primarias enlazadas en el texto, consultadas el 13 de noviembre de 2026. Tablas de observación y organización: elaboración editorial de Granja Rentable."
 imagen_credito: "Foto: BrokenSphere, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:2_week_old_Japanese_quail_chicks_1.JPG). Adaptada de tamaño, formato y márgenes; se conserva la licencia indicada."

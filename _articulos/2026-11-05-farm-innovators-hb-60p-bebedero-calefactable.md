@@ -9,6 +9,8 @@ noindex: true
 imagen: "img/blog/farm-innovators-hb-60p-bebedero-calefactable-ponedoras.webp"
 imagen_og: "img/blog/farm-innovators-hb-60p-bebedero-calefactable-ponedoras-og.webp"
 imagen_alt: "Bebedero calefactable Farm Innovators HB-60P de 2 galones con tres nipples"
+relacionados:
+  - corral-anti-depredadores
 ---
 
 ## Farm Innovators HB-60P: guía del bebedero
