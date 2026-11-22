@@ -154,7 +154,7 @@ def enriquecer(p):
     p["encaje"] = "Puede encajar si " + c["encaje"] + "."
     p["comprobar_compra"] = list(c["comprobar"])
     p["consejos_uso"] = list(c["uso"])
-    if not p["vet"] and p["asin"] not in RECOMENDACIONES_AUDITADAS:
+    if p["origen"] != "escrito" and not p["vet"] and p["asin"] not in RECOMENDACIONES_AUDITADAS:
         p["recomendacion"] = [p["encaje"]]
     p["descripcion_larga"] = (
         "## Antes de elegir este modelo\n\n"

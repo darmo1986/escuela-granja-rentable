@@ -772,6 +772,19 @@ def preparar(fila):
             "imagen": (fila.get("imagen") or "").strip(),
         }
     titulo = fila["titulo_seo"].strip()
+    if fila.get("descripcion_producto"):
+        indicacion_vet = fila["categoria"].strip() in VET_CATS
+        opinion = [fila["por_que_lo_recomendamos"].strip()]
+        if indicacion_vet:
+            opinion.append(FRASE_VET)
+        return {
+            "titulo": titulo,
+            "explicacion": [fila["descripcion_producto"].strip()],
+            "recomendacion": opinion,
+            "origen": "escrito",
+            "vet": indicacion_vet,
+            "imagen": (fila.get("imagen") or "").strip(),
+        }
     explicacion, recomendacion = partir(fila["por_que_lo_recomendamos"])
     explicacion = ensanchar(explicacion)
     recomendacion = ensanchar(recomendacion)
