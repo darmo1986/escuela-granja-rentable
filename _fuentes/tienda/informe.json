@@ -1,6 +1,6 @@
 {
-  "productos_csv": 171,
-  "productos_mostrados": 169,
+  "productos_csv": 271,
+  "productos_mostrados": 269,
   "categorias_mostradas": 33,
   "categorias": [
     "Agua y riego",
@@ -55,7 +55,1011 @@
     "B0H5J3F9XD",
     "B0G6RSQ4XX"
   ],
-  "textos_escritos": [],
+  "textos_escritos": [
+    {
+      "asin": "B076ZSJBWD",
+      "titulo": "Almohadillas MagJo de álamo para nidales de gallinas, 12 unidades",
+      "explicacion": [
+        "Paquete de 12 almohadillas cuadradas de fibra de álamo con base de papel kraft. Cada unidad mide 33 × 33 cm (13 × 13 pulgadas) y se coloca en el fondo del nidal como superficie de puesta."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B0B5ZSYRYK",
+      "titulo": "Anillas numeradas multicolor de 16 mm para identificar gallinas, 60 unidades",
+      "explicacion": [
+        "Lote de sesenta anillas de cierre a presión con números y colores para distinguir individuos o grupos dentro del corral."
+      ],
+      "recomendacion": [
+        "Puede encajar si la tarea y las dimensiones de trabajo coinciden con las de esta herramienta."
+      ]
+    },
+    {
+      "asin": "B09XYL91VT",
+      "titulo": "Bandeja blanca para 11 huevos grandes, compatible con Nurture Right 360",
+      "explicacion": [
+        "Bandeja blanca de repuesto para la incubadora Nurture Right 360. Los distribuidores del ASIN B09XYL91VT indican 11 plazas para huevos grandes de ganso o pavo."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B09XYZBPDK",
+      "titulo": "Bandeja para 48 huevos de codorniz compatible con Nurture Right 360",
+      "explicacion": [
+        "Este recambio cambia la distribución interior de la Nurture Right 360 para alojar hasta 48 huevos pequeños. La ficha indica unos 31 cm de lado."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B0D97KPYLC",
+      "titulo": "Base calefactora de 28 cm con termostato para bebederos",
+      "explicacion": [
+        "La base metálica de 11 pulgadas incorpora termostato y un cable de aproximadamente tres metros. El bebedero se coloca sobre ella si es compatible."
+      ],
+      "recomendacion": [
+        "Puede encajar si necesitas comparar equipo para el agua en tiempo frío y tienes una instalación eléctrica compatible."
+      ]
+    },
+    {
+      "asin": "B005BV1WLE",
+      "titulo": "Bebedero calefactado Farm Innovators HB-60P de dos galones",
+      "explicacion": [
+        "El modelo HB-60P combina un depósito blanco de dos galones estadounidenses y una resistencia de 60 W para uso en tiempo frío."
+      ],
+      "recomendacion": [
+        "Puede encajar si necesitas comparar equipo para el agua en tiempo frío y tienes una instalación eléctrica compatible."
+      ]
+    },
+    {
+      "asin": "B0FM2R6YT9",
+      "titulo": "Bebedero calefactado naranja de tres galones y 250 W",
+      "explicacion": [
+        "El depósito de unos 11,4 L lleva control termostático. La ficha especifica 250 W de potencia nominal."
+      ],
+      "recomendacion": [
+        "Puede encajar si necesitas comparar equipo para el agua en tiempo frío y tienes una instalación eléctrica compatible."
+      ]
+    },
+    {
+      "asin": "B077ZF955C",
+      "titulo": "Bebedero colgante Double-Tuf de plástico para gallinas, 3,5 cuartos",
+      "explicacion": [
+        "Bebedero portátil de plástico con capacidad nominal de 3,5 cuartos estadounidenses, unos 3,3 litros. Puede colocarse suspendido."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un punto de agua de depósito y puedes atender el llenado y la limpieza."
+      ]
+    },
+    {
+      "asin": "B07BH3ZXBR",
+      "titulo": "Bebedero Double-Tuf con patas desmontables, 1 galón",
+      "explicacion": [
+        "Bebedero para aves con capacidad nominal de un galón estadounidense, unos 3,8 litros, y patas desmontables para ajustar la altura."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un punto de agua de depósito y puedes atender el llenado y la limpieza."
+      ]
+    },
+    {
+      "asin": "B006ZJHDNM",
+      "titulo": "Bebedero Harris Farms Easy-Fill de 6,25 galones",
+      "explicacion": [
+        "Bebedero de plástico de la gama Easy-Fill, con una capacidad nominal de aproximadamente 23,7 L."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un punto de agua de depósito y puedes atender el llenado y la limpieza."
+      ]
+    },
+    {
+      "asin": "B07J6S35LM",
+      "titulo": "Bebedero RentACoop de 32 oz con copa y tetina horizontal",
+      "explicacion": [
+        "El bebedero combina una pequeña reserva de unas 0,95 L con copa de reposición y tetina horizontal."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar un sistema de tetinas o copas y puedes supervisar que todo el lote lo utilice."
+      ]
+    },
+    {
+      "asin": "B0F5BWM731",
+      "titulo": "Bolsa grande de recogida para huevos de gallina y pato",
+      "explicacion": [
+        "Bolsa de recolección pensada para llevar huevos desde el gallinero hasta la zona de clasificación."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0F93NL3ND",
+      "titulo": "Bolsa roja con nueve bolsillos para recoger huevos",
+      "explicacion": [
+        "El diseño incorpora nueve alojamientos separados para transportar huevos durante la recogida del gallinero."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0D4V43CPY",
+      "titulo": "Cartones transparentes para huevos de gallina, lote de 120",
+      "explicacion": [
+        "Los envases transparentes permiten observar los huevos en el estuche cerrado. Se sirven en un paquete de 120 unidades."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B08Y5PBZ1W",
+      "titulo": "Cartones ventilados Cackle Hatchery para una docena, paquete de 24",
+      "explicacion": [
+        "Los estuches de papel moldeado tienen abertura de ventilación y doce plazas. El paquete permite preparar 24 docenas."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B08BC54KNL",
+      "titulo": "Cesta de alambre para huevos con tapa en forma de gallina",
+      "explicacion": [
+        "La cesta metálica mantiene los huevos a la vista y lleva una cubierta decorativa con forma de gallina."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0CYV7JJJN",
+      "titulo": "Cesta negra para recoger huevos con asa y base acolchada",
+      "explicacion": [
+        "Cesta metálica de recogida con asa superior y una base interior que separa los huevos del fondo de alambre."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0CV6XLT4D",
+      "titulo": "Cinco carteles con estacas para anunciar huevos frescos",
+      "explicacion": [
+        "El conjunto incluye cinco letreros de plástico corrugado de 12 × 16 pulgadas, aproximadamente 30 × 41 cm, con estacas para señalizar el punto de venta."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B07ZJVQH1B",
+      "titulo": "Comedero de pedal RentACoop de 40 lb para gallinas",
+      "explicacion": [
+        "La tapa se acciona mediante una plataforma que pisa el ave. El depósito tiene una capacidad nominal de unas 18 kg de pienso."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B083ZLNL1Y",
+      "titulo": "Comedero de suelo Double-Tuf para pollitos, 20 cm",
+      "explicacion": [
+        "Comedero de plástico de 8 pulgadas, unos 20 cm, con orificios individuales para ofrecer pienso a un grupo pequeño de pollitos."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B0CJ6J7B5W",
+      "titulo": "Comedero doble para grit y concha de ostra para gallinas",
+      "explicacion": [
+        "Recipiente de dos compartimentos para mantener separados el grit y la concha de ostra."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B07BH3VFTK",
+      "titulo": "Comedero Double-Tuf con patas desmontables, 4 lb",
+      "explicacion": [
+        "Comedero para aves de 4 lb, unos 1,8 kg nominales. Sus patas son desmontables y permiten elevarlo a medida que crecen las aves."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0FFS7YT5Z",
+      "titulo": "Comedero GADFISH de 55 lb para gallinas, ocho bocas y patas ajustables",
+      "explicacion": [
+        "Depósito con capacidad nominal de 55 lb (24,9 kg), ocho bocas de acceso y tapa con cierre."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0C5Y3NYCW",
+      "titulo": "Comedero galvanizado Double-Tuf para gallinas, 17 lb, colgante",
+      "explicacion": [
+        "Comedero galvanizado y pintado de 17 lb (7,7 kg nominales) con cubierta inclinada. Se puede suspender o apoyar en el suelo."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B083ZL93PB",
+      "titulo": "Comedero lineal Double-Tuf de acero galvanizado, 18 pulgadas",
+      "explicacion": [
+        "Canaleta abierta de acero galvanizado de 46 cm, con bordes enrollados y ganchos traseros para fijarla al gallinero. El fabricante indica una capacidad de 1,36 kg de pienso."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0DNXGNBYB",
+      "titulo": "Comedero metálico Tgeyd de 30 lb con seis bocas y tapa con cierre",
+      "explicacion": [
+        "El depósito metálico admite unos 13,6 kg de pienso. Lleva seis bocas de acceso, asas remachadas y altura ajustable."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0B6WJNMNB",
+      "titulo": "Comedero RentACoop Chick2Chicken de 10 lb y cuatro bocas medianas",
+      "explicacion": [
+        "El depósito admite unas 4,5 kg de alimento y reparte el acceso entre cuatro bocas de tamaño medio."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0C547P19W",
+      "titulo": "Comederos colgantes Mozoba para gallinas, 2 depósitos blancos",
+      "explicacion": [
+        "Kit de dos depósitos blancos de polipropileno de hasta 20 lb (9,1 kg) por depósito. Incluye seis bocas de alimentación en total y piezas de suspensión. El pienso baja por gravedad a las bocas."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B07SG6ZGFB",
+      "titulo": "Concha de ostra Mile Four para gallinas en puesta, 4 lb",
+      "explicacion": [
+        "La bolsa contiene unos 1,8 kg de concha de ostra comercializada como fuente de calcio para ponedoras."
+      ],
+      "recomendacion": [
+        "Puede encajar si has identificado qué material necesitas y para qué aves, antes de elegir la presentación."
+      ]
+    },
+    {
+      "asin": "B0CT98XDHB",
+      "titulo": "Conjunto Chick2Chicken con comedero de 2,5 lb y bebedero de 64 oz",
+      "explicacion": [
+        "El conjunto empareja un comedero de boca mediana, de unos 1,1 kg, con una reserva de agua de unos 1,9 L."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0D31V4WVR",
+      "titulo": "Criadora de madera con lámpara y termómetro para hasta 12 pollitos",
+      "explicacion": [
+        "La caja reúne un recinto de madera, un conjunto de lámparas y un termómetro para consultar la temperatura del interior."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B087YDHLCT",
+      "titulo": "Criadora plegable Insta Brooder con placa calefactora Vrooder",
+      "explicacion": [
+        "Combina un recinto plegable de aproximadamente 91 × 91 cm con una placa calefactora Vrooder. La zona de calor queda dentro del recinto y el resto del espacio permite colocar el comedero y el bebedero."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B0BYYXY3ML",
+      "titulo": "Criadora plegable roja con placa calefactora de 25 × 30 cm",
+      "explicacion": [
+        "El kit combina un recinto tipo tienda con una placa de 10 × 12 pulgadas para crear un refugio caliente dentro de la criadora."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B0CVNN559L",
+      "titulo": "Criadora RentACoop Big Red Barn con placa calefactora",
+      "explicacion": [
+        "Este conjunto Big Red Barn incluye el recinto de cría y una placa de calor. Es la configuración que incorpora ambas piezas."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B07R74M14W",
+      "titulo": "Cuatro copas de llenado automático RentACoop con insertos",
+      "explicacion": [
+        "Kit de cuatro copas e insertos para convertir un depósito compatible en un punto de agua con varios accesos."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar un sistema de tetinas o copas y puedes supervisar que todo el lote lo utilice."
+      ]
+    },
+    {
+      "asin": "B0DK2PZWSW",
+      "titulo": "Cuenco calefactado de 125 oz para aves",
+      "explicacion": [
+        "Cuenco abierto con calefacción integrada y una capacidad nominal de unos 3,7 L, anunciado para gallinas, patos y gansos."
+      ],
+      "recomendacion": [
+        "Puede encajar si necesitas comparar equipo para el agua en tiempo frío y tienes una instalación eléctrica compatible."
+      ]
+    },
+    {
+      "asin": "B07YQ985F3",
+      "titulo": "Depósito transparente de agua para incubadoras GQF, recambio 3030",
+      "explicacion": [
+        "Depósito externo de plástico transparente con tubo para alimentar la bandeja interna de agua de incubadoras de gabinete GQF compatibles con el recambio 3030."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B076VW45J6",
+      "titulo": "Desplumadora Kitchener con tambor de 20 pulgadas y 92 dedos",
+      "explicacion": [
+        "Equipo de acero inoxidable con 92 dedos blandos y motor de 1 HP. La ficha indica alimentación de 120 V para esta referencia estadounidense."
+      ],
+      "recomendacion": [
+        "Puede encajar si la tarea y las dimensiones de trabajo coinciden con las de esta herramienta."
+      ]
+    },
+    {
+      "asin": "B084VTP553",
+      "titulo": "Desplumadora Mini 330 de 110 V para codornices y aves pequeñas",
+      "explicacion": [
+        "La Mini 330 combina un tambor de unas 13 pulgadas con dedos blandos de pequeño tamaño. Esta referencia corresponde a la versión de 110 V."
+      ],
+      "recomendacion": [
+        "Puede encajar si la tarea y las dimensiones de trabajo coinciden con las de esta herramienta."
+      ]
+    },
+    {
+      "asin": "B09NCHHCQ7",
+      "titulo": "Diez bases Pecking Order de fibra de madera para nidales",
+      "explicacion": [
+        "El paquete contiene diez bases de fibras de madera tipo excelsior que se colocan en el fondo de los nidales."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B0D2WGPJM5",
+      "titulo": "Diez huevos marrones de madera para usar como señuelos en nidales",
+      "explicacion": [
+        "Diez huevos artificiales de madera, presentados en un estuche, permiten señalar nidales o preparar demostraciones sin utilizar huevos frescos."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B0F32MZYXN",
+      "titulo": "Dispensador gris por gravedad Li&Zhao para ordenar huevos",
+      "explicacion": [
+        "Bandeja inclinada para refrigerador o encimera que desplaza los huevos hacia el extremo de recogida a medida que retiras unidades."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0BL5R6CVF",
+      "titulo": "Doce estuches de plástico para cuatro huevos con tapa plana",
+      "explicacion": [
+        "Cada estuche admite cuatro huevos y tiene una zona plana superior que se presta a colocar una etiqueta."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B09XZTSWM1",
+      "titulo": "Elevador de 3,8 cm para incubadora Nurture Right 360",
+      "explicacion": [
+        "Aro separador de 1,5 pulgadas para elevar la tapa de una Nurture Right 360 y ganar espacio vertical al colocar huevos grandes."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B0BJKGQC6M",
+      "titulo": "Envases de pulpa para media docena de huevos, 50 unidades",
+      "explicacion": [
+        "El lote incluye cincuenta estuches de seis plazas para fraccionar la recogida o la venta por medias docenas."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0CRJSJQ1C",
+      "titulo": "Estuches blancos de espuma para doce huevos, paquete de 15",
+      "explicacion": [
+        "Los envases blancos separan una docena por estuche. El conjunto ofrece quince unidades para organizar varias recogidas."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0DCZDLXSJ",
+      "titulo": "Estuches de media docena de pulpa natural, paquete de 30",
+      "explicacion": [
+        "Treinta envases de seis plazas para huevos de gallina o huevos pequeños de pato según la ficha del producto."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0DZCPPPC4",
+      "titulo": "Estuches de pulpa natural para dos huevos, paquete de 30",
+      "explicacion": [
+        "Cada estuche individual tiene dos cavidades. El paquete permite preparar treinta muestras o presentaciones de dos huevos."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0D9M1Q7YT",
+      "titulo": "Estuches de pulpa para 12 huevos de codorniz, paquete de 50",
+      "explicacion": [
+        "Cada envase distribuye doce huevos de codorniz en tres filas de cuatro. La pulpa sin imprimir deja espacio para identificar la puesta."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0B35N5QGD",
+      "titulo": "Estuches de pulpa para una docena de huevos grandes, 12 unidades",
+      "explicacion": [
+        "Cada estuche de pulpa aloja hasta una docena de huevos. El paquete reúne doce envases para clasificar o entregar la producción."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B071GM1859",
+      "titulo": "Estuches MT Products para doce huevos jumbo, paquete de 15",
+      "explicacion": [
+        "Cada envase está pensado para huevos de tamaño jumbo y tiene doce plazas. El paquete reúne quince estuches de pulpa."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0FCFZQ24V",
+      "titulo": "Estuches Rtteri de pulpa en formato de tres por cuatro, 200 unidades",
+      "explicacion": [
+        "El formato distribuye los huevos en tres filas de cuatro. El paquete de doscientos envases permite organizar muchas entregas con la misma presentación."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B08DL54ZZ5",
+      "titulo": "Estuches sin imprimir MT Products de pulpa para una docena",
+      "explicacion": [
+        "La pulpa moldeada separa doce huevos en cada estuche. La superficie sin imprimir se puede identificar con la fecha o el lote."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0CP64HJVS",
+      "titulo": "Estuches transparentes HAKSEN para doce huevos con etiquetas de fecha",
+      "explicacion": [
+        "El lote combina sesenta estuches de doce cavidades con sesenta etiquetas. El plástico transparente deja ver el contenido durante la clasificación."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B071NYVDQ8",
+      "titulo": "Expositor Toplife de metal en espiral para rotar huevos",
+      "explicacion": [
+        "El recorrido en espiral ordena los huevos en una fila descendente. Permite añadir los recién recogidos por arriba y retirar primero los de abajo."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B08V98B3PR",
+      "titulo": "Flock Flax de linaza para gallinas y patos",
+      "explicacion": [
+        "Complemento avícola a base de linaza de la gama Flock Flax. Se presenta como ingrediente adicional para gallinas y patos."
+      ],
+      "recomendacion": [
+        "Puede encajar si la especie, el destino del lote y su etapa coinciden con los indicados en la etiqueta."
+      ]
+    },
+    {
+      "asin": "B0CWCCHRD2",
+      "titulo": "Fuente de alimentación de repuesto para incubadora Nurture Right 360",
+      "explicacion": [
+        "Adaptador con cables para sustituir la fuente de alimentación de una incubadora Nurture Right 360 compatible."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B0DRPLZL33",
+      "titulo": "Funda aislante RentACoop con banda calefactora, talla grande",
+      "explicacion": [
+        "La gama Thermo Bucket Belt rodea un bebedero compatible con una banda calefactora y aislamiento exterior."
+      ],
+      "recomendacion": [
+        "Puede encajar si necesitas comparar equipo para el agua en tiempo frío y tienes una instalación eléctrica compatible."
+      ]
+    },
+    {
+      "asin": "B083ZL7RWW",
+      "titulo": "Grit de cuarcita Mile Four para crecimiento y puesta, 4 lb",
+      "explicacion": [
+        "Bolsa de unos 1,8 kg de cuarcita, comercializada en granulometría para aves en crecimiento y adultas."
+      ],
+      "recomendacion": [
+        "Puede encajar si has identificado qué material necesitas y para qué aves, antes de elegir la presentación."
+      ]
+    },
+    {
+      "asin": "B0BVWNZNY6",
+      "titulo": "Grit de cuarcita Mile Four para pollitos, 4 lb",
+      "explicacion": [
+        "Presentación Chick Grit de unas cuatro libras, dirigida por el fabricante a la etapa inicial de las aves."
+      ],
+      "recomendacion": [
+        "Puede encajar si has identificado qué material necesitas y para qué aves, antes de elegir la presentación."
+      ]
+    },
+    {
+      "asin": "B09BXYZ17P",
+      "titulo": "Hierbas para nidales Cackle Hatchery, mezcla de 170 g",
+      "explicacion": [
+        "El preparado combina menta, lavanda y caléndula y se comercializa para nidales y gallineros."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B0FWC8XSC5",
+      "titulo": "Incubadora APDOE de 18 huevos con volteo, ovoscopio y depósito exterior",
+      "explicacion": [
+        "El equipo reúne volteo automático, control de las condiciones de incubación y una botella exterior para el agua. Su capacidad anunciada es de dieciocho huevos."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B0D2YCNSDG",
+      "titulo": "Incubadora automática IncuView 3 Pro con bandeja universal",
+      "explicacion": [
+        "Incubadora de sobremesa con tapa transparente, volteo automático y lectura de humedad integrada en el panel. La bandeja universal del fabricante admite hasta 28 huevos de gallina."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B01NBXXQNH",
+      "titulo": "Incubadora Brinsea Ovation 56 EX para 56 huevos de gallina",
+      "explicacion": [
+        "Incubadora digital con volteo programable, alarma de temperatura y una bomba integrada para regular la humedad. Las bandejas estándar admiten hasta 56 huevos de gallina."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B09PMPZ9JS",
+      "titulo": "Incubadora y nacedora Hatching Time CT60SH de 60 huevos",
+      "explicacion": [
+        "El modelo CT60SH reúne incubación y nacimiento en una unidad de capacidad nominal de 60 huevos."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B078SH8DT2",
+      "titulo": "IncuKit Mini 2: termostato, ventilador y calentador para incubadora casera",
+      "explicacion": [
+        "Módulo para montar una incubadora de sobremesa con circulación de aire. Reúne el control de temperatura, el ventilador y el calentador."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B004XNMHW4",
+      "titulo": "IncuTherm Plus: termohigrómetro digital con sonda para incubadora",
+      "explicacion": [
+        "Permite consultar la temperatura y la humedad con una sonda remota y leer los valores en una pantalla exterior."
+      ],
+      "recomendacion": [
+        "Puede encajar si necesitas medir una variable concreta y puedes comprobar el rango y la colocación del instrumento."
+      ]
+    },
+    {
+      "asin": "B0B4PJ7BMG",
+      "titulo": "Kit Chick2Chicken con comedero de 10 lb y bebedero de dos galones",
+      "explicacion": [
+        "Reúne un comedero de unas 4,5 kg y un depósito de agua de unos 7,6 L, con tetinas y copas de reposición."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0BG3P1H4Z",
+      "titulo": "Kit Comfort Nests para preparar nidales, formato de 2 lb",
+      "explicacion": [
+        "Preparado Comfort Nests de Cackle Hatchery para cajas de puesta, en formato nominal de unas 907 g."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B0CJ5BJ2LY",
+      "titulo": "Kit de comedero de puertos y bebedero de copas para gallinas, color cian",
+      "explicacion": [
+        "Conjunto de alimentación y bebida con bocas de acceso al pienso y copas para el agua, según la ficha consultada en Canopy."
+      ],
+      "recomendacion": [
+        "Puede encajar si buscas un formato de alimentación que puedas instalar y adaptar al tamaño de tus aves."
+      ]
+    },
+    {
+      "asin": "B0FXMF8JQY",
+      "titulo": "Kit de criadora para pollitos con placa calefactora",
+      "explicacion": [
+        "El conjunto reúne la caja de cría y la placa de calor para preparar un espacio interior dedicado a los pollitos."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B078SK1TLD",
+      "titulo": "Kit de ventilador para incubadora Little Giant 9300",
+      "explicacion": [
+        "Conjunto de ventilación para el modelo Little Giant 9300. Incluye el ventilador, elementos de montaje y la guía del proveedor."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B09BXM1FW9",
+      "titulo": "Kit estándar Cackle Hatchery de accesorios para nidales",
+      "explicacion": [
+        "El conjunto reúne bases de nidal, hierbas, huevos de muestra y estuches para la recogida en un solo paquete."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B07QSB2S5G",
+      "titulo": "Kit inicial Double-Tuf para pollitos con comederos y bebedero",
+      "explicacion": [
+        "El fabricante enumera dos comederos, un bebedero de 1,5 cuartos estadounidenses y una lámpara con reflector y bombilla roja de 250 W."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B07C6XF5ZT",
+      "titulo": "Levadura de cerveza con ajo y niacina para aves, 5 lb",
+      "explicacion": [
+        "Formato de aproximadamente 2,27 kg de complemento de levadura para gallinas y patos. La formulación anunciada incluye ajo y niacina."
+      ],
+      "recomendacion": [
+        "El tamaño puede encajar si ya utilizas esta formulación en un lote amplio. Compara el plazo de conservación con tu ritmo real de consumo.",
+        "Se usa solo si te lo indica tu veterinario y según la etiqueta."
+      ]
+    },
+    {
+      "asin": "B07C6X65L2",
+      "titulo": "Levadura de cerveza en polvo con niacina y ajo para aves, 1 lb",
+      "explicacion": [
+        "Formato de unos 454 g de levadura en polvo con ajo y niacina, destinado a alimentación avícola según la etiqueta."
+      ],
+      "recomendacion": [
+        "El envase pequeño ocupa menos espacio abierto. Comprueba ingredientes y uso previsto junto al pienso completo que reciben las aves.",
+        "Se usa solo si te lo indica tu veterinario y según la etiqueta."
+      ]
+    },
+    {
+      "asin": "B07QFYFPC4",
+      "titulo": "Malla avícola electrificable RentACoop de 51 m por 1,22 m",
+      "explicacion": [
+        "La red para aves mide 168 pies de largo por 48 pulgadas de alto. Sirve para delimitar un recorrido o parque exterior."
+      ],
+      "recomendacion": [
+        "Puede encajar si puedes preparar un cercado eléctrico compatible y mantenerlo según sus instrucciones."
+      ]
+    },
+    {
+      "asin": "B0F5WK5CVP",
+      "titulo": "Malla electrosoldada Metamesh de media pulgada, rollo de 1,52 × 15,24 m",
+      "explicacion": [
+        "El rollo de malla de calibre 19 presenta aberturas de media pulgada, aproximadamente 12,7 mm. Su anchura nominal es de 60 pulgadas."
+      ],
+      "recomendacion": [
+        "Puede encajar si conoces la abertura, superficie y fijación que necesitas para tu cerramiento."
+      ]
+    },
+    {
+      "asin": "B0BZRWF6TP",
+      "titulo": "Ocho copas grandes de bebedero con conexiones en T para aves",
+      "explicacion": [
+        "El conjunto incorpora ocho copas y conexiones en T para distribuir los puntos de bebida en una línea."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar un sistema de tetinas o copas y puedes supervisar que todo el lote lo utilice."
+      ]
+    },
+    {
+      "asin": "B0FGD2L2K1",
+      "titulo": "Organizador de refrigerador con cajones para 40 huevos",
+      "explicacion": [
+        "El conjunto almacena hasta cuarenta huevos en cajones extraíbles, con acceso desde la parte frontal."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B0D59D6LPF",
+      "titulo": "Organizador negro de tres niveles con cinco separadores para huevos",
+      "explicacion": [
+        "Estante escalonado con cinco separadores y una placa de identificación personalizable según la ficha."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B07CGLQ8JZ",
+      "titulo": "Ovoscopio LED con alimentación por cable para huevos de incubación",
+      "explicacion": [
+        "Este ovoscopio proyecta luz a través de la cáscara y se alimenta por cable. La ficha indica que requiere conexión eléctrica."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    },
+    {
+      "asin": "B09HCTMMTF",
+      "titulo": "Pienso de inicio Mile Four en harina para pollitos, 2 lb",
+      "explicacion": [
+        "Formato de unos 907 g de alimento de inicio en harina, de la línea ecológica Mile Four."
+      ],
+      "recomendacion": [
+        "Puede encajar si la especie, el destino del lote y su etapa coinciden con los indicados en la etiqueta."
+      ]
+    },
+    {
+      "asin": "B07SJ7HHSK",
+      "titulo": "Pienso ecológico Mile Four para ponedoras en pellets, 46 lb",
+      "explicacion": [
+        "Saco de unos 20,9 kg de alimento en pellets para gallinas en fase de puesta. La ficha lo presenta como ecológico y elaborado en Estados Unidos."
+      ],
+      "recomendacion": [
+        "Puede encajar si la especie, el destino del lote y su etapa coinciden con los indicados en la etiqueta."
+      ]
+    },
+    {
+      "asin": "B083ZKSFSW",
+      "titulo": "Pienso Mile Four de crecimiento en grano entero, 2 lb",
+      "explicacion": [
+        "Envase de unos 907 g de la línea ecológica Grower de Mile Four, en presentación de grano entero."
+      ],
+      "recomendacion": [
+        "Puede encajar si la especie, el destino del lote y su etapa coinciden con los indicados en la etiqueta."
+      ]
+    },
+    {
+      "asin": "B083P5DFRN",
+      "titulo": "Pienso Mile Four de grano entero para ponedoras, 2 lb",
+      "explicacion": [
+        "Pequeño envase de unos 907 g de la fórmula ecológica para ponedoras en presentación de grano entero."
+      ],
+      "recomendacion": [
+        "Puede encajar si la especie, el destino del lote y su etapa coinciden con los indicados en la etiqueta."
+      ]
+    },
+    {
+      "asin": "B0DWF19VL3",
+      "titulo": "Placa calefactora roja de 25 × 25 cm con cono antipercha",
+      "explicacion": [
+        "Placa de cría de 10 × 10 pulgadas con cono superior y funcionamiento a temperatura constante según la ficha."
+      ],
+      "recomendacion": [
+        "Puede encajar si puedes preparar una zona de cría con equipo y alimentación eléctrica adecuados."
+      ]
+    },
+    {
+      "asin": "B07DLCX71P",
+      "titulo": "Placa RentACoop de 25 × 25 cm con cono antipercha plegable",
+      "explicacion": [
+        "Placa de calor regulable en altura de 10 × 10 pulgadas para colocar dentro de una criadora. Lleva un cono superior plegable."
+      ],
+      "recomendacion": [
+        "Puede encajar si puedes preparar una zona de cría con equipo y alimentación eléctrica adecuados."
+      ]
+    },
+    {
+      "asin": "B089LPNQ83",
+      "titulo": "Protector azul Down Under Outdoors para gallinas medianas y grandes",
+      "explicacion": [
+        "Cubierta dorsal azul en talla mediana-grande, diseñada para colocarse sobre el lomo de la gallina."
+      ],
+      "recomendacion": [
+        "Puede encajar si la tarea y las dimensiones de trabajo coinciden con las de esta herramienta."
+      ]
+    },
+    {
+      "asin": "B0DTCLCHRY",
+      "titulo": "Protector dorsal para gallinas durante el apareamiento",
+      "explicacion": [
+        "Accesorio que cubre parte del lomo de la gallina y se fija alrededor de las alas. La ficha lo presenta como protector durante el apareamiento."
+      ],
+      "recomendacion": [
+        "Puede encajar si la tarea y las dimensiones de trabajo coinciden con las de esta herramienta."
+      ]
+    },
+    {
+      "asin": "B087YR2ZNG",
+      "titulo": "Recambios de suelo InstaBrooder de cartón, 20 unidades",
+      "explicacion": [
+        "Paquete de 20 láminas hexagonales de cartón absorbente para el suelo de la criadora InstaBrooder. Cada lámina mide aproximadamente 105,4 cm entre vértices opuestos y 91,4 cm entre caras paralelas. Se retira entera para cambiar el revestimiento."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B0CVNN5HX4",
+      "titulo": "Recinto de cría RentACoop Big Red Barn",
+      "explicacion": [
+        "Este producto corresponde al recinto Big Red Barn para pollitos. La marca también comercializa un conjunto que incluye una placa calefactora."
+      ],
+      "recomendacion": [
+        "Puede encajar si estás preparando la recepción de pollitos y necesitas revisar juntos sus puntos de comida y agua."
+      ]
+    },
+    {
+      "asin": "B0CVZ65LJN",
+      "titulo": "Seis bases de álamo para nidales con muestra de hierbas Coop Confetti",
+      "explicacion": [
+        "La caja incluye seis bases de aproximadamente 33 × 33 cm y una muestra de unos 57 g de hierbas para nidales."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B07KYZ2N78",
+      "titulo": "Seis huevos marrones de cerámica para nidales",
+      "explicacion": [
+        "Estas seis piezas de cerámica permiten dejar un huevo de muestra en varios nidales y reconocer los puntos de puesta."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar material para el descanso o el nidal y has medido la zona de colocación."
+      ]
+    },
+    {
+      "asin": "B0FMFXP4G9",
+      "titulo": "Seis protectores dorsales ajustables para gallinas",
+      "explicacion": [
+        "Paquete de seis protectores tipo delantal con correas ajustables para cubrir el lomo de las aves."
+      ],
+      "recomendacion": [
+        "Puede encajar si la tarea y las dimensiones de trabajo coinciden con las de esta herramienta."
+      ]
+    },
+    {
+      "asin": "B07DVSL74D",
+      "titulo": "Seis tetinas horizontales RentACoop con platillo recogegotas",
+      "explicacion": [
+        "El kit permite equipar un depósito con seis tetinas y pequeños platos que recogen parte del goteo."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres comparar un sistema de tetinas o copas y puedes supervisar que todo el lote lo utilice."
+      ]
+    },
+    {
+      "asin": "B0H2F5QDHJ",
+      "titulo": "Soporte de madera para huevos con 54 huecos",
+      "explicacion": [
+        "El organizador de madera tiene 54 posiciones para colocar y contar huevos individualmente en la zona de trabajo."
+      ],
+      "recomendacion": [
+        "Puede encajar si quieres organizar registros, envases o presentación y sabes qué función debe cumplir el producto."
+      ]
+    },
+    {
+      "asin": "B07T75DM6C",
+      "titulo": "Suplemento probiótico para el pienso de gallinas y patos",
+      "explicacion": [
+        "Complemento alimentario envasado para aves de corral. La formulación y el modo de conservación se consultan en la etiqueta del fabricante."
+      ],
+      "recomendacion": [
+        "Antes de elegirlo, comprueba la especie, la fecha de consumo y cómo conservar el envase abierto. La ficha de venta no demuestra un efecto sobre la puesta de tu lote.",
+        "Se usa solo si te lo indica tu veterinario y según la etiqueta."
+      ]
+    },
+    {
+      "asin": "B004XNMG4S",
+      "titulo": "Termohigrómetro digital IncuTherm para incubadoras",
+      "explicacion": [
+        "Medidor digital de temperatura y humedad con lectura en la pantalla del propio dispositivo."
+      ],
+      "recomendacion": [
+        "Puede encajar si necesitas medir una variable concreta y puedes comprobar el rango y la colocación del instrumento."
+      ]
+    },
+    {
+      "asin": "B07C9GN7K4",
+      "titulo": "Volteador automático IncuTurn para incubadoras HovaBator",
+      "explicacion": [
+        "Bandeja motorizada de recambio para modelos HovaBator compatibles. El fabricante anuncia capacidad de hasta 42 huevos de gallina, 70 de codorniz o 28 de ganso, según el tamaño."
+      ],
+      "recomendacion": [
+        "Puede encajar si has definido la especie, la tanda y la función que necesitas, antes de comparar equipos."
+      ]
+    }
+  ],
   "frases_anadidas": 0,
   "secciones": [
     "Agua y bebederos",

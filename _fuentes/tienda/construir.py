@@ -133,8 +133,9 @@ def cargar():
     ruta = Path(__file__).resolve().parent / "catalogo-origen.csv"
     with ruta.open(newline="", encoding="utf-8") as fh:
         filas = list(csv.DictReader(fh))
-    if len(filas) != 171:
-        raise SystemExit(f"El CSV tiene {len(filas)} filas, no 171")
+    asins = [fila["ASIN"].strip() for fila in filas]
+    if not asins or len(set(asins)) != len(asins) or any(not re.fullmatch(r"[A-Z0-9]{10}", asin) for asin in asins):
+        raise SystemExit("El catálogo de origen contiene identificadores ASIN vacíos, inválidos o duplicados")
     por_cat = defaultdict(list)
     for fila in filas:
         por_cat[fila["categoria"].strip()].append(fila)
@@ -149,7 +150,7 @@ def cargar():
                 "motivo": f"duplicado de {EXCLUIR[asin]}: mismas estrellas y reseñas; se queda el otro",
             })
             continue
-        if asin in SOLO_SI_UNICOS and len(por_cat[cat]) != 1:
+        if asin in SOLO_SI_UNICOS and normalizar(fila.get("excepcion_4_0") or "") != "si" and len(por_cat[cat]) != 1:
             excluidos.append({
                 "asin": asin,
                 "categoria": cat,
@@ -217,6 +218,7 @@ def armar(filas):
             "explicacion": explicacion,
             "recomendacion": recomendacion,
             "imagen": imagen,
+            "imagen_alt": fila.get("imagen_alt") or texto["titulo"],
             "origen": texto["origen"],
             "claves": (CLAVES[cat_csv] + " " + CLAVES.get(origen, "")).strip(),
             "unico_42": asin in SOLO_SI_UNICOS,
@@ -335,7 +337,7 @@ def figura_imagen(p, raiz):
         pie = "Ilustración de uso generada con IA. Consulta el modelo exacto en Amazon."
     return (
         f'<figure class="t-foto"><img src="{raiz}{esc(p["imagen"])}" '
-        f'alt="{esc(p["titulo"])}" loading="lazy" width="800" height="600" decoding="async">'
+        f'alt="{esc(p.get("imagen_alt") or p["titulo"])}" loading="lazy" width="800" height="600" decoding="async">'
         f"<figcaption>{pie}</figcaption></figure>"
     )
 
@@ -1177,7 +1179,7 @@ def main():
     ampliados = [p for p in productos if p["origen"] == "catalogo+frase"]
     cats = sorted({p["categoria"] for p in productos})
     informe = {
-        "productos_csv": 171,
+        "productos_csv": len(origen),
         "productos_mostrados": len(productos),
         "categorias_mostradas": len(cats),
         "categorias": cats,

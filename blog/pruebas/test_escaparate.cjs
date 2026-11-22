@@ -8,6 +8,7 @@ const home = read('index.html');
 const landing = read('recomendados.html');
 const shop = read('tienda/index.html');
 const ebooks = read('ebooks/index.html');
+const catalogSize = JSON.parse(read('tienda/catalogo.json')).length;
 
 for (const [name, html] of [['portada', home], ['recomendados', landing]]) {
   const amazon = [...html.matchAll(/<a class="gr-venta-card"[^>]*>/g)].map(m => m[0]);
@@ -35,11 +36,11 @@ for (const [name, html] of [['portada', home], ['recomendados', landing]]) {
 }
 assert.ok(home.includes('gr-ventas-busqueda') && home.includes('js/banners-ventas.js'));
 assert.ok(shop.includes('t-busqueda-rapida'), 'buscar antes de la lista');
-assert.equal([...shop.matchAll(/ data-t-card data-cat=/g)].length, 169);
-assert.ok(shop.length < 360000, 'la tienda no debe recuperar su tamaño antiguo');
+assert.equal([...shop.matchAll(/ data-t-card data-cat=/g)].length, catalogSize);
+assert.ok(shop.length < 360000 + 1900 * Math.max(0, catalogSize - 169), 'presupuesto de tamaño de la tienda por ficha añadida');
 assert.ok(read('js/config.js').includes('activo: false'), 'Adsterra desactivado');
 assert.ok(!read('js/app.js').includes('bauval.org'), 'sin script Adsterra');
 assert.ok(read('js/site.js').includes('searchParams.set("language", "es_US")'));
 assert.ok(read('tienda/imagenes-respaldo.js').includes('t-foto-vacia'));
 assert.ok(read('js/banners-ventas.js').includes('gr-venta-sin-foto'));
-console.log('Escaparate: 7 Amazon y 3 ebooks en dos páginas, imágenes, clics, 169 fichas, buscador, idioma y Adsterra comprobados.');
+console.log('Escaparate: 7 Amazon y 3 ebooks en dos páginas, imágenes, clics, fichas del catálogo, buscador, idioma y Adsterra comprobados.');
