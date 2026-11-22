@@ -5,6 +5,7 @@ descripcion: "Las codornices japonesas pueden poner muy jóvenes. Aprende alojam
 categoria: codornices
 fecha: 2026-11-09
 borrador: false
+video: ffJn1pQj5Fk
 autor: "Equipo editorial de Granja Rentable"
 imagen: "img/blog/criar-codornices-desde-cero.webp"
 imagen_og: "img/blog/criar-codornices-desde-cero-og.webp"

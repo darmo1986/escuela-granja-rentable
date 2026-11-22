@@ -5,6 +5,7 @@ descripcion: "Alfalfa, maíz, pimentón dulce y tagete: qué pigmenta la yema, d
 categoria: alimentacion
 fecha: 2026-11-22
 borrador: false
+video: 68_FLkKT6Jk
 imagen: "img/blog/gallinas-solo-maiz.webp"
 imagen_og: "img/blog/gallinas-solo-maiz-og.webp"
 imagen_alt: "Gallina parda frente a una mano que le ofrece maíz, con granos sueltos en el suelo"

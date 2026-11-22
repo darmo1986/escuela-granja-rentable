@@ -5,6 +5,7 @@ descripcion: "Dónde buscar cada parásito, en qué se diferencian y por qué el
 categoria: salud
 fecha: 2026-11-23
 borrador: false
+video: FBHK03_O23I
 imagen: "img/blog/acaros-piojos-cama-humeda.webp"
 imagen_og: "img/blog/acaros-piojos-cama-humeda-og.webp"
 imagen_alt: "Gallina marrón rascándose el plumaje en un gallinero seco y limpio, fondo verde desenfocado"
