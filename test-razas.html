@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test: qué raza de gallina te conviene | Granja Rentable</title><meta name="description" content="Responde 4 preguntas y descubre qué raza de gallina encaja con tu clima, tu espacio y tu objetivo: huevos, carne o las dos cosas."><link rel="canonical" href="https://granjarentable.com/test-razas.html"><meta name="robots" content="index,follow"><link rel="stylesheet" href="css/estilo.css?v=20261117-sin-fijo"><script src="js/boot.js?v=20261117-anuncios-arriba"></script><style>.tablon{max-width:44rem;margin:auto;padding:1rem}.tablon .preg{padding:1rem;border:1px solid #acbbad;border-radius:.65rem;margin:.8rem 0}.tablon button{margin:.25rem .4rem .25rem 0;padding:.6rem 1rem;border-radius:999px;border:1px solid #1F5E2E;background:#fff;cursor:pointer;font:inherit}.tablon button.sel{background:#1F5E2E;color:#fff}.tablon #veredicto{padding:1rem;border-radius:.65rem;background:#E7F3EA;border:1px solid #1F5E2E;margin-top:1rem}</style></head>
+<body data-root=""><main class="tablon"><a href="/">Granja Rentable</a><h1>¿Qué raza te conviene?</h1><p>4 preguntas, 1 minuto. Te digo la raza y por qué.</p>
+<div class="anuncios-arriba" data-anuncios-arriba></div>
+<div class="preg" id="p1"><h3>1. ¿Qué quieres sobre todo?</h3>
+<button data-v="huevos">Muchos huevos</button><button data-v="carne">Carne</button><button data-v="doble">Las dos cosas</button><button data-v="color">Huevos de colores</button></div>
+<div class="preg" id="p2"><h3>2. ¿Tu clima?</h3>
+<button data-v="calor">Calor fuerte</button><button data-v="frio">Frío</button><button data-v="suave">Suave</button></div>
+<div class="preg" id="p3"><h3>3. ¿Espacio?</h3>
+<button data-v="poco">Poco (patio o mesa)</button><button data-v="medio">Mediano (corral)</button><button data-v="mucho">Mucho (finca)</button></div>
+<div class="preg" id="p4"><h3>4. ¿Experiencia?</h3>
+<button data-v="nuevo">Primera vez</button><button data-v="algo">Ya crié antes</button></div>
+<div id="veredicto" hidden></div>
+<div class="anuncio-tercio" data-anuncio-tercio></div>
+<p><a href="razas.html">Todas las fichas de razas</a> · <a href="criaderos.html">Buscar criaderos</a></p>
+<footer><a href="cookies.html">Cookies</a></footer></main>
+<script>
+(function(){
+var R={
+leghorn:{n:"Leghorn",u:"razas/leghorn.html",d:"La ponedora más prolífica con calor: muchos huevos blancos con poco pienso, pero nerviosa y voladora."},
+australorp:{n:"Australorp",u:"razas/australorp.html",d:"Mucho huevo y carácter tranquilo. Aguanta bien el calor y es fácil para empezar."},
+sussex:{n:"Sussex",u:"razas/sussex.html",d:"Doble propósito mansa y rústica. Ideal si es tu primera vez y quieres huevos y carne."},
+rhode:{n:"Rhode Island Red",u:"razas/rhode-island-red.html",d:"Todo terreno: pone bien y da carne. Rústica para casi cualquier clima."},
+orpington:{n:"Orpington",u:"razas/orpington.html",d:"Grande, mansa y buena madre. Mejor con espacio y clima no muy caluroso."},
+brahma:{n:"Brahma",u:"razas/brahma.html",d:"Carne en grande y pluma que abriga. Necesita sitio y aguanta el frío."},
+araucana:{n:"Araucana",u:"razas/araucana.html",d:"Huevos azules y buena puesta con clima suave. Rústica y activa."},
+andaluza:{n:"Andaluza Azul",u:"razas/andaluza-azul.html",d:"Hecha para el calor de España: pone bien con calor fuerte y poco mantenimiento."}};
+var P={p1:null,p2:null,p3:null,p4:null};
+function pts(r,v,q){
+var s={};
+if(q=="p1"){if(v=="huevos"){s.leghorn=3;s.australorp=3;s.andaluza=2;}if(v=="carne"){s.brahma=3;s.orpington=3;s.sussex=1;}if(v=="doble"){s.sussex=3;s.rhode=3;s.orpington=2;}if(v=="color"){s.araucana=3;s.cream=0;}}
+if(q=="p2"){if(v=="calor"){s.leghorn=2;s.australorp=2;s.andaluza=3;}if(v=="frio"){s.brahma=3;s.orpington=3;s.sussex=2;}if(v=="suave"){s.araucana=2;s.sussex=2;s.rhode=2;}}
+if(q=="p3"){if(v=="poco"){s.leghorn=2;s.araucana=1;s.australorp=1;}if(v=="medio"){s.sussex=2;s.rhode=2;s.australorp=2;}if(v=="mucho"){s.brahma=3;s.orpington=3;s.rhode=1;}}
+if(q=="p4"){if(v=="nuevo"){s.sussex=2;s.australorp=2;s.rhode=2;}if(v=="algo"){s.leghorn=2;s.brahma=1;s.araucana=2;}}
+return s;}
+document.querySelectorAll(".preg").forEach(function(box){
+box.addEventListener("click",function(e){
+if(e.target.tagName!="BUTTON")return;
+box.querySelectorAll("button").forEach(function(b){b.classList.remove("sel");});
+e.target.classList.add("sel");
+P[box.id]=e.target.getAttribute("data-v");
+if(P.p1&&P.p2&&P.p3&&P.p4){
+var tot={};Object.keys(R).forEach(function(k){tot[k]=0;});
+[["p1",P.p1],["p2",P.p2],["p3",P.p3],["p4",P.p4]].forEach(function(q){
+var s=pts(null,q[1],q[0]);Object.keys(s).forEach(function(k){if(tot[k]!=null)tot[k]+=s[k];});});
+var best=Object.keys(tot).sort(function(a,b){return tot[b]-tot[a];})[0];
+var v=document.getElementById("veredicto");
+v.hidden=false;
+v.innerHTML="<h3>Tu raza: "+R[best].n+"</h3><p>"+R[best].d+"</p><p><a class=\"btn gold\" href=\""+R[best].u+"\">Ver ficha de la "+R[best].n+" →</a></p><p><a href=\"criaderos.html\">Buscar criaderos</a> · <a href=\"calculadora.html\">Calcular costes</a></p>";
+v.scrollIntoView({behavior:"smooth"});}});});
+})();
+</script>
+<script src="js/config.js?v=20261116-discreto"></script><script src="js/app.js?v=20261116-discreto"></script></body></html>
