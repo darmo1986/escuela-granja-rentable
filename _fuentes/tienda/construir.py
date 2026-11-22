@@ -766,6 +766,17 @@ def guia_comederos(p, raiz):
 </section>'''
 
 
+def guia_puertas(p, raiz):
+    """Conecta las dos fichas de la comparativa con el cierre completo."""
+    if p["asin"] not in {"B07G9MPCKT", "B0CWXWX52L"}:
+        return ""
+    return f'''<section class="t-bloque" data-guia-puertas>
+<h2>Antes de elegir la puerta</h2>
+<p>Revisa el cierre manual, la malla y los huecos en la <a href="{raiz}blog/corral-anti-depredadores.html">guía del corral frente a depredadores</a>. Después contrasta la rutina, el montaje y la apertura de emergencia en la <a href="{raiz}comparativas/puertas.html">comparativa de puerta manual y automática</a>.</p>
+<p>La ficha ayuda a identificar el equipo; confirma las medidas, la fuente de energía y las instrucciones de la versión que ofrece el vendedor antes de comprar.</p>
+</section>'''
+
+
 def cuerpo_producto(p, vecinos, raiz):
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
     relacionados = "\n".join(
@@ -788,6 +799,7 @@ def cuerpo_producto(p, vecinos, raiz):
 {html_descripcion_larga(p.get("descripcion_larga"))}
 {guia_bebederos(p, raiz)}
 {guia_comederos(p, raiz)}
+{guia_puertas(p, raiz)}
 {guia_pollitos(p, raiz)}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
