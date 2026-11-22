@@ -583,6 +583,7 @@ def cuerpo_portada(productos, raiz):
 <p class="kicker">Equipo para tu granja</p>
 <h1>Elige el material que necesita tu lote</h1>
 <p class="t-lead">Busca por tarea, compara las fichas y comprueba medidas y compatibilidad antes de comprar. La compra, el precio y el envío se consultan en Amazon.</p>
+<p><a class="btn" href="{raiz}tienda/merchandising/">Ver merchandising de Granja Rentable →</a></p>
 <form class="t-busqueda-rapida" role="search" action="{raiz}tienda/#amazon" method="get" aria-label="Encontrar productos en la tienda">
   <label for="t-rapida">¿Qué necesitas para tus aves?</label>
   <div class="t-rapida-fila"><input id="t-rapida" type="search" name="q" placeholder="Comedero, incubadora, bebedero…" maxlength="120" required autocomplete="off"><button class="btn gold" type="submit">Buscar entre {len(productos)} productos →</button></div>
