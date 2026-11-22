@@ -54,6 +54,8 @@ Antes de elegir entre [puertas automáticas y cierres](https://granjarentable.co
 - Acceso para limpieza, comprobación y apertura manual.
 - Compatibilidad con tu puerta y tus aves, según las instrucciones del equipo.
 
+La [comparativa de puerta manual y automática](../comparativas/puertas.html) resume estas comprobaciones y enlaza las fichas de los dos modelos que presenta. Úsala para ordenar la decisión; las instrucciones del modelo y la revisión diaria siguen siendo necesarias.
+
 No hace falta comprar una puerta automática para seguir una rutina de cierre manual. Primero identifica si el problema es un olvido, una pieza averiada o un hueco: cada caso requiere una solución diferente.
 
 ## Una revisión al cerrar
