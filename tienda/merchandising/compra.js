@@ -81,8 +81,8 @@
       item.value = available[0].id;
       form.append(item);
     } else {
-      const kind = card.closest('section').dataset.opcion || 'Talla';
-      const prompts = { Talla: 'Elige tu talla', Capacidad: 'Elige la capacidad', Medidas: 'Elige las medidas' };
+      const kind = card.dataset.opcion || card.dataset.opcion || card.closest('section').dataset.opcion || 'Talla';
+      const prompts = { Talla: 'Elige tu talla', Capacidad: 'Elige la capacidad', Medidas: 'Elige las medidas', Modelo: 'Elige el modelo' };
       const availableColors = [...new Set(available.map((v) => v.color))];
       const color = availableColors.length > 1 ? selectField(form, 'Color') : null;
       if (color) {
