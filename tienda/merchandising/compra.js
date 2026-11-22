@@ -3,7 +3,7 @@
 
   const shop = 'https://granjarentable-shop.fourthwall.com';
   const namespace = 'http://base.google.com/ns/1.0';
-  const cards = document.querySelectorAll('#humor-de-corral .merch-card');
+  const cards = document.querySelectorAll('.merch-grid .merch-card');
   const colors = { Black: 'Negro', White: 'Blanco', Sand: 'Arena', Natural: 'Natural', Clear: 'Transparente' };
   const number = new Intl.NumberFormat('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -33,6 +33,29 @@
     return select;
   }
 
+  function labelSize(value, kind) {
+    if (kind === 'Capacidad') {
+      const ounces = /^(\d+(?:\.\d+)?)\s*oz$/i.exec(value);
+      if (ounces) return ounces[1] + ' oz (≈' + Math.round(Number(ounces[1]) * 29.57353) + ' ml)';
+    }
+    if (kind === 'Medidas') {
+      const sides = /^(\d+(?:\.\d+)?)"\s*x\s*(\d+(?:\.\d+)?)"$/i.exec(value);
+      if (sides) return sides[1].replace('.', ',') + ' × ' + sides[2].replace('.', ',') + ' pulgadas';
+    }
+    return value;
+  }
+
+  function showImage(card, variant) {
+    const src = variant.image;
+    if (!src.startsWith('https://imgproxy.fourthwall.dev/')) return;
+    const img = card.querySelector('img');
+    if (img.src === src) return;
+    const fallback = img.dataset.original || img.getAttribute('src');
+    img.dataset.original = fallback;
+    img.onerror = () => { img.onerror = null; img.src = fallback; };
+    img.src = src;
+  }
+
   function purchase(card, variants) {
     const info = card.querySelector('.merch-info');
     const details = info.querySelector('a');
@@ -58,41 +81,38 @@
       item.value = available[0].id;
       form.append(item);
     } else {
-      const color = selectField(form, 'Color');
-      const size = selectField(form, 'Talla');
+      const kind = card.closest('section').dataset.opcion || 'Talla';
+      const prompts = { Talla: 'Elige tu talla', Capacidad: 'Elige la capacidad', Medidas: 'Elige las medidas' };
+      const availableColors = [...new Set(available.map((v) => v.color))];
+      const color = availableColors.length > 1 ? selectField(form, 'Color') : null;
+      if (color) {
+        for (const value of availableColors) color.add(new Option(colors[value] || value, value));
+      }
+      const size = selectField(form, kind);
       size.name = 'products';
       size.required = true;
-      for (const value of new Set(available.map((v) => v.color))) {
-        color.add(new Option(colors[value] || value, value));
-      }
       function updateSizes() {
-        const group = variants.filter((v) => v.color === color.value);
+        const group = variants.filter((v) => v.color === (color?.value ?? availableColors[0]));
         const inStock = group.filter((v) => v.available);
         showPrice(price, inStock);
-        const placeholder = new Option('Elige tu talla', '', true, true);
+        const placeholder = new Option(prompts[kind], '', true, true);
         placeholder.disabled = true;
         size.replaceChildren(placeholder);
         for (const variant of group) {
-          const option = new Option(variant.size + (variant.available ? '' : ' · Agotada'), variant.id);
+          const option = new Option(labelSize(variant.size, kind) + (variant.available ? '' : ' · Agotada'), variant.id);
           option.disabled = !variant.available;
           size.add(option);
         }
+        return inStock[0];
       }
       updateSizes();
-      color.addEventListener('change', () => {
-        updateSizes();
-        const img = card.querySelector('img');
-        const source = available.find((v) => v.color === color.value).image;
-        if (source.startsWith('https://imgproxy.fourthwall.dev/')) {
-          const fallback = img.dataset.original || img.getAttribute('src');
-          img.dataset.original = fallback;
-          img.onerror = () => { img.onerror = null; img.src = fallback; };
-          img.src = source;
-        }
-      });
+      color?.addEventListener('change', () => showImage(card, updateSizes()));
       size.addEventListener('change', () => {
         const variant = available.find((v) => v.id === size.value);
-        if (variant) showPrice(price, [variant]);
+        if (variant) {
+          showPrice(price, [variant]);
+          showImage(card, variant);
+        }
       });
     }
     const buy = document.createElement('button');
