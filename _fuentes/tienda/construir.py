@@ -251,10 +251,35 @@ def seccion_texto(atributo, titulo, frases):
     )
 
 
+MODELOS_CONTRASTADOS = {
+    'B00P9EJLSO': ('PPF7 de 7 galones',
+        'https://miller-mfg.com/products/plastic-poultry-waterer-lg?variant=45586289819950'),
+    'B07MQW8MQK': ('RentACoop de 25 lb',
+        'https://rentacoop.com/products/rentacoop-automatic-metal-treadle-feeder-outdoor-use-rainproof-suitable-for-chicken-bantams-poultry-pheasants-ducks-and-fowl'),
+    'B00TXX20GW': ('Grandpa’s de 40 lb',
+        'https://grandpasfeeders.com/products/grandpas-large-automatic-feeder'),
+    'B005BV1WLE': ('HB-60P de 2 galones',
+        'https://farminnovators.com/products/heated-2-gallon-poultry-drinker/'),
+    'B07CRHYKJF': ('HB-60P de 2 galones',
+        'https://farminnovators.com/products/heated-2-gallon-poultry-drinker/'),
+    'B0DLTMQJ77': ('Hen’s Choice de 2 huecos, 21″',
+        'https://rolloutnestbox.com/products/hens-choice%E2%84%A2-roll-out-chicken-nest-box-roll-away-chicken-nesting-box-2-compartment-21'),
+}
+
+
 def boton_amazon(p):
+    modelo = MODELOS_CONTRASTADOS.get(p["asin"])
+    url = p["url"]
+    etiqueta = "Ver precio en Amazon"
+    fabricante = ""
+    if modelo:
+        nombre, oficial = modelo
+        url += "&th=1&psc=1"
+        etiqueta = f"Ver {nombre} en Amazon"
+        fabricante = f'\n<a class="btn sec" href="{esc(oficial)}">Ver {esc(nombre)} en la web del fabricante</a>'
     return (
-        f'<a class="btn gold t-amazon" href="{esc(p["url"])}" rel="sponsored nofollow noopener" target="_blank">'
-        f'Ver precio en Amazon<span class="sr"> (se abre en Amazon)</span></a>'
+        f'<a class="btn gold t-amazon" href="{esc(url)}" rel="sponsored nofollow noopener" target="_blank">'
+        f'{esc(etiqueta)}<span class="sr"> (se abre en Amazon)</span></a>{fabricante}'
     )
 
 
