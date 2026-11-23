@@ -100,6 +100,7 @@ VERSION_ESTILO = "20261117-sin-fijo"
 VERSION_PUBLICIDAD = "20261116-discreto"
 VERSION_BANNERS = "20261117banners"
 VERSION_PORTADA = "20261117-franja"
+VERSION_CSS_PORTADA = "20261123-merch"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -802,8 +803,10 @@ def poner_version(html):
             version = VERSION_ESTILO
         if 'data-publicidad-discreta' in html and nombre in {"js/app.js", "js/config.js"}:
             version = VERSION_PUBLICIDAD
-        if nombre in {"css/inicio.css", "js/hero.js"}:
+        if nombre == "js/hero.js":
             version = VERSION_PORTADA
+        if nombre == "css/inicio.css":
+            version = VERSION_CSS_PORTADA
         html = re.sub(
             rf'((?:href|src)="[^"]*?{re.escape(nombre)})(?:\?v=[\w.-]+)?"',
             rf'\1?v={version}"',
