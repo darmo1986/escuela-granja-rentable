@@ -29,6 +29,17 @@
 <script src="js/boot.js?v=20261117-anuncios-arriba"></script>
 <link rel="stylesheet" href="css/inicio.css?v=20261117-franja">
 <link rel="stylesheet" href="css/ofertas.css?v=20261112">
+<style>
+.curso-promo-propia{margin:14px 0 18px;border:1px solid #d7c98a;border-radius:16px;background:#fff9e9;overflow:hidden}
+.curso-promo-enlace{display:grid;grid-template-columns:clamp(72px,17vw,128px) minmax(0,1fr);gap:clamp(10px,2vw,20px);align-items:center;padding:10px 12px;color:#183f28;text-decoration:none}
+.curso-promo-enlace:hover{text-decoration:none;background:#fff4d7}
+.curso-promo-enlace:focus-visible{outline:3px solid #28613c;outline-offset:-3px}
+.curso-promo-foto{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:#f3e8cb;border-radius:10px}
+.curso-promo-texto{min-width:0}
+.curso-promo-marca{margin:0 0 4px;color:#3d5b42;font-size:.76rem;font-weight:750}
+.curso-promo-texto h2{margin:0 0 8px;font-size:clamp(1rem,3vw,1.35rem);line-height:1.25;color:#183f28}
+.curso-promo-texto .btn{min-height:44px;padding:.45em .8em;font-size:.88rem}
+</style>
 </head>
 <body data-root="">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -138,7 +149,16 @@
 <p class="split"><a class="btn gold" href="lecciones/l01.html" id="continuar">Empezar el curso gratis</a></p>
 </section>
 <nav class="gr-quick" aria-label="Antes de empezar el curso"><a href="#temario-publicado">Ver las 5 lecciones ↓</a><a href="guias.html">Buscar una guía →</a><a href="calculadora.html">Hacer mis cuentas →</a></nav>
-<aside class="ad-inline" data-ad-size="banner"><p class="ad-label">Publicidad</p><div class="ad-slot" data-ad-slot="banner" data-ad-size="banner"></div></aside>
+<aside class="curso-promo-propia" aria-label="Publicidad de Granja Rentable">
+<a class="curso-promo-enlace" href="/tienda/merchandising/">
+<img class="curso-promo-foto" src="img/merchandising/fourthwall/camiseta-gallinas-antes-que-dramas.webp" alt="Camiseta «Gallinas antes que dramas»" width="1536" height="2048" loading="lazy" decoding="async">
+<div class="curso-promo-texto">
+<p class="curso-promo-marca">Publicidad de Granja Rentable</p>
+<h2>Camisetas y tazas con humor de corral</h2>
+<span class="btn gold">Ver la tienda oficial <span aria-hidden="true">→</span></span>
+</div>
+</a>
+</aside>
 <div class="panel lesson-card" id="temario-publicado">
 <div class="progress"><div class="bar"><span id="pbar"></span></div><p id="ptxt">Progreso: 0 de 5 lecciones aprobadas</p></div>
 <ul class="lessons">
