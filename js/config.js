@@ -25,23 +25,12 @@ window.GR = {
   refDays: 30,
   /* Tipo de cambio de referencia (14 oct 2026) solo para mostrar dólares. El cargo de un ebook es el de su página de pago. */
   fx: { fecha: "14 de octubre de 2026", MXN: 18.361368, PEN: 3.440436, EUR: 0.893421 },
-  /* Un solo bloque comunidad. Lo comparten la cuenta, el reto y el concurso.
-     No crees otro: en JavaScript la segunda clave comunidad pisa a la primera.
-     supabaseAnonKey es la clave publicable y va en el navegador. Nunca pongas la service_role.
-     concursoPublicado: true desde el 22-oct-2026. La página es /concurso.html
-     (100 preguntas, 4 respuestas y 30 s; desempate por tiempo medio de
-     respuesta) y el ranking vive en public.ranking_mensual, con la vista
-     pública public.ranking_mensual_top (mejor marca de cada usuario).
-     El premio es de 20 € al primer clasificado del mes. El mes se cuenta en
-     hora de Madrid y el ranking vuelve a cero.
-     El apodo de la cuenta es perfiles.nombre. Si hay sesión, el concurso
-     rellena el campo con ese nombre. La regla compartida es public.apodo_ok
-     y GRAuth.apodo.
-     El reto de /preguntas no tiene premio. */
+  /* Configuración compartida por la cuenta y el reto gratuito de /preguntas.
+     La clave es publicable y va en el navegador. Nunca pongas la service_role. */
   comunidad: {
     supabaseUrl: "https://apdcgizpgguhmbgzsymx.supabase.co",
     supabaseAnonKey: "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu",
-    concursoPublicado: true
+    concursoPublicado: false
   },
   /* Analítica propia y Cloudflare Web Analytics (sin cookies).
      cfToken vacío = Cloudflare Web Analytics apagado. Para encenderlo:
