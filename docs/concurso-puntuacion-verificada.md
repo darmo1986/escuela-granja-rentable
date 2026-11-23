@@ -58,3 +58,13 @@ Ejemplo local, en un directorio desechable con ambos archivos copiados del repos
 npm install --no-save --package-lock=false --ignore-scripts @electric-sql/pglite@0.5.17
 node contest-verified.test.mjs ./20261123091500_concurso_verificado.sql
 ```
+
+## Integración de la página (apagada en este borrador)
+
+`concurso.html` conserva `data-concurso-verificado="off"`: no importa el módulo verificado ni llama a sus RPC y la página publicada no cambia por este borrador. En una copia **de pruebas** cuya configuración apunte a la instancia local, poner `on` separa la partida para el premio del modo práctica, y suprime las lecturas y escrituras del ranking antiguo en esta página. Incluso si falla la carga del módulo, la práctica nunca envía la marca al ranking. Las marcas de clientes/HTML antiguos no se migran ni se leen desde el ranking verificado.
+
+El modo verificado lee el estado oficial del mes, solicita sesión antes de abrir una partida, preserva el intento al recargar, muestra el alias anónimo y actualiza la tabla tras completar. Un error inicial no abre la competición. Dos estados se distinguen: mes cerrado y ranking no disponible. Las respuestas y la clasificación se renderizan como texto, no como HTML. El backend conserva la autoridad sobre plazo, grado y cuenta. Esto solo añade la UI que consume los RPC; no modifica el pago ni autoriza la apertura.
+
+Antes de un corte, aprobar explícitamente estas tres condiciones en las bases visibles: **cuántas partidas verificadas** se permiten con el banco disponible (el enlace actual no ofrece un botón para repetir una partida verificada después de completarla); **cuándo se muestran las soluciones** (inmediatas en práctica y ocultas en el circuito verificado; no hay repaso posterior implementado); y **cómo se resuelve un empate exacto** de aciertos y tiempo (la clasificación muestra el mismo puesto y no adjudica automáticamente el premio). No convertir estos huecos en reglas implícitas. Mantener el banco real fuera del sitio y de GitHub, y revisar que banners/enlaces coincidan con el estado confirmado antes de atraer tráfico.
+
+Pruebas focalizadas del navegador simulado (sin Supabase ni red): `node --test js/concurso-verificado/contest-entry.test.mjs`. Comprobar además en un navegador con la web de pruebas el foco, login, recuperación tras recarga/salida, tiempos, cierre y textos; la cobertura local del controlador y API no sustituye esa revisión.
