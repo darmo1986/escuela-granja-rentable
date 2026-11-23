@@ -169,3 +169,18 @@
   .gr-path, .gr-article, .gr-tool-links a, .gr-shortcuts a { transition: none; }
   .gr-path:hover, .gr-article:hover, .gr-tool-links a:hover { transform: none; }
 }
+
+/* La tienda oficial tiene su propia entrada y una diapositiva distinta de Amazon. */
+.gr-shortcuts .gr-merch-shortcut{background:#f1d279;color:#293725;border-color:#e0bd66}
+.gr-shortcuts .gr-merch-shortcut:hover{background:#ffe298;border-color:#e0bd66}
+.gr-merch-gallery{list-style:none;box-sizing:border-box;margin:0;padding:clamp(12px,2.6vw,26px);display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(6px,1vw,12px);align-self:center;width:min(100%,450px);justify-self:center}
+.gr-merch-gallery li{grid-column:span 2;min-width:0;overflow:hidden;border-radius:12px;background:#efe7d3;border:1px solid rgba(255,255,255,.25)}
+.gr-merch-gallery li:nth-child(4){grid-column:2/span 2}
+.gr-merch-gallery li:nth-child(5){grid-column:4/span 2}
+.gr-merch-gallery img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center}
+@media(max-width:899px){.gr-merch-slide .gr-merch-gallery{padding-top:0;max-width:390px}}
+@media(max-width:599px){
+ .gr-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+ .gr-shortcuts .gr-merch-shortcut,.gr-shortcuts .gr-merch-shortcut+a{grid-column:span 2}
+ .gr-merch-gallery li{border-radius:8px}
+}
