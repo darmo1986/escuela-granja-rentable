@@ -1,6 +1,6 @@
 import {createVerifiedContest} from './contest-flow.mjs';
 
-export function mountVerifiedContest({root, rpc, loginHref='cuenta.html', now, setTick=setInterval, clearTick=clearInterval}) {
+export function mountVerifiedContest({root, rpc, loginHref='cuenta.html', now, setTick=setInterval, clearTick=clearInterval, onFinished=()=>{}}) {
   const doc=root.ownerDocument;
   const host=doc.createElement('div'), live=doc.createElement('p'), stat=doc.createElement('p');
   live.setAttribute('role','status'); live.setAttribute('aria-live','polite');
@@ -8,9 +8,10 @@ export function mountVerifiedContest({root, rpc, loginHref='cuenta.html', now, s
   stat.setAttribute('aria-label','Tiempo restante');
   const add=(parent,tag,text)=>{const el=doc.createElement(tag);el.textContent=text;parent.append(el);return el};
   const button=(parent,text,fn)=>{const b=add(parent,'button',text);b.type='button';b.className='btn';b.addEventListener('click',fn);return b};
-  let ticker;
+  let ticker, disposed=false, announcedAttempt=null;
   const game=createVerifiedContest({rpc,now,publish:render});
   function render(v) {
+    if(disposed) return;
     if(ticker!==undefined){clearTick(ticker);ticker=undefined;}
     host.replaceChildren(); live.textContent=''; stat.textContent='';
     if(v.phase==='idle'){
@@ -34,6 +35,7 @@ export function mountVerifiedContest({root, rpc, loginHref='cuenta.html', now, s
         const h=add(host,'h3',v.score+' de 100 aciertos'); h.tabIndex=-1; h.focus();
         if(v.meanMs!==null) add(host,'p','Tiempo medio: '+(v.meanMs/1000).toFixed(1).replace('.',',')+' s.');
         add(host,'p','El premio del mes se confirma después de verificar al ganador.');
+        if(v.attempt!==announcedAttempt){announcedAttempt=v.attempt;onFinished(v);}
       } else button(host,'Comprobar resultado',game.recover);
     } else if(v.phase==='question'){
       add(host,'p','Pregunta '+v.position+' de 100 · '+v.category);
@@ -54,5 +56,5 @@ export function mountVerifiedContest({root, rpc, loginHref='cuenta.html', now, s
     }
   }
   render(game.snapshot());
-  return {unmount(){if(ticker!==undefined)clearTick(ticker);root.replaceChildren();}};
+  return {unmount(){disposed=true;if(ticker!==undefined)clearTick(ticker);root.replaceChildren();}};
 }
