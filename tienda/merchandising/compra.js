@@ -52,7 +52,15 @@
     if (img.src === src) return;
     const fallback = img.dataset.original || img.getAttribute('src');
     img.dataset.original = fallback;
-    img.onerror = () => { img.onerror = null; img.src = fallback; };
+    if (img.hasAttribute('srcset')) {
+      img.dataset.originalSrcset = img.getAttribute('srcset');
+      img.removeAttribute('srcset');
+    }
+    img.onerror = () => {
+      img.onerror = null;
+      img.src = fallback;
+      if (img.dataset.originalSrcset) img.srcset = img.dataset.originalSrcset;
+    };
     img.src = src;
   }
 
@@ -81,7 +89,7 @@
       item.value = available[0].id;
       form.append(item);
     } else {
-      const kind = card.dataset.opcion || card.dataset.opcion || card.closest('section').dataset.opcion || 'Talla';
+      const kind = card.dataset.opcion || card.closest('section').dataset.opcion || 'Talla';
       const prompts = { Talla: 'Elige tu talla', Capacidad: 'Elige la capacidad', Medidas: 'Elige las medidas', Modelo: 'Elige el modelo' };
       const availableColors = [...new Set(available.map((v) => v.color))];
       const color = availableColors.length > 1 ? selectField(form, 'Color') : null;
@@ -143,6 +151,34 @@
     }
   }
 
+  const search = document.getElementById('buscar-diseno');
+  if (search && cards.length) {
+    const normalize = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const products = Array.from(cards, card => ({
+      card,
+      name: normalize(card.querySelector('h3').textContent)
+    }));
+    const collectionLinks = document.querySelectorAll('.merch .tipos a');
+    const status = document.getElementById('resultado-merch');
+    function filterProducts() {
+      const words = normalize(search.value).trim().split(/\s+/).filter(Boolean);
+      let count = 0;
+      for (const { card, name } of products) {
+        card.hidden = !words.every(word => name.includes(word));
+        if (!card.hidden) count++;
+      }
+      for (const link of collectionLinks) {
+        const section = document.getElementById(link.hash.slice(1));
+        section.hidden = !section.querySelector('.merch-card:not([hidden])');
+        link.hidden = section.hidden;
+      }
+      status.textContent = !words.length ? '' : count === 0 ? 'No hay coincidencias. Prueba con otra palabra.' :
+        count === 1 ? '1 producto' : count + ' productos';
+    }
+    document.getElementById('buscador-merch').hidden = false;
+    search.addEventListener('input', filterProducts);
+    filterProducts();
+  }
   // Si el inventario no responde, cada ficha conserva su enlace de compra de Fourthwall.
   if (cards.length) loadStock().catch(() => {});
 })();
