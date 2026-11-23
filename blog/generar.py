@@ -96,11 +96,11 @@ TITULO_MAX_EXTRA = {
     "problemas-gallinero-picaje-huevos-rotos-humedad": 90,
 }
 VERSION_ACTIVOS = "20261117-anuncios-arriba"
-VERSION_ESTILO = "20261117-sin-fijo"
+VERSION_ESTILO = "20261123-menu"
 VERSION_PUBLICIDAD = "20261116-discreto"
 VERSION_BANNERS = "20261117banners"
 VERSION_PORTADA = "20261117-franja"
-VERSION_CSS_PORTADA = "20261123-merch"
+VERSION_CSS_PORTADA = "20261123-accesos"
 # Las páginas de Premium (#17) hablan por Messenger. El generador no les vuelve a poner WhatsApp.
 # premium.html conserva WhatsApp (menú, pie y botón flotante): decisión de Pablo, 9 nov 2026.
 SIN_WHATSAPP = {"condiciones-premium.html"}
@@ -130,6 +130,14 @@ def clave_nav(rel):
         return "articulos"
     base = rel.split("/")[-1]
     carpeta = rel.split("/")[0] if "/" in rel else ""
+    if rel == "tienda/merchandising/index.html":
+        return "merchandising"
+    if rel == "comparativas.html" or carpeta == "comparativas":
+        return "comparativas"
+    if rel == "criaderos.html":
+        return "criaderos"
+    if carpeta == "app-gallinas":
+        return "gestion-gallinas"
     if carpeta in ("producto", "tienda") or base == "tienda.html":
         return "tienda"
     if carpeta == "lecciones" or base in ("curso.html", "examen-final.html", "leccion.html"):

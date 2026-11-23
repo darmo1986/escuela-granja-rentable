@@ -66,9 +66,8 @@ class DestinosTienda(unittest.TestCase):
     def test_el_generador_no_reintroduce_segundo_destino(self):
         p = {'asin': 'B00P9EJLSO', 'url': 'https://www.amazon.com/dp/B00P9EJLSO?tag=granjarentabl-20'}
         html = t.botones_amazon(p)
-        enlaces = m.Enlaces(html).enlaces
-        self.assertEqual(len(enlaces), 1)
-        self.assertEqual(enlaces[0]['href'], p['url'])
+        destinos = [a['href'] for a in m.Enlaces(html).enlaces]
+        self.assertEqual(destinos, [p['url'] + '&th=1&psc=1', t.MODELOS_CONTRASTADOS[p['asin']][1]])
         self.assertEqual(m.limpiar(html), (html, 0))
         self.assertNotIn('product-reviews', html)
 

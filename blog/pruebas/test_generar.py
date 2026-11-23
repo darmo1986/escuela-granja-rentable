@@ -371,7 +371,8 @@ class Generador(unittest.TestCase):
         (self.tmp / "js" / "config.js").write_text("window.ads = { activo: true, adsterraPilot: true };", encoding="utf-8")
         self.assertFalse(generar.anuncios_activos(self.tmp))
         html = generar.poner_version('<link href="css/inicio.css?v=antigua"><script src="js/hero.js?v=antigua"></script>')
-        self.assertEqual(html.count('v=' + generar.VERSION_PORTADA), 2)
+        self.assertIn(f'css/inicio.css?v={generar.VERSION_CSS_PORTADA}"', html)
+        self.assertIn(f'js/hero.js?v={generar.VERSION_PORTADA}"', html)
 
     def test_version_con_letras_se_sustituye(self):
         html = generar.poner_version('<link href="css/estilo.css?v=20261109a"><script src="js/app.js?v=1"></script>')

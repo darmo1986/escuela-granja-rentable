@@ -33,7 +33,7 @@ PRIORITARIOS = [
     "B0DLTMQJ77", "B01MFE2ASJ", "B0FJ7RQ6RB", "B000HHQDPM",
 ]
 VERSION = "20261120-rapida"
-VERSION_BUSCADOR = "20261120mejoras1"
+VERSION_BUSCADOR = "20261123familias"
 
 
 def esc(texto):
@@ -583,6 +583,7 @@ def cuerpo_portada(productos, raiz):
                 f'<option value="{esc(slugify(cat))}">{esc(cat)} ({len(grupo)})</option>'
             )
         if opciones_grupo:
+            opciones_grupo.insert(0, f'<option value="familia-{esc(sid)}">Todo el grupo ({len(por_sec[sid])})</option>')
             opciones.append(f'<optgroup label="{esc(titulo)}">{"".join(opciones_grupo)}</optgroup>')
         cats_orden.append((sid, titulo, vistos))
     bloques = []
@@ -613,8 +614,8 @@ def cuerpo_portada(productos, raiz):
 <p><a class="btn" href="{raiz}tienda/merchandising/">Ver merchandising de Granja Rentable →</a></p>
 <form class="t-busqueda-rapida" role="search" action="{raiz}tienda/#amazon" method="get" aria-label="Encontrar productos en la tienda">
   <label for="t-rapida">¿Qué necesitas para tus aves?</label>
-  <div class="t-rapida-fila"><input id="t-rapida" type="search" name="q" placeholder="Comedero, incubadora, bebedero…" maxlength="120" required autocomplete="off"><button class="btn gold" type="submit">Buscar entre {len(productos)} productos →</button></div>
-  <p>O ve directamente a <a href="#destacados">los 14 imprescindibles</a> y <a href="#amazon">todo el catálogo</a>.</p>
+  <div class="t-rapida-fila"><input id="t-rapida" type="search" name="q" placeholder="Comedero, incubadora, bebedero…" maxlength="120" required autocomplete="off"><button class="btn gold" type="submit">Buscar entre {len(productos)} productos</button></div>
+  <p>O ve directamente a <a href="#destacados">los 14 imprescindibles</a>, a <a href="#amazon">todo el catálogo</a> o a las <a href="{raiz}comparativas.html">comparativas para elegir bien</a>.</p>
 </form>
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
 <p class="t-amazon-aviso"><strong>Importante para España y Latinoamérica:</strong> nuestros enlaces llevan a <strong>Amazon.com (Estados Unidos)</strong>, no a una tienda local. Solicitamos el idioma español cuando esté disponible. Comprueba que el vendedor envíe a tu país y revisa antes de pagar la moneda, el precio final, los posibles impuestos de importación, la garantía y la compatibilidad eléctrica si corresponde.</p>

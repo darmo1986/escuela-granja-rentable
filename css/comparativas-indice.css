@@ -1,0 +1,28 @@
+.comparativas-marca { background: var(--gd); }
+.comparativas-marca a {
+  display: flex; align-items: center; gap: .7rem; width: fit-content;
+  margin-left: max(1rem, calc((100% - 66rem) / 2)); padding: .85rem 0;
+  color: white; font-weight: 800; text-decoration: none;
+}
+.tablon { width: min(66rem, calc(100% - 2rem)); }
+.comparativas-ruta { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+.tablon > p { max-width: 72ch; }
+.tablon > h2 { margin-top: 1.8rem; }
+.tablon a { text-underline-offset: .18em; }
+.gr-video-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: .85rem; }
+.gr-video-links a {
+  display: grid; grid-template-columns: 4rem 1fr; align-items: center;
+  gap: .85rem; padding: .65rem; border: 1px solid var(--line); border-radius: .9rem;
+  color: var(--gd); background: var(--paper); text-decoration: none;
+}
+.gr-video-links a:hover strong, .gr-video-links a:focus-visible strong { text-decoration: underline; }
+.gr-video-links img { width: 100%; height: auto; border-radius: .5rem; }
+.gr-video-links strong, .gr-video-links small { display: block; }
+.gr-video-links small { margin-top: .35rem; color: var(--muted); font-size: .9rem; line-height: 1.4; }
+.tablon table { width: 100%; border-collapse: collapse; margin: .6rem 0 1.6rem; background: var(--paper); }
+.tablon th, .tablon td { padding: .65rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.tablon th { color: white; background: var(--g); }
+@media (max-width: 34rem) {
+  .gr-video-links a { grid-template-columns: 3.4rem 1fr; }
+  .tablon td, .tablon th { padding: .5rem .3rem; font-size: .94rem; overflow-wrap: anywhere; }
+}

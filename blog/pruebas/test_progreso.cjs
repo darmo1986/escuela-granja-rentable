@@ -8,7 +8,7 @@ let raw='{}',blocked=false,paused=0,quizBinds=0;
 const video={pause(){paused++;}},frame=element('', '');frame.attrs.src='https://www.youtube-nocookie.com/embed/abcdefg';
 const req={dataset:{requires:'l01'},querySelector:()=>message,querySelectorAll:sel=>sel==='.lockable'?parts:sel.includes('video')?[video]:[frame]};
 const events={};const context={window:{GRAuth:{guardarCurso(){throw Error('offline');}},addEventListener(k,f){events[k]=f;}},document:{body:{dataset:{}},querySelectorAll:()=>lessons,querySelector:()=>req,getElementById:id=>({finalbtn:final,continuar:next,pbar:bar,ptxt:text})[id]},localStorage:{getItem(){return raw;},setItem(k,value){if(blocked)throw Error('denied');raw=value;}},bindQuizzes(){quizBinds++;}};
-const prefix=s.slice(0,s.indexOf('/* ── Consentimiento')).replace('(function(){','');
+const prefix=s.slice(0,s.indexOf('function adsOn()')).replace('(function(){','');
 const passed=s.slice(s.indexOf('const passed='),s.indexOf('const shuf='));
 const funcs=s.slice(s.indexOf('function paintProgress()'),s.indexOf('function bindQuizzes('));
 const listeners=s.slice(s.indexOf('function refrescarProgreso()'),s.indexOf('(async function(){',s.indexOf('function refrescarProgreso()')));

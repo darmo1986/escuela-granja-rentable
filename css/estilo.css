@@ -124,6 +124,7 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
 .nav-row { display: flex; align-items: stretch; gap: 8px; }
 .nav-row > a { flex: 1; }
 .nav-more { width: 64px; min-width: 64px; justify-content: center; padding: 0; }
+.nav-tiendas { width: 48px; min-width: 48px; padding: 0; justify-content: center; }
 .nav-redes { font: inherit; }
 .nav a[aria-current="page"],
 .nav button[aria-current="page"] { outline: 2px solid var(--gold); outline-offset: -2px; }
@@ -169,12 +170,15 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 28
   }
   .nav-shop .nav-label::after, .nav-redes .nav-label::after, .nav-tools .nav-label::after { content: " ▾"; font-size: .85em; }
   .nav-parent, .nav a.nav-extra { display: none; }
+  .nav-row:has(.nav-tiendas) { gap: 0; }
+  .nav-row:has(.nav-tiendas) > a { min-width: 0; }
+  .nav-row .nav-tiendas { display: inline-flex; width: 2rem; min-width: 2rem; padding: 0; }
   /* 9 entradas visibles (con Fichas de razas y Tienda). */
   .nav-label { font-size: .68rem; white-space: nowrap; }
   .nav-ico, .nav-ico svg { width: 16px; height: 16px; }
   .nav-sub .nav-soon { color: #5c6b60; background: transparent; min-height: 48px; font-size: 1rem; }
   .nav-sub {
-    display: none; position: absolute; top: calc(100% + 6px); left: 0; z-index: 50;
+    display: none; position: absolute; top: 100%; left: 0; z-index: 50;
     min-width: 230px; padding: 8px; background: #fff; border-radius: 14px;
     box-shadow: 0 12px 28px rgba(0,0,0,.18);
   }
@@ -1028,13 +1032,18 @@ html[data-tema="claro"] .top .nav-parent:hover { background: #d7ebdd; }
   .nav { grid-column: 1 / -1; }
 }
 @media (max-width: 719px) {
-  .top .bar { grid-template-columns: minmax(8.4rem, 1fr) 5.2rem auto; gap: 4px 6px; }
+  .top .bar { grid-template-columns: minmax(0, 1fr) minmax(4.3rem, 5.2rem) auto; gap: 4px 6px; }
   .brand { gap: 6px; }
-  .brand-name { font-size: .8rem; }
+  .brand-name { font-size: .85rem; white-space: normal; overflow: visible; }
   .brand-mark, .brand-mark img { width: 34px; height: 34px; }
   .pais-bar { max-width: 5.2rem; }
   .pais-bar select { font-size: .78rem; padding-inline: 6px 2px; }
   .nav-toggle { padding: 8px 10px; }
+}
+@media (max-width: 374px) {
+  .top .bar.wrap { width: calc(100% - 16px); }
+  .brand-mark, .brand-mark img { width: 28px; height: 28px; }
+  .top-actions { gap: 3px; }
 }
 @media (min-width: 1040px) {
   .nav a, .nav-redes {

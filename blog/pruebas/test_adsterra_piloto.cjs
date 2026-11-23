@@ -18,10 +18,10 @@ function run({consent,oldConsent,premium=false,active=true,configured=true,lazy=
 for(const args of [{},{oldConsent:true},{consent:'no'},{consent:'si',premium:true},{consent:'si',active:false},{consent:'si',path:'/privacidad.html'}]){const s=run(args);assert.equal(s.article.children.length,0,JSON.stringify(args));}
 let s=run({consent:'si'}),box=s.article.children[0];
 assert.equal(s.article.children.length,1);
-assert.equal(box.children[1].tag,'script');
-assert.equal(box.children[1].src,'https://bauval.org/22/4c10efc097372233b52ed4f05e0a6ab8');
-assert.equal(s.nodes.some(n=>n.tag==='iframe'),false);
-assert.deepEqual([s.win.atOptions.width,s.win.atOptions.height,s.win.atOptions.format],[300,250,'iframe']);
+assert.equal(box.children[1].tag,'a');
+assert.equal(box.children[1].href,'ebooks/');
+assert.equal(box.children[1].children[0].tag,'img');
+assert.equal(s.nodes.some(n=>n.tag==='iframe'||n.tag==='script'),false);
 s.win.testAds.decidirAnuncios();s.win.testAds.loadAds();
 assert.equal(s.article.children.length,1);
 s.store.set('gr_adsterra_consent_v1','no');s.storage();
@@ -50,11 +50,11 @@ for(const path of ['/juegos.html','/cuenta.html','/ebooks/','/tienda/p/producto/
 for(const path of ['/razas/araucana.html','/curso.html','/blog/gallinas-ponedoras.html']){
  const t=run({path,consent:'si'});
  assert.equal(t.nodes.filter(n=>n.dataset.adsterraPilot).length,1,path);
- assert.equal(t.nodes.filter(n=>n.tag==='script'&&n.src&&n.src.includes('bauval.org')).length,1,path);
+ assert.equal(t.nodes.some(n=>n.tag==='script'||n.tag==='iframe'),false,path);
  t.win.testAds.loadAds();
  assert.equal(t.nodes.filter(n=>n.dataset.adsterraPilot).length,1,path);
 }
 const corto=run({path:'/blog/nota.html',consent:'si'});
 assert.equal(corto.article.children.length,1);
 console.log('Ampliación discreta: cinco rutas, interruptor apagado, consentimiento, Premium, ancho y controles excluidos.');
-console.log('Fichas, curso y artículos: un solo Adsterra en el primer tercio, sin Premium ni rutas excluidas.');
+console.log('Fichas, curso y artículos: un solo banner propio en el primer tercio, sin Premium ni rutas excluidas.');

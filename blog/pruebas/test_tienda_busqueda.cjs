@@ -6,19 +6,19 @@ const root = path.resolve(__dirname, '../..');
 const html = fs.readFileSync(path.join(root, 'tienda/index.html'), 'utf8');
 const source = fs.readFileSync(path.join(root, 'tienda/tienda.js'), 'utf8');
 const decode = s => s.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-const datos = Array.from(html.matchAll(/data-t-card data-cat="([^"]+)" data-sec="[^"]+" data-q="([^"]+)"/g), m => ({cat:m[1], q:decode(m[2])}));
+const datos = Array.from(html.matchAll(/data-t-card data-cat="([^"]+)" data-sec="([^"]+)" data-q="([^"]+)"/g), m => ({cat:m[1], sec:m[2], q:decode(m[3])}));
 const total = JSON.parse(fs.readFileSync(path.join(root, 'tienda/catalogo.json'), 'utf8')).length;
 assert.equal(datos.length, total);
 function entorno(url = 'https://granjarentable.com/tienda/', conCategoria = true, sinHistorial = false) {
   function el() { return {value:'',hidden:false,style:{},listeners:{},setAttribute(k,v){this[k]=v;},appendChild(){},addEventListener(n, fn){this.listeners[n]=fn;},focus(){this.focused=true;}}; }
-  const cards = datos.map(d => ({hidden:false,getAttribute(n){return n === 'data-q' ? d.q : d.cat;}}));
+  const cards = datos.map(d => ({hidden:false,getAttribute(n){return n === 'data-q' ? d.q : n === 'data-sec' ? d.sec : d.cat;}}));
   const caja = el(), categoria = el(), limpiar = el(), ampliar = el(), form = el(), vacio = el(), cuenta = el();
-  categoria.options = [...new Set(['todas', ...datos.map(d=>d.cat)])].map(value=>({value}));
+  categoria.options = [...new Set(['todas', ...datos.map(d=>d.cat), ...datos.map(d=>'familia-'+d.sec)])].map(value=>({value}));
   const bloques = categoria.options.slice(1).map(o=>({hidden:false,querySelector(){return cards.find((c,i)=>!c.hidden && datos[i].cat===o.value);}}));
   const elements = {'[data-t-buscar]':caja,'[data-t-categoria]':conCategoria?categoria:null,'[data-t-limpiar]':limpiar,'[data-t-ampliar]':ampliar,'[data-t-form]':form,'[data-t-vacio]':vacio,'[data-t-cuenta]':cuenta};
-  const win = {location:{href:url},history:{replaceState(a,b,next){if(sinHistorial)throw Error('bloqueado');win.location.href=new URL(next,win.location.href).href;}}};
+  const win = {location:{href:url},addEventListener(name,handler){this[name]=handler;},history:{replaceState(a,b,next){if(sinHistorial)throw Error('bloqueado');win.location.href=new URL(next,win.location.href).href;}}};
   const created = [];
-  const doc = {createElement(){const node=el(); created.push(node); return node;},querySelector:s=>elements[s]||null,querySelectorAll:s=>s==='[data-t-card]'?cards:s==='[data-t-bloque]'?bloques:[]};
+  const doc = {getElementById(){return null;},createElement(){const node=el(); created.push(node); return node;},querySelector:s=>elements[s]||null,querySelectorAll:s=>s==='[data-t-card]'?cards:s==='[data-t-bloque]'?bloques:[]};
   vm.runInNewContext(source, {document:doc,window:win,URL});
   return {caja,categoria,limpiar,ampliar,form,vacio,cuenta,win,bloques,
     mas(){created[0].listeners.click();},
@@ -62,4 +62,19 @@ e=entorno('https://granjarentable.com/tienda/?cat=desconocida&q=b00txw0uqk');ass
 e=entorno('https://granjarentable.com/tienda/c/comederos/?cat=desconocida&q=b00txw0uqk',false);assert.equal(e.visibles().length,1);
 e=entorno(undefined,true,true);e.buscar('ponedero');assert.ok(e.visibles().length>0);
 e.buscar('<script>alert(1)</script>');assert.equal(e.visibles().length,0);
+for (const familia of new Set(datos.map(d=>d.sec))) {
+  const grupo = entorno('https://granjarentable.com/tienda/#' + familia);
+  assert.equal(grupo.categoria.value, 'familia-' + familia);
+  const esperados = datos.filter(d=>d.sec===familia);
+  assert.deepEqual(grupo.visibles(), esperados.slice(0,24));
+  grupo.mas();
+  assert.deepEqual(grupo.visibles(), esperados.slice(0,48));
+  grupo.limpiar.listeners.click();
+  assert.equal(new URL(grupo.win.location.href).hash, '#amazon');
+  assert.equal(grupo.visibles().length, 24);
+}
+e=entorno('https://granjarentable.com/tienda/#c-nidales-y-cama');
+assert.equal(e.categoria.value,'nidales-y-cama');
+e.win.location.href='https://granjarentable.com/tienda/#taller';e.win.hashchange();
+assert.ok(e.visibles().every(d=>d.sec==='taller'));
 console.log('Búsqueda tienda: sinónimos, plurales, filtros, vacío, recuperación, ASIN, formulario y enlaces compartibles correctos.');

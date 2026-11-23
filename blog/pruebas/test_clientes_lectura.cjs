@@ -55,7 +55,7 @@ function hero(){
  assert.equal(pause.textContent,'Reanudar');assert.equal(timers,0);
  pause.onclick();assert.equal(pause.textContent,'Pausar');assert(timers>0);
  next.onclick();assert(slides[1].classList.contains('is-active'));
- events['gr-pais']();assert(slides[0].classList.contains('is-active'));
+ events['gr-pais']();assert(slides[1].classList.contains('is-active'));
  pause.onclick();motion.matches=false;events.motion();assert.equal(pause.textContent,'Reanudar');
 }
 

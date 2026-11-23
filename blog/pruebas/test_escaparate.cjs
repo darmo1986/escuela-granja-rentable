@@ -35,7 +35,8 @@ for (const [name, html] of [['portada', home], ['recomendados', landing]]) {
   assert.ok(html.includes('js/registro-banners.js'), 'registro de clics: ' + name);
 }
 assert.ok(home.includes('gr-ventas-busqueda') && home.includes('js/banners-ventas.js'));
-assert.ok(shop.includes('t-busqueda-rapida'), 'buscar antes de la lista');
+assert.equal((shop.match(/id="t-rapida"/g) || []).length, 1, 'un único buscador rápido');
+assert.ok(shop.includes('Buscar entre ' + catalogSize + ' productos'), 'el buscador indica el tamaño del catálogo');
 assert.equal([...shop.matchAll(/ data-t-card data-cat=/g)].length, catalogSize);
 assert.ok(shop.length < 360000 + 1900 * Math.max(0, catalogSize - 169), 'presupuesto de tamaño de la tienda por ficha añadida');
 assert.ok(read('js/config.js').includes('activo: false'), 'Adsterra desactivado');

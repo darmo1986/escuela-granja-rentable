@@ -64,7 +64,7 @@ class Lectura(unittest.TestCase):
 
     def test_renueva_activos_de_los_buscadores_y_portada(self):
         for path in ['js/hero.js','css/inicio.css','js/blog-buscar.js','js/fichas-buscar.js']:
-            version = g.VERSION_PORTADA if path in {'js/hero.js','css/inicio.css'} else g.VERSION_ACTIVOS
+            version = {'js/hero.js': g.VERSION_PORTADA, 'css/inicio.css': g.VERSION_CSS_PORTADA}.get(path, g.VERSION_ACTIVOS)
             self.assertIn(f'{path}?v={version}', g.poner_version(f'<script src="{path}?v=antiguo"></script>'))
 
 
