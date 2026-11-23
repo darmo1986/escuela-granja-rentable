@@ -25,6 +25,10 @@
   header{text-align:center; padding:10px 0 6px;}
   header h1{margin:0; font-size:1.5rem; color:var(--verde-osc);}
   header p{margin:6px 0 0; color:var(--gris); font-size:.95rem;}
+  #concurso-verificado [role="group"] .btn{text-align:left}
+  #concurso-verificado [role="status"]{min-height:1.4em}
+  #concurso-verificado .ranking-scroll{overflow-x:auto}
+  #concurso-verificado button:focus-visible,#concurso-verificado a:focus-visible{outline:3px solid #1b5e20;outline-offset:3px}
   .card{background:var(--tarjeta); border-radius:14px; padding:20px; margin:14px 0;
         box-shadow:0 2px 10px rgba(0,0,0,.07);}
   .btn{display:block; width:100%; padding:14px; border:none; border-radius:10px;
@@ -61,7 +65,7 @@
   .hidden{display:none !important;}
 </style>
 </head>
-<body>
+<body data-concurso-verificado="off">
 <div class="wrap">
   <div class="marca">
     <a href="index.html"><img src="img/logo.jpg" alt="Granja Rentable"></a>
@@ -69,18 +73,29 @@
   </div>
   <header>
     <h1>🏆 Concurso del mes</h1>
-    <p>100 preguntas de avicultura · 30 segundos por pregunta · El mejor gana <b>20&nbsp;€</b></p>
+    <p id="concurso-resumen">100 preguntas de avicultura · 30 segundos por pregunta · El mejor gana <b>20&nbsp;€</b></p>
   </header>
+
+  <section id="concurso-verificado" class="card" aria-labelledby="concurso-verificado-titulo" hidden>
+    <h2 id="concurso-verificado-titulo" style="margin-top:0">🏆 Concurso verificado</h2>
+    <p>100 preguntas, 30 segundos por pregunta y premio mensual de 20&nbsp;€ cuando la competición está abierta. El servidor comprueba las respuestas y el tiempo. No se muestran las soluciones durante el concurso.</p>
+    <p>Solo cuentan partidas verificadas completas. Gana quien tenga más aciertos y, en caso de empate, el menor tiempo medio. Al cerrar el mes (hora de Madrid), Granja Rentable revisa al ganador y contacta por correo en los cinco primeros días del mes siguiente.</p>
+    <div id="concurso-verificado-juego"><p role="status">Comprobando la disponibilidad del concurso…</p></div>
+    <h3>Clasificación de este mes</h3>
+    <div id="concurso-verificado-ranking" class="ranking-scroll" role="status" aria-live="polite"></div>
+    <button class="btn sec" id="concurso-verificado-recargar" type="button" hidden>Actualizar clasificación</button>
+    <p><a href="#pantalla-inicio">Ir al modo práctica sin premio</a></p>
+  </section>
 
   <!-- PANTALLA INICIO -->
   <div id="pantalla-inicio" class="card">
-    <h2 style="margin-top:0">¿Cómo funciona?</h2>
+    <h2 id="concurso-inicio-titulo" style="margin-top:0">¿Cómo funciona?</h2>
     <ul style="padding-left:20px; line-height:1.7">
       <li>100 preguntas de nivel profesional (incubación, ponedoras, engorde, salud y alimentación).</li>
       <li>Tienes <b>30 segundos</b> por pregunta. Si se acaba el tiempo, cuenta como fallo.</li>
       <li>Tras responder verás la explicación de la respuesta correcta.</li>
-      <li>Gana quien más aciertos consiga. En caso de empate, decide el <b>tiempo medio de respuesta</b>: responde rápido y bien.</li>
-      <li>El ranking guarda tu <b>mejor marca</b> del mes: puedes jugar las veces que quieras.</li>
+      <li id="concurso-regla-desempate">Gana quien más aciertos consiga. En caso de empate, decide el <b>tiempo medio de respuesta</b>: responde rápido y bien.</li>
+      <li id="concurso-regla-marca">El ranking guarda tu <b>mejor marca</b> del mes: puedes jugar las veces que quieras.</li>
     </ul>
     <button class="btn" id="btn-empezar">Empezar el reto</button>
     <p class="aviso" id="aviso-sesion"><a href="cuenta.html">Inicia sesión</a> antes de empezar si quieres participar en el ranking mensual. También puedes jugar como invitado: esa marca solo se guarda en este dispositivo.</p>
@@ -114,8 +129,8 @@
     <button class="btn" id="btn-repetir">Jugar otra vez</button>
   </div>
 
-  <!-- RANKING -->
-  <div class="card">
+  <!-- RANKING LEGADO (aislado del concurso verificado) -->
+  <div class="card" id="concurso-ranking-legado">
     <h2 style="margin-top:0">🏆 Ranking de este mes</h2>
     <div id="ranking"><p class="aviso">Cargando ranking…</p></div>
     <p class="aviso">Bases: el premio de 20 € se entrega al primer clasificado al cerrar el mes (hora de Madrid) y el ranking vuelve a cero. Granja Rentable contactará con el ganador a través del correo de su cuenta en los 5 primeros días del mes siguiente. Las respuestas del banco están validadas por Granja Rentable.</p>
@@ -133,7 +148,8 @@
    ============================================================ */
 var SUPABASE_URL = "https://apdcgizpgguhmbgzsymx.supabase.co";
 var SUPABASE_ANON_KEY = "sb_publishable_rSecPFEhDRv8VgJ2m68z0A_QotK9AKu";
-var JSON_URL = "concurso-preguntas.json"; // banco validado, 100 preguntas
+var JSON_URL = "concurso-preguntas.json"; // banco público: solo práctica cuando la nueva vía esté activada
+var CONCURSO_VERIFICADO = document.body.dataset.concursoVerificado === "on";
 
 var TOTAL = 100, SEGUNDOS = 30;
 var banco = [], orden = [], idx = 0, aciertos = 0, tiempos = [];
@@ -154,7 +170,7 @@ function mostrar(id){ ["pantalla-inicio","pantalla-juego","pantalla-final"].forE
 
 /* ---------- sesión (para guardar en el ranking) ---------- */
 function prepararSesion(){
-  if(!sb) return;
+  if(CONCURSO_VERIFICADO || !sb) return;
   sb.auth.getSession().then(function(res){
     sesion = (res && res.data && res.data.session) || null;
     var aviso = document.getElementById("aviso-sesion");
@@ -277,6 +293,10 @@ function guardarResultado(ok, media){
     }
   }catch(e){}
   var nota = document.getElementById("final-guardado");
+  if(CONCURSO_VERIFICADO){
+    if(nota) nota.textContent = "Marca de práctica guardada en este dispositivo. No cuenta para el premio.";
+    return;
+  }
   if(!sb || !sesion || !sesion.user){
     if(nota) nota.innerHTML = "Sin sesión no entras en el ranking: <a href='cuenta.html'>inicia sesión</a> y vuelve a jugar para que cuente.";
     cargarRanking();
@@ -300,6 +320,7 @@ function guardarResultado(ok, media){
 }
 
 function cargarRanking(){
+  if(CONCURSO_VERIFICADO) return;
   var el = document.getElementById("ranking");
   function mensaje(texto){
     var p = document.createElement("p");
@@ -346,6 +367,23 @@ function cargarRanking(){
     .catch(function(){ mensaje("No se pudo cargar el ranking ahora mismo. Vuelve a intentarlo más tarde."); });
 }
 cargarRanking();
+if(CONCURSO_VERIFICADO){
+  // Aíslalo antes de importar: si falla la red, el juego público sigue siendo solo práctica.
+  document.getElementById("concurso-ranking-legado").hidden = true;
+  document.getElementById("concurso-verificado").hidden = false;
+  document.getElementById("concurso-resumen").textContent = "100 preguntas de avicultura · 30 segundos por pregunta";
+  document.getElementById("concurso-inicio-titulo").textContent = "Modo práctica sin premio";
+  document.getElementById("concurso-regla-marca").textContent = "Puedes practicar las veces que quieras. La marca solo se guarda en este dispositivo.";
+  document.getElementById("concurso-regla-desempate").hidden = true;
+  document.getElementById("btn-empezar").textContent = "Practicar sin premio";
+  document.getElementById("aviso-sesion").textContent = "Estas preguntas públicas no cuentan para el ranking verificado.";
+  import("./js/concurso-verificado/contest-entry.mjs")
+    .then(function(m){ m.initVerifiedContest({document:document,client:sb}); })
+    .catch(function(){
+      document.getElementById("concurso-verificado-juego").textContent =
+        "No se pudo cargar el concurso verificado. El modo práctica sigue disponible sin premio.";
+    });
+}
 </script>
 </body>
 </html>
