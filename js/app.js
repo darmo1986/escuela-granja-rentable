@@ -295,9 +295,9 @@ function paintProgress(){
   const tot=lis.length;
   const bar=document.getElementById('pbar'),txt=document.getElementById('ptxt');
   if(bar)bar.style.width=(100*n/tot)+'%';
-  if(txt)txt.textContent='Progreso: '+n+' de '+tot+' lecciones aprobadas'+(passed('final')?' · Examen final aprobado 🎓':'');
+  if(txt)txt.textContent='Progreso: '+n+' de '+tot+' tests de lección aprobados'+(passed('final')?' · Examen final aprobado 🎓':'');
   const fb=document.getElementById('finalbtn');
-  if(fb){if(!fb.dataset.label){fb.dataset.label=fb.textContent;fb.dataset.href=fb.getAttribute('href')||'examen-final.html';}fb.classList.toggle('dis',n<tot);if(n<tot){fb.textContent='🔒 Examen final (aprueba todas las lecciones)';fb.removeAttribute('href');fb.setAttribute('aria-disabled','true');}else{fb.textContent=fb.dataset.label;fb.setAttribute('href',fb.dataset.href);fb.removeAttribute('aria-disabled');}}
+  if(fb){if(!fb.dataset.label){fb.dataset.label=fb.textContent;fb.dataset.href=fb.getAttribute('href')||'examen-final.html';}fb.classList.toggle('dis',n<tot);if(n<tot){fb.textContent='🔒 Examen final (aprueba los tests de las lecciones)';fb.removeAttribute('href');fb.setAttribute('aria-disabled','true');}else{fb.textContent=fb.dataset.label;fb.setAttribute('href',fb.dataset.href);fb.removeAttribute('aria-disabled');}}
   const b=document.getElementById('continuar');
   if(!b)return;
   if(!b.dataset.label){b.dataset.label=b.textContent;b.dataset.href=b.getAttribute('href')||'lecciones/l01.html';}
