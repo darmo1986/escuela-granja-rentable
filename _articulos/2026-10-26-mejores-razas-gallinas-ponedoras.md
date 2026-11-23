@@ -75,6 +75,8 @@ Doble propósito (huevos y carne) y muy buena madre si quieres incubación natur
 
 Mezclar dos razas en el mismo gallinero también funciona: diversificas la puesta y el color de los huevos.
 
+Si aún dudas, haz el [test de 1 minuto para saber tu raza ideal](../test-razas.html): te pregunta clima, espacio y objetivo y te recomienda la ficha.
+
 ### Consejos para comprar tus primeras gallinas
 
 Compra pollitas de 16-18 semanas en criaderos de confianza: empiezan a poner en 2-4 semanas y te saltas la fase delicada de cría. Pide siempre el registro de vacunación (Marek al menos) y observa a las aves antes de comprar: ojos vivos, plumaje completo y activas. Evita aves con estornudos, ojos llorosos o plumas erizadas. Y recuerda la cuarentena: 2-3 semanas separadas antes de juntarlas con tus otras gallinas.
