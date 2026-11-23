@@ -89,7 +89,7 @@
  .gr-slide .gr-actions{margin:14px 0 8px}
 }
 
-.gr-shortcuts{display:flex;gap:6px;margin:0 0 12px}.gr-shortcuts a{flex:1;display:grid;place-items:center;min-height:44px;padding:4px;text-align:center;border-radius:9px;background:#e5edde;color:#183f28;font-weight:700;font-size:.9rem}
+.gr-shortcuts{display:flex;gap:6px;margin:16px 0 12px}.gr-shortcuts a{flex:1;display:grid;place-items:center;min-height:44px;padding:4px;text-align:center;border-radius:9px;background:#e5edde;color:#183f28;font-weight:700;font-size:.9rem}
 .gr-slide-count{font-weight:700;text-align:center;color:#fff}.gr-home-search{margin-bottom:18px}#registrar-lote{scroll-margin-top:100px}
 @media(max-width:599px){
  body:has(.home-renovada) .top .bar{grid-template-columns:minmax(0,1fr) minmax(70px,26%) auto;gap:4px}
@@ -180,7 +180,6 @@
 .gr-merch-gallery img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center}
 @media(max-width:899px){.gr-merch-slide .gr-merch-gallery{padding-top:0;max-width:390px}}
 @media(max-width:599px){
- .gr-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
- .gr-shortcuts .gr-merch-shortcut,.gr-shortcuts .gr-merch-shortcut+a{grid-column:span 2}
+ .gr-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
  .gr-merch-gallery li{border-radius:8px}
 }

@@ -59,7 +59,7 @@
   }
   var indice = Array.from(cards).map(function (card) {
     return { card: card, texto: palabras(card.getAttribute("data-q") || "").join(" "),
-      categoria: card.getAttribute("data-cat") || "" };
+      categoria: card.getAttribute("data-cat") || "", familia: "familia-" + card.getAttribute("data-sec") };
   });
   function sincronizar() {
     chips.forEach(function (chip) {
@@ -71,6 +71,8 @@
     try {
       var url = new URL(window.location.href);
       var q = caja.value.trim().slice(0, 120);
+      // Después de cambiar el filtro, el enlace compartido debe abrir los resultados actuales.
+      if (filtroPorAncla(url.hash) && filtroPorAncla(url.hash) !== filtro) url.hash = "amazon";
       if (q) url.searchParams.set("q", q); else url.searchParams.delete("q");
       if (filtro !== "todas") url.searchParams.set("cat", filtro); else url.searchParams.delete("cat");
       window.history.replaceState(null, "", url.pathname + url.search + url.hash);
@@ -81,7 +83,7 @@
     var n = 0;
     var visibles = 0;
     indice.forEach(function (item) {
-      var ok = (filtro === "todas" || item.categoria === filtro) && consulta.every(function (p) {
+      var ok = (filtro === "todas" || item.categoria === filtro || item.familia === filtro) && consulta.every(function (p) {
         return item.texto.indexOf(p) !== -1;
       });
       if (ok) n += 1;
@@ -115,11 +117,28 @@
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () { filtro = chip.getAttribute("data-t-filtro") || "todas"; limite = paso; aplicar(true); });
   });
-  try {
-    var params = new URL(window.location.href).searchParams;
-    caja.value = (params.get("q") || "").slice(0, 120);
-    var solicitada = params.get("cat");
-    if (categoria && Array.from(categoria.options).some(function (o) { return o.value === solicitada; })) filtro = solicitada;
-  } catch (e) { /* Sin parámetros, se muestra el catálogo completo. */ }
-  aplicar(false);
+  function opcionValida(valor) {
+    return categoria && Array.from(categoria.options).some(function (o) { return o.value === valor; });
+  }
+  function filtroPorAncla(hash) {
+    if (!hash) return "";
+    var id = hash.slice(1);
+    var valor = id.startsWith("c-") ? id.slice(2) : "familia-" + id;
+    return opcionValida(valor) ? valor : "";
+  }
+  function leerRuta() {
+    var url = new URL(window.location.href);
+    var ancla = filtroPorAncla(url.hash);
+    var solicitada = url.searchParams.get("cat");
+    caja.value = (url.searchParams.get("q") || "").slice(0, 120);
+    filtro = ancla || (opcionValida(solicitada) ? solicitada : "todas");
+    limite = paso;
+    aplicar(false);
+    if (ancla) {
+      var destino = document.getElementById(url.hash.slice(1));
+      if (destino && !destino.hidden) destino.scrollIntoView();
+    }
+  }
+  window.addEventListener("hashchange", leerRuta);
+  leerRuta();
 })();
