@@ -83,7 +83,7 @@
       <li>El ranking guarda tu <b>mejor marca</b> del mes: puedes jugar las veces que quieras.</li>
     </ul>
     <button class="btn" id="btn-empezar">Empezar el reto</button>
-    <p class="aviso" id="aviso-sesion">Necesitas haber iniciado sesión para que tu puntuación entre en el ranking mensual.</p>
+    <p class="aviso" id="aviso-sesion"><a href="cuenta.html">Inicia sesión</a> antes de empezar si quieres participar en el ranking mensual. También puedes jugar como invitado: esa marca solo se guarda en este dispositivo.</p>
   </div>
 
   <!-- PANTALLA JUEGO -->
@@ -301,18 +301,49 @@ function guardarResultado(ok, media){
 
 function cargarRanking(){
   var el = document.getElementById("ranking");
+  function mensaje(texto){
+    var p = document.createElement("p");
+    p.className = "aviso";
+    p.textContent = texto;
+    el.textContent = "";
+    el.appendChild(p);
+  }
+  function celda(fila, etiqueta, valor){
+    var td = document.createElement(etiqueta);
+    if(etiqueta === "th") td.scope = "col";
+    td.textContent = String(valor);
+    fila.appendChild(td);
+  }
   fetch(SUPABASE_URL + "/rest/v1/ranking_mensual_top?mes=eq." + mesActual() + "&select=nombre,aciertos,tiempo_medio&order=aciertos.desc,tiempo_medio.asc&limit=10",
     { headers: { "apikey": SUPABASE_ANON_KEY } })
-    .then(function(r){ return r.json(); })
-    .then(function(rows){
-      if(!rows || !rows.length){ el.innerHTML = "<p class='aviso'>Aún no hay participantes este mes. ¡Sé el primero!</p>"; return; }
-      var h = "<table class='ranking'><tr><th>#</th><th>Nombre</th><th>Aciertos</th><th>Tiempo medio</th></tr>";
-      rows.forEach(function(r, i){
-        h += "<tr><td>" + (i+1) + "</td><td>" + (r.nombre || "Anónimo") + "</td><td>" + r.aciertos + "/100</td><td>" + r.tiempo_medio + "s</td></tr>";
-      });
-      el.innerHTML = h + "</table>";
+    .then(function(r){
+      if(!r.ok) throw new Error("No se pudo leer el ranking");
+      return r.json();
     })
-    .catch(function(){ el.innerHTML = "<p class='aviso'>No se pudo cargar el ranking ahora mismo.</p>"; });
+    .then(function(rows){
+      if(!Array.isArray(rows)) throw new Error("Respuesta de ranking no válida");
+      if(!rows.length){ mensaje("Aún no hay participantes este mes. ¡Sé el primero!"); return; }
+      var tabla = document.createElement("table");
+      tabla.className = "ranking";
+      var cabecera = document.createElement("thead");
+      var titulos = document.createElement("tr");
+      ["#", "Nombre", "Aciertos", "Tiempo medio"].forEach(function(titulo){ celda(titulos, "th", titulo); });
+      cabecera.appendChild(titulos);
+      tabla.appendChild(cabecera);
+      var cuerpo = document.createElement("tbody");
+      rows.forEach(function(r, i){
+        var fila = document.createElement("tr");
+        celda(fila, "td", i+1);
+        celda(fila, "td", r.nombre || "Anónimo");
+        celda(fila, "td", r.aciertos + "/100");
+        celda(fila, "td", r.tiempo_medio + "s");
+        cuerpo.appendChild(fila);
+      });
+      tabla.appendChild(cuerpo);
+      el.textContent = "";
+      el.appendChild(tabla);
+    })
+    .catch(function(){ mensaje("No se pudo cargar el ranking ahora mismo. Vuelve a intentarlo más tarde."); });
 }
 cargarRanking();
 </script>
