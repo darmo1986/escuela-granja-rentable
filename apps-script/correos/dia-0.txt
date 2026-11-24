@@ -1,56 +1,13 @@
-Asunto (genérico): Gracias por dejar tu correo en Granja Rentable
-Asunto (contacto): Hemos recibido tu consulta en Granja Rentable
-Asunto (video): Te avisaremos de los videos nuevos de Granja Rentable
-Asunto (curso): Tu correo en el curso de Granja Rentable
-Asunto (calculadora): Tu cálculo en Granja Rentable, y una guía para seguir
+Sustituido por las plantillas según tema:
+  dia-0-pienso.txt, dia-0-ponedoras.txt, dia-0-empezar.txt
 
---- Cuerpo genérico (calculadora / curso / video / lead) ---
+Asunto (Calidad, se mantiene): Gracias por dejar tu correo en Granja Rentable
+Asunto si el origen es una consulta de contacto: Hemos recibido tu consulta en Granja Rentable
 
-Hola, {nombre}:
-
-{intro según el origen}
-
-Curso gratis de avicultura:
-https://granjarentable.com/curso.html
-
-Ebooks en PDF, cada uno a 3,00 USD (Cómo hacer tu propio pienso; Cómo elegir el pienso; Guía para empezar tu granja; Alimenta bien a tus ponedoras):
-https://granjarentable.com/ebooks/
-
-Membresía de 2,99 € al mes en YouTube, con vídeos exclusivos (como el de genética de ponedoras):
-https://www.youtube.com/@GranjaRentable/join
-También está la suscripción de la página en Facebook: https://www.facebook.com/GranjaRentable
-
-Si no quieres más correos nuestros, date de baja aquí:
-{URL_BAJA}
-
-La política de privacidad está en https://granjarentable.com/privacidad.html
-
-— Granja Rentable
-
-Intros según origen:
-- calculadora: Gracias por usar las calculadoras de Granja Rentable. Si estás mirando el coste de tu docena o de tu lote, estos recursos te pueden ayudar a cuadrar números.
-- curso: Gracias por apuntarte para el curso de Granja Rentable. Las lecciones publicadas ya se pueden ver, y te avisaremos cuando salgan las de ponedoras y genética.
-- video: Gracias por pedirnos aviso de videos nuevos en Granja Rentable. Te escribiremos cuando publiquemos uno.
-- lead (lista): Gracias por pedir la lista y el calendario de Granja Rentable. Aquí tienes también el curso y los ebooks, por si te sirven.
-- genérico: Gracias por dejarnos tu correo en Granja Rentable.
-
---- Cuerpo si el origen es una consulta de contacto ---
-
-Hola, {nombre}:
+Nota (contacto, solo día 0): si el tipo es contacto, el script antepone este párrafo al cuerpo del tema:
 
 Hemos recibido tu consulta en Granja Rentable. Te responderemos a este mismo correo. Si te urge, escríbenos también a ventas@granjarentable.com.
 
-Mientras tanto, en la web tienes el curso gratis y los ebooks (cada uno a 3,00 USD):
-https://granjarentable.com/curso.html
-https://granjarentable.com/ebooks/
+Asunto en ese caso: Hemos recibido tu consulta en Granja Rentable.
 
-Si te interesa, también hay una membresía de 2,99 € al mes en YouTube, con vídeos exclusivos (como el de genética de ponedoras):
-https://www.youtube.com/@GranjaRentable/join
-O la suscripción de la página en Facebook: https://www.facebook.com/GranjaRentable
-
-{baja y privacidad, igual que arriba}
-
-Notas:
-- Precios tomados de la web en vivo y de origin/main el 24 nov 2026 (hora de Canarias): ebooks a 3,00 USD en /ebooks/; membresía 2,99 €/mes en YouTube /join y Facebook. No hay pack en la página (solo 4 compras sueltas).
-- El remitente será la cuenta Google dueña del Apps Script (hoy el aviso de pedidos va a pablopersonal86@gmail.com). Reply-To: ventas@granjarentable.com.
-- Estos textos están también dentro de apps-script/Codigo.gs (funciones asuntoDia_ y textoCorreoDia_). Si se editan, hay que dejarlos iguales en los dos sitios.
+Los textos coinciden con apps-script/Codigo.gs (textoCorreoDia_). Precios y enlaces de la web en vivo / rama del PR #254 (24 nov 2026, hora de Canarias). No hay pack, descuentos ni testimonios.

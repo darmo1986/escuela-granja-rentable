@@ -130,4 +130,109 @@ assert(aceptaLead({ email: "mal", consentimiento: "si", tipo: "curso" }).error =
 assert(aceptaLead({ email: "ana@example.com", consentimiento: "", tipo: "curso" }).error === "sin_consentimiento", "sin casilla");
 assert(aceptaLead({ correo: "ana@example.com", consentimiento: "si", tipo: "contacto" }).guardado === true, "acepta correo o email");
 
-console.log("OK: 9 bloques de pruebas en seco (día 0/3, baja, token, tipos, deduplicado, flags, validación). Ningún correo enviado.");
+
+/* —— Tema y plantillas (ampliación v. tema) —— */
+var TEMAS_OK = { pienso: true, ponedoras: true, empezar: true };
+function normalizarTema(v) {
+  v = String(v || "").toLowerCase().trim();
+  if (TEMAS_OK[v]) return v;
+  if (/pienso|alimento|saco|coste-docena|coste_docena|comedero/.test(v)) return "pienso";
+  if (/ponedoras|puesta|yema|alimenta-ponedoras/.test(v)) return "ponedoras";
+  if (/empezar|inicio|incub|lista/.test(v)) return "empezar";
+  return "";
+}
+function temaDesdeUbicacion(path, hash, interes) {
+  var t = ((path || "") + " " + (hash || "") + " " + (interes || "")).toLowerCase();
+  if (/#coste-docena|#alimento|#sacos|pienso-hacer|pienso-elegir|pienso-iniciador|l04a|l04b/.test(t)) return "pienso";
+  if (/alimenta-ponedoras|ponedoras|puesta|l05/.test(t)) return "ponedoras";
+  if (/guia-empezar|empezar-con-10|lista\.html|l01|l02|l03/.test(t)) return "empezar";
+  return "empezar";
+}
+function inferirTema(p) {
+  var n = normalizarTema(p && p.tema);
+  if (n) return n;
+  var origen = String((p && p.origen) || "");
+  var path = origen, hash = "";
+  var i = origen.indexOf("#");
+  if (i >= 0) { path = origen.slice(0, i); hash = origen.slice(i); }
+  try {
+    if (origen && origen.indexOf("http") === 0) {
+      var corte = origen.split("?")[0];
+      var proto = corte.indexOf("://");
+      if (proto >= 0) {
+        var slash = corte.indexOf("/", proto + 3);
+        corte = slash >= 0 ? corte.slice(slash) : "/";
+      }
+      i = corte.indexOf("#");
+      if (i >= 0) { path = corte.slice(0, i); hash = corte.slice(i); }
+      else { path = corte; hash = ""; }
+    }
+  } catch (e) {}
+  return temaDesdeUbicacion(path, hash, (p && (p.interes || p.motivo)) || "");
+}
+
+assert(normalizarTema("PIENSO") === "pienso", "normaliza pienso");
+assert(normalizarTema("Gallinas ponedoras") === "ponedoras", "normaliza ponedoras por texto");
+assert(normalizarTema("xyz") === "", "tema desconocido vacío");
+assert(temaDesdeUbicacion("/calculadoras.html", "#coste-docena", "") === "pienso", "hash coste-docena → pienso");
+assert(temaDesdeUbicacion("/calculadoras.html", "#sacos", "") === "pienso", "hash sacos → pienso");
+assert(temaDesdeUbicacion("/lecciones/l04a.html", "", "") === "pienso", "L04A → pienso");
+assert(temaDesdeUbicacion("/lecciones/l01.html", "", "") === "empezar", "L01 → empezar");
+assert(temaDesdeUbicacion("/lecciones/l03.html", "", "") === "empezar", "L03 → empezar");
+assert(temaDesdeUbicacion("/ebooks/", "#alimenta-ponedoras", "") === "ponedoras", "ancla alimenta-ponedoras");
+assert(temaDesdeUbicacion("/curso.html", "", "") === "empezar", "curso → empezar (por defecto)");
+assert(temaDesdeUbicacion("/videos.html", "", "") === "empezar", "videos sin selector → empezar");
+assert(inferirTema({ tema: "ponedoras", origen: "/calculadoras.html#coste-docena" }) === "ponedoras", "selector gana a la URL");
+assert(inferirTema({ origen: "https://granjarentable.com/calculadoras.html#coste-docena" }) === "pienso", "URL absoluta con ancla");
+assert(inferirTema({ origen: "https://granjarentable.com/hoja-registro-puesta.html" }) === "ponedoras", "hoja de puesta → ponedoras");
+assert(inferirTema({}) === "empezar", "sin datos → empezar");
+
+var fs = require("fs");
+var path = require("path");
+var dir = path.join(__dirname, "..", "correos");
+if (!fs.existsSync(path.join(dir, "dia-0-pienso.txt"))) {
+  dir = path.join(__dirname, "..", "..", "correos"); // paquete en /correos
+}
+if (!fs.existsSync(path.join(dir, "dia-0-pienso.txt"))) {
+  dir = path.join(__dirname, "correos");
+}
+var temas = ["pienso", "ponedoras", "empezar"];
+var dias = [0, 3];
+temas.forEach(function (tema) {
+  dias.forEach(function (dia) {
+    var f = path.join(dir, "dia-" + dia + "-" + tema + ".txt");
+    assert(fs.existsSync(f), "existe " + path.basename(f));
+    var body = fs.readFileSync(f, "utf8");
+    assert(body.indexOf("https://granjarentable.com/descargas/") >= 0, tema + " d" + dia + " enlace descargas");
+    assert(body.indexOf("2,99 €") >= 0, tema + " d" + dia + " membresía 2,99 €");
+    assert(body.indexOf("https://www.youtube.com/@GranjaRentable/join") >= 0, tema + " d" + dia + " /join");
+    assert(body.indexOf("https://www.facebook.com/GranjaRentable") >= 0, tema + " d" + dia + " Facebook");
+    assert(body.indexOf("{URL_BAJA}") >= 0, tema + " d" + dia + " baja");
+    assert(body.indexOf("3,00 USD") >= 0, tema + " d" + dia + " precio ebook");
+    assert(!/te enviamos el ebook/i.test(body), "no promete enviar el PDF del ebook");
+    assert(!/descuento|% off|testimonio/i.test(body), "sin descuentos ni testimonios");
+    if (tema === "pienso") {
+      assert(body.indexOf("/ebooks/#pienso-hacer") >= 0 && body.indexOf("/ebooks/#pienso-elegir") >= 0, "ebooks de pienso");
+    }
+    if (tema === "ponedoras") {
+      assert(body.indexOf("/ebooks/#alimenta-ponedoras") >= 0, "ebook ponedoras");
+    }
+    if (tema === "empezar") {
+      assert(body.indexOf("/ebooks/#guia-empezar") >= 0, "ebook empezar");
+    }
+  });
+});
+
+/* El asunto del día 0 de Calidad se mantiene. */
+var d0 = fs.readFileSync(path.join(dir, "dia-0-empezar.txt"), "utf8");
+assert(d0.indexOf("Gracias por dejar tu correo en Granja Rentable") >= 0, "asunto día 0 de Calidad");
+
+/* Si ENVIO sigue apagado, decidir no marca enviar aunque haya tema. */
+r = decidir([{
+  fecha: new Date(2026, 10, 24, 9, 0, 0), tipo: "calculadora",
+  email: "ana@example.com", token_baja: "t1", baja: "", dia0_enviado: "", dia3_enviado: "",
+  tema: "pienso"
+}], ahora, false, true);
+assert(r.length === 1 && r[0].enviar === false, "con tema, DRY_RUN sigue sin enviar");
+
+console.log("OK: 9 bloques base + tema/plantillas en seco. Ningún correo enviado.");

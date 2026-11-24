@@ -1,20 +1,12 @@
-Asunto: Por si te sirve: el curso, los ebooks y la membresía
+Sustituido por las plantillas según tema:
+  dia-3-pienso.txt, dia-3-ponedoras.txt, dia-3-empezar.txt
 
-Hola, {nombre}:
+Asunto: Por si te sirve: el curso, las hojas gratis y un ebook de tu tema
 
-Hace unos días nos dejaste tu correo en Granja Rentable. Te escribo por si no tuviste un momento para mirar esto:
+Nota (contacto, solo día 0): si el tipo es contacto, el script antepone este párrafo al cuerpo del tema:
 
-El curso gratis sigue en https://granjarentable.com/curso.html
+Hemos recibido tu consulta en Granja Rentable. Te responderemos a este mismo correo. Si te urge, escríbenos también a ventas@granjarentable.com.
 
-Los cuatro ebooks están en https://granjarentable.com/ebooks/ y cada uno cuesta 3,00 USD. Si estás empezando, la «Guía para empezar tu granja» es la más corta. Si lo que te preocupa es el pienso o las ponedoras, ahí tienes también esas dos guías.
+Asunto en ese caso: Hemos recibido tu consulta en Granja Rentable.
 
-Y si quieres los vídeos exclusivos para miembros (por ejemplo el de genética de ponedoras), la membresía es de 2,99 € al mes:
-https://www.youtube.com/@GranjaRentable/join
-O en Facebook: https://www.facebook.com/GranjaRentable
-
-Si no quieres más correos nuestros, date de baja aquí:
-{URL_BAJA}
-
-La política de privacidad está en https://granjarentable.com/privacidad.html
-
-— Granja Rentable
+Los textos coinciden con apps-script/Codigo.gs (textoCorreoDia_). Precios y enlaces de la web en vivo / rama del PR #254 (24 nov 2026, hora de Canarias). No hay pack, descuentos ni testimonios.

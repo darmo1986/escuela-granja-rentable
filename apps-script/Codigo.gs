@@ -37,7 +37,7 @@ var COLUMNAS = [
    (después de M «seguimiento» y N «seguimiento_enviado» de los pedidos,
    o más a la derecha si ya hay otras). Nunca se insertan en medio. */
 var COLUMNAS_SEGUIMIENTO = [
-  "mensaje", "token_baja", "baja", "dia0_enviado", "dia3_enviado"
+  "mensaje", "token_baja", "baja", "dia0_enviado", "dia3_enviado", "tema"
 ];
 /* Tipos que reciben (cuando esté activo) el correo del día 0 y del día 3. */
 var TIPOS_SEGUIMIENTO_LEAD = {
@@ -65,6 +65,14 @@ var URL_CURSO = SITE + "/curso.html";
 var URL_PRIVACIDAD = SITE + "/privacidad.html";
 var URL_YOUTUBE_JOIN = "https://www.youtube.com/@GranjaRentable/join";
 var URL_FACEBOOK = "https://www.facebook.com/GranjaRentable";
+var URL_DESCARGAS = SITE + "/descargas/";
+var URL_HOJA_PUESTA = SITE + "/hoja-registro-puesta.html";
+var URL_EBOOK_PIENSO_HACER = SITE + "/ebooks/#pienso-hacer";
+var URL_EBOOK_PIENSO_ELEGIR = SITE + "/ebooks/#pienso-elegir";
+var URL_EBOOK_EMPEZAR = SITE + "/ebooks/#guia-empezar";
+var URL_EBOOK_PONEDORAS = SITE + "/ebooks/#alimenta-ponedoras";
+var URL_GUIA_10_PONEDORAS = SITE + "/blog/empezar-con-10-gallinas-ponedoras.html";
+var URL_TABLA_PIENSO = SITE + "/blog/pienso-iniciador-pollitos.html";
 
 function doGet(e) {
   var token = (e && e.parameter && e.parameter.baja) ? String(e.parameter.baja).trim() : "";
@@ -365,6 +373,7 @@ function prepararFilaSeguimientoLead_(hoja, p) {
   var token = Utilities.getUuid();
   if (mapa.token_baja) hoja.getRange(fila, mapa.token_baja).setValue(token);
   if (mapa.mensaje && p.mensaje) hoja.getRange(fila, mapa.mensaje).setValue(String(p.mensaje).slice(0, 3000));
+  if (mapa.tema) hoja.getRange(fila, mapa.tema).setValue(inferirTema_(p));
 }
 
 function puedeEnviar_() {
@@ -419,66 +428,149 @@ function diasEntre_(fecha, ahora) {
   return Math.floor((b.getTime() - a.getTime()) / 86400000);
 }
 
+function normalizarTema_(v) {
+  v = String(v || "").toLowerCase().trim();
+  if (v === "pienso" || v === "ponedoras" || v === "empezar") return v;
+  if (/pienso|alimento|saco|coste-docena|coste_docena|comedero/.test(v)) return "pienso";
+  if (/ponedoras|puesta|yema|alimenta-ponedoras/.test(v)) return "ponedoras";
+  if (/empezar|inicio|incub|lista/.test(v)) return "empezar";
+  return "";
+}
+
+function temaDesdeUbicacion_(path, hash, interes) {
+  var t = ((path || "") + " " + (hash || "") + " " + (interes || "")).toLowerCase();
+  if (/#coste-docena|#alimento|#sacos|pienso-hacer|pienso-elegir|pienso-iniciador|l04a|l04b/.test(t)) return "pienso";
+  if (/alimenta-ponedoras|ponedoras|puesta|l05/.test(t)) return "ponedoras";
+  if (/guia-empezar|empezar-con-10|lista\.html|l01|l02|l03/.test(t)) return "empezar";
+  return "empezar";
+}
+
+function inferirTema_(p) {
+  var n = normalizarTema_(p && p.tema);
+  if (n) return n;
+  var origen = String((p && p.origen) || "");
+  var path = origen, hash = "";
+  var i = origen.indexOf("#");
+  if (i >= 0) {
+    path = origen.slice(0, i);
+    hash = origen.slice(i);
+  }
+  try {
+    if (origen && origen.indexOf("http") === 0) {
+      /* URL completa: nos quedamos con ruta y ancla. */
+      var corte = origen.split("?")[0];
+      var proto = corte.indexOf("://");
+      if (proto >= 0) {
+        var slash = corte.indexOf("/", proto + 3);
+        corte = slash >= 0 ? corte.slice(slash) : "/";
+      }
+      i = corte.indexOf("#");
+      if (i >= 0) {
+        path = corte.slice(0, i);
+        hash = corte.slice(i);
+      } else {
+        path = corte;
+        hash = "";
+      }
+    }
+  } catch (ignoraUrl) {}
+  return temaDesdeUbicacion_(path, hash, (p && (p.interes || p.motivo)) || "");
+}
+
+function cierreBaja_(fila) {
+  var baja = urlBaja_(fila.token_baja);
+  return "\n\nSi no quieres más correos nuestros, date de baja aquí:\n" + baja +
+    "\n\nLa política de privacidad está en " + URL_PRIVACIDAD +
+    "\n\n— Granja Rentable";
+}
+
+function bloqueMembresia_() {
+  return "Si te interesa, hay una membresía de 2,99 € al mes en YouTube, con vídeos exclusivos (como el de genética de ponedoras):\n" +
+    URL_YOUTUBE_JOIN + "\n" +
+    "También está la suscripción de la página en Facebook: " + URL_FACEBOOK;
+}
+
+function bloqueRegalo_() {
+  return "Las hojas de registro de Granja Rentable son gratis (puesta diaria, finanzas, salud, engorde e incubación). Se descargan aquí, sin pago:\n" +
+    URL_DESCARGAS;
+}
+
 function textoCorreoDia_(dia, fila) {
   var nombre = String(fila.nombre || "").trim();
   var saludo = nombre ? ("Hola, " + nombre + ":") : "Hola:";
-  var baja = urlBaja_(fila.token_baja);
-  var cierre =
-    "\n\nSi no quieres más correos nuestros, date de baja aquí:\n" + baja +
-    "\n\nLa política de privacidad está en " + URL_PRIVACIDAD +
-    "\n\n— Granja Rentable";
+  var tema = inferirTema_({ tema: fila.tema, origen: fila.origen, interes: fila.interes });
+  var prefijo = "";
   if (dia === 0 && fila.tipo === "contacto") {
-    return saludo + "\n\n" +
-      "Hemos recibido tu consulta en Granja Rentable. Te responderemos a este mismo correo. " +
-      "Si te urge, escríbenos también a " + CORREO_VENTAS + ".\n\n" +
-      "Mientras tanto, en la web tienes el curso gratis y los ebooks (cada uno a 3,00 USD):\n" +
-      URL_CURSO + "\n" +
-      URL_EBOOKS + "\n\n" +
-      "Si te interesa, también hay una membresía de 2,99 € al mes en YouTube, con vídeos exclusivos (como el de genética de ponedoras):\n" +
-      URL_YOUTUBE_JOIN + "\n" +
-      "O la suscripción de la página en Facebook: " + URL_FACEBOOK +
-      cierre;
+    prefijo = "Hemos recibido tu consulta en Granja Rentable. Te responderemos a este mismo correo. " +
+      "Si te urge, escríbenos también a " + CORREO_VENTAS + ".\n\n";
   }
+  var cuerpo;
   if (dia === 0) {
-    var intro = "Gracias por dejarnos tu correo en Granja Rentable.";
-    if (fila.tipo === "calculadora") {
-      intro = "Gracias por usar las calculadoras de Granja Rentable. Si estás mirando el coste de tu docena o de tu lote, estos recursos te pueden ayudar a cuadrar números.";
-    } else if (fila.tipo === "curso") {
-      intro = "Gracias por apuntarte para el curso de Granja Rentable. Las lecciones publicadas ya se pueden ver, y te avisaremos cuando salgan las de ponedoras y genética.";
-    } else if (fila.tipo === "video") {
-      intro = "Gracias por pedirnos aviso de videos nuevos en Granja Rentable. Te escribiremos cuando publiquemos uno.";
-    } else if (fila.tipo === "lead") {
-      intro = "Gracias por pedir la lista y el calendario de Granja Rentable. Aquí tienes también el curso y los ebooks, por si te sirven.";
+    if (tema === "pienso") {
+      cuerpo = "Gracias por dejar tu correo en Granja Rentable.\n\n" +
+        bloqueRegalo_() + "\n\n" +
+        "Si estás comparando sacos, también tienes esta tabla gratuita del pienso iniciador:\n" +
+        URL_TABLA_PIENSO + "\n\n" +
+        "El curso gratis está en " + URL_CURSO + "\n\n" +
+        "Si quieres profundizar en la alimentación, en la web hay dos ebooks a 3,00 USD cada uno (se compran ahí, no van adjuntos):\n" +
+        "Cómo hacer tu propio pienso: " + URL_EBOOK_PIENSO_HACER + "\n" +
+        "Cómo elegir el pienso: " + URL_EBOOK_PIENSO_ELEGIR + "\n\n" +
+        bloqueMembresia_();
+    } else if (tema === "ponedoras") {
+      cuerpo = "Gracias por dejar tu correo en Granja Rentable.\n\n" +
+        bloqueRegalo_() + "\n" +
+        "Para anotar huevos y pienso también está la hoja de puesta, que se descarga sin dejar el correo: " + URL_HOJA_PUESTA + "\n\n" +
+        "Y una guía gratuita para empezar con diez ponedoras:\n" + URL_GUIA_10_PONEDORAS + "\n\n" +
+        "El curso gratis está en " + URL_CURSO + "\n\n" +
+        "Si quieres profundizar, el ebook «Alimenta bien a tus ponedoras» cuesta 3,00 USD y se compra en la web:\n" +
+        URL_EBOOK_PONEDORAS + "\n\n" +
+        bloqueMembresia_();
+    } else {
+      cuerpo = "Gracias por dejar tu correo en Granja Rentable.\n\n" +
+        bloqueRegalo_() + "\n\n" +
+        "El curso gratis de avicultura está en " + URL_CURSO + "\n\n" +
+        "Si estás empezando, también puedes usar la hoja de puesta y pienso (se descarga sin correo):\n" +
+        URL_HOJA_PUESTA + "\n\n" +
+        "Si quieres profundizar, el ebook «Guía para empezar tu granja» cuesta 3,00 USD y se compra en la web:\n" +
+        URL_EBOOK_EMPEZAR + "\n\n" +
+        bloqueMembresia_();
     }
-    return saludo + "\n\n" + intro + "\n\n" +
-      "Curso gratis de avicultura:\n" + URL_CURSO + "\n\n" +
-      "Ebooks en PDF, cada uno a 3,00 USD (Cómo hacer tu propio pienso; Cómo elegir el pienso; Guía para empezar tu granja; Alimenta bien a tus ponedoras):\n" +
-      URL_EBOOKS + "\n\n" +
-      "Membresía de 2,99 € al mes en YouTube, con vídeos exclusivos (como el de genética de ponedoras):\n" +
-      URL_YOUTUBE_JOIN + "\n" +
-      "También está la suscripción de la página en Facebook: " + URL_FACEBOOK +
-      cierre;
+  } else {
+    /* Día 3 */
+    if (tema === "pienso") {
+      cuerpo = "Hace unos días nos dejaste tu correo en Granja Rentable. Te escribo por si no tuviste un momento para descargar las hojas de registro gratis:\n" +
+        URL_DESCARGAS + "\n\n" +
+        "Si estás en el pienso, la tabla gratuita del iniciador sigue aquí: " + URL_TABLA_PIENSO + "\n\n" +
+        "Y si quieres el método completo, estos dos ebooks cuestan 3,00 USD cada uno y se compran en la web:\n" +
+        "Cómo hacer tu propio pienso: " + URL_EBOOK_PIENSO_HACER + "\n" +
+        "Cómo elegir el pienso: " + URL_EBOOK_PIENSO_ELEGIR + "\n\n" +
+        "El curso gratis sigue en " + URL_CURSO + "\n\n" +
+        bloqueMembresia_();
+    } else if (tema === "ponedoras") {
+      cuerpo = "Hace unos días nos dejaste tu correo en Granja Rentable. Te escribo por si no tuviste un momento para descargar las hojas de registro gratis:\n" +
+        URL_DESCARGAS + "\n\n" +
+        "La guía gratuita para empezar con diez ponedoras está en " + URL_GUIA_10_PONEDORAS + "\n" +
+        "La hoja de puesta y pienso, en " + URL_HOJA_PUESTA + "\n\n" +
+        "Si quieres profundizar en la alimentación de las ponedoras, el ebook «Alimenta bien a tus ponedoras» cuesta 3,00 USD y se compra en la web:\n" +
+        URL_EBOOK_PONEDORAS + "\n\n" +
+        "El curso gratis sigue en " + URL_CURSO + "\n\n" +
+        bloqueMembresia_();
+    } else {
+      cuerpo = "Hace unos días nos dejaste tu correo en Granja Rentable. Te escribo por si no tuviste un momento para mirar esto:\n\n" +
+        "Las hojas de registro gratis: " + URL_DESCARGAS + "\n" +
+        "El curso gratis: " + URL_CURSO + "\n\n" +
+        "Si estás empezando y quieres la guía escrita, el ebook «Guía para empezar tu granja» cuesta 3,00 USD y se compra en la web:\n" +
+        URL_EBOOK_EMPEZAR + "\n\n" +
+        bloqueMembresia_();
+    }
   }
-  /* Día 3 */
-  return saludo + "\n\n" +
-    "Hace unos días nos dejaste tu correo en Granja Rentable. Te escribo por si no tuviste un momento para mirar esto:\n\n" +
-    "El curso gratis sigue en " + URL_CURSO + "\n\n" +
-    "Los cuatro ebooks están en " + URL_EBOOKS + " y cada uno cuesta 3,00 USD. " +
-    "Si estás empezando, la «Guía para empezar tu granja» es la más corta. " +
-    "Si lo que te preocupa es el pienso o las ponedoras, ahí tienes también esas dos guías.\n\n" +
-    "Y si quieres los vídeos exclusivos para miembros (por ejemplo el de genética de ponedoras), la membresía es de 2,99 € al mes:\n" +
-    URL_YOUTUBE_JOIN + "\n" +
-    "O en Facebook: " + URL_FACEBOOK +
-    cierre;
+  return saludo + "\n\n" + prefijo + cuerpo + cierreBaja_(fila);
 }
 
 function asuntoDia_(dia, tipo) {
   if (dia === 0 && tipo === "contacto") return "Hemos recibido tu consulta en Granja Rentable";
-  if (dia === 0 && tipo === "video") return "Te avisaremos de los videos nuevos de Granja Rentable";
-  if (dia === 0 && tipo === "curso") return "Tu correo en el curso de Granja Rentable";
-  if (dia === 0 && tipo === "calculadora") return "Tu cálculo en Granja Rentable, y una guía para seguir";
   if (dia === 0) return "Gracias por dejar tu correo en Granja Rentable";
-  return "Por si te sirve: el curso, los ebooks y la membresía";
+  return "Por si te sirve: el curso, las hojas gratis y un ebook de tu tema";
 }
 
 /**
@@ -576,7 +668,10 @@ function leerFilaSeguimiento_(valores, mapa) {
     token_baja: String(val("token_baja") || "").trim(),
     baja: String(val("baja") || "").trim(),
     dia0_enviado: String(val("dia0_enviado") || "").trim(),
-    dia3_enviado: String(val("dia3_enviado") || "").trim()
+    dia3_enviado: String(val("dia3_enviado") || "").trim(),
+    tema: String(val("tema") || "").trim(),
+    origen: String(val("origen") || "").trim(),
+    interes: String(val("interes") || "").trim()
   };
 }
 
