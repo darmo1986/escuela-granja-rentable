@@ -1,0 +1,28 @@
+Asunto: Gracias por dejar tu correo en Granja Rentable
+
+Hola, {nombre}:
+
+Gracias por dejar tu correo en Granja Rentable.
+
+Las hojas de registro de Granja Rentable son gratis (puesta diaria, finanzas, salud, engorde e incubación). Se descargan aquí, sin pago:
+https://granjarentable.com/descargas/
+
+Si estás comparando sacos, también tienes esta tabla gratuita del pienso iniciador:
+https://granjarentable.com/blog/pienso-iniciador-pollitos.html
+
+El curso gratis está en https://granjarentable.com/curso.html
+
+Si quieres profundizar en la alimentación, en la web hay dos ebooks a 3,00 USD cada uno (se compran ahí, no van adjuntos):
+Cómo hacer tu propio pienso: https://granjarentable.com/ebooks/#pienso-hacer
+Cómo elegir el pienso: https://granjarentable.com/ebooks/#pienso-elegir
+
+Si te interesa, hay una membresía de 2,99 € al mes en YouTube, con vídeos exclusivos (como el de genética de ponedoras):
+https://www.youtube.com/@GranjaRentable/join
+También está la suscripción de la página en Facebook: https://www.facebook.com/GranjaRentable
+
+Si no quieres más correos nuestros, date de baja aquí:
+{URL_BAJA}
+
+La política de privacidad está en https://granjarentable.com/privacidad.html
+
+— Granja Rentable

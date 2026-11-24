@@ -1,0 +1,10 @@
+Seis plantillas: dia-0 y dia-3 × pienso / ponedoras / empezar.
+
+Nota (contacto, solo día 0): si el tipo es contacto, el script antepone este párrafo al cuerpo del tema:
+
+Hemos recibido tu consulta en Granja Rentable. Te responderemos a este mismo correo. Si te urge, escríbenos también a ventas@granjarentable.com.
+
+Asunto en ese caso: Hemos recibido tu consulta en Granja Rentable.
+
+Los textos coinciden con apps-script/Codigo.gs (textoCorreoDia_). Precios y enlaces de la web en vivo / rama del PR #254 (24 nov 2026, hora de Canarias). No hay pack, descuentos ni testimonios.
+El asunto genérico del día 0 (Calidad) se mantiene: «Gracias por dejar tu correo en Granja Rentable».

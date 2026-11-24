@@ -1,0 +1,28 @@
+Asunto: Gracias por dejar tu correo en Granja Rentable
+
+Hola, {nombre}:
+
+Gracias por dejar tu correo en Granja Rentable.
+
+Las hojas de registro de Granja Rentable son gratis (puesta diaria, finanzas, salud, engorde e incubación). Se descargan aquí, sin pago:
+https://granjarentable.com/descargas/
+Para anotar huevos y pienso también está la hoja de puesta, que se descarga sin dejar el correo: https://granjarentable.com/hoja-registro-puesta.html
+
+Y una guía gratuita para empezar con diez ponedoras:
+https://granjarentable.com/blog/empezar-con-10-gallinas-ponedoras.html
+
+El curso gratis está en https://granjarentable.com/curso.html
+
+Si quieres profundizar, el ebook «Alimenta bien a tus ponedoras» cuesta 3,00 USD y se compra en la web:
+https://granjarentable.com/ebooks/#alimenta-ponedoras
+
+Si te interesa, hay una membresía de 2,99 € al mes en YouTube, con vídeos exclusivos (como el de genética de ponedoras):
+https://www.youtube.com/@GranjaRentable/join
+También está la suscripción de la página en Facebook: https://www.facebook.com/GranjaRentable
+
+Si no quieres más correos nuestros, date de baja aquí:
+{URL_BAJA}
+
+La política de privacidad está en https://granjarentable.com/privacidad.html
+
+— Granja Rentable
