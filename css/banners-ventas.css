@@ -26,7 +26,7 @@
 .gr-ventas-cabecera-ebooks{border-top:1px solid #d9e5d7;padding-top:22px}
 .gr-ventas-carril-ebooks{grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr)}
 .gr-venta-ebook .gr-venta-foto{background:#f7f3ea}
-@media(min-width:1100px){.gr-ventas-carril{grid-auto-columns:minmax(225px,1fr)}.gr-ventas-carril-ebooks{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row;overflow:visible}}
+@media(min-width:1100px){.gr-ventas-carril{grid-auto-columns:minmax(225px,1fr)}.gr-ventas-carril-ebooks{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:row;overflow:visible}}
 @media(max-width:640px){.gr-ventas-directas{border-radius:16px;margin:16px auto 24px;padding:15px 10px}.gr-ventas-cabecera h2{font-size:1.28rem}.gr-ventas-carril{grid-auto-columns:min(78vw,268px);gap:10px;scroll-padding-left:3px}.gr-venta-card{min-height:345px}.gr-venta-foto{height:137px}.gr-venta-boton{padding:8px}.gr-ventas-cabecera-ebooks{padding-top:17px}}
 @media(prefers-reduced-motion:reduce){.gr-venta-card{transition:none}.gr-venta-card:hover{transform:none}}
 
