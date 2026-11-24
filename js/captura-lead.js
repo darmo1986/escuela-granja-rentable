@@ -7,8 +7,8 @@
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var MSG = {
     contacto: "Listo. Hemos guardado tu consulta. Te responderemos a ese correo.",
-    calculadora: "Listo. Guardamos tu correo. Te escribiremos con la guía y novedades del curso y los ebooks.",
-    curso: "Listo. Guardamos tu correo. Te avisaremos cuando salgan nuevas lecciones y te escribiremos con lo útil del curso y los ebooks.",
+    calculadora: "Listo. Guardamos tu correo. Te escribiremos con el enlace a la guía (el ebook se compra en la web, a 3,00 USD) y con novedades del curso.",
+    curso: "Listo. Guardamos tu correo. Te avisaremos cuando salgan nuevas lecciones y te escribiremos con el enlace a los ebooks (se compran en la web, a 3,00 USD).",
     video: "Listo. Guardamos tu correo. Te avisaremos cuando haya videos nuevos.",
     ok: "Listo. Guardamos tu correo."
   };

@@ -323,7 +323,15 @@ function crearDisparador_() {
 /* ===== Mejora 6: captura y correos día 0 / día 3 ===== */
 
 function asegurarColumnasSeguimiento_(hoja) {
+  /* enviarSeguimientos() lee el seguimiento de pedidos en las columnas 13 y 14
+     (M y N) por posición, no por nombre. Si la hoja solo tiene A–L, hay que
+     reservar M y N antes de añadir las columnas de leads; si no, mensaje y
+     token_baja ocuparían esas posiciones y se romperían los correos de paquete. */
   var ultimaCol = Math.max(hoja.getLastColumn(), COLUMNAS.length);
+  if (ultimaCol < 14) {
+    hoja.getRange(1, 13, 1, 2).setValues([["seguimiento", "seguimiento_enviado"]]);
+    ultimaCol = 14;
+  }
   var cabecera = hoja.getRange(1, 1, 1, ultimaCol).getValues()[0];
   var hay = {};
   var i;
@@ -469,7 +477,7 @@ function asuntoDia_(dia, tipo) {
   if (dia === 0 && tipo === "video") return "Te avisaremos de los videos nuevos de Granja Rentable";
   if (dia === 0 && tipo === "curso") return "Tu correo en el curso de Granja Rentable";
   if (dia === 0 && tipo === "calculadora") return "Tu cálculo en Granja Rentable, y una guía para seguir";
-  if (dia === 0) return "Gracias por escribirte con Granja Rentable";
+  if (dia === 0) return "Gracias por dejar tu correo en Granja Rentable";
   return "Por si te sirve: el curso, los ebooks y la membresía";
 }
 

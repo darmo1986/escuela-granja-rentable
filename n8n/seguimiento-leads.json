@@ -93,7 +93,7 @@
     {
       "parameters": {
         "sendTo": "={{$json.email}}",
-        "subject": "={{ $json.dia === 0 ? 'Gracias por escribirte con Granja Rentable' : 'Por si te sirve: el curso, los ebooks y la membresía' }}",
+        "subject": "={{ $json.dia === 0 ? 'Gracias por dejar tu correo en Granja Rentable' : 'Por si te sirve: el curso, los ebooks y la membresía' }}",
         "message": "VER correos/dia-0.txt y correos/dia-3.txt del paquete. Pegar aquí el texto aprobado por Calidad. Reply-To: ventas@granjarentable.com. NO activar este nodo hasta el OK de Pablo.",
         "options": {
           "replyTo": "ventas@granjarentable.com"
