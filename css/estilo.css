@@ -448,6 +448,16 @@ body:has(#cookie-banner) .wa-float { bottom: 104px; }
   background: #fff; font-size: .92rem; line-height: 1.45;
 }
 .gr-miembro p { margin: .25em 0; }
+.gr-cierre {
+  margin: 1.25rem 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px;
+  background: #fffdf6;
+}
+.gr-cierre h2 { margin: 0 0 .35em; font-size: 1.2rem; }
+.gr-cierre p { margin: .35em 0; }
+.precio-aprox, .js-fx, .merch-fx {
+  display: block; margin: .2rem 0 0; font-size: .85rem; font-weight: 500; line-height: 1.35;
+}
+.merch-info p.merch-fx { font-weight: 500; font-size: .85rem; }
 .curso-miembro { margin: .6em 0 0; font-size: .9rem; line-height: 1.45; }
 
 .progress .bar { height: 10px; background: var(--gl); border-radius: 9px; overflow: hidden; }
