@@ -181,6 +181,15 @@
 .gr-merch-gallery img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center}
 .gr-merch-precio{display:block;padding:6px 6px 8px;font-size:.72rem;font-weight:700;line-height:1.25;text-align:center;color:#293725}
 .gr-merch-precio .js-fx{font-size:.66rem;font-weight:500}
+.gr-social-real{margin:.6rem 0 0;font-size:.92rem;line-height:1.4}
+.gr-barra{position:fixed;z-index:30;left:0;right:0;bottom:0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(15,45,24,.94);box-shadow:0 -1px 0 rgba(255,255,255,.12)}
+.gr-barra a{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;border-radius:999px;background:#f1d279;color:#293725;font-weight:800;text-decoration:none;font-size:.92rem}
+.gr-barra a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+body:has(.gr-barra){padding-bottom:76px}
+body:has(#cookie-banner) .gr-barra{bottom:96px}
+@media (min-width:800px){body:has(#cookie-banner) .gr-barra{bottom:64px}.gr-barra{justify-content:flex-end;padding-right:20px}}
+@media (max-width:599px){.gr-hero-copy .gr-actions{display:flex;flex-wrap:wrap;gap:8px}.gr-hero-copy .gr-actions .btn{flex:1 1 12rem}}
+@media print{.gr-barra{display:none}body:has(.gr-barra){padding-bottom:0}}
 @media(max-width:899px){.gr-merch-slide .gr-merch-gallery{padding-top:0;max-width:390px}}
 @media(max-width:599px){
  .gr-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
