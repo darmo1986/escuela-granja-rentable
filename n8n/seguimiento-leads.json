@@ -1,0 +1,227 @@
+{
+  "name": "Granja Rentable — seguimiento leads día 0 y 3 (ALTERNATIVA, DRY_RUN)",
+  "meta": {
+    "description": "Alternativa al disparador de Apps Script. No hay instancia n8n en el equipo; solo importar si Pablo ya tiene n8n gratis. DRY_RUN=true: no envía Gmail, solo escribe DRY_RUN en la hoja. No crear una hoja nueva: usar la pestaña Respuestas ya existente."
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24,
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "schedule-diario",
+      "name": "Cada día a las 9 (Madrid)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        300
+      ],
+      "notes": "Ajustar zona Europe/Madrid en la instancia."
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "PEGAR_ID_DE_LA_HOJA_EXISTENTE"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Respuestas"
+        },
+        "options": {}
+      },
+      "id": "leer-hoja",
+      "name": "Leer hoja Respuestas (existente)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        240,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PEGAR",
+          "name": "Google Sheets de Pablo"
+        }
+      },
+      "notes": "Misma hoja del Apps Script. No crear otra."
+    },
+    {
+      "parameters": {
+        "jsCode": "const DRY_RUN = true; // Obligatorio hasta QC y OK de Pablo.\nconst ENVIO_ACTIVO = false;\nconst LIMITE = 40;\nconst TIPOS = new Set(['contacto','calculadora','curso','video','lead']);\n\nfunction diasEntre(fecha, ahora) {\n  const a = new Date(fecha);\n  if (isNaN(a)) return -1;\n  const d0 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());\n  const d1 = Date.UTC(ahora.getFullYear(), ahora.getMonth(), ahora.getDate());\n  return Math.floor((d1 - d0) / 86400000);\n}\n\nconst ahora = new Date();\nconst filas = items.map(i => i.json);\nconst porEmail = {};\nfor (const rec of filas) {\n  const email = String(rec.email || '').trim().toLowerCase();\n  const tipo = String(rec.tipo || '').trim();\n  if (!email || !email.includes('@') || !TIPOS.has(tipo)) continue;\n  if (!porEmail[email]) porEmail[email] = { baja: false, dia0: false, dia3: false, pendientes: [] };\n  const g = porEmail[email];\n  if (String(rec.baja || '').trim()) g.baja = true;\n  if (String(rec.dia0_enviado || '').trim()) g.dia0 = true;\n  if (String(rec.dia3_enviado || '').trim()) g.dia3 = true;\n  if (String(rec.token_baja || '').trim()) g.pendientes.push(rec);\n}\n\nconst salidas = [];\nlet enviados = 0;\nfor (const [email, g] of Object.entries(porEmail)) {\n  if (g.baja || !g.pendientes.length) continue;\n  g.pendientes.sort((a,b) => new Date(a.fecha) - new Date(b.fecha));\n  const base = g.pendientes[0];\n  const dias = diasEntre(base.fecha, ahora);\n  const cuales = [];\n  if (!g.dia0 && dias >= 0) cuales.push(0);\n  if (!g.dia3 && dias >= 3) cuales.push(3);\n  for (const dia of cuales) {\n    if (enviados >= LIMITE) break;\n    salidas.push({\n      json: {\n        email: base.email,\n        nombre: base.nombre || '',\n        tipo: base.tipo,\n        token_baja: base.token_baja,\n        dia,\n        row_number: base.row_number,\n        DRY_RUN,\n        ENVIO_ACTIVO,\n        enviar: ENVIO_ACTIVO === true && DRY_RUN === false,\n        marca: (DRY_RUN || !ENVIO_ACTIVO) ? ('DRY_RUN ' + ahora.toISOString()) : ahora.toISOString()\n      }\n    });\n    enviados++;\n  }\n}\nreturn salidas;"
+      },
+      "id": "decidir-envios",
+      "name": "Decidir día 0 / día 3 (DRY_RUN)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.enviar}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "if-enviar",
+      "name": "¿ENVIO_ACTIVO y no DRY_RUN?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        720,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$json.email}}",
+        "subject": "={{ $json.dia === 0 ? 'Gracias por escribirte con Granja Rentable' : 'Por si te sirve: el curso, los ebooks y la membresía' }}",
+        "message": "VER correos/dia-0.txt y correos/dia-3.txt del paquete. Pegar aquí el texto aprobado por Calidad. Reply-To: ventas@granjarentable.com. NO activar este nodo hasta el OK de Pablo.",
+        "options": {
+          "replyTo": "ventas@granjarentable.com"
+        }
+      },
+      "id": "gmail-off",
+      "name": "Gmail (NO activar hasta OK de Pablo)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        980,
+        180
+      ],
+      "disabled": true,
+      "notes": "Nodo desactivado a propósito. Los envíos reales exigen QC de Calidad y OK de Pablo.",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PEGAR",
+          "name": "Gmail de Pablo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "PEGAR_ID_DE_LA_HOJA_EXISTENTE"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Respuestas"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "dia0_enviado": "={{ $json.dia === 0 ? $json.marca : undefined }}",
+            "dia3_enviado": "={{ $json.dia === 3 ? $json.marca : undefined }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "marcar-hoja",
+      "name": "Marcar dia0/dia3 en la misma hoja",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        980,
+        420
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PEGAR",
+          "name": "Google Sheets de Pablo"
+        }
+      },
+      "notes": "En DRY_RUN escribe el texto DRY_RUN + fecha, no un envío real."
+    }
+  ],
+  "connections": {
+    "Cada día a las 9 (Madrid)": {
+      "main": [
+        [
+          {
+            "node": "Leer hoja Respuestas (existente)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer hoja Respuestas (existente)": {
+      "main": [
+        [
+          {
+            "node": "Decidir día 0 / día 3 (DRY_RUN)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decidir día 0 / día 3 (DRY_RUN)": {
+      "main": [
+        [
+          {
+            "node": "¿ENVIO_ACTIVO y no DRY_RUN?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿ENVIO_ACTIVO y no DRY_RUN?": {
+      "main": [
+        [
+          {
+            "node": "Gmail (NO activar hasta OK de Pablo)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Marcar dia0/dia3 en la misma hoja",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid"
+  },
+  "tags": [
+    {
+      "name": "granja-rentable"
+    },
+    {
+      "name": "mejora6"
+    },
+    {
+      "name": "dry-run"
+    }
+  ]
+}
