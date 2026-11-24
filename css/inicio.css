@@ -177,7 +177,10 @@
 .gr-merch-gallery li{grid-column:span 2;min-width:0;overflow:hidden;border-radius:12px;background:#efe7d3;border:1px solid rgba(255,255,255,.25)}
 .gr-merch-gallery li:nth-child(4){grid-column:2/span 2}
 .gr-merch-gallery li:nth-child(5){grid-column:4/span 2}
+.gr-merch-gallery a{display:flex;flex-direction:column;height:100%;color:inherit;text-decoration:none}
 .gr-merch-gallery img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center}
+.gr-merch-precio{display:block;padding:6px 6px 8px;font-size:.72rem;font-weight:700;line-height:1.25;text-align:center;color:#293725}
+.gr-merch-precio .js-fx{font-size:.66rem;font-weight:500}
 @media(max-width:899px){.gr-merch-slide .gr-merch-gallery{padding-top:0;max-width:390px}}
 @media(max-width:599px){
  .gr-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}

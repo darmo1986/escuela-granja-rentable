@@ -1557,6 +1557,105 @@ def indice_articulo(html):
     return cuerpo, indice
 
 
+# Un cierre por tema en los artículos que ya venden pienso, incubadora, Premium o la membresía.
+# No sustituye la guía gratuita: se añade delante para no mandar solo a «Guía para empezar».
+CIERRES_TEMA = {
+    "alimentacion-gallinas-ponedoras": (
+        "Sigue con la guía de las ponedoras",
+        "El artículo explica el manejo del pienso. El PDF «Alimenta bien a tus ponedoras» ordena raciones y errores frecuentes. Cuesta 3,00 USD y el cargo sigue en dólares.",
+        "ebooks/#alimenta-ponedoras",
+        "Ver la guía de alimentación",
+    ),
+    "leer-etiqueta-pienso-aves": (
+        "Elige el saco con una guía",
+        "Para comparar etiquetas con calma, el PDF «Cómo elegir el pienso» sigue en la ficha. Cuesta 3,00 USD y el cargo sigue en dólares.",
+        "ebooks/#pienso-elegir",
+        "Ver cómo elegir el pienso",
+    ),
+    "pienso-iniciador-pollitos": (
+        "El pienso de arranque, en PDF",
+        "Para el primer saco de los pollitos, «Cómo elegir el pienso» ayuda a leer la fase y el destino. Cuesta 3,00 USD y el cargo sigue en dólares.",
+        "ebooks/#pienso-elegir",
+        "Ver cómo elegir el pienso",
+    ),
+    "alimento-casero-vs-balanceado": (
+        "Si vas a mezclar el pienso",
+        "El artículo compara casero y balanceado. El PDF «Haz tu propio pienso» detalla ingredientes y preparación. No promete una conversión ni un peso. Cuesta 3,00 USD y el cargo sigue en dólares.",
+        "ebooks/#pienso-hacer",
+        "Ver cómo hacer tu propio pienso",
+    ),
+    "reducir-desperdicio-pienso": (
+        "Ajusta la ración, no solo el comedero",
+        "Si ya mediste el desperdicio, «Alimenta bien a tus ponedoras» ordena cuánto pienso ofrecer y cómo. Cuesta 3,00 USD y el cargo sigue en dólares.",
+        "ebooks/#alimenta-ponedoras",
+        "Ver la guía de alimentación",
+    ),
+    "como-elegir-incubadora": (
+        "La incubadora de la lección",
+        "Para ver capacidad, precio y envío, la ficha está en Amazon.com (Estados Unidos). El cargo lo confirma Amazon, no esta página.",
+        "https://www.amazon.com/dp/B0793HHZ1L?tag=granjarentabl-20",
+        "Ver la incubadora en Amazon.com",
+    ),
+    "temperatura-humedad-incubar": (
+        "Repasa la lección de la incubadora",
+        "Temperatura y humedad se aplican en la máquina que ya tengas. La lección L03 resume qué tipo encaja según la tanda y el presupuesto.",
+        "lecciones/l03.html",
+        "Ir a la lección de la incubadora",
+    ),
+    "por-que-no-nacen-errores-incubacion": (
+        "Revisa la máquina y la tanda",
+        "Si los nacimientos fallan, la lección L03 repasa capacidad, volteo y qué huevos sacar. No sustituye las instrucciones del fabricante.",
+        "lecciones/l03.html",
+        "Ir a la lección de la incubadora",
+    ),
+    "gallina-clueca-vs-incubadora": (
+        "Si te decides por la máquina",
+        "La comparación no elige por ti. La lección L03 dice qué incubadora encaja con la tanda que de verdad vas a hacer.",
+        "lecciones/l03.html",
+        "Ir a la lección de la incubadora",
+    ),
+    "incubacion-dia-a-dia": (
+        "La lección que acompaña estos días",
+        "El día a día de la tanda está en la lección L03: qué máquina hace falta y qué revisar antes de cargar los huevos.",
+        "lecciones/l03.html",
+        "Ir a la lección de la incubadora",
+    ),
+    "por-que-mis-gallinas-no-ponen-huevos": (
+        "Si quieres que revisemos tu lote",
+        "El asesoramiento Premium son 29 € por un mes y 10 consultas por escrito sobre manejo, instalaciones y costes. No es una urgencia veterinaria ni un diagnóstico.",
+        "premium.html",
+        "Ver el asesoramiento Premium",
+    ),
+    "negocio-venta-pollitos-genetica": (
+        "Vídeos de genética para miembros",
+        "La membresía de 2,99 € al mes incluye vídeos exclusivos, como el de genética de ponedoras. Se contrata en YouTube, con «Hazte miembro», o con la suscripción de la página de Facebook.",
+        "https://www.youtube.com/@GranjaRentable/join",
+        "Hazte miembro en YouTube",
+    ),
+}
+
+
+def html_cierre(slug, raiz):
+    dato = CIERRES_TEMA.get(slug)
+    if not dato:
+        return ""
+    titulo, texto, href, boton = dato
+    if "amazon.com" in href:
+        attrs = ' rel="sponsored nofollow noopener" target="_blank"'
+    elif href.startswith("http"):
+        attrs = ' rel="noopener" target="_blank"'
+    else:
+        attrs = ""
+        href = raiz + href
+    return (
+        '<aside class="gr-cierre" aria-label="' + esc(titulo) + '">'
+        "<h2>" + esc(titulo) + "</h2>"
+        "<p>" + esc(texto) + "</p>"
+        '<p><a class="btn gold" href="' + esc(href) + '"' + attrs + ">" + esc(boton) + "</a></p>"
+        "</aside>\n"
+    )
+
+
 def html_post(post, publicados, catalogo, raiz_sitio, activo):
     raiz = "../"
     migas = (f'<p class="crumbs"><a href="{raiz}index.html">Inicio</a> › '
@@ -1610,13 +1709,14 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
     recursos = RECURSOS_ARTICULO.get(post["slug"], "")
     if recursos:
         recursos += '<script defer src="../js/recursos-articulo.js"></script>'
+    cierre = html_cierre(post["slug"], raiz)
     cuerpo, indice = indice_articulo(post["html"])
     controles = ('<div class="post-acciones" data-post-acciones hidden>'
                  '<button class="btn sec" type="button" data-post-copiar>Copiar enlace</button>'
                  '<button class="btn sec" type="button" data-post-imprimir>Imprimir artículo</button>'
                  '<span role="status" aria-live="polite" data-post-estado></span></div>')
     return (cabeza + "\n" + anuncio("banner", activo) + "\n" + foto + "\n"
-            + controles + "\n" + indice + '\n<div class="panel prose post-body">\n' + cuerpo + "\n" + video + "\n" + recursos + "\n" + guia + "\n" + red + "\n" + fuentes
+            + controles + "\n" + indice + '\n<div class="panel prose post-body">\n' + cuerpo + "\n" + video + "\n" + recursos + "\n" + cierre + guia + "\n" + red + "\n" + fuentes
             + '\n<p class="post-volver"><a href="#contenido">Volver al inicio del artículo ↑</a></p>'
             + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
 

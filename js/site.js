@@ -557,6 +557,28 @@
     if (k === "whatsapp" && GR.whatsapp) a.href = GR.whatsapp;
     if (k === "instagram" && GR.instagramUrl) a.href = GR.instagramUrl;
     if (k === "x" && GR.xUrl) a.href = GR.xUrl;
+    if (k === "tiktok") {
+      var tiktok = (GR.tiktokUrl || "").trim();
+      var itemTiktok = (a.parentElement && a.parentElement.tagName === "LI") ? a.parentElement : a;
+      if (tiktok) {
+        a.href = tiktok;
+        a.hidden = false;
+        itemTiktok.hidden = false;
+        a.removeAttribute("aria-disabled");
+        a.removeAttribute("title");
+        var etiquetaTiktok = a.querySelector(".nav-label");
+        if (etiquetaTiktok) etiquetaTiktok.textContent = "TikTok";
+        else if (/pendiente/i.test(a.textContent || "")) a.textContent = "TikTok";
+      } else {
+        /* Sin URL no se muestra el hueco ni el texto «pendiente». */
+        a.hidden = true;
+        itemTiktok.hidden = true;
+        a.href = "#tiktok-pendiente";
+        a.setAttribute("aria-disabled", "true");
+        a.removeAttribute("title");
+        a.addEventListener("click", function (ev) { ev.preventDefault(); });
+      }
+    }
   });
 
   document.querySelectorAll("[data-app-download]").forEach(function (a) {
@@ -894,6 +916,76 @@
   window.GR_estado = function () {
     return { pais: pais, ref: readRef(), ebooks: storeUrl() };
   };
+
+  function formatoEs(n, decimales) {
+    var v = Math.abs(Number(n));
+    var texto = decimales ? v.toFixed(decimales) : String(Math.round(v));
+    var partes = texto.split(".");
+    partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return (n < 0 ? "-" : "") + partes.join(",");
+  }
+
+  function textoEquivalenteUsd(usd) {
+    var fx = GR.fx || {};
+    var mxn = Number(fx.MXN);
+    var eur = Number(fx.EUR);
+    if (!(usd > 0) || !(mxn > 0) || !(eur > 0)) return "";
+    var fecha = fx.fecha ? " Tipo de cambio del " + fx.fecha + "." : "";
+    return "Unos " + formatoEs(usd * mxn, 0) + " MXN · " + formatoEs(usd * eur, 2) + " €." + fecha + " El cargo sigue en USD.";
+  }
+
+  function usdDesdeTexto(texto) {
+    var m = String(texto || "").match(/(\d{1,3}(?:\.\d{3})*,\d{2}|\d+(?:\.\d{1,2})?)\s*USD/i);
+    if (!m) return null;
+    var raw = m[1];
+    if (raw.indexOf(",") !== -1) raw = raw.replace(/\./g, "").replace(",", ".");
+    var n = Number(raw);
+    return n > 0 ? n : null;
+  }
+
+  function quitarNotaFx(ancla) {
+    var siguiente = ancla.nextElementSibling;
+    if (siguiente && siguiente.classList.contains("js-fx")) siguiente.remove();
+    var interna = ancla.querySelector(".js-fx");
+    if (interna) interna.remove();
+  }
+
+  function pintarPrecioUsd(ancla) {
+    if (!ancla || ancla.classList.contains("js-fx")) return;
+    var usd = usdDesdeTexto(ancla.textContent);
+    if (!(usd > 0)) {
+      quitarNotaFx(ancla);
+      return;
+    }
+    var nota = textoEquivalenteUsd(usd);
+    if (!nota) return;
+    var destino = ancla.querySelector(".js-fx");
+    if (!destino && ancla.nextElementSibling && ancla.nextElementSibling.classList.contains("js-fx")) {
+      destino = ancla.nextElementSibling;
+    }
+    if (!destino) {
+      if (ancla.tagName === "P" || ancla.tagName === "DIV") {
+        destino = document.createElement("p");
+        destino.className = "js-fx merch-fx precio-aprox";
+        ancla.insertAdjacentElement("afterend", destino);
+      } else {
+        destino = document.createElement("small");
+        destino.className = "js-fx";
+        ancla.appendChild(destino);
+      }
+    }
+    destino.textContent = nota;
+  }
+
+  function pintarEquivalentesUsd() {
+    document.querySelectorAll("[data-fx-usd], .merch-info > p:not(.js-fx), p.precio, .gr-merch-precio, .gr-venta-ebook .gr-venta-precio, .banner-ebook-precio").forEach(pintarPrecioUsd);
+  }
+
+  window.GR_pintarPrecioUsd = pintarPrecioUsd;
+  if (typeof document.querySelectorAll === "function") {
+    if (document.readyState === "loading" && document.addEventListener) document.addEventListener("DOMContentLoaded", pintarEquivalentesUsd);
+    else pintarEquivalentesUsd();
+  }
 })();
 
 /* === Panel: registro de visitas e intenciones de pago (sin cookies) ===

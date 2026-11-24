@@ -23,6 +23,7 @@
     const low = Math.min(...amounts);
     const from = low < Math.max(...amounts) ? 'Desde ' : '';
     element.textContent = from + number.format(low) + ' ' + variants[0].currency;
+    if (window.GR_pintarPrecioUsd) window.GR_pintarPrecioUsd(element);
   }
 
   function selectField(form, name) {
@@ -71,6 +72,7 @@
     const available = variants.filter((v) => v.available);
     if (!available.length) {
       price.textContent = 'Agotado';
+      if (window.GR_pintarPrecioUsd) window.GR_pintarPrecioUsd(price);
       details.textContent = 'Ver disponibilidad';
       details.removeAttribute('aria-label');
       return;
@@ -164,7 +166,9 @@
       const words = normalize(search.value).replace(/\btazas\b/g, 'taza').trim().split(/\s+/).filter(Boolean);
       let count = 0;
       for (const { card, name } of products) {
-        card.hidden = !words.every(word => name.includes(word));
+        const matches = words.every(word => name.includes(word));
+        // La ficha canónica está en su colección. La copia (data-repetido) solo se ve al recorrer el apartado.
+        card.hidden = (words.length > 0 && card.hasAttribute('data-repetido')) || !matches;
         if (!card.hidden) count++;
       }
       for (const link of collectionLinks) {
