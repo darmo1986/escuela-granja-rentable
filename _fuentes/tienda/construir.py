@@ -285,7 +285,15 @@ def boton_amazon(p):
 
 def botones_amazon(p):
     # Un único destino comercial: la ficha de producto, sin prometer una pestaña de reseñas.
-    return f'<div class="t-acciones">\n{boton_amazon(p)}\n</div>'
+    acciones = f'<div class="t-acciones">\n{boton_amazon(p)}\n</div>'
+    if p["asin"] == "B0DLTMQJ77":
+        medidas = (
+            "El nidal Hen’s Choice de esta ficha tiene dos huecos y mide 21 pulgadas. "
+            "El modelo de tres huecos mide 36 pulgadas. "
+            "Comprueba el tamaño seleccionado en Amazon antes de comprar."
+        )
+        return f"<p>{medidas}</p>\n{acciones}"
+    return acciones
 
 
 def html_descripcion_larga(texto):
