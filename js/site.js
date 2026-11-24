@@ -559,17 +559,23 @@
     if (k === "x" && GR.xUrl) a.href = GR.xUrl;
     if (k === "tiktok") {
       var tiktok = (GR.tiktokUrl || "").trim();
+      var itemTiktok = (a.parentElement && a.parentElement.tagName === "LI") ? a.parentElement : a;
       if (tiktok) {
         a.href = tiktok;
+        a.hidden = false;
+        itemTiktok.hidden = false;
         a.removeAttribute("aria-disabled");
         a.removeAttribute("title");
         var etiquetaTiktok = a.querySelector(".nav-label");
         if (etiquetaTiktok) etiquetaTiktok.textContent = "TikTok";
         else if (/pendiente/i.test(a.textContent || "")) a.textContent = "TikTok";
       } else {
+        /* Sin URL no se muestra el hueco ni el texto «pendiente». */
+        a.hidden = true;
+        itemTiktok.hidden = true;
         a.href = "#tiktok-pendiente";
         a.setAttribute("aria-disabled", "true");
-        a.setAttribute("title", "El enlace del canal de TikTok todavía no está en la configuración");
+        a.removeAttribute("title");
         a.addEventListener("click", function (ev) { ev.preventDefault(); });
       }
     }

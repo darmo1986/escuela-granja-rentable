@@ -1203,3 +1203,12 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { border-color
   .btn:hover, .pcard:hover, .raza:hover, .path-card:hover, .guia-list article:hover { transform: none; }
 }
 
+
+
+/* Sin URL de TikTok en config.js, no mostrar el hueco ni «TikTok (pendiente)». */
+a[data-social="tiktok"][href="#tiktok-pendiente"],
+a[data-social="tiktok"][hidden],
+li:has(> a[data-social="tiktok"][href="#tiktok-pendiente"]),
+li:has(> a[data-social="tiktok"][hidden]) {
+  display: none !important;
+}

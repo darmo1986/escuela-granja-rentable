@@ -12,8 +12,7 @@ window.GR = {
   facebookUrl: "https://www.facebook.com/GranjaRentable",
   instagramUrl: "https://www.instagram.com/granjarentable",
   xUrl: "https://x.com/juanpab10242455",
-  /* PLACEHOLDER: en el repositorio no aparece la URL del canal de TikTok.
-     Vacío = el menú y el pie muestran «TikTok (pendiente)» y no enlazan a un perfil inventado.
+  /* Vacío = no se muestra TikTok en el menú ni en el pie (no se inventa un perfil).
      Cuando se confirme el canal, pegar aquí la URL real (https://www.tiktok.com/@…). */
   tiktokUrl: "",
   whatsapp: "https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable",
