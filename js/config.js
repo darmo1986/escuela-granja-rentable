@@ -12,9 +12,8 @@ window.GR = {
   facebookUrl: "https://www.facebook.com/GranjaRentable",
   instagramUrl: "https://www.instagram.com/granjarentable",
   xUrl: "https://x.com/juanpab10242455",
-  /* Vacío = no se muestra TikTok en el menú ni en el pie (no se inventa un perfil).
-     Cuando se confirme el canal, pegar aquí la URL real (https://www.tiktok.com/@…). */
-  tiktokUrl: "",
+  /* Perfil oficial de Granja Rentable, comprobado en la cuenta conectada. */
+  tiktokUrl: "https://www.tiktok.com/@granjarentable",
   whatsapp: "https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable",
   /* URL /exec de la aplicación web de Google Apps Script (gratis). Vacío = no se envía nada.
      Un solo valor para registro, prueba de la app y afiliados. Ver apps-script/Codigo.gs */
