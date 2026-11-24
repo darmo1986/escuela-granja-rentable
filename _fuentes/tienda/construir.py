@@ -805,6 +805,16 @@ def guia_puertas(p, raiz):
 </section>'''
 
 
+def guia_nidales(p, raiz):
+    """Añade contexto a la ficha que enlaza la comparativa de nidales."""
+    if p["asin"] != "B0DLTMQJ77":
+        return ""
+    return f'''<section class="t-bloque" data-guia-nidales>
+<h2>Antes de elegir un nidal con bandeja</h2>
+<p>Consulta la <a href="{raiz}comparativas/nidales.html">comparativa de nidal tradicional y nidal con bandeja</a> para revisar el acceso y la recogida. Si buscas resolver roturas, usa la <a href="{raiz}blog/problemas-gallinero-picaje-huevos-rotos-humedad.html#apartado-2-huevos-rotos-dentro-del-nidal">guía de huevos rotos dentro del nidal</a> para revisar dónde se dañan antes de decidir si necesitas cambiar el equipo.</p>
+</section>'''
+
+
 def cuerpo_producto(p, vecinos, raiz):
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
     relacionados = "\n".join(
@@ -828,6 +838,7 @@ def cuerpo_producto(p, vecinos, raiz):
 {guia_bebederos(p, raiz)}
 {guia_comederos(p, raiz)}
 {guia_puertas(p, raiz)}
+{guia_nidales(p, raiz)}
 {guia_pollitos(p, raiz)}
 <section class="t-compra">
 <p class="t-aviso"><strong>{esc(AVISO)}</strong></p>
