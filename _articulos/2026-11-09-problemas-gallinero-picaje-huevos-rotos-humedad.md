@@ -78,7 +78,7 @@ No significa automáticamente que las gallinas se estén comiendo los huevos.
 
 Primero observa dónde aparecen los huevos dañados.
 
-Si las roturas se concentran en un nidal, revisa su superficie, estabilidad y accesibilidad.
+Si las roturas se concentran en un nidal, revisa su superficie, estabilidad y accesibilidad. Si estás pensando en cambiar el nidal, consulta la [comparativa de nidal tradicional y nidal con bandeja](../comparativas/nidales.html) para revisar las diferencias de acceso y recogida.
 
 Si aparecen huevos con cáscaras anormalmente frágiles, revisa la alimentación, el estado de las aves y otros posibles factores con asesoramiento técnico. El Merck indica que, sin calcio suficiente en la dieta, las ponedoras pueden formar cáscaras finas; eso no justifica añadir calcio por tu cuenta sin evaluar la ración completa.
 
