@@ -801,6 +801,11 @@ def limpiar_whatsapp(html):
 
 
 def poner_version(html):
+    # Los pies antiguos aún tienen el marcador; el enlace debe funcionar sin JavaScript.
+    html = html.replace(
+        'data-social="tiktok" href="#tiktok-pendiente"',
+        'data-social="tiktok" href="https://www.tiktok.com/@granjarentable"',
+    ).replace(">TikTok (pendiente)<", ">TikTok<")
     for nombre in (
             "css/estilo.css", "css/blog.css", "js/boot.js", "js/blog.js",
             "js/site.js", "js/app.js", "js/config.js", "js/hero.js", "css/inicio.css",
