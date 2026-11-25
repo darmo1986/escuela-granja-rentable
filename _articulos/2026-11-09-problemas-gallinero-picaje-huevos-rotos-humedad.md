@@ -94,6 +94,8 @@ Evita superficies duras o elementos que puedan golpearlos.
 
 **No añadas suplementos de calcio indiscriminadamente.** Una cáscara débil puede tener diferentes causas y requiere una evaluación adecuada. Si tienes dudas, consulta a un veterinario o a un técnico en nutrición avícola.
 
+Si los huevos se rompen al pisarlos, mira la [comparativa en vídeo de nidales tradicionales y con bandeja](../comparativas/nidales.html). Si el problema es una cáscara débil, cambiar de nidal no corrige la causa.
+
 ## 3. Gallinas que comen sus propios huevos
 
 En ocasiones, una gallina puede picotear o consumir un huevo roto.
