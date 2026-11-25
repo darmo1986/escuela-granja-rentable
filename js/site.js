@@ -925,13 +925,15 @@
     return (n < 0 ? "-" : "") + partes.join(",");
   }
 
-  function textoEquivalenteUsd(usd) {
+  function textoEquivalenteUsd(usd, esMerch) {
     var fx = GR.fx || {};
     var mxn = Number(fx.MXN);
     var eur = Number(fx.EUR);
     if (!(usd > 0) || !(mxn > 0) || !(eur > 0)) return "";
     var fecha = fx.fecha ? " Tipo de cambio del " + fx.fecha + "." : "";
-    return "Unos " + formatoEs(usd * mxn, 0) + " MXN · " + formatoEs(usd * eur, 2) + " €." + fecha + " El cargo sigue en USD.";
+    return "Unos " + formatoEs(usd * mxn, 0) + " MXN · " + formatoEs(usd * eur, 2) + " €." + fecha + (esMerch
+      ? " Consulta el precio final, la moneda, los impuestos y el envío en Fourthwall."
+      : " El cargo sigue en USD.");
   }
 
   function usdDesdeTexto(texto) {
@@ -957,7 +959,8 @@
       quitarNotaFx(ancla);
       return;
     }
-    var nota = textoEquivalenteUsd(usd);
+    var esMerch = typeof ancla.closest === "function" && Boolean(ancla.closest(".merch-info, .gr-merch-precio"));
+    var nota = textoEquivalenteUsd(usd, esMerch);
     if (!nota) return;
     var destino = ancla.querySelector(".js-fx");
     if (!destino && ancla.nextElementSibling && ancla.nextElementSibling.classList.contains("js-fx")) {
