@@ -217,6 +217,7 @@ def armar(filas):
             "url": fila["url_afiliado"].strip(),
             "explicacion": explicacion,
             "recomendacion": recomendacion,
+            "recomendacion_escrita": recomendacion,
             "imagen": imagen,
             "imagen_alt": fila.get("imagen_alt") or texto["titulo"],
             "origen": texto["origen"],
@@ -395,6 +396,9 @@ def tarjeta_destacada(p, raiz):
 
     El bloque destacado es editorial y queda siempre visible arriba; si llevara
     data-t-card, tienda.js lo contaría (169 de 183) y lo filtraría con el resto.
+    Usa la recomendación escrita (recomendacion_escrita): enriquecer() sustituye
+    p["recomendacion"] por el encaje genérico ("Puede encajar si...") en los
+    productos no auditados, y eso es lo que se veía en las 14 tarjetas.
     """
     href = f"{raiz}tienda/p/{p['slug']}/"
     cat_href = f"{raiz}tienda/c/{p['categoria_slug']}/"
@@ -403,7 +407,7 @@ def tarjeta_destacada(p, raiz):
     return f'''<article class="t-card" data-t-destacado data-sec="{esc(p["seccion_id"])}">
 <div class="t-marca"><span>{esc(p["categoria"])}</span></div>
 {foto}<h3><a href="{href}">{esc(p["titulo"])}</a></h3>
-{f'<p class="t-por-que">{esc(" ".join(p["recomendacion"]))}</p>' if p["recomendacion"] else ""}
+{f'<p class="t-por-que">{esc(" ".join(p.get("recomendacion_escrita") or p["recomendacion"]))}</p>' if (p.get("recomendacion_escrita") or p["recomendacion"]) else ""}
 <div class="t-acciones"><a class="btn sec t-detalle" href="{href}">Ver ficha y criterios<span class="sr">: {esc(p["titulo"])}</span></a>
 {boton_amazon(p)}</div>
 <p><a href="{cat_href}">{esc(p["categoria"])}</a></p>
