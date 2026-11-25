@@ -1,4 +1,14 @@
 {
+ "ancona": {
+  "nombre": "Ancona",
+  "alt": "Gallina Ancona moteada en un corral",
+  "credito": {
+   "autor": "Festina lente",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Ancona_chicken.jpg"
+  }
+ },
  "andaluza-azul": {
   "nombre": "Andaluza azul",
   "alt": "Gallina Andaluza azul de plumaje gris azulado ribeteado, de pie sobre tierra",
@@ -66,6 +76,16 @@
    "fuente": "https://commons.wikimedia.org/wiki/File:28_7_lizziecoop.jpg"
   }
  },
+ "braekel": {
+  "nombre": "Braekel",
+  "alt": "Gallina Braekel dorada con barrado blanco",
+  "credito": {
+   "autor": "Thomon",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Poule_braekel.jpg"
+  }
+ },
  "brahma": {
   "nombre": "Brahma",
   "alt": "Gallo Brahma claro, blanco con esclavina y cola negras y patas emplumadas",
@@ -82,6 +102,16 @@
    "titulo": "Brahma: El Pollo Gigante de 6 kg que NO se Cría para Carne (El Negocio Real Explicado)"
   },
   "test": true
+ },
+ "campine": {
+  "nombre": "Campine",
+  "alt": "Gallo Campine en un parque de aves",
+  "credito": {
+   "autor": "Drcbrothephotographer",
+   "licencia": "CC0",
+   "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Campine_fowl_cock.jpg"
+  }
  },
  "castellana-negra": {
   "nombre": "Castellana negra",
@@ -132,6 +162,16 @@
    "nota": "foto pequeña (435 × 200 px), díptico de gallo y gallina"
   }
  },
+ "extremena-azul": {
+  "nombre": "Extremeña Azul",
+  "alt": "Gallina Extremeña Azul",
+  "credito": {
+   "autor": "Rufonavarro",
+   "licencia": "CC0",
+   "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gallina_Azul_Extreme%C3%B1a_04.jpg"
+  }
+ },
  "faverolles": {
   "nombre": "Faverolles",
   "alt": "Gallinas Faverolles salmón con barba en un jardín",
@@ -140,6 +180,17 @@
    "licencia": "CC BY-SA 3.0",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Faverolles_Limoges.JPG"
+  }
+ },
+ "gallina-de-mos": {
+  "nombre": "Gallina de Mos",
+  "alt": "Gallina de Mos en Esteiro, Xove (Lugo)",
+  "credito": {
+   "autor": "Lala Lugo",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gali%C3%B1a_de_Mos.JPG",
+   "nota": "foto pequeña (438 × 426 px)"
   }
  },
  "gallina-del-sobrarbe": {
@@ -163,6 +214,26 @@
    "fuente": "https://commons.wikimedia.org/wiki/File:Silver_Spangled_Hamburg.jpg"
   }
  },
+ "hy-line-brown": {
+  "nombre": "Hy-Line Brown",
+  "alt": "Gallinas Hy-Line Brown en Marowan",
+  "credito": {
+   "autor": "Julian Paren",
+   "licencia": "CC BY-SA 2.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Hy-Line_Brown_hens_at_Marowan_-_geograph.org.uk_-_7091865.jpg"
+  }
+ },
+ "isa-brown": {
+  "nombre": "ISA Brown",
+  "alt": "Gallina ISA Brown",
+  "credito": {
+   "autor": "Joffrey Lartigaud",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:ISA_Brown_-_poule_-_chicken.jpg"
+  }
+ },
  "jersey-giant": {
   "nombre": "Jersey Giant",
   "alt": "Gallo Jersey Giant negro en una exposición avícola",
@@ -182,6 +253,16 @@
    "fuente": "https://commons.wikimedia.org/wiki/File:ARS-White_Leghorn_hen.jpg"
   },
   "test": true
+ },
+ "lohmann-brown": {
+  "nombre": "Lohmann Brown",
+  "alt": "Pequeño grupo de gallinas Lohmann Brown en un corral",
+  "credito": {
+   "autor": "IgnacyEdytor",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Kury_rasy_Lohmann_Brown.jpg"
+  }
  },
  "mallorquina": {
   "nombre": "Mallorquina",
@@ -289,6 +370,16 @@
   },
   "test": true
  },
+ "ross-308": {
+  "nombre": "Ross 308",
+  "alt": "Pollo de carne Ross 308 de 30 semanas",
+  "credito": {
+   "autor": "Arie m den toom",
+   "licencia": "CC BY 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Ross_308,_30_weken,_6400_gram.jpg"
+  }
+ },
  "sedosa-silkie": {
   "nombre": "Sedosa (Silkie)",
   "alt": "Gallinas Sedosas (Silkie) oscuras de plumaje esponjoso en un prado",
@@ -319,6 +410,16 @@
    "titulo": "Cómo Ganar Dinero en Invierno con la Gallina Más Fría: La Sussex"
   },
   "test": true
+ },
+ "utrerana": {
+  "nombre": "Utrerana",
+  "alt": "Gallina utrerana",
+  "credito": {
+   "autor": "El Pantera",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gallina_utrerana.jpg"
+  }
  },
  "welsummer": {
   "nombre": "Welsummer",
