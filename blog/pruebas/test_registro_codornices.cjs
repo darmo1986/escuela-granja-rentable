@@ -46,3 +46,58 @@ test("fechas válidas, incluida la fecha local del dispositivo",()=>{
  assert.equal(today(new Date(2026,10,23,23,59)),"2026-11-23");
  assert.throws(()=>validate(state("huevos",[egg("2026-11-22",{huevos:1})]),"huevos"),/fechas/);
 });
+
+const vm = require("node:vm");
+const runtime = require("node:fs").readFileSync(require.resolve("../../app-codornices/registro.js"),"utf8");
+function simulatedTab(mode, files, confirm, id) {
+ const ids = {};
+ const mk = () => ({value:"",textContent:"",children:[],events:{},append(...x){this.children.push(...x);},replaceChildren(...x){this.children=x;},addEventListener(k,v){this.events[k]=v;},focus(){}});
+ const el = k => ids[k] ||= mk();
+ function form(name,keys) {
+  const f=el(name);f.elements=Object.fromEntries(keys.map(k=>[k,mk()]));
+  f.reset=()=>Object.values(f.elements).forEach(x=>{x.value="";x.valueAsNumber=NaN;});
+  return f;
+ }
+ const alta=form("alta",["name","start","initial"]);
+ const reg=form("registro",["date","notes",...fields(mode).map(([id])=>id)]);
+ const store={getItem:k=>files.get(k)??null,setItem:(k,v)=>files.set(k,v)};
+ vm.runInNewContext(runtime,{TextEncoder,document:{body:{dataset:{registro:mode}},createElement:mk,getElementById:el},
+  localStorage:store,crypto:{randomUUID:()=>id},confirm,navigator:{locks:{request:async (_key,run)=>run()}}});
+ const fire=(e,k)=>e.events[k]({currentTarget:e,target:e,preventDefault(){}});
+ return {
+  create:async()=>{alta.elements.name.value="Lote";alta.elements.start.value=start;alta.elements.initial.value="40";await fire(alta,"submit");},
+  save:async(date,val)=>{reg.elements.date.value=date;const f=reg.elements[mode==="huevos"?"huevos":"bajas"];f.value=String(val);f.valueAsNumber=val;await fire(reg,"submit");return f.value;},
+  imported:async reader=>{const f=el("restaurar");f.files=[{size:100,text:reader}];await fire(f,"change");},
+  message:()=>el("estado").textContent,
+ };
+}
+test("dos pestañas: no se pierde el día guardado y las entradas se conservan",async()=>{
+ for (const mode of ["huevos","carne"]) {
+  const files=new Map(), k="gr-codornices-v1-"+mode;
+  const a=simulatedTab(mode,files,()=>true,"lote-1");await a.create();
+  const b=simulatedTab(mode,files,()=>true,"lote-2");
+  await a.save(start,8);
+  assert.equal(await b.save("2026-11-24",9),"9");assert.match(b.message(),/otra pestaña/);
+  assert.equal(JSON.parse(files.get(k)).lots[0].rows.length,1);
+  const c=simulatedTab(mode,files,()=>true,"lote-3");await c.save("2026-11-24",9);
+  assert.deepEqual(JSON.parse(files.get(k)).lots[0].rows.map(r=>r.date),[start,"2026-11-24"]);
+ }
+});
+test("recuperación: se vuelve a verificar después de leer el archivo y confirmar",async()=>{
+ const files=new Map(), k="gr-codornices-v1-huevos";
+ const a=simulatedTab("huevos",files,()=>true,"lote-1");await a.create();const backup=files.get(k);
+ const b=simulatedTab("huevos",files,()=>true,"lote-2");
+ await b.imported(async()=>{await a.save(start,8);return backup;});
+ assert.match(b.message(),/otra pestaña/);assert.equal(JSON.parse(files.get(k)).lots[0].rows[0].huevos,8);
+ const c=simulatedTab("huevos",files,()=>{files.set(k,backup);return true;},"lote-3");
+ await c.imported(async()=>JSON.stringify(empty("huevos")));
+ assert.match(c.message(),/otra pestaña/);assert.equal(files.get(k),backup);
+});
+test("el guardado tiene el mismo límite en bytes que la copia compacta",()=>{
+ const {persist}=require("../../app-codornices/registro.js");
+ const files=new Map(), storage={getItem:k=>files.get(k)??null,setItem:(k,v)=>files.set(k,v)};
+ const raw={text:"á".repeat(1_900_000)};const json=persist(storage,"huevos",null,raw);
+ assert.ok(Buffer.byteLength(json)<4*1024*1024);assert.equal(JSON.parse(json).text,raw.text);
+ assert.throws(()=>persist(storage,"huevos",json,{text:"á".repeat(2_200_000)}),/límite/);
+ assert.equal(files.get("huevos"),json);
+});
