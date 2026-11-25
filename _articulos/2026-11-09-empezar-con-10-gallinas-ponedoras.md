@@ -306,6 +306,8 @@ La tabla se rellena con tus datos. No contiene precios supuestos ni beneficios i
 
 ## 9. Cómo saber si tus diez gallinas son rentables
 
+[Calcula los costes de tu lote con tus cifras](https://granjarentable.com/calculadora.html). Ten a mano el precio del pienso por kilo y lo que cobras por docena.
+
 La pregunta importante no es únicamente cuántos huevos producen, sino cuánto te cuesta obtenerlos y cuántos consigues vender.
 
 Para analizar el resultado de un periodo, calcula:
@@ -416,7 +418,7 @@ Antes de ampliar tu gallinero, consigue algo más importante que una promesa de 
 
 En Granja Rentable queremos ayudarte a criar aves con criterios prácticos y cuentas comprobables.
 
-[**Ver los ebooks de Granja Rentable**](https://granjarentable.com/ebooks/) para seguir aprendiendo sobre gallinas ponedoras, alimentación, instalaciones y gestión de pequeñas explotaciones.
+Si estás preparando tu primer gallinero, consulta la [**Guía para empezar tu granja**](https://granjarentable.com/ebooks/#guia-empezar).
 
 ## Fuentes técnicas y referencias
 
