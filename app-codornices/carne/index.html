@@ -2,26 +2,65 @@
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Registro de codornices japonesas para carne | Granja Rentable</title><meta name="description" content="Anota los pesajes, las bajas y salidas, el pienso y los gastos de cada lote de codornices japonesas para carne.">
 <link rel="canonical" href="https://granjarentable.com/app-codornices/carne/">
-<link rel="icon" href="/img/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../registro.css?v=278">
-<script defer src="../registro.js?v=278"></script></head>
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../registro.css?v=281-fichas">
+<script defer src="../qr-nayuki.js?v=1"></script><script defer src="../registro.js?v=282-fichas"></script></head>
 <body data-registro="carne">
-<header><a href="/">Granja Rentable</a></header>
+<header><a class="brand" href="/"><img src="/img/logo-claro.svg" alt="" width="44" height="44">Granja Rentable</a></header>
 <main>
 <nav aria-label="Otros registros"><a href="../huevos/">Codornices para huevos</a><a href="/app-gallinas/">Gestión de Gallinas</a><a href="/app.html">Registro de pollos</a></nav>
-<h1>Registro de codornices japonesas para carne</h1><p>Anota los pesajes, las bajas y salidas, el pienso y los gastos de cada lote de codornices japonesas para carne.</p>
+<div class="intro"><span class="eyebrow">Engorde · carne</span><h1>Registro de codornices japonesas para carne</h1><p>Anota los pesajes, las bajas y salidas, el pienso y los gastos de cada lote de codornices japonesas para carne.</p></div>
+<aside class="ebook-banner" aria-label="Ebook de Granja Rentable"><img src="/img/ebook-guia-empezar-480.webp" alt="" width="120" height="80" decoding="async"><div><strong>Guía para empezar tu granja</strong><p>Ebook de Granja Rentable para montar tu granja desde cero.</p></div><a href="/ebooks/?utm_source=app_codornices&amp;utm_medium=banner#guia-empezar">Ver ebook</a></aside>
 <p class="fine">Sin cuenta. Los registros se guardan solo en este navegador; descarga una copia si vas a cambiar de dispositivo o borrar datos. No se comparten con la otra app.</p>
 <noscript><p>Activa JavaScript para guardar y consultar registros.</p></noscript>
 <details id="alta-lote" open><summary>Crear un lote</summary>
 <form id="alta"><div class="grid"><label>Nombre del lote<input name="name" required maxlength="60" placeholder="Engorde 1"></label>
 <label>Fecha de inicio<input type="date" name="start" required></label>
 <label>Aves al empezar<input type="number" inputmode="numeric" name="initial" required min="1" max="99999999" step="1"></label>
-</div><div class="actions"><button type="submit">Crear lote</button></div></form></details>
+<label>Moneda del lote<select name="currency" required><option value="">Elige una moneda</option><option value="EUR">Euros (EUR)</option><option value="USD">Dólares estadounidenses (USD)</option></select></label></div><div class="actions"><button type="submit">Crear lote</button></div></form></details>
 <section><label>Lote activo<select id="lotes" aria-describedby="sin-lote"></select></label><p id="sin-lote" class="fine">Crea un lote para empezar a registrar.</p></section>
 <p id="estado" role="status"></p>
 <div id="trabajo" hidden>
-<section><h2>Resumen del lote</h2><dl id="resumen"></dl><p class="fine wide">El cambio de peso compara las medias de dos muestras, no el crecimiento individual. Las aves vivas se calculan restando las bajas y salidas del número inicial. Usa siempre la misma moneda dentro de un lote.</p></section>
+<section><h2>Resumen del lote</h2><dl id="resumen"></dl><p class="fine wide">El cambio de peso compara las medias de dos muestras, no el crecimiento individual. Las aves vivas se calculan restando las bajas y salidas del número inicial.</p></section>
+<section id="economia" class="featured"><h2>Economía del lote</h2><p id="moneda-activa" class="badge"></p>
+<form id="elegir-moneda" class="legacy" hidden><p>Si ya anotaste importes, elige la moneda que usaste. No se convertirán los importes y no podrás cambiar la moneda después.</p><label>Moneda de este lote<select name="currency" required><option value="">Elige una moneda</option><option value="EUR">Euros (EUR)</option><option value="USD">Dólares estadounidenses (USD)</option></select></label><button type="submit">Asignar moneda</button></form>
+<dl id="finanzas"></dl><p class="fine wide">Resultado = ingresos cobrados menos gastos anotados. No incluye gastos que no hayas registrado ni el valor estimado de las aves.</p>
+<details id="desglose" hidden><summary>Ver gastos por categoría</summary><dl id="partidas"></dl></details></section>
+<section id="directorio"><h2>Fichas de aves</h2><p class="fine">Identifica cada ave por color de anilla, código escrito o QR. El color o el nombre pueden repetirse. Puedes buscar en todos los lotes de esta app.</p>
+<form id="buscar-form" class="search"><label>Buscar por nombre, color o código<input id="buscar-ave" type="search" autocomplete="off" placeholder="Ej.: Luna, verde o A-12"></label><button type="submit" class="secondary">Buscar</button></form>
+<p id="buscar-estado" class="fine"></p><ul id="buscar-resultado" class="results"></ul>
+<button id="ficha-nueva" type="button">Nueva ficha</button>
+<details id="ficha-editor"><summary>Crear o editar ficha</summary>
+<form id="ficha-form"><input type="hidden" name="profileId">
+<div class="grid">
+<label>Nombre del ave<input name="name" required maxlength="60"></label>
+<label>Fecha de nacimiento<input type="date" name="birth"></label>
+<label>Sexo<select name="sex"><option value="unknown">Sin confirmar</option><option value="female">Hembra</option><option value="male">Macho</option></select></label>
+<label>Identificación preferida<select name="tag"><option value="color">Color de anilla</option><option value="code">Código escrito en anilla</option><option value="qr">QR</option></select></label>
+<label>Color de anilla<input name="color" maxlength="35" placeholder="Ej.: Verde"></label>
+<label>Código escrito en anilla<input name="code" maxlength="30" autocapitalize="characters" spellcheck="false" placeholder="Ej.: A-12"></label>
+<label>Precio de compra<input name="price" type="number" min="0" max="99999999" step=".01" inputmode="decimal"></label>
+<label>Valor estimado actual<input name="value" type="number" min="0" max="99999999" step=".01" inputmode="decimal"></label>
+</div>
+<p id="ficha-moneda-aviso" class="fine">Asigna una moneda en Economía del lote para guardar importes en la ficha.</p>
+<p class="fine">El precio de compra de la ficha es informativo. Si lo pagaste, anótalo una sola vez en «Compra de aves o huevos fértiles» para incluirlo en el balance.</p>
+<label>Observaciones de la ficha<textarea name="notes" maxlength="500"></textarea></label>
+<div class="actions"><button type="submit">Guardar ficha</button></div></form></details>
+<div id="ficha-activa" hidden><h3 id="ficha-nombre" tabindex="-1"></h3><dl id="ficha-datos"></dl>
+<p id="ficha-peso" class="wide"></p><p id="ficha-notas"></p>
+<div class="actions"><button id="ficha-editar" type="button" class="secondary">Editar ficha</button>
+<button id="ficha-pesar" type="button">Anotar peso o salud</button>
+<button id="ficha-mostrar-qr" type="button" class="secondary">Ver QR</button></div>
+<div id="ficha-qr" hidden><img id="ficha-qr-img" width="180" height="200" alt="Código QR de esta ficha">
+<p class="fine">Escanéalo con la cámara y abre el enlace. Solo podrás ver la ficha si el registro está guardado en ese navegador.</p>
+<button id="ficha-bajar-qr" type="button">Descargar etiqueta QR para imprimir</button></div>
+<h4 class="wide">Historial de pesajes y salud</h4><ul id="historial-aves"></ul></div></section>
 <section><h2>Anotación diaria</h2><p class="fine">Deja en blanco lo que no hayas medido. Usa 0 cuando hayas comprobado que no hubo ninguno. Para corregir un día, abre su fecha y vuelve a guardar.</p>
 <form id="registro"><label>Fecha<input name="date" type="date" required></label><div class="grid wide" id="campos"></div>
+<label class="wide">Salud del lote: síntomas, enfermedades o seguimiento<textarea name="health" maxlength="500" placeholder="Ej.: dos aves con síntomas y revisión veterinaria"></textarea></label>
+<details class="daily-details" id="anotacion-individual"><summary>Pesajes y salud por ave</summary>
+<p class="fine">Crea primero la ficha en «Fichas de aves». Si no indicas una media manual, se calcula con las aves pesadas ese día; el resumen indica su origen.</p><div id="aves"></div>
+<button id="agregar-ave" type="button" class="secondary">Añadir pesaje o incidencia de un ave</button></details>
+<details class="daily-details" id="economia-diaria"><summary>Ingresos y gastos del día</summary><p class="fine">Anota cada gasto una sola vez. Usa «Gastos sin desglosar» solo para importes que no hayas puesto en una categoría.</p><div class="grid" id="importes"></div></details>
 <label class="wide">Notas de manejo<textarea name="notes" maxlength="500" placeholder="Por ejemplo, agua, cama, incidencias o cambios del lote"></textarea></label>
 <div class="actions"><button type="submit">Guardar día</button><button class="secondary" type="button" id="borrar">Eliminar anotación</button></div>
 </form></section>
