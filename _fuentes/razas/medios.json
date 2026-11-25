@@ -7,7 +7,8 @@
    "licencia": "CC BY-SA 3.0",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Andalusian_gallus_(hen).jpg"
-  }
+  },
+  "test": true
  },
  "araucana": {
   "nombre": "Araucana",
@@ -17,7 +18,8 @@
    "licencia": "CC BY-SA 3.0",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Kopstudie_araucana_toeven.JPG"
-  }
+  },
+  "test": true
  },
  "australorp": {
   "nombre": "Australorp",
@@ -29,6 +31,29 @@
   "video_alt": "Gallina Australorp negra caminando y picoteando",
   "video_credito": {
    "envato": true
+  },
+  "youtube": {
+   "id": "uZOiJPcsps4",
+   "titulo": "Black Australorp: 364 Huevos al Año y Resistente a Todo — Guía Completa"
+  },
+  "test": true
+ },
+ "ayam-cemani": {
+  "nombre": "Ayam Cemani",
+  "alt": "Gallo y gallina Ayam Cemani negros en un corral del zoo de Dresde",
+  "credito": {
+   "autor": "Fiver, der Hellseher",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Ayam_Cemani_(Zoo_Dresden).jpg"
+  },
+  "video": true,
+  "video_alt": "Gallo y gallina Ayam Cemani negros en el zoo de Dresde",
+  "video_credito": {
+   "autor": "Fiver, der Hellseher",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Ayam_Cemani_(Zoo_Dresden).webm"
   }
  },
  "barnevelder": {
@@ -51,7 +76,12 @@
   "video_alt": "Gallina Brahma leonada con patas emplumadas en movimiento",
   "video_credito": {
    "envato": true
-  }
+  },
+  "youtube": {
+   "id": "Txh1tH1UgqA",
+   "titulo": "Brahma: El Pollo Gigante de 6 kg que NO se Cría para Carne (El Negocio Real Explicado)"
+  },
+  "test": true
  },
  "castellana-negra": {
   "nombre": "Castellana negra",
@@ -62,6 +92,16 @@
    "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Hembra_raza_aviar_castellana_negra.jpg",
    "nota": "modificada: recortada la franja inferior"
+  }
+ },
+ "cochinchina": {
+  "nombre": "Cochinchina",
+  "alt": "Gallina Cochinchina blanca de patas emplumadas sobre paja",
+  "credito": {
+   "autor": "Thomon",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Poule_cochin_blanche.jpg"
   }
  },
  "cream-legbar": {
@@ -81,6 +121,58 @@
    "envato": true
   }
  },
+ "eivissenca": {
+  "nombre": "Eivissenca",
+  "alt": "Díptico de gallina y gallo de raza Eivissenca",
+  "credito": {
+   "autor": "Govern de les Illes Balears",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gallina_eivissenca_1.jpg",
+   "nota": "foto pequeña (435 × 200 px), díptico de gallo y gallina"
+  }
+ },
+ "faverolles": {
+  "nombre": "Faverolles",
+  "alt": "Gallinas Faverolles salmón con barba en un jardín",
+  "credito": {
+   "autor": "Babsy",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Faverolles_Limoges.JPG"
+  }
+ },
+ "gallina-del-sobrarbe": {
+  "nombre": "Gallina del Sobrarbe",
+  "alt": "Gallina del Sobrarbe cenizosa en un corral",
+  "credito": {
+   "autor": "RICARDO AZON PARDO",
+   "licencia": "CC0",
+   "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gallinasobrarbe.jpg",
+   "nota": "foto pequeña (431 × 336 px)"
+  }
+ },
+ "hamburgo": {
+  "nombre": "Hamburgo",
+  "alt": "Gallo Hamburg plateado moteado en una jaula de exposición",
+  "credito": {
+   "autor": "Benny Mazur",
+   "licencia": "CC BY 2.0",
+   "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Silver_Spangled_Hamburg.jpg"
+  }
+ },
+ "jersey-giant": {
+  "nombre": "Jersey Giant",
+  "alt": "Gallo Jersey Giant negro en una exposición avícola",
+  "credito": {
+   "autor": "Thomon",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Coq_g%C3%A9ant_de_Jersey.jpg"
+  }
+ },
  "leghorn": {
   "nombre": "Leghorn",
   "alt": "Gallina Leghorn blanca con cresta roja, de pie",
@@ -88,6 +180,17 @@
    "autor": "Stephen Ausmus, USDA ARS",
    "licencia": "dominio público",
    "fuente": "https://commons.wikimedia.org/wiki/File:ARS-White_Leghorn_hen.jpg"
+  },
+  "test": true
+ },
+ "mallorquina": {
+  "nombre": "Mallorquina",
+  "alt": "Gallina Mallorquina rossa comiendo en un corral",
+  "credito": {
+   "autor": "Andreu Adrover",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gallina_mallorquina_rossa.JPG"
   }
  },
  "marans": {
@@ -100,6 +203,10 @@
   "video_alt": "Gallo y gallinas Marans cobre negro en el campo",
   "video_credito": {
    "envato": true
+  },
+  "youtube": {
+   "id": "UblUabstp4U",
+   "titulo": "Huevos de Colores: Cómo Vender la Docena a 5€ con Araucana y Marans"
   }
  },
  "menorquina": {
@@ -112,6 +219,16 @@
    "fuente": "https://commons.wikimedia.org/wiki/File:Poule_Minorque_noire_1.jpg"
   }
  },
+ "murciana": {
+  "nombre": "Murciana",
+  "alt": "Gallina Murciana blanco-crema sobre la hierba",
+  "credito": {
+   "autor": "Dino nautilus",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gallina_raza_murciana.JPG"
+  }
+ },
  "new-hampshire": {
   "nombre": "New Hampshire",
   "alt": "Gallo New Hampshire de plumaje rojo castaño en un patio",
@@ -119,13 +236,27 @@
    "autor": "Fxnick",
    "licencia": "dominio público",
    "fuente": "https://commons.wikimedia.org/wiki/File:NHred.JPG"
-  }
+  },
+  "h1": "New Hampshire: gallinas y gallos",
+  "titulo": "New Hampshire: gallinas y gallos, peso y puesta | Granja Rentable",
+  "headline": "New Hampshire: gallinas y gallos"
  },
  "orpington": {
   "nombre": "Orpington",
   "alt": "Gallina Orpington leonada, grande y de plumaje esponjoso, sobre la hierba",
   "credito": {
    "envato": true
+  },
+  "test": true
+ },
+ "pedresa": {
+  "nombre": "Pedresa",
+  "alt": "Gallina Pedresa barrada picoteando en un corral",
+  "credito": {
+   "autor": "Rramas",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Pedresa_clara.jpg"
   }
  },
  "plymouth-rock": {
@@ -155,13 +286,18 @@
   "alt": "Gallina Rhode Island Red de plumaje rojo oscuro sobre la hierba",
   "credito": {
    "envato": true
-  }
+  },
+  "test": true
  },
  "sedosa-silkie": {
   "nombre": "Sedosa (Silkie)",
   "alt": "Gallinas Sedosas (Silkie) oscuras de plumaje esponjoso en un prado",
   "credito": {
    "envato": true
+  },
+  "youtube": {
+   "id": "e82ml6sYIO8",
+   "titulo": "Poca Inversión, Mucho Dinero: Cómo Empezar tu Granja de Silkies desde Cero"
   }
  },
  "sussex": {
@@ -177,7 +313,12 @@
   "video_alt": "Gallina Sussex armiñada acicalándose al sol",
   "video_credito": {
    "envato": true
-  }
+  },
+  "youtube": {
+   "id": "hzFkJPHoqb4",
+   "titulo": "Cómo Ganar Dinero en Invierno con la Gallina Más Fría: La Sussex"
+  },
+  "test": true
  },
  "welsummer": {
   "nombre": "Welsummer",
