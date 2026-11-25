@@ -15,6 +15,8 @@ const definitions = {
 const extras = [["ingresos","Ingresos del día","",0.01],["gastos","Gastos del día","",0.01]];
 const fields = mode => [...definitions[mode], ...extras];
 const MAX = 99999999;
+const MAX_COPY_BYTES = 4 * 1024 * 1024;
+const conflict = "No se guardó: otra pestaña ha cambiado este registro. Tus entradas siguen aquí. Anótalas antes de recargar.";
 const nice = n => n == null ? "Sin datos" : n.toLocaleString("es-ES", {maximumFractionDigits:2});
 const validDate = s => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && s >= "1900-01-01" && s <= "9999-12-31" && !isNaN(Date.parse(s+"T00:00:00Z")) && new Date(s+"T00:00:00Z").toISOString().slice(0,10) === s;
 function today(d = new Date()) { return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-"); }
@@ -82,25 +84,38 @@ function summarize(lot,mode) {
   mortalidad:100*bajas/lot.initial, peso:last ? last.peso : null, muestra:last ? last.muestra : null,
   fechaPeso:last ? last.date : null, cambio:dias>0?(last.peso-prev.peso)/dias:null};
 }
-if (typeof module !== "undefined" && module.exports) module.exports = {empty,validate,summarize,validDate,today,fields};
+function persist(storage, key, snapshot, state) {
+ const data = JSON.stringify(state);
+ if (new TextEncoder().encode(data).length > MAX_COPY_BYTES) throw Error("El registro supera el límite de 4 MB para guardar y recuperar copias.");
+ let current;
+ try { current = storage.getItem(key); } catch (_) { throw Error("El navegador no permite acceder al registro local."); }
+ if (current !== snapshot) throw Error(conflict);
+ try { storage.setItem(key,data); } catch (_) { throw Error("El navegador no pudo guardar. No se reemplazaron los registros anteriores."); }
+ return data;
+}
+if (typeof module !== "undefined" && module.exports) module.exports = {empty,validate,summarize,validDate,today,fields,persist};
 if (typeof document === "undefined") return;
 const mode = document.body.dataset.registro;
 if (!definitions[mode]) return;
 const $ = id => document.getElementById(id);
 const key = "gr-codornices-v1-"+mode, copy = data => JSON.parse(JSON.stringify(data));
 const cards = [...fields(mode)];
-let state = empty(mode), blocked = false;
+let state = empty(mode), blocked = false, snapshot = null;
 const announce = msg => { $("estado").textContent = msg; };
 try {
- const saved = localStorage.getItem(key);
- if (saved) state = validate(JSON.parse(saved), mode);
+ snapshot = localStorage.getItem(key);
+ if (snapshot !== null) state = validate(JSON.parse(snapshot), mode);
 } catch (_) { blocked=true; announce("No se pudieron leer los datos guardados. No se sobrescribirán. Puedes recuperar una copia válida."); }
-function save(next, text, recover=false) {
+async function save(next, text, recover=false, expected=snapshot) {
  try {
   if (blocked && !recover) throw Error("Primero recupera una copia válida antes de guardar.");
   next = validate(next,mode);
-  try { localStorage.setItem(key,JSON.stringify(next)); } catch (_) { throw Error("El navegador no pudo guardar. No se reemplazaron los registros anteriores."); }
-  state=next; blocked=false; render(); announce(text); return true;
+  const commit = () => {
+   snapshot = persist(localStorage,key,expected,next);
+   state=next; blocked=false; render(); announce(text); return true;
+  };
+  const locks = globalThis.navigator?.locks;
+  return locks ? await locks.request(key,commit) : commit();
  } catch (err) { announce(err.message); return false; }
 }
 const lot = () => state.lots.find(l=>l.id===state.active);
@@ -145,20 +160,20 @@ function render() {
  edit(today()<current.start?current.start:today());
 }
 $("alta").elements.start.value=today();
-$("alta").addEventListener("submit",e=>{
- e.preventDefault(); const f=e.currentTarget.elements, next=copy(state);
+$("alta").addEventListener("submit",async e=>{
+ e.preventDefault(); const form=e.currentTarget, f=form.elements, next=copy(state);
  const id=typeof crypto.randomUUID==="function"?crypto.randomUUID():String(Date.now());
  next.lots.push({id,name:f.name.value,start:f.start.value,initial:Number(f.initial?.value),rows:[]}); next.active=id;
- if(save(next,"Lote creado.")){e.currentTarget.reset(); f.start.value=today(); $("alta-lote").open=false;}
+ if(await save(next,"Lote creado.")){form.reset(); f.start.value=today(); $("alta-lote").open=false;}
 });
-$("lotes").addEventListener("change",e=>{const next=copy(state);next.active=e.target.value;if(!save(next,"Lote seleccionado."))e.target.value=state.active;});
+$("lotes").addEventListener("change",async e=>{const el=e.target,next=copy(state);next.active=el.value;if(!await save(next,"Lote seleccionado."))el.value=state.active;});
 $("registro").elements.date.addEventListener("change",e=>{if (validDate(e.target.value)) edit(e.target.value);});
-$("registro").addEventListener("submit",e=>{
+$("registro").addEventListener("submit",async e=>{
  e.preventDefault(); const f=e.currentTarget.elements, next=copy(state), l=next.lots.find(a=>a.id===next.active); if(!l)return;
  const row={date:f.date.value,notes:f.notes.value.trim()};
  for (const [id] of cards) row[id]=f[id].value===""?null:f[id].valueAsNumber;
  if (!cards.some(([id])=>row[id]!==null) && !row.notes) {announce("Anota al menos una cifra o una observación.");return;}
- l.rows=l.rows.filter(r=>r.date!==row.date);l.rows.push(row);if(save(next,"Registro guardado."))edit(row.date);
+ l.rows=l.rows.filter(r=>r.date!==row.date);l.rows.push(row);if(await save(next,"Registro guardado."))edit(row.date);
 });
 $("borrar").addEventListener("click",()=>{
  const date=$("registro").elements.date.value, current=lot();
@@ -173,15 +188,15 @@ function download(value,name,type) {
 }
 $("copia").addEventListener("click",()=>{
  if(blocked){announce("No hay datos legibles para exportar.");return;}
- download(JSON.stringify(state,null,2),"codornices-"+mode+"-"+today()+".json","application/json");
+ download(JSON.stringify(state),"codornices-"+mode+"-"+today()+".json","application/json");
 });
 $("restaurar").addEventListener("change",async e=>{
- const i=e.target,file=i.files[0];if(!file)return;
+ const i=e.target,file=i.files[0],expected=snapshot;if(!file)return;
  try{
-  if(file.size>4*1024*1024)throw Error("La copia supera 4 MB.");
+  if(file.size>MAX_COPY_BYTES)throw Error("La copia supera 4 MB.");
   const next=validate(JSON.parse(await file.text()), mode);
   if ((state.lots.length || blocked) && !confirm("La copia reemplazará los lotes de este registro. Si quieres conservar los actuales, cancela y descarga una copia primero. ¿Continuar?"))return;
-  save(next,"Copia recuperada.",true);
+  await save(next,"Copia recuperada.",true,expected);
  }catch(err){announce(err instanceof SyntaxError?"El archivo no contiene una copia válida.":err.message);}
  finally{i.value="";}
 });
