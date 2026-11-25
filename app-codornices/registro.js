@@ -82,14 +82,15 @@ function validate(raw, mode) {
    if (!Array.isArray(birds) || birds.length > 100) throw Error("Puedes anotar hasta 100 aves por fecha.");
    const seen = new Set();
    const individual = birds.map(b => {
+    const health=b?.health===undefined?"":b.health;
     if (!b || !profileIds.has(b.id) ||
-        typeof b.health !== "string" || b.health.length > 300 ||
+        typeof health !== "string" || health.length > 300 ||
         (b.weight !== null && (typeof b.weight !== "number" || !Number.isFinite(b.weight) || b.weight < 0.1 || b.weight > MAX)) ||
-        (b.weight === null && !b.health.trim())) throw Error("Para cada ave, indica su nombre o anilla y un peso o una observación de salud.");
+        (b.weight === null && !health.trim())) throw Error("Para cada ave, indica su nombre o anilla y un peso o una observación de salud.");
     const key = b.id;
     if (seen.has(key)) throw Error("No repitas el nombre o anilla de un ave el mismo día.");
     seen.add(key);
-    return {id:b.id,weight:b.weight,health:b.health.trim()};
+    return {id:b.id,weight:b.weight,health:health.trim()};
    });
    const clean = {date:row.date,notes:row.notes,health:health.trim(),birds:individual};
    for (const [key,label,,step] of fields(mode)) {
@@ -150,8 +151,16 @@ function summarize(lot,mode) {
  const bajas = sum("bajas"), salidas = sum("salidas");
  return {...stats, bajas, salidas, vivas:lot.initial-bajas-salidas, mortalidad:100*bajas/lot.initial};
 }
+function serialize(state) {
+ return JSON.stringify(state,(key,value)=>{
+  if(value===null && (key==="currency" || key.startsWith("coste") || (state.mode==="huevos" && (key==="peso" || key==="muestra"))))return undefined;
+  if(value==="" && key==="health")return undefined;
+  if(Array.isArray(value) && value.length===0 && (key==="profiles" || key==="birds"))return undefined;
+  return value;
+ });
+}
 function persist(storage, key, snapshot, state) {
- const data = JSON.stringify(state);
+ const data = serialize(state);
  if (new TextEncoder().encode(data).length > MAX_COPY_BYTES) throw Error("El registro supera el límite de 4 MB para guardar y recuperar copias.");
  let current;
  try { current = storage.getItem(key); } catch (_) { throw Error("El navegador no permite acceder al registro local."); }
@@ -159,7 +168,7 @@ function persist(storage, key, snapshot, state) {
  try { storage.setItem(key,data); } catch (_) { throw Error("El navegador no pudo guardar. No se reemplazaron los registros anteriores."); }
  return data;
 }
-if (typeof module !== "undefined" && module.exports) module.exports = {empty,validate,summarize,validDate,today,fields,persist};
+if (typeof module !== "undefined" && module.exports) module.exports = {empty,validate,summarize,validDate,today,fields,persist,serialize};
 if (typeof document === "undefined") return;
 const mode = document.body.dataset.registro;
 if (!definitions[mode]) return;
@@ -254,23 +263,44 @@ function showBird(id, focus=false) {
  $("ficha-qr").hidden=true;
  if(focus){$("ficha-nombre").focus();panel.scrollIntoView({block:"nearest"});}
 }
+function allProfiles() {
+ return state.lots.flatMap(l=>l.profiles.map(b=>({l,b})));
+}
+function pendingDay(){
+ const f=$("registro").elements, previous=lot()?.rows.find(r=>r.date===f.date.value);
+ if(f.notes.value.trim()!==(previous?.notes??"") || f.health.value.trim()!==(previous?.health??""))return true;
+ if(cards.some(([k])=>(f[k].value===""?null:f[k].valueAsNumber)!==(previous?.[k]??null)))return true;
+ return JSON.stringify(loggedBirds())!==JSON.stringify(previous?.birds??[]);
+}
+function goToBird(l,b) {
+ if(!l || !b)return;
+ if(state.active!==l.id){
+  if((pendingDay() || ($("ficha-editor").open && bf.name.value.trim())) &&
+     !confirm("Tienes un formulario abierto en el lote actual. ¿Cambiar de lote sin guardar esas anotaciones?"))return;
+  state={...state,active:l.id};
+  birdForm.reset();$("ficha-editor").open=false;render();
+ }
+ showBird(b.id,true);
+}
 function renderFinder() {
- const current=lot(), term=normalizeFind($("buscar-ave").value);
- const results=current?.profiles.filter(b=>normalizeFind(displayBird(b)+" "+b.id).includes(term))||[];
- const buttons=results.slice(0,30).map(b=>{
-  const item=element("li"),button=element("button",displayBird(b)+" · "+b.id);button.type="button";button.className="secondary";
-  button.addEventListener("click",()=>showBird(b.id,true));item.append(button);return item;
+ const term=normalizeFind($("buscar-ave").value);
+ const all=allProfiles();
+ const results=term ? all.filter(({b})=>normalizeFind(displayBird(b)+" "+b.id).includes(term))
+                    : all.filter(({l})=>l.id===state.active);
+ const buttons=results.slice(0,30).map(({l,b})=>{
+  const item=element("li"),button=element("button",displayBird(b)+" · "+b.id+(l.id===state.active?"":" · Lote: "+l.name));
+  button.type="button";button.className="secondary";
+  button.addEventListener("click",()=>goToBird(l,b));item.append(button);return item;
  });
  $("buscar-resultado").replaceChildren(...buttons);
- $("buscar-estado").textContent=results.length>30?"Se muestran 30. Escribe un nombre, color o código para acotar.":results.length?"":current?.profiles.length?"No hay coincidencias.":"Todavía no hay fichas de aves.";
+ $("buscar-estado").textContent=results.length>30?"Se muestran 30. Escribe un nombre, color o código para acotar.":results.length?"":all.length?term?"No hay coincidencias en los lotes de esta app.":"No hay fichas en este lote. Puedes buscar en los demás.":"Todavía no hay fichas de aves.";
 }
 $("buscar-ave").addEventListener("input",renderFinder);
 $("buscar-form").addEventListener("submit",e=>{
  e.preventDefault();const term=normalizeFind($("buscar-ave").value);
  if(!term)return;
- const candidates=lot()?.profiles||[];
- const exact=candidates.filter(b=>[b.id,b.code,b.name].some(s=>normalizeFind(s)===term));
- if(exact.length===1){showBird(exact[0].id,true);return;}
+ const exact=allProfiles().filter(({b})=>[b.id,b.code,b.name].some(s=>normalizeFind(s)===term));
+ if(exact.length===1){goToBird(exact[0].l,exact[0].b);return;}
  const results=$("buscar-resultado").querySelectorAll("button");
  if(results.length===1)results[0].click();else renderFinder();
 });
@@ -332,8 +362,7 @@ function fromQR(){
  const match=location.hash.match(/^#ave=([a-z0-9-]{8,80})$/);if(!match)return;
  const id=match[1], current=state.lots.find(l=>l.profiles.some(b=>b.id===id));
  if(!current){announce("Esa ficha no está guardada en este navegador. Si tienes una copia del registro, puedes restaurarla.");return;}
- if(state.active!==current.id){state={...state,active:current.id};render();}
- showBird(id,true);
+ goToBird(current,current.profiles.find(b=>b.id===id));
 }
 window.addEventListener("hashchange",fromQR);
 function render() {
@@ -417,7 +446,7 @@ function download(value,name,type) {
 }
 $("copia").addEventListener("click",()=>{
  if(blocked){announce("No hay datos legibles para exportar.");return;}
- download(JSON.stringify(state),"codornices-"+mode+"-"+today()+".json","application/json");
+ download(serialize(state),"codornices-"+mode+"-"+today()+".json","application/json");
 });
 $("restaurar").addEventListener("change",async e=>{
  const i=e.target,file=i.files[0],expected=snapshot;if(!file)return;
