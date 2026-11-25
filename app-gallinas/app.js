@@ -275,3 +275,4 @@ function refrescar(){rellenarSelects();listarAves();listarLineas();puestaUI();pu
   if($("arb-sel").value&&ave($("arb-sel").value))verArbol();else{const p=DB.aves[0];if(p){$("arb-sel").value=p.id;verArbol();}}
   $("p-fecha").value=hoyISO();$("m-fecha").value=hoyISO();}
 cargar();$("p-fecha").value=hoyISO();$("m-fecha").value=hoyISO();refrescar();
+$("imp").disabled=false;
