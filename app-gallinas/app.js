@@ -1,14 +1,30 @@
 /* Gestión de Gallinas · Granja Rentable. Datos en localStorage. */
 const KEY="gr_gallinas_v1";
-let DB=null, editId=null, fechaPuestaMostrada=null;
+let DB=null, editId=null, fechaPuestaMostrada=null, revision=null, errorLectura=false;
 const $=id=>document.getElementById(id);
 const fechaLocal=d=>[String(d.getFullYear()).padStart(4,"0"),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
 const hoyISO=()=>fechaLocal(new Date());
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 function vacia(){return {aves:[],lineas:[{nombre:"Línea 1",color:"#d32f2f"}],puestas:[],pienso:[],movs:[],vacunas:[],notasArbol:[]};}
-function cargar(){try{DB=JSON.parse(localStorage.getItem(KEY))||"null";}catch(e){DB=null;}if(!DB||!DB.aves)DB=vacia();}
-function guardar(){localStorage.setItem(KEY,JSON.stringify(DB));}
+function cargar(){
+  try{revision=localStorage.getItem(KEY);DB=JSON.parse(revision);
+    if(revision!==null&&(!DB||!Array.isArray(DB.aves)))throw Error("Datos no válidos");
+  }catch(_){DB=null;errorLectura=true;}
+  if(!DB)DB=vacia();
+}
+function guardar(){
+  try{
+    if(errorLectura)throw Error("No se pudo leer el registro. Recupera una copia válida antes de cambiarlo.");
+    if(localStorage.getItem(KEY)!==revision)throw Error("No se guardó: los datos cambiaron en otra pestaña. Copia lo que has escrito antes de recargar.");
+    const siguiente=JSON.stringify(DB);
+    try{localStorage.setItem(KEY,siguiente);}catch(_){throw Error("El navegador no pudo guardar el cambio. Tus datos anteriores siguen intactos.");}
+    revision=siguiente;return true;
+  }catch(e){
+    DB=errorLectura?vacia():(JSON.parse(revision)||vacia());
+    alert(e.message);return false;
+  }
+}
 
 /* ---------- utilidades ---------- */
 const ave=id=>DB.aves.find(a=>a.id===id);
@@ -53,7 +69,7 @@ function guardarAve(){
       anilla:$("f-anilla").value.trim(),fnac:$("f-fnac").value,padre:$("f-padre").value||null,madre:$("f-madre").value||null});
     if(cb)cb(a);
     const nt=$("f-nota").value.trim();if(nt){a.notas=a.notas||[];a.notas.push({f:hoyISO(),t:nt});}
-    if(!editId)DB.aves.push(a);guardar();editId=null;limpiarFormAve();refrescar();
+    if(!editId)DB.aves.push(a);if(!guardar())return;editId=null;limpiarFormAve();refrescar();
     alert("Ave Nº "+num+" guardada.");};
   const f=$("f-foto").files[0];
   if(f)fotoReducida(f,url=>fn(a=>{a.foto=url;}));else fn(null);
@@ -63,7 +79,7 @@ function cancelarEdAve(){editId=null;limpiarFormAve();}
 function editarAve(id){const a=ave(id);if(!a)return;editId=id;$("f-num").value=a.numero;$("f-sexo").value=a.sexo;$("f-raza").value=a.raza;$("f-linea").value=a.linea||"";$("f-anilla").value=a.anilla||"";$("f-fnac").value=a.fnac||"";$("f-padre").value=a.padre||"";$("f-madre").value=a.madre||"";$("f-nota").value="";$("tFormAve").textContent="Editar ave Nº "+a.numero;$("btnCancAve").style.display="";window.scrollTo(0,document.querySelector("#tFormAve").offsetTop-60);}
 function borrarAve(id){const a=ave(id);if(!a)return;if(!confirm("¿Borrar el ave Nº "+a.numero+" y sus huevos apuntados?"))return;
   DB.aves=DB.aves.filter(x=>x.id!==id);DB.puestas=DB.puestas.filter(p=>p.ave!==id);
-  DB.aves.forEach(x=>{if(x.padre===id)x.padre=null;if(x.madre===id)x.madre=null;});guardar();refrescar();}
+  DB.aves.forEach(x=>{if(x.padre===id)x.padre=null;if(x.madre===id)x.madre=null;});if(!guardar())return;refrescar();}
 function fichaHTML(a,conBotones){
   const e=edad(a),L=linDe(a.linea),col=L?L.color:"#999",r=razaDe(a.raza);
   const m=huevosAve(a.id,ano()+"-01-01",null),ms=huevosAve(a.id,mesISO()+"-01",null);
@@ -80,11 +96,11 @@ function fichaHTML(a,conBotones){
   return h+"</div>";
 }
 function listarAves(){$("listaAves").innerHTML=DB.aves.length?DB.aves.slice().sort((a,b)=>+a.numero-+b.numero).map(a=>fichaHTML(a,true)).join(""):'<div class="card">Aún no hay aves. Añade la primera abajo 👇</div>';}
-function addNotaAve(id){const t=prompt("Nota para el ave Nº "+ave(id).numero+" (ej: enfermedad y fecha, carácter…):");if(!t)return;ave(id).notas=ave(id).notas||[];ave(id).notas.push({f:hoyISO(),t});guardar();refrescar();}
-function borrarNotaAve(id,i){ave(id).notas.splice(i,1);guardar();refrescar();}
+function addNotaAve(id){const t=prompt("Nota para el ave Nº "+ave(id).numero+" (ej: enfermedad y fecha, carácter…):");if(!t)return;ave(id).notas=ave(id).notas||[];ave(id).notas.push({f:hoyISO(),t});if(!guardar())return;refrescar();}
+function borrarNotaAve(id,i){ave(id).notas.splice(i,1);if(!guardar())return;refrescar();}
 function guardarLinea(){const n=$("n-linea").value.trim();if(!n){alert("Ponle un nombre a la línea.");return;}
-  if(linDe(n)){alert("Esa línea ya existe.");return;}DB.lineas.push({nombre:n,color:$("n-color").value});$("n-linea").value="";guardar();refrescar();}
-function borrarLinea(n){if(DB.aves.some(a=>a.linea===n)){alert("Hay aves con esa línea, no se puede borrar.");return;}DB.lineas=DB.lineas.filter(l=>l.nombre!==n);guardar();refrescar();}
+  if(linDe(n)){alert("Esa línea ya existe.");return;}DB.lineas.push({nombre:n,color:$("n-color").value});if(!guardar())return;$("n-linea").value="";refrescar();}
+function borrarLinea(n){if(DB.aves.some(a=>a.linea===n)){alert("Hay aves con esa línea, no se puede borrar.");return;}DB.lineas=DB.lineas.filter(l=>l.nombre!==n);if(!guardar())return;refrescar();}
 function listarLineas(){$("listaLineas").innerHTML=DB.lineas.map((l,i)=>'<div class="aviso"><span class="dot" style="background:'+l.color+'"></span> <b>'+esc(l.nombre)+"</b> · "+DB.aves.filter(a=>a.linea===l.nombre).length+' aves <button class="btn peq dan" onclick="borrarLinea(DB.lineas['+i+'].nombre)">quitar</button></div>').join("")||"(sin líneas)";}
 
 /* ---------- copia ---------- */
@@ -121,7 +137,8 @@ function guardarCopia(d,anterior){
     if(localStorage.getItem(KEY)!==anterior){
       cerrarCopia();$("estadoCopia").textContent="Los datos cambiaron. Vuelve a seleccionar la copia antes de continuar.";return false;
     }
-    localStorage.setItem(KEY,JSON.stringify(d));
+    const siguiente=JSON.stringify(d);
+    localStorage.setItem(KEY,siguiente);revision=siguiente;errorLectura=false;
   }catch(_){$("estadoCopia").textContent="No se pudo guardar la copia. Tus datos actuales no se han cambiado.";return false;}
   DB=d;editId=null;limpiarFormAve();cerrarCopia();refrescar();
   $("estadoCopia").textContent="Copia recuperada: "+d.aves.length+" aves.";return true;
@@ -131,13 +148,13 @@ $("copiaDescargar").onclick=descargarCopia;
 $("copiaConfirmar").onclick=()=>{if(copiaPendiente&&guardarCopia(copiaPendiente.d,copiaPendiente.anterior))$("imp").focus();};
 $("imp").addEventListener("change",e=>{
   const f=e.target.files[0];if(!f)return;e.target.value="";
-  const turno=++lecturaActual;cerrarCopia();$("estadoCopia").textContent="";
+  const turno=++lecturaActual, anterior=revision;cerrarCopia();$("estadoCopia").textContent="";
   const r=new FileReader();
   r.onload=()=>{
     if(turno!==lecturaActual)return;
     let d;try{d=validarCopia(JSON.parse(r.result));}catch(_){}
     if(!d){$("estadoCopia").textContent="El archivo no es una copia válida de Gestión de Gallinas. Tus datos siguen igual.";return;}
-    let anterior;try{anterior=localStorage.getItem(KEY);}
+    try{if(localStorage.getItem(KEY)!==anterior){$("estadoCopia").textContent="Los datos cambiaron en otra pestaña. Recarga antes de recuperar la copia.";return;}}
     catch(_){$("estadoCopia").textContent="No se pudo acceder a los datos de este navegador. No se ha cambiado nada.";return;}
     if(JSON.stringify(DB)===JSON.stringify(vacia())&&(anterior===null||anterior===JSON.stringify(DB))){
       guardarCopia(d,anterior);return;
@@ -159,7 +176,7 @@ function guardarPuesta(){const hoy=fechaPuestaMostrada||hoyISO();const entradas=
   entradas.forEach(i=>{const v=i.value===""?null:+i.value;
     DB.puestas=DB.puestas.filter(p=>!(p.ave===i.dataset.ave&&p.f===hoy));
     if(v!==null&&v>=0)DB.puestas.push({ave:i.dataset.ave,f:hoy,n:v});});
-  guardar();refrescar();alert("Huevos de hoy guardados.");}
+  if(!guardar())return;refrescar();alert("Huevos de hoy guardados.");}
 function puestaStats(){
   const iniM=mesISO()+"-01",iniA=ano()+"-01-01";
   $("kpiGranja").innerHTML="<div><b>"+huevosTotal(hoyISO(),hoyISO())+"</b>hoy</div><div><b>"+huevosTotal(iniM,null)+"</b>este mes</div><div><b>"+huevosTotal(iniA,null)+"</b>este año</div><div><b>"+DB.aves.filter(a=>a.sexo==="gallina").length+"</b>gallinas</div>";
@@ -199,15 +216,15 @@ function verArbol(){const id=$("arb-sel").value;if(!id||!ave(id)){$("dibujoArbol
   $("a-padre").value=a.padre||"";$("a-madre").value=a.madre||"";
   listarNotasArbol();}
 function asignarPadres(){const id=$("arb-sel").value;if(!id)return;const a=ave(id);
-  a.padre=$("a-padre").value||null;a.madre=$("a-madre").value||null;guardar();verArbol();refrescarSinArbol();alert("Padres guardados.");}
+  a.padre=$("a-padre").value||null;a.madre=$("a-madre").value||null;if(!guardar())return;verArbol();refrescarSinArbol();alert("Padres guardados.");}
 function hijoDe(){const id=$("arb-sel").value;if(!id)return;const a=ave(id);
   const num=prompt("Número del hijo nuevo (será su nombre):");if(!num)return;
   const sexo=confirm("Aceptar = gallina · Cancelar = gallo")?"gallina":"gallo";
   const n={id:"a"+Date.now(),numero:num,sexo,raza:a.raza,linea:a.linea,anilla:"",fnac:hoyISO(),notas:[]};
   if(a.sexo==="gallo")n.padre=id;else n.madre=id;
-  DB.aves.push(n);guardar();refrescar();elegirArbol(n.id);alert("Hijo Nº "+num+" añadido al árbol.");}
-function listarNotasArbol(){$("notasArbol").innerHTML=(DB.notasArbol||[]).map((n,i)=>'<div class="aviso">📝 '+esc(n.f||"")+" — "+esc(n.t)+' <button class="btn peq dan" onclick="DB.notasArbol.splice('+i+',1);guardar();listarNotasArbol();">quitar</button></div>').join("")||"(sin notas)";}
-function addNotaArbol(){const t=$("nuevaNotaArbol").value.trim();if(!t)return;DB.notasArbol=DB.notasArbol||[];DB.notasArbol.push({f:hoyISO(),t});$("nuevaNotaArbol").value="";guardar();listarNotasArbol();}
+  DB.aves.push(n);if(!guardar())return;refrescar();elegirArbol(n.id);alert("Hijo Nº "+num+" añadido al árbol.");}
+function listarNotasArbol(){$("notasArbol").innerHTML=(DB.notasArbol||[]).map((n,i)=>'<div class="aviso">📝 '+esc(n.f||"")+" — "+esc(n.t)+' <button class="btn peq dan" onclick="DB.notasArbol.splice('+i+',1);if(!guardar())return;listarNotasArbol();">quitar</button></div>').join("")||"(sin notas)";}
+function addNotaArbol(){const t=$("nuevaNotaArbol").value.trim();if(!t)return;DB.notasArbol=DB.notasArbol||[];DB.notasArbol.push({f:hoyISO(),t});if(!guardar())return;$("nuevaNotaArbol").value="";listarNotasArbol();}
 
 /* ---------- cría ---------- */
 function antepasados(id,gen){const a=ave(id);if(!a)return new Set();const s=new Set();
@@ -237,12 +254,12 @@ function criaRankings(){
 
 /* ---------- gestión ---------- */
 function guardarPienso(){const kg=+$("p-kg").value,cu=+$("p-coste").value;if(!kg&&!cu){alert("Pon kilos o coste.");return;}
-  DB.pienso.push({f:$("p-fecha").value||hoyISO(),kg:kg||0,c:cu||0,n:$("p-nota").value.trim()});$("p-kg").value="";$("p-coste").value="";$("p-nota").value="";guardar();refrescar();alert("Pienso guardado.");}
+  DB.pienso.push({f:$("p-fecha").value||hoyISO(),kg:kg||0,c:cu||0,n:$("p-nota").value.trim()});if(!guardar())return;$("p-kg").value="";$("p-coste").value="";$("p-nota").value="";refrescar();alert("Pienso guardado.");}
 function guardarMov(){const e=+$("m-eur").value;if(!e){alert("Pon los euros.");return;}
   DB.movs.push({t:$("m-tipo").value,f:$("m-fecha").value||hoyISO(),e,c:$("m-con").value.trim(),n:$("m-nota").value.trim()});
-  $("m-eur").value="";$("m-con").value="";$("m-nota").value="";guardar();refrescar();alert("Apunte guardado.");}
-function borrarMov(i){DB.movs.splice(i,1);guardar();refrescar();}
-function borrarPienso(i){DB.pienso.splice(i,1);guardar();refrescar();}
+  if(!guardar())return;$("m-eur").value="";$("m-con").value="";$("m-nota").value="";refrescar();alert("Apunte guardado.");}
+function borrarMov(i){DB.movs.splice(i,1);if(!guardar())return;refrescar();}
+function borrarPienso(i){DB.pienso.splice(i,1);if(!guardar())return;refrescar();}
 function gestionStats(){
   const gp=DB.pienso.reduce((s,p)=>s+(+p.c||0),0),kg=DB.pienso.reduce((s,p)=>s+(+p.kg||0),0);
   const gg=DB.movs.filter(m=>m.t==="gasto").reduce((s,m)=>s+(+m.e||0),0);
@@ -258,8 +275,8 @@ function gestionStats(){
 
 /* ---------- avisos ---------- */
 function guardarVac(){const a=$("v-ave").value;if(!a){alert("Elige el ave.");return;}
-  DB.vacunas.push({ave:a,t:$("v-tipo").value,n:$("v-nom").value.trim(),f:$("v-fecha").value||hoyISO(),p:$("v-prox").value||""});guardar();refrescar();alert("Aviso guardado.");}
-function borrarVac(i){DB.vacunas.splice(i,1);guardar();refrescar();}
+  DB.vacunas.push({ave:a,t:$("v-tipo").value,n:$("v-nom").value.trim(),f:$("v-fecha").value||hoyISO(),p:$("v-prox").value||""});if(!guardar())return;refrescar();alert("Aviso guardado.");}
+function borrarVac(i){DB.vacunas.splice(i,1);if(!guardar())return;refrescar();}
 function avisosUI(){
   const H=hoyISO();const prox=new Date();prox.setDate(prox.getDate()+14);const lim=fechaLocal(prox);
   let h="";
