@@ -8,7 +8,7 @@ borrador: false
 imagen: "img/blog/corral-anti-depredadores.webp"
 imagen_og: "img/blog/corral-anti-depredadores-og.webp"
 imagen_alt: "Gallina marrón en primer plano a la derecha dentro de un corral seguro con malla metálica, fondo verde desenfocado"
-actualizado: 2026-11-13
+actualizado: 2026-11-25
 fuentes:
   - "University of Maryland Extension: Housing Requirements — https://extension.umd.edu/resource/housing-requirements"
   - "Meyer Hatchery: Predator Proofing Your Coop and Run — https://meyerhatchery.zendesk.com/hc/en-us/articles/29414283183885-Predator-Proofing-Your-Coop-and-Run"
@@ -67,3 +67,12 @@ Anota las tareas en la [lista y calendario de la granja](https://granjarentable.
 ## Continúa con la instalación completa
 
 Para valorar el alojamiento en conjunto, consulta [cómo preparar un gallinero](https://granjarentable.com/blog/construir-gallinero-casero.html). Los enlaces de esta guía llevan primero a categorías y recursos de la web; allí puedes revisar los productos y su información comercial. No hemos ensayado físicamente todos los equipos ni atribuido un porcentaje de reducción de ataques.
+
+## Material para cerrar el corral a los depredadores
+
+Dos cosas que de verdad frenan a mapaches, ratas y comadrejas:
+
+- [Malla hardware cloth de 1/2" galvanizada](../tienda/p/malla-hardware-cloth-1-2-galvanizada-36-x-50-ft-19-gauge/) — la de 1/2" es la que frena a mapaches, ratas y comadrejas; la hexagonal no.
+- [Abridor de puerta FarmLite con temporizador y sensor de luz](../tienda/p/abridor-de-puerta-farmlite-con-temporizador-y-sensor-de-luz/) — se abre y se cierra solo, con temporizador y sensor de luz.
+
+[Ver todo el material para el gallinero →](../tienda/)
