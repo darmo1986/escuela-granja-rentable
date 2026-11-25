@@ -84,7 +84,7 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font
 <div class="card"><h3>💾 Copia de seguridad</h3>
 <p style="font-size:14px">Tus datos se guardan en este navegador. Descarga una copia de vez en cuando por si cambias de móvil.</p>
 <button class="btn sec" onclick="descargarCopia()">⬇️ Descargar copia (JSON)</button>
-<label for="imp" style="margin-top:8px">Recuperar copia</label><input id="imp" type="file" accept=".json">
+<label for="imp" style="margin-top:8px">Recuperar copia</label><input id="imp" type="file" accept=".json" disabled>
 <div id="confirmarCopia" class="aviso" hidden role="group" aria-label="Confirmar recuperación de la copia">
 <p><strong>Recuperar esta copia reemplazará tus datos actuales.</strong> No se mezclarán con los del archivo. Puedes descargar una copia de lo que tienes ahora antes de continuar.</p>
 <button id="copiaDescargar" type="button" class="btn sec">Descargar copia actual</button>
@@ -167,5 +167,5 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font
 </main>
 <footer>Granja Rentable · App de gestión de gallinas · tus datos están en tu navegador</footer>
 <script src="razas.js"></script>
-<script src="app.js?v=20261125-copia-local"></script>
+<script src="app.js?v=20261125-copia-segura-r2"></script>
 </body></html>
