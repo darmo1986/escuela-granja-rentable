@@ -376,6 +376,16 @@ Para localizarla:
 
 5. Repara o sustituye los componentes defectuosos.
 
+### Qué revisar si el bebedero gotea o no da agua
+
+Antes de desmontar nada, deja a las gallinas un bebedero que ya sepan usar, con agua limpia. Que el depósito esté lleno no significa que el agua llegue a todas las salidas.
+
+- **Solo falla una tetina o copa.** Compárala con otra que funcione. Acciona la tetina o mueve la copa según el manual. Si ves suciedad o la pieza no se mueve libremente, cierra el paso del agua y límpiala siguiendo las instrucciones del fabricante.
+- **Fallan varias salidas.** Comprueba el nivel del depósito y que la llave de paso esté abierta. Prueba la primera y la última salida. Si el agua llega al principio pero no al final, revisa el filtro o el regulador según el manual. Purga la línea solo si el fabricante lo indica.
+- **Siempre se moja el mismo punto.** Seca la unión y observa qué pasa después de que se aparten las gallinas. Si sigue goteando, revisa el asiento de la junta y el ajuste de la unión. Si solo cae agua mientras beben, comprueba la altura y la posición del bebedero antes de cambiar piezas.
+
+Antes de retirar el bebedero de reserva, comprueba que el agua llega a la última salida, que las uniones no gotean y que las gallinas pueden beber con normalidad.
+
 ### Diferencia entre agua suministrada y agua bebida
 
 **Agua suministrada = Agua bebida + Derrames + Fugas + Otros usos**, siempre que todos los componentes se midan sobre el mismo periodo y no existan cambios de almacenamiento sin contabilizar.
