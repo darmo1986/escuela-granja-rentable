@@ -1927,7 +1927,17 @@ def paginas_html(raiz):
 
 
 def actualizar_sitemap(texto, entradas):
-    texto = re.sub(r"\s*<url>\s*<loc>https://granjarentable.com/blog[^<]*</loc>.*?</url>", "", texto, flags=re.S)
+    # Las guías HTML editadas a mano no pasan por el generador de artículos.
+    guias_manuales = {
+        SITIO + "/blog/cuantos-nidales-para-gallinas.html",
+        SITIO + "/blog/puerta-automatica-gallinero-no-cierra.html",
+    }
+    regeneradas = {loc for loc, _ in entradas}
+    texto = re.sub(
+        r"\s*<url>\s*<loc>(https://granjarentable.com/blog[^<]*)</loc>.*?</url>",
+        lambda m: m.group(0) if m[1] in guias_manuales - regeneradas else "",
+        texto, flags=re.S,
+    )
     # La tienda de afiliados (/tienda/ y sus fichas) se conserva.
     # Solo se retiran las fichas viejas de producto físico en /producto/.
     texto = re.sub(
