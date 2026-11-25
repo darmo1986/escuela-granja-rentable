@@ -192,16 +192,18 @@
 
 
 <div class="anuncio-tercio" data-anuncio-tercio></div><h2>Pienso</h2>
-<label><span class="etiq" data-etiq="Precio del pienso por kg">Precio del pienso por kg</span><input id="c-precio-pienso" data-save inputmode="decimal" value="0"></label>
+<label><span class="etiq" data-etiq="Precio del pienso por kg">Precio del pienso por kg</span><input id="c-precio-pienso" aria-describedby="c-formato-pienso" data-save inputmode="decimal" value="0"></label>
+<p class="hint" id="c-formato-pienso">Usa coma para decimales: 1,250 se lee como 1,25 por kg. El importe 1.250 se lee como mil doscientos cincuenta por kg. Comprueba el precio aplicado a cada etapa en el desglose.</p>
+<label><input type="checkbox" id="c-pienso-gratis"> Confirmo que el pienso sin precio indicado no tiene coste para este lote</label>
 <details class="extra-precios">
 <summary>Precio distinto por etapa (opcional)</summary>
 <p class="hint">Si lo dejas vacío, se usa el precio general. Orientativo.</p>
 <div class="row-2">
-<label>Arranque, precio/kg<input id="c-p-arranque" data-save inputmode="decimal" value=""></label>
-<label>Crecimiento, precio/kg<input id="c-p-recria" data-save inputmode="decimal" value=""></label>
-<label>Postura, precio/kg<input id="c-p-puesta" data-save inputmode="decimal" value=""></label>
-<label>Engorde inicio, precio/kg<input id="c-p-einicio" data-save inputmode="decimal" value=""></label>
-<label>Engorde final, precio/kg<input id="c-p-efinal" data-save inputmode="decimal" value=""></label>
+<label>Arranque, precio/kg<input id="c-p-arranque" aria-describedby="c-formato-pienso" data-save inputmode="decimal" value=""></label>
+<label>Crecimiento, precio/kg<input id="c-p-recria" aria-describedby="c-formato-pienso" data-save inputmode="decimal" value=""></label>
+<label>Postura, precio/kg<input id="c-p-puesta" aria-describedby="c-formato-pienso" data-save inputmode="decimal" value=""></label>
+<label>Engorde inicio, precio/kg<input id="c-p-einicio" aria-describedby="c-formato-pienso" data-save inputmode="decimal" value=""></label>
+<label>Engorde final, precio/kg<input id="c-p-efinal" aria-describedby="c-formato-pienso" data-save inputmode="decimal" value=""></label>
 </div>
 </details>
 <div id="grp-arranque" hidden>
@@ -383,7 +385,7 @@
 <script src="js/config.js?v=20261117-anuncios-arriba"></script>
 <script src="js/app.js?v=20261117-anuncios-arriba"></script>
 <script src="js/catalogo.js"></script>
-<script src="js/calculadora.js?v=20261108"></script>
+<script src="js/calculadora.js?v=20261125-coste-pienso"></script>
 <script src="js/site.js?v=20261117-anuncios-arriba"></script>
 <script defer src="js/ofertas.js?v=20261117banners"></script>
 <script defer src="js/registro-banners.js?v=20261117banners"></script>
