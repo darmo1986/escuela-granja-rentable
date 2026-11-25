@@ -151,9 +151,12 @@ $("imp").addEventListener("change",e=>{
 /* ---------- puesta ---------- */
 function puestaUI(){const hoy=fechaPuestaMostrada=hoyISO();$("hoy").textContent=hoy.split("-").reverse().join("/");
   const gs=DB.aves.filter(a=>a.sexo==="gallina");
-  $("puestaHoy").innerHTML=gs.length?gs.map(a=>{const ex=(DB.puestas.find(p=>p.ave===a.id&&p.f===hoy)||{}).n||"";
+  $("puestaHoy").innerHTML=gs.length?gs.map(a=>{const ex=(DB.puestas.find(p=>p.ave===a.id&&p.f===hoy)||{}).n??"";
     return '<label>Nº '+esc(a.numero)+" ("+esc(a.raza)+')</label><input type="number" min="0" max="3" data-ave="'+a.id+'" value="'+ex+'" placeholder="0">';}).join(""):"(primero añade gallinas en 🐔 Aves)";}
-function guardarPuesta(){const hoy=fechaPuestaMostrada||hoyISO();document.querySelectorAll("#puestaHoy input").forEach(i=>{const v=i.value===""?null:+i.value;
+function guardarPuesta(){const hoy=fechaPuestaMostrada||hoyISO();const entradas=[...document.querySelectorAll("#puestaHoy input")];
+  const invalida=entradas.find(i=>i.validity.badInput||(i.value!==""&&(!Number.isInteger(+i.value)||+i.value<0||+i.value>3)));
+  if(invalida){alert("Escribe entre 0 y 3 huevos, sin decimales.");invalida.focus();return;}
+  entradas.forEach(i=>{const v=i.value===""?null:+i.value;
     DB.puestas=DB.puestas.filter(p=>!(p.ave===i.dataset.ave&&p.f===hoy));
     if(v!==null&&v>=0)DB.puestas.push({ave:i.dataset.ave,f:hoy,n:v});});
   guardar();refrescar();alert("Huevos de hoy guardados.");}
