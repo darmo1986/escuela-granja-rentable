@@ -84,7 +84,14 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font
 <div class="card"><h3>💾 Copia de seguridad</h3>
 <p style="font-size:14px">Tus datos se guardan en este navegador. Descarga una copia de vez en cuando por si cambias de móvil.</p>
 <button class="btn sec" onclick="descargarCopia()">⬇️ Descargar copia (JSON)</button>
-<label style="margin-top:8px">Recuperar copia</label><input id="imp" type="file" accept=".json">
+<label for="imp" style="margin-top:8px">Recuperar copia</label><input id="imp" type="file" accept=".json">
+<div id="confirmarCopia" class="aviso" hidden role="group" aria-label="Confirmar recuperación de la copia">
+<p><strong>Recuperar esta copia reemplazará tus datos actuales.</strong> No se mezclarán con los del archivo. Puedes descargar una copia de lo que tienes ahora antes de continuar.</p>
+<button id="copiaDescargar" type="button" class="btn sec">Descargar copia actual</button>
+<button id="copiaCancelar" type="button" class="btn sec">Cancelar</button>
+<button id="copiaConfirmar" type="button" class="btn dan">Reemplazar datos</button>
+</div>
+<p id="estadoCopia" role="status" aria-live="polite"></p>
 <div class="aviso">⏳ Pendiente: copia automática en Google Drive cada vez que apuntes algo. Aún no es posible porque no hay conexión con Google.</div></div>
 </section>
 
@@ -151,7 +158,7 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font
 <li><b>Cría:</b> antes de juntar un gallo y una gallina, pulsa «Comprobar cruce»: si son parientes cercanos (padres, hermanos o abuelos comunes) te avisa y <b>no lo recomienda</b>. Mira también las listas de mejores.</li>
 <li><b>Gestión:</b> apunta el pienso, los gastos (vacunas, anillas…) y los ingresos (huevos vendidos). Arriba verás el <b>coste por huevo</b> y si el gallinero se paga solo.</li>
 <li><b>Avisos:</b> apunta vacunas y desparasitaciones con su próxima fecha. La app te avisa de lo que toca y de qué <b>pollitas empiezan a poner</b> pronto.</li>
-<li><b>Copia de seguridad:</b> tus datos están en este navegador. En 🐔 abajo, «Descargar copia» guarda un archivo; guárdalo a salvo. Para pasarlo a otro móvil, abre la app allí y usa «Recuperar copia».</li>
+<li><b>Copia de seguridad:</b> tus datos están en este navegador. En 🐔 abajo, «Descargar copia» guarda un archivo; guárdalo a salvo. Para pasarlo a otro móvil, abre la app allí y usa «Recuperar copia». Si ya tienes datos en ese navegador, descarga una copia antes de reemplazarlos.</li>
 </ol>
 <div class="aviso">📌 <b>Nota sobre «el pico de la raza»:</b> en esta app se interpreta como el <b>pico de puesta</b>, o sea, el momento de máxima puesta de la raza (la edad en que más huevos pone, normalmente entre las 28 y 34 semanas según la raza). No es el pico (la boca) como rasgo físico. Cada raza trae su semana de pico y la verás en la ficha del ave.</div>
 <div class="aviso">⏳ <b>Nota sobre Google Drive:</b> la copia automática en Drive cada vez que apuntes algo está <b>pendiente</b>: aún no hay conexión con Google, así que de momento usa el botón «Descargar copia».</div>
@@ -160,5 +167,5 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font
 </main>
 <footer>Granja Rentable · App de gestión de gallinas · tus datos están en tu navegador</footer>
 <script src="razas.js"></script>
-<script src="app.js"></script>
+<script src="app.js?v=20261125-copia-local"></script>
 </body></html>
