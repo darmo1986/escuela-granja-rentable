@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Registro de codornices japonesas para carne | Granja Rentable</title><meta name="description" content="Anota los pesajes, las bajas y salidas, el pienso y los gastos de cada lote de codornices japonesas para carne.">
+<link rel="canonical" href="https://granjarentable.com/app-codornices/carne/">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../registro.css">
+<script defer src="../registro.js"></script></head>
+<body data-registro="carne">
+<header><a href="/">Granja Rentable</a></header>
+<main>
+<nav aria-label="Otros registros"><a href="../huevos/">Codornices para huevos</a><a href="/app-gallinas/">Gestión de Gallinas</a><a href="/app.html">Registro de pollos</a></nav>
+<h1>Registro de codornices japonesas para carne</h1><p>Anota los pesajes, las bajas y salidas, el pienso y los gastos de cada lote de codornices japonesas para carne.</p>
+<p class="fine">Sin cuenta. Los registros se guardan solo en este navegador; descarga una copia si vas a cambiar de dispositivo o borrar datos. No se comparten con la otra app.</p>
+<noscript><p>Activa JavaScript para guardar y consultar registros.</p></noscript>
+<details id="alta-lote" open><summary>Crear un lote</summary>
+<form id="alta"><div class="grid"><label>Nombre del lote<input name="name" required maxlength="60" placeholder="Engorde 1"></label>
+<label>Fecha de inicio<input type="date" name="start" required></label>
+<label>Aves al empezar<input type="number" inputmode="numeric" name="initial" required min="1" max="99999999" step="1"></label>
+</div><div class="actions"><button type="submit">Crear lote</button></div></form></details>
+<section><label>Lote activo<select id="lotes" aria-describedby="sin-lote"></select></label><p id="sin-lote" class="fine">Crea un lote para empezar a registrar.</p></section>
+<p id="estado" role="status"></p>
+<div id="trabajo" hidden>
+<section><h2>Resumen del lote</h2><dl id="resumen"></dl><p class="fine wide">El cambio de peso compara las medias de dos muestras, no el crecimiento individual. Las aves vivas se calculan restando las bajas y salidas del número inicial. Usa siempre la misma moneda dentro de un lote.</p></section>
+<section><h2>Anotación diaria</h2><p class="fine">Deja en blanco lo que no hayas medido. Usa 0 cuando hayas comprobado que no hubo ninguno. Para corregir un día, abre su fecha y vuelve a guardar.</p>
+<form id="registro"><label>Fecha<input name="date" type="date" required></label><div class="grid wide" id="campos"></div>
+<label class="wide">Notas de manejo<textarea name="notes" maxlength="500" placeholder="Por ejemplo, agua, cama, incidencias o cambios del lote"></textarea></label>
+<div class="actions"><button type="submit">Guardar día</button><button class="secondary" type="button" id="borrar">Eliminar anotación</button></div>
+</form></section>
+<section><h2>Historial</h2><ul id="historial"></ul></section>
+</div>
+<section><h2>Copias del registro</h2><p class="fine">La copia contiene todos los lotes de esta app. Restaurarla sustituye los registros de esta app, no los de la otra.</p>
+<div class="actions"><button type="button" id="copia">Descargar copia JSON</button></div>
+<label class="wide">Recuperar una copia JSON<input type="file" id="restaurar" accept=".json,application/json"></label></section>
+</main>
+<footer><a href="/blog/cuidados-codornices.html">Guías de cuidados de codornices</a> · Este registro no sustituye la atención veterinaria.</footer>
+</body></html>
