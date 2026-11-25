@@ -1,8 +1,9 @@
 /* Gestión de Gallinas · Granja Rentable. Datos en localStorage. */
 const KEY="gr_gallinas_v1";
-let DB=null, editId=null;
+let DB=null, editId=null, fechaPuestaMostrada=null;
 const $=id=>document.getElementById(id);
-const hoyISO=()=>new Date().toISOString().slice(0,10);
+const fechaLocal=d=>[String(d.getFullYear()).padStart(4,"0"),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+const hoyISO=()=>fechaLocal(new Date());
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 function vacia(){return {aves:[],lineas:[{nombre:"Línea 1",color:"#d32f2f"}],puestas:[],pienso:[],movs:[],vacunas:[],notasArbol:[]};}
@@ -84,22 +85,77 @@ function borrarNotaAve(id,i){ave(id).notas.splice(i,1);guardar();refrescar();}
 function guardarLinea(){const n=$("n-linea").value.trim();if(!n){alert("Ponle un nombre a la línea.");return;}
   if(linDe(n)){alert("Esa línea ya existe.");return;}DB.lineas.push({nombre:n,color:$("n-color").value});$("n-linea").value="";guardar();refrescar();}
 function borrarLinea(n){if(DB.aves.some(a=>a.linea===n)){alert("Hay aves con esa línea, no se puede borrar.");return;}DB.lineas=DB.lineas.filter(l=>l.nombre!==n);guardar();refrescar();}
-function listarLineas(){$("listaLineas").innerHTML=DB.lineas.map(l=>'<div class="aviso"><span class="dot" style="background:'+l.color+'"></span> <b>'+esc(l.nombre)+"</b> · "+DB.aves.filter(a=>a.linea===l.nombre).length+' aves <button class="btn peq dan" onclick="borrarLinea(\''+esc(l.nombre)+'\')">quitar</button></div>').join("")||"(sin líneas)";}
+function listarLineas(){$("listaLineas").innerHTML=DB.lineas.map((l,i)=>'<div class="aviso"><span class="dot" style="background:'+l.color+'"></span> <b>'+esc(l.nombre)+"</b> · "+DB.aves.filter(a=>a.linea===l.nombre).length+' aves <button class="btn peq dan" onclick="borrarLinea(DB.lineas['+i+'].nombre)">quitar</button></div>').join("")||"(sin líneas)";}
 
 /* ---------- copia ---------- */
 function descargarCopia(){const b=new Blob([JSON.stringify(DB,null,1)],{type:"application/json"});const u=URL.createObjectURL(b);
   const l=document.createElement("a");l.href=u;l.download="gallinas-copia-"+hoyISO()+".json";l.click();URL.revokeObjectURL(u);}
-$("imp").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
-  r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.aves)throw 0;DB=d;guardar();refrescar();alert("Copia recuperada: "+d.aves.length+" aves.");}catch(_){alert("Ese archivo no es una copia válida.");}};r.readAsText(f);});
+const esObjeto=o=>o!==null&&typeof o==="object"&&!Array.isArray(o);
+const esTexto=s=>typeof s==="string";
+const textoOpcional=s=>s==null||esTexto(s);
+const esId=s=>esTexto(s)&&/^[a-z0-9_-]{1,100}$/i.test(s);
+function esFecha(s){
+  if(!esTexto(s)||!/^\d{4}-\d{2}-\d{2}$/.test(s))return false;
+  const d=new Date(s+"T00:00:00Z");
+  return !Number.isNaN(d.getTime())&&d.toISOString().slice(0,10)===s;
+}
+const fechaOpcional=s=>s===""||esFecha(s);
+const esNota=n=>esObjeto(n)&&esTexto(n.t)&&(n.f==null||fechaOpcional(n.f));
+function validarCopia(d){
+  const lista=(a,fn)=>Array.isArray(a)&&a.every(x=>esObjeto(x)&&fn(x));
+  if(!esObjeto(d)||!lista(d.aves,a=>esId(a.id)&&esTexto(a.numero)&&["gallo","gallina"].includes(a.sexo)&&esTexto(a.raza)&&[a.linea,a.anilla].every(textoOpcional)&&
+    (a.fnac==null||fechaOpcional(a.fnac))&&[a.padre,a.madre].every(x=>x==null||x===""||esId(x))&&
+    (a.notas==null||lista(a.notas,esNota))&&(a.foto==null||a.foto===""||(esTexto(a.foto)&&/^data:image\/(?:jpeg|png|webp|gif);base64,[A-Za-z0-9+/=]+$/i.test(a.foto))))||
+    !lista(d.lineas,l=>esTexto(l.nombre)&&esTexto(l.color)&&/^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i.test(l.color))||
+    !lista(d.puestas,p=>esId(p.ave)&&esFecha(p.f)&&Number.isFinite(p.n)&&p.n>=0)||
+    !lista(d.pienso,p=>esFecha(p.f)&&Number.isFinite(p.kg)&&Number.isFinite(p.c)&&textoOpcional(p.n))||
+    !lista(d.movs,m=>esFecha(m.f)&&["gasto","ingreso"].includes(m.t)&&Number.isFinite(m.e)&&[m.c,m.n].every(textoOpcional))||
+    !lista(d.vacunas,v=>esId(v.ave)&&esFecha(v.f)&&fechaOpcional(v.p)&&[v.t,v.n].every(textoOpcional))||
+    (d.notasArbol!==undefined&&!lista(d.notasArbol,esNota)))return null;
+  return d.notasArbol===undefined?{...d,notasArbol:[]}:d;
+}
+let copiaPendiente=null, lecturaActual=0;
+function cerrarCopia(){copiaPendiente=null;$("confirmarCopia").hidden=true;}
+function guardarCopia(d,anterior){
+  try{
+    if(localStorage.getItem(KEY)!==anterior){
+      cerrarCopia();$("estadoCopia").textContent="Los datos cambiaron. Vuelve a seleccionar la copia antes de continuar.";return false;
+    }
+    localStorage.setItem(KEY,JSON.stringify(d));
+  }catch(_){$("estadoCopia").textContent="No se pudo guardar la copia. Tus datos actuales no se han cambiado.";return false;}
+  DB=d;editId=null;limpiarFormAve();cerrarCopia();refrescar();
+  $("estadoCopia").textContent="Copia recuperada: "+d.aves.length+" aves.";return true;
+}
+$("copiaCancelar").onclick=()=>{cerrarCopia();$("estadoCopia").textContent="Recuperación cancelada. Tus datos siguen igual.";$("imp").focus();};
+$("copiaDescargar").onclick=descargarCopia;
+$("copiaConfirmar").onclick=()=>{if(copiaPendiente&&guardarCopia(copiaPendiente.d,copiaPendiente.anterior))$("imp").focus();};
+$("imp").addEventListener("change",e=>{
+  const f=e.target.files[0];if(!f)return;e.target.value="";
+  const turno=++lecturaActual;cerrarCopia();$("estadoCopia").textContent="";
+  const r=new FileReader();
+  r.onload=()=>{
+    if(turno!==lecturaActual)return;
+    let d;try{d=validarCopia(JSON.parse(r.result));}catch(_){}
+    if(!d){$("estadoCopia").textContent="El archivo no es una copia válida de Gestión de Gallinas. Tus datos siguen igual.";return;}
+    let anterior;try{anterior=localStorage.getItem(KEY);}
+    catch(_){$("estadoCopia").textContent="No se pudo acceder a los datos de este navegador. No se ha cambiado nada.";return;}
+    if(JSON.stringify(DB)===JSON.stringify(vacia())&&(anterior===null||anterior===JSON.stringify(DB))){
+      guardarCopia(d,anterior);return;
+    }
+    copiaPendiente={d,anterior};$("confirmarCopia").hidden=false;$("copiaCancelar").focus();
+  };
+  r.onerror=()=>{if(turno===lecturaActual)$("estadoCopia").textContent="No se pudo leer el archivo. Tus datos siguen igual.";};
+  r.readAsText(f);
+});
 
 /* ---------- puesta ---------- */
-function puestaUI(){$("hoy").textContent=hoyISO().split("-").reverse().join("/");
+function puestaUI(){const hoy=fechaPuestaMostrada=hoyISO();$("hoy").textContent=hoy.split("-").reverse().join("/");
   const gs=DB.aves.filter(a=>a.sexo==="gallina");
-  $("puestaHoy").innerHTML=gs.length?gs.map(a=>{const ex=(DB.puestas.find(p=>p.ave===a.id&&p.f===hoyISO())||{}).n||"";
+  $("puestaHoy").innerHTML=gs.length?gs.map(a=>{const ex=(DB.puestas.find(p=>p.ave===a.id&&p.f===hoy)||{}).n||"";
     return '<label>Nº '+esc(a.numero)+" ("+esc(a.raza)+')</label><input type="number" min="0" max="3" data-ave="'+a.id+'" value="'+ex+'" placeholder="0">';}).join(""):"(primero añade gallinas en 🐔 Aves)";}
-function guardarPuesta(){document.querySelectorAll("#puestaHoy input").forEach(i=>{const v=i.value===""?null:+i.value;
-    DB.puestas=DB.puestas.filter(p=>!(p.ave===i.dataset.ave&&p.f===hoyISO()));
-    if(v!==null&&v>=0)DB.puestas.push({ave:i.dataset.ave,f:hoyISO(),n:v});});
+function guardarPuesta(){const hoy=fechaPuestaMostrada||hoyISO();document.querySelectorAll("#puestaHoy input").forEach(i=>{const v=i.value===""?null:+i.value;
+    DB.puestas=DB.puestas.filter(p=>!(p.ave===i.dataset.ave&&p.f===hoy));
+    if(v!==null&&v>=0)DB.puestas.push({ave:i.dataset.ave,f:hoy,n:v});});
   guardar();refrescar();alert("Huevos de hoy guardados.");}
 function puestaStats(){
   const iniM=mesISO()+"-01",iniA=ano()+"-01-01";
@@ -109,7 +165,7 @@ function puestaStats(){
   const porEt={};gs.forEach(a=>{const e=edad(a).sem<20?"pollita":(edad(a).dias<=365?"ponedora joven":"adulta");(porEt[e]=porEt[e]||[]).push({a,h:huevosAve(a.id,iniM,null)});});
   $("rankEtapas").innerHTML=Object.keys(porEt).length?Object.keys(porEt).map(e=>{const l=porEt[e].sort((x,y)=>y.h-x.h).slice(0,3);
     return "<b>"+e+":</b> "+l.map((x,i)=>["🥇","🥈","🥉"][i]+" Nº "+esc(x.a.numero)+" ("+x.h+")").join(" · ");}).join("<br>"):"(apunta huevos para ver el ranking)";
-  const porR={};gs.forEach(a=>{(porR[a.raza]=porR[a.raza]||[]).push({a,h:huevosAve(a.id,iniA,null)});});
+  const porR=Object.create(null);gs.forEach(a=>{(porR[a.raza]=porR[a.raza]||[]).push({a,h:huevosAve(a.id,iniA,null)});});
   $("rankRazas").innerHTML=Object.keys(porR).length?Object.keys(porR).map(r=>{const l=porR[r].sort((x,y)=>y.h-x.h).slice(0,3);
     return "<b>"+esc(r)+":</b> "+l.map((x,i)=>["🥇","🥈","🥉"][i]+" Nº "+esc(x.a.numero)+" ("+x.h+" huevos este año)").join(" · ");}).join("<br>"):"(sin datos)";
   $("vsRaza").innerHTML=gs.length?gs.map(a=>{const esp=Math.round(mediaRaza(a.raza)/12),real=huevosAve(a.id,iniM,null),d=real-esp;
@@ -166,7 +222,7 @@ function parentesco(g1,g2){const A=ave(g1),B=ave(g2);if(!A||!B)return {mal:true,
 function probarCruce(){const r=parentesco($("c-gallo").value,$("c-gallina").value);
   $("resCruce").innerHTML='<div class="'+(r.mal?"peligro":"ok")+'">'+r.txt+"</div>";}
 function criaRankings(){
-  const ini=new Date();ini.setDate(ini.getDate()-90);const iniS=ini.toISOString().slice(0,10);
+  const ini=new Date();ini.setDate(ini.getDate()-90);const iniS=fechaLocal(ini);
   const gs=DB.aves.filter(a=>a.sexo==="gallina").map(a=>{const h=huevosAve(a.id,iniS,null);const esp=mediaRaza(a.raza)*90/365;
     return {a,h,pc:esp?Math.round(h/esp*100):0,enf:tieneEnfermedad(a)};}).sort((x,y)=>y.h-x.h);
   $("topGallinas").innerHTML=gs.length?gs.slice(0,5).map((x,i)=>"<div>"+["🥇","🥈","🥉","4º","5º"][i]+" <b>Nº "+esc(x.a.numero)+"</b> ("+esc(x.a.raza)+"): "+x.h+" huevos en 90 días ("+x.pc+"% de su raza)"+(x.enf?' · ⚠️ con notas de enfermedad (mírala antes de criar)':" · ✅ sana")+"</div>").join(""):"(apunta puesta para verlo)";
@@ -202,7 +258,7 @@ function guardarVac(){const a=$("v-ave").value;if(!a){alert("Elige el ave.");ret
   DB.vacunas.push({ave:a,t:$("v-tipo").value,n:$("v-nom").value.trim(),f:$("v-fecha").value||hoyISO(),p:$("v-prox").value||""});guardar();refrescar();alert("Aviso guardado.");}
 function borrarVac(i){DB.vacunas.splice(i,1);guardar();refrescar();}
 function avisosUI(){
-  const H=hoyISO();const prox=new Date();prox.setDate(prox.getDate()+14);const lim=prox.toISOString().slice(0,10);
+  const H=hoyISO();const prox=new Date();prox.setDate(prox.getDate()+14);const lim=fechaLocal(prox);
   let h="";
   DB.vacunas.filter(v=>v.p&&v.p<=lim).sort((a,b)=>a.p.localeCompare(b.p)).forEach(v=>{const a=ave(v.ave);
     h+='<div class="'+(v.p<H?"peligro":"aviso")+'">💉 <b>Nº '+(a?esc(a.numero):"?")+"</b> · "+esc(v.t)+": "+esc(v.n||"")+" → próxima: <b>"+esc(v.p)+"</b>"+(v.p<H?" (¡pasada!)":" (se acerca)")+"</div>";});
