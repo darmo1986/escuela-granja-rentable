@@ -737,7 +737,7 @@
     var extra = res.nLots > 1 ? " Lotes enteros en el plazo: " + String(res.nLots) + "." : (res.nLots === 1 ? " Lotes enteros en el plazo: 1." : " No cabe un lote entero en ese plazo.");
     resumen.textContent = (res.piensoPendiente ? "Beneficio provisional " : "Beneficio ") + cifra(res.beneficio) + ". Ingresos " + cifra(res.ingresos) + ". Costes " + cifra(res.costes) + "." + extra;
     var html = "";
-    html += fila("Pienso", dinero(res.costePienso));
+    html += fila(res.piensoPendiente ? "Pienso (solo importes conocidos)" : "Pienso", dinero(res.costePienso));
     res.etapas.forEach(function (e) {
       var precioAplicado = e.kg > 0 && e.precio === 0 && res.piensoPendiente
         ? "precio pendiente" : "precio aplicado: " + e.precio.toLocaleString("es-ES", { maximumSignificantDigits: 15, useGrouping: true }) + " por kg";
@@ -747,7 +747,7 @@
     html += fila("Instalaciones (amortizadas)", dinero(res.costeInst));
     html += fila("Mano de obra", dinero(res.costeMano));
     html += fila("Otros costes", dinero(res.costeOtros));
-    html += fila("Costes totales", dinero(res.costes));
+    html += fila(res.piensoPendiente ? "Costes provisionales" : "Costes totales", dinero(res.costes));
     if (res.huevos) {
       html += fila("Huevos producidos", esc(fmtR(res.huevosProd)));
       html += fila("Huevos vendidos", esc(fmtR(res.huevosVend)));
@@ -769,7 +769,7 @@
     html += fila("Pienso al mes (media)", esc(fmtR(res.kgMes) + " kg. La mortalidad se reparte a lo largo del plazo."));
     box.innerHTML = html;
     draw($("calc-chart"), res.costes, res.ingresos);
-    $("calc-chart").setAttribute("aria-label", "Gráfica de barras: costes " + cifra(res.costes) + ", ingresos " + cifra(res.ingresos));
+    $("calc-chart").setAttribute("aria-label", "Gráfica de barras: " + (res.piensoPendiente ? "costes provisionales " : "costes ") + cifra(res.costes) + ", ingresos " + cifra(res.ingresos));
   }
 
   function draw(canvas, cost, income, vacio) {
@@ -910,6 +910,7 @@
     $("c-meses").value = "12";
     $("c-precio-ave").value = "7";
     $("c-precio-pienso").value = "0,52";
+    if ($("c-pienso-gratis")) $("c-pienso-gratis").checked = false;
     ["c-p-arranque", "c-p-recria", "c-p-puesta", "c-p-einicio", "c-p-efinal", "c-horas", "c-precio-hora", "c-precio-venta", "c-peso"].forEach(function (id) {
       if ($(id)) $(id).value = "";
     });
