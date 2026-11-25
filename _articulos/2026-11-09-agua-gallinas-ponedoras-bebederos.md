@@ -140,7 +140,7 @@ Son recipientes alargados que permiten beber a varias aves.
 | Copa | Agua visible en el punto de bebida | Acumulación de suciedad | Copa, válvula y fugas |
 | Canal | Acceso para varias aves | Mayor exposición ambiental | Limpieza, nivel y derrames |
 
-Ningún tipo es automáticamente el mejor para todas las explotaciones.
+Ningún tipo es automáticamente el mejor para todas las explotaciones. En la [comparativa en vídeo de campana, tetina y cazoleta](../comparativas/bebederos.html) puedes ver las diferencias de acceso, suciedad y limpieza.
 
 Si ya tienes claro qué sistema necesita tu gallinero, consulta la [comparativa de bebederos de tetina y colgantes](../comparativas/comparativa-bebederos-tetina-vs-colgante.html). Allí puedes contrastar formatos y capacidades del catálogo, revisar las fichas y decidir qué opción encaja con tu instalación antes de ir a Amazon.
 
