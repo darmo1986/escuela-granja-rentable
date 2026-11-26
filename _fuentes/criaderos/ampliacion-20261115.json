@@ -1,0 +1,956 @@
+[
+  {
+    "name": "Quality Poultry Hatchery",
+    "country": "Belice",
+    "location": "Spanish Lookout",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Ofrece pollitos de engorde y pollitas ponedoras de un día. Su nombre anterior es Friesen Hatcheries; se cuenta como un único proveedor.",
+    "sources": [
+      "https://www.qualitypoultryhatchery.com/"
+    ],
+    "evidence": "La web identifica Belize y Spanish Lookout y anuncia venta de pollitos de un día. Friesen es el nombre anterior, no otra empresa.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "La Granja de Mili",
+    "country": "Nicaragua",
+    "location": "Managua",
+    "kind": "Granja y proveedor avícola",
+    "tags": [
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Comercializa aves de postura de las líneas Hy-Line y Lohmann, además de pollitos de engorde. Confirma la edad y la línea disponibles antes de reservar.",
+    "sources": [
+      "https://lagranjademili.com/"
+    ],
+    "evidence": "La empresa declara ubicación en Managua, producción y comercialización de aves de postura y pollitos de engorde.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Criadero ChiKiKi – VICKAP",
+    "country": "Guatemala",
+    "location": "Santa Lucía Milpas Altas, Sacatepéquez",
+    "kind": "Granja o criadero",
+    "tags": [
+      "Ponedoras",
+      "Aves recriadas"
+    ],
+    "description": "Recría pollitas Lohmann y Hy-Line y anuncia pollonas de temporada. Consulta si hay venta externa y cuál es el próximo lote; no se ha confirmado disponibilidad actual.",
+    "sources": [
+      "https://www.vickap.com/criadero-chikiki"
+    ],
+    "evidence": "La página identifica el criadero y su ubicación y permite adquirir pollonas de temporada. La mayor parte de la recría se destina a la propia VICKAP.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Cooperativa Juan XXIII, R.L. – Incubadora",
+    "country": "Panamá",
+    "location": "La Mata, corregimiento Carlos Santana, Veraguas",
+    "kind": "Incubadora cooperativa",
+    "tags": [
+      "Pollitos",
+      "Engorde"
+    ],
+    "description": "Produce pollitos blancos y de colores para asociados, clientes y público general. Consulta las fechas, cantidades y condiciones de entrega de la incubadora.",
+    "sources": [
+      "https://www.juan-xxiii.com/index.php/unidades-de-negocios/produccion/incubadora"
+    ],
+    "evidence": "La unidad oficial identifica La Mata y venta de pollitos al público general y productores particulares. No se cuenta la granja reproductora como otro proveedor.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Avícola Pozos",
+    "country": "Costa Rica",
+    "location": "Río Segundo, Alajuela",
+    "kind": "Incubadora y proveedor de genética",
+    "tags": [
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Su catálogo presenta aves de postura Novogen y genética de engorde. Consulta la presentación comercial y la disponibilidad para tu proyecto.",
+    "sources": [
+      "https://avicolapozos.com/AP/productos/",
+      "https://avicolapozos.com/AP/contacto/"
+    ],
+    "evidence": "Catálogo propio de Novogen y engorde; contacto en Río Segundo. Grupo Guardia y Avícola Pozos se cuentan una sola vez. No se duplican sus operaciones regionales.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Agroservicio La Cuma",
+    "country": "El Salvador",
+    "location": "San Salvador",
+    "kind": "Distribuidor de aves",
+    "tags": [
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Anuncia reservas de pollos de engorde y pollitas Hy-Line Brown. Las reservas de aves se tramitan presencialmente y dependen de la programación de la incubadora.",
+    "sources": [
+      "https://www.agroslacuma.com/"
+    ],
+    "evidence": "Web propia: categorías de aves, reservas presenciales sujetas a cambios y dos sucursales de la misma empresa en San Salvador. Es distribuidor, no se presenta como criadero.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Incubadora Proavico",
+    "country": "México",
+    "location": "Chiapa de Corzo, Chiapas",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Engorde",
+      "Huevos fértiles"
+    ],
+    "description": "Ofrece pollitos de un día y huevo incubable de líneas de engorde. Consulta la línea, el pedido mínimo y la fecha de nacimiento del lote.",
+    "sources": [
+      "https://www.proavico.com/"
+    ],
+    "evidence": "Web propia identifica pollitos Cobb y Ross, huevo incubable y domicilio en Chiapa de Corzo.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Incubadora Villaflores Grupo Pecuario",
+    "country": "México",
+    "location": "Villaflores, Chiapas",
+    "kind": "Incubadora",
+    "tags": [
+      "Ponedoras",
+      "Doble propósito",
+      "Engorde"
+    ],
+    "description": "Presenta líneas de alta postura, doble propósito y engorde intensivo. Confirma edades, cantidades y rutas antes de hacer un pedido.",
+    "sources": [
+      "https://incubadoravillaflores.com.mx/"
+    ],
+    "evidence": "Catálogo propio con las tres categorías y ubicación Villaflores. No se identifica con negocios de nombre parecido.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Agroavícola San Marino",
+    "country": "Colombia",
+    "location": "Palmira, Valle del Cauca",
+    "kind": "Incubadora y proveedor de genética",
+    "tags": [
+      "Ponedoras",
+      "Aves de un día"
+    ],
+    "description": "Ofrece pollitas de un día para postura de huevo marrón. Su catálogo incluye la línea Babcock Brown; consulta los requisitos comerciales.",
+    "sources": [
+      "https://sanmarino.com.co/pollita-para-postura-de-huevo-marron/",
+      "https://sanmarino.com.co/"
+    ],
+    "evidence": "Ficha oficial de pollita Babcock de un día; sede Palmira en web propia y distribuidor Hendrix. La ficha se recuperó por índice del buscador; la apertura directa devolvió 503.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Colaves – Colombiana de Aves",
+    "country": "Colombia",
+    "location": "Girón, Santander",
+    "kind": "Incubadora y proveedor avícola",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Su catálogo incluye pollitas ponedoras y pollitos de engorde. Consulta líneas y fechas de entrega; las condiciones dependen del lote.",
+    "sources": [
+      "https://colaves.com/",
+      "https://colaves.com/contacto"
+    ],
+    "evidence": "Web propia identifica pollitas ISA Brown y Shaver Black, pollitos de engorde y dirección de Girón.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Avinter – Incubadora Internacional de Aves",
+    "country": "Colombia",
+    "location": "Fusagasugá, Cundinamarca",
+    "kind": "Incubadora",
+    "tags": [
+      "Pollitos",
+      "Aves recriadas",
+      "Criollas"
+    ],
+    "description": "Comercializa aves criollas desde un día y en distintas etapas de recría. Consulta qué variedades y edades están disponibles.",
+    "sources": [
+      "https://avinter.co/",
+      "https://avinter.co/productos/"
+    ],
+    "evidence": "La web anuncia venta desde un día hasta 16 semanas y ubicación en vereda Bosachoque, Fusagasugá.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Incubant – Antioqueña de Incubación",
+    "country": "Colombia",
+    "location": "Hispania, Antioquia",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Huevos fértiles",
+      "Engorde"
+    ],
+    "description": "Desarrolla reproducción, incubación y comercialización avícola. El registro del ICA relaciona aves de un día y huevo fértil Ross; consulta sus condiciones comerciales.",
+    "sources": [
+      "https://www.incubant.co/",
+      "https://www.ica.gov.co/getattachment/Areas/Pecuaria/Servicios/Bioseguridad-y-Recursos-Geneticos/SERVICIOS-MATERIAL-GENETICO-AVIAR/Licencias-de-venta-de-material-genetico-aviar.pdf.aspx?lang=es-CO"
+    ],
+    "evidence": "Web propia: comercialización y dirección vía Hispania-Andes. ICA, listado del 04/11/2026, licencia 295AV: aves de un día y huevo fértil Ross. No se presenta la licencia como una comprobación sanitaria propia.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Cabaña Avícola Modelo SRL",
+    "country": "Argentina",
+    "location": "Crespo, Entre Ríos",
+    "kind": "Distribuidor de genética avícola",
+    "tags": [
+      "Ponedoras",
+      "Dekalb"
+    ],
+    "description": "Hendrix Genetics la incluye como distribuidora de ponedoras Dekalb White y Dekalb Brown. Consulta directamente edades y formato comercial.",
+    "sources": [
+      "https://layinghens.hendrix-genetics.com/en/distributors/caba%C3%B1a-av%C3%ADcola-modelo-srl/"
+    ],
+    "evidence": "Ficha del fabricante: distribuidor, líneas y domicilio Crespo. La web propia no fue accesible; se enlaza a la ficha del fabricante. Avícola Modelo es alias del mismo grupo.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Gramogen – Corporación de Granjas del Perú",
+    "country": "Perú",
+    "location": "Los Olivos, Lima",
+    "kind": "Proveedor avícola",
+    "tags": [
+      "Pavitos",
+      "Ponedoras",
+      "Aves de un día"
+    ],
+    "description": "Su ficha empresarial en ADEX presenta pavitos Hybrid Converter y gallinitas Novogen Brown. Consulta los requisitos y el calendario de suministro.",
+    "sources": [
+      "https://www.b2peru.pe/directorioadex/es/company/6981/corporacion-de-granjas-del-peru-sac"
+    ],
+    "evidence": "Registro comercial de la asociación ADEX: identidad, distrito Los Olivos y ambos productos. La web de la empresa no fue accesible. No se afirman existencias.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Avícola Neil",
+    "country": "Perú",
+    "location": "Perú · consultar localidad",
+    "kind": "Distribuidor de aves",
+    "tags": [
+      "Pollitos",
+      "Aves vivas",
+      "Engorde"
+    ],
+    "description": "Anuncia aves vivas y pollitos bebé de engorde. Confirma la localidad de origen, el lote y la entrega antes de reservar.",
+    "sources": [
+      "https://avicolaneil.com/"
+    ],
+    "evidence": "Web propia indexada: catálogo de aves vivas, pollitos bebé y distribución en Perú. No se recuperó domicilio verificable; la apertura directa agotó el tiempo.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "INCUBASD – Incubadora Santo Domingo",
+    "country": "Ecuador",
+    "location": "Santo Domingo de los Tsáchilas",
+    "kind": "Incubadora",
+    "tags": [
+      "Pollitos",
+      "Criollas",
+      "Doble propósito"
+    ],
+    "description": "Ofrece incubación y comercialización de pollitos criollos, criollos mejorados y gigante colombiano. Consulta lotes y condiciones de entrega.",
+    "sources": [
+      "https://incubadorasantodom.wixsite.com/website"
+    ],
+    "evidence": "Sitio de la empresa: identidad, localidad, incubación y venta de pollitos BB.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Distribuidora Avícola Cevallos",
+    "country": "Ecuador",
+    "location": "Santo Domingo de los Tsáchilas",
+    "kind": "Distribuidor de aves",
+    "tags": [
+      "Pollitos",
+      "Criollas"
+    ],
+    "description": "Su catálogo incluye pollitos bebé y criollos. Consulta la línea, edad y disponibilidad con la distribuidora antes de desplazarte.",
+    "sources": [
+      "https://avicolacevallossd.wixsite.com/avicolacevallos"
+    ],
+    "evidence": "Sitio propio identifica empresa familiar en Santo Domingo y categorías de pollitos. No se asume que críe todas las aves que distribuye.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Papa’s Poultry",
+    "country": "Estados Unidos",
+    "location": "Redding, California",
+    "kind": "Granja o criadero",
+    "tags": [
+      "Pollitos",
+      "Huevos fértiles",
+      "Aves recriadas"
+    ],
+    "description": "Cría aves de razas patrimoniales y ofrece pollitos, huevos para incubar y pollitas recriadas. La colección «Available Now» estaba vacía al consultar; confirma la próxima oferta.",
+    "sources": [
+      "https://papaspoultry.com/",
+      "https://papaspoultry.com/pages/about-us"
+    ],
+    "evidence": "Identidad y localidad en página propia; catálogo y tarifas diferencian pollitos y huevos. La oferta de recogida local tiene fecha 12/02/2026 y no prueba existencias actuales.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Avícola Agrícola Tu Mascotería",
+    "country": "Chile",
+    "location": "Valdivia, Región de los Ríos",
+    "kind": "Distribuidor de aves",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Patos"
+    ],
+    "description": "Ofrece pollitas de postura, pollitos de engorde y patitos, además de aves de ornamento. Consulta edades y variedades disponibles.",
+    "sources": [
+      "https://www.avicolagricola.cl/que-hacemos",
+      "https://www.avicolagricola.cl/contacto"
+    ],
+    "evidence": "Catálogo propio enumera venta de aves y domicilio de Valdivia. Se clasifica como distribuidor, no como incubadora propia.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Avifran – Avicultura Francesa",
+    "country": "Brasil",
+    "location": "Distrito Federal · consultar punto de suministro",
+    "kind": "Incubadora y red de distribución",
+    "tags": [
+      "Pollitos",
+      "Camperos"
+    ],
+    "description": "Publica un catálogo de razas y una red para comprar pollitos. Consulta qué distribuidor corresponde a tu localidad y las condiciones del lote.",
+    "sources": [
+      "https://www.avifran.com.br/distribuidores.php",
+      "https://www.avifran.com.br/"
+    ],
+    "evidence": "La red oficial explica cómo comprar pollitos Avifran. Sus publicaciones identifican sede e incubación en Brasilia; no se cuentan sus distribuidores o incubadoras como empresas nuevas.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Granja São José – Amparo",
+    "country": "Brasil",
+    "location": "Amparo, São Paulo",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Huevos fértiles"
+    ],
+    "description": "Produce pollitos de un día y huevos fértiles. Consulta las líneas y las condiciones de suministro desde su sede de Amparo.",
+    "sources": [
+      "https://granjasaojose.com.br/"
+    ],
+    "evidence": "Página propia indexada: identidad, domicilio Amparo, productos y entregas a clientes. La apertura directa devolvió 403. No confundir con la granja homónima de huevos de mesa en Palmital.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Mercoaves",
+    "country": "Brasil",
+    "location": "Bom Princípio, Rio Grande do Sul",
+    "kind": "Incubadora y proveedor de genética",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras"
+    ],
+    "description": "Su catálogo presenta pollitas de un día y líneas de postura Bovans e ISA. Consulta la presentación, cantidades y representante de tu zona.",
+    "sources": [
+      "https://mercoaves.com.br/"
+    ],
+    "evidence": "Página propia: domicilio en Bom Princípio, producto pintos de un día y oferta de líneas de postura. Sus cinco unidades se cuentan una sola vez.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Pluma Genetics",
+    "country": "Brasil",
+    "location": "Birigui, São Paulo",
+    "kind": "Proveedor de genética avícola",
+    "tags": [
+      "Ponedoras",
+      "Dekalb",
+      "Hisex"
+    ],
+    "description": "Comercializa aves de postura para productores, con líneas Dekalb e Hisex. Consulta edades y formato de suministro.",
+    "sources": [
+      "https://plumagenetics.com/sobre",
+      "https://plumagenetics.com/contato"
+    ],
+    "evidence": "Web propia: venta de aves a productores y domicilio Birigui; corroboración como distribuidor en Hendrix. Grupo Pluma se cuenta una sola vez.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Granja Santa Isabel",
+    "country": "España",
+    "location": "Córdoba",
+    "kind": "Granja e incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Huevos fértiles"
+    ],
+    "description": "Ofrece gallinas de raza, ponedoras, pollitos de un día y huevos para incubar. Consulta las opciones disponibles de cada raza.",
+    "sources": [
+      "https://www.granjasantaisabel.com/pollos-de-un-dia.php",
+      "https://www.granjasantaisabel.com/contacto.php"
+    ],
+    "evidence": "Web propia: venta de pollitos desde un día, tienda de gallinas y huevos para incubar y contacto en Córdoba.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Granja Pinseque – Grapisa",
+    "country": "España",
+    "location": "Pinseque, Zaragoza",
+    "kind": "Granja de recría",
+    "tags": [
+      "Ponedoras",
+      "Aves recriadas"
+    ],
+    "description": "Cría y vende aves vivas para particulares y profesionales, con venta directa y distribuidores. Consulta el punto de compra y el lote disponible.",
+    "sources": [
+      "https://www.granjapinseque.es/aves"
+    ],
+    "evidence": "Página propia de aves: compra para particulares y profesionales y dirección Pinseque. Grapisa y Granja Pinseque son una única ficha.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Agricentro Los Abuelos",
+    "country": "España",
+    "location": "Villamartín, Cádiz",
+    "kind": "Criador y distribuidor de aves",
+    "tags": [
+      "Gallinas de raza",
+      "Huevos fértiles",
+      "Patos"
+    ],
+    "description": "Ofrece gallinas de distintas razas, aves de corral y huevos fertilizados para incubar. Consulta razas y edades disponibles.",
+    "sources": [
+      "https://www.agricentrolosabuelos.com/"
+    ],
+    "evidence": "Web propia identifica venta e incubación de huevos y venta de gallinas y aves de corral en Villamartín. Sus dos almacenes cuentan como un proveedor.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Piensos y Cereales Romera",
+    "country": "España",
+    "location": "Alginet, Valencia",
+    "kind": "Distribuidor de aves",
+    "tags": [
+      "Ponedoras",
+      "Codornices",
+      "Patos"
+    ],
+    "description": "Su sección de animales vivos incluye gallinas, pollos, codornices, patos y otras aves de corral. Consulta la disponibilidad en el establecimiento.",
+    "sources": [
+      "https://piensosromera.com/venta-animales-vivos/"
+    ],
+    "evidence": "Catálogo propio de animales vivos y dirección Alginet. No se reproducen sus garantías sanitarias como comprobación independiente.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Álvarez Avícola",
+    "country": "España",
+    "location": "Galicia · consultar localidad de recogida",
+    "kind": "Granja de recría y distribuidor",
+    "tags": [
+      "Ponedoras",
+      "Pollos",
+      "Pavos"
+    ],
+    "description": "Distribuye aves de corral al por mayor para comercios y explotaciones, incluidas gallinas ponedoras, pollos y pavos. Confirma si atiende tu tipo de pedido.",
+    "sources": [
+      "https://www.alvarezavicola.es/"
+    ],
+    "evidence": "Web propia: recría, venta mayorista y cobertura Galicia. No se afirma venta minorista ni una localidad de recogida no comprobada.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Finca Casarejo",
+    "country": "España",
+    "location": "Millanes, Cáceres",
+    "kind": "Criador y distribuidor de aves",
+    "tags": [
+      "Gallinas de raza",
+      "Patos",
+      "Ornamentales"
+    ],
+    "description": "Su tienda presenta gallinas de raza y otras aves vivas. Consulta condiciones de venta, documentación y transporte para tu localidad.",
+    "sources": [
+      "https://www.fincacasarejo.com/",
+      "https://www.tiendanimal.es/vendedores-marketplace/finca-casarejo/"
+    ],
+    "evidence": "Web propia identifica venta de aves, catálogo y contacto Cáceres; ficha de vendedor FINCA CASAREJO SL en Tiendanimal confirma Millanes. No se trasladan valoraciones o cifras de ventas.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Pitas y Patos",
+    "country": "España",
+    "location": "Oleiros, A Coruña",
+    "kind": "Granja o criadero",
+    "tags": [
+      "Gallinas de raza",
+      "Patos"
+    ],
+    "description": "Cría gallinas y anátidas y admite consultas sobre animales y pedidos de huevos. Confirma expresamente si los huevos ofertados sirven para incubar y la disponibilidad de cada raza.",
+    "sources": [
+      "https://www.pitasypatos.com/contacto/"
+    ],
+    "evidence": "Página propia: identidad, localidad Oleiros y consultas para comprar animales o huevos. No se deduce fertilidad de todos sus huevos; se pide confirmación.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Murray McMurray Hatchery",
+    "country": "Estados Unidos",
+    "location": "Webster City, Iowa",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Su catálogo incluye pollitos de distintas razas y otras aves de corral. Consulta fechas de nacimiento y condiciones de suministro en su web oficial.",
+    "sources": [
+      "https://www.mcmurrayhatchery.com/",
+      "https://www.mcmurrayhatchery.com/contact.html"
+    ],
+    "evidence": "Catálogo propio de pollitos y aves; página de contacto identifica Webster City. No se garantiza entrega internacional.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Cackle Hatchery",
+    "country": "Estados Unidos",
+    "location": "Lebanon, Missouri",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Patos"
+    ],
+    "description": "Ofrece pollitos de razas de puesta, engorde y ornamentales, además de otras aves. La web señala temporada de nacimiento; comprueba las próximas fechas.",
+    "sources": [
+      "https://www.cacklehatchery.com/"
+    ],
+    "evidence": "Página propia: Lebanon, catálogo de aves y calendario; varias categorías fuera de temporada al revisar. No se afirma stock actual.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Hoover’s Hatchery",
+    "country": "Estados Unidos",
+    "location": "Rudd, Iowa",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Pavos"
+    ],
+    "description": "Vende pollitos y otras aves de corral, con categorías de puesta, doble propósito y engorde. Confirma la sede de salida y el calendario del pedido.",
+    "sources": [
+      "https://hoovershatchery.com/"
+    ],
+    "evidence": "Web propia con catálogo y domicilio Rudd. Incluye marcas Privett y Moyer; no se cuentan por separado para evitar duplicar el mismo grupo.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Ideal Poultry",
+    "country": "Estados Unidos",
+    "location": "Cameron, Texas",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Patos"
+    ],
+    "description": "Su catálogo comercial incluye pollitos, bantams y otras aves de corral. Consulta fechas, cantidades y líneas antes de reservar.",
+    "sources": [
+      "https://www.idealpoultry.com/"
+    ],
+    "evidence": "Web propia declara cría y venta de aves y dirección Cameron. No se copian cifras de producción ni garantías.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Metzer Farms",
+    "country": "Estados Unidos",
+    "location": "Estados Unidos · consultar centro de salida",
+    "kind": "Granja e incubadora",
+    "tags": [
+      "Patos",
+      "Ocas",
+      "Huevos fértiles"
+    ],
+    "description": "Ofrece patitos, ocas y otras aves, además de huevos de pato para incubar. Confirma la procedencia del lote y las restricciones de entrega.",
+    "sources": [
+      "https://www.metzerfarms.com/"
+    ],
+    "evidence": "Catálogo propio de patos, ocas, pollos y duck hatching eggs; web menciona centros en Estados Unidos. No se presupone exportación.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Freedom Ranger Hatcheries",
+    "country": "Estados Unidos",
+    "location": "Condado de Lancaster, Pensilvania",
+    "kind": "Grupo de incubadoras",
+    "tags": [
+      "Aves de un día",
+      "Engorde",
+      "Huevos fértiles"
+    ],
+    "description": "Ofrece pollitos de engorde y puesta, otras aves y huevos para incubar. Su familia de incubadoras se presenta como un único proveedor en este directorio.",
+    "sources": [
+      "https://www.freedomrangerhatchery.com/"
+    ],
+    "evidence": "Web propia identifica oferta comercial y Lancaster County, PA. Incluye Fifth Day Farm, Blue Banty Farm y Hillside Hatchery; no se cuentan como altas independientes.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Mt. Healthy Hatcheries",
+    "country": "Estados Unidos",
+    "location": "Cincinnati, Ohio",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Pavos"
+    ],
+    "description": "Su catálogo presenta pollitos de un día, pavos y otras aves. Consulta el calendario y los requisitos del pedido.",
+    "sources": [
+      "https://www.mthealthy.com/"
+    ],
+    "evidence": "Web propia: venta de aves de un día y dirección Cincinnati, Ohio.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Welp Hatchery",
+    "country": "Estados Unidos",
+    "location": "Bancroft, Iowa",
+    "kind": "Incubadora y proveedor avícola",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Ofrece pollitos para granjas y corrales familiares. Consulta el catálogo, la fecha de nacimiento y las condiciones de entrega.",
+    "sources": [
+      "https://welphatchery.com/",
+      "https://welphatchery.com/pages/ordering-info"
+    ],
+    "evidence": "Web propia: oferta de pollitos y origen Bancroft, Iowa. No se presentan sus sedes o líneas como proveedores distintos. La página de pedidos identifica a Rock Hill Genetics como comprador en marzo de 2024; se trata como alias del mismo proveedor.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Belt Hatchery",
+    "country": "Estados Unidos",
+    "location": "Fresno, California",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Engorde"
+    ],
+    "description": "Su catálogo incluye pollitos de razas estándar, pesadas y especiales. La página conserva avisos de verano de 2026; confirma el calendario vigente.",
+    "sources": [
+      "https://www.belthatchery.com/"
+    ],
+    "evidence": "Página propia identifica Fresno y venta de pollitos; actualización visible 11/06/2026. Avisos de festivos de junio y julio no equivalen a disponibilidad en noviembre.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Townline Hatchery",
+    "country": "Estados Unidos",
+    "location": "Zeeland, Michigan",
+    "kind": "Incubadora",
+    "tags": [
+      "Aves de un día",
+      "Ponedoras",
+      "Pavos"
+    ],
+    "description": "Ofrece aves de un día de sus reproductores, incluidos pollitos, patitos y pavitos. No anuncia venta directa de aves adultas; consulta el calendario.",
+    "sources": [
+      "https://townlinehatchery.com/",
+      "https://townlinehatchery.com/shop/"
+    ],
+    "evidence": "Web propia: localidad Zeeland, reproductores propios, catálogo y aclaración de que vende aves de un día. No confundir sus puntos de recogida con otra incubadora.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Dunlap Hatchery",
+    "country": "Estados Unidos",
+    "location": "Caldwell, Idaho",
+    "kind": "Incubadora",
+    "tags": [
+      "Pollitos",
+      "Patos",
+      "Huevos fértiles"
+    ],
+    "description": "Ofrece pollitos, patos, pavos y huevos para incubar. Sus condiciones diferencian recogida y envío; consulta el mínimo y la zona de transporte.",
+    "sources": [
+      "https://www.dunlaphatcherypoultry.com/",
+      "https://www.dunlaphatcherypoultry.com/contact/"
+    ],
+    "evidence": "Catálogo propio y ubicación Caldwell. Web anuncia mínimos distintos según especie; no se fija un mínimo universal.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Schlecht Hatchery",
+    "country": "Estados Unidos",
+    "location": "Miles, Iowa",
+    "kind": "Incubadora",
+    "tags": [
+      "Pollitos",
+      "Patos",
+      "Ponedoras"
+    ],
+    "description": "Su catálogo incluye pollitos de puesta y engorde y patos. La web indica agotada la temporada 2026; consulta la siguiente antes de encargar aves.",
+    "sources": [
+      "https://schlechthatchery.com/",
+      "https://schlechthatchery.com/contact-us"
+    ],
+    "evidence": "Web propia: oferta y contacto Miles; aviso explícito de temporada 2026 agotada y referencia a 2027. Documentación comercial, no stock.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Jenks Hatchery",
+    "country": "Estados Unidos",
+    "location": "Tangent, Oregón",
+    "kind": "Incubadora comercial",
+    "tags": [
+      "Pollitos",
+      "Venta profesional"
+    ],
+    "description": "Trabaja con clientes comerciales y ha dejado la venta minorista y a tiendas de pienso. Su web dirige las solicitudes de 3.000 o más pollitos a un formulario específico.",
+    "sources": [
+      "https://jenkshatchery.com/",
+      "https://jenkshatchery.com/pages/our-history"
+    ],
+    "evidence": "Web propia anuncia fin de venta retail/feedstore y atención comercial 3000+; historia identifica Tangent. No se ofrece como opción de pequeños lotes.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Incubadora El Junquillo S. de R.L.",
+    "country": "Honduras",
+    "location": "Tatumbla, Francisco Morazán",
+    "kind": "Proveedor avícola registrado",
+    "tags": [
+      "Aves vivas"
+    ],
+    "description": "La constancia de ONCAE identifica a la empresa como proveedor con rubro de pollos vivos. Consulta su oferta comercial actual; el registro no confirma lotes ni una certificación sanitaria.",
+    "sources": [
+      "https://oncae.gob.hn/wp-content/uploads/2025/08/6743-2025-INCUBADORA-EL-JUNQUILLO-S.-DE-R.L.-46521.pdf"
+    ],
+    "evidence": "Registro oficial 6743-2025: identidad, domicilio Tatumbla y rubro pollos vivos en el anexo. Vigencia documental indicada hasta 04/08/2028; no acredita existencias ni sanidad. No hay web comercial propia comprobada.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Sunnyside Hatchery",
+    "country": "Estados Unidos",
+    "location": "Horicon, Wisconsin",
+    "kind": "Incubadora",
+    "tags": [
+      "Pollitos",
+      "Ponedoras",
+      "Patos"
+    ],
+    "description": "Ofrece aves de puesta y engorde, patitos y pavitos. Su catálogo diferencia temporadas y zonas; consulta antes de solicitar un envío.",
+    "sources": [
+      "https://www.sunnysidehatchery.com/",
+      "https://www.sunnysidehatchery.com/pricing.aspx"
+    ],
+    "evidence": "Web propia: domicilio Horicon, productos y catálogo 2026. Área principal Wisconsin y estados cercanos, otras zonas a consultar.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Hoffman Hatchery",
+    "country": "Estados Unidos",
+    "location": "Gratz, Pensilvania",
+    "kind": "Incubadora",
+    "tags": [
+      "Pollitos",
+      "Patos",
+      "Pavos"
+    ],
+    "description": "Su catálogo incluye pollitos de razas populares y raras, patitos, ocas y pavitos. Consulta disponibilidad y condiciones de pedido.",
+    "sources": [
+      "https://hoffmanhatchery.com/",
+      "https://hoffmanhatchery.com/contact.html"
+    ],
+    "evidence": "Web propia de la incubadora y contacto Gratz. Blyler Hatchery es nombre anterior, no otra ficha.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Sand Hill Preservation Center",
+    "country": "Estados Unidos",
+    "location": "Condado de Clinton, Iowa",
+    "kind": "Granja de conservación y cría",
+    "tags": [
+      "Gallinas de raza",
+      "Patos",
+      "Aves de corral"
+    ],
+    "description": "Mantiene reproductores propios y ofrece aves de corral de razas de conservación. Consulta el formulario y las condiciones; no garantiza una fecha exacta de nacimiento.",
+    "sources": [
+      "https://www.sandhillpreservation.com/"
+    ],
+    "evidence": "Web propia identifica granja en Clinton County, Iowa, reproductores para todas las aves ofrecidas y formulario de aves 2026. No tiene compra online convencional.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Greenfire Farms",
+    "country": "Estados Unidos",
+    "location": "Norte de Florida",
+    "kind": "Granja o criadero",
+    "tags": [
+      "Gallinas de raza",
+      "Pollitos",
+      "Doble propósito"
+    ],
+    "description": "Cría reproductores propios de razas poco comunes y vende pollitos a través de su catálogo. Consulta la raza y las condiciones de suministro.",
+    "sources": [
+      "https://greenfirefarms.com/",
+      "https://greenfirefarms.com/pages/about-us"
+    ],
+    "evidence": "Web propia sitúa granja en norte de Florida, identifica reproductores propios y catálogo de pollitos. No se incluyen finalidades de combate.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Alchemist Farm",
+    "country": "Estados Unidos",
+    "location": "Sebastopol, California",
+    "kind": "Granja e incubadora",
+    "tags": [
+      "Gallinas de raza",
+      "Pollitos"
+    ],
+    "description": "Ofrece pollitos de distintas líneas y un calendario de nacimientos. La web anuncia la apertura de reservas de la temporada 2027 el 21 de noviembre; comprueba el estado antes de encargar.",
+    "sources": [
+      "https://www.alchemistfarm.com/chick-calendar/",
+      "https://www.alchemistfarm.com/faq/"
+    ],
+    "evidence": "Calendario propio: reservas 2027 desde 21/11; FAQ y artículos propios identifican Sebastopol. No se afirma reserva abierta el 15/11 ni stock inmediato.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  },
+  {
+    "name": "Feather Lover Farms",
+    "country": "Estados Unidos",
+    "location": "Rocklin, California · dirección postal",
+    "kind": "Granja o criadero",
+    "tags": [
+      "Gallinas de raza",
+      "Aves de un día"
+    ],
+    "description": "Vende pollitos de un día de razas ornamentales y de puesta. Sus pedidos se envían; la web no admite recogida en la granja. Consulta fechas y condiciones.",
+    "sources": [
+      "https://featherloverfarms.com/collections/baby-chicks-for-sale",
+      "https://featherloverfarms.com/pages/contact-us"
+    ],
+    "evidence": "Catálogo propio de pollitos y contacto postal en Rocklin. La ubicación de la granja en Loomis solo aparece en terceros, por eso no se usa. Tarifas inconsistentes entre páginas: no se reproducen.",
+    "reviewed": "2026-11-15",
+    "verification": "documental",
+    "contacted": false
+  }
+]
