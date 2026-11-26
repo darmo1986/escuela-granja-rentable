@@ -162,8 +162,12 @@
     }));
     const collectionLinks = document.querySelectorAll('.merch .tipos a');
     const status = document.getElementById('resultado-merch');
+    const categories = new Map([
+      ['camisetas', 'camiseta'], ['sudaderas', 'sudadera'], ['tazas', 'taza'], ['posters', 'poster'],
+      ['vasos', 'vaso'], ['pegatinas', 'pegatina'], ['bolsas', 'bolsa'], ['gorras', 'gorra']
+    ]);
     function filterProducts() {
-      const words = normalize(search.value).replace(/\btazas\b/g, 'taza').trim().split(/\s+/).filter(Boolean);
+      const words = normalize(search.value).trim().split(/\s+/).filter(Boolean).map(word => categories.get(word) ?? word);
       let count = 0;
       for (const { card, name } of products) {
         const matches = words.every(word => name.includes(word));
