@@ -60,3 +60,15 @@ Deja una hoja sencilla para quien te sustituya: ubicación del equipo, controles
 Un polluelo que no puede mantenerse en pie, respira con dificultad o empeora necesita valoración veterinaria pronta. Registra cuántos están afectados y desde cuándo. La [guía de señales de enfermedad](codornices-senales-enfermedad.html) explica qué información reunir.
 
 Al final de la semana, revisa los registros antes de ampliar el alojamiento o modificar la calefacción. La edad es un dato útil, pero no sustituye la observación del desarrollo y de las condiciones reales.
+
+
+## Material que te hace falta para preparar la criadora de codornices
+
+Revisa el tamaño y la seguridad de cada equipo antes de instalar a los polluelos.
+
+- [Placa de calor K&H pequeña de 25 W para pollitos](../tienda/p/placa-de-calor-k-h-pequena-de-25-w-para-pollitos/) — fuente de calor para la criadora; comprueba su adecuación al tamaño de los polluelos.
+- [Kit de criadora para pollitos con placa calefactora](../tienda/p/kit-de-criadora-para-pollitos-con-placa-calefactora/) — conjunto para organizar la zona de cría, con calor y espacio para apartarse.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — complemento nutricional de apoyo, solo si lo indica un profesional.
+- [Set de comedero y bebedero para pollitos 2 en 1](../tienda/p/set-de-comedero-y-bebedero-para-pollitos-2-en-1/) — conjunto para ofrecer alimento y agua; verifica que no exista riesgo de ahogamiento.
+
+[Ver todo el material para la cría de codornices →](../tienda/)

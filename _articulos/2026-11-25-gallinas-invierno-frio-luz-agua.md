@@ -54,3 +54,13 @@ La cama merece atención extra en invierno: gruesa, seca y limpia. Añade paja o
 El invierno pide una rutina corta pero constante. Cada día, comprueba el agua (líquida y limpia), la comida, que no haya goteras ni corrientes nuevas, y echa un vistazo a las crestas y barbillas: si se ponen pálidas o con las puntas oscuras, puede ser principio de congelación, y conviene revisar la ventilación y la humedad antes que nada. Las perchas anchas y planas ayudan, porque la gallina se tapa los dedos con el cuerpo al dormir, y las perchas de metal frío son mala idea en invierno.
 
 También es el momento de mirar el lote con calma: gallinas que se quedan apartadas, que no comen o que pierden plumas fuera de la muda merecen una revisión más atenta, y si algo no cuadra, la llamada al veterinario no debe esperar a la primavera. Con el gallinero seco, el agua líquida y la luz bajo control, el invierno pasa sin dramas: las gallinas lo llevan mejor de lo que crees, y tú también.
+
+## Material para mantener el agua líquida en invierno
+
+Compara estos equipos para proteger el suministro de agua frente al frío y respeta las instrucciones de seguridad eléctrica.
+
+- [Bebedero calefactado Farm Innovators HB-60P de dos galones](../tienda/p/bebedero-calefactado-farm-innovators-hb-60p-de-dos-galones/) — bebedero con calefacción incorporada.
+- [Base antihielo universal K&H de 80 W para bebederos y cubos](../tienda/p/base-antihielo-universal-k-h-de-80-w-para-bebederos-y-cubos/) — base calefactora para recipientes compatibles.
+- [Funda aislante RentACoop con banda calefactora, talla grande](../tienda/p/funda-aislante-rentacoop-con-banda-calefactora-talla-grande/) — funda con calefacción para depósitos compatibles.
+
+[Ver todo el material para el gallinero en invierno →](../tienda/)

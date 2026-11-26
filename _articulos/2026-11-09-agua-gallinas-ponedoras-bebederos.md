@@ -498,3 +498,14 @@ Después de instalarlo, mide el agua utilizada, revisa los puntos de bebida y re
 **Nota editorial:** Esta guía no sustituye un análisis de calidad de agua, una evaluación veterinaria ni las obligaciones sanitarias aplicables en cada localidad.
 
 Otra guía del mismo tema: [agua en verano: calidad y cantidad](agua-verano-gallinas-calidad-cantidad.html).
+
+## Material para elegir los bebederos de tus ponedoras
+
+Estos modelos permiten comparar capacidades y sistemas de bebida según el lote.
+
+- [Bebedero colgante Harris Farms de 3,5 galones para gallinas](../tienda/p/bebedero-colgante-harris-farms-de-3-5-galones-para-gallinas/) — recipiente colgante para suministrar agua.
+- [Bebedero RentACoop de 5 galones con 4 copas y tetinas](../tienda/p/bebedero-rentacoop-de-5-galones-con-4-copas-y-tetinas/) — depósito con cuatro puntos de bebida.
+- [Copas bebedero automáticas Lil'Clucker para gallinas (5 uds.)](../tienda/p/copas-bebedero-automaticas-lil-clucker-para-gallinas-5-uds/) — copas para montar en un suministro compatible.
+- [Bebedero elevado RentACoop de 2 galones, con copas y tetinas](../tienda/p/bebedero-elevado-rentacoop-de-2-galones-con-copas-y-tetinas/) — bebedero elevado con dos tipos de acceso al agua.
+
+[Ver todo el material para los bebederos →](../tienda/)

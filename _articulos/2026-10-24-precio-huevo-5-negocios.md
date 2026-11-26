@@ -116,3 +116,15 @@ Y recuerda la base de todo: gallinas sanas, bien comidas y con
 buen manejo. Sin eso no hay huevos, ni pollitas, ni nada. La base
 está en [qué comen las gallinas ponedoras](alimentacion-gallinas-ponedoras.html)
 y en el curso gratis de la web.
+
+
+## Material que te hace falta para organizar la venta de huevos
+
+Incluye los envases y el material de organización en tus cuentas antes de fijar precios.
+
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — envases para preparar docenas.
+- [Etiquetas personalizadas para hueveras, hechas en EE. UU. (40 a 5.000)](../tienda/p/etiquetas-personalizadas-para-hueveras-hechas-en-ee-uu-40-a-5-000/) — etiquetas para identificar envases, conforme a las normas aplicables.
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — cuaderno para registrar producción y gastos.
+- [Cinco carteles con estacas para anunciar huevos frescos](../tienda/p/cinco-carteles-con-estacas-para-anunciar-huevos-frescos/) — carteles para anunciar la disponibilidad de huevos donde esté permitido.
+
+[Ver todo el material para la venta de huevos →](../tienda/)

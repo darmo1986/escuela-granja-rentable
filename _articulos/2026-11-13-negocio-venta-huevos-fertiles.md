@@ -64,3 +64,15 @@ Confirma con los servicios competentes qué requisitos corresponden a la producc
 Antes de ampliar reproductores, prepara una oferta pequeña con calendario y ficha de lote. Registra cuántos huevos solicitan, cuántos puedes seleccionar y cuánto trabajo exige cada pedido. Solicita resultados posteriores al comprador con su contexto, sin mezclarlos con tus pruebas como si todos fueran comparables.
 
 Al cerrar el ciclo, revisa margen, repetición e incidencias. Si los clientes prefieren recibir animales ya nacidos, compara la inversión y el riesgo con [vender pollitos de genética](negocio-venta-pollitos-genetica.html). Son dos productos distintos y conviene llevar sus cuentas por separado.
+
+
+## Material que te hace falta para organizar los huevos para incubar
+
+Estos materiales ayudan a preparar los pedidos y documentar las pruebas de incubación.
+
+- [Estuches de pulpa para una docena de huevos grandes, 12 unidades](../tienda/p/estuches-de-pulpa-para-una-docena-de-huevos-grandes-12-unidades/) — envases para separar huevos por lote; no garantizan protección durante el envío.
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — equipo para realizar tandas de prueba.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — instrumento para observar el desarrollo embrionario durante la incubación.
+- [Etiquetas personalizadas para hueveras, hechas en EE. UU. (40 a 5.000)](../tienda/p/etiquetas-personalizadas-para-hueveras-hechas-en-ee-uu-40-a-5-000/) — etiquetas para identificar procedencia y fechas de recogida.
+
+[Ver todo el material para la incubación →](../tienda/)

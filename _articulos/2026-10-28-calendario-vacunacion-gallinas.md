@@ -70,3 +70,14 @@ Lleva un cuaderno (o una hoja en el móvil) con: fecha, vacuna, lote, vía de ap
 - Copiar el calendario de otra granja o de internet en vez de pedir el tuyo.
 
 Un gallinero vacunado con un plan hecho para tu zona es un gallinero tranquilo: habla con tu veterinario antes de que lleguen las aves.
+
+## Material para organizar el registro y la bioseguridad
+
+Estos materiales ayudan a registrar las actuaciones y mantener la higiene, sin sustituir el plan del veterinario.
+
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — para anotar fechas, lotes y actuaciones sanitarias.
+- [Guantes de nitrilo desechables 6 mil, negros, sin látex](../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/) — barrera de higiene para tareas de manejo.
+- [Respirador desechable 3M 8210 N95, paquete de 20](../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/) — protección respiratoria frente a partículas cuando el equipo sea adecuado y esté bien ajustado.
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — para preparar un espacio separado con condiciones apropiadas.
+
+[Ver todo el material para la bioseguridad →](../tienda/)

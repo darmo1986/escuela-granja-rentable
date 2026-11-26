@@ -475,3 +475,13 @@ Si estás empezando, en los [**ebooks de Granja Rentable**](https://granjarentab
 **Metodología editorial:** Las cifras de edad de puesta, incubación, altura del alojamiento y composición de los huevos proceden de las fuentes citadas y son referencias generales, no datos medidos en una granja concreta. Las fórmulas de costes están pensadas para introducir los datos reales del lector; el artículo no usa precios ni producciones supuestas.
 
 **Nota editorial:** Esta guía es divulgativa. No sustituye la valoración de un veterinario, el asesoramiento técnico ni la consulta a la administración sobre el registro de explotaciones y la venta de huevos en tu comunidad autónoma o país.
+
+## Material para incubar huevos de codorniz
+
+Si empiezas con huevos fértiles, compara estos equipos y confirma su compatibilidad antes de comprar.
+
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — incubadora para preparar tandas con los accesorios compatibles.
+- [Bandeja para 48 huevos de codorniz compatible con Nurture Right 360](../tienda/p/bandeja-para-48-huevos-de-codorniz-compatible-con-nurture-right-360/) — bandeja específica para huevos de codorniz en ese modelo.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para observar el interior de los huevos durante la incubación.
+
+[Ver todo el material para incubar →](../tienda/)

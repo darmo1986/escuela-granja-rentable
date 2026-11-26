@@ -482,3 +482,14 @@ Las fórmulas económicas de este artículo son relaciones aritméticas generale
 **Metodología editorial:** todas las fórmulas están planteadas para introducir datos reales del lector. No se han utilizado precios de mercado, consumos, rendimientos ni beneficios hipotéticos. Los costes deben asignarse al periodo y actividad correspondientes, evitando duplicidades.
 
 **Nota editorial:** Este contenido es divulgativo. El tratamiento fiscal y contable puede variar según el país, el régimen de actividad y la legislación aplicable.
+
+
+## Material que te hace falta para registrar los costes de cada docena
+
+Incluye el coste de envases y equipos en tus registros y mide las pérdidas de pienso.
+
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — envases cuyo coste puedes imputar a las docenas vendidas.
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — cuaderno para anotar producción, gastos y ventas.
+- [Comedero de pedal Grandpa's Feeders 20 lb antirratas](../tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/) — comedero de pedal para limitar el acceso al pienso de otros animales; registra el desperdicio real.
+
+[Ver todo el material para la gestión del gallinero →](../tienda/)

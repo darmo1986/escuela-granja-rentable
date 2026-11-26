@@ -61,3 +61,14 @@ Registra huevos con cáscara anormal por separado, con fecha y lote. No atribuya
 La fotografía de huevos del artículo es ilustrativa: no demuestra la producción, calidad o condiciones sanitarias de tu lote. Aplica siempre las indicaciones de higiene y comercialización que correspondan a tu actividad.
 
 Al revisar la semana, elige un problema concreto y una forma de comprobar si se ha corregido. Para profundizar, sigue la [alimentación por etapas](codornices-alimentacion-por-etapas.html) y las [señales que requieren consulta](codornices-senales-enfermedad.html).
+
+
+## Material que te hace falta para la rutina de las codornices ponedoras
+
+Estos materiales sirven para organizar la recogida y el manejo diario, sin sustituir una dieta completa.
+
+- [Estuches de pulpa para 12 huevos de codorniz, paquete de 50](../tienda/p/estuches-de-pulpa-para-12-huevos-de-codorniz-paquete-de-50/) — envases para clasificar y preparar docenas de huevos de codorniz.
+- [Comedero de suelo Double-Tuf para pollitos, 20 cm](../tienda/p/comedero-de-suelo-double-tuf-para-pollitos-20-cm/) — recipiente para ofrecer pienso si su tamaño resulta apropiado para el lote.
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — complemento nutricional de apoyo, cuya necesidad debe valorar un profesional.
+
+[Ver todo el material para las codornices →](../tienda/)

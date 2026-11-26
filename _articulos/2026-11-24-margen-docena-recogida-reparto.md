@@ -50,3 +50,15 @@ Si sumar pedidos obliga a recorrer otra zona, vuelve a hacer la cuenta con los k
 Incluye cada gasto una sola vez. Si ya estás cargando el embalaje en el coste común, sácalo de ahí para compararlo por canal o deja de restarlo en la columna de envases. Anota aparte los cobros pendientes para controlar la caja.
 
 Empieza por calcular [tu coste real por docena](cuanto-cuesta-producir-docena-huevos.html) y revisa [cómo se organiza la venta de huevos](negocio-venta-huevos-consumo.html). Con estas dos cifras puedes probar una ruta agrupada durante unas semanas y decidir con entregas reales.
+
+
+## Material que te hace falta para preparar y registrar cada docena
+
+Ten en cuenta el coste de estos materiales al comparar tus canales de venta.
+
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — envases para preparar las docenas de cada pedido.
+- [Organizador de refrigerador con cajones para 40 huevos](../tienda/p/organizador-de-refrigerador-con-cajones-para-40-huevos/) — organizador para separar existencias cuando la refrigeración corresponda.
+- [Bolsa grande de recogida para huevos de gallina y pato](../tienda/p/bolsa-grande-de-recogida-para-huevos-de-gallina-y-pato/) — bolsa para facilitar la recogida de huevos.
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — cuaderno para anotar gastos, entregas y producción.
+
+[Ver todo el material para la recogida y venta de huevos →](../tienda/)

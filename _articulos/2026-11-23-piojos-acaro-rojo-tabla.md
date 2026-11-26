@@ -30,3 +30,14 @@ Lo que mata al ácaro del gallinero no sirve contra el piojo del ave, y al revé
 ## Limpia antes de tratar
 
 Con el gallinero sucio ningún tratamiento rinde. Primero retira la cama, limpia y desinfecta según la [guía de bioseguridad en 10 puntos](bioseguridad-10-puntos-granja.html), y después aplica el producto donde toca: al ave o al local, según lo que hayas encontrado.
+
+## Material para la revisión de productos y la higiene del gallinero
+
+Consulta estas fichas como referencia de catálogo, sin sustituir la identificación del parásito ni el criterio veterinario.
+
+- [Tierra de diatomeas Harris de 10 lb, con espolvoreador](../tienda/p/tierra-de-diatomeas-harris-de-10-lb-con-espolvoreador/) — producto mineral del catálogo; comprueba su uso autorizado y evita inhalar polvo.
+- [Elector PSP, frasco de 237 ml](../tienda/p/elector-psp-frasco-de-237-ml/) — producto del catálogo cuya autorización e idoneidad debe valorar el veterinario.
+- [Spray Martin's Pen para aves, botella de 32 oz](../tienda/p/spray-martin-s-pen-para-aves-botella-de-32-oz/) — producto avícola del catálogo; consulta su etiqueta y al veterinario.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para desinfectar superficies compatibles según etiqueta.
+
+[Ver todo el material para la higiene del gallinero →](../tienda/)

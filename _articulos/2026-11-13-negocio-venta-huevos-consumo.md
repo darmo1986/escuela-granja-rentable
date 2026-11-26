@@ -64,3 +64,15 @@ Durante varias semanas registra pedidos recibidos, entregas completas, clientes 
 El crecimiento tiene sentido cuando la repetición cubre el volumen adicional y el margen paga el trabajo. Si el problema es el reparto, prueba primero una recogida agrupada o una ruta más concentrada. Aumentar gallinas antes de resolver la salida comercial solo aumenta el compromiso de alimentar y cuidar el lote.
 
 Para explorar otra oferta, compara este modelo con [vender huevos para incubar](negocio-venta-huevos-fertiles.html): cambian el comprador, el manejo y lo que puedes prometer.
+
+
+## Material que te hace falta para vender huevos de consumo
+
+Prepara la recogida, presentación y anuncio de tus huevos según las condiciones de venta de tu zona.
+
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — envases para presentar docenas.
+- [Etiquetas personalizadas para hueveras, hechas en EE. UU. (40 a 5.000)](../tienda/p/etiquetas-personalizadas-para-hueveras-hechas-en-ee-uu-40-a-5-000/) — etiquetas para identificar los envases según los requisitos aplicables.
+- [Bolsa grande de recogida para huevos de gallina y pato](../tienda/p/bolsa-grande-de-recogida-para-huevos-de-gallina-y-pato/) — bolsa para transportar los huevos durante la recogida.
+- [Cinco carteles con estacas para anunciar huevos frescos](../tienda/p/cinco-carteles-con-estacas-para-anunciar-huevos-frescos/) — carteles para anunciar huevos en puntos permitidos.
+
+[Ver todo el material para la venta de huevos →](../tienda/)

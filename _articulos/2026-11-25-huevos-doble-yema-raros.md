@@ -54,3 +54,14 @@ Para incubar, los huevos de doble yema no son adecuados. Como explican la Univer
 Un huevo raro de vez en cuando es parte normal de tener gallinas. Preocúpate cuando el patrón cambie de golpe: muchas gallinas poniendo huevos blandos a la vez, huevos raros durante varias semanas seguidas en gallinas adultas que antes ponían bien, o huevos raros acompañados de otros síntomas. En esos casos, anota cuándo empezó, cuántas gallinas afecta y qué ha cambiado en el gallinero (pienso nuevo, ola de calor, obras, un depredador rondando), y lleva esa información al veterinario.
 
 En el día a día, lo que más ayuda es lo básico bien hecho: pienso completo para ponedoras, agua limpia siempre disponible, calcio a libre disposición, luz regular, nidales tranquilos y un manejo sin sobresaltos. Con eso, la mayoría de los huevos raros se quedan en lo que son: una curiosidad del gallinero, y de vez en cuando, una doble yema que alegra el desayuno.
+
+
+## Material que te hace falta para clasificar y registrar los huevos
+
+Estos accesorios ayudan a ordenar los huevos aptos y registrar las diferencias de peso.
+
+- [Expositor Toplife de metal en espiral para rotar huevos](../tienda/p/expositor-toplife-de-metal-en-espiral-para-rotar-huevos/) — soporte en espiral para ordenar los huevos aptos según su turno de uso.
+- [Dispensador gris por gravedad Li&Zhao para ordenar huevos](../tienda/p/dispensador-gris-por-gravedad-li-zhao-para-ordenar-huevos/) — dispensador para organizar huevos de tamaño compatible.
+- [Báscula digital para huevos con pantalla retroiluminada](../tienda/p/bascula-digital-para-huevos-con-pantalla-retroiluminada/) — báscula para registrar el peso de los huevos sin deducir su contenido solo por el peso.
+
+[Ver todo el material para la recogida y clasificación de huevos →](../tienda/)

@@ -61,3 +61,14 @@ Un gallinero limpio, seco y bien ventilado previene la mayoría de los problemas
 ### Cuándo llamar al veterinario
 
 Si hay varias bajas en pocos días, si la puesta cae de golpe sin explicación o si ves síntomas nerviosos (cuello torcido, parálisis), no lo dudes: llama a un veterinario avícola. Algunas enfermedades como Newcastle son de declaración obligatoria y solo un profesional puede confirmarlas con análisis. Llevar un registro de síntomas y fechas ayuda mucho al diagnóstico.
+
+## Material para la higiene y la separación de aves
+
+Estos materiales son de higiene y apoyo al manejo; no sustituyen el diagnóstico ni la atención veterinaria.
+
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para la desinfección de superficies autorizadas según etiqueta.
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — apoyo nutricional únicamente cuando esté indicado.
+- [Spray Vetericyn Plus para aves, frasco de 8 oz](../tienda/p/spray-vetericyn-plus-para-aves-frasco-de-8-oz/) — producto de higiene y cuidado externo, consulta su idoneidad con el veterinario.
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — para habilitar un espacio separado si sus dimensiones y condiciones son adecuadas.
+
+[Ver todo el material para la bioseguridad →](../tienda/)

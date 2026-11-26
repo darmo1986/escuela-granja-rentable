@@ -76,3 +76,15 @@ Cuando ya hay ratas dentro, cerrar huecos y retirar la comida no basta: hay que 
 Sobre el veneno, la advertencia es clara: no lo recomendamos. Un veneno puesto en el gallinero pone en riesgo a las gallinas si lo comen directamente, y pone en riesgo a mascotas, rapaces y otros animales si comen una rata envenenada. Si la infestación es grande o las trampas no bastan, lo prudente es contratar a un profesional de control de plagas, que valorará la situación y aplicará las medidas adecuadas con las precauciones que exige la norma. No improvises con productos que no conoces.
 
 El control de ratas no es una batalla de un día, sino una rutina semanal: revisar huecos, mallas y cierres; comprobar el almacén de pienso; retirar restos de pienso y agua por la noche; revisar las trampas, anotando las capturas; y despejar los alrededores. Si una semana encuentras señales nuevas, actúa esa misma semana: una rata hoy son muchas dentro de un mes.
+
+
+## Material que te hace falta para proteger el gallinero de los roedores
+
+Prioriza el cierre de accesos y la protección del pienso; las estaciones de cebo no eliminan el riesgo para otros animales.
+
+- [Estación de cebo Tomcat recargable resistente a niños y perros](../tienda/p/estacion-de-cebo-tomcat-recargable-resistente-a-ninos-y-perros/) — estación de cebo; consulta a un profesional de plagas y no utilices veneno por tu cuenta.
+- [Estación de cebo Victor XL recargable para ratas](../tienda/p/estacion-de-cebo-victor-xl-recargable-para-ratas/) — estación para alojar cebo; su uso debe valorarlo un profesional y no garantiza seguridad.
+- [Comedero de pedal Grandpa's Feeders 20 lb antirratas](../tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/) — comedero de pedal para limitar el acceso de roedores al pienso.
+- [Malla hardware cloth 1/2" galvanizada 36" x 50 ft (19 gauge)](../tienda/p/malla-hardware-cloth-1-2-galvanizada-36-x-50-ft-19-gauge/) — malla metálica para reforzar huecos y cerramientos.
+
+[Ver todo el material para la protección del gallinero →](../tienda/)

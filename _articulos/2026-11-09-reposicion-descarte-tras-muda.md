@@ -89,3 +89,13 @@ Reglas para una reposición sin problemas:
 El error más caro tras la muda es no decidir: dejar todo el lote como está, alimentando a gallinas que ya no ponen, y no reponer porque "a ver si arrancan". Cada mes de retraso es alimento gastado y huevos que no se ponen. La evaluación tras la muda no se hace por dureza, se hace por respeto al trabajo: las gallinas que ponen merecen un lote sano y bien alimentado, y la granja merece números que salgan.
 
 Si quieres aprender el ciclo completo de la ponedora, de pollita a reposición, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) lo explica etapa por etapa.
+
+## Material para identificar y registrar el lote
+
+Este equipo facilita la identificación, el registro y los traslados necesarios.
+
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — identificación por colores, comprobando el ajuste de cada anilla.
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — cuaderno para registrar puesta, entradas y salidas.
+- [Caja de transporte apilable RentACoop para gallinas](../tienda/p/caja-de-transporte-apilable-rentacoop-para-gallinas/) — recipiente para traslados de aves con espacio y ventilación adecuados.
+
+[Ver todo el material para el manejo del lote →](../tienda/)

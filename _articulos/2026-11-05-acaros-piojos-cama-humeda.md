@@ -81,3 +81,14 @@ Si hay varias bajas, si las gallinas están muy anémicas, si la puesta cae de g
 Un gallinero seco, con baño de polvo y revisiones periódicas, tiene muchos menos parásitos que un gallinero húmedo que solo se trata cuando ya hay plaga. La prevención es más barata que el tratamiento, y las gallinas lo notan en la puesta.
 
 Si quieres aprender el manejo sanitario completo, con calendario y rutinas de limpieza, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te lo explica paso a paso.
+
+## Material para la higiene y el manejo de la cama
+
+Estas fichas reúnen materiales de manejo y productos del catálogo cuya autorización e idoneidad debes consultar con el veterinario.
+
+- [Tierra de diatomeas Harris de 10 lb, con espolvoreador](../tienda/p/tierra-de-diatomeas-harris-de-10-lb-con-espolvoreador/) — producto mineral del catálogo; comprueba su uso autorizado y evita inhalar polvo.
+- [Polvo Prozap Garden & Poultry Dust, bote de 2 lb](../tienda/p/polvo-prozap-garden-poultry-dust-bote-de-2-lb/) — producto avícola del catálogo; consulta su autorización y adecuación con el veterinario.
+- [Spray Martin's Pen para aves, botella de 32 oz](../tienda/p/spray-martin-s-pen-para-aves-botella-de-32-oz/) — producto avícola del catálogo; consulta su etiqueta y al veterinario.
+- [Viruta de pino Manna Pro Fresh Flakes para cama de gallinero (4 pies³)](../tienda/p/viruta-de-pino-manna-pro-fresh-flakes-para-cama-de-gallinero-4-pies/) — material para renovar la cama húmeda.
+
+[Ver todo el material para la higiene del gallinero →](../tienda/)

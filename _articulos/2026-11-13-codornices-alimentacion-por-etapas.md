@@ -61,3 +61,15 @@ Mantén el producto en las condiciones que indica su fabricante y conserva la et
 Cuando cambies de producto, anota fecha, motivo y pauta indicada por el proveedor. Observa aceptación y desperdicio. Si las codornices dejan de comer, revisa el acceso y solicita ayuda si el cambio es marcado o se acompaña de otros signos.
 
 Para empezar, prepara una ficha con especie, edad, objetivo y alimento actual. Es un paso pequeño que facilita cualquier consulta y evita comprar por costumbre un producto que no corresponde a tu lote.
+
+
+## Material que te hace falta para organizar la alimentación de las codornices
+
+Compara estos materiales y confirma siempre la adecuación del alimento y los accesorios a la especie y etapa.
+
+- [Pienso de inicio Mile Four en harina para pollitos, 2 lb](../tienda/p/pienso-de-inicio-mile-four-en-harina-para-pollitos-2-lb/) — pienso de inicio para pollitos; no lo uses en codornices sin confirmar su adecuación nutricional.
+- [Grit de cuarcita Mile Four para pollitos, 4 lb](../tienda/p/grit-de-cuarcita-mile-four-para-pollitos-4-lb/) — grit para pollitos; consulta si corresponde a la dieta y tamaño de tus aves.
+- [Comedero de suelo Double-Tuf para pollitos, 20 cm](../tienda/p/comedero-de-suelo-double-tuf-para-pollitos-20-cm/) — recipiente de suelo para ofrecer alimento, si sus dimensiones permiten un acceso adecuado.
+- [Estuches de pulpa para 12 huevos de codorniz, paquete de 50](../tienda/p/estuches-de-pulpa-para-12-huevos-de-codorniz-paquete-de-50/) — envases para organizar los huevos de la etapa de puesta.
+
+[Ver todo el material para las codornices →](../tienda/)

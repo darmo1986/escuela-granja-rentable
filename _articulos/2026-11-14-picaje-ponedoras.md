@@ -70,3 +70,14 @@ Y un matiz importante: no todo desplume es picaje. La muda deja zonas peladas de
 El picaje es un mensaje del lote. Escucharlo a tiempo, con espacio, luz suave, proteína completa y algo que picar, detiene casi todos los casos antes de que lleguen a la sangre.
 
 Si quieres aprender manejo y salud de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.
+
+## Material para organizar el espacio y el enriquecimiento
+
+Estos accesorios complementan las medidas de manejo, sin sustituir la revisión de las causas del picaje.
+
+- [Seis protectores dorsales ajustables para gallinas](../tienda/p/seis-protectores-dorsales-ajustables-para-gallinas/) — protección física del dorso, no sustituye la atención de lesiones.
+- [Baño de arena de zeolita para gallinas, 6 lb](../tienda/p/bano-de-arena-de-zeolita-para-gallinas-6-lb/) — sustrato para el baño de polvo.
+- [Percha de varios niveles para 8 a 12 gallinas](../tienda/p/percha-de-varios-niveles-para-8-a-12-gallinas/) — ofrece distintos niveles donde posarse.
+- [Gusanos de harina secos 5 lb, premio proteico para gallinas](../tienda/p/gusanos-de-harina-secos-5-lb-premio-proteico-para-gallinas/) — premio ocasional para actividades de búsqueda de alimento.
+
+[Ver todo el material para el gallinero →](../tienda/)

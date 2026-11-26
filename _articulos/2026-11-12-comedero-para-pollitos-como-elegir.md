@@ -76,3 +76,13 @@ Puedes ampliar el seguimiento con la guía para [reducir el desperdicio de piens
 Una vez elegido el recipiente, revisa la etiqueta del alimento que vas a utilizar. Continúa con nuestra [guía de pienso iniciador para pollitos](pienso-iniciador-pollitos.html) para comprobar el destino productivo, la fase y la presentación.
 
 Antes de comprar, resume tu decisión en cuatro comprobaciones: acceso, estabilidad, desmontaje y espacio disponible.
+
+
+## Material que te hace falta para comparar comederos para pollitos
+
+Además del modelo anterior, compara estos dos formatos por acceso, estabilidad y limpieza.
+
+- [Comedero de suelo Double-Tuf para pollitos, 20 cm](../tienda/p/comedero-de-suelo-double-tuf-para-pollitos-20-cm/) — comedero de suelo para ofrecer pienso a pollitos.
+- [Set de comedero y bebedero para pollitos 2 en 1](../tienda/p/set-de-comedero-y-bebedero-para-pollitos-2-en-1/) — conjunto de alimentación y bebida para la criadora; confirma sus dimensiones y seguridad.
+
+[Ver todo el material para la cría de pollitos →](../tienda/)

@@ -73,3 +73,14 @@ Entre lote y lote, vacía y frota las líneas y los bebederos. Con aves dentro, 
 Un día entero sin agua, con calor fuerte, puede matar. No esperes a ver el huevo del día siguiente para rellenar. La revisión de la tarde, cuando el sol aún pega, es la que evita el desastre; la de la mañana solo dice cómo amaneció el lote.
 
 Otra guía del mismo tema: [cuánto beben, qué bebedero elegir y cómo mantenerlo limpio](agua-gallinas-ponedoras-bebederos.html).
+
+## Material para organizar el agua en verano
+
+Compara capacidades y puntos de bebida para mantener el suministro y facilitar la limpieza.
+
+- [Bebedero colgante Little Giant de 5 galones, pack de 2](../tienda/p/bebedero-colgante-little-giant-de-5-galones-pack-de-2/) — dos bebederos para distribuir los puntos de agua.
+- [Bebedero Harris Farms Easy-Fill de 6,25 galones](../tienda/p/bebedero-harris-farms-easy-fill-de-6-25-galones/) — depósito de llenado accesible.
+- [Bebedero elevado RentACoop de 2 galones, con copas y tetinas](../tienda/p/bebedero-elevado-rentacoop-de-2-galones-con-copas-y-tetinas/) — sistema elevado con copas y tetinas.
+- [Manguera Flexzilla 5/8" x 50 ft con pistola de 6 chorros](../tienda/p/manguera-flexzilla-5-8-x-50-ft-con-pistola-de-6-chorros/) — para tareas de llenado y limpieza, con agua apta y material adecuado para ese uso.
+
+[Ver todo el material para el suministro de agua →](../tienda/)

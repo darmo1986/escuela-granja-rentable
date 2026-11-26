@@ -72,3 +72,14 @@ Si una del grupo enferma, no la mezcles con el lote sano ni la devuelvas con las
 La cuarentena es aburrida, no se ve y no da huevos. Y es, precisamente por eso, la medida que distingue al granjero que conserva su lote del que empieza de cero cada año.
 
 Si quieres aprender bioseguridad y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.
+
+## Material para preparar la cuarentena
+
+Estos materiales apoyan la separación de aves, la higiene y el manejo durante la observación.
+
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — para habilitar un espacio separado si resulta adecuado para el tamaño y bienestar del ave.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para desinfectar superficies compatibles siguiendo la etiqueta.
+- [Guantes de nitrilo desechables 6 mil, negros, sin látex](../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/) — barrera de higiene para tareas de manejo.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — complemento nutricional solo cuando esté indicado.
+
+[Ver todo el material para la cuarentena →](../tienda/)

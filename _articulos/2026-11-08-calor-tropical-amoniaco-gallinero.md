@@ -78,3 +78,14 @@ Las causas son casi siempre las mismas: cama húmeda, bebederos que gotean, mala
 Con esta rutina, la mayoría de los lotes pasa la época de calor con la puesta solo un poco más baja de lo habitual, en lugar de desplomarse. El calor no se puede eliminar, pero sí se puede gestionar, y las gallinas lo agradecen en huevos y en salud.
 
 Si quieres aprender el manejo completo del gallinero en clima cálido, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) lo explica con vídeo y ejemplos.
+
+## Material para mantener la cama y el agua en época de calor
+
+Estos materiales apoyan la renovación de cama, la higiene y la distribución de agua.
+
+- [Cama de cáñamo RentACoop para gallinero, 300 L (30 lb)](../tienda/p/cama-de-canamo-rentacoop-para-gallinero-300-l-30-lb/) — material de cama para sustituir las zonas húmedas.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — desinfectante para superficies compatibles, según etiqueta.
+- [Bebedero colgante Little Giant de 5 galones, pack de 2](../tienda/p/bebedero-colgante-little-giant-de-5-galones-pack-de-2/) — dos recipientes para repartir los puntos de bebida a la sombra.
+- [Recogedor y rastrillo 2 en 1 The Coop Scoop para gallinero](../tienda/p/recogedor-y-rastrillo-2-en-1-the-coop-scoop-para-gallinero/) — herramienta para retirar restos y cama deteriorada.
+
+[Ver todo el material para el gallinero →](../tienda/)

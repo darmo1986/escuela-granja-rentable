@@ -59,3 +59,14 @@ Limpia los recipientes y sus componentes conforme a las instrucciones del equipo
 Guarda fecha, número de aves, sistema utilizado, cantidad añadida, incidencias y actuación realizada. Si observas un cambio brusco en la bebida, revisa primero el equipo sin asumir que todo es una avería: también puede acompañar un problema de salud.
 
 Si varias aves se muestran decaídas o respiran con dificultad, busca asistencia veterinaria. Lleva los registros y describe qué cambios de agua, alimento o ambiente hubo. No añadas medicamentos al depósito por tu cuenta para compensar una causa que todavía no conoces.
+
+
+## Material que te hace falta para organizar el agua de las codornices
+
+Compara los puntos de bebida y verifica su seguridad y accesibilidad según la edad de las aves.
+
+- [Bebedero elevado RentACoop de 2 galones, con copas y tetinas](../tienda/p/bebedero-elevado-rentacoop-de-2-galones-con-copas-y-tetinas/) — depósito elevado con dos tipos de punto de bebida.
+- [Bebedero RentACoop de 32 oz con copa y tetina horizontal](../tienda/p/bebedero-rentacoop-de-32-oz-con-copa-y-tetina-horizontal/) — depósito compacto con copa y tetina horizontal.
+- [Copas bebedero automáticas Lil'Clucker para gallinas (5 uds.)](../tienda/p/copas-bebedero-automaticas-lil-clucker-para-gallinas-5-uds/) — copas para montar un sistema de bebida; comprueba que sean adecuadas para tus codornices.
+
+[Ver todo el material para los bebederos →](../tienda/)

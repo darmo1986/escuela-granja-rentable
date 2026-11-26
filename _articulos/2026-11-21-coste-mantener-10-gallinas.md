@@ -29,3 +29,15 @@ Con un saco de 25 kilos a precio medio, 10 gallinas gastan algo más de un saco 
 ## Antes de vender, comprueba
 
 El coste cambia mucho por país y por estación: el pienso no vale lo mismo en todas partes y en invierno comen más. Repite la cuenta cada pocos meses y no vendas por debajo de tu coste. La [guía para empezar con diez ponedoras](empezar-con-10-gallinas-ponedoras.html) te ayuda a montar el gallinero sin gastar de más.
+
+
+## Material que te hace falta para equipar y presupuestar el gallinero
+
+Compara estos gastos de equipo y consumibles con el presupuesto real de tus diez ponedoras.
+
+- [Comedero de pedal Grandpa's Feeders 20 lb antirratas](../tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/) — comedero de pedal para limitar el acceso de roedores al alimento.
+- [Pienso Purina Layena en pellets para ponedoras (25 lb)](../tienda/p/pienso-purina-layena-en-pellets-para-ponedoras-25-lb/) — pienso de puesta en pellets para ponedoras, según su etapa y etiqueta.
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — envases para organizar las docenas recogidas.
+- [Contenedor hermético Vittles Vault para 40 lb de pienso](../tienda/p/contenedor-hermetico-vittles-vault-para-40-lb-de-pienso/) — recipiente hermético para guardar el pienso protegido de la humedad.
+
+[Ver todo el material para el gallinero →](../tienda/)

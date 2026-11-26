@@ -96,3 +96,14 @@ Si hoy no aplicas ninguno de estos puntos, empieza por tres: cuarentena para ave
 Un gallinero con buena bioseguridad no es un gallinero sin enfermedades para siempre: es un gallinero donde las enfermedades entran menos, se detectan antes y se controlan más rápido. Y eso se nota en la puesta, en las bajas y en el bolsillo.
 
 Si quieres el manejo sanitario completo con calendario y rutinas, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) lo explica paso a paso.
+
+## Material para las rutinas de bioseguridad
+
+Este equipo facilita las tareas de higiene y la protección personal durante la limpieza.
+
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para desinfectar superficies compatibles según etiqueta.
+- [Pulverizador de presión CHAPIN 2 galones](../tienda/p/pulverizador-de-presion-chapin-2-galones/) — para aplicar productos compatibles siguiendo sus instrucciones.
+- [Guantes de nitrilo desechables 6 mil, negros, sin látex](../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/) — barrera de higiene para las manos durante el manejo.
+- [Respirador desechable 3M 8210 N95, paquete de 20](../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/) — protección frente a partículas con ajuste adecuado, no frente a gases.
+
+[Ver todo el material para la bioseguridad →](../tienda/)

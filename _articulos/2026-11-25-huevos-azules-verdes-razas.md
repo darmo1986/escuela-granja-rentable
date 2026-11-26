@@ -54,3 +54,14 @@ También conviene saber que el tono puede variar un poco con la edad de la galli
 Los cuidados de estas razas son los mismos que los de cualquier ponedora: pienso completo, agua limpia, nidales tranquilos, perchas y espacio para escarbar. La Cream Legbar, al ser activa y buena voladora, agradece un corral con altura o una valla algo más alta de lo habitual. La Araucana, por su falta de cola, no tiene ninguna necesidad especial de manejo, más allá de vigilar que no se le ensucie la zona de la cloaca si tiene mucho plumaje.
 
 Antes de comprar, pide ver a las gallinas adultas poniendo y, si es posible, un huevo de la propia gallina que vas a llevarte. Desconfía de quien venda pollitos prometiendo un color exacto sin mostrar a los padres, y recuerda que el nombre importa: Araucana con cola, o "Americana" con una sola erre, suelen ser Easter Eggers, aves estupendas pero no razas puras. No hay nada malo en una Easter Egger —muchas familias las adoran— siempre que pagues por lo que realmente es. Con eso claro, los huevos azules y verdes son una de las alegrías más sencillas del gallinero.
+
+
+## Material que te hace falta para recoger y presentar huevos de colores
+
+Organiza los huevos por fecha y tamaño sin confundir el color con su calidad sanitaria.
+
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — hueveras para presentar docenas de distintos colores.
+- [Estuches de pulpa para una docena de huevos grandes, 12 unidades](../tienda/p/estuches-de-pulpa-para-una-docena-de-huevos-grandes-12-unidades/) — envases de pulpa para huevos grandes; comprueba que encajen.
+- [Bolsa grande de recogida para huevos de gallina y pato](../tienda/p/bolsa-grande-de-recogida-para-huevos-de-gallina-y-pato/) — bolsa para facilitar la recogida en los nidales.
+
+[Ver todo el material para la recogida de huevos →](../tienda/)

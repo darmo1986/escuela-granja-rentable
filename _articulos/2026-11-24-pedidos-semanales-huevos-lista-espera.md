@@ -54,3 +54,14 @@ Imagina que los pedidos habituales suman cinco docenas y al cierre solo tienes c
 Al cierre de cada semana, suma las docenas pedidas, confirmadas y entregadas. Si completas 18 de las 20 docenas pedidas a lo largo de cuatro semanas, cubriste el 90 % del volumen solicitado. Mira también cuántos pedidos quedaron a medias. Dos docenas faltantes en un solo pedido tienen un efecto distinto que una docena faltante para dos clientes.
 
 Para unir la lista de clientes a los datos del gallinero, usa la guía de [registros de una granja avícola](registros-granja-avicola.html). Si todavía estás eligiendo cómo entregar, revisa [venta de huevos de consumo](negocio-venta-huevos-consumo.html).
+
+
+## Material que te hace falta para organizar los pedidos semanales
+
+Estos materiales facilitan el registro y la preparación de las cantidades confirmadas.
+
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — cuaderno para llevar el registro de producción y pedidos.
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — envases para preparar las docenas confirmadas.
+- [Organizador de refrigerador con cajones para 40 huevos](../tienda/p/organizador-de-refrigerador-con-cajones-para-40-huevos/) — organizador para separar existencias si corresponde conservarlas refrigeradas.
+
+[Ver todo el material para la gestión de pedidos →](../tienda/)

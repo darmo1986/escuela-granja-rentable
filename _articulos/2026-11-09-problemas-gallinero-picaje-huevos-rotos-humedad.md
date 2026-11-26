@@ -390,3 +390,14 @@ Si quieres profundizar en alimentación, agua e instalaciones, en los [**ebooks 
 **Metodología editorial:** Las referencias de temperatura, signos de estrés térmico, factores de picaje y prevención del consumo de huevos proceden de las fuentes citadas y son orientaciones generales, no datos medidos en una granja concreta. El artículo no incluye tratamientos, dosis ni porcentajes de incidencia.
 
 **Nota editorial:** Esta guía es divulgativa. No sustituye la valoración de un veterinario, el diagnóstico de laboratorio ni las obligaciones de notificación sanitaria aplicables en tu comunidad autónoma o país.
+
+## Material para mejorar el manejo del gallinero
+
+Estos materiales ayudan a organizar la cama, los nidales y el enriquecimiento ambiental.
+
+- [Viruta de pino Manna Pro Fresh Flakes para cama de gallinero (4 pies³)](../tienda/p/viruta-de-pino-manna-pro-fresh-flakes-para-cama-de-gallinero-4-pies/) — material para renovar la cama deteriorada.
+- [Seis protectores dorsales ajustables para gallinas](../tienda/p/seis-protectores-dorsales-ajustables-para-gallinas/) — protección física del dorso, sin sustituir la separación de aves heridas.
+- [Diez huevos marrones de madera para usar como señuelos en nidales](../tienda/p/diez-huevos-marrones-de-madera-para-usar-como-senuelos-en-nidales/) — señuelos para colocar en los nidales.
+- [Baño de arena de zeolita para gallinas, 6 lb](../tienda/p/bano-de-arena-de-zeolita-para-gallinas-6-lb/) — sustrato para ofrecer una zona de baño de polvo.
+
+[Ver todo el material para el gallinero →](../tienda/)

@@ -49,3 +49,14 @@ La muda es normal; esto no lo es:
 - Gallina que además **no come, adelgaza o tiene diarrea**: eso ya no es la muda; hay que mirarla como enferma.
 
 Pasada la muda, el lote vuelve a poner con el plumaje nuevo y brillante, listo para el invierno. Es un descanso programado por la naturaleza, no un fallo de tu granja.
+
+## Material para acompañar la muda
+
+Estos productos permiten organizar la alimentación y el apoyo nutricional durante el cambio de plumaje, cuando corresponda.
+
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — complemento de vitaminas y electrolitos, si está indicado.
+- [Levadura de cerveza con ajo y niacina para aves, 5 lb](../tienda/p/levadura-de-cerveza-con-ajo-y-niacina-para-aves-5-lb/) — complemento alimentario para aves, no sustituye una ración completa.
+- [Pienso ecológico de puesta Kalmbach 17 % en pellets](../tienda/p/pienso-ecologico-de-puesta-kalmbach-17-en-pellets/) — pienso de puesta para la etapa productiva.
+- [Gusanos de harina secos 5 lb, premio proteico para gallinas](../tienda/p/gusanos-de-harina-secos-5-lb-premio-proteico-para-gallinas/) — premio proteico ocasional, sin sustituir el pienso.
+
+[Ver todo el material para la alimentación de las gallinas →](../tienda/)

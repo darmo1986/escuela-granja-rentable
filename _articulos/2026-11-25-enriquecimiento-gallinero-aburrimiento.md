@@ -54,3 +54,14 @@ La regla es sencilla: cambia algo cada semana, aunque sea pequeño. Mover un tro
 No hace falta medir nada con instrumentos: los cambios se ven. En pocas semanas, un gallinero enriquecido suele mostrar menos picaje y menos plumas en el suelo, gallinas que escarban y se bañan en polvo a diario, aves más repartidas por el corral en lugar de apelotonadas junto a la puerta, y menos gallinas perseguidas o arrinconadas.
 
 Si el picaje no baja, el enriquecimiento por sí solo puede no bastar: revisa también la densidad (¿tienen espacio suficiente?), la alimentación (¿es un pienso completo para ponedoras?), la luz (¿demasiado intensa o demasiadas horas?) y la salud del lote. El enriquecimiento es una de las herramientas más baratas y eficaces que tienes, pero funciona mejor como parte de un buen manejo general. Y si aparece sangre o heridas, separa a la gallina herida, revisa el gallinero y, si el problema persiste, consulta al veterinario: el picaje grave no se arregla solo con una col colgando.
+
+## Material para enriquecer el gallinero
+
+Estos accesorios ofrecen oportunidades de descanso, exploración y forrajeo.
+
+- [Percha de varios niveles para 8 a 12 gallinas](../tienda/p/percha-de-varios-niveles-para-8-a-12-gallinas/) — distintos niveles para posarse.
+- [Baño de arena de zeolita para gallinas, 6 lb](../tienda/p/bano-de-arena-de-zeolita-para-gallinas-6-lb/) — sustrato para una zona de baño de polvo.
+- [Gusanos de harina secos 5 lb, premio proteico para gallinas](../tienda/p/gusanos-de-harina-secos-5-lb-premio-proteico-para-gallinas/) — premio ocasional para repartir durante el forrajeo.
+- [Columpio y puente de madera Jorewood para gallinas y patos](../tienda/p/columpio-y-puente-de-madera-jorewood-para-gallinas-y-patos/) — accesorios de madera para explorar y posarse.
+
+[Ver todo el material para el enriquecimiento del gallinero →](../tienda/)
