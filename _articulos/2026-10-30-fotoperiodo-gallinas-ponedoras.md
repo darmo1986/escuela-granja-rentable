@@ -55,6 +55,15 @@ Mantén el registro después de cualquier ajuste acordado. Una variación de hue
 
 Si la bajada es brusca, aparecen bajas o las aves muestran signos de enfermedad, solicita valoración veterinaria. Puedes ampliar el registro de manejo con la [guía de agua y bebederos](agua-gallinas-ponedoras-bebederos.html) y revisar la [muda de las gallinas](muda-gallinas-otono.html).
 
+## Material que te hace falta para el fotoperiodo y la puesta
+
+*En la tienda no hay lámpara de fotoperiodo para interior, ni temporizador de enchufe, ni medidor de luz. El abridor FarmLite no da luz: solo automatiza el horario de acceso.*
+
+- [Abridor de puerta FarmLite, con temporizador y sensor de luz](../tienda/p/abridor-de-puerta-farmlite-con-temporizador-y-sensor-de-luz/) — mantiene el horario de acceso por la mañana, como recomienda la guía, sin depender de que alguien abra a diario.
+- [Nidal reversible de rodillo Hen's Choice, 2 huecos, 21"](../tienda/p/nidal-reversible-de-rodillo-hen-s-choice-2-huecos-21/) — huevos limpios y sin picotear, para contar cada día la puesta que pide el registro de la guía.
+
+[Ver todo el material para el gallinero →](../tienda/)
+
 ## Fuentes
 
 - [University of Minnesota Extension — Caring for chickens in cold weather](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/caring-for-chickens-in-cold-weather).

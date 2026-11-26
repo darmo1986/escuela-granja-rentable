@@ -53,3 +53,14 @@ Pregunta expresamente por tenencia de machos, ruido y condiciones de alojamiento
 Prepara primero la [entrada sanitaria y la presentación al grupo](introducir-gallo-nuevo.html). Después valora el [número de gallinas por gallo](gallinas-por-gallo.html) según el lote real. No compres varios machos como seguro de fertilidad sin poder alojarlos por separado.
 
 Al cerrar tu planificación, deberías poder explicar para qué necesitas el gallo, dónde vivirá y cómo comprobarás si cumple ese objetivo. Si solo buscas huevos para consumo, puedes dedicar ese presupuesto a mejorar el manejo de las ponedoras.
+
+## Material que te hace falta para criar pollitos propios
+
+*Solo si tu objetivo es criar pollitos propios con huevos fecundados; para huevos de consumo no hace falta gallo, como dice la guía.*
+
+- [Incubadora Nurture Right 360, de Harris Farms, 22 huevos](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — para incubar los huevos fecundados del lote reproductor.
+- [Ovoscopio LED Incu-Bright, para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para comprobar el desarrollo del huevo durante la incubación.
+- [Placa de calor Brinsea EcoGlow 600, para hasta 20 pollitos](../tienda/p/placa-de-calor-brinsea-ecoglow-600-para-hasta-20-pollitos/) — calor seguro para los pollitos tras la eclosión, en la criadora.
+- [Jaula plegable Midwest iCrate, de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — recinto de separación para la entrada sanitaria y la presentación del gallo nuevo al grupo.
+
+[Ver todo el material para el gallinero →](../tienda/)
