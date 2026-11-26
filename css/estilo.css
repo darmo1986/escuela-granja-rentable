@@ -392,7 +392,9 @@ label.check { display: flex; gap: 10px; align-items: flex-start; font-size: .95r
 label.check input { width: 22px; height: 22px; min-height: 22px; margin-top: 2px; }
 .form-msg { min-height: 1.2em; font-weight: 700; }
 .hp { position: absolute; left: -9999px; height: 0; width: 0; opacity: 0; }
-.form-card { max-width: 640px; }
+.form-card { max-width: 640px; overflow-wrap: anywhere; }
+.form-card input, .form-card select, .form-card textarea, .form-card button { max-width: 100%; }
+.form-card input, .form-card select, .form-card button { min-height: 44px; }
 .row-2 { display: grid; gap: 10px; }
 @media (min-width: 640px) { .row-2 { grid-template-columns: 1fr 1fr; } }
 
