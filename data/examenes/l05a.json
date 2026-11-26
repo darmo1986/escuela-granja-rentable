@@ -1,0 +1,188 @@
+{
+  "leccion": 6,
+  "codigo": "L05A",
+  "titulo": "Gallinas ponedoras (1): de la pollita a la puesta",
+  "aprobado_minimo": 10,
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "El peso medio de las pollitas está por debajo del objetivo de su estirpe. ¿Qué conviene revisar primero?",
+      "opciones": [
+        "Solo el horario de los nidales",
+        "El color de los huevos del lote anterior",
+        "Acceso a comederos, agua y posibles parásitos",
+        "Únicamente la edad del lote"
+      ],
+      "correcta": 2,
+      "explicacion": "El artículo de levante recomienda revisar esos factores antes de atribuir el retraso al pienso."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Cómo debe gestionarse el agua durante la recría?",
+      "opciones": [
+        "Mantener agua limpia disponible continuamente y revisar los bebederos",
+        "Ofrecer agua solo durante las comidas",
+        "Limitar el agua para mantener seca la cama",
+        "Ofrecer agua únicamente cuando se observe sed"
+      ],
+      "correcta": 0,
+      "explicacion": "El acceso continuo al agua limpia favorece el consumo y el crecimiento."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Qué secuencia de alimentación corresponde al levante?",
+      "opciones": [
+        "Desarrollo, puesta e inicio",
+        "Puesta desde el nacimiento y crecimiento al final",
+        "Inicio durante todo el levante sin revisar la fase",
+        "Inicio, crecimiento y desarrollo, adaptados a la etapa"
+      ],
+      "correcta": 3,
+      "explicacion": "Las necesidades nutricionales cambian con el desarrollo de la pollita."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué criterio debe seguirse al cambiar del pienso de recría al de puesta?",
+      "opciones": [
+        "Cambiar al cumplir una fecha fija aunque el lote esté retrasado",
+        "Adaptar el cambio al desarrollo y fase del lote, evitando adelantar la dieta rica en calcio",
+        "Añadir calcio extra desde el inicio de la recría",
+        "Mantener la dieta de recría indefinidamente durante la puesta"
+      ],
+      "correcta": 1,
+      "explicacion": "La transición depende de la preparación del lote; el exceso prematuro de calcio puede perjudicar a las pollitas."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cómo se calcula la uniformidad del lote según la guía de levante?",
+      "opciones": [
+        "Porcentaje de aves cuyo peso está dentro de ±10 % del peso medio",
+        "Porcentaje de aves por encima del peso medio",
+        "Diferencia entre el peso máximo y el mínimo",
+        "Peso medio dividido entre la edad en semanas"
+      ],
+      "correcta": 0,
+      "explicacion": "La uniformidad mide cuántas aves se sitúan cerca del peso medio, no solo cuánto pesa el lote en promedio."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Qué ventilación conviene durante la recría?",
+      "opciones": [
+        "Cerrar todas las entradas para conservar el calor",
+        "Dirigir la corriente de aire hacia las aves",
+        "Renovar el aire evitando corrientes directas sobre las pollitas",
+        "Ventilar únicamente cuando la cama ya esté húmeda"
+      ],
+      "correcta": 2,
+      "explicacion": "La renovación del aire ayuda a controlar la humedad y los gases sin exponer a las aves a corrientes directas."
+    },
+    {
+      "id": 7,
+      "pregunta": "La cama se moja repetidamente debajo de los bebederos. ¿Qué actuación es adecuada?",
+      "opciones": [
+        "Cubrir siempre la zona sin corregir la fuga",
+        "Revisar fugas y funcionamiento de bebederos y retirar la cama húmeda",
+        "Reducir las horas de acceso al agua",
+        "Cambiar el pienso sin revisar los bebederos"
+      ],
+      "correcta": 1,
+      "explicacion": "Hay que corregir el origen de la humedad y mantener la cama seca sin limitar el agua."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Qué pauta de luz es adecuada durante el levante antes de la estimulación prevista?",
+      "opciones": [
+        "Aumentar las horas cada semana desde el nacimiento",
+        "Aplicar el horario de ponedoras adultas desde el inicio",
+        "Variar diariamente el horario sin planificación",
+        "Mantener o reducir las horas de luz según el programa de recría"
+      ],
+      "correcta": 3,
+      "explicacion": "La estimulación precoz puede adelantar la madurez; el programa debe ajustarse al desarrollo y la estirpe."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Cómo debe interpretarse la edad de inicio de la puesta?",
+      "opciones": [
+        "Como una fecha idéntica para todas las razas",
+        "Como una fecha determinada solo por el peso medio",
+        "Como una referencia variable según genética, desarrollo y manejo",
+        "Como una fecha independiente de la alimentación y la luz"
+      ],
+      "correcta": 2,
+      "explicacion": "La edad orienta, pero no garantiza que todas las aves estén listas para poner."
+    },
+    {
+      "id": 10,
+      "pregunta": "Si el objetivo es producir huevos para consumo, ¿es imprescindible tener un gallo?",
+      "opciones": [
+        "No; la gallina puede poner huevos sin fecundación",
+        "Sí; sin gallo no se produce la ovulación",
+        "Sí; al menos durante el inicio de la puesta",
+        "Sí; si se utiliza luz artificial"
+      ],
+      "correcta": 0,
+      "explicacion": "El gallo interviene en la fecundación, no es necesario para la puesta de huevos de consumo."
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Cómo se comprueba la evolución del peso durante la recría?",
+      "opciones": [
+        "Pesar solo al terminar el levante",
+        "Pesar una muestra cada semana y comparar con la curva de la estirpe",
+        "Comparar todas las razas con un único peso fijo",
+        "Pesar únicamente las aves más grandes"
+      ],
+      "correcta": 1,
+      "explicacion": "La guía de levante recomienda seguimiento semanal y objetivos adaptados a la estirpe."
+    },
+    {
+      "id": 12,
+      "pregunta": "Dos lotes tienen el mismo peso medio, pero uno presenta muchas pollitas pequeñas y grandes. ¿Qué diferencia importa?",
+      "opciones": [
+        "Ambos tienen necesariamente la misma uniformidad",
+        "El lote desigual iniciará siempre antes la puesta",
+        "La uniformidad solo importa después de la puesta",
+        "El lote desigual tiene menor uniformidad y puede iniciar la puesta de forma menos sincronizada"
+      ],
+      "correcta": 3,
+      "explicacion": "Un promedio adecuado puede ocultar diferencias individuales importantes para la transición."
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Cuándo y cómo preparar los nidales?",
+      "opciones": [
+        "Antes del inicio de puesta, accesibles, tranquilos y secos",
+        "Después de que la mayoría de huevos aparezcan en el suelo",
+        "Antes de la puesta, pero en una zona húmeda",
+        "Solo tras introducir un gallo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los nidales preparados antes del inicio facilitan que las aves encuentren un lugar adecuado para poner."
+    },
+    {
+      "id": 14,
+      "pregunta": "Un lote alcanza la edad prevista para estimular con luz, pero sigue retrasado en peso. ¿Qué decisión corresponde?",
+      "opciones": [
+        "Aumentar las horas de luz por cumplir la edad",
+        "Cambiar a pienso de puesta para forzar la madurez",
+        "Revisar desarrollo y programa de la estirpe antes de estimular",
+        "Ignorar el peso si el calendario está completo"
+      ],
+      "correcta": 2,
+      "explicacion": "La edad sola no determina la preparación para la estimulación lumínica."
+    },
+    {
+      "id": 15,
+      "pregunta": "¿Qué riesgo tiene estimular con luz a las pollitas demasiado pronto?",
+      "opciones": [
+        "Retrasar necesariamente la madurez sexual",
+        "Adelantar la madurez antes del desarrollo adecuado y perjudicar la puesta posterior",
+        "Mejorar siempre el tamaño del primer huevo",
+        "Corregir automáticamente la falta de uniformidad"
+      ],
+      "correcta": 1,
+      "explicacion": "La guía de levante relaciona la estimulación prematura con huevos pequeños y problemas posteriores."
+    }
+  ]
+}
