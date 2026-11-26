@@ -71,3 +71,14 @@ No prometas un resultado que no controlas. Describe el servicio, sus límites y 
 ### ¿Sirve cualquier incubadora doméstica?
 
 La adecuación depende de su funcionamiento comprobado, capacidad real y del calendario de trabajo. El precio de compra, por sí solo, no demuestra que pueda sostener un servicio comercial.
+
+## Material que te hace falta para incubar por encargo
+
+Compara la capacidad de los equipos y prepara el seguimiento de cada tanda.
+
+- [Incubadora Brinsea Ovation 56 EX para 56 huevos de gallina](../tienda/p/incubadora-brinsea-ovation-56-ex-para-56-huevos-de-gallina/) — para incubar tandas de huevos de gallina.
+- [Incubadora y nacedora Hatching Time CT60SH de 60 huevos](../tienda/p/incubadora-y-nacedora-hatching-time-ct60sh-de-60-huevos/) — para organizar la incubación y la eclosión.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para observar el interior del huevo durante la incubación.
+- [Báscula digital para huevos con pantalla retroiluminada](../tienda/p/bascula-digital-para-huevos-con-pantalla-retroiluminada/) — para registrar el peso de los huevos.
+
+[Ver todo el material para incubar →](../tienda/)

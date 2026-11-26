@@ -69,3 +69,13 @@ Puedes describirlo como candidato para evaluación si tienes criterio para ello.
 ### ¿Conviene vender parejas o tríos?
 
 Puede ser una oferta distinta si conoces la procedencia y puedes describir el parentesco. Lleva su presupuesto separado y confirma que el comprador busca reproducción. Consulta también el negocio de [gallinas ornamentales](negocio-gallinas-ornamentales.html).
+
+## Material que te hace falta para organizar la venta de gallos de exposición
+
+Este material ayuda con la identificación, el transporte y el manejo del grupo reproductor.
+
+- [Anillas numeradas multicolor de 16 mm para identificar gallinas, 60 unidades](../tienda/p/anillas-numeradas-multicolor-de-16-mm-para-identificar-gallinas-60-unida/) — para identificar aves del tamaño adecuado y relacionarlas con sus registros.
+- [Caja de transporte apilable RentACoop para gallinas](../tienda/p/caja-de-transporte-apilable-rentacoop-para-gallinas/) — para traslados autorizados, con capacidad adecuada a las aves.
+- [Protector dorsal para gallinas durante el apareamiento](../tienda/p/protector-dorsal-para-gallinas-durante-el-apareamiento/) — para cubrir el dorso de las gallinas durante el apareamiento.
+
+[Ver todo el material para el manejo de gallos →](../tienda/)

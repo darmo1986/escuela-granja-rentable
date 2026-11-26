@@ -71,3 +71,14 @@ Si dudas, habla con tu veterinario o con la autoridad competente antes de que el
 El trabajo no termina cuando las aves salen del gallinero. Antes de meter el siguiente lote, retira toda la cama, limpia y desinfecta comederos, bebederos y equipos, y deja el gallinero vacío y ventilado durante un tiempo. Ese descanso entre lotes, que en las guías de manejo suele ser de al menos una o dos semanas, es una de las medidas de bioseguridad más baratas y más eficaces que existen.
 
 Aprovecha ese hueco para anotar peso final, consumo total de pienso, mortalidad y coste del matadero. Con esos datos, el siguiente lote se planifica mucho mejor que el primero. En resumen: decide la fecha por el peso y la salud del lote, consulta la norma de tu comunidad antes de dar ningún paso y, cuando dudes, elige el matadero autorizado. Criar bien incluye terminar bien.
+
+## Material que te hace falta para la higiene y el procesado autorizado
+
+Este equipo sirve para tareas de higiene y procesado cuando estén autorizadas; prioriza el matadero autorizado.
+
+- [Desplumadora Kitchener con tambor de 20 pulgadas y 92 dedos](../tienda/p/desplumadora-kitchener-con-tambor-de-20-pulgadas-y-92-dedos/) — para el desplumado posterior al sacrificio en instalaciones autorizadas.
+- [Guantes de piel Wells Lamont (2 pares)](../tienda/p/guantes-de-piel-wells-lamont-2-pares/) — para tareas de manejo general, no para el contacto directo con alimentos.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para la desinfección de superficies compatibles según la etiqueta y el protocolo sanitario.
+- [Respirador desechable 3M 8210 N95, paquete de 20](../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/) — para reducir la inhalación de partículas durante tareas de limpieza autorizadas, con ajuste correcto.
+
+[Ver todo el material para la granja →](../tienda/)

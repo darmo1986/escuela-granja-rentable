@@ -122,3 +122,14 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
 - [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+
+## Material que te hace falta para la bioseguridad preventiva frente a la gripe aviar
+
+Material para la higiene habitual, no para intervenir ante un brote: avisa a la autoridad y sigue sus instrucciones.
+
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para la desinfección de superficies compatibles según la etiqueta y el protocolo sanitario.
+- [Respirador desechable 3M 8210 N95, paquete de 20](../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/) — para reducir la inhalación de partículas durante tareas de limpieza autorizadas, con ajuste correcto.
+- [Guantes de nitrilo desechables 6 mil, negros, sin látex](../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/) — para tareas de higiene, cambiándolos entre zonas según el protocolo.
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — para preparar un espacio separado de tamaño adecuado; ante sospecha de enfermedad, no traslades aves sin indicación veterinaria.
+
+[Ver todo el material para la bioseguridad →](../tienda/)

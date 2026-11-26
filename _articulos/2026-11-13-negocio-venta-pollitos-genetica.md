@@ -69,3 +69,14 @@ Puedes informar del origen y del objetivo de selección documentado. No garantic
 Depende de lo que puedas identificar de forma fiable. Explica la oferta antes de cobrar y presupuesta el alojamiento y la salida responsable de los machos.
 
 Para comparar tu siguiente paso, revisa también el negocio de [huevos para incubar](negocio-venta-huevos-fertiles.html) y el de [pollitas de recría](negocio-venta-pollitas-recria.html).
+
+## Material que te hace falta para criar pollitos de genética
+
+Prepara el equipo de incubación, la criadora y la identificación de las aves.
+
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — para incubar huevos en tandas pequeñas.
+- [Kit de criadora para pollitos con placa calefactora](../tienda/p/kit-de-criadora-para-pollitos-con-placa-calefactora/) — para preparar una zona de cría con una fuente de calor.
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — para identificar aves del tamaño adecuado y relacionarlas con sus registros.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para observar el interior del huevo durante la incubación.
+
+[Ver todo el material para incubar y criar pollitos →](../tienda/)

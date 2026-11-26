@@ -61,3 +61,14 @@ La coccidiosis no se elimina de una granja: se convive con ella manteniendo la c
 - Hy-Line International: "Brown Commercial Layers – Performance Standards" (guías de manejo sanitario). https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf
 
 *Nota: los síntomas descritos orientan pero no confirman el diagnóstico por sí solos; la confirmación requiere análisis fecal o examen veterinario.*
+
+## Material que te hace falta para la higiene y el manejo de la criadora
+
+Consulta este material de higiene y apoyo con tu veterinario; no mediques por tu cuenta.
+
+- [Amprolio Durvet AmproMed 9,6 %, genérico de Corid, 1 galón](../tienda/p/amprolio-durvet-ampromed-9-6-generico-de-corid-1-galon/) — producto para la prevención que se vende en la tienda; sigue las indicaciones del fabricante y del veterinario.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — como apoyo nutricional según indicación veterinaria, no como tratamiento.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para la desinfección de superficies compatibles según la etiqueta y el protocolo sanitario.
+- [Viruta de pino Manna Pro Fresh Flakes para cama de gallinero (4 pies³)](../tienda/p/viruta-de-pino-manna-pro-fresh-flakes-para-cama-de-gallinero-4-pies/) — para renovar la cama y mantenerla seca mediante un manejo adecuado.
+
+[Ver todo el material para la criadora →](../tienda/)

@@ -63,3 +63,13 @@ Una entrega cuidada incluye número de aves, edad, procedencia, alimento que rec
 Trabaja con un lote que puedas mantener aunque una reserva falle. Al cerrar, compara cobros, costes, días hasta la venta y horas de trabajo. Anota también reclamaciones sobre sexo, edad o desarrollo: te indican qué debes corregir en la oferta.
 
 Si el margen solo aparece al no pagarte las horas, revisa precio, tamaño de lote o etapa de entrega. Puedes combinar esta actividad con [pollitos de genética](negocio-venta-pollitos-genetica.html), pero lleva cuentas separadas para saber qué fase aporta realmente valor.
+
+## Material que te hace falta para organizar la recría de pollitas
+
+Estos artículos ayudan a equipar la cría, identificar lotes y preparar entregas.
+
+- [Caja de transporte apilable RentACoop para gallinas](../tienda/p/caja-de-transporte-apilable-rentacoop-para-gallinas/) — para traslados autorizados, con capacidad adecuada a las aves.
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — para identificar aves del tamaño adecuado y relacionarlas con sus registros.
+- [Comedero y bebedero para pollitos Hen's Choice](../tienda/p/comedero-y-bebedero-para-pollitos-hen-s-choice/) — para disponer puntos de alimento y agua adecuados a pollitos.
+
+[Ver todo el material para la recría →](../tienda/)

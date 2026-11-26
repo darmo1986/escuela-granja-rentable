@@ -108,3 +108,15 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
 - [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+
+
+## Material que te hace falta para la bioseguridad frente a la micoplasmosis
+
+Prepara material de uso exclusivo para la limpieza y la cuarentena, sin sustituir las indicaciones veterinarias.
+
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para desinfectar superficies y equipos compatibles previamente limpios, según la etiqueta.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — complemento nutricional de apoyo, según las indicaciones del veterinario.
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — para organizar un espacio de cuarentena adecuado al tamaño del ave, siguiendo las indicaciones veterinarias.
+- [Guantes de nitrilo desechables 6 mil, negros, sin látex](../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/) — para proteger las manos durante las tareas de higiene; no sustituyen el lavado de manos.
+
+[Ver todo el material de higiene y bioseguridad para el gallinero →](../tienda/)

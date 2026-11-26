@@ -104,3 +104,14 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
 - [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+
+## Material que te hace falta para mantener la cama y el ambiente limpios
+
+Material de higiene y apoyo general, sin sustituir la atención veterinaria.
+
+- [Cama de cáñamo RentACoop para gallinero, 300 L (30 lb)](../tienda/p/cama-de-canamo-rentacoop-para-gallinero-300-l-30-lb/) — para disponer de material de cama que debe mantenerse seco y limpio.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para la desinfección de superficies compatibles según la etiqueta y el protocolo sanitario.
+- [Respirador desechable 3M 8210 N95, paquete de 20](../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/) — para reducir la inhalación de partículas durante tareas de limpieza autorizadas, con ajuste correcto.
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — como complemento nutricional cuando lo indique el veterinario, no como tratamiento.
+
+[Ver todo el material para la higiene avícola →](../tienda/)

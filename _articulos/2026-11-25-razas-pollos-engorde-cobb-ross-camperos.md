@@ -63,3 +63,14 @@ La elección depende de cuatro cosas: tiempo, espacio, coste y mercado. Si tiene
 Sea cual sea la línea que elijas, hay cinco cosas que deciden más que la genética: un pollito sano y uniforme al llegar, pienso adecuado a cada fase y siempre disponible, agua limpia y en cantidad suficiente, una nave ventilada con cama seca, y pesar una muestra de aves cada semana para saber si el lote va en su curva.
 
 Anota en cada lote la línea, el proveedor, la fecha de entrada, el peso semanal y el pienso consumido. Con dos o tres lotes anotados sabrás, con tus propios números y en tu propia granja, qué línea te conviene.
+
+## Material que te hace falta para criar pollos de engorde
+
+Compara el material de alimentación, bebida y procesado según tu sistema de cría.
+
+- [Comedero galvanizado Double-Tuf para gallinas, 17 lb, colgante](../tienda/p/comedero-galvanizado-double-tuf-para-gallinas-17-lb-colgante/) — para distribuir pienso en un recipiente colgante.
+- [Pienso Purina Start & Grow en migaja, saco de 25 lb, etiqueta medicada](../tienda/p/pienso-purina-start-grow-en-migaja-saco-de-25-lb-etiqueta-medicada/) — pienso de arranque en migaja con etiqueta medicada; comprueba su adecuación con el veterinario y sigue la etiqueta.
+- [Bebedero colgante Little Giant de 5 galones, pack de 2](../tienda/p/bebedero-colgante-little-giant-de-5-galones-pack-de-2/) — para organizar los puntos de agua del lote.
+- [Desplumadora Kitchener con tambor de 20 pulgadas y 92 dedos](../tienda/p/desplumadora-kitchener-con-tambor-de-20-pulgadas-y-92-dedos/) — para el desplumado posterior al sacrificio en instalaciones autorizadas.
+
+[Ver todo el material para pollos de engorde →](../tienda/)

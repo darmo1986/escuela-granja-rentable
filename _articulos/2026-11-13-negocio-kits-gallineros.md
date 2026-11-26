@@ -71,3 +71,14 @@ Solo si se adapta al uso del cliente. La capacidad adicional no compensa un reci
 ### ¿Puedo garantizar menos desperdicio?
 
 Describe las funciones verificadas del material y mide los resultados antes de afirmar un ahorro. La [guía de comederos para pollitos](comedero-para-pollitos-como-elegir.html) explica qué observar y registrar.
+
+## Material que te hace falta para preparar kits para gallineros
+
+Compara estos componentes y comprueba su compatibilidad antes de presupuestar un kit.
+
+- [Gallinero metálico walk-in 10x6,6x6,56 ft para 5-10 gallinas](../tienda/p/gallinero-metalico-walk-in-10x6-6x6-56-ft-para-5-10-gallinas/) — para delimitar un recinto, comprobando el espacio necesario.
+- [Malla hardware cloth 1/2" galvanizada 36" x 50 ft (19 gauge)](../tienda/p/malla-hardware-cloth-1-2-galvanizada-36-x-50-ft-19-gauge/) — para reforzar el cerramiento del recinto.
+- [Abridor de puerta FarmLite, con temporizador y sensor de luz](../tienda/p/abridor-de-puerta-farmlite-con-temporizador-y-sensor-de-luz/) — para automatizar la apertura y el cierre de una puerta compatible.
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — para ofrecer pienso en un recipiente suspendido.
+
+[Ver todo el material para el gallinero →](../tienda/)

@@ -71,3 +71,12 @@ No describas como compost terminado un material que no ha pasado el proceso corr
 ### ¿Puedo prometer que mejora cualquier cultivo?
 
 No. La respuesta depende del producto, del suelo, del cultivo y de cómo se aplique. Entrega información técnica respaldada y evita afirmaciones universales.
+
+## Material que te hace falta para recoger y mover la gallinaza
+
+Estas herramientas ayudan a organizar la recogida y el traslado del material.
+
+- [Horca de 6 púas True Temper para estiércol (48")](../tienda/p/horca-de-6-puas-true-temper-para-estiercol-48/) — para recoger y mover estiércol y cama.
+- [Carretilla de acero True Temper 6 pies³ con rueda antipinchazos](../tienda/p/carretilla-de-acero-true-temper-6-pies-con-rueda-antipinchazos/) — para trasladar material dentro de la zona de trabajo.
+
+[Ver todo el material para el manejo de la gallinaza →](../tienda/)

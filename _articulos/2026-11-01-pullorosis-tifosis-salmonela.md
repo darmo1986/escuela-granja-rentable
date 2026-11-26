@@ -114,3 +114,15 @@ Esta guía es divulgativa y no sustituye la visita de un veterinario. **El diagn
 - [Real Decreto 779/2023, lista de enfermedades de declaración obligatoria (BOE)](https://boe.es/eli/es/rd/2023/10/10/779)
 - [Ley 8/2003, de sanidad animal, artículo 5 (BOE)](https://boe.es/buscar/act.php?id=BOE-A-2003-8510)
 - [MAPA: lista de enfermedades de declaración obligatoria](https://mapa.gob.es/es/ganaderia/temas/sanidad-animal-higiene-ganadera/sanidad-animal/alertas-sanitarias/lista_enfermedades_edo)
+
+
+## Material que te hace falta para la higiene frente a la salmonelosis
+
+Estos materiales sirven para organizar la desinfección de equipos y la protección personal durante la limpieza.
+
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para desinfectar superficies y equipos compatibles previamente limpios, según la etiqueta.
+- [Desinfectante Oxine (1 galón)](../tienda/p/desinfectante-oxine-1-galon/) — para la higiene de superficies compatibles según las instrucciones del fabricante, sin mezclar desinfectantes.
+- [Guantes de nitrilo desechables 6 mil, negros, sin látex](../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/) — para proteger las manos durante las tareas de higiene; no sustituyen el lavado de manos.
+- [Respirador desechable 3M 8210 N95, paquete de 20](../tienda/p/respirador-desechable-3m-8210-n95-paquete-de-20/) — para reducir la exposición a partículas durante la limpieza, con ajuste adecuado.
+
+[Ver todo el material de higiene y bioseguridad para el gallinero →](../tienda/)
