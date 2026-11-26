@@ -25,7 +25,7 @@
 <link rel="icon" href="../favicon.ico">
 <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="../css/estilo.css?v=20261117-sin-fijo">
+<link rel="stylesheet" href="../css/estilo.css?v=20261123-menu">
 <link rel="stylesheet" href="../css/blog.css?v=20261117-anuncios-arriba">
 <script src="../js/boot.js?v=20261117-anuncios-arriba"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cómo criar pollitos: guía de los primeros 30 días","description":"Prepara la criadora y registra calor, agua, alimento y cama durante el primer mes, ajustando el manejo al lote.","image":"https://granjarentable.com/img/blog/criar-pollitos-30-dias-og.webp","datePublished":"2026-10-22","dateModified":"2026-11-13","inLanguage":"es-419","author":{"@type":"Person","name":"Equipo editorial de Granja Rentable"},"publisher":{"@type":"Organization","name":"Granja Rentable","logo":{"@type":"ImageObject","url":"https://granjarentable.com/img/logo.jpg"}},"mainEntityOfPage":"https://granjarentable.com/blog/criar-pollitos-30-dias.html","articleSection":"Pollos de engorde"}</script>
@@ -81,6 +81,7 @@
 <div class="nav-sub" id="nav-razas">
 <a data-nav="razas-gallinas" href="../razas.html#razas-gallinas"><span class="nav-label">Gallinas</span></a>
 <a data-nav="razas-pollos" href="../pollos-engorde.html"><span class="nav-label">Pollos</span></a>
+<a data-nav="criaderos" href="../criaderos.html"><span class="nav-label">Criaderos por país</span></a>
 <a data-nav="razas-gallos" href="../razas.html#gallos"><span class="nav-label">Gallos</span></a>
 </div>
 </div>
@@ -93,12 +94,23 @@
 <div class="nav-sub" id="nav-herramientas">
 <a data-nav="calculadora" href="../calculadora.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calculadora</span></a>
 <a data-nav="enfermedades" href="../enfermedades.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="currentColor" d="M14.2 8.2h3.6v6h6v3.6h-6v6h-3.6v-6h-6v-3.6h6z"/></svg></span><span class="nav-label">Enfermedades</span></a>
+<a data-nav="gestion-gallinas" href="../app-gallinas/"><span class="nav-label">Gestión de gallinas</span></a>
 <a data-nav="juegos" href="../juegos.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span></a>
 </div>
 </div>
 <a data-nav="app" href="../app.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M11 3h10a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1.8 2.6v17.2h6.4V5.6h-6.4zM14.6 24.8h2.8V26.6h-2.8z"/></svg></span><span class="nav-label">App</span></a>
 <a data-nav="ebooks" href="../ebooks/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 4h11l5 5v19H8V4zm10 1.6V10h4.2L18 5.6zM10.2 14h11.6v2H10.2zm0 4h11.6v2H10.2zm0 4h8v2h-8z"/></svg></span><span class="nav-label">Ebooks</span></a>
+<div class="nav-drop">
+<div class="nav-row">
 <a data-nav="tienda" href="../tienda/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M4.5 13.2 16 4.2l11.5 9v14.2h-23V13.2zm2.6 1.4V25h17.8V14.6L16 7.4 7.1 14.6zM12.2 25v-6.4h7.6V25h-7.6z"/></svg></span><span class="nav-label">Tienda</span></a>
+<button class="nav-parent nav-tiendas" type="button" aria-expanded="false" aria-controls="nav-tiendas" aria-label="Opciones de tienda"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+</div>
+<div class="nav-sub" id="nav-tiendas">
+<a href="../tienda/">Material avícola en Amazon</a>
+<a data-nav="merchandising" href="../tienda/merchandising/">Tienda oficial de ropa y regalos</a>
+<a data-nav="comparativas" href="../comparativas.html">Comparativas con vídeo</a>
+</div>
+</div>
 <div class="nav-drop">
 <div class="nav-row">
 <button class="nav-redes" type="button" aria-expanded="false" aria-controls="nav-redes"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="16" r="3.3" fill="currentColor"/><circle cx="23" cy="7.5" r="3.3" fill="currentColor"/><circle cx="23" cy="24.5" r="3.3" fill="currentColor"/><path d="M11.1 14.6 20 8.8M11.1 17.4 20 23.2" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></span><span class="nav-label">Redes</span></button>
@@ -109,7 +121,7 @@
 <a data-social="facebook" href="https://www.facebook.com/GranjaRentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M18.2 7.2h3.2V3.4h-3.2c-3.4 0-5.6 2.1-5.6 5.5v2.6H9.2V15h3.4V28h4.4V15h3.5l.6-3.5h-4.1v-2.4c0-1.1.4-1.9 1.2-1.9z"/></svg></span><span class="nav-label">Facebook</span></a>
 <a data-social="instagram" href="https://www.instagram.com/granjarentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.3"><rect x="6" y="6" width="20" height="20" rx="5.5"/><circle cx="16" cy="16" r="4.2"/></g><circle cx="22.6" cy="9.4" r="1.7" fill="currentColor"/></svg></span><span class="nav-label">Instagram</span></a>
 <a data-social="x" href="https://x.com/juanpab10242455"><span class="nav-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></span><span class="nav-label">X</span></a>
-<a data-social="tiktok" href="#tiktok-pendiente"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M20.4 4.2h3.1a7.4 7.4 0 0 0 4.3 4.1v3.2a10.6 10.6 0 0 1-4.3-1.2v8.6a7.4 7.4 0 1 1-7.4-7.4c.3 0 .7 0 1 .1v3.3a4.2 4.2 0 1 0 2.9 4V4.2z"/></svg></span><span class="nav-label">TikTok (pendiente)</span></a>
+<a data-social="tiktok" href="https://www.tiktok.com/@granjarentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M20.4 4.2h3.1a7.4 7.4 0 0 0 4.3 4.1v3.2a10.6 10.6 0 0 1-4.3-1.2v8.6a7.4 7.4 0 1 1-7.4-7.4c.3 0 .7 0 1 .1v3.3a4.2 4.2 0 1 0 2.9 4V4.2z"/></svg></span><span class="nav-label">TikTok</span></a>
 </div>
 </div>
 <a class="nav-wa" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 4.2a10.6 10.6 0 0 0-9.1 16L5.4 26.6l6.6-1.6A10.6 10.6 0 1 0 16 4.2zm5.8 14.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.2l-.7.8c-.1.2-.3.2-.5.1a7 7 0 0 1-3.4-3c-.2-.4.2-.4.7-1.2 0-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1 2.6c.2.2 1.7 2.6 4.1 3.6 1.5.6 2 .7 2.8.5.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1l-.4-.2z"/></svg></span><span class="nav-label">WhatsApp</span></a>
@@ -133,7 +145,7 @@
 
 <figure class="post-foto"><img src="../img/blog/criar-pollitos-30-dias.webp" alt="Pollitos Wyandotte en una criadora, con comedero, bebedero y un recipiente de grit" srcset="../img/blog/criar-pollitos-30-dias-800.webp 800w, ../img/blog/criar-pollitos-30-dias.webp 1200w" sizes="(max-width: 720px) 100vw, 672px" width="1200" height="675"><figcaption>Foto: Frank Vincentz, <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Kluse_-_Wyandotten_ssg_5_Tage_03_ies.jpg" rel="noopener" target="_blank">Wikimedia Commons</a> Imagen adaptada de tamaño y encuadre.</figcaption></figure>
 <div class="post-acciones" data-post-acciones hidden><button class="btn sec" type="button" data-post-copiar>Copiar enlace</button><button class="btn sec" type="button" data-post-imprimir>Imprimir artículo</button><span role="status" aria-live="polite" data-post-estado></span></div>
-<details class="post-indice" open><summary>En este artículo</summary><nav aria-label="Apartados del artículo"><ol><li class="post-indice-nivel-2"><a href="#apartado-antes-de-recibirlos-prueba-la-criadora-sin-aves">Antes de recibirlos: prueba la criadora sin aves</a></li><li class="post-indice-nivel-2"><a href="#apartado-calor-durante-las-cuatro-semanas">Calor durante las cuatro semanas</a></li><li class="post-indice-nivel-2"><a href="#apartado-una-revision-que-puedas-repetir">Una revisión que puedas repetir</a></li><li class="post-indice-nivel-2"><a href="#apartado-alimentacion-sin-cambios-automaticos-por-cumpleanos">Alimentación sin cambios automáticos por cumpleaños</a></li><li class="post-indice-nivel-2"><a href="#apartado-registro-diario-de-incidencias">Registro diario de incidencias</a></li><li class="post-indice-nivel-2"><a href="#apartado-vacunas-salidas-y-senales-de-alarma">Vacunas, salidas y señales de alarma</a></li><li class="post-indice-nivel-2"><a href="#apartado-fuentes-y-alcance">Fuentes y alcance</a></li></ol></nav></details>
+<details class="post-indice" open><summary>En este artículo</summary><nav aria-label="Apartados del artículo"><ol><li class="post-indice-nivel-2"><a href="#apartado-antes-de-recibirlos-prueba-la-criadora-sin-aves">Antes de recibirlos: prueba la criadora sin aves</a></li><li class="post-indice-nivel-2"><a href="#apartado-calor-durante-las-cuatro-semanas">Calor durante las cuatro semanas</a></li><li class="post-indice-nivel-2"><a href="#apartado-una-revision-que-puedas-repetir">Una revisión que puedas repetir</a></li><li class="post-indice-nivel-2"><a href="#apartado-alimentacion-sin-cambios-automaticos-por-cumpleanos">Alimentación sin cambios automáticos por cumpleaños</a></li><li class="post-indice-nivel-2"><a href="#apartado-registro-diario-de-incidencias">Registro diario de incidencias</a></li><li class="post-indice-nivel-2"><a href="#apartado-vacunas-salidas-y-senales-de-alarma">Vacunas, salidas y señales de alarma</a></li><li class="post-indice-nivel-2"><a href="#apartado-fuentes-y-alcance">Fuentes y alcance</a></li><li class="post-indice-nivel-2"><a href="#apartado-material-para-criar-pollitos-durante-el-primer-mes">Material para criar pollitos durante el primer mes</a></li></ol></nav></details>
 <div class="panel prose post-body">
 <p>El primer mes necesita una criadora preparada y un seguimiento que permita detectar fallos. Una tabla de temperaturas puede orientar, pero no sustituye observar a los pollitos ni seguir las instrucciones del sistema de calefacción y del proveedor del lote.</p>
 <p>Esta guía se refiere a pollitos de gallina. Distingue el programa de alimentación de pollos de engorde del de futuras ponedoras y mantén a las aves jóvenes en un espacio separado de las adultas.</p>
@@ -187,6 +199,15 @@
 <p>Salir al exterior o retirar la calefacción no es un paso obligatorio al cumplir 25 o 30 días. Valora las aves, las condiciones ambientales y la protección de la instalación. Si observas debilidad marcada, dificultad respiratoria, falta de ingesta o bajas, solicita ayuda veterinaria; no esperes al siguiente cambio de semana.</p>
 <h2 id="apartado-fuentes-y-alcance" tabindex="-1">Fuentes y alcance</h2>
 <p><a href="https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-layer-chicks-and-pullets" rel="noopener nofollow" target="_blank">Universidad de Minnesota: pollitas de puesta</a> y <a href="https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-chickens-for-meat" rel="noopener nofollow" target="_blank">pollos de engorde</a>. Referencias para calor, observación, alojamiento y alimentación. La lista de recepción y la hoja de seguimiento son una propuesta editorial para organizar comprobaciones, no un ensayo de crianza ni un calendario veterinario.</p>
+<h2 id="apartado-material-para-criar-pollitos-durante-el-primer-mes" tabindex="-1">Material para criar pollitos durante el primer mes</h2>
+<p>Organiza el calor, el agua y el alimento desde la recepción del lote.</p>
+<ul class="steps">
+<li><a href="../tienda/p/kit-de-criadora-para-pollitos-con-placa-calefactora/">Kit de criadora para pollitos con placa calefactora</a> — conjunto para acondicionar la criadora.</li>
+<li><a href="../tienda/p/placa-de-calor-brinsea-ecoglow-600-para-hasta-20-pollitos/">Placa de calor Brinsea EcoGlow 600 para hasta 20 pollitos</a> — fuente de calor cuya altura y capacidad deben ajustarse al lote.</li>
+<li><a href="../tienda/p/kit-de-iniciacion-para-pollitos-little-giant-comedero-bebedero-y-lampara/">Kit de iniciación para pollitos Little Giant (comedero, bebedero y lámpara)</a> — reúne recipientes de alimento y agua y una lámpara que debe instalarse según su manual.</li>
+<li><a href="../tienda/p/comedero-de-pollitos-0-8-gal-con-bebedero-y-3-alturas/">Comedero de pollitos 0,8 gal con bebedero y 3 alturas</a> — permite adaptar la altura del equipo de alimentación y bebida.</li>
+</ul>
+<p><a href="../tienda/">Ver todo el material para criar pollitos →</a></p>
 
 <aside data-recursos-granja aria-label="Recursos relacionados"><div data-fichas><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel="sponsored nofollow noopener" target="_blank" href="https://www.amazon.com/dp/B07NJZM1F5?tag=granjarentabl-20">Placa de calor Brinsea EcoGlow 600</a><br><small>Podemos recibir una comisión por la compra.</small></p><p data-ficha><small>Amazon.com · Enlace de afiliado</small><br><a rel="sponsored nofollow noopener" target="_blank" href="https://www.amazon.com/dp/B089XZVZMP?tag=granjarentabl-20">Copas de bebedero Lil’Clucker</a><br><small>Podemos recibir una comisión por la compra.</small></p></div><div data-controles hidden><button type="button" data-otra>Ver otro recurso</button> <button type="button" data-pausa>Pausar</button></div></aside><script defer src="../js/recursos-articulo.js"></script>
 <p>La guía fija de este tema es <a href="../guia-espacio.html">Espacio por ave</a>.</p>
@@ -261,7 +282,10 @@
 <li><a href="../contacto.html">Contacto</a></li>
 <li><a href="../quienes-somos.html">Quiénes somos</a></li>
 <li><a href="../ebooks/">Ebooks</a></li>
-<li><a href="../tienda/">Tienda</a></li>
+<li><a href="../criaderos.html">Criaderos por país</a></li>
+<li><a href="../tienda/">Tienda Amazon</a></li>
+<li><a href="../tienda/merchandising/">Tienda oficial de ropa y regalos</a></li>
+<li><a href="../comparativas.html">Comparativas con vídeo</a></li>
 </ul>
 <!-- pie-sitio:fin -->
 
@@ -272,7 +296,7 @@
 <li><a data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable">WhatsApp +34 656 267 726</a></li>
 <li><a data-social="youtube" href="https://www.youtube.com/@GranjaRentable">YouTube</a></li>
 <li><a data-social="facebook" href="https://www.facebook.com/GranjaRentable">Facebook</a></li>
-<li><a data-social="tiktok" href="#tiktok-pendiente">TikTok (pendiente)</a></li>
+<li><a data-social="tiktok" href="https://www.tiktok.com/@granjarentable">TikTok</a></li>
 <li><a href="../aviso-legal.html">Aviso legal</a></li>
 <li><a href="../privacidad.html">Privacidad</a></li>
 <li><a href="../cookies.html">Cookies</a></li>

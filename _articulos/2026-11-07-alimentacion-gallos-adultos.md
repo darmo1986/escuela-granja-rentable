@@ -58,3 +58,13 @@ No lo añadas automáticamente. Revisa el alimento que ya recibe y separa las ne
 ## Fuente y alcance
 
 Consulta [Feeding the Laying Hen, de Alabama Cooperative Extension](https://www.aces.edu/blog/topics/farming/backyard-small-poultry-flock-management-series-feeding-the-laying-hen/), incluido su apartado sobre gallos. Esta guía aborda manejo alimentario general; un programa de reproductores requiere ajustar objetivos y raciones al lote.
+
+## Material para organizar la comida de gallos y ponedoras
+
+Si conviven gallos y ponedoras, comprueba el destino de cada alimento y separa sus accesos cuando sea necesario.
+
+- [Pienso Mile Four de grano entero para ponedoras, 2 lb](../tienda/p/pienso-mile-four-de-grano-entero-para-ponedoras-2-lb/) — opción destinada a las ponedoras, no una recomendación de dieta para gallos.
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — recipiente para organizar el acceso al alimento.
+- [Gusanos de harina secos 5 lb, premio proteico para gallinas](../tienda/p/gusanos-de-harina-secos-5-lb-premio-proteico-para-gallinas/) — premio ocasional que no sustituye una dieta completa.
+
+[Ver todo el material para alimentar tu gallinero →](../tienda/)

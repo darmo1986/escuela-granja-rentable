@@ -58,3 +58,13 @@ No improvises restricciones como método de ahorro. Pueden afectar al crecimient
 ## Fuente
 
 [Colorado State University: métodos de alimentación de pequeñas bandadas](https://extension.colostate.edu/resource/practical-feeding-methods-for-small-poultry-flocks/) insiste en seguir programas e indicaciones coherentes del fabricante. Los ejemplos de organización de esta página son propuestas prácticas, no resultados de una prueba de campo.
+
+## Material para organizar el suministro de pienso por fases
+
+Comprueba el destino del alimento y adapta los comederos al tamaño de las aves.
+
+- [Pienso Purina Start & Grow en migaja, saco de 25 lb, etiqueta medicada](../tienda/p/pienso-purina-start-grow-en-migaja-saco-de-25-lb-etiqueta-medicada/) — opción de arranque con etiqueta medicada; verifica si está indicada para tu lote y consulta al veterinario antes de usarla.
+- [Comedero galvanizado Double-Tuf para gallinas, 17 lb, colgante](../tienda/p/comedero-galvanizado-double-tuf-para-gallinas-17-lb-colgante/) — recipiente colgante para distribuir alimento a aves de tamaño adecuado.
+- [Kit de comedero automático de 6 puertos, sin desperdicio](../tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/) — kit para montar varios puntos de acceso al pienso.
+
+[Ver todo el material para alimentar pollos de engorde →](../tienda/)

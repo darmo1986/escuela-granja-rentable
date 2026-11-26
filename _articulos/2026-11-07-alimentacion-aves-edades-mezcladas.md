@@ -57,3 +57,14 @@ No. El crecimiento y el mantenimiento adulto son situaciones distintas. Tienes u
 ## Fuentes
 
 La [guía de Georgia sobre nutrición de pequeñas bandadas](https://fieldreport.caes.uga.edu/publications/C954/nutrition-for-the-backyard-flock/) explica por qué edad y finalidad importan. Para las fases iniciales, consulta [cómo elegir pienso de inicio](pienso-iniciador-pollitos.html). El mapa y las comprobaciones anteriores son una propuesta de organización, no una formulación nutricional.
+
+## Material para separar la alimentación por edades
+
+Organiza puntos de alimentación y comprueba qué aves acceden a cada producto.
+
+- [Comedero RentACoop Chick2Chicken de 10 lb y cuatro bocas medianas](../tienda/p/comedero-rentacoop-chick2chicken-de-10-lb-y-cuatro-bocas-medianas/) — recipiente con varios puntos de acceso cuya altura y tamaño deben adaptarse al grupo.
+- [Pienso Mile Four de crecimiento en grano entero, 2 lb](../tienda/p/pienso-mile-four-de-crecimiento-en-grano-entero-2-lb/) — opción de crecimiento para el grupo cuya fase coincida con la etiqueta.
+- [Pienso Mile Four de grano entero para ponedoras, 2 lb](../tienda/p/pienso-mile-four-de-grano-entero-para-ponedoras-2-lb/) — opción destinada a las ponedoras, no a los pollitos.
+- [Comedero doble para grit y concha de ostra para gallinas](../tienda/p/comedero-doble-para-grit-y-concha-de-ostra-para-gallinas/) — permite separar el grit del aporte de calcio.
+
+[Ver todo el material para alimentar tu lote →](../tienda/)

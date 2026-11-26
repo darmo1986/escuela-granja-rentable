@@ -66,3 +66,14 @@ Cuando ya sepas los kilos que sí se comieron, pasa tu precio a la [calculadora 
 Antes de cambiar el equipo, registra dónde se pierde pienso y comprueba si un ajuste del comedero actual resuelve el problema. Si necesitas comparar opciones, consulta los [criterios para elegir un comedero de pedal](../tsr/tsr-comederos-antirratas.html) y la [comparación de tres modelos del catálogo](../comparativas/comparativa-comederos-pedal-antirratas.html). La capacidad por sí sola no demuestra un ahorro ni la adecuación a todas tus aves.
 
 La [hoja semanal de puesta y pienso](../hoja-registro-puesta.html) es gratuita. Anota la fecha de cualquier cambio y distingue el gasto de pienso de los demás costes de producción.
+
+## Material que te hace falta para reducir derrames de pienso
+
+Estos diseños permiten comparar formas de acceso y comprobar las pérdidas antes y después de un cambio.
+
+- [Comedero de pedal Grandpa's Feeders 20 lb antirratas](../tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/) — apertura por pedal para limitar el acceso al depósito; verifica que las aves lo accionen.
+- [Comedero de pedal RentACoop 25 lb antirratas](../tienda/p/comedero-de-pedal-rentacoop-25-lb-antirratas/) — otra opción de pedal para comparar capacidad y acceso.
+- [Kit de comedero automático de 6 puertos, sin desperdicio](../tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/) — para montar un comedero con seis puntos de acceso.
+- [Kit de 4 bocas para comedero de cubo](../tienda/p/kit-de-4-bocas-para-comedero-de-cubo/) — para adaptar un cubo con cuatro puntos de alimentación.
+
+[Ver todo el material para los comederos →](../tienda/)

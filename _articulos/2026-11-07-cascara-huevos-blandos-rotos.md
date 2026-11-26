@@ -81,3 +81,13 @@ El estrés también afina la cáscara: un susto fuerte, un cambio brusco de gall
 Una cáscara firme es la suma de una dieta correcta, un gallinero tranquilo y gallinas en su edad de puesta. Corrige el calcio, dale tiempo al plan y anota los resultados: en dos semanas sabrás si vas por buen camino.
 
 Si quieres profundizar en alimentación y manejo de ponedoras, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te explica cada etapa de la puesta con vídeo.
+
+## Material que te hace falta para revisar la alimentación de las ponedoras
+
+Estas referencias permiten valorar aportes nutricionales distintos sin confundirlos con una solución a los defectos de cáscara.
+
+- [Concha de ostra Manna Pro, pack de 6 bolsas de 5 lb](../tienda/p/concha-de-ostra-manna-pro-pack-de-6-bolsas-de-5-lb/) — fuente de calcio que puedes valorar tras revisar la dieta de puesta.
+- [Grit de cuarcita Mile Four para crecimiento y puesta, 4 lb](../tienda/p/grit-de-cuarcita-mile-four-para-crecimiento-y-puesta-4-lb/) — grit insoluble para la trituración del alimento, no sustituye al calcio.
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — complemento nutricional que solo conviene valorar si está indicado; no corrige por sí solo los problemas de cáscara.
+
+[Ver todo el material para la puesta →](../tienda/)

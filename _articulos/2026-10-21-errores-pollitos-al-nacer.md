@@ -62,3 +62,13 @@ Los pollitos avisan antes de morir: dejan de comer, se apartan del grupo, cierra
 | Revisión | 3-4 veces al día |
 
 Haz esto bien y no se te muere ni uno.
+
+## Material para preparar la recepción de los pollitos
+
+Prepara el calor y el equipo de crianza antes del nacimiento.
+
+- [Placa de calor Brinsea EcoGlow 600 para hasta 20 pollitos](../tienda/p/placa-de-calor-brinsea-ecoglow-600-para-hasta-20-pollitos/) — fuente de calor para la criadora, según su manual.
+- [Kit de criadora para pollitos con placa calefactora](../tienda/p/kit-de-criadora-para-pollitos-con-placa-calefactora/) — conjunto para preparar el espacio de crianza.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — complemento nutricional de apoyo, siguiendo la etiqueta y sin sustituir la atención veterinaria.
+
+[Ver todo el material para criar pollitos →](../tienda/)

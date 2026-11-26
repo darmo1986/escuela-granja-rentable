@@ -59,3 +59,13 @@ Antes de pasar a la fase de nacimiento (subir la humedad y dejar de voltear), ha
 5. **Ante la duda, déjalo.** Un huevo dudoso el día 7 puede estar claro el día 14. Nunca tires un huevo fértil por impaciencia.
 
 La ovoscopia bien hecha ayuda porque la incubadora trabaja solo con huevos viables: si retiras a tiempo los huevos claros o con el embrión muerto, reduces el riesgo de que se pudran y contaminen al resto. Hazla con las manos limpias y con rapidez para no enfriar los huevos.
+
+## Material para hacer ovoscopia y registrar el peso
+
+La luz y el pesaje permiten documentar observaciones durante la incubación.
+
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para observar el interior del huevo al trasluz.
+- [Ovoscopio LED de alta intensidad Titan a pilas](../tienda/p/ovoscopio-led-de-alta-intensidad-titan-a-pilas/) — alternativa portátil para iluminar los huevos.
+- [Báscula digital para huevos con pantalla retroiluminada](../tienda/p/bascula-digital-para-huevos-con-pantalla-retroiluminada/) — para registrar pesos comparables de los huevos.
+
+[Ver todo el material para revisar huevos →](../tienda/)

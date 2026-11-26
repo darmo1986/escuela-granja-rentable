@@ -88,3 +88,13 @@ Una gallina clueca se queda en el nido, erizada, y no pone mientras empolla. Y a
 No uses una cifra de huevos por semana como objetivo de tu corral. Durante siete días apunta aves vivas, huevos enteros, rotos y si el agua faltó. Si un día se hunden los huevos y la nota dice «bebedero vacío», la causa de ese día no es la raza. La cuenta del pienso, con tu precio, se hace en la [calculadora de coste por docena](../calculadoras.html#coste-docena). El beneficio del lote, si quieres estimarlo con más partidas, está en la [calculadora de rentabilidad](../calculadora.html): el resultado es una estimación, no el dinero que te queda.
 
 Si vienes de un vídeo del canal, la página de destino de este tema es [desde YouTube: puesta](../youtube/puesta.html).
+
+## Material que te hace falta para revisar los nidales y la dieta de puesta
+
+Estos materiales pueden servir para el manejo, pero no sustituyen la investigación de una caída de puesta.
+
+- [Almohadillas de nidal Eaton, 13 x 13 pulgadas, 10 unidades](../tienda/p/almohadillas-de-nidal-eaton-13-x-13-pulgadas-10-unidades/) — para acondicionar la superficie de los nidales.
+- [Concha de ostra American Classic 5 lb para gallinas ponedoras](../tienda/p/concha-de-ostra-american-classic-5-lb-para-gallinas-ponedoras/) — fuente de calcio para ponedoras cuando la revisión de la dieta lo justifique.
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — complemento nutricional que debe valorarse según necesidad y orientación profesional, no como solución automática a la falta de puesta.
+
+[Ver todo el material para el gallinero →](../tienda/)

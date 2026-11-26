@@ -70,3 +70,13 @@ La guarda no arregla un huevo malo: empieza por seleccionar bien. Recoge los hue
 - **No laves los huevos sucios:** el lavado elimina la cutícula protectora de la cáscara y facilita la entrada de bacterias por los poros. Un huevo sucio no debe incubarse; un huevo ligeramente manchado puede usarse, pero sin frotarlo con un paño húmedo.
 
 La ovoscopia a los siete días de incubación te dirá qué huevos se están desarrollando. Resumiendo: lugar fresco y estable entre 13 y 18 °C, humedad en torno al 75 %, punta hacia abajo, volteo diario si la guarda pasa de unos días, y a incubar antes de que se cumpla una semana.
+
+## Material para preparar los huevos para incubar
+
+Este material permite registrar los huevos y organizar la tanda después de la guarda.
+
+- [Báscula digital para huevos con pantalla retroiluminada](../tienda/p/bascula-digital-para-huevos-con-pantalla-retroiluminada/) — para anotar el peso inicial de cada huevo.
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — para preparar la tanda tras el almacenamiento.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para observar el desarrollo una vez iniciada la incubación.
+
+[Ver todo el material para incubar →](../tienda/)

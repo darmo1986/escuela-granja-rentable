@@ -91,3 +91,14 @@ No. Lee el etiquetado y consulta al proveedor. Si contiene aditivos con indicaci
 ## Fuente y siguiente paso
 
 La [Universidad de Minnesota explica la cría de pollitas](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-layer-chicks-and-pullets) y distingue su alimentación por etapas. Para planificar aves de engorde, sigue la [guía por fases](alimentacion-pollos-engorde-fases.html) de esta web.
+
+## Material para elegir y ofrecer el pienso de inicio
+
+Compara etiquetas y presentación antes de preparar los comederos.
+
+- [Pienso de inicio Mile Four en harina para pollitos, 2 lb](../tienda/p/pienso-de-inicio-mile-four-en-harina-para-pollitos-2-lb/) — opción de inicio en harina que debes contrastar con el destino del lote.
+- [Pienso de arranque Manna Pro, bolsa de 5 lb, etiqueta medicada](../tienda/p/pienso-de-arranque-manna-pro-bolsa-de-5-lb-etiqueta-medicada/) — opción de etiqueta medicada; comprueba indicaciones y consulta al veterinario antes de usarla.
+- [Grit de cuarcita Mile Four para pollitos, 4 lb](../tienda/p/grit-de-cuarcita-mile-four-para-pollitos-4-lb/) — grit insoluble para cuando corresponda según la dieta y la edad.
+- [Comedero de suelo Double-Tuf para pollitos, 20 cm](../tienda/p/comedero-de-suelo-double-tuf-para-pollitos-20-cm/) — recipiente de suelo para facilitar el acceso al alimento.
+
+[Ver todo el material para alimentar pollitos →](../tienda/)

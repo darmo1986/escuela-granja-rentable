@@ -66,3 +66,13 @@ Describen principalmente la presentación. Hay que revisar también la formulaci
 Con los datos de dos sacos, abre la [comparación de precio por kilo](../calculadoras.html#sacos). Para revisar referencias de la tienda, entra en [pienso por etapa y uso](../tienda/c/pienso/) y comprueba cada ficha antes de elegir.
 
 Si llegaste desde un vídeo, el [recorrido de alimentación](../youtube/alimentacion.html) conecta etiqueta, registro, cuentas y equipo. No necesitas comprar para usar esos recursos.
+
+## Material que te hace falta para comparar etiquetas de pienso
+
+Estas tres referencias de puesta permiten comparar presentación, composición y modo de empleo.
+
+- [Pienso de puesta Scratch and Peck en migas (25 lb)](../tienda/p/pienso-de-puesta-scratch-and-peck-en-migas-25-lb/) — para revisar una fórmula de puesta en migas.
+- [Pienso ecológico de puesta Kalmbach 17 % en pellets](../tienda/p/pienso-ecologico-de-puesta-kalmbach-17-en-pellets/) — para comparar una fórmula ecológica de puesta en pellets.
+- [Pienso Purina Layena en pellets para ponedoras (25 lb)](../tienda/p/pienso-purina-layena-en-pellets-para-ponedoras-25-lb/) — para contrastar otra presentación en pellets y sus indicaciones.
+
+[Ver todo el material para alimentar a tus gallinas →](../tienda/)

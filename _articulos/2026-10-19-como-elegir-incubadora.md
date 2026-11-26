@@ -73,3 +73,13 @@ Para organizar el resto del proceso, consulta el [curso gratuito](../curso.html)
 ## Fuente y alcance
 
 [Mississippi State University Extension: Hatching Quality Chicks](https://extension.msstate.edu/publications/hatching-quality-chicks), apartados de equipos, preparación, temperatura, humedad y volteo. La tabla de preguntas y el cálculo energético son herramientas editoriales, no un ensayo de producto ni una promesa de eclosión. Usa siempre las instrucciones vigentes de tu modelo.
+
+## Material para elegir tu incubadora
+
+Compara capacidades y prepara también la revisión de los huevos.
+
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — opción para comparar capacidad de incubación de huevos de gallina.
+- [Incubadora Brinsea Mini II Advance con volteo automático (7 huevos)](../tienda/p/incubadora-brinsea-mini-ii-advance-con-volteo-automatico-7-huevos/) — alternativa de menor capacidad con volteo automático.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — permite observar el desarrollo del huevo al trasluz.
+
+[Ver todo el material para incubar →](../tienda/)

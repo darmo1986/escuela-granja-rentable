@@ -52,3 +52,13 @@ L03, con la cita de la MSU, separa los plazos: gallina 21, codorniz 17, pato 28 
 No hay aquí un porcentaje de nacimientos garantizado, ni una humedad que valga igual en clima seco y en clima húmedo sin mirar la sonda. El manual de tu incubadora manda en cómo añadir agua. Si la sonda y el manual no coinciden, no promedies a ojo: comprueba el aparato con una referencia antes de la tanda.
 
 Si vienes de un vídeo de incubación, el destino es [desde YouTube: incubar](../youtube/incubacion.html). La guía fija del tema es la de la incubadora, enlazada al final de esta página.
+
+## Material para controlar temperatura y humedad
+
+Estos equipos permiten comparar lecturas y organizar los ajustes de la incubadora.
+
+- [IncuTherm Plus: termohigrómetro digital con sonda para incubadora](../tienda/p/incutherm-plus-termohigrometro-digital-con-sonda-para-incubadora/) — mide temperatura y humedad mediante una sonda.
+- [Termohigrómetro Govee H5075 con Bluetooth](../tienda/p/termohigrometro-govee-h5075-con-bluetooth/) — permite consultar lecturas de temperatura y humedad.
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — equipo para incubar siguiendo las instrucciones de su fabricante.
+
+[Ver todo el material para incubar →](../tienda/)

@@ -400,3 +400,14 @@ Si quieres profundizar, en los [**ebooks de Granja Rentable**](https://granjaren
 **Metodología editorial:** Las cifras de calcio, consumo de pienso y relación agua/pienso proceden de las fuentes citadas y son referencias generales, no valores medidos en una granja concreta. Las fórmulas sirven para calcular con los datos propios del lector.
 
 **Nota editorial:** Esta guía es divulgativa. No sustituye una formulación nutricional profesional, la valoración de un veterinario ni el asesoramiento jurídico sobre la normativa aplicable en cada país o comunidad autónoma.
+
+## Material que te hace falta para alimentar a las gallinas por etapas
+
+Compara las referencias de cada fase y confirma su adecuación al programa de tu lote.
+
+- [Pienso de inicio Mile Four en harina para pollitos, 2 lb](../tienda/p/pienso-de-inicio-mile-four-en-harina-para-pollitos-2-lb/) — referencia en harina para la fase de inicio.
+- [Pienso Mile Four de crecimiento en grano entero, 2 lb](../tienda/p/pienso-mile-four-de-crecimiento-en-grano-entero-2-lb/) — referencia de crecimiento en grano entero.
+- [Pienso de puesta Scratch and Peck en migas (25 lb)](../tienda/p/pienso-de-puesta-scratch-and-peck-en-migas-25-lb/) — pienso de puesta en migas para aves en producción.
+- [Grit de cuarcita Mile Four para pollitos, 4 lb](../tienda/p/grit-de-cuarcita-mile-four-para-pollitos-4-lb/) — grit insoluble de tamaño destinado a pollitos, cuando su dieta lo requiera.
+
+[Ver todo el material para la alimentación por etapas →](../tienda/)

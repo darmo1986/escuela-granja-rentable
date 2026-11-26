@@ -75,3 +75,14 @@ Acude a un veterinario si ves debilidad marcada, problemas para caminar, plumas 
 Solo un veterinario puede distinguir una carencia real de una enfermedad o un problema de parásitos, y es quien debe indicar un tratamiento. No uses suplementos para tapar un síntoma.
 
 Antes de comprar nada, comprueba: pienso completo y fresco, adecuado a su edad; agua limpia y fresca siempre; grit y calcio disponibles; gallinero ventilado y seco; y verde o pastoreo cuando sea posible. Si todo eso está en orden y las gallinas ponen bien, no necesitas suplementar: el suplemento, cuando toca, es el último paso, no el primero.
+
+## Material que te hace falta para valorar suplementos cuando estén indicados
+
+Compara las etiquetas de estos complementos únicamente si existe una necesidad justificada.
+
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — complemento de vitaminas y electrolitos para valorar con orientación profesional.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — complemento con electrolitos, vitaminas y probiótico; revisa su indicación.
+- [Nutri-Drench para aves, frasco de 4 oz](../tienda/p/nutri-drench-para-aves-frasco-de-4-oz/) — complemento nutricional para aves; consulta su composición y uso previsto.
+- [Levadura de cerveza con ajo y niacina para aves, 5 lb](../tienda/p/levadura-de-cerveza-con-ajo-y-niacina-para-aves-5-lb/) — complemento con levadura, ajo y niacina que no sustituye al alimento completo.
+
+[Ver todo el material para la alimentación de tus aves →](../tienda/)

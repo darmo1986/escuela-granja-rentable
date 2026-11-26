@@ -56,3 +56,14 @@ Un solo suplemento no corrige todos los posibles desequilibrios de una dieta bas
 ## Fuente y siguiente lectura
 
 [Universidad de Minnesota: criar gallinas para huevos](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-chickens-for-eggs). Para distinguir un alimento completo de otro producto, utiliza la [guía de etiquetas](leer-etiqueta-pienso-aves.html).
+
+## Material que te hace falta para elegir una alternativa al maíz como dieta única
+
+Estas referencias ayudan a distinguir el pienso de puesta de los productos complementarios.
+
+- [Pienso de puesta Scratch and Peck en migas (25 lb)](../tienda/p/pienso-de-puesta-scratch-and-peck-en-migas-25-lb/) — pienso de puesta en migas para valorar como base de la dieta.
+- [Pienso Purina Layena en pellets para ponedoras (25 lb)](../tienda/p/pienso-purina-layena-en-pellets-para-ponedoras-25-lb/) — alternativa de puesta en formato pellet.
+- [Grit de cuarcita Mile Four para crecimiento y puesta, 4 lb](../tienda/p/grit-de-cuarcita-mile-four-para-crecimiento-y-puesta-4-lb/) — grit insoluble para ayudar a triturar alimentos cuando corresponda.
+- [Levadura de cerveza con ajo y niacina para aves, 5 lb](../tienda/p/levadura-de-cerveza-con-ajo-y-niacina-para-aves-5-lb/) — complemento de la dieta que no sustituye al pienso completo.
+
+[Ver todo el material para la alimentación de ponedoras →](../tienda/)

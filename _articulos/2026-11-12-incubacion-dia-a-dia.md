@@ -78,3 +78,14 @@ Conserva registros de varias tandas. Si cambias huevos, equipo y ajustes a la ve
 ## Fuentes y alcance
 
 [Mississippi State: factores de incubación](https://cto.extension.msstate.edu/agriculture/livestock/poultry/important-incubation-factors) y [The Avian Embryo](https://extension.msstate.edu/publications/the-avian-embryo). Las referencias de temperatura, humedad y manejo corresponden a esas publicaciones y deben contrastarse con el manual. El calendario de registro y los ejemplos de cálculo son una elaboración editorial, no datos de una tanda realizada por Granja Rentable.
+
+## Material para seguir la incubación día a día
+
+Prepara el equipo y los instrumentos de seguimiento antes de iniciar la tanda.
+
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — equipo para alojar los huevos durante la incubación.
+- [IncuTherm Plus: termohigrómetro digital con sonda para incubadora](../tienda/p/incutherm-plus-termohigrometro-digital-con-sonda-para-incubadora/) — para registrar lecturas de temperatura y humedad.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para las revisiones del desarrollo al trasluz.
+- [Báscula digital para huevos con pantalla retroiluminada](../tienda/p/bascula-digital-para-huevos-con-pantalla-retroiluminada/) — para comparar el peso del mismo huevo en distintos días.
+
+[Ver todo el material para incubar →](../tienda/)

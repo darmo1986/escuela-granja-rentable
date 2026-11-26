@@ -84,3 +84,14 @@ Salir al exterior o retirar la calefacción no es un paso obligatorio al cumplir
 ## Fuentes y alcance
 
 [Universidad de Minnesota: pollitas de puesta](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-layer-chicks-and-pullets) y [pollos de engorde](https://extension.umn.edu/agriculture/animals-and-livestock/poultry/raising-chickens-for-meat). Referencias para calor, observación, alojamiento y alimentación. La lista de recepción y la hoja de seguimiento son una propuesta editorial para organizar comprobaciones, no un ensayo de crianza ni un calendario veterinario.
+
+## Material para criar pollitos durante el primer mes
+
+Organiza el calor, el agua y el alimento desde la recepción del lote.
+
+- [Kit de criadora para pollitos con placa calefactora](../tienda/p/kit-de-criadora-para-pollitos-con-placa-calefactora/) — conjunto para acondicionar la criadora.
+- [Placa de calor Brinsea EcoGlow 600 para hasta 20 pollitos](../tienda/p/placa-de-calor-brinsea-ecoglow-600-para-hasta-20-pollitos/) — fuente de calor cuya altura y capacidad deben ajustarse al lote.
+- [Kit de iniciación para pollitos Little Giant (comedero, bebedero y lámpara)](../tienda/p/kit-de-iniciacion-para-pollitos-little-giant-comedero-bebedero-y-lampara/) — reúne recipientes de alimento y agua y una lámpara que debe instalarse según su manual.
+- [Comedero de pollitos 0,8 gal con bebedero y 3 alturas](../tienda/p/comedero-de-pollitos-0-8-gal-con-bebedero-y-3-alturas/) — permite adaptar la altura del equipo de alimentación y bebida.
+
+[Ver todo el material para criar pollitos →](../tienda/)

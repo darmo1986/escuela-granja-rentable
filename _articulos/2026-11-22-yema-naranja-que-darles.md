@@ -31,3 +31,13 @@ No añadas suplementos a ojo. Parte del pienso ya trae pigmentos, y pasarse con 
 ## El error que la deja blanca
 
 Dar solo maíz o solo trigo deja yemas pálidas porque falta variedad de pigmentos. Combina verde fresco con su ración habitual y revisa la puesta: si comen bien y la yema no cambia, el problema suele estar en la dosis, no en el ingrediente. El plan de 7 días de [Alimenta bien a tus ponedoras](../ebooks/#alimenta-ponedoras) ordena la ración por etapas.
+
+## Material que te hace falta para complementar la dieta sin desplazar el pienso
+
+Estos complementos aportan variedad, pero no son una garantía de una yema más naranja.
+
+- [Flock Flax de linaza para gallinas y patos](../tienda/p/flock-flax-de-linaza-para-gallinas-y-patos/) — complemento a base de linaza.
+- [Gusanos de harina secos 5 lb, premio proteico para gallinas](../tienda/p/gusanos-de-harina-secos-5-lb-premio-proteico-para-gallinas/) — premio proteico para ofrecer de forma complementaria.
+- [Larvas de mosca soldado Scratch and Peck para gallinas (8 lb)](../tienda/p/larvas-de-mosca-soldado-scratch-and-peck-para-gallinas-8-lb/) — larvas secas como complemento, sin sustituir la ración equilibrada.
+
+[Ver todo el material para alimentar a tus gallinas →](../tienda/)

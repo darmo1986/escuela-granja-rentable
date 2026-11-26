@@ -442,3 +442,14 @@ Este artículo es una guía editorial de divulgación. Las referencias siguiente
    [https://eur-lex.europa.eu/legal-content/ES/ALL/?uri=celex%3A32009R1069](https://eur-lex.europa.eu/legal-content/ES/ALL/?uri=celex%3A32009R1069)
 
 Nota editorial: Este contenido no constituye asesoramiento veterinario individualizado ni certifica el cumplimiento de requisitos legales en una ubicación determinada. Las obligaciones deben comprobarse ante las autoridades competentes. Las cifras técnicas citadas son orientativas y deben interpretarse según las condiciones del sistema de cría.
+
+## Material que te hace falta para preparar el gallinero antes de recibir las aves
+
+Compara estos equipos con el espacio y la rutina previstos para tu primer lote.
+
+- [Gallinero metálico walk-in 10x6,6x6,56 ft para 5-10 gallinas](../tienda/p/gallinero-metalico-walk-in-10x6-6x6-56-ft-para-5-10-gallinas/) — recinto para valorar según espacio útil, refugio y seguridad reales.
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — para ofrecer pienso y ajustar su altura al lote.
+- [Bebedero colgante Harris Farms de 3,5 galones para gallinas](../tienda/p/bebedero-colgante-harris-farms-de-3-5-galones-para-gallinas/) — para suministrar agua; comprueba acceso y capacidad reales.
+- [Almohadillas de nidal Eaton, 13 x 13 pulgadas, 10 unidades](../tienda/p/almohadillas-de-nidal-eaton-13-x-13-pulgadas-10-unidades/) — para acondicionar la base de los nidales.
+
+[Ver todo el material para el gallinero →](../tienda/)

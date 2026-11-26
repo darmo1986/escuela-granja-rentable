@@ -137,3 +137,13 @@ tú. Si quieres cantidad, fechas o no tienes clueca, la incubadora
 es tu herramienta, y con los números correctos de temperatura,
 humedad y volteo saca tandas perfectas. Las dos formas llevan a lo
 mismo: pollitos sanos en 21 días.
+
+## Material para incubar y criar sin gallina clueca
+
+Si eliges la incubación artificial, prepara también el alojamiento de los recién nacidos.
+
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — equipo para organizar una tanda artificial.
+- [Criadora RentACoop Big Red Barn con placa calefactora](../tienda/p/criadora-rentacoop-big-red-barn-con-placa-calefactora/) — criadora con una fuente de calor incorporada.
+- [Placa de calor RentACoop 12x12" con cono anti-percha plegable](../tienda/p/placa-de-calor-rentacoop-12x12-con-cono-anti-percha-plegable/) — alternativa de calefacción para la criadora, según su manual.
+
+[Ver todo el material para incubar y criar pollitos →](../tienda/)

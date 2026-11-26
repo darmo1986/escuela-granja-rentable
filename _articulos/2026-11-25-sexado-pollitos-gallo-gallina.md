@@ -72,3 +72,12 @@ Anota cada pollito con una anilla de color y apunta una vez por semana lo que ob
 | Cresta y plumas | De 3 a 16 semanas | Alta al combinar señales | Criador casero |
 
 Ten un plan para los gallos sobrantes antes de que nazcan: en muchas ciudades no se permite tener gallos. Y si un pollito muestra algún problema de salud, no lo manipules para sexarlo: acude a un veterinario.
+
+## Material para identificar las aves durante el seguimiento
+
+Las anillas permiten asociar observaciones a cada ave, pero no determinan su sexo; úsalas solo si el tamaño es adecuado y revisa el ajuste conforme crecen.
+
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — para distinguir aves mediante colores.
+- [Anillas numeradas multicolor de 16 mm para identificar gallinas, 60 unidades](../tienda/p/anillas-numeradas-multicolor-de-16-mm-para-identificar-gallinas-60-unida/) — para vincular cada ave a un registro individual cuando su tamaño permita usar 16 mm.
+
+[Ver todo el material para identificar tus aves →](../tienda/)

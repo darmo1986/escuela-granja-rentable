@@ -59,3 +59,13 @@ No. También cuentan el precio del alimento, otros costes, la mortalidad y el va
 ## Fuente
 
 [Universidad de Kentucky: introducción a eficiencia alimentaria](https://afs.mgcafe.uky.edu/poultry/chapter-6-introduction) define la relación entre ingesta y ganancia. Para actuar sobre las pérdidas, consulta [cómo reducir desperdicios](reducir-desperdicio-pienso.html).
+
+## Material que te hace falta para controlar las pérdidas de pienso
+
+Compara equipos y etiquetas antes de modificar el programa de alimentación del lote.
+
+- [Kit de comedero automático de 6 puertos, sin desperdicio](../tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/) — para montar un comedero con accesos individuales y observar derrames.
+- [Comedero de pedal Grandpa's Feeders 20 lb antirratas](../tienda/p/comedero-de-pedal-grandpa-s-feeders-20-lb-antirratas/) — comedero con apertura por pedal; comprueba que las aves puedan accionarlo.
+- [Pienso Purina Start & Grow en migaja, saco de 25 lb, etiqueta medicada](../tienda/p/pienso-purina-start-grow-en-migaja-saco-de-25-lb-etiqueta-medicada/) — referencia de pienso de inicio para comparar la etiqueta y su adecuación al programa de engorde con el proveedor; consulta al veterinario por su etiquetado medicado.
+
+[Ver todo el material para alimentar a tus aves →](../tienda/)

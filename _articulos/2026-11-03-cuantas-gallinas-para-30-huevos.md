@@ -68,3 +68,14 @@ Compra siempre con la cuenta segura y mezcla edades: renueva una parte de la ban
 - Hy-Line International: "Brown Commercial Layers – Performance Standards" (fichas técnicas de puesta: pico con 14–15 h de luz, programa de incrementos de 30 min hasta 16 h). https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf
 - Hy-Line International: "Technical Update – Lighting for Brown Egg Layers". https://www.hyline.com/Upload/Resources/TU%20HLB10%20ENG.pdf
 - FAO: "Small-scale poultry production", cap. 4 (planificación en granjas familiares). https://www.fao.org/4/y5169e/y5169e05.htm
+
+## Material que te hace falta para organizar un lote de ponedoras
+
+Dimensiona los equipos según el número real de aves y la recogida de huevos.
+
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — para distribuir pienso; instala los puntos necesarios según el acceso del lote.
+- [Bebedero colgante Little Giant de 5 galones, pack de 2](../tienda/p/bebedero-colgante-little-giant-de-5-galones-pack-de-2/) — para disponer de varios puntos de agua y organizar su reposición.
+- [Almohadillas de nidal Eaton, 13 x 13 pulgadas, 10 unidades](../tienda/p/almohadillas-de-nidal-eaton-13-x-13-pulgadas-10-unidades/) — para acondicionar los nidales y facilitar su mantenimiento.
+- [Hueveras de cartón Pecking Order para docena (50 uds.)](../tienda/p/hueveras-de-carton-pecking-order-para-docena-50-uds/) — para organizar los huevos recogidos en envases de una docena.
+
+[Ver todo el material para la puesta →](../tienda/)

@@ -128,3 +128,13 @@ en tabla y lote parejo. A las 16–18, cresta empezando a enrojecer
 y aves curiosas y movidas. Si llegas así a las 18 semanas, cambia
 a pienso de puesta, sube la luz poco a poco y ten los nidos
 listos: la puesta está a punto de empezar, y esta vez, bien hecha.
+
+## Material para organizar el levante de pollitas
+
+Revisa el acceso al agua y alimento y elige el pienso según la fase de recría.
+
+- [Comedero y bebedero para pollitos Hen's Choice](../tienda/p/comedero-y-bebedero-para-pollitos-hen-s-choice/) — recipientes para ofrecer agua y alimento a las aves jóvenes.
+- [Kit inicial Double-Tuf para pollitos con comederos y bebedero](../tienda/p/kit-inicial-double-tuf-para-pollitos-con-comederos-y-bebedero/) — conjunto de recipientes para organizar los puntos de acceso.
+- [Pienso Mile Four de crecimiento en grano entero, 2 lb](../tienda/p/pienso-mile-four-de-crecimiento-en-grano-entero-2-lb/) — opción de crecimiento cuya etiqueta debe encajar con el programa de recría.
+
+[Ver todo el material para el levante de pollitas →](../tienda/)

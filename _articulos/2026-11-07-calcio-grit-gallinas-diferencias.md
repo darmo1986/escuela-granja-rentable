@@ -57,3 +57,14 @@ No. El objetivo es cubrir necesidades con una dieta equilibrada, no acumular sup
 ## Fuente
 
 [Oregon State University: alimentación de gallinas ponedoras](https://extension.oregonstate.edu/catalog/pnw-477-how-feed-your-laying-hens?reference=catalog) describe el manejo del alimento y los suplementos. Para decidir el producto base, revisa también [cómo leer la etiqueta del pienso](leer-etiqueta-pienso-aves.html).
+
+## Material que te hace falta para separar el calcio del grit
+
+Compara la composición y mantén separados los aportes según las necesidades de cada grupo.
+
+- [Concha de ostra Manna Pro, pack de 6 bolsas de 5 lb](../tienda/p/concha-de-ostra-manna-pro-pack-de-6-bolsas-de-5-lb/) — fuente de calcio para ponedoras cuando corresponda.
+- [Concha de ostra American Classic 5 lb para gallinas ponedoras](../tienda/p/concha-de-ostra-american-classic-5-lb-para-gallinas-ponedoras/) — otra presentación de conchilla para aportar calcio.
+- [Grit de cuarcita Mile Four para crecimiento y puesta, 4 lb](../tienda/p/grit-de-cuarcita-mile-four-para-crecimiento-y-puesta-4-lb/) — partículas insolubles que ayudan a triturar el alimento en la molleja.
+- [Comedero doble para grit y concha de ostra para gallinas](../tienda/p/comedero-doble-para-grit-y-concha-de-ostra-para-gallinas/) — para ofrecer grit y conchilla en compartimentos separados.
+
+[Ver todo el material para alimentar a tus gallinas →](../tienda/)

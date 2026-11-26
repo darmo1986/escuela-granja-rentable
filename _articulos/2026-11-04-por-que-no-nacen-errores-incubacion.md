@@ -99,3 +99,13 @@ Ver un pollito picando durante horas da ganas de ayudar, pero romper la cáscara
 Si anotas en cada lote la fecha de recogida, la temperatura, la humedad y el resultado, en dos o tres lotes tendrás tu propio manual: sabrás exactamente qué ajuste necesita tu incubadora, en tu clima y con tus gallinas. Incubar bien no es un don, es un registro.
 
 Si quieres aprender la incubación paso a paso, con vídeo y con los datos de cada día, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te guía desde la recogida del huevo hasta el nacimiento.
+
+## Material para revisar la próxima tanda de incubación
+
+Estos instrumentos ayudan a documentar las condiciones y el desarrollo sin garantizar nacimientos.
+
+- [IncuTherm Plus: termohigrómetro digital con sonda para incubadora](../tienda/p/incutherm-plus-termohigrometro-digital-con-sonda-para-incubadora/) — para comprobar temperatura y humedad.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para observar el desarrollo al trasluz.
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — equipo de incubación que debe prepararse y comprobarse antes de cargar.
+
+[Ver todo el material para incubar →](../tienda/)

@@ -63,3 +63,14 @@ Sin agua la puesta se resiente, pero esta guía no fija mililitros. Revisa el be
 «Cómo elegir el pienso» y «Alimenta bien a tus ponedoras» están en [Ebooks](../ebooks/). El precio de esa página no se convierte aquí ni entra en la calculadora.
 
 Si el vídeo del que vienes hablaba de pienso o de ahorrar saco, el destino es [desde YouTube: alimentación](../youtube/alimentacion.html).
+
+## Material para alimentar a las ponedoras
+
+Compara el pienso de puesta y organiza los recipientes de alimentación y calcio.
+
+- [Pienso de puesta Scratch and Peck en migas (25 lb)](../tienda/p/pienso-de-puesta-scratch-and-peck-en-migas-25-lb/) — opción de pienso de puesta en migas.
+- [Pienso Purina Layena en pellets para ponedoras (25 lb)](../tienda/p/pienso-purina-layena-en-pellets-para-ponedoras-25-lb/) — alternativa de pienso de puesta en pellets.
+- [Concha de ostra American Classic 5 lb para gallinas ponedoras](../tienda/p/concha-de-ostra-american-classic-5-lb-para-gallinas-ponedoras/) — fuente de calcio para ofrecer por separado cuando corresponda.
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — recipiente colgante para distribuir el pienso.
+
+[Ver todo el material para alimentar ponedoras →](../tienda/)

@@ -106,3 +106,14 @@ Esta ración es orientativa: ajusta según el tamaño de tus gallinas, el clima 
 Lo casero alimenta, entretiene y abarata, pero no sustituye a una dieta completa; el balanceado asegura la puesta y lo casero la enriquece. Juntos, en la proporción correcta, dan gallinas sanas, huevos firmes y un gasto bajo control.
 
 Si quieres aprender a formular raciones y a leer una etiqueta de alimento, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) dedica lecciones completas a la alimentación de ponedoras.
+
+## Material para organizar una alimentación equilibrada
+
+Compara alimentos de puesta y mantén separados los complementos que correspondan.
+
+- [Pienso de puesta Scratch and Peck en migas (25 lb)](../tienda/p/pienso-de-puesta-scratch-and-peck-en-migas-25-lb/) — opción de pienso de puesta en migas.
+- [Pienso ecológico de puesta Kalmbach 17 % en pellets](../tienda/p/pienso-ecologico-de-puesta-kalmbach-17-en-pellets/) — alternativa de puesta en pellets para comparar etiquetas.
+- [Grit de cuarcita Mile Four para crecimiento y puesta, 4 lb](../tienda/p/grit-de-cuarcita-mile-four-para-crecimiento-y-puesta-4-lb/) — grit insoluble para la trituración de alimentos cuando sea necesario.
+- [Comedero doble para grit y concha de ostra para gallinas](../tienda/p/comedero-doble-para-grit-y-concha-de-ostra-para-gallinas/) — recipiente para ofrecer grit y concha de ostra por separado.
+
+[Ver todo el material para alimentar gallinas →](../tienda/)

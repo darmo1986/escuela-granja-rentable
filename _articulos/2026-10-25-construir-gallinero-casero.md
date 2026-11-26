@@ -88,3 +88,14 @@ Anota los defectos y su corrección. Una fecha de finalización no sustituye est
 ## Fuentes y alcance
 
 [Virginia Tech: alojamiento avícola a pequeña escala](https://www.pubs.ext.vt.edu/content/pubs_ext_vt_edu/en/2902/2902-1092/2902-1092.html) y [Universidad de Maryland: requisitos de alojamiento](https://extension.umd.edu/resource/housing-requirements). Respaldan los criterios generales de espacio, protección, ventilación y mantenimiento. Las hojas de medidas, presupuesto y comprobación son herramientas editoriales; no certifican una obra, su capacidad o su cumplimiento normativo.
+
+## Material que te hace falta para equipar y cerrar el gallinero
+
+Estas referencias cubren cerramientos, accesos y nidales; comprueba su encaje en tu croquis.
+
+- [Malla hardware cloth 1/2" galvanizada 36" x 50 ft (19 gauge)](../tienda/p/malla-hardware-cloth-1-2-galvanizada-36-x-50-ft-19-gauge/) — para proteger aberturas y cerramientos con fijaciones adecuadas.
+- [Abridor de puerta FarmLite, con temporizador y sensor de luz](../tienda/p/abridor-de-puerta-farmlite-con-temporizador-y-sensor-de-luz/) — para automatizar la apertura y el cierre de una puerta compatible.
+- [Gallinero metálico walk-in 10x6,6x6,56 ft para 5-10 gallinas](../tienda/p/gallinero-metalico-walk-in-10x6-6x6-56-ft-para-5-10-gallinas/) — recinto metálico para valorar como parque; comprueba espacio útil, anclajes y protección.
+- [Nidal reversible de rodillo Hen's Choice, 2 huecos, 21"](../tienda/p/nidal-reversible-de-rodillo-hen-s-choice-2-huecos-21/) — nidal de dos compartimentos con recogida por rodillo.
+
+[Ver todo el material para el gallinero →](../tienda/)

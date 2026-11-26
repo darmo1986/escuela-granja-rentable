@@ -65,3 +65,12 @@ No uses otro grupo como destino de alimento deteriorado o sospechoso.
 Anota cuántos kilos utilizas y el espacio que tienes antes de comparar recipientes en [almacenaje de pienso](../tienda/c/almacenaje-de-pienso/). Revisa primero la [etiqueta del alimento](leer-etiqueta-pienso-aves.html) para conservar las condiciones de uso del producto concreto.
 
 Para continuar desde el vídeo, el [recorrido de alimentación](../youtube/alimentacion.html) reúne el registro gratuito y las calculadoras. El tamaño del recipiente no sustituye las instrucciones de conservación.
+
+## Material que te hace falta para conservar el pienso
+
+Estos recipientes permiten organizar las existencias y proteger el alimento.
+
+- [Contenedor hermético Vittles Vault para 40 lb de pienso](../tienda/p/contenedor-hermetico-vittles-vault-para-40-lb-de-pienso/) — para guardar pienso en un recipiente con cierre hermético.
+- [Cubo de basura de acero galvanizado Behrens de 31 galones](../tienda/p/cubo-de-basura-de-acero-galvanizado-behrens-de-31-galones/) — para proteger los sacos dentro de un recipiente metálico con tapa; comprueba su aptitud para el uso previsto.
+
+[Ver todo el material para guardar el pienso →](../tienda/)
