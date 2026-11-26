@@ -63,3 +63,14 @@ Prepara un guion, un ejercicio y una hoja que el participante pueda llevarse. Ha
 Pregunta qué han aprendido, qué quedó confuso y qué necesitarían después. Registra horas totales y coste por asistente. Las buenas opiniones son útiles, pero también necesitas comprobar que el precio paga la preparación y que las visitas no perjudican la actividad principal.
 
 Puedes enlazar la sesión con el [curso gratuito](../curso.html) como material de preparación. Para comparar otras ideas, vuelve a la [sección de negocios con gallinas](negocios-con-gallinas.html).
+
+## Material que te hace falta para la higiene de talleres y visitas
+
+*La tienda no vende botas, por lo que no se incluye calzado de visita.*
+
+- [Desinfectante concentrado REScue, 1 galón](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — higiene del recorrido y de las zonas de visita, antes y después de cada sesión.
+- [Pulverizador de presión CHAPIN, 2 galones](../tienda/p/pulverizador-de-presion-chapin-2-galones/) — para aplicar la limpieza y desinfección del recorrido y la recepción.
+- [Guantes de nitrilo COOLJOB, 8 mil, con agarre, 100 uds.](../tienda/p/guantes-de-nitrilo-cooljob-8-mil-con-agarre-100-uds/) — higiene al manipular material y aves durante el taller.
+- [Recogedor y rastrillo 2 en 1 The Coop Scoop, para gallinero](../tienda/p/recogedor-y-rastrillo-2-en-1-the-coop-scoop-para-gallinero/) — limpieza rápida del gallinero y del recorrido entre sesiones, un coste que la guía pide presupuestar.
+
+[Ver todo el material para el gallinero →](../tienda/)
