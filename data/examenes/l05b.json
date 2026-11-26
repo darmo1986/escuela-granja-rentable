@@ -6,183 +6,183 @@
   "preguntas": [
     {
       "id": 1,
-      "pregunta": "¿Cómo se calcula el porcentaje diario de puesta de un lote?",
+      "pregunta": "¿Qué fórmula permite comparar el porcentaje diario de puesta entre lotes de distinto tamaño?",
       "opciones": [
-        "Huevos recogidos dividido por gallinas en edad de puesta, multiplicado por 100",
-        "Gallinas dividido por bebederos",
-        "Pienso dividido por huevos rotos",
-        "Huevos multiplicados por kilos de pienso"
+        "Gallinas en puesta ÷ huevos recogidos × 100",
+        "Huevos recogidos ÷ gallinas en puesta × 100",
+        "Huevos recogidos ÷ kilos de pienso × 100",
+        "Huevos recogidos ÷ número de nidales × 100"
       ],
-      "correcta": 0,
-      "explicacion": "Este indicador permite seguir la producción; conviene comparar también promedios semanales."
+      "correcta": 1,
+      "explicacion": "El denominador es el número de gallinas en puesta del lote, no el número de huevos ni los recursos."
     },
     {
       "id": 2,
-      "pregunta": "Recoges 8 huevos de 10 gallinas en edad de puesta. ¿Qué porcentaje representa ese día?",
+      "pregunta": "Un lote de 40 gallinas en puesta produce 30 huevos hoy. ¿Cuál es su porcentaje diario?",
       "opciones": [
-        "8 %",
+        "30 %",
         "80 %",
-        "125 %",
-        "18 %"
+        "90 %",
+        "75 %"
       ],
-      "correcta": 1,
-      "explicacion": "8 dividido entre 10 y multiplicado por 100 equivale al 80 %."
+      "correcta": 3,
+      "explicacion": "30 ÷ 40 × 100 = 75 %."
     },
     {
       "id": 3,
-      "pregunta": "Si la puesta baja, ¿qué es prioritario comprobar?",
+      "pregunta": "La producción disminuye durante varios días sin signos graves. ¿Qué revisión inicial es más completa?",
       "opciones": [
-        "Agua, alimento, luz, muda, edad, estrés y posibles pérdidas de huevos",
-        "Solo el color de los huevos",
-        "Comprar antibióticos",
-        "Cambiar todas las gallinas sin observarlas"
+        "Agua, consumo de pienso, luz, edad, muda, estrés y posibles pérdidas de huevos",
+        "Solo el horario de recogida",
+        "Solo el calcio, sin revisar el consumo",
+        "Solo la edad, sin comprobar cambios recientes"
       ],
       "correcta": 0,
-      "explicacion": "Hay muchas causas posibles; primero hay que investigar los cambios reales."
+      "explicacion": "La reducción puede tener varias causas; los registros y la revisión del manejo orientan la investigación."
     },
     {
       "id": 4,
-      "pregunta": "¿Qué aporta un pienso completo para ponedoras?",
+      "pregunta": "¿Qué debe comprobarse antes de añadir calcio a un lote de ponedoras?",
       "opciones": [
-        "Una ración equilibrada para esa fase, según su formulación",
-        "La garantía de que cada gallina pondrá dos huevos diarios",
-        "La eliminación de toda enfermedad",
-        "Un sustituto del agua"
+        "Solo el tamaño de los huevos",
+        "Únicamente si el grit tiene partículas grandes",
+        "La formulación del pienso, su consumo y las indicaciones sobre suplementos",
+        "Solo si las aves salen al exterior"
       ],
-      "correcta": 0,
-      "explicacion": "La nutrición equilibrada ayuda a sostener la producción, sin garantizar cifras fijas."
+      "correcta": 2,
+      "explicacion": "La guía de calcio y grit recomienda revisar primero la dieta completa y el consumo real."
     },
     {
       "id": 5,
-      "pregunta": "¿Qué puede afectar a la calidad de la cáscara?",
+      "pregunta": "¿Qué diferencia existe entre la conchilla como fuente de calcio y el grit insoluble?",
       "opciones": [
-        "Nutrición, edad, salud y manejo",
-        "Solo el color de las plumas",
-        "Únicamente el nombre de la raza",
-        "La presencia de un gallo en todos los casos"
+        "Ambos aportan el mismo calcio nutricional",
+        "La conchilla aporta calcio; el grit insoluble ayuda a triturar alimentos en la molleja",
+        "El grit insoluble sustituye la conchilla para formar la cáscara",
+        "La conchilla sirve solo para triturar alimentos y no aporta calcio"
       ],
-      "correcta": 0,
-      "explicacion": "La calidad de la cáscara es multifactorial."
+      "correcta": 1,
+      "explicacion": "Son productos con funciones distintas; las piedras insolubles no sustituyen el calcio nutricional."
     },
     {
       "id": 6,
-      "pregunta": "¿Cómo debe mantenerse un nidal?",
+      "pregunta": "Los huevos salen blandos o finos en varios nidales. ¿Qué interpretación es correcta?",
       "opciones": [
-        "Limpio, seco y con material de cama adecuado",
-        "Húmedo para enfriar los huevos",
-        "Sin revisión durante semanas",
-        "Como almacén de pienso"
+        "Revisar dieta, consumo, edad, ambiente y salud antes de atribuirlo solo al calcio",
+        "Concluir que siempre falta calcio",
+        "Atribuirlo únicamente a la cama del nidal",
+        "Dar por hecho que es normal en cualquier edad"
       ],
       "correcta": 0,
-      "explicacion": "La higiene del nido reduce suciedad y roturas."
+      "explicacion": "La cáscara fina no identifica por sí sola la causa; puede depender de nutrición, edad, estrés o salud."
     },
     {
       "id": 7,
-      "pregunta": "¿Qué haces si aparecen muchos huevos rotos?",
+      "pregunta": "Las roturas se concentran en un solo nidal. ¿Qué conviene comprobar primero?",
       "opciones": [
-        "Los ignoras",
-        "Revisas nidales, cama, frecuencia de recogida y manejo de las aves",
-        "Dejas de ofrecer agua",
-        "Abres todos los nidales al exterior"
+        "Cambiar de pienso a todo el lote sin mirar el nidal",
+        "Aumentar la luz de todo el gallinero",
+        "Reducir los nidales disponibles",
+        "Cama del nidal, uso por las aves y frecuencia de recogida"
       ],
-      "correcta": 1,
-      "explicacion": "La rotura puede depender del estado del nido, del manejo y de la cáscara."
+      "correcta": 3,
+      "explicacion": "Las roturas localizadas orientan a revisar el nidal y el manejo de los huevos."
     },
     {
       "id": 8,
-      "pregunta": "¿Qué problema puede indicar una cama apelmazada y húmeda?",
+      "pregunta": "¿Por qué debe corregirse una cama húmeda y apelmazada?",
       "opciones": [
-        "Falta de humedad",
-        "Riesgo de mala higiene y aumento de gases; hay que localizar la causa",
-        "Que el gallinero está perfecto",
-        "Que debe mojarse aún más"
+        "Porque indica que la cama necesita más agua",
+        "Porque elimina la necesidad de ventilación",
+        "Favorece el amoníaco y problemas sanitarios; hay que corregir la humedad",
+        "Porque solo afecta al aspecto del gallinero"
       ],
-      "correcta": 1,
-      "explicacion": "Una cama seca y manejable es importante para la salud de las aves."
+      "correcta": 2,
+      "explicacion": "Una cama húmeda empeora la calidad ambiental y aumenta el riesgo de problemas sanitarios."
     },
     {
       "id": 9,
-      "pregunta": "¿Cuál es el orden básico antes de desinfectar el gallinero entre lotes?",
+      "pregunta": "¿En qué orden se realiza la higiene entre lotes?",
       "opciones": [
-        "Aplicar desinfectante sobre estiércol",
-        "Retirar suciedad y materia orgánica, limpiar y después usar un desinfectante autorizado según etiqueta",
-        "Perfumar sin limpiar",
-        "Dejar solo las ventanas abiertas"
+        "Retirar cama y materia orgánica, limpiar y después desinfectar",
+        "Desinfectar, retirar cama y limpiar",
+        "Limpiar, desinfectar y después retirar el estiércol",
+        "Retirar cama, desinfectar y limpiar al final"
       ],
-      "correcta": 1,
-      "explicacion": "La suciedad reduce la eficacia de la desinfección y debe retirarse previamente."
+      "correcta": 0,
+      "explicacion": "La materia orgánica dificulta la desinfección; primero se retira y se limpia."
     },
     {
       "id": 10,
-      "pregunta": "¿Qué medida preventiva ayuda a controlar roedores?",
+      "pregunta": "¿Qué combinación ayuda a prevenir la entrada y proliferación de roedores?",
       "opciones": [
-        "Dejar pienso derramado",
-        "Guardar alimento cerrado, retirar restos y sellar puntos de entrada",
-        "Abrir agujeros en paredes",
-        "Guardar basura junto a comederos"
+        "Guardar pienso abierto y revisar solo las paredes",
+        "Guardar pienso cerrado, retirar derrames y sellar accesos",
+        "Retirar derrames pero dejar accesos abiertos",
+        "Sellar accesos sin retirar alimento derramado"
       ],
       "correcta": 1,
-      "explicacion": "El control comienza por reducir alimento y refugios disponibles para plagas."
+      "explicacion": "Reducir alimento disponible y puntos de entrada forma parte de la prevención."
     },
     {
       "id": 11,
-      "pregunta": "Si se requiere control químico de plagas, ¿qué corresponde hacer?",
+      "pregunta": "Si las medidas preventivas no bastan y se plantea control químico de roedores, ¿qué corresponde?",
       "opciones": [
-        "Usar remedios tóxicos improvisados",
-        "Seguir la normativa y el etiquetado de productos autorizados, con asesoramiento cuando proceda",
-        "Mezclar veneno con pienso para las aves",
-        "Esparcir cebos al alcance de niños y animales"
+        "Elegir el producto solo por el precio",
+        "Aplicar cualquier producto sin valoración profesional",
+        "Considerar suficiente que el envase mencione roedores",
+        "Solicitar indicación profesional y respetar normativa y etiqueta de productos autorizados"
       ],
-      "correcta": 1,
-      "explicacion": "Nunca deben exponerse aves, personas ni otros animales a productos peligrosos."
+      "correcta": 3,
+      "explicacion": "El control químico requiere indicación profesional y protección de aves, personas y otros animales."
     },
     {
       "id": 12,
-      "pregunta": "¿Cómo puede afectar el calor intenso a las ponedoras?",
+      "pregunta": "Durante una ola de calor baja el consumo de pienso y la puesta. ¿Qué manejo conviene revisar?",
       "opciones": [
-        "Puede reducir consumo y puesta y aumentar el estrés térmico",
-        "Siempre mejora la calidad de la cáscara",
-        "Elimina la necesidad de sombra",
-        "Garantiza más huevos"
+        "Únicamente el número de nidales",
+        "Solo el horario de luz, sin valorar temperatura",
+        "Agua fresca, sombra y ventilación adecuada",
+        "Solo el tamaño de los huevos"
       ],
-      "correcta": 0,
-      "explicacion": "El calor requiere agua fresca, sombra y ventilación apropiada."
+      "correcta": 2,
+      "explicacion": "El calor puede reducir consumo y puesta; aliviar el estrés térmico es prioritario."
     },
     {
       "id": 13,
-      "pregunta": "Durante la muda, ¿qué puede suceder con la producción de huevos?",
+      "pregunta": "Durante la muda, ¿cómo puede cambiar la producción?",
       "opciones": [
+        "Debe mantenerse idéntica si hay pienso disponible",
         "Puede disminuir o interrumpirse temporalmente",
-        "Siempre se duplica",
-        "No cambia nunca",
-        "Solo aumenta el tamaño del huevo"
+        "Aumenta necesariamente al renovar el plumaje",
+        "Solo cambia el color de la cáscara"
       ],
-      "correcta": 0,
-      "explicacion": "Muchas gallinas destinan recursos a renovar el plumaje y reducen su puesta."
+      "correcta": 1,
+      "explicacion": "La renovación del plumaje puede coincidir con una reducción temporal de la puesta."
     },
     {
       "id": 14,
-      "pregunta": "¿Qué registro ayuda a detectar problemas de producción?",
+      "pregunta": "¿Qué registro permite detectar una caída de puesta sin confundirla con cambios en el tamaño del lote?",
       "opciones": [
-        "Huevos diarios, aves en edad de puesta, consumo y observaciones del lote",
-        "Solo colores de las anillas",
-        "Solo el calendario de festivos",
-        "Únicamente el precio del gallinero"
+        "Huevos diarios, número de gallinas en puesta, consumo e incidencias",
+        "Solo huevos acumulados al mes",
+        "Solo kilos de pienso sin número de aves",
+        "Solo número de gallinas al comienzo del año"
       ],
       "correcta": 0,
-      "explicacion": "Los datos permiten detectar tendencias y revisar causas concretas."
+      "explicacion": "Registrar huevos y aves presentes permite comparar porcentajes; consumo e incidencias ayudan a interpretar cambios."
     },
     {
       "id": 15,
-      "pregunta": "Una caída brusca de puesta se acompaña de dificultad respiratoria y mortalidad. ¿Qué haces?",
+      "pregunta": "La puesta cae bruscamente y aparecen dificultad respiratoria y mortalidad. ¿Qué debes hacer?",
       "opciones": [
-        "Esperar una semana sin avisar",
-        "Consultar urgentemente al veterinario y avisar a los servicios oficiales si se sospecha una enfermedad de declaración obligatoria",
-        "Medicar todo el lote por tu cuenta",
-        "Vender las aves enfermas"
+        "Esperar al siguiente registro semanal",
+        "Atribuirlo a la muda sin consultar",
+        "Modificar únicamente la iluminación",
+        "Avisar urgentemente al veterinario y no tratar por cuenta propia"
       ],
-      "correcta": 1,
-      "explicacion": "Los signos graves requieren intervención veterinaria y pueden activar obligaciones de notificación."
+      "correcta": 3,
+      "explicacion": "La combinación de signos graves requiere valoración veterinaria urgente."
     }
   ]
 }

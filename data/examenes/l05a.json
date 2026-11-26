@@ -6,183 +6,183 @@
   "preguntas": [
     {
       "id": 1,
-      "pregunta": "¿Qué conviene revisar antes de incorporar pollitas al gallinero?",
+      "pregunta": "El peso medio de las pollitas está por debajo del objetivo de su estirpe. ¿Qué conviene revisar primero?",
       "opciones": [
-        "Solo el color de las plumas",
-        "Que tengan agua, alimento adecuado, refugio, ventilación y espacio suficiente",
-        "Únicamente el precio de compra",
-        "Que ya estén poniendo huevos"
+        "Solo el horario de los nidales",
+        "El color de los huevos del lote anterior",
+        "Acceso a comederos, agua y posibles parásitos",
+        "Únicamente la edad del lote"
       ],
-      "correcta": 1,
-      "explicacion": "Un alojamiento preparado reduce problemas de manejo y facilita la adaptación."
+      "correcta": 2,
+      "explicacion": "El artículo de levante recomienda revisar esos factores antes de atribuir el retraso al pienso."
     },
     {
       "id": 2,
-      "pregunta": "¿Cuál es la bebida que debe estar siempre disponible para las pollitas?",
+      "pregunta": "¿Cómo debe gestionarse el agua durante la recría?",
       "opciones": [
-        "Agua limpia y fresca",
-        "Agua con azúcar como sustituto permanente",
-        "Leche",
-        "Agua únicamente por la mañana"
+        "Mantener agua limpia disponible continuamente y revisar los bebederos",
+        "Ofrecer agua solo durante las comidas",
+        "Limitar el agua para mantener seca la cama",
+        "Ofrecer agua únicamente cuando se observe sed"
       ],
       "correcta": 0,
-      "explicacion": "El acceso continuo a agua limpia es esencial."
+      "explicacion": "El acceso continuo al agua limpia favorece el consumo y el crecimiento."
     },
     {
       "id": 3,
-      "pregunta": "¿Qué alimento es la base más segura durante la recría?",
+      "pregunta": "¿Qué secuencia de alimentación corresponde al levante?",
       "opciones": [
-        "Solo maíz",
-        "Restos de cocina",
-        "Un pienso completo adaptado a la etapa de crecimiento",
-        "Solo semillas de girasol"
+        "Desarrollo, puesta e inicio",
+        "Puesta desde el nacimiento y crecimiento al final",
+        "Inicio durante todo el levante sin revisar la fase",
+        "Inicio, crecimiento y desarrollo, adaptados a la etapa"
       ],
-      "correcta": 2,
-      "explicacion": "La ración de crecimiento debe estar formulada para cubrir las necesidades de la edad."
+      "correcta": 3,
+      "explicacion": "Las necesidades nutricionales cambian con el desarrollo de la pollita."
     },
     {
       "id": 4,
-      "pregunta": "¿Qué es importante al pasar del pienso de recría al de puesta?",
+      "pregunta": "¿Qué criterio debe seguirse al cambiar del pienso de recría al de puesta?",
       "opciones": [
-        "Cambiar sin observar a las aves",
-        "Ajustar la alimentación a la fase productiva y seguir las indicaciones del fabricante o asesor técnico",
-        "Dar siempre pienso de puesta desde el primer día de vida",
-        "Quitar el pienso durante dos días"
+        "Cambiar al cumplir una fecha fija aunque el lote esté retrasado",
+        "Adaptar el cambio al desarrollo y fase del lote, evitando adelantar la dieta rica en calcio",
+        "Añadir calcio extra desde el inicio de la recría",
+        "Mantener la dieta de recría indefinidamente durante la puesta"
       ],
       "correcta": 1,
-      "explicacion": "La dieta debe corresponder a la etapa; adelantar una ración alta en calcio a aves jóvenes puede ser perjudicial."
+      "explicacion": "La transición depende de la preparación del lote; el exceso prematuro de calcio puede perjudicar a las pollitas."
     },
     {
       "id": 5,
-      "pregunta": "Si una pollita está apática y apenas come, ¿qué haces?",
+      "pregunta": "¿Cómo se calcula la uniformidad del lote según la guía de levante?",
       "opciones": [
-        "Esperas sin observar otros síntomas",
-        "Le das un antibiótico al azar",
-        "Compruebas las condiciones, la observas y consultas al veterinario si persiste o hay signos de enfermedad",
-        "La obligas a caminar"
+        "Porcentaje de aves cuyo peso está dentro de ±10 % del peso medio",
+        "Porcentaje de aves por encima del peso medio",
+        "Diferencia entre el peso máximo y el mínimo",
+        "Peso medio dividido entre la edad en semanas"
       ],
-      "correcta": 2,
-      "explicacion": "El diagnóstico y los tratamientos deben quedar en manos de un profesional."
+      "correcta": 0,
+      "explicacion": "La uniformidad mide cuántas aves se sitúan cerca del peso medio, no solo cuánto pesa el lote en promedio."
     },
     {
       "id": 6,
-      "pregunta": "¿Cómo debe ser la ventilación de la zona de recría?",
+      "pregunta": "¿Qué ventilación conviene durante la recría?",
       "opciones": [
-        "Sin entrada de aire",
-        "Adecuada para renovar el aire sin corrientes directas intensas sobre las aves",
-        "Solo con las puertas cerradas",
-        "Sustituida por perfumes"
+        "Cerrar todas las entradas para conservar el calor",
+        "Dirigir la corriente de aire hacia las aves",
+        "Renovar el aire evitando corrientes directas sobre las pollitas",
+        "Ventilar únicamente cuando la cama ya esté húmeda"
       ],
-      "correcta": 1,
-      "explicacion": "La ventilación ayuda a controlar humedad, polvo y gases sin provocar estrés por corrientes."
+      "correcta": 2,
+      "explicacion": "La renovación del aire ayuda a controlar la humedad y los gases sin exponer a las aves a corrientes directas."
     },
     {
       "id": 7,
-      "pregunta": "¿Qué indica una cama mojada alrededor de los bebederos?",
+      "pregunta": "La cama se moja repetidamente debajo de los bebederos. ¿Qué actuación es adecuada?",
       "opciones": [
-        "Que no necesita mantenimiento",
-        "Que hay que revisar fugas, altura de bebederos y retirar la cama húmeda",
-        "Que conviene añadir más agua al suelo",
-        "Que las pollitas ya están listas para poner"
+        "Cubrir siempre la zona sin corregir la fuga",
+        "Revisar fugas y funcionamiento de bebederos y retirar la cama húmeda",
+        "Reducir las horas de acceso al agua",
+        "Cambiar el pienso sin revisar los bebederos"
       ],
       "correcta": 1,
-      "explicacion": "La humedad favorece problemas higiénicos y obliga a corregir la causa."
+      "explicacion": "Hay que corregir el origen de la humedad y mantener la cama seca sin limitar el agua."
     },
     {
       "id": 8,
-      "pregunta": "¿Qué efecto puede tener un cambio brusco de luz durante la recría?",
+      "pregunta": "¿Qué pauta de luz es adecuada durante el levante antes de la estimulación prevista?",
       "opciones": [
-        "Ninguno en ningún caso",
-        "Puede alterar el comportamiento y el desarrollo reproductivo; conviene manejar el fotoperiodo de forma planificada",
-        "Garantiza huevos más grandes",
-        "Elimina la necesidad de alimento"
+        "Aumentar las horas cada semana desde el nacimiento",
+        "Aplicar el horario de ponedoras adultas desde el inicio",
+        "Variar diariamente el horario sin planificación",
+        "Mantener o reducir las horas de luz según el programa de recría"
       ],
-      "correcta": 1,
-      "explicacion": "La luz influye en la madurez y debe gestionarse de acuerdo con la genética y el programa de recría."
+      "correcta": 3,
+      "explicacion": "La estimulación precoz puede adelantar la madurez; el programa debe ajustarse al desarrollo y la estirpe."
     },
     {
       "id": 9,
-      "pregunta": "¿Todas las pollitas empiezan a poner a la misma edad?",
+      "pregunta": "¿Cómo debe interpretarse la edad de inicio de la puesta?",
       "opciones": [
-        "Sí, el mismo día",
-        "No; depende de genética, manejo, alimentación y desarrollo",
-        "Sí, exactamente a los tres meses",
-        "Solo si hay un gallo"
+        "Como una fecha idéntica para todas las razas",
+        "Como una fecha determinada solo por el peso medio",
+        "Como una referencia variable según genética, desarrollo y manejo",
+        "Como una fecha independiente de la alimentación y la luz"
       ],
-      "correcta": 1,
-      "explicacion": "El inicio de la postura no tiene una fecha universal para todas las aves."
+      "correcta": 2,
+      "explicacion": "La edad orienta, pero no garantiza que todas las aves estén listas para poner."
     },
     {
       "id": 10,
-      "pregunta": "¿Es necesario un gallo para que una gallina ponga huevos?",
+      "pregunta": "Si el objetivo es producir huevos para consumo, ¿es imprescindible tener un gallo?",
       "opciones": [
-        "Sí, siempre",
-        "No; el gallo solo es necesario si se buscan huevos fértiles",
-        "Solo en verano",
-        "Solo con pienso de puesta"
+        "No; la gallina puede poner huevos sin fecundación",
+        "Sí; sin gallo no se produce la ovulación",
+        "Sí; al menos durante el inicio de la puesta",
+        "Sí; si se utiliza luz artificial"
       ],
-      "correcta": 1,
-      "explicacion": "Las gallinas ponen huevos sin gallo, aunque esos huevos no estarán fecundados por él."
+      "correcta": 0,
+      "explicacion": "El gallo interviene en la fecundación, no es necesario para la puesta de huevos de consumo."
     },
     {
       "id": 11,
-      "pregunta": "¿Qué debes observar para comprobar que las pollitas se adaptan bien?",
+      "pregunta": "¿Cómo se comprueba la evolución del peso durante la recría?",
       "opciones": [
-        "Solo la temperatura exterior",
-        "Consumo de agua y pienso, actividad, plumaje y estado de la cama",
-        "Solo el número de gallos",
-        "Nada si están en un gallinero nuevo"
+        "Pesar solo al terminar el levante",
+        "Pesar una muestra cada semana y comparar con la curva de la estirpe",
+        "Comparar todas las razas con un único peso fijo",
+        "Pesar únicamente las aves más grandes"
       ],
       "correcta": 1,
-      "explicacion": "Un seguimiento diario permite detectar desviaciones a tiempo."
+      "explicacion": "La guía de levante recomienda seguimiento semanal y objetivos adaptados a la estirpe."
     },
     {
       "id": 12,
-      "pregunta": "¿Qué ayuda a evitar el estrés al trasladar las pollitas?",
+      "pregunta": "Dos lotes tienen el mismo peso medio, pero uno presenta muchas pollitas pequeñas y grandes. ¿Qué diferencia importa?",
       "opciones": [
-        "Traslados bruscos y hacinamiento",
-        "Introducción ordenada, espacio suficiente y acceso fácil a agua y alimento",
-        "Cambiar de pienso, luz y alojamiento el mismo día sin supervisión",
-        "Mantenerlas sin beber"
+        "Ambos tienen necesariamente la misma uniformidad",
+        "El lote desigual iniciará siempre antes la puesta",
+        "La uniformidad solo importa después de la puesta",
+        "El lote desigual tiene menor uniformidad y puede iniciar la puesta de forma menos sincronizada"
       ],
-      "correcta": 1,
-      "explicacion": "Reducir cambios simultáneos y facilitar recursos mejora la transición."
+      "correcta": 3,
+      "explicacion": "Un promedio adecuado puede ocultar diferencias individuales importantes para la transición."
     },
     {
       "id": 13,
-      "pregunta": "¿Cómo conviene preparar los nidales antes del inicio de la puesta?",
+      "pregunta": "¿Cuándo y cómo preparar los nidales?",
       "opciones": [
-        "Sucios y sin cama",
-        "Accesibles, tranquilos, secos y fáciles de limpiar",
-        "Al lado del depósito de basura",
-        "Con materiales que se deshacen al mojarse"
+        "Antes del inicio de puesta, accesibles, tranquilos y secos",
+        "Después de que la mayoría de huevos aparezcan en el suelo",
+        "Antes de la puesta, pero en una zona húmeda",
+        "Solo tras introducir un gallo"
       ],
-      "correcta": 1,
-      "explicacion": "Los nidales bien preparados ayudan a que los huevos aparezcan en lugares adecuados."
+      "correcta": 0,
+      "explicacion": "Los nidales preparados antes del inicio facilitan que las aves encuentren un lugar adecuado para poner."
     },
     {
       "id": 14,
-      "pregunta": "¿Por qué no se debe usar solo la edad para decidir si un lote entra en puesta?",
+      "pregunta": "Un lote alcanza la edad prevista para estimular con luz, pero sigue retrasado en peso. ¿Qué decisión corresponde?",
       "opciones": [
-        "Porque también importan el desarrollo corporal y el manejo",
-        "Porque la edad nunca influye",
-        "Porque manda únicamente el color del pico",
-        "Porque todas las razas maduran igual"
+        "Aumentar las horas de luz por cumplir la edad",
+        "Cambiar a pienso de puesta para forzar la madurez",
+        "Revisar desarrollo y programa de la estirpe antes de estimular",
+        "Ignorar el peso si el calendario está completo"
       ],
-      "correcta": 0,
-      "explicacion": "La condición y la evolución del lote deben valorarse junto a la edad."
+      "correcta": 2,
+      "explicacion": "La edad sola no determina la preparación para la estimulación lumínica."
     },
     {
       "id": 15,
-      "pregunta": "Si notas más humedad y olor intenso en el gallinero, ¿qué revisas primero?",
+      "pregunta": "¿Qué riesgo tiene estimular con luz a las pollitas demasiado pronto?",
       "opciones": [
-        "La decoración",
-        "Ventilación, fugas de agua y estado de la cama",
-        "El precio de los huevos",
-        "Solo la iluminación"
+        "Retrasar necesariamente la madurez sexual",
+        "Adelantar la madurez antes del desarrollo adecuado y perjudicar la puesta posterior",
+        "Mejorar siempre el tamaño del primer huevo",
+        "Corregir automáticamente la falta de uniformidad"
       ],
       "correcta": 1,
-      "explicacion": "Corregir la causa de la humedad y renovar el aire mejora las condiciones ambientales."
+      "explicacion": "La guía de levante relaciona la estimulación prematura con huevos pequeños y problemas posteriores."
     }
   ]
 }
