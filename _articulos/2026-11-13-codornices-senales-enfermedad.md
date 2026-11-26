@@ -68,3 +68,14 @@ Informa de todo lo administrado, incluso si lo considerabas un suplemento. Esa i
 Tras la consulta, conserva indicaciones, fechas y evolución. Anota cuándo se resolvió la avería o el problema de manejo y qué seguimiento se acordó. No reutilices automáticamente el tratamiento de un caso anterior porque dos aves parezcan tener el mismo signo.
 
 Revisa también la [cuarentena](codornices-cuarentena-bioseguridad.html), el [agua](codornices-agua-bebederos.html) y la [alimentación](codornices-alimentacion-por-etapas.html) como parte de la información del lote.
+
+## Material que te hace falta para preparar la higiene y el apoyo de tus codornices
+
+Este material no diagnostica ni trata enfermedades y no debe retrasar la consulta veterinaria.
+
+- [Spray Vetericyn Plus para aves, frasco de 8 oz](../tienda/p/spray-vetericyn-plus-para-aves-frasco-de-8-oz/) — artículo de cuidado externo de aves; consulta al veterinario antes de utilizarlo en codornices.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — suplemento de apoyo sujeto a valoración veterinaria.
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — estructura para una separación indicada por el veterinario, solo si se adapta de forma segura a la especie.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para higiene de superficies previamente limpias, según etiqueta y protocolo.
+
+[Ver todo el material para la higiene y bioseguridad →](../tienda/)

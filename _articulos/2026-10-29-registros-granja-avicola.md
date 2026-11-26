@@ -88,3 +88,13 @@ En la primera página escribe: fecha de entrada del lote, número de aves, de d�
 Cada día, una fila. Al cierre del mes, una fila de totales: aves al día 1, aves al día 30, huevos enteros, bajas, kilos y dinero del pienso. Con dos meses seguidos ya puedes ver si la muda, el calor o un saco distinto coinciden con la caída. Sin esos dos meses, cualquier consejo de fuera es una suposición.
 
 Guarda el cuaderno aunque cambies de lote. La página del lote viejo te dice cuánto pienso se fue en aves que ya no están, y eso es el coste que más se olvida.
+
+## Material que te hace falta para llevar los registros de tu granja
+
+Estos materiales ayudan a identificar aves y conservar mediciones del lote.
+
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — cuaderno para anotar datos diarios.
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — identificación por colores, ajustando el tamaño a cada ave.
+- [Báscula digital para huevos con pantalla retroiluminada](../tienda/p/bascula-digital-para-huevos-con-pantalla-retroiluminada/) — para registrar el peso de los huevos.
+
+[Ver todo el material para registrar tu granja →](../tienda/)

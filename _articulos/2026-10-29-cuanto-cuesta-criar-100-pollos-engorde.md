@@ -55,3 +55,14 @@ Para 100 pollos, si usaras el objetivo del día 42 y llegaran los 100: 100 × 4,
 El ciclo de L01 es un sprint de 5–8 semanas, no una cifra de dinero. Cuando tengas tus precios, ábrelos en la [calculadora de rentabilidad](../calculadora.html). El botón de ejemplo carga un caso en euros para ver la pantalla: no es una tarifa y hay que sustituirlo.
 
 Las guías escritas de pienso están en [Ebooks](../ebooks/). Su precio no entra en esta cuenta. Si vienes de un vídeo de costes, el destino es [desde YouTube: costes](../youtube/costes.html). El curso publicado del engorde empieza en [L01](../lecciones/l01.html) y sigue en [L04A](../lecciones/l04a.html).
+
+## Material que te hace falta para equipar un lote de pollos de engorde
+
+Incluye en el presupuesto el equipo y el alimento adecuados a cada fase.
+
+- [Comedero galvanizado Double-Tuf para gallinas, 17 lb, colgante](../tienda/p/comedero-galvanizado-double-tuf-para-gallinas-17-lb-colgante/) — recipiente colgante para distribuir pienso.
+- [Pienso Purina Start & Grow en migaja, saco de 25 lb, etiqueta medicada](../tienda/p/pienso-purina-start-grow-en-migaja-saco-de-25-lb-etiqueta-medicada/) — alimento de arranque con etiqueta medicada; comprueba su idoneidad con el veterinario.
+- [Bebedero colgante Little Giant de 5 galones, pack de 2](../tienda/p/bebedero-colgante-little-giant-de-5-galones-pack-de-2/) — depósitos para distribuir agua en distintos puntos.
+- [Kit de comedero automático de 6 puertos, sin desperdicio](../tienda/p/kit-de-comedero-automatico-de-6-puertos-sin-desperdicio/) — puertos para montar un sistema de alimentación y controlar derrames.
+
+[Ver todo el material para pollos de engorde →](../tienda/)

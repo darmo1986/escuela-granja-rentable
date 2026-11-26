@@ -57,3 +57,13 @@ Tras instalar las aves, observa qué zonas utilizan y cuáles evitan. Comprueba 
 El número adecuado de aves no se obtiene de una regla de tres que ignore el tipo de recinto y los recursos. Solicita dimensionamiento técnico para tu lote y contrasta los requisitos de bienestar aplicables en tu lugar. Si la instalación no permite mantener cama, accesos y convivencia, necesitas revisar el diseño o reducir su ocupación.
 
 Para la siguiente revisión, continúa con [grupos y picaje](codornices-grupos-picaje.html) y con el [control de limpieza](codornices-limpieza-cama.html).
+
+## Material que te hace falta para preparar el alojamiento de codornices
+
+Estos elementos sirven para planificar el cerramiento, siempre adaptándolo al tamaño y conducta de las codornices.
+
+- [Corral walk-in CAMMOO 9,8x6,6x6,6 ft con cubierta](../tienda/p/corral-walk-in-cammoo-9-8x6-6x6-6-ft-con-cubierta/) — estructura de recinto que requiere adaptar huecos, cubierta y accesos a la especie.
+- [Malla galvanizada Land Guard 1/2" para gallinero (19 gauge)](../tienda/p/malla-galvanizada-land-guard-1-2-para-gallinero-19-gauge/) — para reforzar el perímetro, comprobando uniones y aberturas.
+- [Red para cubrir el corral de gallinas 50x50 ft, malla de 1"](../tienda/p/red-para-cubrir-el-corral-de-gallinas-50x50-ft-malla-de-1/) — para cubrir zonas del recinto si el diseño es adecuado; no sustituye una barrera antidepredadores.
+
+[Ver todo el material para el alojamiento →](../tienda/)

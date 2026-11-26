@@ -80,3 +80,13 @@ Ninguna de las dos opciones es mejor en absoluto: depende de tu objetivo. Y much
 Las gallinas criollas llevan generaciones alimentando familias sin pedir casi nada. Con buena alimentación, un gallinero seco y un poco de selección, te devuelven huevos, rusticidad y años de compañía en el patio.
 
 Si quieres aprender manejo, alimentación y selección de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.
+
+## Material que te hace falta para criar gallinas criollas
+
+Equipa el patio con recursos de alimentación, agua y un recinto adaptado al grupo.
+
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — para ofrecer el pienso de base.
+- [Bebedero colgante Harris Farms de 3,5 galones para gallinas](../tienda/p/bebedero-colgante-harris-farms-de-3-5-galones-para-gallinas/) — para disponer de agua en el recinto.
+- [Corral walk-in CAMMOO 9,8x6,6x6,6 ft con cubierta](../tienda/p/corral-walk-in-cammoo-9-8x6-6x6-6-ft-con-cubierta/) — estructura para delimitar el patio, revisando cierres y protección.
+
+[Ver todo el material para el gallinero →](../tienda/)

@@ -53,3 +53,14 @@ No improvises mezclas de sales o suplementos por una receta de redes. Si utiliza
 Un ave que respira con gran dificultad, cae o no se mantiene en pie necesita atención veterinaria urgente. No presupongas que todo problema respiratorio es calor por ocurrir en verano. Comunica condiciones ambientales, número de afectados y evolución observada.
 
 Tras el episodio, conserva horarios y fallos registrados. Revisa qué parte del sistema necesita mejora y quién será responsable. En lotes de reproducción, relaciona también las fechas con tus registros, sin atribuir automáticamente cualquier cambio de resultados al calor.
+
+
+## Material que te hace falta para cuidar a los gallos en verano
+
+Estos equipos ayudan a organizar el suministro de agua y la limpieza durante los días calurosos.
+
+- [Bebedero colgante Little Giant de 5 galones, pack de 2](../tienda/p/bebedero-colgante-little-giant-de-5-galones-pack-de-2/) — para disponer de varios puntos de bebida según el tamaño del lote.
+- [Bebedero elevado RentACoop de 2 galones, con copas y tetinas](../tienda/p/bebedero-elevado-rentacoop-de-2-galones-con-copas-y-tetinas/) — para ofrecer agua mediante copas o tetinas y comprobar que las aves saben utilizarlas.
+- [Manguera Flexzilla 5/8" x 50 ft con pistola de 6 chorros](../tienda/p/manguera-flexzilla-5-8-x-50-ft-con-pistola-de-6-chorros/) — para rellenar depósitos y limpiar el equipo.
+
+[Ver todo el material para el gallinero en verano →](../tienda/)

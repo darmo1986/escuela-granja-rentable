@@ -60,3 +60,13 @@ La cuarentena atiende el riesgo sanitario; la integración atiende la convivenci
 Después de cualquier cambio, intensifica las observaciones y compara con tu registro previo. Si las persecuciones persisten o un ave no puede comer o descansar, revisa el plan con ayuda profesional. Mantener el mismo grupo sin corregir el acceso o el diseño no es una solución por sí sola.
 
 La meta práctica es un lote en el que puedas comprobar acceso a recursos, descanso y ausencia de lesiones persistentes, con capacidad de actuar cuando alguno de esos puntos falle.
+
+## Material que te hace falta para revisar la convivencia de las codornices
+
+Estos artículos para gallinas sirven como referencia de equipamiento, pero no todos son adecuados para codornices.
+
+- [Percha de varios niveles para 8 a 12 gallinas](../tienda/p/percha-de-varios-niveles-para-8-a-12-gallinas/) — diseñada para el descanso elevado de gallinas; no sustituye los refugios a ras de suelo de codornices.
+- [Baño de arena de zeolita para gallinas, 6 lb](../tienda/p/bano-de-arena-de-zeolita-para-gallinas-6-lb/) — sustrato para baño de polvo, previa comprobación de su idoneidad para codornices.
+- [Seis protectores dorsales ajustables para gallinas](../tienda/p/seis-protectores-dorsales-ajustables-para-gallinas/) — accesorios diseñados para gallinas, no recomendados para codornices sin valoración profesional.
+
+[Ver todo el material para el alojamiento de las aves →](../tienda/)

@@ -78,3 +78,14 @@ El cierre de una tanda se planifica con su programa de crecimiento, destino y co
 ## Fuentes y alcance
 
 [USDA APHIS: rutina de limpieza](https://direct.aphis.usda.gov/livestock-poultry-disease/avian/defend-the-flock/biosecurity-basics/build-clean-routine) y [guía técnica de limpieza y desinfección](https://www.aphis.usda.gov/nvap/reference-guide/cleaning-disinfection). Las fuentes respaldan el proceso sanitario general; las tablas de decisión y el ejemplo económico son una elaboración editorial, no resultados de una explotación ni prescripciones para un brote.
+
+## Material que te hace falta para renovar tus lotes
+
+Prepara la identificación, el traslado y el equipo del siguiente grupo.
+
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — para distinguir grupos, con talla adecuada.
+- [Caja de transporte apilable RentACoop para gallinas](../tienda/p/caja-de-transporte-apilable-rentacoop-para-gallinas/) — para traslados puntuales, respetando capacidad y ventilación.
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — para conservar el historial de cada lote.
+- [Comedero RentACoop Chick2Chicken de 10 lb y cuatro bocas medianas](../tienda/p/comedero-rentacoop-chick2chicken-de-10-lb-y-cuatro-bocas-medianas/) — para organizar puntos de alimentación adecuados al tamaño de las aves.
+
+[Ver todo el material para renovar el lote →](../tienda/)

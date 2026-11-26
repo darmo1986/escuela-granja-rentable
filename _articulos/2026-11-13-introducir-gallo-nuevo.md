@@ -55,3 +55,14 @@ Anota accesos al agua, persecuciones, desplazamientos y lesiones. Si un ave qued
 Al finalizar, conserva la fecha de incorporación y continúa las observaciones. Si aparece enfermedad, comunica también que hubo una entrada reciente. No vendas ni traslades aves con sospecha sanitaria para resolver el problema de espacio; pide instrucciones veterinarias.
 
 Si ya existe otro macho, revisa la guía de [convivencia entre dos gallos](dos-gallos-gallinero.html) antes de intentar reunirlos.
+
+
+## Material que te hace falta para incorporar un gallo al lote
+
+Prepara la separación, la identificación y el seguimiento de la convivencia antes de incorporar al nuevo gallo.
+
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — para una separación temporal supervisada, si el tamaño y el acondicionamiento son adecuados; no sustituye un recinto de cuarentena.
+- [Seis protectores dorsales ajustables para gallinas](../tienda/p/seis-protectores-dorsales-ajustables-para-gallinas/) — para proteger el dorso de las gallinas si el ajuste es adecuado, sin sustituir la separación ante agresiones.
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — para identificar las aves con un tamaño de anilla adecuado y revisar su ajuste.
+
+[Ver todo el material para organizar el gallinero →](../tienda/)

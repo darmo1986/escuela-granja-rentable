@@ -58,3 +58,13 @@ Si observas jadeo o una alteración marcada de actividad, revisa de inmediato la
 Indica quién revisa el equipo, qué sistema alternativo está preparado y cómo se comunica un fallo. Prueba los respaldos sin animales y conforme a las instrucciones de los fabricantes. No utilices una instalación improvisada como primera respuesta durante una emergencia.
 
 Después de una incidencia, anota lecturas, duración, aves afectadas y medidas tomadas. Esa información permite mejorar el diseño y resulta más útil que recordar únicamente que «esa noche hizo frío» o «el día estuvo muy caluroso».
+
+## Material que te hace falta para vigilar el ambiente de las codornices
+
+Revisa el equipo de calor y medición según la edad y las condiciones del alojamiento.
+
+- [Bebedero calefactado Farm Innovators HB-60P de dos galones](../tienda/p/bebedero-calefactado-farm-innovators-hb-60p-de-dos-galones/) — para reducir la congelación del agua, si los puntos de bebida son seguros para la especie.
+- [Placa de calor K&H pequeña de 25 W para pollitos](../tienda/p/placa-de-calor-k-h-pequena-de-25-w-para-pollitos/) — fuente de calor para polluelos si resulta compatible con su tamaño y necesidades.
+- [Termohigrómetro Govee H5075 con Bluetooth](../tienda/p/termohigrometro-govee-h5075-con-bluetooth/) — para registrar temperatura y humedad en distintos puntos.
+
+[Ver todo el material para el control ambiental →](../tienda/)

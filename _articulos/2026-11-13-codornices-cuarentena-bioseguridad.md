@@ -66,3 +66,13 @@ Revisa los [recursos y refugios del alojamiento](codornices-alojamiento-seguro.h
 Pospón la entrada hasta disponer de un sistema adecuado. Es más fácil organizar el espacio y los utensilios sin aves esperando una solución. Una compra no se vuelve segura solo porque el lote sea pequeño o venga de una persona conocida.
 
 Para cualquier alteración durante la espera, utiliza la [guía de señales de enfermedad](codornices-senales-enfermedad.html) y comunica los datos al veterinario o al servicio oficial correspondiente.
+
+## Material que te hace falta para organizar la cuarentena de codornices
+
+Prepara la separación y los materiales de higiene y apoyo antes de recibir aves.
+
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — estructura de separación que solo debe usarse con adaptación segura de suelo, huecos y cubierta; no sustituye una cuarentena completa.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para desinfectar superficies previamente limpias según etiqueta y protocolo.
+- [Sav-A-Chick, electrolitos con vitaminas y probiótico (18 sobres)](../tienda/p/sav-a-chick-electrolitos-con-vitaminas-y-probiotico-18-sobres/) — suplemento de apoyo, únicamente si el veterinario confirma su conveniencia para la especie.
+
+[Ver todo el material para la bioseguridad →](../tienda/)

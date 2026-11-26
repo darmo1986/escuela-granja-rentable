@@ -59,3 +59,14 @@ Lleva una lista corta de productos utilizados y conserva sus etiquetas. Anota fe
 Revisa cierres, agua y alimento tras el montaje. Observa que todas las aves acceden a los recursos y que ningún refugio se ha colocado bloqueando un paso. Un cambio de distribución después de limpiar merece una revisión, aunque cada pieza esté individualmente limpia.
 
 Continúa con [cuarentena y bioseguridad](codornices-cuarentena-bioseguridad.html) para coordinar la limpieza con las entradas de aves y con la [guía de bebederos](codornices-agua-bebederos.html) para corregir humedad recurrente.
+
+## Material que te hace falta para limpiar el recinto de codornices
+
+Prepara utensilios y consumibles para retirar residuos y mantener una cama adecuada.
+
+- [Viruta de pino Manna Pro Fresh Flakes para cama de gallinero (4 pies³)](../tienda/p/viruta-de-pino-manna-pro-fresh-flakes-para-cama-de-gallinero-4-pies/) — material de cama cuya idoneidad y nivel de polvo conviene revisar.
+- [Desinfectante concentrado REScue (1 galón)](../tienda/p/desinfectante-concentrado-rescue-1-galon/) — para superficies limpias, siguiendo la etiqueta y el protocolo.
+- [Recogedor y rastrillo 2 en 1 The Coop Scoop para gallinero](../tienda/p/recogedor-y-rastrillo-2-en-1-the-coop-scoop-para-gallinero/) — para recoger restos de cama y suciedad.
+- [Guantes de nitrilo desechables 6 mil, negros, sin látex](../tienda/p/guantes-de-nitrilo-desechables-6-mil-negros-sin-latex/) — para proteger las manos durante las tareas de higiene.
+
+[Ver todo el material para la limpieza del recinto →](../tienda/)

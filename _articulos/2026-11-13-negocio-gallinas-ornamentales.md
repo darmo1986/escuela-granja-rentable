@@ -71,3 +71,14 @@ El historial de los padres aporta información, pero no garantiza el resultado d
 ### ¿Puedo venderlas también como grandes ponedoras?
 
 Solo utiliza datos que correspondan al lote o a una fuente identificada, con sus límites. Si el comprador busca principalmente huevos, orienta la comparación hacia la aptitud productiva y no únicamente hacia el plumaje.
+
+
+## Material que te hace falta para criar y vender gallinas ornamentales
+
+Estos materiales ayudan a organizar la identificación, los registros y el traslado de los ejemplares.
+
+- [Caja de transporte apilable RentACoop para gallinas](../tienda/p/caja-de-transporte-apilable-rentacoop-para-gallinas/) — para trasladar aves en condiciones adecuadas de espacio y ventilación.
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — para distinguir ejemplares y relacionarlos con su ficha individual, comprobando el ajuste.
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — para anotar nacimientos, observaciones y datos de seguimiento de los lotes.
+
+[Ver todo el material para la cría de gallinas ornamentales →](../tienda/)

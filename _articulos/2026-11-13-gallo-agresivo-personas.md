@@ -54,3 +54,13 @@ Los [CDC](https://www.cdc.gov/healthy-pets/about/backyard-poultry.html) señalan
 Pide asesoramiento veterinario y de comportamiento aviar, especialmente ante un cambio repentino o si también observas alteraciones de salud. No golpees al animal ni uses métodos que comprometan su respiración o movilidad.
 
 Si no puedes garantizar cuidados seguros, prepara una alternativa responsable y comunica los antecedentes a quien pueda recibirlo. Ocultar las agresiones en un anuncio traslada el riesgo a otra familia. Registra qué decisión se tomó y cómo se mantendrán sus cuidados mientras se resuelve.
+
+## Material que te hace falta para preparar un manejo seguro del gallo
+
+Prioriza barreras y accesos separados; el equipo personal no sustituye esas medidas.
+
+- [Guantes de piel Wells Lamont (2 pares)](../tienda/p/guantes-de-piel-wells-lamont-2-pares/) — para proteger las manos en tareas habituales, no para enfrentarse al gallo.
+- [Jaula plegable Midwest iCrate de 48", una puerta](../tienda/p/jaula-plegable-midwest-icrate-de-48-una-puerta/) — estructura para separación puntual si está adaptada al ave; no es alojamiento permanente.
+- [Corral walk-in CAMMOO 9,8x6,6x6,6 ft con cubierta](../tienda/p/corral-walk-in-cammoo-9-8x6-6x6-6-ft-con-cubierta/) — para organizar un recinto independiente con cierres seguros.
+
+[Ver todo el material para el manejo del gallinero →](../tienda/)

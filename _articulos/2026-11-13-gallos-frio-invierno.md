@@ -54,3 +54,14 @@ Si separas grupos, prepara el nuevo recinto con los mismos controles. Registra l
 Si aparece un cambio de color, hinchazón, una herida o dificultad para caminar, solicita orientación veterinaria. No cortes zonas oscuras ni apliques calor directo para probar si se recuperan. Protege al ave de nuevas lesiones siguiendo indicaciones profesionales.
 
 Al terminar el episodio, revisa qué falló: agua, humedad, equipo o acceso. Esa información permite preparar la siguiente temporada con mejoras concretas. Conserva la [ficha de revisión de salud](gallo-revision-salud.html) junto a los registros de ambiente.
+
+
+## Material que te hace falta para mantener el agua disponible en invierno
+
+Compara estas opciones para reducir el riesgo de congelación del agua, siguiendo las instrucciones de cada fabricante.
+
+- [Bebedero calefactado Farm Innovators HB-60P de dos galones](../tienda/p/bebedero-calefactado-farm-innovators-hb-60p-de-dos-galones/) — para mantener el agua disponible durante el frío.
+- [Base antihielo universal K&H de 80 W para bebederos y cubos](../tienda/p/base-antihielo-universal-k-h-de-80-w-para-bebederos-y-cubos/) — para calentar la base de recipientes compatibles.
+- [Funda aislante RentACoop con banda calefactora, talla grande](../tienda/p/funda-aislante-rentacoop-con-banda-calefactora-talla-grande/) — para aislar y calentar un bebedero compatible.
+
+[Ver todo el material para el gallinero en invierno →](../tienda/)

@@ -53,3 +53,13 @@ No dejes a niños ni visitantes a cargo de abrir recintos con conflictos pendien
 Añade al presupuesto el segundo recinto, su limpieza y el tiempo de revisión. Compara ese gasto con el objetivo real de conservar otro macho. No atribuyas un beneficio comercial al segundo gallo hasta que exista una actividad y un ingreso documentados.
 
 Si uno acaba de llegar, sigue primero el proceso de [introducción de un gallo nuevo](introducir-gallo-nuevo.html). La evaluación sanitaria y la compatibilidad social son comprobaciones diferentes.
+
+## Material que te hace falta para organizar la convivencia de dos gallos
+
+Revisa los recursos del grupo y prepara un recinto alternativo antes de cualquier conflicto.
+
+- [Seis protectores dorsales ajustables para gallinas](../tienda/p/seis-protectores-dorsales-ajustables-para-gallinas/) — para cubrir el dorso de gallinas si el ajuste es adecuado; no resuelven las agresiones.
+- [Percha de varios niveles para 8 a 12 gallinas](../tienda/p/percha-de-varios-niveles-para-8-a-12-gallinas/) — para organizar zonas de descanso de las gallinas.
+- [Corral walk-in CAMMOO 9,8x6,6x6,6 ft con cubierta](../tienda/p/corral-walk-in-cammoo-9-8x6-6x6-6-ft-con-cubierta/) — estructura para preparar un recinto independiente con cierres y recursos propios.
+
+[Ver todo el material para el gallinero →](../tienda/)

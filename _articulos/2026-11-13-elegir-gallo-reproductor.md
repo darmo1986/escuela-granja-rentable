@@ -55,3 +55,13 @@ Calcula por separado lo que realmente conoces. El porcentaje de nacimiento sobre
 Revisa el movimiento, el acceso a recursos y la convivencia con las hembras. Un resultado reproductivo no compensa un manejo que produce lesiones. La [proporción de gallinas por gallo](gallinas-por-gallo.html) es una referencia de organización que debes contrastar con el grupo real.
 
 Antes de cambiar de reproductor, escribe qué problema has confirmado y qué evidencia falta. Puedes necesitar una revisión sanitaria, del alimento o del proceso de incubación en lugar de comprar otro macho. Todo nuevo ejemplar deberá seguir su propio [plan de entrada](introducir-gallo-nuevo.html).
+
+## Material que te hace falta para identificar y evaluar tu lote reproductor
+
+Estos equipos ayudan a documentar reproductores y observar las tandas de incubación.
+
+- [Anillas de identificación para gallinas Shappy (120 uds., 6 colores)](../tienda/p/anillas-de-identificacion-para-gallinas-shappy-120-uds-6-colores/) — para identificar ejemplares con talla adecuada.
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — para incubar tandas de huevos identificadas.
+- [Ovoscopio LED Incu-Bright para todos los tamaños de huevo](../tienda/p/ovoscopio-led-incu-bright-para-todos-los-tamanos-de-huevo/) — para observar el interior del huevo durante la incubación, sin certificar parentesco ni fertilidad por sí solo.
+
+[Ver todo el material para la reproducción e incubación →](../tienda/)

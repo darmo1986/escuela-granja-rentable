@@ -80,3 +80,14 @@ Si aún dudas, haz el [test de 1 minuto para saber tu raza ideal](../test-razas.
 ### Consejos para comprar tus primeras gallinas
 
 Compra pollitas de 16-18 semanas en criaderos de confianza: empiezan a poner en 2-4 semanas y te saltas la fase delicada de cría. Pide siempre el registro de vacunación (Marek al menos) y observa a las aves antes de comprar: ojos vivos, plumaje completo y activas. Evita aves con estornudos, ojos llorosos o plumas erizadas. Y recuerda la cuarentena: 2-3 semanas separadas antes de juntarlas con tus otras gallinas.
+
+## Material que te hace falta para equipar un gallinero de ponedoras
+
+Antes de elegir la raza, revisa el alojamiento, el agua, el alimento y los nidales.
+
+- [Gallinero metálico walk-in 10x6,6x6,56 ft para 5-10 gallinas](../tienda/p/gallinero-metalico-walk-in-10x6-6x6-56-ft-para-5-10-gallinas/) — recinto para alojar aves, cuya capacidad debes ajustar al lote.
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — recipiente colgante para distribuir el pienso.
+- [Bebedero colgante Harris Farms de 3,5 galones para gallinas](../tienda/p/bebedero-colgante-harris-farms-de-3-5-galones-para-gallinas/) — depósito colgante para suministrar agua.
+- [Almohadillas de nidal Eaton, 13 x 13 pulgadas, 10 unidades](../tienda/p/almohadillas-de-nidal-eaton-13-x-13-pulgadas-10-unidades/) — base para acondicionar los nidales.
+
+[Ver todo el material para el gallinero →](../tienda/)

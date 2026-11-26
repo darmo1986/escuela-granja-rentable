@@ -72,3 +72,14 @@ Conserva una copia de tus supuestos y repite la cuenta variando una condición c
 No prometemos un plazo de recuperación. Para estudiarlo necesitarías, además del desembolso inicial, un flujo de caja comprobado a lo largo del tiempo y las reposiciones que correspondan. La producción y las ventas pueden cambiar.
 
 Si llegaste desde el canal, el [recorrido de costes desde YouTube](../youtube/costes.html) reúne presupuesto, registros y herramientas. Puedes completar esos pasos sin comprar una guía ni un producto.
+
+## Material que te hace falta para presupuestar tu granja
+
+Compara estos equipos al calcular la inversión inicial según tu actividad.
+
+- [Gallinero metálico walk-in 10x6,6x6,56 ft para 5-10 gallinas](../tienda/p/gallinero-metalico-walk-in-10x6-6x6-56-ft-para-5-10-gallinas/) — referencia de cerramiento para presupuestar el alojamiento.
+- [Comedero colgante galvanizado Harris Farms de 15 libras](../tienda/p/comedero-colgante-galvanizado-harris-farms-de-15-libras/) — equipo para distribuir el alimento.
+- [Bebedero colgante Harris Farms de 3,5 galones para gallinas](../tienda/p/bebedero-colgante-harris-farms-de-3-5-galones-para-gallinas/) — equipo para el suministro de agua.
+- [Incubadora Nurture Right 360 de Harris Farms (22 huevos)](../tienda/p/incubadora-nurture-right-360-de-harris-farms-22-huevos/) — equipo opcional si tu actividad incluye incubación.
+
+[Ver todo el material para tu granja →](../tienda/)

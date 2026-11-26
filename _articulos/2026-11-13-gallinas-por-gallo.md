@@ -53,3 +53,13 @@ No añadas gallinas automáticamente para ajustar una proporción. Primero compr
 Un corral tranquilo no demuestra que todos sus huevos estén fecundados. Del mismo modo, conseguir nacimientos no justifica mantener un grupo con lesiones. Conserva por separado las observaciones de convivencia y los resultados de cada tanda reproductiva.
 
 Si quieres mantener más de un macho, revisa antes la guía de [dos gallos en el gallinero](dos-gallos-gallinero.html). La proporción de hembras no elimina por sí sola el riesgo de conflicto entre machos.
+
+## Material que te hace falta para organizar un lote de gallinas y gallo
+
+Prepara los recursos de descanso y puesta y revisa el acceso de cada ave.
+
+- [Seis protectores dorsales ajustables para gallinas](../tienda/p/seis-protectores-dorsales-ajustables-para-gallinas/) — para cubrir el dorso de las gallinas con ajuste adecuado; no sustituyen la corrección de la sobremonta.
+- [Percha de varios niveles para 8 a 12 gallinas](../tienda/p/percha-de-varios-niveles-para-8-a-12-gallinas/) — para distribuir zonas de descanso.
+- [Almohadillas de nidal Eaton, 13 x 13 pulgadas, 10 unidades](../tienda/p/almohadillas-de-nidal-eaton-13-x-13-pulgadas-10-unidades/) — para acondicionar la superficie de los nidales.
+
+[Ver todo el material para el gallinero →](../tienda/)

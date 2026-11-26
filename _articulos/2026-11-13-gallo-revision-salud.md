@@ -57,3 +57,14 @@ Si hay varias aves afectadas o muertes repentinas, comunica el alcance del probl
 Reúne identificación, fecha de inicio, censo, entradas recientes, alimento y productos administrados. Conserva las instrucciones y apunta su evolución. No reutilices un tratamiento anterior porque otro gallo presentó un aspecto parecido.
 
 Después de resolver la incidencia, registra qué seguimiento se acordó y qué cambios se hicieron en las instalaciones. La información de hoy ayudará a interpretar el siguiente problema sin depender de recuerdos incompletos.
+
+## Material que te hace falta para organizar la revisión diaria del gallo
+
+Prepara material de registro y apoyo sin sustituir la valoración veterinaria.
+
+- [Spray Vetericyn Plus para aves, frasco de 8 oz](../tienda/p/spray-vetericyn-plus-para-aves-frasco-de-8-oz/) — artículo de cuidado externo de aves; úsalo solo si el veterinario lo considera apropiado.
+- [Vitaminas y electrolitos Durvet para aves, pack de 6 sobres](../tienda/p/vitaminas-y-electrolitos-durvet-para-aves-pack-de-6-sobres/) — suplemento de apoyo, sujeto a valoración veterinaria.
+- [Guantes de piel Wells Lamont (2 pares)](../tienda/p/guantes-de-piel-wells-lamont-2-pares/) — para proteger las manos durante tareas habituales, sin sustituir barreras ni manejo seguro.
+- [Diario Essential Chicken Keeper Journal, 3 años, 8x10"](../tienda/p/diario-essential-chicken-keeper-journal-3-anos-8x10/) — para conservar observaciones y fechas de seguimiento.
+
+[Ver todo el material para el cuidado de las aves →](../tienda/)
