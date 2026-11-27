@@ -162,8 +162,8 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
         {"@type": "ListItem", "position": 1, "name": "Inicio", "item": SITIO + "/"},
         {"@type": "ListItem", "position": 2, "name": "Razas de gallinas", "item": SITIO + "/razas.html"},
         {"@type": "ListItem", "position": 3, "name": nombre, "item": url}]}
-    foto = (f'<figure class="enf-fig raza-foto">\n<img src="../img/razas/{slug}.webp" width="{w}" height="{h}" '
-            f'alt="{esc(medio["alt"])}" fetchpriority="high" style="width:100%;height:auto;border-radius:12px">\n'
+    foto = "" if sin_foto else (f'<figure class="enf-fig raza-foto">\n<img src="../img/razas/{slug}.webp" width="{w}" height="{h}" '
+            f'alt="{esc(medio.get("alt", ""))}" fetchpriority="high" style="width:100%;height:auto;border-radius:12px">\n'
             f'<figcaption>{credito_html(medio["credito"])}</figcaption>\n</figure>')
     if sin_foto:
         foto = '<p class="fine">Fotografía pendiente de acreditación.</p>'
@@ -218,7 +218,7 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
 <meta property="og:image:width" content="{w}">
 <meta property="og:image:height" content="{h}">
 <meta property="og:locale" content="es_419">
-<meta property="og:image:alt" content="{esc(medio["alt"])}">
+<meta property="og:image:alt" content="{esc(medio.get("alt", ""))}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(titulo)}">
 <meta name="twitter:description" content="{esc(desc)}">
