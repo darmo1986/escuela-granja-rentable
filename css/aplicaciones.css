@@ -17,3 +17,11 @@
 .app-hub-action:hover{background:#103925;color:white}
 .app-hub a:focus-visible{outline:3px solid #a04d00;outline-offset:3px}
 .app-hub-note{margin:.85rem 0 0;color:#314b3d;font-size:.93rem}
+
+.app-hub-guide{margin:0 0 .8rem;padding:.55rem .65rem;border:1px solid #c9dace;border-radius:.5rem;background:#f4faf5}
+.app-hub-guide summary{cursor:pointer;font-weight:750;min-height:1.8rem}
+.app-hub-guide summary:focus-visible{outline:3px solid #a04d00;outline-offset:3px}
+.app-hub-guide ol,.app-help-android ol{margin:.5rem 0;padding-inline-start:1.4rem}
+.app-hub-guide li+li,.app-help-android li+li{margin-top:.4rem}
+.app-hub-guide a{color:#184a34;text-underline-offset:.2em}
+.app-help-android{scroll-margin-top:7rem}
