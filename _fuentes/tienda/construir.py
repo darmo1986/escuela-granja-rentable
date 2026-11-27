@@ -186,7 +186,8 @@ def armar(filas):
         recomendacion = sin_valoracion(texto["recomendacion"])
         fallos.extend(problemas_de_texto(
             asin, texto["titulo"], explicacion, recomendacion, vet))
-        base = slugify(texto["titulo"])
+        # Conserva la URL de esta ficha aunque cambie su título comercial.
+        base = "grit-para-pollitos-manna-pro-con-probioticos-5-lb" if asin == "B01N5HJ4JM" else slugify(texto["titulo"])
         slug = base
         n = 2
         while slug in slugs:
@@ -207,7 +208,7 @@ def armar(filas):
             "asin": asin,
             "slug": slug,
             "titulo": texto["titulo"],
-            "nombre": re.sub(r"\s+", " ", fila["nombre"]).strip(),
+            "nombre": texto["titulo"] if asin == "B01N5HJ4JM" else re.sub(r"\s+", " ", fila["nombre"]).strip(),
             "categoria_csv": cat_csv,
             "categoria_origen": origen,
             "categoria": cat,

@@ -350,14 +350,9 @@ OVERRIDES = {
         ],
     },
     "B01N5HJ4JM": {
-        "explicacion": [
-            "Grit de Manna Pro para pollitos, en bolsa de 5 libras, con probióticos en la fórmula.",
-            "Es un grit insoluble, no un medicamento.",
-        ],
-        "recomendacion": [
-            "Lo enlazamos como grit de arranque de Manna Pro.",
-            "La bolsa indica la forma de ofrecerlo.",
-        ],
+        "titulo": "Grit Manna Pro con probióticos",
+        "explicacion": ["Grit insoluble con probióticos de Manna Pro."],
+        "recomendacion": ["Antes de comprar, confirma la variante, las aves indicadas en la etiqueta y cuántas bolsas incluye el anuncio."],
     },
     "B0BB4RKX3N": {
         "explicacion": [
