@@ -1726,6 +1726,28 @@ def html_post(post, publicados, catalogo, raiz_sitio, activo):
             + "\n</div>\n" + cta + "\n" + bloque_cerca + "\n" + anuncio("rect", activo))
 
 
+def actualizar_hero_noticia(html, posts):
+    """La diapositiva de noticias del carrusel sigue al último artículo publicado."""
+    if "<!-- inicio-hero-noticia:inicio -->" not in html:
+        return html
+    elegidos = [p for p in posts if p.get("publicar") and not p.get("noindex")]
+    if not elegidos:
+        return html
+    p = elegidos[0]
+    slide = (
+        f'<div class="gr-slide" data-slide data-short-title="Noticias">'
+        f'<div class="gr-hero-copy"><p class="gr-kicker">ÚLTIMO ARTÍCULO</p>'
+        f'<h2 class="gr-hero-title">{esc(p["titulo"])}</h2>'
+        f'<p class="gr-lead">{esc(p["descripcion"])}</p>'
+        f'<div class="gr-actions"><a class="btn gold" href="blog/{esc(p["slug"])}.html">Leer el artículo →</a></div></div>'
+        f'<div class="gr-hero-photo"><img src="{esc(p["imagen"])}" alt="{esc(p["imagen_alt"])}"'
+        f' width="1200" height="675" loading="lazy" decoding="async"></div></div>'
+    )
+    return re.sub(r'<!-- inicio-hero-noticia:inicio -->.*?<!-- inicio-hero-noticia:fin -->',
+                  lambda _: '<!-- inicio-hero-noticia:inicio -->\n' + slide + '\n<!-- inicio-hero-noticia:fin -->',
+                  html, count=1, flags=re.S)
+
+
 def actualizar_portada(html, posts):
     """Las novedades se renuevan en la misma publicación que los artículos."""
     if "<!-- inicio-articulos:inicio -->" not in html:
@@ -2006,6 +2028,7 @@ def planificar(raiz, incluir_borradores=False):
             nuevo, _ = aplicar_menu(ruta.read_text(encoding="utf-8"), rel, menu_html, pie_html, hay_posts)
             if rel == "index.html":
                 nuevo = actualizar_portada(nuevo, visibles)
+                nuevo = actualizar_hero_noticia(nuevo, visibles)
             archivos[rel] = nuevo
     except Fallo as exc:
         return [str(exc)], {}, []
