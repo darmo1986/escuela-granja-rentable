@@ -2,7 +2,7 @@
 """Construye las fichas de raza: razas/<slug>.html, el bloque de razas.html y el sitemap.
 
 Fuentes: _fuentes/razas/fichas/<slug>.md (texto aprobado) y _fuentes/razas/medios.json
-(foto, vídeo, alt y crédito). Medios en img/razas/<slug>.webp, <slug>.mp4 y <slug>-poster.webp.
+(foto, vídeo, alt y crédito). Medios en img/razas/<slug>.webp (o el archivo indicado en el campo "foto" de medios.json), <slug>.mp4 y <slug>-poster.webp.
 Uso: python3 _fuentes/razas/construir.py
 """
 from __future__ import annotations
@@ -19,12 +19,17 @@ SITIO = "https://granjarentable.com"
 PLANTILLA = RAIZ / "enfermedades" / "coriza.html"
 PROHIBIDO = re.compile(r"\b(dosis|mg/kg|ml/l|antibi[oó]tico|inyect)", re.I)
 FECHA_DEFECTO = "2026-11-10"  # fecha de publicación de las 20 fichas originales
-FECHA_HUB = "2026-11-25"  # última actualización de razas.html (tanda 1: 30 fichas)
+FECHA_HUB = "2026-11-27"  # última actualización de razas.html (38 fichas)
 # Banner del ebook que llevan las fichas publicadas tras el H1 (antes solo a mano).
 BANNER_EBOOK = ('<div class="anuncios-arriba" data-anuncios-arriba>\n'
     '<aside class="banner-ebook banner-compacto" data-banner-ebook data-banner="ebook-empezar" data-banner-puesto="compacto"><a class="banner-ebook-ficha" href="../ebooks/?utm_source=granjarentable&amp;utm_medium=banner&amp;utm_campaign=ebook-empezar#guia-empezar"><div class="banner-ebook-marca"><img src="../img/logo-oscuro.svg" alt="" width="36" height="36" loading="lazy" decoding="async"><span>Granja Rentable</span></div><img class="banner-ebook-ilustracion" src="../img/banners/banner-empezar.webp" srcset="../img/banners/banner-empezar-360.webp 360w, ../img/banners/banner-empezar-720.webp 720w, ../img/banners/banner-empezar-1200.webp 1200w" sizes="96px" alt="Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera" width="600" height="469" fetchpriority="high" decoding="async"><div class="banner-ebook-texto"><p class="banner-ebook-titulo">Empieza tu granja con buen pie</p><p class="banner-ebook-guia">Ebook en PDF: Guía para empezar tu granja</p><p class="banner-ebook-precio">3 USD</p><span class="banner-ebook-cta">Compra ya</span></div></a></aside>\n'
     '</div>')
 BANNER_BLOQUE = BANNER_EBOOK + "\n" * 9  # 8 líneas en blanco tras el banner, como en las fichas publicadas
+
+
+def foto_nombre(medio, slug):
+    """Nombre del archivo de la foto principal: el campo "foto" de medios.json o <slug>.webp."""
+    return medio.get("foto", f"{slug}.webp")
 
 
 def esc(t):
@@ -104,7 +109,13 @@ def credito_html(c, que="Foto"):
     else:
         lic = esc(lic)
     nota = f", {esc(c['nota'])}" if c.get("nota") else ""
-    return f'{que}: {esc(c["autor"])}, {lic}, vía <a href="{c["fuente"]}" rel="noopener">Wikimedia Commons</a>{nota}.'
+    if "flickr.com" in c["fuente"]:
+        origen = "Flickr"
+    elif "commons.wikimedia.org" in c["fuente"]:
+        origen = "Wikimedia Commons"
+    else:
+        origen = c["fuente"].split("/")[2].removeprefix("www.")
+    return f'{que}: {esc(c["autor"])}, {lic}, vía <a href="{c["fuente"]}" rel="noopener">{origen}</a>{nota}.'
 
 
 def intro(cuerpo):
@@ -145,7 +156,7 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
     titulo = medio.get("titulo") or f"{h1}: puesta, peso y carácter | Granja Rentable"
     fecha = datos.get("fecha") or FECHA_DEFECTO
     desc = meta_desc(intro(cuerpo))
-    img_abs = f"{SITIO}/img/razas/{slug}.webp"
+    img_abs = f"{SITIO}/img/razas/{foto_nombre(medio, slug)}.webp"
     w, h = dims
     ld = {
         "@context": "https://schema.org", "@type": "Article",
@@ -159,7 +170,7 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
         {"@type": "ListItem", "position": 1, "name": "Inicio", "item": SITIO + "/"},
         {"@type": "ListItem", "position": 2, "name": "Razas de gallinas", "item": SITIO + "/razas.html"},
         {"@type": "ListItem", "position": 3, "name": nombre, "item": url}]}
-    foto = (f'<figure class="enf-fig raza-foto">\n<img src="../img/razas/{slug}.webp" width="{w}" height="{h}" '
+    foto = (f'<figure class="enf-fig raza-foto">\n<img src="../img/razas/{foto_nombre(medio, slug)}.webp" width="{w}" height="{h}" '
             f'alt="{esc(medio["alt"])}" fetchpriority="high" style="width:100%;height:auto;border-radius:12px">\n'
             f'<figcaption>{credito_html(medio["credito"])}</figcaption>\n</figure>')
     video = ""
@@ -280,7 +291,7 @@ def bloque_hub(fichas, medios, dims):
         extra = " · con vídeo" if m.get("video") else ""
         tarjetas.append(
             f'<article class="raza">\n<div class="raza-media"><figure>\n'
-            f'<a href="razas/{slug}.html"><img src="img/razas/{slug}.webp" width="{w}" height="{h}" loading="lazy" alt="{esc(m["alt"])}"></a>\n'
+            f'<a href="razas/{slug}.html"><img src="img/razas/{foto_nombre(m, slug)}.webp" width="{w}" height="{h}" loading="lazy" alt="{esc(m["alt"])}"></a>\n'
             f'<figcaption>{credito_html(m["credito"])}</figcaption>\n</figure></div>\n'
             f'<div class="raza-body">\n<h3><a href="razas/{slug}.html">{esc(m["nombre"])}</a></h3>\n'
             f'<p>{en_linea(meta_desc(intro(cuerpo), 140))}</p>\n'
@@ -306,7 +317,7 @@ def main():
             errores.append(f"{slug}: texto con dosis o tratamiento")
         if slug == "wyandotte" and re.search(r"dorad", cuerpo, re.I):
             errores.append("wyandotte: no se llama «dorada»")
-        img = RAIZ / "img" / "razas" / f"{slug}.webp"
+        img = RAIZ / "img" / "razas" / foto_nombre(medios[slug], slug)
         if not img.is_file():
             errores.append(f"{slug}: falta {img.name}")
         if medios[slug].get("video"):
@@ -316,7 +327,7 @@ def main():
         fichas.append((slug, datos, cuerpo))
     if errores:
         print("\n".join(errores)); sys.exit(1)
-    dims = {s: Image.open(RAIZ / "img" / "razas" / f"{s}.webp").size for s, _, _ in fichas}
+    dims = {s: Image.open(RAIZ / "img" / "razas" / foto_nombre(medios[s], s)).size for s, _, _ in fichas}
     piezas = piezas_plantilla()
     (RAIZ / "razas").mkdir(exist_ok=True)
     for slug, datos, cuerpo in fichas:
