@@ -24,7 +24,7 @@
 <link rel="icon" href="../../../favicon.ico">
 <link rel="icon" href="../../../img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../img/favicon.png" sizes="64x64" type="image/png">
-<link rel="stylesheet" href="../../../css/estilo.css?v=20261117-sin-fijo">
+<link rel="stylesheet" href="../../../css/estilo.css?v=20261123-menu">
 <link rel="stylesheet" href="../../../tienda/tienda.css?v=20261114tienda">
 <script src="../../../js/boot.js?v=20261117-anuncios-arriba"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://granjarentable.com/"},{"@type":"ListItem","position":2,"name":"Tienda","item":"https://granjarentable.com/tienda/"},{"@type":"ListItem","position":3,"name":"Baño de arena","item":"https://granjarentable.com/tienda/c/bano-de-arena/"}]}</script>
@@ -78,6 +78,7 @@
 <div class="nav-sub" id="nav-razas">
 <a data-nav="razas-gallinas" href="../../../razas.html#razas-gallinas"><span class="nav-label">Gallinas</span></a>
 <a data-nav="razas-pollos" href="../../../pollos-engorde.html"><span class="nav-label">Pollos</span></a>
+<a data-nav="criaderos" href="../../../criaderos.html"><span class="nav-label">Criaderos por país</span></a>
 <a data-nav="razas-gallos" href="../../../razas.html#gallos"><span class="nav-label">Gallos</span></a>
 </div>
 </div>
@@ -90,12 +91,23 @@
 <div class="nav-sub" id="nav-herramientas">
 <a data-nav="calculadora" href="../../../calculadora.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calculadora</span></a>
 <a data-nav="enfermedades" href="../../../enfermedades.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="currentColor" d="M14.2 8.2h3.6v6h6v3.6h-6v6h-3.6v-6h-6v-3.6h6z"/></svg></span><span class="nav-label">Enfermedades</span></a>
+<a data-nav="gestion-gallinas" href="../../../app-gallinas/"><span class="nav-label">Gestión de gallinas</span></a>
 <a data-nav="juegos" href="../../../juegos.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span></a>
 </div>
 </div>
 <a data-nav="app" href="../../../app.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M11 3h10a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1.8 2.6v17.2h6.4V5.6h-6.4zM14.6 24.8h2.8V26.6h-2.8z"/></svg></span><span class="nav-label">App</span></a>
 <a data-nav="ebooks" href="../../../ebooks/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 4h11l5 5v19H8V4zm10 1.6V10h4.2L18 5.6zM10.2 14h11.6v2H10.2zm0 4h11.6v2H10.2zm0 4h8v2h-8z"/></svg></span><span class="nav-label">Ebooks</span></a>
+<div class="nav-drop">
+<div class="nav-row">
 <a data-nav="tienda" aria-current="page" href="../../../tienda/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M4.5 13.2 16 4.2l11.5 9v14.2h-23V13.2zm2.6 1.4V25h17.8V14.6L16 7.4 7.1 14.6zM12.2 25v-6.4h7.6V25h-7.6z"/></svg></span><span class="nav-label">Tienda</span></a>
+<button class="nav-parent nav-tiendas" type="button" aria-expanded="false" aria-controls="nav-tiendas" aria-label="Opciones de tienda"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+</div>
+<div class="nav-sub" id="nav-tiendas">
+<a href="../../../tienda/">Material avícola en Amazon</a>
+<a data-nav="merchandising" href="../../../tienda/merchandising/">Tienda oficial de ropa y regalos</a>
+<a data-nav="comparativas" href="../../../comparativas.html">Comparativas con vídeo</a>
+</div>
+</div>
 <div class="nav-drop">
 <div class="nav-row">
 <button class="nav-redes" type="button" aria-expanded="false" aria-controls="nav-redes"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="16" r="3.3" fill="currentColor"/><circle cx="23" cy="7.5" r="3.3" fill="currentColor"/><circle cx="23" cy="24.5" r="3.3" fill="currentColor"/><path d="M11.1 14.6 20 8.8M11.1 17.4 20 23.2" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></span><span class="nav-label">Redes</span></button>
@@ -106,7 +118,7 @@
 <a data-social="facebook" href="https://www.facebook.com/GranjaRentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M18.2 7.2h3.2V3.4h-3.2c-3.4 0-5.6 2.1-5.6 5.5v2.6H9.2V15h3.4V28h4.4V15h3.5l.6-3.5h-4.1v-2.4c0-1.1.4-1.9 1.2-1.9z"/></svg></span><span class="nav-label">Facebook</span></a>
 <a data-social="instagram" href="https://www.instagram.com/granjarentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.3"><rect x="6" y="6" width="20" height="20" rx="5.5"/><circle cx="16" cy="16" r="4.2"/></g><circle cx="22.6" cy="9.4" r="1.7" fill="currentColor"/></svg></span><span class="nav-label">Instagram</span></a>
 <a data-social="x" href="https://x.com/juanpab10242455"><span class="nav-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></span><span class="nav-label">X</span></a>
-<a data-social="tiktok" href="#tiktok-pendiente"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M20.4 4.2h3.1a7.4 7.4 0 0 0 4.3 4.1v3.2a10.6 10.6 0 0 1-4.3-1.2v8.6a7.4 7.4 0 1 1-7.4-7.4c.3 0 .7 0 1 .1v3.3a4.2 4.2 0 1 0 2.9 4V4.2z"/></svg></span><span class="nav-label">TikTok (pendiente)</span></a>
+<a data-social="tiktok" href="https://www.tiktok.com/@granjarentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M20.4 4.2h3.1a7.4 7.4 0 0 0 4.3 4.1v3.2a10.6 10.6 0 0 1-4.3-1.2v8.6a7.4 7.4 0 1 1-7.4-7.4c.3 0 .7 0 1 .1v3.3a4.2 4.2 0 1 0 2.9 4V4.2z"/></svg></span><span class="nav-label">TikTok</span></a>
 </div>
 </div>
 <a class="nav-wa" data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 4.2a10.6 10.6 0 0 0-9.1 16L5.4 26.6l6.6-1.6A10.6 10.6 0 1 0 16 4.2zm5.8 14.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.2l-.7.8c-.1.2-.3.2-.5.1a7 7 0 0 1-3.4-3c-.2-.4.2-.4.7-1.2 0-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1 2.6c.2.2 1.7 2.6 4.1 3.6 1.5.6 2 .7 2.8.5.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1l-.4-.2z"/></svg></span><span class="nav-label">WhatsApp</span></a>
@@ -215,7 +227,10 @@
 <li><a href="../../../contacto.html">Contacto</a></li>
 <li><a href="../../../quienes-somos.html">Quiénes somos</a></li>
 <li><a href="../../../ebooks/">Ebooks</a></li>
-<li><a href="../../../tienda/">Tienda</a></li>
+<li><a href="../../../criaderos.html">Criaderos por país</a></li>
+<li><a href="../../../tienda/">Tienda Amazon</a></li>
+<li><a href="../../../tienda/merchandising/">Tienda oficial de ropa y regalos</a></li>
+<li><a href="../../../comparativas.html">Comparativas con vídeo</a></li>
 </ul>
 <!-- pie-sitio:fin -->
 </div>
@@ -225,7 +240,7 @@
 <li><a data-social="whatsapp" href="https://wa.me/34656267726?text=Hola%2C%20escribo%20desde%20el%20sitio%20de%20Granja%20Rentable">WhatsApp +34 656 267 726</a></li>
 <li><a data-social="youtube" href="https://www.youtube.com/@GranjaRentable">YouTube</a></li>
 <li><a data-social="facebook" href="https://www.facebook.com/GranjaRentable">Facebook</a></li>
-<li><a data-social="tiktok" href="#tiktok-pendiente">TikTok (pendiente)</a></li>
+<li><a data-social="tiktok" href="https://www.tiktok.com/@granjarentable">TikTok</a></li>
 <li><a href="../../../aviso-legal.html">Aviso legal</a></li>
 <li><a href="../../../privacidad.html">Privacidad</a></li>
 <li><a href="../../../cookies.html">Cookies</a></li>
