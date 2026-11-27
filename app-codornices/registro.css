@@ -12,3 +12,7 @@ main section,main>details{box-shadow:0 3px 12px #123a2909;padding:clamp(1rem,3vw
 #aves fieldset{margin:0 0 .65rem;border:1px solid var(--line);border-radius:.55rem;display:grid;gap:.65rem;min-width:0}#aves textarea{min-height:52px}#aves button{justify-self:start}.daily-details .grid{margin-top:.55rem}#desglose{margin:.65rem 0 0;background:#f6faf5}
 
 .ebook-banner{display:grid;grid-template-columns:clamp(64px,15vw,105px) 1fr auto;align-items:center;gap:.7rem 1rem;background:#e2f1e5;border:1px solid #afceba;border-radius:1rem;padding:.75rem;margin-bottom:1rem}.ebook-banner img{display:block;width:100%;height:auto;border-radius:.45rem}.ebook-banner strong{font-size:1.05rem}.ebook-banner p{margin:0;color:var(--muted)}.ebook-banner a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;white-space:nowrap;border-radius:.55rem;padding:.45rem .8rem;background:var(--green);color:white;font-weight:700;text-decoration:none}.ebook-banner a:hover{text-decoration:underline}@media(max-width:560px){.ebook-banner{grid-template-columns:64px minmax(0,1fr);gap:.45rem .8rem}.ebook-banner img{grid-row:span 2}.ebook-banner a{justify-self:start}}
+.uso-registro{scroll-margin-top:1rem;border-inline-start:4px solid #2c815b}
+.uso-registro ol{margin:.4rem 0 .7rem;padding-inline-start:1.35rem}
+.uso-registro li+li{margin-top:.35rem}
+.uso-registro details{padding:.55rem .75rem;margin:0}
