@@ -15,7 +15,7 @@
   }
   function terms(text) {
     var t = normalize(text);
-    return filterSelect ? t.replace(/\b(huevos|gallinas|ponedoras|razas)\b/g, function (word) { return word.slice(0, -1); }) : t;
+    return filterSelect ? t.replace(/\bazules\b/g, 'azul').replace(/\b(huevos|gallinas|ponedoras|razas|verdes)\b/g, function (word) { return word.slice(0, -1); }) : t;
   }
   var entries = cards.map(function (card) {
     var heading = card.querySelector('h3');
@@ -52,10 +52,11 @@
     var term = terms(input.value);
     var selected = filterSelect ? filterSelect.value : '';
     var words = term ? term.split(/\s+/) : [];
+    var eggColor = filterSelect && /\bhuevo\s+(?:azul|verde)\b/.test(term);
     var visible = 0;
     entries.forEach(function (entry) {
       var textMatch = !term || words.every(function (word) { return entry.search.indexOf(word) !== -1; }) || entry.name.indexOf(term.replace(/\s+/g, '')) !== -1;
-      var match = textMatch && (!selected || entry.tags.indexOf(selected) !== -1);
+      var match = textMatch && (!selected || entry.tags.indexOf(selected) !== -1) && (!eggColor || entry.tags.indexOf('color') !== -1);
       entry.card.hidden = !match;
       if (match) visible += 1;
     });
