@@ -460,5 +460,108 @@
    "fuente": "https://commons.wikimedia.org/wiki/File:Animals_(20210505-FPAC-KLS-001).webm",
    "nota": "recortado"
   }
+ },
+ "ancona": {
+  "nombre": "Ancona",
+  "h1": "Gallina Ancona",
+  "titulo": "Gallina Ancona: origen, puesta y cuidados | Granja Rentable",
+  "alt": "Gallina Ancona de plumaje negro moteado de blanco, sobre hierba",
+  "credito": {
+   "autor": "Festina lente",
+   "licencia": "CC BY-SA 3.0",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Ancona_chicken.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+  }
+ },
+ "buckeye": {
+  "nombre": "Buckeye",
+  "h1": "Gallina Buckeye",
+  "titulo": "Gallina Buckeye: origen, puesta y cuidados | Granja Rentable",
+  "alt": "Gallo Buckeye de plumaje caoba y cola oscura",
+  "credito": {
+   "autor": "Melinda Sayler",
+   "licencia": "CC BY-SA 3.0",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Walter%2C_Buckeye_Rooster.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+  }
+ },
+ "chantecler": {
+  "nombre": "Chantecler",
+  "h1": "Gallina Chantecler",
+  "titulo": "Gallina Chantecler: origen, puesta y cuidados | Granja Rentable",
+  "alt": "Fotografía histórica de una gallina Chantecler blanca en Oka, Quebec, en 1926",
+  "credito": {
+   "autor": "Autor no identificado (1926)",
+   "licencia": "Dominio público",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Chantecler_hen_1926.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP"
+  }
+ },
+ "dominique": {
+  "nombre": "Dominique",
+  "h1": "Gallina Dominique",
+  "titulo": "Gallina Dominique: origen, puesta y cuidados | Granja Rentable",
+  "alt": "Gallina Dominique de plumaje barrado en blanco y negro, sobre suelo de corral",
+  "credito": {
+   "autor": "gunthercox",
+   "licencia": "CC0",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Dominique_chicken.JPG",
+   "nota": "Tamaño adaptado y convertido a WebP",
+   "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  }
+ },
+ "dorking": {
+  "nombre": "Dorking",
+  "h1": "Gallina Dorking",
+  "titulo": "Gallina Dorking: origen, puesta y cuidados | Granja Rentable",
+  "alt": "Gallina Dorking de variedad roja, de pie sobre hierba",
+  "credito": {
+   "autor": "Tunderaos",
+   "licencia": "CC BY-SA 4.0",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Red_dorking_hen.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+  }
+ },
+ "houdan": {
+  "nombre": "Houdan",
+  "h1": "Gallina Houdan",
+  "titulo": "Gallina Houdan: origen, puesta y cuidados | Granja Rentable",
+  "alt": "Gallina Houdan moteada en negro y blanco, con copete y barba muy visibles",
+  "credito": {
+   "autor": "karen johns",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://commons.wikimedia.org/wiki/File:2018-07-22_Houdan_hen.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/2.0/"
+  }
+ },
+ "polaca": {
+  "nombre": "Polaca (Polish)",
+  "h1": "Gallina polaca (Polish)",
+  "titulo": "Gallina polaca (Polish): origen, puesta y cuidados | Granja Rentable",
+  "alt": "Gallina Polaca negra con copete blanco, de pie sobre hierba",
+  "credito": {
+   "autor": "MikaelLindmark",
+   "licencia": "CC BY-SA 3.0",
+   "fuente": "https://commons.wikimedia.org/wiki/File:White-Crested_Black_Polish_hen-20080728.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+  }
+ },
+ "islandesa": {
+  "nombre": "Gallina islandesa",
+  "h1": "Gallina islandesa",
+  "titulo": "Gallina islandesa: origen, puesta y cuidados | Granja Rentable",
+  "alt": "Gallina islandesa de plumaje blanco con salpicaduras azuladas y patas azul gris",
+  "credito": {
+   "autor": "Landnamshaenan",
+   "licencia": "CC BY-SA 4.0",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Icelandic_Chicken_hen%2C_age_12_months.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+  }
  }
 }

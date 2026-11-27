@@ -19,7 +19,7 @@ SITIO = "https://granjarentable.com"
 PLANTILLA = RAIZ / "enfermedades" / "coriza.html"
 PROHIBIDO = re.compile(r"\b(dosis|mg/kg|ml/l|antibi[oó]tico|inyect)", re.I)
 FECHA_DEFECTO = "2026-11-10"  # fecha de publicación de las 20 fichas originales
-FECHA_HUB = "2026-11-27"  # última actualización de razas.html (38 fichas)
+FECHA_HUB = "2026-11-27"  # última actualización de razas.html (46 fichas)
 # Banner del ebook que llevan las fichas publicadas tras el H1 (antes solo a mano).
 BANNER_EBOOK = ('<div class="anuncios-arriba" data-anuncios-arriba>\n'
     '<aside class="banner-ebook banner-compacto" data-banner-ebook data-banner="ebook-empezar" data-banner-puesto="compacto"><a class="banner-ebook-ficha" href="../ebooks/?utm_source=granjarentable&amp;utm_medium=banner&amp;utm_campaign=ebook-empezar#guia-empezar"><div class="banner-ebook-marca"><img src="../img/logo-oscuro.svg" alt="" width="36" height="36" loading="lazy" decoding="async"><span>Granja Rentable</span></div><img class="banner-ebook-ilustracion" src="../img/banners/banner-empezar.webp" srcset="../img/banners/banner-empezar-360.webp 360w, ../img/banners/banner-empezar-720.webp 720w, ../img/banners/banner-empezar-1200.webp 1200w" sizes="96px" alt="Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera" width="600" height="469" fetchpriority="high" decoding="async"><div class="banner-ebook-texto"><p class="banner-ebook-titulo">Empieza tu granja con buen pie</p><p class="banner-ebook-guia">Ebook en PDF: Guía para empezar tu granja</p><p class="banner-ebook-precio">3 USD</p><span class="banner-ebook-cta">Compra ya</span></div></a></aside>\n'
@@ -362,6 +362,12 @@ def main():
         (RAIZ / "razas" / f"{slug}.html").write_text(pagina(slug, datos, cuerpo, medios[slug], dims[slug], piezas), encoding="utf-8")
     hub = RAIZ / "razas.html"
     t = hub.read_text(encoding="utf-8")
+    for patron in (
+        r"(Razas de gallinas y gallos: )\d+( fichas)",
+        r"(Gallinas: )\d+( fichas)",
+        r"(Ir a las )\d+( fichas de razas de gallinas)",
+    ):
+        t = re.sub(patron, lambda m: f"{m[1]}{len(fichas)}{m[2]}", t)
     bloque = bloque_hub(fichas, medios, dims)
     if "<!-- razas:inicio -->" in t:
         t = re.sub(r"<!-- razas:inicio -->.*?<!-- razas:fin -->", lambda _: bloque, t, flags=re.S)
