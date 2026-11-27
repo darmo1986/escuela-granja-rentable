@@ -71,12 +71,22 @@
 </select></label>
 <nav id="site-nav" class="nav" aria-label="Principal">
 <!-- menu:inicio -->
-<a data-nav="curso" href="curso.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><ellipse cx="24.2" cy="9.2" rx="2.5" ry="5.2" transform="rotate(-38 24.2 9.2)"/><ellipse cx="26.4" cy="12.6" rx="2.2" ry="4.8" transform="rotate(-12 26.4 12.6)"/><ellipse cx="25.2" cy="16" rx="2.1" ry="4.4" transform="rotate(18 25.2 16)"/><ellipse cx="15.8" cy="16.2" rx="6.3" ry="4.5"/><path d="M12.4 14.4c-.2-2.8-1.6-4.6-4.2-5.4 2.4.6 3.8 2.4 4.2 5.4z"/><circle cx="8.4" cy="10.2" r="3.15"/><circle cx="7.1" cy="6.7" r="1.35"/><circle cx="9.3" cy="6.2" r="1.35"/><circle cx="11.1" cy="7.1" r="1.2"/><path d="M5.6 10.4 2.5 11.6l3.1 1z"/><path d="M3.2 24.2 14.5 22.4v7.3L3.2 31.2z"/><path d="M17.5 22.4 28.8 24.2v7L17.5 29.7z"/><path d="M14.5 22.4h3v7.3h-3z"/></g></svg></span><span class="nav-label">Curso gratis</span></a>
-<a data-nav="articulos" href="blog/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M6 5h16v4h4v16a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V5zm2.4 2.4V25c0 .4.3.6.6.6h11.4a3 3 0 0 1-.2-1V7.4H8.4zm14 4v13.2a.6.6 0 0 0 1.2 0V11.4h-1.2zM10.4 10h7.2v2.2h-7.2zm0 4.4h7.2v2.2h-7.2zm0 4.4h5v2.2h-5z"/></svg></span><span class="nav-label">Artículos</span></a>
 <div class="nav-drop">
 <div class="nav-row">
-<button class="nav-redes nav-tools nav-fichas" type="button" data-nav="razas" aria-haspopup="true" aria-expanded="false" aria-controls="nav-razas"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M9.2 21.6c.2-3.4 2.6-6 6.2-6.4 1.5-2.3 1.6-4.6.4-6.8-1.3.3-2.5.2-3.6-.5-1-.7-1.7-1.8-1.8-3.4 2 .9 3.5 1.8 4.4 3 1.3 1.8 1.4 3.9.5 6.2 1.3.5 2.2 1.4 2.6 2.7.5 1.6.2 3.2-.7 4.4-.9 1.2-2.3 1.9-4.2 2.1h-4.2c-2.2-.2-3.8-1.6-3.6-4.3zM22.4 12.2c1.2.4 2 .8 2.4 1.6.6 1.1.5 2.4-.1 3.8.7.5 1.1 1.2 1.2 2.1.2 1.4-.3 2.5-1.2 3.2-1 .8-2.2 1.1-3.6 1.1h-.4c.8-.8 1.3-1.8 1.4-3 .1-1-.2-1.9-.8-2.6.6-1.1.8-2.2.5-3.4-.2-.8-.6-1.5-1.2-2l1.8-.8z"/></svg></span><span class="nav-label">Fichas de razas</span></button>
-<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-razas" aria-label="Gallinas, pollos y gallos"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+<a data-nav="curso" href="curso.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><ellipse cx="24.2" cy="9.2" rx="2.5" ry="5.2" transform="rotate(-38 24.2 9.2)"/><ellipse cx="26.4" cy="12.6" rx="2.2" ry="4.8" transform="rotate(-12 26.4 12.6)"/><ellipse cx="25.2" cy="16" rx="2.1" ry="4.4" transform="rotate(18 25.2 16)"/><ellipse cx="15.8" cy="16.2" rx="6.3" ry="4.5"/><path d="M12.4 14.4c-.2-2.8-1.6-4.6-4.2-5.4 2.4.6 3.8 2.4 4.2 5.4z"/><circle cx="8.4" cy="10.2" r="3.15"/><circle cx="7.1" cy="6.7" r="1.35"/><circle cx="9.3" cy="6.2" r="1.35"/><circle cx="11.1" cy="7.1" r="1.2"/><path d="M5.6 10.4 2.5 11.6l3.1 1z"/><path d="M3.2 24.2 14.5 22.4v7.3L3.2 31.2z"/><path d="M17.5 22.4 28.8 24.2v7L17.5 29.7z"/><path d="M14.5 22.4h3v7.3h-3z"/></g></svg></span><span class="nav-label">Aprender</span></a>
+<button class="nav-parent nav-tiendas nav-more" type="button" aria-expanded="false" aria-controls="nav-aprender" aria-label="Opciones de aprendizaje"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+</div>
+<div class="nav-sub" id="nav-aprender">
+<a href="curso.html">Curso gratis</a>
+<a data-nav="articulos" href="blog/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M6 5h16v4h4v16a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V5zm2.4 2.4V25c0 .4.3.6.6.6h11.4a3 3 0 0 1-.2-1V7.4H8.4zm14 4v13.2a.6.6 0 0 0 1.2 0V11.4h-1.2zM10.4 10h7.2v2.2h-7.2zm0 4.4h7.2v2.2h-7.2zm0 4.4h5v2.2h-5z"/></svg></span><span class="nav-label">Artículos</span></a>
+<a data-nav="guias" href="guias.html">Guías prácticas</a>
+<a data-nav="recursos-video" href="youtube/">Recursos de los vídeos</a>
+</div>
+</div>
+<div class="nav-drop">
+<div class="nav-row">
+<button class="nav-redes nav-tools nav-fichas" type="button" data-nav="razas" aria-haspopup="true" aria-expanded="false" aria-controls="nav-razas"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M9.2 21.6c.2-3.4 2.6-6 6.2-6.4 1.5-2.3 1.6-4.6.4-6.8-1.3.3-2.5.2-3.6-.5-1-.7-1.7-1.8-1.8-3.4 2 .9 3.5 1.8 4.4 3 1.3 1.8 1.4 3.9.5 6.2 1.3.5 2.2 1.4 2.6 2.7.5 1.6.2 3.2-.7 4.4-.9 1.2-2.3 1.9-4.2 2.1h-4.2c-2.2-.2-3.8-1.6-3.6-4.3zM22.4 12.2c1.2.4 2 .8 2.4 1.6.6 1.1.5 2.4-.1 3.8.7.5 1.1 1.2 1.2 2.1.2 1.4-.3 2.5-1.2 3.2-1 .8-2.2 1.1-3.6 1.1h-.4c.8-.8 1.3-1.8 1.4-3 .1-1-.2-1.9-.8-2.6.6-1.1.8-2.2.5-3.4-.2-.8-.6-1.5-1.2-2l1.8-.8z"/></svg></span><span class="nav-label">Razas y criaderos</span></button>
+<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-razas" aria-label="Razas de aves y criaderos"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
 </div>
 <div class="nav-sub" id="nav-razas">
 <a data-nav="razas-gallinas" href="razas.html#razas-gallinas"><span class="nav-label">Gallinas</span></a>
@@ -88,18 +98,31 @@
 
 <div class="nav-drop">
 <div class="nav-row">
+<a data-nav="app" href="app.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M11 3h10a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1.8 2.6v17.2h6.4V5.6h-6.4zM14.6 24.8h2.8V26.6h-2.8z"/></svg></span><span class="nav-label">Aplicaciones</span></a>
+<button class="nav-parent nav-tiendas nav-more" type="button" aria-expanded="false" aria-controls="nav-aplicaciones" aria-label="Opciones de aplicaciones"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+</div>
+<div class="nav-sub" id="nav-aplicaciones">
+<a href="app.html">Todas las aplicaciones</a>
+<a data-nav="gestion-gallinas" href="app-gallinas/"><span class="nav-label">Gestión de gallinas</span></a>
+<a data-nav="codornices-huevos" href="app-codornices/huevos/">Codornices para huevos</a>
+<a data-nav="codornices-carne" href="app-codornices/carne/">Codornices para carne</a>
+<a href="app.html#registro-pollos">Registro de pollos (Android)</a>
+<a href="https://granja-rentable-cuaderno-aves.diligentcandy2.chatgpt.site/">Cuaderno de aves</a>
+</div>
+</div>
+<div class="nav-drop">
+<div class="nav-row">
 <button class="nav-redes nav-tools" type="button" data-nav="herramientas" aria-expanded="false" aria-controls="nav-herramientas"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M6 8h8v8H6zm12 0h8v8h-8zM6 20h8v6H6zm12 0h8v6h-8z"/></svg></span><span class="nav-label">Herramientas</span></button>
-<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-herramientas" aria-label="Calculadora, enfermedades y juegos"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-herramientas" aria-label="Calculadoras, hoja de puesta, enfermedades y juegos"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
 </div>
 <div class="nav-sub" id="nav-herramientas">
 <a data-nav="calculadora" href="calculadora.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 3.5h16a2.5 2.5 0 0 1 2.5 2.5v20a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 26V6A2.5 2.5 0 0 1 8 3.5zM10 7.2h12v4.6H10V7.2zM10 14.2h4v4h-4v-4zm6 0h4v4h-4v-4zM10 20.2h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg></span><span class="nav-label">Calculadora</span></a>
 <a data-nav="enfermedades" href="enfermedades.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="currentColor" d="M14.2 8.2h3.6v6h6v3.6h-6v6h-3.6v-6h-6v-3.6h6z"/></svg></span><span class="nav-label">Enfermedades</span></a>
-<a data-nav="gestion-gallinas" href="app-gallinas/"><span class="nav-label">Gestión de gallinas</span></a>
+<a data-nav="calculadoras" href="calculadoras.html">Calculadoras y calendario</a>
+<a data-nav="hoja-puesta" href="hoja-registro-puesta.html">Hoja semanal de puesta</a>
 <a data-nav="juegos" href="juegos.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.2 4h12.2v8.6L14.2 28 4 17.6V8.8L8.6 4h4.6zm8.4 6.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0z"/></svg></span><span class="nav-label">Juegos</span></a>
 </div>
 </div>
-<a data-nav="app" href="app.html"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M11 3h10a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1.8 2.6v17.2h6.4V5.6h-6.4zM14.6 24.8h2.8V26.6h-2.8z"/></svg></span><span class="nav-label">App</span></a>
-<a data-nav="ebooks" href="ebooks/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 4h11l5 5v19H8V4zm10 1.6V10h4.2L18 5.6zM10.2 14h11.6v2H10.2zm0 4h11.6v2H10.2zm0 4h8v2h-8z"/></svg></span><span class="nav-label">Ebooks</span></a>
 <div class="nav-drop">
 <div class="nav-row">
 <a data-nav="tienda" href="tienda/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M4.5 13.2 16 4.2l11.5 9v14.2h-23V13.2zm2.6 1.4V25h17.8V14.6L16 7.4 7.1 14.6zM12.2 25v-6.4h7.6V25h-7.6z"/></svg></span><span class="nav-label">Tienda</span></a>
@@ -109,14 +132,16 @@
 <a href="tienda/">Material avícola en Amazon</a>
 <a data-nav="merchandising" href="tienda/merchandising/">Tienda oficial de ropa y regalos</a>
 <a data-nav="comparativas" href="comparativas.html">Comparativas con vídeo</a>
+<a data-nav="ebooks" href="ebooks/"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 4h11l5 5v19H8V4zm10 1.6V10h4.2L18 5.6zM10.2 14h11.6v2H10.2zm0 4h11.6v2H10.2zm0 4h8v2h-8z"/></svg></span><span class="nav-label">Ebooks</span></a>
 </div>
 </div>
 <div class="nav-drop">
 <div class="nav-row">
-<button class="nav-redes" type="button" aria-expanded="false" aria-controls="nav-redes"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="16" r="3.3" fill="currentColor"/><circle cx="23" cy="7.5" r="3.3" fill="currentColor"/><circle cx="23" cy="24.5" r="3.3" fill="currentColor"/><path d="M11.1 14.6 20 8.8M11.1 17.4 20 23.2" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></span><span class="nav-label">Redes</span></button>
-<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-redes" aria-label="YouTube, Facebook, Instagram, X y TikTok"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
+<button class="nav-redes" type="button" aria-expanded="false" aria-controls="nav-redes"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="16" r="3.3" fill="currentColor"/><circle cx="23" cy="7.5" r="3.3" fill="currentColor"/><circle cx="23" cy="24.5" r="3.3" fill="currentColor"/><path d="M11.1 14.6 20 8.8M11.1 17.4 20 23.2" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></span><span class="nav-label">Ayuda y redes</span></button>
+<button class="nav-parent nav-more" type="button" aria-expanded="false" aria-controls="nav-redes" aria-label="Contacto y redes sociales"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6 8.5 12 15l6-6.5H6z"/></svg></button>
 </div>
 <div class="nav-sub" id="nav-redes">
+<a data-nav="contacto" href="contacto.html">Contacto</a>
 <a data-social="youtube" href="https://www.youtube.com/@GranjaRentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M12 9.2v13.6L24 16z"/></svg></span><span class="nav-label">YouTube</span></a>
 <a data-social="facebook" href="https://www.facebook.com/GranjaRentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M18.2 7.2h3.2V3.4h-3.2c-3.4 0-5.6 2.1-5.6 5.5v2.6H9.2V15h3.4V28h4.4V15h3.5l.6-3.5h-4.1v-2.4c0-1.1.4-1.9 1.2-1.9z"/></svg></span><span class="nav-label">Facebook</span></a>
 <a data-social="instagram" href="https://www.instagram.com/granjarentable"><span class="nav-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.3"><rect x="6" y="6" width="20" height="20" rx="5.5"/><circle cx="16" cy="16" r="4.2"/></g><circle cx="22.6" cy="9.4" r="1.7" fill="currentColor"/></svg></span><span class="nav-label">Instagram</span></a>
@@ -207,7 +232,7 @@
 <p class="gr-kicker" id="miembro-titulo">Membresía</p>
 <p>Hazte miembro por 2,99 € al mes. Incluye vídeos exclusivos, como el de genética de ponedoras. En YouTube, «Hazte miembro» del canal <a href="https://www.youtube.com/@GranjaRentable/join">@GranjaRentable</a>. También está la suscripción de la página <a href="https://www.facebook.com/GranjaRentable">Granja Rentable</a> en Facebook.</p>
 </aside>
-<nav class="gr-shortcuts" aria-label="Accesos rápidos"><a class="gr-merch-shortcut" href="tienda/merchandising/">Ropa y regalos</a><a href="tienda/">Tienda Amazon</a><a href="criaderos.html">Buscar criaderos</a><a href="calculadora.html">Calcular costes</a><a href="test-razas.html">Elige tu raza</a><a href="videos.html">Ver vídeos</a><a href="comparativas.html">Comparar productos</a><a href="#registrar-lote">Registrar mi lote</a></nav>
+<nav class="gr-shortcuts" aria-label="Accesos rápidos"><a href="app.html">Aplicaciones</a><a class="gr-merch-shortcut" href="tienda/merchandising/">Ropa y regalos</a><a href="tienda/">Tienda Amazon</a><a href="criaderos.html">Buscar criaderos</a><a href="calculadora.html">Calcular costes</a><a href="test-razas.html">Elige tu raza</a><a href="videos.html">Ver vídeos</a><a href="comparativas.html">Comparar productos</a></nav>
 <aside class="gr-ofertas-portada" aria-label="Compra rápida en Granja Rentable">
   <div><h2>Equipa tu gallinero sin perder tiempo</h2><p>7 productos seleccionados · 4 guías PDF a 3 USD · enlaces claros en español</p></div>
   <a href="recomendados.html">Ver productos y ebooks</a>
@@ -332,7 +357,7 @@
 <section class="gr-course gr-section" aria-labelledby="premium-inicio"><div><p class="gr-kicker">ACOMPAÑAMIENTO PERSONAL · PLAZAS LIMITADAS</p><h2 id="premium-inicio">Una mano con las dudas de tu granja.</h2><p>Asesoramiento Premium por escrito: <strong>29 € por un mes, 10 consultas</strong> y respuesta en un máximo de 24 horas. Orientación sobre manejo, instalaciones y costes.</p></div><div><a class="btn gold" href="premium.html">Ver el asesoramiento Premium →</a><p class="fine">Consulta disponibilidad y condiciones antes de contratar.</p></div></section>
 <section class="gr-section gr-bottom" aria-labelledby="recursos-titulo"><div><p class="gr-kicker">RECURSOS PARA SEGUIR APRENDIENDO</p><h2 id="recursos-titulo">Guarda lo útil. Vuelve cuando lo necesites.</h2><p>Consulta <a href="ebooks/">las guías en PDF</a>, repasa las <a href="faq.html">preguntas frecuentes</a> o explora la <a href="enfermedades.html">guía de enfermedades</a>.</p><p>Granja Rentable reúne formación y recursos para pequeños criadores. <a href="quienes-somos.html">Conoce el proyecto y quién publica</a>.</p></div><div class="gr-final-cta"><h3>¿Empiezas desde cero?</h3><p>Empieza por decidir qué quieres producir.</p><a class="btn gold" href="lecciones/l01.html">Ir a la primera lección →</a></div></section>
 
-<section id="registrar-lote" class="gr-section gr-app-extra" aria-labelledby="app-inicio-titulo"><h2 id="app-inicio-titulo">Registrar mi lote</h2><p>El Cuaderno de aves funciona sin cuenta. Los datos se guardan en este navegador.</p><a href="https://granja-rentable-cuaderno-aves.diligentcandy2.chatgpt.site/">Abrir el cuaderno en el navegador →</a><p>Para instalar la app en tu teléfono, consulta las instrucciones y la descarga para Android.</p><a href="app.html">Descargar la app para Android →</a></section>
+<section id="registrar-lote" class="gr-section gr-app-extra" aria-labelledby="app-inicio-titulo"><h2 id="app-inicio-titulo">Aplicaciones para tu granja</h2><p>Encuentra los registros de gallinas, codornices para huevos o carne y la app de pollos para Android en un solo sitio.</p><a class="btn gold" href="app.html">Ver todas las aplicaciones</a></section>
 
 
 
@@ -359,7 +384,7 @@
 <li><a href="faq.html">Preguntas frecuentes</a></li>
 <li><a href="guias.html">Guías</a></li>
 <li><a href="juegos.html">Juegos</a></li>
-<li><a href="app.html">Registro de pollos</a></li>
+<li><a href="app.html">Aplicaciones</a></li>
 <li><a href="afiliados.html">Afiliados</a></li>
 <li><a href="registro.html">Regístrate</a></li>
 <li><a href="contacto.html">Contacto</a></li>
