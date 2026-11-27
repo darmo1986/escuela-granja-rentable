@@ -344,5 +344,37 @@
    "fuente": "https://commons.wikimedia.org/wiki/File:Animals_(20210505-FPAC-KLS-001).webm",
    "nota": "recortado"
   }
+ },
+ "penedesenca": {
+  "nombre": "Penedesenca",
+  "sin_foto": true
+ },
+ "galina-de-mos": {
+  "nombre": "Galiña de Mos",
+  "sin_foto": true
+ },
+ "euskal-oiloa": {
+  "nombre": "Euskal Oiloa",
+  "sin_foto": true
+ },
+ "pita-pinta": {
+  "nombre": "Pita Pinta",
+  "sin_foto": true
+ },
+ "utrerana": {
+  "nombre": "Utrerana",
+  "sin_foto": true
+ },
+ "cornish": {
+  "nombre": "Cornish",
+  "sin_foto": true
+ },
+ "cubalaya": {
+  "nombre": "Cubalaya",
+  "sin_foto": true
+ },
+ "delaware": {
+  "nombre": "Delaware",
+  "sin_foto": true
  }
 }

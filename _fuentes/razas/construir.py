@@ -19,7 +19,7 @@ SITIO = "https://granjarentable.com"
 PLANTILLA = RAIZ / "enfermedades" / "coriza.html"
 PROHIBIDO = re.compile(r"\b(dosis|mg/kg|ml/l|antibi[oó]tico|inyect)", re.I)
 FECHA_DEFECTO = "2026-11-10"  # fecha de publicación de las 20 fichas originales
-FECHA_HUB = "2026-11-25"  # última actualización de razas.html (tanda 1: 30 fichas)
+FECHA_HUB = "2026-11-27"  # última actualización de razas.html (tanda 1: 30 fichas)
 # Banner del ebook que llevan las fichas publicadas tras el H1 (antes solo a mano).
 BANNER_EBOOK = ('<div class="anuncios-arriba" data-anuncios-arriba>\n'
     '<aside class="banner-ebook banner-compacto" data-banner-ebook data-banner="ebook-empezar" data-banner-puesto="compacto"><a class="banner-ebook-ficha" href="../ebooks/?utm_source=granjarentable&amp;utm_medium=banner&amp;utm_campaign=ebook-empezar#guia-empezar"><div class="banner-ebook-marca"><img src="../img/logo-oscuro.svg" alt="" width="36" height="36" loading="lazy" decoding="async"><span>Granja Rentable</span></div><img class="banner-ebook-ilustracion" src="../img/banners/banner-empezar.webp" srcset="../img/banners/banner-empezar-360.webp 360w, ../img/banners/banner-empezar-720.webp 720w, ../img/banners/banner-empezar-1200.webp 1200w" sizes="96px" alt="Ilustración: granjero echando grano a gallinas y pollitos delante de un gallinero de madera" width="600" height="469" fetchpriority="high" decoding="async"><div class="banner-ebook-texto"><p class="banner-ebook-titulo">Empieza tu granja con buen pie</p><p class="banner-ebook-guia">Ebook en PDF: Guía para empezar tu granja</p><p class="banner-ebook-precio">3 USD</p><span class="banner-ebook-cta">Compra ya</span></div></a></aside>\n'
@@ -147,6 +147,7 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
     desc = meta_desc(intro(cuerpo))
     img_abs = f"{SITIO}/img/razas/{slug}.webp"
     w, h = dims
+    sin_foto = medio.get("sin_foto", False)
     ld = {
         "@context": "https://schema.org", "@type": "Article",
         "headline": medio.get("headline") or f"{h1}: ficha de raza", "description": desc, "inLanguage": "es",
@@ -155,6 +156,8 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
         "author": {"@type": "Organization", "name": "Granja Rentable", "url": SITIO + "/"},
         "publisher": {"@type": "Organization", "name": "Granja Rentable", "url": SITIO + "/"},
     }
+    if sin_foto:
+        ld.pop("image", None)
     migas = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Inicio", "item": SITIO + "/"},
         {"@type": "ListItem", "position": 2, "name": "Razas de gallinas", "item": SITIO + "/razas.html"},
@@ -162,6 +165,8 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
     foto = (f'<figure class="enf-fig raza-foto">\n<img src="../img/razas/{slug}.webp" width="{w}" height="{h}" '
             f'alt="{esc(medio["alt"])}" fetchpriority="high" style="width:100%;height:auto;border-radius:12px">\n'
             f'<figcaption>{credito_html(medio["credito"])}</figcaption>\n</figure>')
+    if sin_foto:
+        foto = '<p class="fine">Fotografía pendiente de acreditación.</p>'
     video = ""
     if medio.get("video"):
         video = (f'<h2>Vídeo de la {esc(nombre)}</h2>\n<figure class="enf-fig raza-video">\n'
@@ -251,6 +256,10 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
 
 
 </main>{pie}"""
+    if sin_foto:
+        pagina_html = re.sub(r'<meta property="og:image[^"]*"[^>]*>\n', "", pagina_html)
+        pagina_html = re.sub(r'<meta name="twitter:image"[^>]*>\n', "", pagina_html)
+        pagina_html = pagina_html.replace('name="twitter:card" content="summary_large_image"', 'name="twitter:card" content="summary"')
     return pagina_html.replace("</body>",
         '<script defer src="../js/ofertas.js?v=20261117banners"></script>\n<script defer src="../js/registro-banners.js?v=20261117banners"></script>\n</body>', 1)
 
@@ -278,6 +287,9 @@ def bloque_hub(fichas, medios, dims):
         m = medios[slug]
         w, h = dims[slug]
         extra = " · con vídeo" if m.get("video") else ""
+        if m.get("sin_foto"):
+            tarjetas.append(f'<article class="raza"><div class="raza-body">\\n<h3><a href="razas/{slug}.html">{esc(m["nombre"])}</a></h3>\\n<p>{en_linea(meta_desc(intro(cuerpo), 140))}</p>\\n<p class="fine">Fotografía pendiente de acreditación · <a href="razas/{slug}.html">Ver la ficha</a></p>\\n</div></article>')
+            continue
         tarjetas.append(
             f'<article class="raza">\n<div class="raza-media"><figure>\n'
             f'<a href="razas/{slug}.html"><img src="img/razas/{slug}.webp" width="{w}" height="{h}" loading="lazy" alt="{esc(m["alt"])}"></a>\n'
@@ -307,7 +319,7 @@ def main():
         if slug == "wyandotte" and re.search(r"dorad", cuerpo, re.I):
             errores.append("wyandotte: no se llama «dorada»")
         img = RAIZ / "img" / "razas" / f"{slug}.webp"
-        if not img.is_file():
+        if not medios[slug].get("sin_foto") and not img.is_file():
             errores.append(f"{slug}: falta {img.name}")
         if medios[slug].get("video"):
             for n in (f"{slug}.mp4", f"{slug}-poster.webp"):
@@ -316,7 +328,7 @@ def main():
         fichas.append((slug, datos, cuerpo))
     if errores:
         print("\n".join(errores)); sys.exit(1)
-    dims = {s: Image.open(RAIZ / "img" / "razas" / f"{s}.webp").size for s, _, _ in fichas}
+    dims = {s: ((0, 0) if medios[s].get("sin_foto") else Image.open(RAIZ / "img" / "razas" / f"{s}.webp").size) for s, _, _ in fichas}
     piezas = piezas_plantilla()
     (RAIZ / "razas").mkdir(exist_ok=True)
     for slug, datos, cuerpo in fichas:
