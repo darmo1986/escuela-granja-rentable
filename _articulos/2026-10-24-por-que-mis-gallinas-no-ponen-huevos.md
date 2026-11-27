@@ -21,14 +21,13 @@ relacionados:
 fuentes:
   - "Lección L01 de Granja Rentable: fichas de puesta (ISA, Lohmann, Hy-Line), 20–30 huevos/año en patio tradicional (FAO) y 1 ponedero cada 4 o 5 gallinas (Virginia Tech)"
   - "Hy-Line, Brown Commercial Layers, programa de luz hasta 16 h y pico con 14–15 h, resumido en el artículo de fotoperiodo de esta web: https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf"
-  - "Lección L05A del curso: sigue en preparación y no se ofrece aquí como clase terminada"
 ---
 
 ## La respuesta corta
 
 Si dejan de poner, no cambies el pienso, la luz y el corral el mismo día. Empieza por tres cosas que se ven sin diagnosticar una enfermedad: el largo del día, la muda y la edad del lote. Anota siete días antes de comprar otro saco. La [hoja de puesta y pienso](../hoja-registro-puesta.html) se descarga sin correo.
 
-La lección en vídeo L05A sigue en preparación. Esta guía no la da por terminada. La lección publicada para decidir el tipo de lote es [L01](../lecciones/l01.html).
+Para repasar la edad y la luz, puedes ver el vídeo complementario sin test [De la pollita a la puesta (L05A)](../leccion.html?id=l05a). Para decidir el tipo de lote, empieza por [L01](../lecciones/l01.html).
 
 L01 no promete una puesta de patio. Cita objetivos de ficha comercial (ISA Brown, unos 476 huevos HH de la semana 18 a la 100; Lohmann, unos 324 a las 72 semanas; Hy-Line, unos 315–333 entre las semanas 18 y 75) y, aparte, 20–30 huevos al año en patio tradicional según la FAO. Un cero durante semanas no se explica con esas fichas: hay que mirar el lote.
 
