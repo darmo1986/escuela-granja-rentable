@@ -21,13 +21,21 @@
 <script src="js/boot.js?v=20261117-anuncios-arriba"></script>
 </head>
 <body>
-<a class="skip" href="#contenido">Saltar al contenido</a>
+<a id="salto-404" class="skip" href="#contenido">Saltar al contenido</a>
+<script>
+  // Resuelve el salto en la página actual, no en el directorio que indica <base>.
+  (function () {
+    var actual = new URL(location.href);
+    actual.hash = "contenido";
+    document.getElementById("salto-404").href = actual.href;
+  }());
+</script>
 <header class="top">
 <div class="bar wrap">
 <a class="brand" href="index.html"><span class="brand-mark"><img class="logo-for-dark" src="img/logo-claro.svg" alt="" width="44" height="44"><img class="logo-for-light" src="img/logo-oscuro.svg" alt="" width="44" height="44"></span><span class="brand-name">Granja Rentable</span></a>
 </div>
 </header>
-<main id="contenido">
+<main id="contenido" tabindex="-1">
 <section class="hero home-hero">
 <p class="eyebrow">Error 404</p>
 <h1>No encontramos esta página</h1>
@@ -47,7 +55,7 @@
 <li><a href="curso.html">Curso gratuito de avicultura</a>: empieza por las lecciones y sus ejercicios.</li>
 <li><a href="calculadoras.html">Calculadoras</a>: consulta las herramientas para organizar tus cuentas.</li>
 <li><a href="tienda/">Tienda de material avícola</a>: busca por nombre o categoría.</li>
-<li><a href="app-gallinas/">Cuaderno de aves</a>: registra el peso y los huevos de tu lote.</li>
+<li><a href="app-gallinas/">Gestión de Gallinas</a>: lleva un registro de tus aves y de la puesta de huevos.</li>
 <li><a href="contacto.html">Contacto</a>: escríbenos si necesitas ayuda para encontrar una página.</li>
 </ul>
 </section>
