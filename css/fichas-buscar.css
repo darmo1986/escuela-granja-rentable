@@ -6,3 +6,8 @@
 .fichas-buscador input:focus-visible { outline:3px solid #b78920; outline-offset:2px; }
 .fichas-buscador [role="status"] { margin:.75rem 0 0; }
 @media (max-width:480px) { .fichas-buscador input, .fichas-buscador button { width:100%; flex-basis:100%; } }
+
+.fichas-buscador .fichas-filtro { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .75rem; margin:.75rem 0 0; }
+.fichas-filtro select { min-height:44px; max-width:100%; padding:.45rem .65rem; font:inherit; color:#183f28; background:#fffdf8; border:1.5px solid #8c9d8f; border-radius:10px; }
+.fichas-filtro select:focus-visible { outline:3px solid #b78920; outline-offset:2px; }
+@media (max-width:480px) { .fichas-filtro select { flex-basis:100%; } }

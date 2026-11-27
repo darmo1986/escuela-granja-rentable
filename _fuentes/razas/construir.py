@@ -266,20 +266,46 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
         '<script defer src="../js/ofertas.js?v=20261117banners"></script>\n<script defer src="../js/registro-banners.js?v=20261117banners"></script>\n</body>', 1)
 
 
+FILTRO_RAZAS = [["puesta","Orientadas a la puesta"],["carne","Orientadas a carne"],["doble","Doble propósito"],["color","Huevos azules o verdes"],["video","Con vídeo"]]
+
+def datos_catalogo(cuerpo, con_video):
+    partes = dict(re.findall(r"^## ([^\n]+)\n+([^\n]+)", cuerpo, re.M))
+    origen = partes.get("Origen") or partes.get("Origen e historia", "")
+    aptitud = partes.get("Aptitud") or partes.get("Para qué sirve", "")
+    color = partes.get("Color del huevo") or partes.get("Puesta", "")
+    puesta = partes.get("Puesta anual", "")
+    texto = re.sub(r"\[\d+\]", "", " ".join((origen, aptitud, color, puesta)))
+    apt = aptitud.lower()
+    tags = set()
+    if re.search(r"^huevo[.:]|^ponedora\b|sobre todo huevo|uso principal en huevos?|sobre todo por (?:la puesta|su huevo)|acento en el huevo", apt):
+        tags.add("puesta")
+    if re.search(r"^carne[.:]|sobre todo carne|principalmente carne|acento en la carne|uso principal en carne|orientada a la carne|destaca como ave de carne", apt):
+        tags.add("carne")
+    if re.search(r"doble (?:propósito|aptitud)|principalmente carne.+también huevo", apt):
+        tags.add("doble")
+    if re.search(r"\b(?:azul(?:es)?|verd(?:e|es)|oliva)\b", color.lower()):
+        tags.add("color")
+    if con_video:
+        tags.add("video")
+    return " ".join(texto.split()), [tag for tag, _ in FILTRO_RAZAS if tag in tags]
+
+
 def buscador_y_indice(items, ejemplo, etiqueta):
+    filtros = "<label class=\"fichas-filtro\" for=\"filtrar-ficha\">Filtrar por<select id=\"filtrar-ficha\" data-fichas-filtro aria-controls=\"lista-fichas\"><option value=\"\">Todas las razas</option><option value=\"puesta\">Orientadas a la puesta</option><option value=\"carne\">Orientadas a carne</option><option value=\"doble\">Doble propósito</option><option value=\"color\">Huevos azules o verdes</option><option value=\"video\">Con vídeo</option></select></label>"
     enlaces = "\n".join(f'<li><a href="{esc(ruta)}">{esc(nombre)}</a></li>' for ruta, nombre in items)
-    return f"""<details class="panel ficha-indice">
+    return f"""<form class="panel fichas-buscador" role="search" aria-label="Buscar fichas por nombre o características" data-fichas-buscar hidden>
+<label for="buscar-ficha">Buscar por nombre o características</label>
+<div class="fichas-buscador-campos"><input id="buscar-ficha" type="search" placeholder="Por ejemplo: {esc(ejemplo)}" autocomplete="off" aria-controls="lista-fichas" aria-describedby="resultado-fichas"><button class="btn sec" type="button" data-fichas-limpiar>Mostrar todas</button></div>
+{filtros}
+<p id="resultado-fichas" role="status" aria-live="polite" aria-atomic="true"></p>
+<p data-fichas-vacio hidden>No hay fichas que coincidan. Prueba con menos palabras o pulsa «Mostrar todas».</p>
+</form>
+<details class="panel ficha-indice">
 <summary>{esc(etiqueta)}</summary>
 <nav aria-label="{esc(etiqueta)}"><ul>
 {enlaces}
 </ul></nav>
 </details>
-<form class="panel fichas-buscador" role="search" aria-label="Buscar fichas por nombre o características" data-fichas-buscar hidden>
-<label for="buscar-ficha">Buscar por nombre o características</label>
-<div class="fichas-buscador-campos"><input id="buscar-ficha" type="search" placeholder="Por ejemplo: {esc(ejemplo)}" autocomplete="off" aria-controls="lista-fichas" aria-describedby="resultado-fichas"><button class="btn sec" type="button" data-fichas-limpiar>Mostrar todas</button></div>
-<p id="resultado-fichas" role="status" aria-live="polite" aria-atomic="true"></p>
-<p data-fichas-vacio hidden>No hay fichas que coincidan. Prueba con menos palabras o pulsa «Mostrar todas».</p>
-</form>
 """
 
 
@@ -289,8 +315,10 @@ def bloque_hub(fichas, medios, dims):
         m = medios[slug]
         w, h = dims[slug]
         extra = " · con vídeo" if m.get("video") else ""
+        texto, etiquetas = datos_catalogo(cuerpo, m.get("video"))
+        clases = " ".join(etiquetas)
         tarjetas.append(
-            f'<article class="raza">\n<div class="raza-media"><figure>\n'
+            f'<article class="raza" data-fichas-texto="{esc(texto)}" data-fichas-etiquetas="{esc(clases)}">\n<div class="raza-media"><figure>\n'
             f'<a href="razas/{slug}.html"><img src="img/razas/{foto_nombre(m, slug)}.webp" width="{w}" height="{h}" loading="lazy" alt="{esc(m["alt"])}"></a>\n'
             f'<figcaption>{credito_html(m["credito"])}</figcaption>\n</figure></div>\n'
             f'<div class="raza-body">\n<h3><a href="razas/{slug}.html">{esc(m["nombre"])}</a></h3>\n'
