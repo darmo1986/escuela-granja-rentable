@@ -5,7 +5,6 @@ descripcion: "Las codornices japonesas pueden poner muy jóvenes. Aprende alojam
 categoria: codornices
 fecha: 2026-11-09
 borrador: false
-video: ffJn1pQj5Fk
 autor: "Equipo editorial de Granja Rentable"
 imagen: "img/blog/criar-codornices-desde-cero.webp"
 imagen_og: "img/blog/criar-codornices-desde-cero-og.webp"
@@ -93,7 +92,7 @@ Las codornices pasan mucho tiempo en el suelo y necesitan caminar, explorar, esc
 
 No basta con construir una versión pequeña de un gallinero.
 
-El recinto debe adaptarse a su comportamiento y protegerlas de depredadores, fugas y mal tiempo.
+El recinto debe adaptarse a su comportamiento y protegerlas de depredadores, fugas y mal tiempo. Consulta la [guía de alojamiento seguro para codornices](codornices-alojamiento-seguro.html) para revisar el suelo, los refugios y los accesos antes de instalar el lote.
 
 ### Evita las jaulas
 
