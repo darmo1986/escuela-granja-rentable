@@ -379,6 +379,9 @@
       costePienso += coste;
       etapas.push({ id: seg.id, dias: len, aves: birds, gramos: gramos, kg: kgSeg, coste: coste, precio: precio });
     });
+    var piensoPendiente = state.confirmarPiensoGratis !== true && etapas.some(function (etapa) {
+      return etapa.kg > 0 && etapa.precio === 0;
+    });
     var costeAves = aves * pl.nLots * num(state.precioAve);
     var anios = num(state.anios);
     var costeInst = anios > 0 ? num(state.instalacion) * (meses / 12) / anios : 0;
@@ -423,12 +426,16 @@
     var minDocena = huevosVend > 0 ? Math.max(0, costes - ingresoAves) * 12 / huevosVend : null;
     var minAve = avesVendidas > 0 ? Math.max(0, costes - ingresoHuevos) / avesVendidas : null;
     var hayPrecio = num(state.precioPienso) > 0 || num(state.precioHuevo) > 0 || num(state.precioVenta) > 0 || num(state.precioAve) > 0;
-    if (!hayPrecio && costes === 0 && ingresos === 0) {
+    if (!piensoPendiente && !hayPrecio && costes === 0 && ingresos === 0) {
       return { ok: false, vacio: true, error: "Escribe los precios", luz: "" };
     }
     var luz = "";
     var faltan = "";
-    if (costes > 0 || ingresos > 0) {
+    if (piensoPendiente) {
+      luz = "faltan";
+      faltan = "Estimación incompleta: falta el precio del pienso de alguna etapa. Introduce el precio por kg o confirma que ese pienso es gratuito.";
+      if (manoCero) faltan += " Revisa también el coste de mano de obra.";
+    } else if (costes > 0 || ingresos > 0) {
       if (manoCero) {
         luz = "faltan";
         faltan = "Faltan costes. Con la mano de obra a 0 el semáforo no se pone en verde.";
@@ -444,6 +451,7 @@
       tope: tope,
       raro: raro,
       faltan: faltan,
+      piensoPendiente: piensoPendiente,
       nLots: pl.nLots,
       etapas: etapas,
       kg: kg,
@@ -642,6 +650,7 @@
       vacio: $("c-vacio") ? $("c-vacio").value : 14,
       precioAve: $("c-precio-ave").value,
       precioPienso: $("c-precio-pienso").value,
+      confirmarPiensoGratis: !!($("c-pienso-gratis") && $("c-pienso-gratis").checked),
       precioEtapa: {
         arranque: $("c-p-arranque").value,
         recria: $("c-p-recria").value,
@@ -722,21 +731,23 @@
     var margenTxt = res.margen == null ? " Sin ingresos, el margen porcentual no se puede calcular." : " Margen " + fmt(res.margen, 1) + " %.";
     var cola = (res.tope ? " " + res.tope : "") + (res.raro ? " " + res.raro : "");
     luz.className = "semaforo " + (res.luz || "");
-    if (res.luz === "faltan") luz.textContent = res.faltan + margenTxt + cola;
+    if (res.luz === "faltan") luz.textContent = res.faltan + (res.piensoPendiente ? "" : margenTxt) + cola;
     else if (res.luz) luz.textContent = nombres[res.luz] + margenTxt + cola;
     else luz.textContent = "Escribe precios para ver el semáforo.";
     var extra = res.nLots > 1 ? " Lotes enteros en el plazo: " + String(res.nLots) + "." : (res.nLots === 1 ? " Lotes enteros en el plazo: 1." : " No cabe un lote entero en ese plazo.");
-    resumen.textContent = "Beneficio " + cifra(res.beneficio) + ". Ingresos " + cifra(res.ingresos) + ". Costes " + cifra(res.costes) + "." + extra;
+    resumen.textContent = (res.piensoPendiente ? "Beneficio provisional " : "Beneficio ") + cifra(res.beneficio) + ". Ingresos " + cifra(res.ingresos) + ". Costes " + cifra(res.costes) + "." + extra;
     var html = "";
-    html += fila("Pienso", dinero(res.costePienso));
+    html += fila(res.piensoPendiente ? "Pienso (solo importes conocidos)" : "Pienso", dinero(res.costePienso));
     res.etapas.forEach(function (e) {
-      html += fila(ETAPA_UI[e.id] || e.id, esc(fmtR(e.gramos) + " g/ave/día · " + fmtR(e.kg) + " kg · " + cifra(e.coste)));
+      var precioAplicado = e.kg > 0 && e.precio === 0 && res.piensoPendiente
+        ? "precio pendiente" : "precio aplicado: " + e.precio.toLocaleString("es-ES", { maximumSignificantDigits: 15, useGrouping: true }) + " por kg";
+      html += fila(ETAPA_UI[e.id] || e.id, esc(fmtR(e.gramos) + " g/ave/día · " + fmtR(e.kg) + " kg · " + precioAplicado + " · " + cifra(e.coste)));
     });
     html += fila("Aves compradas", dinero(res.costeAves));
     html += fila("Instalaciones (amortizadas)", dinero(res.costeInst));
     html += fila("Mano de obra", dinero(res.costeMano));
     html += fila("Otros costes", dinero(res.costeOtros));
-    html += fila("Costes totales", dinero(res.costes));
+    html += fila(res.piensoPendiente ? "Costes provisionales" : "Costes totales", dinero(res.costes));
     if (res.huevos) {
       html += fila("Huevos producidos", esc(fmtR(res.huevosProd)));
       html += fila("Huevos vendidos", esc(fmtR(res.huevosVend)));
@@ -746,19 +757,19 @@
     }
     html += fila("Aves que prevés vender (estimación)", esc(fmt(res.avesVendidas, 1)));
     html += fila("Ingresos por venta de aves", dinero(res.ingresoAves));
-    html += fila("Beneficio neto", dinero(res.beneficio));
-    html += fila("Margen", res.margen == null ? "—" : esc(fmt(res.margen, 1) + " %"));
-    if (res.costeHuevo != null) {
+    html += fila(res.piensoPendiente ? "Beneficio provisional" : "Beneficio neto", dinero(res.beneficio));
+    html += fila("Margen", res.piensoPendiente ? "Pendiente del coste del pienso" : (res.margen == null ? "—" : esc(fmt(res.margen, 1) + " %")));
+    if (!res.piensoPendiente && res.costeHuevo != null) {
       html += fila("Coste total del lote por huevo vendido", esc(cifra(res.costeHuevo, 3)));
       html += fila("Coste total del lote por docena vendida", dinero(res.costeDocena));
       html += fila("Precio mínimo de la docena", res.minDocena <= 0 ? esc(cifra(0)) + " (las aves ya cubren el coste)" : dinero(res.minDocena));
     }
-    if (!res.huevos && res.minAve != null) html += fila("Precio mínimo por ave", dinero(res.minAve));
+    if (!res.piensoPendiente && !res.huevos && res.minAve != null) html += fila("Precio mínimo por ave", dinero(res.minAve));
     html += fila("Pienso total", esc(fmtR(res.kg) + " kg"));
     html += fila("Pienso al mes (media)", esc(fmtR(res.kgMes) + " kg. La mortalidad se reparte a lo largo del plazo."));
     box.innerHTML = html;
     draw($("calc-chart"), res.costes, res.ingresos);
-    $("calc-chart").setAttribute("aria-label", "Gráfica de barras: costes " + cifra(res.costes) + ", ingresos " + cifra(res.ingresos));
+    $("calc-chart").setAttribute("aria-label", "Gráfica de barras: " + (res.piensoPendiente ? "costes provisionales " : "costes ") + cifra(res.costes) + ", ingresos " + cifra(res.ingresos));
   }
 
   function draw(canvas, cost, income, vacio) {
@@ -899,6 +910,7 @@
     $("c-meses").value = "12";
     $("c-precio-ave").value = "7";
     $("c-precio-pienso").value = "0,52";
+    if ($("c-pienso-gratis")) $("c-pienso-gratis").checked = false;
     ["c-p-arranque", "c-p-recria", "c-p-puesta", "c-p-einicio", "c-p-efinal", "c-horas", "c-precio-hora", "c-precio-venta", "c-peso"].forEach(function (id) {
       if ($(id)) $(id).value = "";
     });
