@@ -138,12 +138,26 @@ def clave_nav(rel):
         return "criaderos"
     if carpeta == "app-gallinas":
         return "gestion-gallinas"
+    if rel.startswith("app-codornices/huevos/"):
+        return "codornices-huevos"
+    if rel.startswith("app-codornices/carne/"):
+        return "codornices-carne"
     if carpeta in ("producto", "tienda") or base == "tienda.html":
         return "tienda"
     if carpeta == "lecciones" or base in ("curso.html", "examen-final.html", "leccion.html"):
         return "curso"
     if base == "calculadora.html":
         return "calculadora"
+    if base == "calculadoras.html":
+        return "calculadoras"
+    if base == "hoja-registro-puesta.html":
+        return "hoja-puesta"
+    if base == "guias.html":
+        return "guias"
+    if rel == "youtube/index.html":
+        return "recursos-video"
+    if base == "contacto.html":
+        return "contacto"
     if base == "enfermedades.html" or carpeta == "enfermedades":
         return "enfermedades"
     if base == "juegos.html":
