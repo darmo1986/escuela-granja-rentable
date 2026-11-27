@@ -1214,7 +1214,8 @@ def punto_franja(html):
     """Después del título y del párrafo de intro. Nunca antes del h1."""
     hero = re.search(r'<section class="gr-hero\b[\s\S]*?</section>', html)
     if hero and hero.start() < html.find('</main>'):
-        return hero.end()
+        accesos = re.match(r'\s*<nav class="gr-shortcuts"[^>]*>[\s\S]*?</nav>', html[hero.end():])
+        return hero.end() + accesos.end() if accesos else hero.end()
     cabecera = re.search(r'<header class="[^"]*\bpost-head\b[^"]*">[\s\S]*?</header>', html)
     if cabecera:
         return cabecera.end()
