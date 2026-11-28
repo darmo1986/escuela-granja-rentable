@@ -138,12 +138,26 @@ def clave_nav(rel):
         return "criaderos"
     if carpeta == "app-gallinas":
         return "gestion-gallinas"
+    if rel.startswith("app-codornices/huevos/"):
+        return "codornices-huevos"
+    if rel.startswith("app-codornices/carne/"):
+        return "codornices-carne"
     if carpeta in ("producto", "tienda") or base == "tienda.html":
         return "tienda"
     if carpeta == "lecciones" or base in ("curso.html", "examen-final.html", "leccion.html"):
         return "curso"
     if base == "calculadora.html":
         return "calculadora"
+    if base == "calculadoras.html":
+        return "calculadoras"
+    if base == "hoja-registro-puesta.html":
+        return "hoja-puesta"
+    if base == "guias.html":
+        return "guias"
+    if rel == "youtube/index.html":
+        return "recursos-video"
+    if base == "contacto.html":
+        return "contacto"
     if base == "enfermedades.html" or carpeta == "enfermedades":
         return "enfermedades"
     if base == "juegos.html":
@@ -814,6 +828,8 @@ def poner_version(html):
         version = VERSION_BANNERS if nombre in {"js/ofertas.js", "js/registro-banners.js"} else VERSION_ACTIVOS
         if nombre == "css/estilo.css":
             version = VERSION_ESTILO
+        if nombre in {"js/fichas-buscar.js", "css/fichas-buscar.css"}:
+            version = "20261127-filtros-razas"
         if 'data-publicidad-discreta' in html and nombre in {"js/app.js", "js/config.js"}:
             version = VERSION_PUBLICIDAD
         if nombre == "js/hero.js":
@@ -1200,7 +1216,8 @@ def punto_franja(html):
     """Después del título y del párrafo de intro. Nunca antes del h1."""
     hero = re.search(r'<section class="gr-hero\b[\s\S]*?</section>', html)
     if hero and hero.start() < html.find('</main>'):
-        return hero.end()
+        accesos = re.match(r'\s*<nav class="gr-shortcuts"[^>]*>[\s\S]*?</nav>', html[hero.end():])
+        return hero.end() + accesos.end() if accesos else hero.end()
     cabecera = re.search(r'<header class="[^"]*\bpost-head\b[^"]*">[\s\S]*?</header>', html)
     if cabecera:
         return cabecera.end()

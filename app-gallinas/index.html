@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestión de Gallinas · Granja Rentable</title>
+<title>Registro de gallinas ponedoras: huevos, gastos y cría | Granja Rentable</title>
+<meta name="description" content="Registra tus gallinas y sus huevos, anota pienso y gastos, y lleva el árbol genealógico. App web sin cuenta, con copia de seguridad descargable.">
+<link rel="canonical" href="https://granjarentable.com/app-gallinas/">
+<meta name="robots" content="index,follow">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐔</text></svg>">
 <style>
 :root{--v:#2e7d32;--vc:#1b5e20;--claro:#e8f5e9;--av:#f9a825;--fondo:#f4f6f1;--txt:#222;--gris:#757575;--card:#fff;--rojo:#c62828;--azul:#1565c0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,Roboto,"Segoe UI",sans-serif;background:var(--fondo);color:var(--txt);font-size:16px;line-height:1.45;padding-bottom:90px}
 header{background:var(--vc);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:10}
-header h1{font-size:19px}header small{opacity:.85;font-size:13px}
+.app-help-link{display:inline-block;color:#fff;margin-top:4px;font-weight:700;text-underline-offset:.2em}.app-help-link:focus-visible{outline:2px solid #fff;outline-offset:3px}header h1{font-size:19px}header small{opacity:.85;font-size:13px}
 nav#tabs{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ccc;display:flex;z-index:20}
 nav#tabs button{flex:1;border:0;background:#fff;padding:9px 2px;font-size:12px;color:var(--gris);cursor:pointer}
 nav#tabs button.act{color:var(--vc);font-weight:700;border-top:3px solid var(--v)}
@@ -50,7 +53,7 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font
 </style>
 </head>
 <body>
-<header><h1>🐔 Gestión de Gallinas</h1><small>Granja Rentable · tu granja en el móvil y el ordenador</small></header>
+<header><h1>🐔 Gestión de Gallinas</h1><small>Granja Rentable · tu granja en el móvil y el ordenador</small><br><a class="app-help-link" href="#guia">Cómo usar esta app</a></header>
 <nav id="tabs">
 <button data-s="aves" class="act">🐔 Aves</button>
 <button data-s="puesta">🥚 Puesta</button>
@@ -150,23 +153,38 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:var(--gris);font
 <button class="btn sec" onclick="guardarVac()">Guardar aviso</button></div>
 <div id="listaAvisos"></div></section>
 
-<section id="s-guia" class="sec"><h2>📖 Guía: cómo se usa la app, paso a paso</h2>
+<section id="s-guia" class="sec"><h2 id="guia-uso-titulo" tabindex="-1">📖 Guía: cómo se usa la app, paso a paso</h2>
 <div class="card guia"><ol>
-<li><b>Aves:</b> pulsa «Añadir ave nueva». El <b>número es su nombre</b> (Ej: la 12). Elige su <b>línea</b> y el color de anilla se pone solo. Apunta raza, fecha de nacimiento y, si los sabes, padre y madre. Saca una <b>foto</b> para reconocerla. En «Nota» escribe lo que quieras recordar (enfermedades con fecha, carácter…).</li>
-<li><b>Puesta:</b> cada día entra en 🥚, escribe los huevos de cada gallina y pulsa Guardar. La app suma el mes y el año, por gallina y de todo el gallinero.</li>
+<li><b>Aves:</b> rellena el formulario «Añadir ave nueva» y pulsa «Guardar ave». El <b>número identifica al ave</b> (Ej.: la 12). Elige su <b>línea</b> y el color de anilla se pone solo. Apunta raza, fecha de nacimiento y, si los sabes, padre y madre. Saca una <b>foto</b> para reconocerla. En «Nota» escribe lo que quieras recordar (enfermedades con fecha, carácter…).</li>
+<li><b>Puesta:</b> cada día entra en 🥚, escribe los huevos de cada gallina y pulsa «Guardar huevos de hoy». La app suma el mes y el año, por gallina y de todo el gallinero.</li>
 <li><b>Árbol:</b> elige un ave y verás el dibujo con padres, abuelos, hijos y nietos. Con «Añadir parientes» puedes ponerle padres o crearle un hijo. En «Notas del árbol» apunta cosas de la familia.</li>
 <li><b>Cría:</b> antes de juntar un gallo y una gallina, pulsa «Comprobar cruce»: si son parientes cercanos (padres, hermanos o abuelos comunes) te avisa y <b>no lo recomienda</b>. Mira también las listas de mejores.</li>
 <li><b>Gestión:</b> apunta el pienso, los gastos (vacunas, anillas…) y los ingresos (huevos vendidos). Arriba verás el <b>coste por huevo</b> y si el gallinero se paga solo.</li>
 <li><b>Avisos:</b> apunta vacunas y desparasitaciones con su próxima fecha. La app te avisa de lo que toca y de qué <b>pollitas empiezan a poner</b> pronto.</li>
-<li><b>Copia de seguridad:</b> tus datos están en este navegador. En 🐔 abajo, «Descargar copia» guarda un archivo; guárdalo a salvo. Para pasarlo a otro móvil, abre la app allí y usa «Recuperar copia». Si ya tienes datos en ese navegador, descarga una copia antes de reemplazarlos.</li>
+<li><b>Copia de seguridad:</b> tus datos están en este navegador. En «Aves», «Descargar copia (JSON)» guarda un archivo; guárdalo a salvo. Para pasarlo a otro móvil, abre la app allí y usa «Recuperar copia». Si ya tienes datos en ese navegador, descarga una copia antes de reemplazarlos.</li>
 </ol>
 <div class="aviso">📌 <b>Nota sobre «el pico de la raza»:</b> en esta app se interpreta como el <b>pico de puesta</b>, o sea, el momento de máxima puesta de la raza (la edad en que más huevos pone, normalmente entre las 28 y 34 semanas según la raza). No es el pico (la boca) como rasgo físico. Cada raza trae su semana de pico y la verás en la ficha del ave.</div>
 <div class="aviso">⏳ <b>Nota sobre Google Drive:</b> la copia automática en Drive cada vez que apuntes algo está <b>pendiente</b>: aún no hay conexión con Google, así que de momento usa el botón «Descargar copia».</div>
 <div class="ok">Edades: <b>pollita</b> (menos de 20 semanas), <b>ponedora joven</b> (de 20 semanas a 12 meses), <b>adulta</b> (más de 12 meses). La puesta suele empezar sobre las 20 semanas.</div>
 </div></section>
+<p><a href="/app.html">Todas las aplicaciones e instrucciones</a> · <a href="/razas.html">Consultar el catálogo de razas de gallinas</a></p>
 <section aria-label="Registros de cría"><h2>Registros de codorniz japonesa</h2><p>Lleva tus lotes en el navegador, sin instalar nada.</p><ul><li><a href="/app-codornices/huevos/">Codornices para huevos</a></li><li><a href="/app-codornices/carne/">Codornices para carne</a></li></ul></section>
 </main>
 <footer>Granja Rentable · App de gestión de gallinas · tus datos están en tu navegador</footer>
 <script src="razas.js"></script>
 <script src="app.js?v=20261125-puesta-validada&amp;gr=ff455"></script>
+<script>
+(function () {
+  function abrirGuia() {
+    if (location.hash !== "#guia") return;
+    document.querySelector('#tabs [data-s="guia"]').click();
+    document.getElementById("guia-uso-titulo").focus({preventScroll:true});
+  }
+  document.querySelector(".app-help-link").addEventListener("click", function () {
+    if (location.hash === "#guia") abrirGuia();
+  });
+  window.addEventListener("hashchange", abrirGuia);
+  abrirGuia();
+})();
+</script>
 </body></html>

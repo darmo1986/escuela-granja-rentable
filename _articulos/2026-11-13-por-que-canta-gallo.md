@@ -53,3 +53,13 @@ No pruebes dispositivos que aprieten el cuello ni otros métodos que puedan comp
 Define con antelación qué harás si el alojamiento resulta incompatible con la ubicación. Una alternativa responsable debe incluir cuidados y comunicación honesta sobre el ave, sin promesas de silencio para quien la reciba.
 
 Si tu único objetivo son huevos para consumo, recuerda que [las gallinas pueden poner sin gallo](gallo-necesario-huevos.html). Esa decisión puede evitar un conflicto que después no podrás resolver mediante un simple cambio de horario.
+
+## Material que te hace falta para planificar el alojamiento del gallo
+
+*Ninguno de estos productos silencia al gallo: el canto depende también de su reloj biológico, como explica la guía. Son equipo para planificar el alojamiento.*
+
+- [Abridor de puerta FarmLite, con temporizador y sensor de luz](../tienda/p/abridor-de-puerta-farmlite-con-temporizador-y-sensor-de-luz/) — rutina de acceso regular por la mañana, sin cambios improvisados de horario.
+- [Malla galvanizada Land Guard, 1/2", para gallinero, 19 gauge](../tienda/p/malla-galvanizada-land-guard-1-2-para-gallinero-19-gauge/) — para cerrar huecos y ventanas del gallinero con seguridad y sin sacrificar la ventilación.
+- [Caja de transporte apilable RentACoop, para gallinas](../tienda/p/caja-de-transporte-apilable-rentacoop-para-gallinas/) — para mover o separar al gallo con seguridad si el alojamiento resulta incompatible con la ubicación.
+
+[Ver todo el material para el gallinero →](../tienda/)

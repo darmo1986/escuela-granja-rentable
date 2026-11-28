@@ -70,3 +70,14 @@ Un error frecuente es analizar solo a la gallina que se ve peor. Los parásitos 
 Un lote con buen manejo, pastoreo rotado y cama seca puede vivir con una carga baja sin problemas. El objetivo no es un gallinero estéril, que no existe, sino un lote fuerte donde los parásitos no mandan.
 
 Si quieres aprender salud y manejo de ponedoras paso a paso, el [curso gratis de Granja Rentable](https://granjarentable.com/curso.html) te acompaña desde la primera pollita.
+
+## Material que te hace falta para prevenir lombrices
+
+Estos materiales pueden servir para el manejo preventivo y la higiene del gallinero.
+
+- [Kit de malla eléctrica para gallinas Premier 1 PoultryNet Plus (con estacas de doble punta)](../tienda/p/kit-de-malla-electrica-para-gallinas-premier-1-poultrynet-plus/) — para rotar el pastoreo y no dejar al lote siempre sobre el mismo suelo.
+- [Bebedero colgante Little Giant PPF7, de 7 galones](../tienda/p/bebedero-colgante-little-giant-ppf7-de-7-galones/) — agua fuera del suelo y lejos de las heces, como pide la guía.
+- [Comedero de pedal Grandpa's Feeders, 40 lb, para más gallinas](../tienda/p/comedero-de-pedal-grandpa-s-feeders-40-lb-para-mas-gallinas/) — pienso fuera del suelo y protegido, para que no se contamine con heces.
+- [Guantes de nitrilo COOLJOB, 8 mil, con agarre, 100 uds.](../tienda/p/guantes-de-nitrilo-cooljob-8-mil-con-agarre-100-uds/) — para recoger con higiene las muestras de heces frescas para el análisis veterinario.
+
+[Ver todo el material para el gallinero →](../tienda/)
