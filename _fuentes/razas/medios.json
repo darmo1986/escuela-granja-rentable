@@ -8,7 +8,8 @@
    "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Andalusian_gallus_(hen).jpg"
   },
-  "test": true
+  "test": true,
+  "uso_ornamental": true
  },
  "araucana": {
   "nombre": "Araucana",
@@ -54,7 +55,8 @@
    "licencia": "CC BY-SA 4.0",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Ayam_Cemani_(Zoo_Dresden).webm"
-  }
+  },
+  "uso_ornamental": true
  },
  "barnevelder": {
   "nombre": "Barnevelder",
@@ -102,23 +104,24 @@
    "licencia": "CC BY-SA 4.0",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Poule_cochin_blanche.jpg"
-  }
+  },
+  "uso_ornamental": true
  },
  "cornish": {
-    "nombre": "Cornish",
-    "alt": "Gallina Dark Cornish de plumaje oscuro con dibujos marrones, sobre hojas",
-    "credito": {
-      "autor": "Misty Lundberg",
-      "licencia": "Dominio público",
-      "fuente": "https://commons.wikimedia.org/wiki/File:DkCornishHen.jpg",
-      "nota": "foto provisional por su resolución (800 × 599 px)"
-    },
-    "h1": "Cornish: la robusta de carne, en versión Dark",
-    "titulo": "Cornish: la raza inglesa de carne (Dark Cornish) | Granja Rentable",
-    "headline": "Cornish: la robusta de carne, en versión Dark",
-    "foto": "cornish-gallina.webp"
+  "nombre": "Cornish",
+  "alt": "Gallina Dark Cornish de plumaje oscuro con dibujos marrones, sobre hojas",
+  "credito": {
+   "autor": "Misty Lundberg",
+   "licencia": "Dominio público",
+   "fuente": "https://commons.wikimedia.org/wiki/File:DkCornishHen.jpg",
+   "nota": "foto provisional por su resolución (800 × 599 px)"
   },
-  "cream-legbar": {
+  "h1": "Cornish: la robusta de carne, en versión Dark",
+  "titulo": "Cornish: la raza inglesa de carne (Dark Cornish) | Granja Rentable",
+  "headline": "Cornish: la robusta de carne, en versión Dark",
+  "foto": "cornish-gallina.webp"
+ },
+ "cream-legbar": {
   "nombre": "Cream Legbar",
   "alt": "Gallina Cream Legbar con moño, de pie sobre la hierba",
   "credito": {
@@ -129,20 +132,21 @@
   }
  },
  "cubalaya": {
-    "nombre": "Cubalaya",
-    "alt": "Grupo de Cubalaya en un prado: gallo rojo y negro en el centro y gallinas de varios colores",
-    "credito": {
-      "autor": "Kruppert",
-      "licencia": "CC BY-SA 3.0",
-      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "fuente": "https://commons.wikimedia.org/wiki/File:Kruppert_Cubalaya.JPG"
-    },
-    "h1": "Cubalaya: la cubana de cola larga y muchos colores",
-    "titulo": "Cubalaya: la raza cubana de cola descendente | Granja Rentable",
-    "headline": "Cubalaya: la cubana de cola larga y muchos colores",
-    "foto": "cubalaya-grupo.webp"
+  "nombre": "Cubalaya",
+  "alt": "Grupo de Cubalaya en un prado: gallo rojo y negro en el centro y gallinas de varios colores",
+  "credito": {
+   "autor": "Kruppert",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Kruppert_Cubalaya.JPG"
   },
-  "cuello-desnudo": {
+  "h1": "Cubalaya: la cubana de cola larga y muchos colores",
+  "titulo": "Cubalaya: la raza cubana de cola descendente | Granja Rentable",
+  "headline": "Cubalaya: la cubana de cola larga y muchos colores",
+  "foto": "cubalaya-grupo.webp",
+  "uso_ornamental": true
+ },
+ "cuello-desnudo": {
   "nombre": "Cuello desnudo",
   "alt": "Gallina de cuello desnudo de plumaje rojizo, de perfil sobre fondo blanco",
   "credito": {
@@ -150,21 +154,21 @@
   }
  },
  "delaware": {
-    "nombre": "Delaware",
-    "alt": "Gallina Delaware adulta blanca, de cuerpo completo en un corral, con la esclavina barrada bien visible",
-    "credito": {
-      "autor": "Linda N.",
-      "licencia": "CC BY 2.0",
-      "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
-      "fuente": "https://commons.wikimedia.org/wiki/File:Speedy_in_repose.jpg",
-      "nota": "detrás, un gallo de otra raza"
-    },
-    "h1": "Delaware: la blanca americana",
-    "titulo": "Delaware: la blanca americana de doble propósito | Granja Rentable",
-    "headline": "Delaware: la blanca americana",
-    "foto": "delaware-gallina-adulta.webp"
+  "nombre": "Delaware",
+  "alt": "Gallina Delaware adulta blanca, de cuerpo completo en un corral, con la esclavina barrada bien visible",
+  "credito": {
+   "autor": "Linda N.",
+   "licencia": "CC BY 2.0",
+   "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Speedy_in_repose.jpg",
+   "nota": "detrás, un gallo de otra raza"
   },
-  "eivissenca": {
+  "h1": "Delaware: la blanca americana",
+  "titulo": "Delaware: la blanca americana de doble propósito | Granja Rentable",
+  "headline": "Delaware: la blanca americana",
+  "foto": "delaware-gallina-adulta.webp"
+ },
+ "eivissenca": {
   "nombre": "Eivissenca",
   "alt": "Díptico de gallina y gallo de raza Eivissenca",
   "credito": {
@@ -176,20 +180,20 @@
   }
  },
  "euskal-oiloa": {
-    "nombre": "Euskal Oiloa",
-    "alt": "Grupo de Euskal Oiloa: gallo rojo con cinco gallinas bajo un árbol",
-    "credito": {
-      "autor": "Joxemai",
-      "licencia": "CC BY-SA 3.0",
-      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "fuente": "https://commons.wikimedia.org/wiki/File:Euskal_oiloa_etumeta_01.JPG"
-    },
-    "h1": "Euskal Oiloa: la gallina vasca, en rojo, blanco y negro",
-    "titulo": "Euskal Oiloa: la gallina autóctona vasca | Granja Rentable",
-    "headline": "Euskal Oiloa: la gallina vasca, en rojo, blanco y negro",
-    "foto": "euskal-oiloa-grupo.webp"
+  "nombre": "Euskal Oiloa",
+  "alt": "Grupo de Euskal Oiloa: gallo rojo con cinco gallinas bajo un árbol",
+  "credito": {
+   "autor": "Joxemai",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Euskal_oiloa_etumeta_01.JPG"
   },
-  "faverolles": {
+  "h1": "Euskal Oiloa: la gallina vasca, en rojo, blanco y negro",
+  "titulo": "Euskal Oiloa: la gallina autóctona vasca | Granja Rentable",
+  "headline": "Euskal Oiloa: la gallina vasca, en rojo, blanco y negro",
+  "foto": "euskal-oiloa-grupo.webp"
+ },
+ "faverolles": {
   "nombre": "Faverolles",
   "alt": "Gallinas Faverolles salmón con barba en un jardín",
   "credito": {
@@ -200,21 +204,21 @@
   }
  },
  "galina-de-mos": {
-    "nombre": "Galiña de Mos",
-    "alt": "Gallo de Mos de plumaje rojo dorado y cola negra, tras una valla metálica en Fontefiz",
-    "credito": {
-      "autor": "HombreDHojalata",
-      "licencia": "CC BY-SA 3.0",
-      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "fuente": "https://commons.wikimedia.org/wiki/File:Fontefiz,_gali%C3%B1a_de_Mos.JPG",
-      "nota": "valla metálica delante del ave"
-    },
-    "h1": "Galiña de Mos: la rubia gallega de Fontefiz",
-    "titulo": "Galiña de Mos: la rubia gallega de Fontefiz | Granja Rentable",
-    "headline": "Galiña de Mos: la rubia gallega de Fontefiz",
-    "foto": "mos-gallo.webp"
+  "nombre": "Galiña de Mos",
+  "alt": "Gallo de Mos de plumaje rojo dorado y cola negra, tras una valla metálica en Fontefiz",
+  "credito": {
+   "autor": "HombreDHojalata",
+   "licencia": "CC BY-SA 3.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Fontefiz,_gali%C3%B1a_de_Mos.JPG",
+   "nota": "valla metálica delante del ave"
   },
-  "gallina-del-sobrarbe": {
+  "h1": "Galiña de Mos: la rubia gallega de Fontefiz",
+  "titulo": "Galiña de Mos: la rubia gallega de Fontefiz | Granja Rentable",
+  "headline": "Galiña de Mos: la rubia gallega de Fontefiz",
+  "foto": "mos-gallo.webp"
+ },
+ "gallina-del-sobrarbe": {
   "nombre": "Gallina del Sobrarbe",
   "alt": "Gallina del Sobrarbe cenizosa en un corral",
   "credito": {
@@ -332,35 +336,35 @@
   }
  },
  "penedesenca": {
-    "nombre": "Penedesenca",
-    "alt": "Gallina Penedesenca negra de cuerpo completo picoteando en un corral de tierra",
-    "credito": {
-      "autor": "Galceran",
-      "licencia": "CC BY-SA 2.0",
-      "licencia_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-      "fuente": "https://www.flickr.com/photos/galceran/4231317128/"
-    },
-    "h1": "Penedesenca: la negra catalana de la Fira del Gall",
-    "titulo": "Gallina Penedesenca: huevos morenos y cresta en clavel | Granja Rentable",
-    "headline": "Penedesenca: la negra catalana de la Fira del Gall",
-    "foto": "penedesenca-gallina.webp"
+  "nombre": "Penedesenca",
+  "alt": "Gallina Penedesenca negra de cuerpo completo picoteando en un corral de tierra",
+  "credito": {
+   "autor": "Galceran",
+   "licencia": "CC BY-SA 2.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+   "fuente": "https://www.flickr.com/photos/galceran/4231317128/"
   },
-  "pita-pinta-asturiana": {
-    "nombre": "Pita Pinta Asturiana",
-    "alt": "Gallo Pita Pinta Asturiana moteado de negro y blanco en el campo (pitu caleya)",
-    "credito": {
-      "autor": "Hector",
-      "licencia": "CC BY-SA 4.0",
-      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "fuente": "https://commons.wikimedia.org/wiki/File:Pitu_caleya.jpg",
-      "nota": "foto provisional por su resolución (600 × 680 px)"
-    },
-    "h1": "Pita Pinta Asturiana: la moteada de Asturias",
-    "titulo": "Pita Pinta Asturiana: la moteada de Asturias | Granja Rentable",
-    "headline": "Pita Pinta Asturiana: la moteada de Asturias",
-    "foto": "pita-pinta-gallo.webp"
+  "h1": "Penedesenca: la negra catalana de la Fira del Gall",
+  "titulo": "Gallina Penedesenca: huevos morenos y cresta en clavel | Granja Rentable",
+  "headline": "Penedesenca: la negra catalana de la Fira del Gall",
+  "foto": "penedesenca-gallina.webp"
+ },
+ "pita-pinta-asturiana": {
+  "nombre": "Pita Pinta Asturiana",
+  "alt": "Gallo Pita Pinta Asturiana moteado de negro y blanco en el campo (pitu caleya)",
+  "credito": {
+   "autor": "Hector",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Pitu_caleya.jpg",
+   "nota": "foto provisional por su resolución (600 × 680 px)"
   },
-  "plymouth-rock": {
+  "h1": "Pita Pinta Asturiana: la moteada de Asturias",
+  "titulo": "Pita Pinta Asturiana: la moteada de Asturias | Granja Rentable",
+  "headline": "Pita Pinta Asturiana: la moteada de Asturias",
+  "foto": "pita-pinta-gallo.webp"
+ },
+ "plymouth-rock": {
   "nombre": "Plymouth Rock",
   "alt": "Gallina Plymouth Rock barrada, con rayas blancas y negras, sobre la hierba",
   "credito": {
@@ -399,7 +403,8 @@
   "youtube": {
    "id": "e82ml6sYIO8",
    "titulo": "Poca Inversión, Mucho Dinero: Cómo Empezar tu Granja de Silkies desde Cero"
-  }
+  },
+  "uso_ornamental": true
  },
  "sussex": {
   "nombre": "Sussex",
@@ -422,21 +427,21 @@
   "test": true
  },
  "utrerana": {
-    "nombre": "Utrerana",
-    "alt": "Gallina Utrerana de variedad perdiz, con cresta roja inclinada",
-    "credito": {
-      "autor": "France01100",
-      "licencia": "CC0",
-      "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "fuente": "https://commons.wikimedia.org/wiki/File:Gallina_utrerana_3.jpg",
-      "nota": "foto provisional por su resolución (355 × 391 px)"
-    },
-    "h1": "Utrerana: la andaluza negra y perdiz",
-    "titulo": "Utrerana: la ponedora tradicional andaluza | Granja Rentable",
-    "headline": "Utrerana: la andaluza negra y perdiz",
-    "foto": "utrerana-gallina.webp"
+  "nombre": "Utrerana",
+  "alt": "Gallina Utrerana de variedad perdiz, con cresta roja inclinada",
+  "credito": {
+   "autor": "France01100",
+   "licencia": "CC0",
+   "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Gallina_utrerana_3.jpg",
+   "nota": "foto provisional por su resolución (355 × 391 px)"
   },
-  "welsummer": {
+  "h1": "Utrerana: la andaluza negra y perdiz",
+  "titulo": "Utrerana: la ponedora tradicional andaluza | Granja Rentable",
+  "headline": "Utrerana: la andaluza negra y perdiz",
+  "foto": "utrerana-gallina.webp"
+ },
+ "welsummer": {
   "nombre": "Welsummer",
   "alt": "Gallina Welsummer de plumaje marrón rojizo dentro de un gallinero",
   "credito": {
@@ -549,7 +554,8 @@
    "fuente": "https://commons.wikimedia.org/wiki/File:White-Crested_Black_Polish_hen-20080728.jpg",
    "nota": "Tamaño adaptado y convertido a WebP",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "uso_ornamental": true
  },
  "islandesa": {
   "nombre": "Gallina islandesa",
