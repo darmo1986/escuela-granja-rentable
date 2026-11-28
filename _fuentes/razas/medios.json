@@ -66,7 +66,8 @@
    "licencia": "CC BY-SA 3.0",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:28_7_lizziecoop.jpg"
-  }
+  },
+  "huevo_marron_oscuro": true
  },
  "brahma": {
   "nombre": "Brahma",
@@ -283,7 +284,8 @@
   "youtube": {
    "id": "UblUabstp4U",
    "titulo": "Huevos de Colores: Cómo Vender la Docena a 5€ con Araucana y Marans"
-  }
+  },
+  "huevo_marron_oscuro": true
  },
  "menorquina": {
   "nombre": "Menorquina",
@@ -347,7 +349,8 @@
   "h1": "Penedesenca: la negra catalana de la Fira del Gall",
   "titulo": "Gallina Penedesenca: huevos morenos y cresta en clavel | Granja Rentable",
   "headline": "Penedesenca: la negra catalana de la Fira del Gall",
-  "foto": "penedesenca-gallina.webp"
+  "foto": "penedesenca-gallina.webp",
+  "huevo_marron_oscuro": true
  },
  "pita-pinta-asturiana": {
   "nombre": "Pita Pinta Asturiana",
@@ -449,7 +452,8 @@
    "licencia": "CC BY-SA 4.0",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
    "fuente": "https://commons.wikimedia.org/wiki/File:Poule_Welsumer_dor%C3%A9_rouill%C3%A9.jpg"
-  }
+  },
+  "huevo_marron_oscuro": true
  },
  "wyandotte": {
   "nombre": "Wyandotte",
