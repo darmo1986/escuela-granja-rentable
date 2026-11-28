@@ -563,5 +563,18 @@
    "nota": "Tamaño adaptado y convertido a WebP",
    "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/"
   }
+ },
+ "ameraucana": {
+  "nombre": "Ameraucana",
+  "h1": "Gallina Ameraucana",
+  "titulo": "Gallina Ameraucana: huevos azules y cómo distinguirla | Granja Rentable",
+  "alt": "Gallina Ameraucana de plumaje gris azulado ribeteado y barba oscura",
+  "credito": {
+   "autor": "J. Tönz",
+   "licencia": "CC BY-SA 4.0",
+   "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "fuente": "https://commons.wikimedia.org/wiki/File:Ameraucana.jpg",
+   "nota": "Tamaño adaptado y convertido a WebP"
+  }
  }
 }

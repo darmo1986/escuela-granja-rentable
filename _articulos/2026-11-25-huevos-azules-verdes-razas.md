@@ -1,14 +1,14 @@
 ---
 titulo: "Gallinas que ponen huevos azules y verdes"
 titulo_seo: "Gallinas que ponen huevos azules y verdes"
-descripcion: "Araucana, Cream Legbar y otras razas que ponen huevos de color: qué esperar de su puesta y sus cuidados."
+descripcion: "Compara Araucana, Ameraucana y Cream Legbar: qué huevos ponen, cómo distinguirlas y qué pedir antes de comprar."
 categoria: ponedoras
 fecha: 2026-11-25
 borrador: false
 imagen: "img/blog/huevos-azules-verdes-razas.webp"
 imagen_og: "img/blog/huevos-azules-verdes-razas-og.webp"
 imagen_alt: "Huevos azules y verdes en un nido de paja junto a una gallina de plumaje moteado"
-actualizado: 2026-11-25
+actualizado: 2026-11-28
 fuentes:
   - "Wang et al. — An EAV-HP Insertion in 5′ Flanking Region of SLCO1B3 Causes Blue Eggshell in the Chicken (PLOS Genetics, 2013) — https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1003183"
   - "Hobby Farms — Chickens That Lay Colored Eggs: 7 Breeds to Consider — https://www.hobbyfarms.com/7-chickens-to-raise-for-colorful-eggs-3/"
@@ -27,15 +27,15 @@ En 2013, un estudio publicado en PLOS Genetics identificó la causa: una inserci
 
 ## Araucana, la original de Chile
 
-La Araucana es la raza azul original, procedente de las gallinas mapuches de Chile. Es inconfundible: no tiene cola (es culirroja o rumpless) y muchas llevan mechones de plumas junto a las orejas. Pone huevos de un azul pálido muy característico, y según las fichas de referencia ronda los 180 a 260 huevos al año, una puesta respetable para una raza tradicional.
+La [Araucana](../razas/araucana.html) tiene su origen en aves de Chile y se conoce por sus huevos azules o verdes. El aspecto depende del estándar: en Estados Unidos se describe sin cola, mientras que en el Reino Unido se presentan Araucanas con y sin cola. No uses un solo rasgo para decidir si un ave es de raza.
 
-Conviene saber que el gen de los mechones de las orejas está ligado a un alelo que puede ser letal en el embrión, por lo que parte de los pollitos de padres con mechones no llegan a nacer. No es un problema si solo quieres huevos de mesa, pero sí a tener en cuenta si piensas criar. Y ojo con los anuncios: si el ave tiene cola, no es una Araucana pura.
+Si vas a comprar para cría, pregunta qué estándar sigue el criador y solicita fotos de los reproductores, no solo del huevo.
 
 ## Ameraucana y Cream Legbar
 
-La Ameraucana nació en Estados Unidos a partir de la Araucana, seleccionada para conservar el huevo azul eliminando la cola ausente y los mechones problemáticos. Es una gallina tranquila, con barba y patillas, que pone huevos azules de forma fiable, en torno a 180 o 200 al año.
+La [Ameraucana](../razas/ameraucana.html) se desarrolló en Estados Unidos a partir de poblaciones que ya ponían huevos azules. El estándar estadounidense reconoce una raza con cola, barba y patillas. No debe confundirse con una Araucana ni con un cruce vendido como «Americana». Para prever la puesta, pide datos de la línea que realmente vas a comprar.
 
-La Cream Legbar, desarrollada en Reino Unido cruzando Plymouth Rock barrada, Leghorn dorada y Araucana, es la otra gran favorita. Pone huevos de color azul cielo, a veces con un toque verdoso, y tiene una ventaja práctica enorme: es autosexable, es decir, los pollitos macho y hembra se distinguen por el color del plumón nada más nacer. Es activa y buena buscadora de comida, y también ronda los 180 a 200 huevos al año.
+La [Cream Legbar](../razas/cream-legbar.html), desarrollada en Reino Unido cruzando Plymouth Rock barrada, Leghorn dorada y Araucana, es la otra gran favorita. Pone huevos de color azul cielo, a veces con un toque verdoso, y tiene una ventaja práctica enorme: es autosexable, es decir, los pollitos macho y hembra se distinguen por el color del plumón nada más nacer. Es activa y buena buscadora de comida, y también ronda los 180 a 200 huevos al año.
 
 ## Huevos verdes y oliva: azul más marrón
 
@@ -51,6 +51,15 @@ También conviene saber que el tono puede variar un poco con la edad de la galli
 
 ## Cuidados y qué mirar antes de comprar
 
-Los cuidados de estas razas son los mismos que los de cualquier ponedora: pienso completo, agua limpia, nidales tranquilos, perchas y espacio para escarbar. La Cream Legbar, al ser activa y buena voladora, agradece un corral con altura o una valla algo más alta de lo habitual. La Araucana, por su falta de cola, no tiene ninguna necesidad especial de manejo, más allá de vigilar que no se le ensucie la zona de la cloaca si tiene mucho plumaje.
+Los cuidados de estas razas son los mismos que los de cualquier ponedora: pienso completo, agua limpia, nidales tranquilos, perchas y espacio para escarbar. La Cream Legbar, al ser activa y buena voladora, agradece un corral con altura o una valla algo más alta de lo habitual. En las Araucanas, los rasgos del plumaje varían según la línea; fíjate en el animal concreto y no presupongas su aspecto por el nombre.
 
-Antes de comprar, pide ver a las gallinas adultas poniendo y, si es posible, un huevo de la propia gallina que vas a llevarte. Desconfía de quien venda pollitos prometiendo un color exacto sin mostrar a los padres, y recuerda que el nombre importa: Araucana con cola, o "Americana" con una sola erre, suelen ser Easter Eggers, aves estupendas pero no razas puras. No hay nada malo en una Easter Egger —muchas familias las adoran— siempre que pagues por lo que realmente es. Con eso claro, los huevos azules y verdes son una de las alegrías más sencillas del gallinero.
+Antes de comprar, pide ver las gallinas adultas y, si puedes, un huevo de la línea que vas a comprar. El color de la cáscara y la presencia de cola no prueban la raza. Si un anuncio dice «Americana» o «Easter Egger», pregunta de qué línea o cruce se trata en lugar de pagar por una raza que no está documentada.
+
+Puedes [comparar las fichas de huevos azules o verdes](../razas.html?filtro=color#razas-gallinas) y consultar [criaderos por país](../criaderos.html) antes de preguntar por disponibilidad.
+
+## Fuentes
+
+- [Araucana Club of America: estándar estadounidense](https://araucana.net/sop/).
+- [The Poultry Club: programa de la exposición nacional británica, con clases Araucana con y sin cola](https://www.poultryclub.org/media/resources/files/NationalShowSchedule2024.pdf).
+- [Ameraucana Breeders Club: historia y reconocimiento de la raza](https://ameraucanabreedersclub.org/history.html).
+- [Ameraucana Alliance: diferencias entre Ameraucana, Araucana y Easter Egger](https://www.ameraucana.org/Ameraucana%20Chickens).
