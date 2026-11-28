@@ -829,7 +829,7 @@ def poner_version(html):
         if nombre == "css/estilo.css":
             version = VERSION_ESTILO
         if nombre in {"js/fichas-buscar.js", "css/fichas-buscar.css"}:
-            version = "20261127-filtros-razas"
+            version = "20261128-comparar-razas"
         if 'data-publicidad-discreta' in html and nombre in {"js/app.js", "js/config.js"}:
             version = VERSION_PUBLICIDAD
         if nombre == "js/hero.js":

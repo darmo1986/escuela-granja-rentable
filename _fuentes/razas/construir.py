@@ -316,6 +316,36 @@ def buscador_y_indice(items, ejemplo, etiqueta, recuentos=None):
 """
 
 
+def comparador_html(fichas, medios):
+    datos = {}
+    for slug, _, cuerpo in sorted(fichas, key=lambda f: medios[f[0]]["nombre"].lower()):
+        partes = dict(re.findall(r"^## ([^\n]+)\n+([^\n]+)", cuerpo, re.M))
+
+        def limpio(texto):
+            return " ".join(re.sub(r"\[\d+\]", "", texto).split())
+
+        origen = partes.get("Origen") or partes.get("Origen e historia", "")
+        aptitud = partes.get("Aptitud") or partes.get("Para qué sirve", "")
+        color = partes.get("Color del huevo", "")
+        puesta = partes.get("Puesta anual") or partes.get("Puesta", "")
+        datos[slug] = [medios[slug]["nombre"], limpio(origen), limpio(aptitud), limpio(color), limpio(puesta)]
+    opciones = "".join(f'<option value="{esc(slug)}">{esc(ficha[0])}</option>' for slug, ficha in datos.items())
+    datos_json = json.dumps(datos, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
+    return f"""<details class="panel razas-comparador" id="comparar-razas" data-comparar-razas hidden>
+<summary>Comparar dos razas</summary>
+<p>Elige dos fichas para ver juntos su origen, aptitud y datos del huevo. La puesta puede variar según la línea y el manejo.</p>
+<form><div class="razas-comparador-campos">
+<label for="comparar-primera">Primera raza<select id="comparar-primera" required><option value="">Selecciona una raza</option>{opciones}</select></label>
+<label for="comparar-segunda">Segunda raza<select id="comparar-segunda" required><option value="">Selecciona una raza</option>{opciones}</select></label>
+<button class="btn sec" type="submit">Comparar</button>
+</div></form>
+<p data-comparar-estado role="status" aria-live="polite"></p>
+<div class="razas-comparador-resultados" data-comparar-resultados></div>
+<script type="application/json" data-comparar-datos>{datos_json}</script>
+</details>
+"""
+
+
 def bloque_hub(fichas, medios, dims):
     tarjetas = []
     recuentos = {valor: 0 for valor, _ in FILTRO_RAZAS}
@@ -339,6 +369,7 @@ def bloque_hub(fichas, medios, dims):
             '<p>Origen, aptitud, peso, puesta, color del huevo, carácter y clima de cada raza, con sus fuentes. '
             'Las características son tendencias de raza, no garantías para cada ave. Una misma raza puede aparecer en varios filtros si tiene más de un uso.</p>\n'
             + buscador_y_indice([(f"razas/{slug}.html", medios[slug]["nombre"]) for slug, _, _ in sorted(fichas, key=lambda f: medios[f[0]]["nombre"].lower())], "doble propósito", "Ir directamente a una raza", recuentos)
+            + comparador_html(fichas, medios)
             + '<div id="lista-fichas" class="raza-grid" data-fichas-lista>\n' + "\n".join(tarjetas) + '\n</div>\n</section>\n<!-- razas:fin -->')
 
 
