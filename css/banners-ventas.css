@@ -80,3 +80,25 @@
 
 .gr-venta-foto img[hidden]{display:none!important}
 .gr-venta-sin-foto{display:grid;place-items:center;min-height:100px;padding:12px;text-align:center;font-size:.85rem;line-height:1.4;color:#516859}
+
+
+/* Banner de acceso a la tienda Amazon de Granja Rentable */
+.gr-amazon-banner{display:grid;grid-template-columns:minmax(180px,.68fr) minmax(0,1.32fr);align-items:stretch;max-width:1200px;margin:20px auto 24px;overflow:hidden;border:1px solid #d7e4d2;border-radius:18px;background:#f5f8ef;color:#1b432a;box-shadow:0 10px 25px rgba(27,67,38,.08)}
+.gr-amazon-banner *{box-sizing:border-box}
+.gr-amazon-banner-imagen{min-width:0;min-height:210px;background:#dce8d6}
+.gr-amazon-banner-imagen img{display:block;width:100%;height:100%;min-height:210px;object-fit:cover;object-position:center}
+.gr-amazon-banner-contenido{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-width:0;padding:clamp(17px,2.8vw,30px)}
+.gr-amazon-banner-kicker{margin:0 0 8px!important;color:#27613a!important;font-size:.7rem!important;font-weight:900!important;letter-spacing:.12em;line-height:1.35}
+.gr-amazon-banner h2{margin:0 0 8px;color:#193e27;font-size:clamp(1.25rem,2.2vw,1.8rem);line-height:1.16;letter-spacing:-.02em}
+.gr-amazon-banner-contenido>p:not(.gr-amazon-banner-kicker):not(.gr-amazon-banner-aviso){max-width:64ch;margin:0;color:#465f4c;line-height:1.5}
+.gr-amazon-banner-acciones{margin:13px 0 8px!important}
+.gr-amazon-banner-cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:10px 17px;border-radius:10px;background:#205d37;color:#fff!important;font-weight:850;text-decoration:none!important;transition:background-color .15s ease,transform .15s ease}
+.gr-amazon-banner-cta:hover{background:#17492b;transform:translateY(-1px)}
+.gr-amazon-banner-cta:focus-visible{outline:3px solid #b68f32;outline-offset:3px}
+.gr-amazon-banner-aviso{max-width:74ch;margin:0;color:#607363;font-size:.72rem;line-height:1.4}
+@media(max-width:640px){.gr-amazon-banner{grid-template-columns:1fr;margin:16px auto 20px;border-radius:15px}.gr-amazon-banner-imagen,.gr-amazon-banner-imagen img{min-height:0;height:auto;aspect-ratio:16/7;max-height:185px}.gr-amazon-banner-contenido{padding:16px 15px}.gr-amazon-banner h2{font-size:1.35rem}.gr-amazon-banner-acciones{width:100%}.gr-amazon-banner-cta{width:100%}}
+@media(prefers-reduced-motion:reduce){.gr-amazon-banner-cta{transition:none}.gr-amazon-banner-cta:hover{transform:none}}
+
+.gr-amazon-banner-acciones{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.gr-amazon-banner-secundario{color:#205d37!important;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:640px){.gr-amazon-banner-secundario{display:inline-flex;justify-content:center;min-height:42px;align-items:center;width:100%}}

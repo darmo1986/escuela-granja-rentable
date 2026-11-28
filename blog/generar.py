@@ -1112,6 +1112,22 @@ def html_banner_amazon(amazon_tema, tag, puesto="cierre"):
             f'</aside>')
 
 
+def html_banner_tienda(raiz_url, banner_id, puesto):
+    destino = esc(raiz_url + "tienda/")
+    imagen = esc(raiz_url + "img/hero-tienda-amazon.webp")
+    return (
+        f'<aside class="gr-amazon-banner" data-banner="{esc(banner_id)}" data-banner-puesto="{esc(puesto)}" aria-label="Tienda de Granja Rentable en Amazon.com">'
+        f'<div class="gr-amazon-banner-imagen"><img src="{imagen}" alt="Gallinas junto a un comedero y un bebedero en un gallinero" width="500" height="333" loading="lazy" decoding="async"></div>'
+        '<div class="gr-amazon-banner-contenido">'
+        '<p class="gr-amazon-banner-kicker">SELECCIÓN GRANJA RENTABLE · AMAZON.COM</p>'
+        '<h2>Material práctico para tu granja</h2>'
+        '<p>Comederos, bebederos, incubadoras y soluciones para el gallinero en un solo catálogo.</p>'
+        f'<p class="gr-amazon-banner-acciones"><a class="gr-amazon-banner-cta" href="{destino}">Explorar la tienda Amazon <span aria-hidden="true">→</span></a></p>'
+        '<p class="gr-amazon-banner-aviso">Enlaces de afiliado: podemos recibir una comisión. Amazon.com confirma precio, disponibilidad y envío.</p>'
+        '</div></aside>'
+    )
+
+
 def html_banner(raiz_url, ebook_clave, amazon_tema, tag, precio=""):
     """Ofertas propias y de afiliación; el contenido inicial funciona sin JS."""
     ofertas = []
@@ -2056,6 +2072,7 @@ def planificar(raiz, incluir_borradores=False):
             categorias_nav(""),
             buscador_blog(visibles),
             '<div data-blog-listado>\n' + listado(visibles, numero, cortes) + "\n</div>",
+            html_banner_tienda("../", "amazon-shop-blog-listado", "blog-listado"),
             bloque_guias("../"),
             '<div data-publicidad-discreta></div>' if numero == 1 else '',
             bloque_curso("../"),
@@ -2064,7 +2081,7 @@ def planificar(raiz, incluir_borradores=False):
         archivos[rel] = envolver(
             shell, rel, titulo_pagina, descripcion_pagina, canonical,
             "index,follow" if visibles else "noindex,follow", "website",
-            og_portada, OG_PREDETERMINADA_ALT, ld_blog() + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">', contenido, menu_html, pie_html)
+            og_portada, OG_PREDETERMINADA_ALT, ld_blog() + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112"><link rel="stylesheet" href="../css/banners-ventas.css?v=20261127-amazon-shop">', contenido, menu_html, pie_html)
     for clave, meta in ((c[0], CATS[c[0]]) for c in CATEGORIAS):
         grupo = [p for p in visibles if p["categoria"] == clave]
         indexable = len(grupo) >= MINIMO_CATEGORIA and clave not in CATEGORIAS_NOINDEX
@@ -2083,12 +2100,13 @@ def planificar(raiz, incluir_borradores=False):
         contenido = "\n".join(parte for parte in [
             hero, anuncio("banner", con_anuncios), categorias_nav(clave),
             buscador_blog(visibles), '<div data-blog-listado>\n' + rejilla + "\n</div>",
+            html_banner_tienda("../", "amazon-shop-blog-listado", "blog-listado"),
             bloque_guias("../"), bloque_curso("../"), anuncio("rect", con_anuncios),
         ] if parte)
         archivos[rel] = envolver(
             shell, rel, titulo, descripcion, canonical,
             "index,follow" if indexable else "noindex,follow",
-            "website", og_portada, OG_PREDETERMINADA_ALT, ld_categoria(meta) + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112">',
+            "website", og_portada, OG_PREDETERMINADA_ALT, ld_categoria(meta) + '<link rel="stylesheet" href="../css/blog-buscar.css?v=20261112"><link rel="stylesheet" href="../css/banners-ventas.css?v=20261127-amazon-shop">',
             contenido, menu_html, pie_html)
     for post in publicados:
         rel = f"blog/{post['slug']}.html"
@@ -2186,5 +2204,3 @@ def main(argv):
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
-
-
