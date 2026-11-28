@@ -38,7 +38,7 @@ dorking:{n:"Dorking",u:"razas/dorking.html",d:"Raza inglesa de doble propósito 
 chantecler:{n:"Chantecler",u:"razas/chantecler.html",d:"Raza de doble propósito desarrollada para inviernos fríos. Le conviene un alojamiento seco y no destaca en climas calurosos."},
 buckeye:{n:"Buckeye",u:"razas/buckeye.html",d:"Raza activa de doble propósito y cresta pequeña. Da huevos marrones y conviene comparar registros de la línea."},
 andaluza:{n:"Andaluza Azul",u:"razas/andaluza-azul.html",d:"Hecha para el calor de España: pone bien con calor fuerte y poco mantenimiento."}};
-var candidatos={huevos:["leghorn","australorp","andaluza"],carne:["brahma","orpington","sussex","cornish","dorking"],doble:["sussex","rhode","orpington","chantecler","buckeye"],color:["araucana","cream"]};
+var candidatos={huevos:["leghorn","australorp","andaluza"],carne:["brahma","cornish","dorking"],doble:["sussex","rhode","orpington","chantecler","buckeye"],color:["araucana","cream"]};
 var filtros={huevos:"puesta",carne:"carne",doble:"doble",color:"color"};
 var P={p1:null,p2:null,p3:null,p4:null};
 function pts(v,q){
@@ -65,7 +65,10 @@ var ranking=candidatos[P.p1].slice().sort(function(a,b){return tot[b]-tot[a];});
 var best=ranking[0], segunda=R[ranking[1]];
 var v=document.getElementById("veredicto");
 v.hidden=false;
-v.innerHTML='<h2>Para empezar a comparar: '+R[best].n+'</h2><p>'+R[best].d+'</p><p><a class="btn gold" href="'+R[best].u+'">Ver ficha de '+R[best].n+' →</a></p><p>Otra opción para tu objetivo: <a href="'+segunda.u+'">'+segunda.n+'</a>.</p><p><a href="razas.html?filtro='+filtros[P.p1]+'#razas-gallinas">Ver más razas para este objetivo</a></p><p><a href="criaderos.html">Buscar criaderos</a> · <a href="calculadora.html">Calcular costes</a></p>';
+var cautela=P.p1==="carne"&&(P.p2==="calor"||P.p3==="poco")
+? '<p><strong>Revisa el alojamiento antes de elegir.</strong> Con calor fuerte o un corral pequeño, estas fichas sirven para comparar, no para confirmar que el lote encaje. Comprueba <a href="guia-espacio.html">el espacio disponible</a>, la ventilación y la sombra antes de comprar aves.</p>'
+: '';
+v.innerHTML='<h2>Para empezar a comparar: '+R[best].n+'</h2>'+cautela+'<p>'+R[best].d+'</p><p><a class="btn gold" href="'+R[best].u+'">Ver ficha de '+R[best].n+' →</a></p><p>Otra opción para tu objetivo: <a href="'+segunda.u+'">'+segunda.n+'</a>.</p><p><a href="razas.html?filtro='+filtros[P.p1]+'#razas-gallinas">Ver más razas para este objetivo</a></p><p><a href="criaderos.html">Buscar criaderos</a> · <a href="calculadora.html">Calcular costes</a></p>';
 v.focus({preventScroll:true});
 v.scrollIntoView({block:"nearest",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}});});
 })();
