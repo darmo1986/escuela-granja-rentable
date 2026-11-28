@@ -5,7 +5,7 @@ descripcion: "Calcula cuánto cuesta producir una docena de huevos con tus datos
 categoria: ponedoras
 fecha: 2026-11-09
 borrador: false
-actualizado: 2026-11-13
+actualizado: 2026-11-28
 autor: "Equipo editorial de Granja Rentable"
 imagen: "img/blog/costo-granja-avicola.webp"
 imagen_og: "img/blog/costo-granja-avicola-og.webp"
@@ -22,6 +22,10 @@ Muchos pequeños productores conocen el precio de venta de sus huevos, pero no t
 La buena noticia es que no necesitas una explotación grande ni un programa de contabilidad complicado para empezar a medirlo.
 
 En esta guía aprenderás a calcular el coste por docena con **tus propios datos**, separar gastos de inversión y conocer el precio mínimo necesario para cubrir los costes. También descubrirás por qué producir una docena y vender una docena no siempre cuesta lo mismo.
+
+**Respuesta rápida:** divide los gastos de producción de un periodo entre los huevos producidos en ese mismo periodo y multiplica por 12. Por ejemplo, si gastaste 90 en total y produjiste 120 huevos, el coste fue de 9 por docena producida. Es un ejemplo, no un precio de mercado. Si quieres saber cuánto cuesta cada docena que efectivamente vendes, usa las docenas vendidas y añade los gastos de venta que correspondan.
+
+**Haz tu cálculo:** usa la [calculadora de pienso por docena](../calculadoras.html#coste-docena) para medir solo el alimento. Si aún no tienes los datos, empieza con la [hoja semanal de puesta y pienso](../hoja-registro-puesta.html). El resto de esta guía te ayuda a sumar los otros costes.
 
 ## 1. Qué significa el coste de producción por docena
 
