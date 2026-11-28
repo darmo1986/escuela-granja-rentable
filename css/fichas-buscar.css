@@ -11,3 +11,15 @@
 .fichas-filtro select { min-height:44px; max-width:100%; padding:.45rem .65rem; font:inherit; color:#183f28; background:#fffdf8; border:1.5px solid #8c9d8f; border-radius:10px; }
 .fichas-filtro select:focus-visible { outline:3px solid #b78920; outline-offset:2px; }
 @media (max-width:480px) { .fichas-filtro select { flex-basis:100%; } }
+
+.razas-comparador{margin:1rem 0}
+.razas-comparador summary{cursor:pointer;font-weight:750;min-height:2rem}
+.razas-comparador summary:focus-visible{outline:3px solid #b78920;outline-offset:2px}
+.razas-comparador-campos,.razas-comparador-resultados{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.razas-comparador-campos label{display:grid;gap:.35rem;font-weight:700}
+.razas-comparador-campos select{width:100%;min-width:0;min-height:44px;padding:.35rem;border:1px solid #8c9d8f;border-radius:8px;background:#fffdf8;color:#183f28;font:inherit}
+.razas-comparador-campos button{justify-self:start;min-height:44px}
+.razas-comparador-resultados article{min-width:0;padding:.8rem;border:1px solid #a8b9ad;border-radius:10px;overflow-wrap:anywhere}
+.razas-comparador-resultados dt{font-weight:750;margin-top:.6rem}
+.razas-comparador-resultados dd{margin:0}
+@media(max-width:650px){.razas-comparador-campos,.razas-comparador-resultados{grid-template-columns:minmax(0,1fr)}}
