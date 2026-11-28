@@ -266,9 +266,9 @@ def pagina(slug, datos, cuerpo, medio, dims, piezas):
         '<script defer src="../js/ofertas.js?v=20261117banners"></script>\n<script defer src="../js/registro-banners.js?v=20261117banners"></script>\n</body>', 1)
 
 
-FILTRO_RAZAS = [["puesta","Orientadas a la puesta"],["carne","Orientadas a carne"],["doble","Doble propósito"],["color","Huevos azules o verdes"],["video","Con vídeo"]]
+FILTRO_RAZAS = [["puesta","Con aptitud de puesta"],["carne","Orientadas a carne"],["doble","Doble propósito"],["color","Huevos azules o verdes"],["video","Con vídeo"],["ornamental","Con aptitud ornamental"],["marron-oscuro","Huevos marrón oscuro destacados"]]
 
-def datos_catalogo(cuerpo, con_video):
+def datos_catalogo(cuerpo, con_video, uso_ornamental=False, huevo_marron_oscuro=False):
     partes = dict(re.findall(r"^## ([^\n]+)\n+([^\n]+)", cuerpo, re.M))
     origen = partes.get("Origen") or partes.get("Origen e historia", "")
     aptitud = partes.get("Aptitud") or partes.get("Para qué sirve", "")
@@ -287,11 +287,18 @@ def datos_catalogo(cuerpo, con_video):
         tags.add("color")
     if con_video:
         tags.add("video")
+    if uso_ornamental:
+        tags.add("ornamental")
+    if huevo_marron_oscuro:
+        tags.add("marron-oscuro")
     return " ".join(texto.split()), [tag for tag, _ in FILTRO_RAZAS if tag in tags]
 
 
-def buscador_y_indice(items, ejemplo, etiqueta):
-    filtros = "<label class=\"fichas-filtro\" for=\"filtrar-ficha\">Filtrar por<select id=\"filtrar-ficha\" data-fichas-filtro aria-controls=\"lista-fichas\"><option value=\"\">Todas las razas</option><option value=\"puesta\">Orientadas a la puesta</option><option value=\"carne\">Orientadas a carne</option><option value=\"doble\">Doble propósito</option><option value=\"color\">Huevos azules o verdes</option><option value=\"video\">Con vídeo</option></select></label>"
+def buscador_y_indice(items, ejemplo, etiqueta, recuentos=None):
+    recuentos = recuentos or {}
+    opciones = [("", "Todas las razas", len(items))] + [(valor, nombre, recuentos.get(valor, 0)) for valor, nombre in FILTRO_RAZAS]
+    etiquetas = "".join(f'<option value="{esc(v)}">{esc(n)} ({total})</option>' for v, n, total in opciones)
+    filtros = '<label class="fichas-filtro" for="filtrar-ficha">Filtrar por<select id="filtrar-ficha" data-fichas-filtro aria-controls="lista-fichas" aria-describedby="nota-filtros">' + etiquetas + '</select></label>\n<p class="fine" id="nota-filtros">Las cifras indican el total antes de buscar por palabra. El color del huevo puede variar según la línea.</p>'
     enlaces = "\n".join(f'<li><a href="{esc(ruta)}">{esc(nombre)}</a></li>' for ruta, nombre in items)
     return f"""<form class="panel fichas-buscador" role="search" aria-label="Buscar fichas por nombre o características" data-fichas-buscar hidden>
 <label for="buscar-ficha">Buscar por nombre o características</label>
@@ -311,11 +318,14 @@ def buscador_y_indice(items, ejemplo, etiqueta):
 
 def bloque_hub(fichas, medios, dims):
     tarjetas = []
+    recuentos = {valor: 0 for valor, _ in FILTRO_RAZAS}
     for slug, datos, cuerpo in sorted(fichas, key=lambda f: medios[f[0]]["nombre"].lower()):
         m = medios[slug]
         w, h = dims[slug]
         extra = " · con vídeo" if m.get("video") else ""
-        texto, etiquetas = datos_catalogo(cuerpo, m.get("video"))
+        texto, etiquetas = datos_catalogo(cuerpo, m.get("video"), m.get("uso_ornamental"), m.get("huevo_marron_oscuro"))
+        for categoria in etiquetas:
+            recuentos[categoria] += 1
         clases = " ".join(etiquetas)
         tarjetas.append(
             f'<article class="raza" data-fichas-texto="{esc(texto)}" data-fichas-etiquetas="{esc(clases)}">\n<div class="raza-media"><figure>\n'
@@ -327,8 +337,8 @@ def bloque_hub(fichas, medios, dims):
     return ('<!-- razas:inicio -->\n<section id="razas-gallinas">\n\n\n\n\n\n<div class="anuncio-tercio" data-anuncio-tercio></div>'
             f'<h2>Razas de gallinas: {len(fichas)} fichas</h2>\n'
             '<p>Origen, aptitud, peso, puesta, color del huevo, carácter y clima de cada raza, con sus fuentes. '
-            'Las características son tendencias de raza, no garantías para cada ave.</p>\n'
-            + buscador_y_indice([(f"razas/{slug}.html", medios[slug]["nombre"]) for slug, _, _ in sorted(fichas, key=lambda f: medios[f[0]]["nombre"].lower())], "doble propósito", "Ir directamente a una raza")
+            'Las características son tendencias de raza, no garantías para cada ave. Una misma raza puede aparecer en varios filtros si tiene más de un uso.</p>\n'
+            + buscador_y_indice([(f"razas/{slug}.html", medios[slug]["nombre"]) for slug, _, _ in sorted(fichas, key=lambda f: medios[f[0]]["nombre"].lower())], "doble propósito", "Ir directamente a una raza", recuentos)
             + '<div id="lista-fichas" class="raza-grid" data-fichas-lista>\n' + "\n".join(tarjetas) + '\n</div>\n</section>\n<!-- razas:fin -->')
 
 
