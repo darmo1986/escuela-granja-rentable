@@ -228,8 +228,10 @@ function loggedBirds() {
   return {id:get("id").value,weight:weight.value===""?null:weight.valueAsNumber,health:get("health").value};
  });
 }
+let loadedDate="";
 function edit(date) {
  const form=$("registro"), current=lot(); if (!current) return;
+ loadedDate=date;
  form.reset(); $("aves").replaceChildren(); form.elements.date.min=current.start; form.elements.date.value=date;
  const row=current.rows.find(r=>r.date===date);
  if (!row) return;
@@ -267,16 +269,30 @@ function allProfiles() {
  return state.lots.flatMap(l=>l.profiles.map(b=>({l,b})));
 }
 function pendingDay(){
- const f=$("registro").elements, previous=lot()?.rows.find(r=>r.date===f.date.value);
+ const f=$("registro").elements, previous=lot()?.rows.find(r=>r.date===loadedDate);
  if(f.notes.value.trim()!==(previous?.notes??"") || f.health.value.trim()!==(previous?.health??""))return true;
- if(cards.some(([k])=>(f[k].value===""?null:f[k].valueAsNumber)!==(previous?.[k]??null)))return true;
+ if(cards.some(([k])=>f[k].validity?.badInput || (f[k].value===""?null:f[k].valueAsNumber)!==(previous?.[k]??null)))return true;
  return JSON.stringify(loggedBirds())!==JSON.stringify(previous?.birds??[]);
+}
+function allowLotChange(){
+ return !(pendingDay() || ($("ficha-editor").open && bf.name.value.trim())) ||
+  confirm("Tienes cambios sin guardar en el lote actual. ¿Cambiar de lote sin guardarlos?");
+}
+function openDay(date){
+ const input=$("registro").elements.date, current=lot();
+ if(!current || !validDate(date) || date<current.start){
+  input.value=loadedDate;return false;
+ }
+ if(date===loadedDate)return true;
+ if(pendingDay() && !confirm("Tienes cambios sin guardar en esta anotación. ¿Cambiar de fecha sin guardarlos?")){
+  input.value=loadedDate;return false;
+ }
+ edit(date);return true;
 }
 function goToBird(l,b) {
  if(!l || !b)return;
  if(state.active!==l.id){
-  if((pendingDay() || ($("ficha-editor").open && bf.name.value.trim())) &&
-     !confirm("Tienes un formulario abierto en el lote actual. ¿Cambiar de lote sin guardar esas anotaciones?"))return;
+  if(!allowLotChange())return;
   state={...state,active:l.id};
   birdForm.reset();$("ficha-editor").open=false;render();
  }
@@ -316,9 +332,10 @@ $("ficha-nueva").addEventListener("click",()=>profileEditor());
 $("ficha-pesar").addEventListener("click",()=>{$("anotacion-individual").open=true;addBird({id:selectedBird})?.focus();});
 function draftDay(){
  const form=$("registro"), ids=[...cards.map(([id])=>id),"date","notes","health"];
- return {fields:ids.map(id=>[id,form.elements[id].value]),birds:loggedBirds()};
+ return {loadedDate,fields:ids.map(id=>[id,form.elements[id].value]),birds:loggedBirds()};
 }
 function resumeDay(draft){
+ loadedDate=draft.loadedDate;
  $("aves").replaceChildren();
  for(const [id,value] of draft.fields)$("registro").elements[id].value=value;
  for(const b of draft.birds)addBird(b);
@@ -400,7 +417,7 @@ function render() {
  showBird(selectedBird);
  $("historial").replaceChildren(...[...current.rows].reverse().map(r=>{
   const li=element("li"), action=element("button","Editar"); action.type="button";
-  action.addEventListener("click",()=>{edit(r.date);$("registro").elements.date.focus();});
+  action.addEventListener("click",()=>{if(openDay(r.date))$("registro").elements.date.focus();});
   const values=cards.filter(([id])=>r[id]!=null).map(([id,label])=>label+": "+(moneyKeys.has(id)?money(r[id],c):nice(r[id])));
   li.append(element("strong",r.date),element("p",values.join(" · ") || "Sin cifras anotadas"),element("p",r.notes),action);
   if(r.health) li.insertBefore(element("p","Salud del lote: "+r.health),action);
@@ -414,8 +431,9 @@ $("alta").addEventListener("submit",async e=>{
  e.preventDefault(); const form=e.currentTarget, f=form.elements, next=copy(state);
  const id=typeof crypto.randomUUID==="function"?crypto.randomUUID():String(Date.now());
  if(!currencyOK(f.currency.value)){announce("Elige euros o dólares para este lote.");return;}
+ if(lot() && !allowLotChange())return;
  next.lots.push({id,name:f.name.value,start:f.start.value,currency:f.currency.value,initial:Number(f.initial?.value),profiles:[],rows:[]}); next.active=id;
- if(await save(next,"Lote creado.")){form.reset(); f.start.value=today(); $("alta-lote").open=false;}
+ if(await save(next,"Lote creado.")){birdForm.reset();$("ficha-editor").open=false;form.reset(); f.start.value=today(); $("alta-lote").open=false;}
 });
 $("elegir-moneda").addEventListener("submit",async e=>{
  e.preventDefault();const form=e.currentTarget,c=form.elements.currency.value, current=lot();
@@ -423,8 +441,8 @@ $("elegir-moneda").addEventListener("submit",async e=>{
  const draft=draftDay(),next=copy(state);next.lots.find(l=>l.id===next.active).currency=c;
  if(await save(next,"Moneda asignada. Los importes anteriores no se han convertido."))resumeDay(draft);
 });
-$("lotes").addEventListener("change",async e=>{const el=e.target,next=copy(state);next.active=el.value;if(!await save(next,"Lote seleccionado."))el.value=state.active;else{birdForm.reset();$("ficha-editor").open=false;}});
-$("registro").elements.date.addEventListener("change",e=>{if (validDate(e.target.value)) edit(e.target.value);});
+$("lotes").addEventListener("change",async e=>{const el=e.target;if(el.value===state.active)return;if(!allowLotChange()){el.value=state.active;return;}const next=copy(state);next.active=el.value;if(!await save(next,"Lote seleccionado."))el.value=state.active;else{birdForm.reset();$("ficha-editor").open=false;}});
+$("registro").elements.date.addEventListener("change",e=>{openDay(e.target.value);});
 $("registro").addEventListener("submit",async e=>{
  e.preventDefault(); const f=e.currentTarget.elements, next=copy(state), l=next.lots.find(a=>a.id===next.active); if(!l)return;
  const row={date:f.date.value,notes:f.notes.value.trim(),health:f.health.value.trim(),birds:loggedBirds()};
